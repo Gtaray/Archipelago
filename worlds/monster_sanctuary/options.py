@@ -6,6 +6,7 @@ from Options import Toggle, Choice, Range, SpecialRange, TextChoice, DeathLink
     # Randomize to any monster
 # Randomize keeper's monsters
 # Remove locked doors
+# Randomize shops
 
 class RandomizeMonsters(Choice):
     """Are monsters randomized?
@@ -98,6 +99,12 @@ class Goal(Choice):
     option_defeat_mad_lord = 0
     option_defeat_legendary_keepers = 1
     default = 0
+
+    def get_event_name(self) -> str:
+        return {
+            self.option_defeat_mad_lord: "Defeat Mad Lord",
+            self.option_defeat_legendary_keepers: "Defeat All Legendary Keepers",
+        }[self.value]
 
 
 monster_sanctuary_options = {

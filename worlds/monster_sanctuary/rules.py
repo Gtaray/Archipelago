@@ -8,8 +8,8 @@ def set_rules(world: MultiWorld, player: int):
     item_rules = { }
 
     # Go through each location in the world and set whether it should be used or not
-    for location in world.get_locations(player):
-        if location.name in item_rules:
+    # for location in world.get_locations(player):
+        # if location.name in item_rules:
             # add_item_rule(location, item_rules[location.name])
 
     # Defines requirements to access locations
@@ -39,6 +39,7 @@ def set_rules(world: MultiWorld, player: int):
 
 
 def has_double_jump(state: CollectionState, player: int) -> bool:
+    return False
     return state.has("Double Jump Boots", player, 1)
 
 
@@ -52,10 +53,12 @@ def has_region_key(state: CollectionState, player: int, region: str) -> bool:
 
 # region Collective Explore Abilities
 def breakable_walls(state: CollectionState, player: int) -> bool:
+    return True
     return state.has_group("Breakable Walls", player)
 
 
 def impassible_vines(state: CollectionState, player: int) -> bool:
+    return True
     return state.has_group("Impassible Vines", player)
 
 
@@ -71,49 +74,61 @@ def distant_ledges(state: CollectionState, player: int) -> bool:
 
 # region Monster Abilities
 def summon_big_rock(state: CollectionState, player: int) -> bool:
+    return False
     return state.has("Ground Switches", player)
 
 
 def fire_orbs(state: CollectionState, player: int) -> bool:
+    return True
     return state.has("Flame Orbs", player)
 
 
 def water_orbs(state: CollectionState, player: int) -> bool:
+    return True
     return state.has("Water Orbs", player)
 
 
 def lightning_orbs(state: CollectionState, player: int) -> bool:
+    return False
     return state.has("Lightning Orbs", player)
 
 
 def earth_orbs(state: CollectionState, player: int) -> bool:
+    return False
     return state.has("Earth Orbs", player)
 
 
 def ice_orbs(state: CollectionState, player: int) -> bool:
+    return False
     return state.has("Ice Orbs", player)
 
 
 def flying(state: CollectionState, player: int) -> bool:
+    return True
     return state.has("Flying", player)
 
 
 def improved_flying(state: CollectionState, player: int) -> bool:
+    return False
     return state.has("Improved Flying", player)
 
 
 def lofty_mount(state: CollectionState, player: int) -> bool:
+    return False
     return state.has("Lofty Mount", player)
 
 
 def dual_mobility(state: CollectionState, player: int) -> bool:
+    return False
     return state.has("Dual Mobility", player)
 
 
 def narrow_corridors(state: CollectionState, player: int) -> bool:
+    return False
     return state.has("Narrow Corridors", player)
 
 
 def magic_walls(state: CollectionState, player: int) -> bool:
+    return False
     return state.has("Magic Walls", player)
 # endregion

@@ -3,7 +3,7 @@ from . import rules
 from .locations import location_table, MonsterSanctuaryLocation
 
 rooms = {
-    "Menu"
+    "Menu",
     "MountainPath_North1",
     "MountainPath_North2",
     "MountainPath_North3",
@@ -43,13 +43,11 @@ class MonsterSanctuaryRegion(Region):
 def create_regions(world: MultiWorld, player: int):
     # This should build the regions
     # then connect all the locations to those regions
-    region_dict = {}
-    for room in rooms:
-        region_dict[room] = MonsterSanctuaryRegion(room, player, world)
+    region_dict = {room: MonsterSanctuaryRegion(room, player, world) for room in rooms}
 
     for location in location_table:
-        region_dict[location.region].locations += MonsterSanctuaryLocation(
-            player, location.name, location.category, location.default_item, location.id, region_dict[location.region])
+        region_dict[location.region].locations += [MonsterSanctuaryLocation(
+            player, location.name, location.category, location.default_item, location.id, region_dict[location.region])]
 
     # add the created regions (which have no extra data in them at this point) to the world.regions set
     # We do this here to that the connect() calls below can properly create Entrances between regions
@@ -107,9 +105,9 @@ def create_regions(world: MultiWorld, player: int):
     connect(world, player, "MountainPath_Center7", "MountainPath_Center6", one_way=True)
     connect(world, player, "MountainPath_SnowyEntrance", "MountainPath_SnowyEntrance2",
             rule=lambda state: rules.has_double_jump(state, player) and (
-                               rules.flying(state, player) or
-                               rules.improved_flying(state, player) or
-                               rules.dual_mobility(state, player)))
+                    rules.flying(state, player) or
+                    rules.improved_flying(state, player) or
+                    rules.dual_mobility(state, player)))
     # endregion
 
 
