@@ -12,8 +12,8 @@ class RandomizeMonsters(Choice):
     """Are monsters randomized?
     No: Monsters are not randomized
     Yes: All monsters are randomized to any monster
-    By Specie: Randomized such that all monsters of a given specie are replaced with another specie.
-    by Encounter: All monsters of the same specie within an encounter are replaced with another specie"""
+    By Specie: All monsters of a given specie are randomized to the same specie.
+    by Encounter: All monsters of the same specie within an encounter are randomized to the same specie"""
     display_name = "Randomize Monsters"
     option_no = 0
     option_yes = 1
@@ -34,7 +34,7 @@ class RandomizeChampions(Choice):
     No: Champions will not be randomized
     Default: Champions will be randomized according to the Randomize Monsters game option
     Shuffle: Champions will be shuffled around
-    Random: Champions will be completely randomized separate from the rest of the monster pool"""
+    Random: Champions will be completely randomized ignoring restrictions on the rest of the monster pool"""
     display_name = "Randomize Champions"
     option_no = 0
     option_default = 1
@@ -69,19 +69,17 @@ class MinimumEggDropRate(Range):
     default = 0
 
 
-class RandomizeChestItems(Choice):
-    """Are chest items randomized?
-    No: Chest items are not randomized
-    Yes: Chest items can contain any item
-    By Type: Chest items are randomized to an item of the same type (equipment, consumable, food, etc.)
-    By Tier: Chest items are randomized to an item of the same tier
-    by Type and Tier: Chest items are randomized to an item of the same type and tier"""
-    display_name = "Randomize Chest Items"
-    option_no = 0
-    option_yes = 1
-    option_by_type = 2
-    option_by_tier = 3
-    option_by_type_and_tier = 4
+class RandomizeItems(Choice):
+    """How are items randomized?
+    Any: Items are randomized to any other item
+    By Tier: Attempt to match the original item's tier
+    By Type: Attempt to match the original item's type (weapon, consumable, food, etc.)
+    By Type and Tier: Attempts to match the original item's type and tier"""
+    display_name = "Randomize Items"
+    option_any = 0
+    option_by_tier = 1
+    option_by_type = 2,
+    option_type_and_tier = 3
     default = 1
 
 
@@ -114,7 +112,7 @@ monster_sanctuary_options = {
     "randomize_monster_shifts": RandomizeMonsterShifts,
     "encounter_evolved_monsters": CanEncounterEvolvedMonsters,
     "minimum_egg_drop_rate": MinimumEggDropRate,
-    "randomize_chests": RandomizeChestItems,
+    "randomize_items": RandomizeItems,
     "include_chaos_relics": IncludeChaosRelics,
     "goal": Goal,
     "death_link": DeathLink
