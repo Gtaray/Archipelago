@@ -4,17 +4,41 @@ from copy import deepcopy
 
 from BaseClasses import MultiWorld, Location, Region
 from worlds.AutoWorld import World
+from worlds.monster_sanctuary.rules import AccessCondition
 
 
 class MonsterSanctuaryLocationCategory(IntEnum):
-	ITEM = 0
-	GIFT = 1
-	MONSTER = 2
-	CHAMPION = 3
-	KEEPER = 4,
+	CHEST = 0  # Items in chests
+	GIFT = 1  # Gifts from NPCs
+	MONSTER = 2  # Monsters
+	CHAMPION = 3  # Champion battles
+	KEEPER = 4  # Keeper battles
 	RANK = 5  # Used to track keeper rank gained from battling champions
-	EVENT = 10 # Used for events to track location access
+	FLAG = 10  # Used for events to track location access
 
+
+class MonsterSanctuaryLocation(Location):
+	game: str = "Monster Sanctuary"
+	category: MonsterSanctuaryLocationCategory
+	access_rule = Optional[AccessCondition]
+	default_item: str
+	encounter_id: Optional[int] = None
+	event: bool
+
+	def __init__(
+			self,
+			player: int,
+			name: str,
+			category: MonsterSanctuaryLocationCategory,
+			default_item: Optional[str] = None,
+			address: Optional[int] = None,
+			parent: Optional[Region] = None,
+			access_rule: Optional[AccessCondition] = None):
+		self.default_item = default_item
+		self.category = category
+		self.access_rule = access_rule
+
+		super().__init__(player, name, address, parent)
 
 class LocationData:
 	id: int
@@ -41,35 +65,6 @@ class LocationData:
 
 		if category is MonsterSanctuaryLocationCategory.RANK:
 			self.name += "_Champion"
-
-
-class MonsterSanctuaryLocation(Location):
-	game: str = "Monster Sanctuary"
-	category: MonsterSanctuaryLocationCategory
-	default_item: str
-	encounter_id: Optional[int] = None
-
-	def __init__(
-			self,
-			player: int,
-			name: str,
-			category: MonsterSanctuaryLocationCategory,
-			default_item: str,
-			address: Optional[int] = None,
-			parent: Optional[Region] = None):
-		self.default_item = default_item
-		self.category = category
-
-		# If this location is a monster or champion location, then we need to save the
-		# encounter id for later, but then null out the address so the system sees it as
-		# an Event
-		if (category == MonsterSanctuaryLocationCategory.MONSTER
-					or category == MonsterSanctuaryLocationCategory.CHAMPION):
-			self.encounter_id = address
-			# address = None
-			self.event = True
-
-		super().__init__(player, name, address, parent)
 
 
 def get_champion_locations():
@@ -148,40 +143,40 @@ location_table = {
 	LocationData("MountainPath_East1", 1, "Catzerker", MonsterSanctuaryLocationCategory.MONSTER, 1),
 	LocationData("MountainPath_East1", 1, "Vaero", MonsterSanctuaryLocationCategory.MONSTER, 2),
 
-	LocationData("MountainPath_North3", 6, "Cestus", MonsterSanctuaryLocationCategory.ITEM),
-	LocationData("MountainPath_North3", 5, "Vital Ring", MonsterSanctuaryLocationCategory.ITEM),
-	LocationData("MountainPath_North3", 4, "Kunai", MonsterSanctuaryLocationCategory.ITEM),
-	LocationData("MountainPath_North3", 3, "Hide", MonsterSanctuaryLocationCategory.ITEM),
-	LocationData("MountainPath_North5", 9, "Bracelet", MonsterSanctuaryLocationCategory.ITEM),
-	LocationData("MountainPath_North5", 8, "Gauntlet", MonsterSanctuaryLocationCategory.ITEM),
-	LocationData("MountainPath_North5", 6, "2x Copper", MonsterSanctuaryLocationCategory.ITEM),
-	LocationData("MountainPath_North6", 1, "Tome", MonsterSanctuaryLocationCategory.ITEM),
-	LocationData("MountainPath_North6", 2, "2x Potion", MonsterSanctuaryLocationCategory.ITEM),
-	LocationData("MountainPath_North7", 1, "Large Shield", MonsterSanctuaryLocationCategory.ITEM),
-	LocationData("MountainPath_NorthHidden", 4, "Harp", MonsterSanctuaryLocationCategory.ITEM),
-	LocationData("MountainPath_Center1", 5, "Diadem", MonsterSanctuaryLocationCategory.ITEM),
-	LocationData("MountainPath_Center2", 3, "Morning Star", MonsterSanctuaryLocationCategory.ITEM),
-	LocationData("MountainPath_Center2", 4, "Orb", MonsterSanctuaryLocationCategory.ITEM),
-	LocationData("MountainPath_Center3", 6, "3x Phoenix Tear", MonsterSanctuaryLocationCategory.ITEM),
-	LocationData("MountainPath_Center3", 7, "Impact Ring", MonsterSanctuaryLocationCategory.ITEM),
-	LocationData("MountainPath_Center3", 8, "Red Gem", MonsterSanctuaryLocationCategory.ITEM),
-	LocationData("MountainPath_Center3", 9, "150 G", MonsterSanctuaryLocationCategory.ITEM),
-	LocationData("MountainPath_Center4", 0, "Bandana", MonsterSanctuaryLocationCategory.ITEM),
-	LocationData("MountainPath_Center4", 4, "Skill Resetter", MonsterSanctuaryLocationCategory.ITEM),
-	LocationData("MountainPath_Center5", 6, "Walnut", MonsterSanctuaryLocationCategory.ITEM),
-	LocationData("MountainPath_Center5", 13, "3x Craft Box", MonsterSanctuaryLocationCategory.ITEM),
-	LocationData("MountainPath_Center6", 2, "Pandora's Box", MonsterSanctuaryLocationCategory.ITEM),
-	LocationData("MountainPath_Center6", 5, "Wizard Hat", MonsterSanctuaryLocationCategory.ITEM),
-	LocationData("MountainPath_Center6", 10, "2x Potion", MonsterSanctuaryLocationCategory.ITEM),
-	LocationData("MountainPath_West1", 4, "Crit Ring", MonsterSanctuaryLocationCategory.ITEM),
-	LocationData("MountainPath_West2", 19, "100 G", MonsterSanctuaryLocationCategory.ITEM),
-	LocationData("MountainPath_West2", 22, "3x Smoke Bomb", MonsterSanctuaryLocationCategory.ITEM),
-	LocationData("MountainPath_West4", 1, "Ribbon", MonsterSanctuaryLocationCategory.ITEM),
-	LocationData("MountainPath_West4", 3, "Shell", MonsterSanctuaryLocationCategory.ITEM),
-	LocationData("MountainPath_West4", 6, "Gauntlet+3", MonsterSanctuaryLocationCategory.ITEM),
-	LocationData("MountainPath_WestHidden", 0, "Helmet", MonsterSanctuaryLocationCategory.ITEM),
-	LocationData("MountainPath_WestHidden2", 1, "Shift Stone", MonsterSanctuaryLocationCategory.ITEM),
-	LocationData("MountainPath_SnowyEntrance2", 14, "Mana Ring+3", MonsterSanctuaryLocationCategory.ITEM),
+	LocationData("MountainPath_North3", 6, "Cestus", MonsterSanctuaryLocationCategory.CHEST),
+	LocationData("MountainPath_North3", 5, "Vital Ring", MonsterSanctuaryLocationCategory.CHEST),
+	LocationData("MountainPath_North3", 4, "Kunai", MonsterSanctuaryLocationCategory.CHEST),
+	LocationData("MountainPath_North3", 3, "Hide", MonsterSanctuaryLocationCategory.CHEST),
+	LocationData("MountainPath_North5", 9, "Bracelet", MonsterSanctuaryLocationCategory.CHEST),
+	LocationData("MountainPath_North5", 8, "Gauntlet", MonsterSanctuaryLocationCategory.CHEST),
+	LocationData("MountainPath_North5", 6, "2x Copper", MonsterSanctuaryLocationCategory.CHEST),
+	LocationData("MountainPath_North6", 1, "Tome", MonsterSanctuaryLocationCategory.CHEST),
+	LocationData("MountainPath_North6", 2, "2x Potion", MonsterSanctuaryLocationCategory.CHEST),
+	LocationData("MountainPath_North7", 1, "Large Shield", MonsterSanctuaryLocationCategory.CHEST),
+	LocationData("MountainPath_NorthHidden", 4, "Harp", MonsterSanctuaryLocationCategory.CHEST),
+	LocationData("MountainPath_Center1", 5, "Diadem", MonsterSanctuaryLocationCategory.CHEST),
+	LocationData("MountainPath_Center2", 3, "Morning Star", MonsterSanctuaryLocationCategory.CHEST),
+	LocationData("MountainPath_Center2", 4, "Orb", MonsterSanctuaryLocationCategory.CHEST),
+	LocationData("MountainPath_Center3", 6, "3x Phoenix Tear", MonsterSanctuaryLocationCategory.CHEST),
+	LocationData("MountainPath_Center3", 7, "Impact Ring", MonsterSanctuaryLocationCategory.CHEST),
+	LocationData("MountainPath_Center3", 8, "Red Gem", MonsterSanctuaryLocationCategory.CHEST),
+	LocationData("MountainPath_Center3", 9, "150 G", MonsterSanctuaryLocationCategory.CHEST),
+	LocationData("MountainPath_Center4", 0, "Bandana", MonsterSanctuaryLocationCategory.CHEST),
+	LocationData("MountainPath_Center4", 4, "Skill Resetter", MonsterSanctuaryLocationCategory.CHEST),
+	LocationData("MountainPath_Center5", 6, "Walnut", MonsterSanctuaryLocationCategory.CHEST),
+	LocationData("MountainPath_Center5", 13, "3x Craft Box", MonsterSanctuaryLocationCategory.CHEST),
+	LocationData("MountainPath_Center6", 2, "Pandora's Box", MonsterSanctuaryLocationCategory.CHEST),
+	LocationData("MountainPath_Center6", 5, "Wizard Hat", MonsterSanctuaryLocationCategory.CHEST),
+	LocationData("MountainPath_Center6", 10, "2x Potion", MonsterSanctuaryLocationCategory.CHEST),
+	LocationData("MountainPath_West1", 4, "Crit Ring", MonsterSanctuaryLocationCategory.CHEST),
+	LocationData("MountainPath_West2", 19, "100 G", MonsterSanctuaryLocationCategory.CHEST),
+	LocationData("MountainPath_West2", 22, "3x Smoke Bomb", MonsterSanctuaryLocationCategory.CHEST),
+	LocationData("MountainPath_West4", 1, "Ribbon", MonsterSanctuaryLocationCategory.CHEST),
+	LocationData("MountainPath_West4", 3, "Shell", MonsterSanctuaryLocationCategory.CHEST),
+	LocationData("MountainPath_West4", 6, "Gauntlet+3", MonsterSanctuaryLocationCategory.CHEST),
+	LocationData("MountainPath_WestHidden", 0, "Helmet", MonsterSanctuaryLocationCategory.CHEST),
+	LocationData("MountainPath_WestHidden2", 1, "Shift Stone", MonsterSanctuaryLocationCategory.CHEST),
+	LocationData("MountainPath_SnowyEntrance2", 14, "Mana Ring+3", MonsterSanctuaryLocationCategory.CHEST),
 
 	LocationData("MountainPath_West6", 134, "Mountain Path Key", MonsterSanctuaryLocationCategory.GIFT),
 	LocationData("MountainPath_West6", 135, "2x Apple", MonsterSanctuaryLocationCategory.GIFT),
@@ -196,10 +191,10 @@ location_table = {
 	# endregion
 
 	# region Keeper Stronghold
-	LocationData("KeeperStronghold_WestStairwell", 5, "Staff", MonsterSanctuaryLocationCategory.ITEM),
-	LocationData("KeeperStronghold_WestTowers", 4, "Hide+1", MonsterSanctuaryLocationCategory.ITEM),
-	LocationData("KeeperStronghold_Storage", 5, "Skill Resetter", MonsterSanctuaryLocationCategory.ITEM),
-	LocationData("KeeperStronghold_Storage", 6, "Cape", MonsterSanctuaryLocationCategory.ITEM),
+	LocationData("KeeperStronghold_WestStairwell", 5, "Staff", MonsterSanctuaryLocationCategory.CHEST),
+	LocationData("KeeperStronghold_WestTowers", 4, "Hide+1", MonsterSanctuaryLocationCategory.CHEST),
+	LocationData("KeeperStronghold_Storage", 5, "Skill Resetter", MonsterSanctuaryLocationCategory.CHEST),
+	LocationData("KeeperStronghold_Storage", 6, "Cape", MonsterSanctuaryLocationCategory.CHEST),
 
 	LocationData("KeeperStronghold_Smith", 290, "2x Copper", MonsterSanctuaryLocationCategory.GIFT),
 	LocationData("KeeperStronghold_Smith", 291, "2x Cotton", MonsterSanctuaryLocationCategory.GIFT),
@@ -230,17 +225,17 @@ location_table = {
 	LocationData("BlueCave_NorthFork", 9, "Tengu", MonsterSanctuaryLocationCategory.MONSTER, 2),
 
 
-	# LocationData("BlueCave_StrongholdEntrance", 2, "???", MonsterSanctuaryLocationCategory.ITEM), # Bravery chest
-	LocationData("BlueCave_Platforms", 0, "Blue Caves Key", MonsterSanctuaryLocationCategory.ITEM),
-	LocationData("BlueCave_Platforms", 1, "250 G", MonsterSanctuaryLocationCategory.ITEM),
-	LocationData("BlueCave_Platforms", 3, "Bracelet+1", MonsterSanctuaryLocationCategory.ITEM),
-	LocationData("BlueCave_NorthFork", 4, "Katar", MonsterSanctuaryLocationCategory.ITEM),
-	LocationData("BlueCave_NorthFork", 7, "Ribbon+2", MonsterSanctuaryLocationCategory.ITEM),
-	LocationData("BlueCave_NorthFork", 10, "Cape+2", MonsterSanctuaryLocationCategory.ITEM),
-	LocationData("BlueCave_NorthFork", 11, "Bracelet+2", MonsterSanctuaryLocationCategory.ITEM),
-	LocationData("BlueCave_NorthFork", 12, "Corn", MonsterSanctuaryLocationCategory.ITEM),
+	# LocationData("BlueCave_StrongholdEntrance", 2, "???", MonsterSanctuaryLocationCategory.CHEST), # Bravery chest
+	LocationData("BlueCave_Platforms", 0, "Blue Caves Key", MonsterSanctuaryLocationCategory.CHEST),
+	LocationData("BlueCave_Platforms", 1, "250 G", MonsterSanctuaryLocationCategory.CHEST),
+	LocationData("BlueCave_Platforms", 3, "Bracelet+1", MonsterSanctuaryLocationCategory.CHEST),
+	LocationData("BlueCave_NorthFork", 4, "Katar", MonsterSanctuaryLocationCategory.CHEST),
+	LocationData("BlueCave_NorthFork", 7, "Ribbon+2", MonsterSanctuaryLocationCategory.CHEST),
+	LocationData("BlueCave_NorthFork", 10, "Cape+2", MonsterSanctuaryLocationCategory.CHEST),
+	LocationData("BlueCave_NorthFork", 11, "Bracelet+2", MonsterSanctuaryLocationCategory.CHEST),
+	LocationData("BlueCave_NorthFork", 12, "Corn", MonsterSanctuaryLocationCategory.CHEST),
 
-	LocationData("BlueCave_Switches", None, None, MonsterSanctuaryLocationCategory.EVENT),
+	LocationData("BlueCave_Switches", None, None, MonsterSanctuaryLocationCategory.FLAG),
 	# endregion
 
 	# region Champion Events

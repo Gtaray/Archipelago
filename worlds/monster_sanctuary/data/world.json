@@ -207,8 +207,8 @@
       }
     ],
     "chests": [
-      { "id": 2, "item":  "Pandora's Box", "requirements":  [ "fire_orb" ] },
-      { "id": 10, "item":  "2x Potion", "requirements": [ "water_orb" ] }
+      { "id": 2, "item":  "Pandora's Box", "requirements":  [ "fire_orbs" ] },
+      { "id": 10, "item":  "2x Potion", "requirements": [ "water_orbs" ] }
     ]
   },
   {
@@ -497,7 +497,7 @@
       { "id": 6, "monsters": [ "Tengu", "Grummy", "Tengu" ] }
     ],
     "flags": [
-      { "name":  "blue_caves_switches_access" }
+      { "id":  "blue_caves_switches_access", "name": "Blue Caves Switches Access" }
     ]
   },
   {
@@ -673,7 +673,7 @@
       ] },
       { "id": 7, "item": "4x Copper", "requirements": [
         "OR", [ "double_jump", "improved_flying", "dual_mobility" ]
-      ] }, // Need to create this item
+      ], "TODO": "Need to create this item" },
       { "id": 9, "item": "Shell+2", "requirements": [
         "OR", [ "double_jump", "distant_ledges" ]
       ] }
@@ -784,7 +784,7 @@
     ],
     "chests": [
       { "id": 0, "item": "Double Jump Boots", "requirements": [
-        "OR", [ "double_jump_boots", "ground_switches", "distant_ledges" ]
+        "OR", [ "double_jump", "ground_switches", "distant_ledges" ]
       ]}
     ],
     "encounters": [
@@ -849,10 +849,10 @@
     ],
     "encounters": [
       {
-        // THIS ENCOUNTER DOESN"T SHOW UP?
         "id": 1,
         "monsters": [ "Monk", "Frosty", "Monk"],
-        "requirements": [ "AND", [ "summon_big_rock", "grapple" ]]
+        "requirements": [ "AND", [ "summon_big_rock", "grapple" ]],
+        "TODO": "This encounter doesn't show up?"
       }
     ]
   },
@@ -904,7 +904,7 @@
     ],
     "chests": [
       { "id": 3, "item": "Pear" },
-      { "id": 4, "item": "2x Level Badge" } // Item doesn't exist
+      { "id": 4, "item": "2x Level Badge", "TODO": "Need to create this" }
     ]
   },
   {
@@ -1011,7 +1011,7 @@
       { "region": "BlueCave_WestWaters4_Lower" }
     ],
     "chests": [
-      { "id": 0, "item": "Diadem+3", "requirements": [ "dark_rooms" ] },
+      { "id": 0, "item": "Diadem+3", "requirements": [ "dark_rooms" ] }
     ]
   },
   {
@@ -1050,7 +1050,7 @@
       { "region": "BlueCave_WestWaters6_Lower", "requirements": [ "levitate" ] }
     ],
     "chests": [
-      { "id": 0, "item": "2x Reward Box Lvl 3" }, // Doesn't exit
+      { "id": 0, "item": "2x Reward Box Lvl 3", "TODO": "Need to create this item" },
       { "id": 2, "item": "2x Craft Box" }
     ]
   },
@@ -1066,10 +1066,10 @@
       }
     ],
     "chests": [
-      { "id": 6, "item": "Combo Potion", "requirements": [ "lightning_orb" ] }
+      { "id": 6, "item": "Combo Potion", "requirements": [ "lightning_orbs" ] }
     ],
     "gifts": [
-      // NEED TO FIGURE OUT THESE GIFTS FROM BEX
+      "TODO: Figure out the gifts from Bex"
     ]
   },
   {
@@ -1084,7 +1084,7 @@
       { "region": "BlueCave_ChampionRoom2" }
     ],
     "chests": [
-      { "id": 2, "item": "Tome+3", "requirements": [ "earth_orb" ]}
+      { "id": 2, "item": "Tome+3", "requirements": [ "earth_orbs" ]}
     ]
   },
   {
@@ -1107,7 +1107,7 @@
       { "region": "BlueCave_ChampionRoom2" }
     ],
     "flags": [
-      { "name":  "blue_cave_champion_room_2_west_access" }
+      { "id":  "blue_cave_champion_room_2_west_access", "name": "Blue Caves to Mountain Path Shortcut Access" }
     ]
   }
 ]

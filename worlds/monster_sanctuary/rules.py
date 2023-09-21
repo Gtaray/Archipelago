@@ -1,61 +1,102 @@
 from worlds.generic.Rules import add_item_rule, add_rule, location_item_name
 from BaseClasses import LocationProgressType, MultiWorld, Location, Region, Entrance, CollectionState
+from typing import List, Optional
+from enum import Enum
 
 
-def set_rules(world: MultiWorld, player: int):
-    # Defines rules for whether a location can have an item placed in it
-    # Likely pulled from settings to determine what locations to use
-    item_rules = { }
-
-    # Go through each location in the world and set whether it should be used or not
-    # for location in world.get_locations(player):
-        # if location.name in item_rules:
-            # add_item_rule(location, item_rules[location.name])
-
-    # Defines requirements to access locations
-    access_rules = {
-        # Mountain Path
-        "MountainPath_North3_5": lambda state: breakable_walls(state, player),
-        "MountainPath_North3_3": lambda state: (has_double_jump(state, player)
-                                                or distant_ledges(state, player)),
-        "MountainPath_Center1_5": lambda state: (has_double_jump(state, player)
-                                                 or distant_ledges(state, player)
-                                                 or summon_big_rock(state, player)),
-        "MountainPath_Center3_8": lambda state: impassible_vines(state, player),
-        "MountainPath_Center3_9": lambda state: impassible_vines(state, player),
-        "MountainPath_Center4_4": lambda state: breakable_walls(state, player),
-        "MountainPath_Center5_6": lambda state: impassible_vines(state, player),
-        "MountainPath_Center5_13": lambda state: magic_walls(state, player),
-        "MountainPath_West4_6": lambda state: has_double_jump(state, player),
-        "MountainPath_WestHidden2_1": lambda state: narrow_corridors(state, player),
-        "MountainPath_Center6_2": lambda state: fire_orbs(state, player),
-        "MountainPath_Center6_10": lambda state: water_orbs(state, player),
-
-        # Blue Caves
-        "BlueCave_Platforms_1": lambda state: (has_blue_caves_platform_control_access(state, player)
-                                               or has_double_jump(state, player)
-                                               or distant_ledges(state, player)),
-        "BlueCave_Platforms_3": lambda state: breakable_walls(state, player),
-        # TODO: Check if big or small rocks make check below possible
-        "BlueCave_NorthFork_7": lambda state: (has_double_jump(state, player)
-                                               or distant_ledges(state, player)),
-        # TODO: This needs to be changed when region segments become a thing
-        "BlueCave_NorthFork_10": lambda state: has_double_jump(state, player),
-        "BlueCave_NorthFork_12": lambda state: ground_switches(state, player),
-    }
-
-    # Go through each location in the world and assign relevant rules for it
-    for location in world.get_locations(player):
-        if location.name in access_rules:
-            add_rule(location, access_rules[location.name])
+class Operation(Enum):
+    NONE = 0
+    OR = 1
+    AND = 2,
 
 
-def has_blue_caves_platform_control_access(state: CollectionState, player: int) -> bool:
-    return state.has("Blue Caves Platform Control Access", player)
+class AccessCondition:
+    def __init__(self, requirements: List, operation: Operation = Operation.NONE):
+        self.operands: List[AccessCondition] = []
+        self.operation: Operation = operation
+        self.access_rule = None
+
+        if not requirements:
+            return
+
+        function_name: Optional[str] = None
+        if len(requirements) == 1:
+            function_name = requirements[0]
+
+        # if function name was set above, then we know that this is a leaf node
+        # and can set the access rule and return
+        if function_name is not None:
+            func = globals().get(function_name)
+            if func is None:
+                raise KeyError(f"Access function '{function_name}' is not defined")
+            else:
+                self.access_rule = func
+            return
+
+        # In the case of the root access condition, requirements is formatted
+        # a bit differently, and we handle that here
+        if len(requirements) == 2 and (requirements[0] == "AND" or requirements[0] == "OR"):
+            if requirements[0] == "AND":
+                self.operation = Operation.AND
+            if requirements[0] == "OR":
+                self.operation = Operation.OR
+            # move the read head to right after the initial AND/OR
+            requirements = requirements[1]
+
+        # go through the list of requirements
+        for i in range(len(requirements)):
+            op = Operation.NONE
+
+            if requirements[i] == "AND":
+                op = Operation.AND
+                i += 1
+            elif requirements[i] == "OR":
+                op = operation.OR
+                i += 1
+
+            reqs = requirements[i]
+            if isinstance(reqs, str):
+                reqs = [reqs]
+            self.operands += [AccessCondition(reqs, op)]
+
+    def is_leaf(self):
+        return self.operation is None and len(self.operands) == 0
+
+    def has_access(self, state: CollectionState, player: int) -> bool:
+        # if this node has no child conditions, return its own state
+        if self.is_leaf():
+            return self.access_rule(state, player)
+
+        # If there are no operands to operate on, then return true
+        if not self.operands:
+            return True
+
+        # If all operands resolve to true, then return true
+        return all([condition.has_access(state, player) for condition in self.operands])
 
 
-def has_double_jump(state: CollectionState, player: int) -> bool:
+# region Navigation Flags
+def blue_caves_switches_access(state: CollectionState, player: int) -> bool:
+    return state.has("Blue Caves Switches Access", player)
+
+
+def blue_cave_champion_room_2_west_access(state: CollectionState, player: int) -> bool:
+    return state.has("Blue Caves to Mountain Path Shortcut Access", player)
+
+
+def stronghold_dungeon_west_4_access(state: CollectionState, player: int) -> bool:
+    return state.has("Stronghold Dungeon to Blue Caves Shortcut Access");
+# endregion
+
+
+# region Key Items
+def double_jump(state: CollectionState, player: int) -> bool:
     return state.has("Double Jump Boots", player, 1)
+
+
+def all_sanctuary_tokens(state: CollectionState, player: int) -> bool:
+    return state.has("Sanctuary Token", player, 5)
+# endregion
 
 
 # region Keeper Rank
@@ -96,49 +137,37 @@ def keeper_rank_9(state: CollectionState, player: int) -> bool:
 # endregion
 
 
-# region keys
-def has_mountain_path_key(state: CollectionState, player: int, count: int = 1) -> bool:
+# region Area Keys. This will need some major work once I figure out how keys work
+def mountain_path_key(state: CollectionState, player: int, count: int = 1) -> bool:
     return state.has("Mountain Path Key", player, count)
 
 
-def has_blue_caves_key(state: CollectionState, player: int, count: int = 1) -> bool:
+def blue_cave_key(state: CollectionState, player: int, count: int = 1) -> bool:
     return state.has("Blue Caves Key", player, count)
 
 
-def has_dungeon_key(state: CollectionState, player: int, count: int = 1) -> bool:
+def dungeon_key(state: CollectionState, player: int, count: int = 1) -> bool:
     return state.has("Stronghold Dungeon Key", player, count)
 
 
-def has_ancient_woods_key(state: CollectionState, player: int, count: int = 1) -> bool:
+def ancient_woods_key(state: CollectionState, player: int, count: int = 1) -> bool:
     return state.has("Ancient Woods Key", player, count)
 
 
-def has_magma_chamber_key(state: CollectionState, player: int, count: int = 1) -> bool:
+def magma_chamber_key(state: CollectionState, player: int, count: int = 1) -> bool:
     return state.has("Magma Chamber Key", player, count)
 
 
-def has_workshop_key(state: CollectionState, player: int, count: int = 1) -> bool:
+def workshop_key(state: CollectionState, player: int, count: int = 1) -> bool:
     return state.has("Mystical Workshop Key", player, count)
 
 
-def has_underworld_key(state: CollectionState, player: int, count: int = 1) -> bool:
+def underworld_key(state: CollectionState, player: int, count: int = 1) -> bool:
     return state.has("Underworld Key", player, count)
-
-
-def has_region_key(state: CollectionState, player: int, region: str) -> bool:
-    return True
 # endregion
 
 
-# region Collective Explore Abilities
-def breakable_walls(state: CollectionState, player: int) -> bool:
-    return state.has_group("Breakable Walls", player)
-
-
-def impassible_vines(state: CollectionState, player: int) -> bool:
-    return state.has_group("Impassible Vines", player)
-
-
+# region Explore Abilities
 def distant_ledges(state: CollectionState, player: int) -> bool:
     return (flying(state, player)
             or improved_flying(state, player)
@@ -152,62 +181,128 @@ def ground_switches(state: CollectionState, player: int) -> bool:
             or summon_mushroom(state, player))
 
 
-# endregion
+def swimming(state: CollectionState, player: int) -> bool:
+    return (basic_swimming(state, player)
+            or improved_swimming(state, player)
+            or dual_mobility(state, player))
 
 
-# region Monster Abilities
-def summon_rock(state: CollectionState, player: int) -> bool:
-    return state.has("Summon Rock", player)
+def tar(state: CollectionState, player: int) -> bool:
+    return tar_mount(state, player) or dual_mobility(state, player)
 
 
-def summon_mushroom(state: CollectionState, player: int) -> bool:
-    return state.has("Summon Mushroom", player)
+def breakable_walls(state: CollectionState, player: int) -> bool:
+    return state.has_group("Breakable Walls", player)
 
 
-def summon_big_rock(state: CollectionState, player: int) -> bool:
-    return state.has("Summon Big Rock", player)
+def impassible_vines(state: CollectionState, player: int) -> bool:
+    return state.has_group("Impassible Vines", player)
+
+
+def diamond_blocks(state: CollectionState, player: int) -> bool:
+    return state.has_group("Diamond Blocks", player)
 
 
 def fire_orbs(state: CollectionState, player: int) -> bool:
-    return state.has("Flame Orbs", player)
+    return state.has_group("Flame Orbs", player)
 
 
 def water_orbs(state: CollectionState, player: int) -> bool:
-    return state.has("Water Orbs", player)
+    return state.has_group("Water Orbs", player)
 
 
 def lightning_orbs(state: CollectionState, player: int) -> bool:
-    return state.has("Lightning Orbs", player)
+    return state.has_group("Lightning Orbs", player)
 
 
 def earth_orbs(state: CollectionState, player: int) -> bool:
-    return state.has("Earth Orbs", player)
+    return state.has_group("Earth Orbs", player)
 
 
 def ice_orbs(state: CollectionState, player: int) -> bool:
-    return state.has("Ice Orbs", player)
+    return state.has_group("Ice Orbs", player)
+
+
+def summon_rock(state: CollectionState, player: int) -> bool:
+    return state.has_group("Summon Rock", player)
+
+
+def summon_mushroom(state: CollectionState, player: int) -> bool:
+    return state.has_group("Summon Mushroom", player)
+
+
+def summon_big_rock(state: CollectionState, player: int) -> bool:
+    return state.has_group("Summon Big Rock", player)
 
 
 def flying(state: CollectionState, player: int) -> bool:
-    return state.has("Flying", player)
+    return state.has_group("Flying", player)
 
 
 def improved_flying(state: CollectionState, player: int) -> bool:
-    return state.has("Improved Flying", player)
+    return state.has_group("Improved Flying", player)
 
 
 def lofty_mount(state: CollectionState, player: int) -> bool:
-    return state.has("Lofty Mount", player)
+    return state.has_group("Lofty Mount", player)
+
+
+def basic_swimming(state: CollectionState, player: int) -> bool:
+    return state.has_group("Swimming", player)
+
+
+def improved_swimming(state: CollectionState, player: int) -> bool:
+    return state.has_group("Improved Swimming", player)
 
 
 def dual_mobility(state: CollectionState, player: int) -> bool:
-    return state.has("Dual Mobility", player)
+    return state.has_group("Dual Mobility", player)
 
 
 def narrow_corridors(state: CollectionState, player: int) -> bool:
-    return state.has("Narrow Corridors", player)
+    return state.has_group("Narrow Corridors", player)
 
 
 def magic_walls(state: CollectionState, player: int) -> bool:
-    return state.has("Magic Walls", player)
+    return state.has_group("Magic Walls", player)
+
+
+def fiery_shots(state: CollectionState, player: int) -> bool:
+    return state.has_group("Fiery Shots", player)
+
+
+def heavy_blocks(state: CollectionState, player: int) -> bool:
+    return state.has_group("Heavy Blocks", player)
+
+
+def torches(state: CollectionState, player: int) -> bool:
+    return state.has_group("Torches", player)
+
+
+def dark_rooms(state: CollectionState, player: int) -> bool:
+    return state.has_group("Dark Rooms", player)
+
+
+def grapple(state: CollectionState, player: int) -> bool:
+    return state.has_group("Grappling Anchors", player)
+
+
+def levitate(state: CollectionState, player: int) -> bool:
+    return state.has_group("Levitate", player)
+
+
+def secret_vision(state: CollectionState, player: int) -> bool:
+    return state.has_group("Secret Vision", player)
+
+
+def spore_shroud(state: CollectionState, player: int) -> bool:
+    return state.has_group("Spore Shroud", player)
+
+
+def mount(state: CollectionState, player: int) -> bool:
+    return state.has_group("Mount", player)
+
+
+def tar_mount(state: CollectionState, player: int) -> bool:
+    return state.has_group("Tar Mount", player)
 # endregion

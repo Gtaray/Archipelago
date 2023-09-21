@@ -1,164 +1,110 @@
 from BaseClasses import MultiWorld, Region, Entrance, Location
+from typing import List, Optional, Dict
 from . import rules
-from .locations import location_table, MonsterSanctuaryLocation
-from .locations import MonsterSanctuaryLocationCategory as LocationCategory
+# from .locations import location_table, MonsterSanctuaryLocation
+from .locations import MonsterSanctuaryLocationCategory as LocationCategory, MonsterSanctuaryLocation
+from .rules import AccessCondition, Operation
 
-rooms = {
-    "Menu",
-    "MountainPath_North1",
-    "MountainPath_North2",
-    "MountainPath_North3",
-    "MountainPath_North4",
-    "MountainPath_North5",
-    "MountainPath_North6",
-    "MountainPath_North7",
-    "MountainPath_NorthHidden",
-    "MountainPath_East1",
-    "MountainPath_Center1",
-    "MountainPath_Center2",
-    "MountainPath_Center3",
-    "MountainPath_Center4",
-    "MountainPath_Center5",
-    "MountainPath_Center6",
-    "MountainPath_Center7",
-    "MountainPath_West1",
-    "MountainPath_West2",
-    "MountainPath_West3",
-    "MountainPath_West4",
-    "MountainPath_West5",
-    "MountainPath_West6",
-    "MountainPath_WestHidden",
-    "MountainPath_WestHidden2",
-    "MountainPath_SnowyEntrance",
-    "MountainPath_SnowyEntrance2",
 
-    "KeeperStronghold_WestEntrance",
-    "KeeperStronghold_WestStairwell",
-    "KeeperStronghold_WestTowers",
-    "KeeperStronghold_LivingRoom1",
-    "KeeperStronghold_Shops",
-    "KeeperStronghold_CenterStairwell",
-    "KeeperStronghold_Smith",
-    "KeeperStronghold_LivingRoom2",
-    "KeeperStronghold_Library",
-    "KeeperStronghold_Storage",
-    "KeeperStronghold_EastStairwell",
-    "KeeperStronghold_DressMaker",
-    "KeeperStronghold_ParentsRoom",
-
-    "BlueCave_StrongholdEntrance",
-    "BlueCave_North1",
-    "BlueCave_Platforms",
-    "BlueCave_Switches",
-    "BlueCave_NorthFork"
-}
+class MonsterSanctuaryConnection:
+    def __init__(self, region: str, access_rules: Optional[AccessCondition]):
+        self.region = region
+        self.access_rules = access_rules
 
 
 class MonsterSanctuaryRegion(Region):
     game: str = "Monster Sanctuary"
+    connections: List[MonsterSanctuaryConnection]
 
-    def __init(self, name: str, player: int, world: MultiWorld):
+    def __init__(self, name: str, player: int, world: MultiWorld):
         super(MonsterSanctuaryRegion, self).__init__(name, player, world)
+        self.connections: List[MonsterSanctuaryConnection] = []
 
+    def add_chest(self, player, chest_data, region_name, location_id):
+        chest_name = f"{region_name}_{chest_data['id']}"
 
-def create_regions(world: MultiWorld, player: int):
-    # This should build the regions
-    # then connect all the locations to those regions
-    region_dict = {room: MonsterSanctuaryRegion(room, player, world) for room in rooms}
+        location = MonsterSanctuaryLocation(
+            player=player,
+            name=chest_name,
+            address=location_id,
+            category=LocationCategory.CHEST,
+            default_item=chest_data["item"],
+            access_rule=AccessCondition(chest_data.get("requirements"))
+        )
 
-    for location in location_table:
-        region_dict[location.region].locations += [MonsterSanctuaryLocation(
-            player, location.name, location.category, location.default_item, location.id, region_dict[location.region])]
+        self.locations += [location]
+        return location
 
-    # add the created regions (which have no extra data in them at this point) to the world.regions set
-    # We do this here to that the connect() calls below can properly create Entrances between regions
-    world.regions += list(region_dict.values())
+    def add_gift(self, player, gift_data, region_name, location_id):
+        gift_name = f"{region_name}_{gift_data['id']}"
 
-    # region Mountain Path
-    connect(world, player, "Menu", "MountainPath_North1")
-    connect(world, player, "MountainPath_North1", "MountainPath_North2")
-    connect(world, player, "MountainPath_North2", "MountainPath_North3")
-    connect(world, player, "MountainPath_North3", "MountainPath_North4")
-    connect(world, player, "MountainPath_North4", "MountainPath_North5")
-    connect(world, player, "MountainPath_North5", "MountainPath_NorthHidden", one_way=True,
-            rule=lambda state: (rules.has_double_jump(state, player) or
-                                rules.improved_flying(state, player) or
-                                rules.dual_mobility(state, player) or
-                                rules.lofty_mount(state, player)))
-    connect(world, player, "MountainPath_NorthHidden", "MountainPath_North5", one_way=True)
-    connect(world, player, "MountainPath_North5", "MountainPath_East1",
-            rule=lambda state: rules.keeper_rank_1(state, player))
-    connect(world, player, "MountainPath_North5", "MountainPath_Center1")
-    connect(world, player, "MountainPath_Center1", "MountainPath_Center2")
-    connect(world, player, "MountainPath_Center2", "MountainPath_Center3")
-    connect(world, player, "MountainPath_Center3", "MountainPath_Center4")
-    connect(world, player, "MountainPath_Center3", "MountainPath_Center5")
-    connect(world, player, "MountainPath_Center3", "MountainPath_Center7",
-            rule=lambda state: rules.has_mountain_path_key(state, player))
-    connect(world, player, "MountainPath_Center5", "MountainPath_West1")
-    connect(world, player, "MountainPath_West1", "MountainPath_West2")
-    connect(world, player, "MountainPath_West2", "MountainPath_West3")
-    connect(world, player, "MountainPath_West2", "MountainPath_West4")
-    connect(world, player, "MountainPath_West2", "MountainPath_West5")
-    connect(world, player, "MountainPath_West2", "MountainPath_SnowyEntrance")
-    connect(world, player, "MountainPath_West2", "MountainPath_WestHidden",
-            rule=lambda state: rules.breakable_walls(state, player))
-    connect(world, player, "MountainPath_West2", "MountainPath_WestHidden2",
-            rule=lambda state: rules.narrow_corridors(state, player))
-    connect(world, player, "MountainPath_West3", "MountainPath_North6")
-    connect(world, player, "MountainPath_North6", "MountainPath_North7", one_way=True,
-            rule=lambda state: (rules.has_double_jump(state, player) or
-                                rules.improved_flying(state, player) or
-                                rules.dual_mobility(state, player) or
-                                rules.lofty_mount(state, player)))
-    connect(world, player, "MountainPath_North7", "MountainPath_North6", one_way=True)
-    connect(world, player, "MountainPath_North7", "MountainPath_North1", one_way=True)
-    connect(world, player, "MountainPath_North1", "MountainPath_North7", one_way=True,
-            rule=lambda state: (rules.has_double_jump(state, player) or
-                                rules.improved_flying(state, player) or
-                                rules.dual_mobility(state, player)))
-    connect(world, player, "MountainPath_West4", "MountainPath_West6")
-    connect(world, player, "MountainPath_West5", "MountainPath_Center6")
-    connect(world, player, "MountainPath_Center6", "MountainPath_Center7", one_way=True,
-            rule=lambda state: (rules.has_double_jump(state, player) or
-                                rules.improved_flying(state, player) or
-                                rules.dual_mobility(state, player)))
-    connect(world, player, "MountainPath_Center7", "MountainPath_Center6", one_way=True)
-    connect(world, player, "MountainPath_SnowyEntrance", "MountainPath_SnowyEntrance2",
-            rule=lambda state: rules.has_double_jump(state, player) and (
-                    rules.flying(state, player) or
-                    rules.improved_flying(state, player) or
-                    rules.dual_mobility(state, player)))
-    # endregion
-    # region Keeper Stronghold
-    connect(world, player, "MountainPath_East1", "KeeperStronghold_WestEntrance")
-    connect(world, player, "KeeperStronghold_WestEntrance", "KeeperStronghold_WestStairwell")
-    connect(world, player, "KeeperStronghold_WestStairwell", "KeeperStronghold_WestTowers")
-    connect(world, player, "KeeperStronghold_WestStairwell", "KeeperStronghold_LivingRoom1")
-    connect(world, player, "KeeperStronghold_WestStairwell", "KeeperStronghold_Shops")
-    connect(world, player, "KeeperStronghold_Shops", "KeeperStronghold_CenterStairwell")
-    connect(world, player, "KeeperStronghold_CenterStairwell", "KeeperStronghold_Smith")
-    connect(world, player, "KeeperStronghold_CenterStairwell", "KeeperStronghold_LivingRoom2")
-    connect(world, player, "KeeperStronghold_CenterStairwell", "KeeperStronghold_Library")
-    connect(world, player, "KeeperStronghold_CenterStairwell", "KeeperStronghold_Storage")
-    connect(world, player, "KeeperStronghold_Library", "KeeperStronghold_EastStairwell")
-    connect(world, player, "KeeperStronghold_Storage", "KeeperStronghold_EastStairwell")
-    connect(world, player, "KeeperStronghold_EastStairwell", "KeeperStronghold_ParentsRoom")
-    connect(world, player, "KeeperStronghold_EastStairwell", "KeeperStronghold_DressMaker")
-    connect(world, player, "MountainPath_Storage", "BlueCave_StrongholdEntrance")
-    # TODO: Add link to dungeon
-    # TODO: Add link to the keeper's tower
-    # endregion
-    # region Blue Caves
-    connect(world, player, "BlueCave_StrongholdEntrance", "BlueCave_North1")
-    connect(world, player, "BlueCave_North1", "BlueCave_Switches",
-            rule=lambda state: rules.has_blue_caves_key(state, player))
-    connect(world, player, "BlueCave_North1", "BlueCave_Platforms")
-    connect(world, player, "BlueCave_Platforms", "BlueCave_NorthFork", one_way=True,
-            rule=lambda state: (rules.has_blue_caves_platform_control_access(state, player) or
-                                (rules.has_double_jump(state, player) and rules.distant_ledges(state, player))))
-    connect(world, player, "BlueCave_NorthFork", "BlueCave_Platforms", one_way=True)
-    # endregion
+        location = MonsterSanctuaryLocation(
+            player=player,
+            name=gift_name,
+            address=location_id,
+            category=LocationCategory.CHEST,
+            default_item=gift_data["item"],
+            access_rule=AccessCondition(gift_data.get("requirements"))
+        )
+
+        self.locations += [location]
+        return location
+
+    def add_encounter(self, player, encounter_data, region_name, location_id, category = LocationCategory.MONSTER):
+        result: Dict[int, MonsterSanctuaryLocation] = {}
+        encounter_name = f"{region_name}_{encounter_data['id']}"
+
+        i = 0
+        for monster in encounter_data["monsters"]:
+            location = MonsterSanctuaryLocation(
+                player=player,
+                name=f"{encounter_name}_{i}",
+                address=location_id,
+                category=category,
+                default_item=monster,
+                access_rule=AccessCondition(encounter_data.get("requirements"))
+            )
+
+            self.locations += [location]
+            result[location_id] = location
+            i += 1
+            location_id += 1
+
+        return result, location_id
+
+    def add_champion(self, player, champion_data, region_name, location_id):
+        event_name = f"{region_name}_Champion"
+
+        rank_event = MonsterSanctuaryLocation(
+            player=player,
+            name=event_name,
+            address=location_id,
+            default_item=None,
+            category=LocationCategory.RANK,
+            access_rule=AccessCondition(champion_data.get("requirements"))
+        )
+        location_id += 1
+
+        new_locations, location_id = self.add_encounter(
+            player,
+            champion_data,
+            region_name,
+            location_id,
+            LocationCategory.CHAMPION)
+
+        new_locations[rank_event.address] = rank_event
+        return new_locations, location_id
+
+    def add_flag(self, player, flag_data, region_name, location_id):
+        location = MonsterSanctuaryLocation(
+            player=player,
+            name=flag_data["id"],
+            address=location_id,
+            category=LocationCategory.FLAG,
+            access_rule=AccessCondition(flag_data.get("requirements"))
+        )
+        self.locations += [location]
+        return location
 
 
 def connect(world: MultiWorld,
