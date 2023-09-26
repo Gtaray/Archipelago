@@ -68,7 +68,7 @@
       },
       { "region": "MountainPath_Center1" },
       {
-        "region": "MountainPath_Center1",
+        "region": "MountainPath_East1",
         "requirements": [ "keeper_rank_1" ]
       },
       {
@@ -242,8 +242,8 @@
   {
     "region": "MountainPath_Center7",
     "connections": [
-      { "region":  "MountainPath_West6" },
-      { "region":  "MountainPath_West3" }
+      { "region":  "MountainPath_Center6_Upper" },
+      { "region":  "MountainPath_Center3" }
     ],
     "champion": [
       { "id": 1, "monsters": [ "Monk" ] }
@@ -270,6 +270,7 @@
       { "region":  "MountainPath_West3" },
       { "region":  "MountainPath_West4" },
       { "region":  "MountainPath_West5" },
+      { "region":  "MountainPath_SnowyEntrance" },
       { "region":  "MountainPath_WestHidden2", "requirements":  [ "narrow_corridors" ] }
     ],
     "chests": [
@@ -318,7 +319,7 @@
   {
     "region": "MountainPath_West6",
     "connections": [
-      { "region":  "MountainPath_West5" }
+      { "region":  "MountainPath_West4" }
     ],
     "gifts": [
       { "id": 134, "item": "Mountain Path key" },
@@ -429,7 +430,8 @@
       { "region":  "KeeperStronghold_LivingRoom2" },
       { "region":  "KeeperStronghold_Smith" },
       { "region":  "KeeperStronghold_Storage" },
-      { "region":  "KeeperStronghold_Library" }
+      { "region":  "KeeperStronghold_Library" },
+      { "region":  "KeeperStronghold_KeepersTowers" }
     ]
   },
   {
@@ -626,7 +628,7 @@
   {
     "region": "BlueCave_NorthFork_West",
     "connections": [
-      { "region": "BlueCave_NorthFork_West" }
+      { "region": "BlueCave_Chains2" }
     ],
     "chests": [
       { "id": 11, "item": "Bracelet+2" }
@@ -739,6 +741,7 @@
     "region": "BlueCave_East2_Lower",
     "connections": [
       { "region": "BlueCave_East1" },
+      { "region": "BlueCave_East3" },
       {
         "region": "BlueCave_East2_Upper",
         "requirements": [
@@ -1059,9 +1062,7 @@
         "requirements": [
           "OR", [ "double_jump", "summon_big_rock", "distant_ledges", "swimming" ]
         ]
-      },
-      { "region": "BlueCave_WestWatersHidden2" },
-      { "region": "BlueCave_AquaEntrance_Upper" }
+      }
     ]
   },
   {
@@ -1095,7 +1096,7 @@
     "connections": [
       { "region": "BlueCave_WestWaters6_Lower" },
       { "region": "SunPalace_East1" },
-      { "region": "BlueCave_AquaEntrance_Upper" }
+      { "region": "BlueCave_AquaEntrance_Lower" }
     ],
     "encounters": [
       { "id": 2, "monsters": ["Monk", "Grummy", "Monk"]}
@@ -1182,7 +1183,7 @@
   {
     "region": "BlueCave_ChampionRoom2_WestAccess",
     "connections": [
-      { "region": "MountainPath_Center6_Upper" },
+      { "region": "MountainPath_Center6_Lower" },
       { "region": "BlueCave_ChampionRoom2" }
     ],
     "flags": [
@@ -1245,7 +1246,8 @@
               "summon_big_rock"]
             ]
           ]
-      }
+      },
+      { "region": "SnowyPeaks_East4_Lower" }
     ],
     "chests": [
       { "id": 8, "item": "Red Gem" },
@@ -1293,6 +1295,7 @@
   {
     "region": "SnowyPeaks_East4_Middle",
     "connections": [
+      { "region":  "SnowyPeaks_East5" },
       { "region":  "SnowyPeaks_East4_Lower" },
       { "region":  "SnowyPeaks_East4_Upper", "requirements": [
         "AND", [
@@ -1443,7 +1446,7 @@
         ]
       },
       {
-        "region": "SnowyPeaks_SunPalaceEntrance_Access",
+        "region": "SunPalace_West1",
         "requirements": [
           "OR", [
             "snowy_peaks_sun_palace_entrance_shortcut",
@@ -1727,7 +1730,7 @@
     "region": "SnowyPeaks_WestMountain2",
     "connections": [
       { "region": "SnowyPeaks_WestMountain1" },
-      { "region": "SnowyPeaks_WestMountain2" }
+      { "region": "SnowyPeaks_WestMountain3" }
     ],
     "chests": [
       { "id": 4, "item": "Mass Antidote" }
@@ -2006,7 +2009,8 @@
   {
     "region": "SnowyPeaks_EastMountain3_Shortcut",
     "connections": [
-      { "region": "SnowyPeaks_HighChallenge" }
+      { "region": "SnowyPeaks_HighChallenge" },
+      { "region": "SnowyPeaks_EastMountain3_Middle" }
     ],
     "flags": [
       { "id":  "snowy_peaks_east_mountain_3_shortcut", "name": "Snowy Peaks East Mountain 3 Shortcut" }

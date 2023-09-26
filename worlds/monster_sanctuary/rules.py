@@ -46,7 +46,11 @@ class AccessCondition:
             requirements = requirements[1]
 
         # go through the list of requirements
-        for i in range(len(requirements)):
+        # We use a while loop here because the for loop will ignore the manually adjustments
+        # that are made to i inside the loop, which will result in excessive operands when
+        # reqs are nested
+        i = 0
+        while i < len(requirements):
             op = Operation.NONE
 
             if requirements[i] == "AND":
@@ -61,6 +65,8 @@ class AccessCondition:
                 reqs = [reqs]
             self.operands += [AccessCondition(reqs, op)]
 
+            i += 1
+
     def is_leaf(self):
         return self.operation is Operation.NONE and len(self.operands) == 0
 
@@ -74,12 +80,16 @@ class AccessCondition:
             return True
 
         # If all operands resolve to true, then return true
-        return all([condition.has_access(state, player) for condition in self.operands])
+        if self.operation == Operation.AND:
+            return all([condition.has_access(state, player) for condition in self.operands])
+        else:
+            return any([condition.has_access(state, player) for condition in self.operands])
 
 
 # region Navigation Flags
 def blue_caves_switches_access(state: CollectionState, player: int) -> bool:
-    return state.has("Blue Caves Switches Access", player)
+    flag = state.has("Blue Caves Switches Access", player)
+    return flag
 
 
 def blue_cave_champion_room_2_west_shortcut(state: CollectionState, player: int) -> bool:
@@ -109,7 +119,8 @@ def double_jump(state: CollectionState, player: int) -> bool:
 
 
 def warm_underwear(state: CollectionState, player: int) -> bool:
-    return state.has("Warm Underwear", player, 1)
+    flag = state.has("Warm Underwear", player, 1)
+    return flag
 
 
 def raw_hide(state: CollectionState, player: int) -> bool:
@@ -123,7 +134,8 @@ def all_sanctuary_tokens(state: CollectionState, player: int) -> bool:
 
 # region Keeper Rank
 def keeper_rank_1(state: CollectionState, player: int) -> bool:
-    return state.has("Champion Defeated", player, 1)
+    flag = state.has("Champion Defeated", player, 1)
+    return flag
 
 
 def keeper_rank_2(state: CollectionState, player: int) -> bool:
@@ -165,7 +177,8 @@ def mountain_path_key(state: CollectionState, player: int, count: int = 1) -> bo
 
 
 def blue_cave_key(state: CollectionState, player: int, count: int = 1) -> bool:
-    return state.has("Blue Caves key", player, count)
+    flag = state.has("Blue Cave key", player, count)
+    return flag
 
 
 def dungeon_key(state: CollectionState, player: int, count: int = 1) -> bool:

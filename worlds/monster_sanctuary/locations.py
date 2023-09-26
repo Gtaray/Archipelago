@@ -158,6 +158,7 @@ def add_champion_data(location_id, champion_data, region_name):
 		default_item=None,
 		access_condition=AccessCondition(champion_data.get("requirements"))
 	)
+	locations_data[rank_event.name] = rank_event
 	location_id += 1
 
 	new_locations, location_id = add_encounter_data(
