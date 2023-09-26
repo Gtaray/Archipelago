@@ -1,4 +1,5 @@
 import json
+import os
 from typing import List, Optional, Dict
 
 from BaseClasses import MultiWorld, ItemClassification
@@ -12,7 +13,10 @@ def load_world():
     locations_by_id: Dict[int, LocationData] = {}
     location_id: int = 970500
 
-    with open("worlds/monster_sanctuary/data/world.json") as file:
+    dir = os.path.dirname(__file__)
+    world_file = os.path.join(dir, "data/world.json")
+
+    with open(world_file) as file:
         data = json.load(file)
         for region_data in data:
             region = RegionData(region_data["region"])
@@ -60,7 +64,11 @@ def load_world():
 def load_items():
     item_id: int = 970500
 
-    with open("worlds/monster_sanctuary/data/items.json") as file:
+    dir = os.path.dirname(__file__)
+    items_file = os.path.join(dir, "data/items.json")
+    monsters_file = os.path.join(dir, "data/monsters.json")
+
+    with open(items_file) as file:
         data = json.load(file)
         for item_category_data in data:
             item_category = parse_item_type(item_category_data["type"])
@@ -91,7 +99,7 @@ def load_items():
                 items_data[item.name] = item
                 item_id += 1
 
-    with open("worlds/monster_sanctuary/data/monsters.json") as file:
+    with open(monsters_file) as file:
         data = json.load(file)
 
         for monster_data in data:

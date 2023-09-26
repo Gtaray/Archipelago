@@ -102,7 +102,7 @@ class MonsterSanctuaryWorld(World):
                 connection_name = f"{region_data.name} to {connection.region}"
                 entrance = Entrance(self.player, connection_name, region)
                 # entrance.access_rule = connection.get_access_func(self.player)
-                entrance.access_rule = lambda state: connection.access_rules.has_access(state, self.player)
+                entrance.access_rule = lambda state, conn=connection: conn.access_rules.has_access(state, self.player)
 
                 # Add it to the region's exist, and connect to the other region's entrance
                 region.exits.append(entrance)

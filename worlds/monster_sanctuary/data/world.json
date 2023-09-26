@@ -636,7 +636,7 @@
     "region": "BlueCave_WestStairwell",
     "connections": [
       {
-        "region": "BlueCave_NorthFork",
+        "region": "BlueCave_NorthFork_Lower",
         "requirements": [
           "OR", [ "double_jump", "distant_ledges", "ground_switches" ]
         ]
@@ -692,7 +692,7 @@
     "connections": [
       { "region": "BlueCave_West1" },
       { "region": "BlueCave_East1" },
-      { "region": "BlueCave_South1", "requirements": [ "blue_cave_key" ] },
+      { "region": "BlueCave_South1_Upper", "requirements": [ "blue_cave_key" ] },
       {
         "region": "BlueCave_ChampionRoom",
         "requirements": [
@@ -915,7 +915,7 @@
     "region": "BlueCave_WestStairwell2",
     "connections": [
       { "region": "BlueCave_WestWaters1" },
-      { "region": "BlueCave_WestWaters2" },
+      { "region": "BlueCave_WestWaters2_Upper" },
       { "region": "BlueCave_Chains1" }
     ],
     "chests": [
@@ -923,7 +923,7 @@
     ]
   },
   {
-    "region": "BlueCave_Chains",
+    "region": "BlueCave_Chains1",
     "connections": [
       { "region": "BlueCave_WestStairwell2" },
       { "region": "BlueCave_Chains2" }
@@ -935,7 +935,7 @@
   {
     "region": "BlueCave_Chains2",
     "connections": [
-      { "region": "BlueCave_Chains" },
+      { "region": "BlueCave_Chains1" },
       { "region": "BlueCave_NorthFork_West", "requirements": [ "breakable_walls" ] }
     ],
     "chests": [
@@ -1001,8 +1001,8 @@
   {
     "region": "BlueCave_WestWaters3",
     "connections": [
-      { "region": "BlueCave_WestWaters2" },
-      { "region": "BlueCave_WestWaters4" }
+      { "region": "BlueCave_WestWaters2_Upper" },
+      { "region": "BlueCave_WestWaters4_Middle" }
     ],
     "encounters": [
       { "id": 2, "monsters": [ "Frosty", "Monk", "Frosty"] }
@@ -1025,7 +1025,7 @@
     "region": "BlueCave_WestWaters4_Upper",
     "connections": [
       { "region": "BlueCave_WestWaters4_Middle" },
-      { "region": "BlueCave_WestWaters7" }
+      { "region": "BlueCave_WestWaters7_West" }
     ]
   },
   {
@@ -1038,7 +1038,7 @@
         ]
       },
       { "region": "BlueCave_WestWaters5" },
-      { "region": "BlueCave_WestWaters6" }
+      { "region": "BlueCave_WestWaters6_Upper" }
     ]
   },
   {
@@ -1061,7 +1061,7 @@
         ]
       },
       { "region": "BlueCave_WestWatersHidden2" },
-      { "region": "BlueCave_AquaEntrance" }
+      { "region": "BlueCave_AquaEntrance_Upper" }
     ]
   },
   {
@@ -1077,7 +1077,7 @@
         "region": "BlueCave_WestWatersHidden2",
         "requirements": [ "levitate" ]
       },
-      { "region": "BlueCave_AquaEntrance" }
+      { "region": "BlueCave_AquaEntrance_Upper" }
     ]
   },
   {
@@ -1088,6 +1088,49 @@
     "chests": [
       { "id": 0, "item": "2x Reward Box Lvl 3" },
       { "id": 2, "item": "2x Craft Box" }
+    ]
+  },
+  {
+    "region": "BlueCave_AquaEntrance_Upper",
+    "connections": [
+      { "region": "BlueCave_WestWaters6_Lower" },
+      { "region": "SunPalace_East1" },
+      { "region": "BlueCave_AquaEntrance_Upper" }
+    ],
+    "encounters": [
+      { "id": 2, "monsters": ["Monk", "Grummy", "Monk"]}
+    ]
+  },
+  {
+    "region": "BlueCave_AquaEntrance_Lower",
+    "connections": [
+      {
+        "region": "BlueCave_AquaEntrance_Upper",
+        "requirements": [
+          "OR", [
+            "double_jump",
+            "swimming"
+          ]
+        ]
+      }
+    ],
+    "chests": [
+      { "id": 1, "item": "Coat+2", "requirements": [
+        "AND", [
+          "ground_switches",
+          "double_jump",
+          "heavy_blocks"
+        ]
+      ] },
+      { "id": 3, "item": "Shift Stone", "requirements": [
+        "OR", [
+          "swimming",
+          "AND", [
+            "summon_big_rock",
+            "double_jump"
+          ]
+        ]
+      ] }
     ]
   },
   {
@@ -1151,13 +1194,14 @@
     "region": "SnowyPeaks_East1",
     "connections": [
       { "region":  "MountainPath_SnowyEntrance2" },
-      { "region":  "SnowyPeaks_East2" }
+      { "region":  "SnowyPeaks_East2_Lower" }
     ]
   },
   {
     "region": "SnowyPeaks_East2_Lower",
     "connections": [
       { "region":  "SnowyPeaks_East1" },
+      { "region": "SnowyPeaks_East3" },
       {
         "region": "SnowyPeaks_East2_Upper",
         "requirements": [ "AND",[
@@ -1481,7 +1525,7 @@
     "region": "SnowyPeaks_West4",
     "connections": [
       { "region": "SnowyPeaks_West3" },
-      { "region": "SnowyPeaks_Lake" },
+      { "region": "SnowyPeaks_Lake_East" },
       { "region": "SnowyPeaks_WestMountain1", "requirements": [ "double_jump" ] },
       {
         "region": "SnowyPeaks_West5",
@@ -1900,7 +1944,7 @@
           ]
         ]
       },
-      { "region": "SnowyPeaks_EastMountain3" }
+      { "region": "SnowyPeaks_EastMountain3_Upper" }
     ],
     "chests": [
       { "id": 9, "item": "Helmet+3", "requirement": ["double_jump"] },
