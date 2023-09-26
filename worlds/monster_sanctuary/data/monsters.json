@@ -1,0 +1,778 @@
+[
+  {
+    "Name": "Spectral Wolf",
+    "CommonRewards": "",
+    "RareRewards": "",
+    "EggReward": "Spectral Wolf Egg",
+    "Groups": [ "Claws", "Breakable Walls", "Impassible Vines" ]
+  },
+  {
+    "Name": "Spectral Toad",
+    "CommonRewards": "",
+    "RareRewards": "",
+    "EggReward": "Spectral Toad Egg",
+    "Groups": [ "Tackle", "Breakable Walls", "Heavy Blocks" ]
+  },
+  {
+    "Name": "Spectral Eagle",
+    "CommonRewards": "",
+    "RareRewards": "",
+    "EggReward": "Spectral Eagle Egg",
+    "Groups": [ "Flying", "Distant Ledges" ]
+  },
+  {
+    "Name": "Spectral Lion",
+    "CommonRewards": "",
+    "RareRewards": "",
+    "EggReward": "Spectral Lion Egg",
+    "Groups": [ "Claws", "Breakable Walls", "Impassible Vines" ]
+  },
+  {
+    "Name": "Blob",
+    "CommonRewards": "Small Potion,Copper,",
+    "RareRewards": "Green Gem,Vital Ring,Blob Egg,",
+    "EggReward": "Blob Egg",
+    "Groups": [ "Bubble Burst", "Water Orbs" ]
+  },
+  {
+    "Name": "Magmapillar",
+    "CommonRewards": "Copper,Small Antidote,",
+    "RareRewards": "Blue Gem,Mana Ring,Magmapillar Egg,",
+    "EggReward": "Magmapillar Egg",
+    "Groups": [ "Ignite", "Fire Orbs", "Impassible Vines", "Torches" ]
+  },
+  {
+    "Name": "Rocky",
+    "CommonRewards": "Potato,Cotton,",
+    "RareRewards": "Green Gem,Helmet,Rocky Egg,",
+    "EggReward": "Rocky Egg",
+    "Groups": [ "Summon Rock", "Ground Switches" ]
+  },
+  {
+    "Name": "Vaero",
+    "CommonRewards": "Small Potion,Walnut,",
+    "RareRewards": "Red Gem,Feather,Vaero Egg,",
+    "EggReward": "Vaero Egg",
+    "Groups": [ "Flying", "Distant Ledges" ]
+  },
+  {
+    "Name": "Catzerker",
+    "CommonRewards": "Cotton,Berry,",
+    "RareRewards": "Red Gem,Belt,Catzerker Egg,",
+    "EggReward": "Catzerker Egg",
+    "Groups": [ "Slash", "Breakable Walls", "Impassible Vines" ]
+  },
+  {
+    "Name": "Yowie",
+    "CommonRewards": "Apple,Cotton,",
+    "RareRewards": "Blue Gem,Coat,Yowie Egg,",
+    "EggReward": "Yowie Egg",
+    "Groups": [ "Tackle", "Breakable Walls", "Heavy Blocks" ]
+  },
+  {
+    "Name": "Steam Golem",
+    "CommonRewards": "Potion,Copper,",
+    "RareRewards": "Iron,Shell,Steam Golem Egg,",
+    "EggReward": "Steam Golem Egg",
+    "Groups": [ "Tackle", "Breakable Walls", "Heavy Blocks" ]
+  },
+  {
+    "Name": "Monk",
+    "CommonRewards": "Cotton,Potion,",
+    "RareRewards": "Blue Gem,Bandana+1,Monk Egg,",
+    "EggReward": "Monk Egg",
+    "Groups": [ "Heavy Punch", "Breakable Walls", "Heavy Blocks" ]
+  },
+  {
+    "Name": "Grummy",
+    "CommonRewards": "Copper,Small Antidote,",
+    "RareRewards": "Green Gem,Kunai,Grummy Egg,",
+    "EggReward": "Grummy Egg",
+    "Groups": [ "Bubble Burst", "Water Orbs" ]
+  },
+  {
+    "Name": "Tengu",
+    "CommonRewards": "Cotton,Smoke Bomb,",
+    "RareRewards": "Blue Gem,Mana Ring+1,Tengu Egg,",
+    "EggReward": "Tengu Egg",
+    "Groups": [ "Ignite", "Fire Orbs", "Impassible Vines", "Torches" ]
+  },
+  {
+    "Name": "Fungi",
+    "CommonRewards": "Copper,Cotton,",
+    "RareRewards": "Red Gem,Tome+1,Fungi Egg,",
+    "EggReward": "Fungi Egg",
+    "Groups": [ "Summon Mushroom", "Ground Switches" ]
+  },
+  {
+    "Name": "Frosty",
+    "CommonRewards": "Small Antidote,Copper,",
+    "RareRewards": "Pear,Mana Ring+2,Frosty Egg,",
+    "EggReward": "Frosty Egg",
+    "Groups": [ "Flying", "Distant Ledges" ]
+  },
+  {
+    "Name": "Minitaur",
+    "CommonRewards": "Copper,Phoenix Tear,",
+    "RareRewards": "Crit Ring+1,Katar+1,Minitaur Egg,",
+    "EggReward": "Minitaur Egg",
+    "Groups": [ "Slash", "Breakable Walls", "Impassible Vines" ]
+  },
+  {
+    "Name": "Specter",
+    "CommonRewards": "Phoenix Tear,Grapes,",
+    "RareRewards": "Scroll+1,Impact Ring+2,Specter Egg,",
+    "Groups": [ "Ignite", "Fire Orbs", "Impassible Vines", "Torches" ]
+  },
+  {
+    "Name": "Crackle Knight",
+    "CommonRewards": "Hazelnut,Iron,",
+    "RareRewards": "Green Gem,Helmet+2,Crackle Knight Egg,",
+    "EggReward": "Crackle Knight Egg",
+    "Groups": [ "Lightning Bolt", "Lightning Orbs", "Torches" ]
+  },
+  {
+    "Name": "G'rulu",
+    "CommonRewards": "Corn,Iron,",
+    "RareRewards": "Bronze,Stardust,Grummy Egg,",
+    "EggReward": "G'rulu Egg",
+    "Groups": [ "Bubble Burst", "Water Orbs" ]
+  },
+  {
+    "Name": "Mad Eye",
+    "CommonRewards": "Wool,Pear,",
+    "RareRewards": "Blue Gem,Orb+2,Mad Eye Egg,",
+    "EggReward": "Mad Eye Egg",
+    "Groups": [ "Flying", "Distant Ledges" ]
+  },
+  {
+    "Name": "Nightwing",
+    "CommonRewards": "Grapes,Wool,",
+    "RareRewards": "Red Gem,Fang+2,Nightwing Egg,",
+    "EggReward": "Nightwing Egg",
+    "Groups": [ "Sonar", "Dark Rooms" ]
+  },
+  {
+    "Name": "Toxiquus",
+    "CommonRewards": "Wool,Corn,",
+    "RareRewards": "Red Gem,Level Badge,Toxiquus Egg,",
+    "EggReward": "Toxiquus Egg",
+    "Groups": [ "Slime Shot", "Earth Orbs" ]
+  },
+  {
+    "Name": "Beetloid",
+    "CommonRewards": "Wool,Bronze,",
+    "RareRewards": "Shuriken+2,Skill Potion,Beetloid Egg,",
+    "EggReward": "Beetloid Egg",
+    "Groups": [ "Lightning Bolt", "Lightning Orbs", "Torches" ]
+  },
+  {
+    "Name": "Druid Oak",
+    "CommonRewards": "Corn,Iron,",
+    "RareRewards": "Bronze,Bracelet+2,Druid Oak Egg,",
+    "EggReward": "Druid Oak Egg",
+    "Groups": [ "Summon Rock", "Ground Switches" ]
+  },
+  {
+    "Name": "Magmamoth",
+    "CommonRewards": "Wool,Pear,",
+    "RareRewards": "Bronze,Cocoon,Magmapillar Egg,",
+    "EggReward": "Magmamoth Egg",
+    "Groups": [ "Ignite", "Fire Orbs", "Impassible Vines", "Torches" ]
+  },
+  {
+    "Name": "Molebear",
+    "CommonRewards": "Potion,Iron,",
+    "RareRewards": "Red Gem,Katar+2,Molebear Egg,",
+    "EggReward": "Molebear Egg",
+    "Groups": [ "Claws", "Breakable Walls", "Impassible Vines" ]
+  },
+  {
+    "Name": "Glowfly",
+    "CommonRewards": "Crystal Shard,Wool,",
+    "RareRewards": "Level Badge,Diadem+2,Glowfly Egg,",
+    "EggReward": "Glowfly Egg",
+    "Groups": [ "Light", "Dark Rooms" ]
+  },
+  {
+    "Name": "Goblin Brute",
+    "CommonRewards": "Smoke Bomb,Iron,",
+    "RareRewards": "Green Gem,Shell+2,Goblin Brute Egg,",
+    "EggReward": "Goblin Brute Egg",
+    "Groups": [ "Toxic Slam", "Breakable Walls", "Earth Orbs" ]
+
+  },
+  {
+    "Name": "Goblin Hood",
+    "CommonRewards": "Phoenix Tear,Grapes,",
+    "RareRewards": "Red Gem,Gauntlet+2,Goblin Hood Egg,",
+    "EggReward": "Goblin Hood Egg",
+    "Groups": [ "Fiery Shots", "Fire Orbs", "Impassible Vines", "Torches" ]
+  },
+  {
+    "Name": "Goblin Warlock",
+    "CommonRewards": "Small Antidote,Wool,",
+    "RareRewards": "Blue Gem,Wand+2,Goblin Warlock Egg,",
+    "EggReward": "Goblin Warlock Egg",
+    "Groups": [ "Lightning Bolt", "Lightning Orbs", "Torches" ]
+  },
+  {
+    "Name": "Goblin King",
+    "CommonRewards": "Wool,Iron,",
+    "RareRewards": "Level Badge,Crown,Goblin King Egg,",
+    "EggReward": "Goblin King Egg",
+    "Groups": [ "Jewel Blast", "Earth Orbs" ]
+  },
+  {
+    "Name": "Raduga",
+    "CommonRewards": "Bronze,Mass Potion,",
+    "RareRewards": "Feather+3,Sun Pendant,Raduga Egg,",
+    "EggReward": "Raduga Egg",
+    "Groups": [ "Flying", "Distant Ledges" ]
+  },
+  {
+    "Name": "Ice Blob",
+    "CommonRewards": "Potion,Iron,",
+    "RareRewards": "Blue Gem,Vital Ring+3,Ice Blob Egg,",
+    "EggReward": "Ice Blob Egg",
+    "Groups": [ "Freeze", "Ice Orbs" ]
+  },
+  {
+    "Name": "Caraglow",
+    "CommonRewards": "Pear,Wool,",
+    "RareRewards": "Red Gem,Ribbon+3,Caraglow Egg,",
+    "EggReward": "Caraglow Egg",
+    "Groups": [ "Light", "Dark Rooms" ]
+  },
+  {
+    "Name": "Aurumtail",
+    "CommonRewards": "Corn,Leather,",
+    "RareRewards": "Azure Gem,Bronze,Aurumtail Egg,",
+    "EggReward": "Aurumtail Egg",
+    "Groups": [ "Mount" ]
+  },
+  {
+    "Name": "Megataur",
+    "CommonRewards": "Leather,Iron,",
+    "RareRewards": "Verdant Gem,Raw Hide,Minitaur Egg,",
+    "EggReward": "Megataur Egg",
+    "Groups": [ "Freeze", "Ice Orbs" ]
+  },
+  {
+    "Name": "Mogwai",
+    "CommonRewards": "Smoke Bomb,Wool,",
+    "RareRewards": "Bronze,Shuriken+3,Mogwai Egg,",
+    "EggReward": "Mogwai Egg",
+    "Groups": [ "Snowball Toss", "Ice Orbs" ]
+  },
+  {
+    "Name": "Crystal Snail",
+    "CommonRewards": "Hazelnut,Iron,",
+    "RareRewards": "Green Gem,Shell+3,Crystal Snail Egg,",
+    "EggReward": "Crystal Snail Egg",
+    "Groups": [ "Jewel Blast", "Earth Orbs" ]
+  },
+  {
+    "Name": "Akhlut",
+    "CommonRewards": "Leather,Crimson Gem,",
+    "RareRewards": "Fang+3,Fin,Akhlut Egg,",
+    "EggReward": "Akhlut Egg",
+    "Groups": [ "Sonar Mount", "Dark Rooms" ]
+  },
+  {
+    "Name": "Blade Widow",
+    "CommonRewards": "Iron,Almond,",
+    "RareRewards": "Katar+3,Crimson Gem,Blade Widow Egg,",
+    "EggReward": "Blade Widow Egg",
+    "Groups": [ "Slash", "Breakable Walls", "Impassible Vines" ]
+  },
+  {
+    "Name": "Ninki",
+    "CommonRewards": "Leather,Phoenix Tear,",
+    "RareRewards": "Craft Box,Reward Box lvl 2,Ninki Egg,",
+    "EggReward": "Ninki Egg",
+    "Groups": [ "Slime Shot", "Earth Orbs" ]
+  },
+  {
+    "Name": "Ninki Nanka",
+    "CommonRewards": "Leather,Phoenix Tear,",
+    "RareRewards": "Azure Gem,Monster Bell,Ninki Egg,",
+    "EggReward": "Ninki Nanka Egg",
+    "Groups": [ "Slime Shot", "Earth Orbs" ]
+  },
+  {
+    "Name": "Vasuki",
+    "CommonRewards": "Cotton,Leather,",
+    "RareRewards": "Azure Gem,Bronze,Vasuki Egg,",
+    "EggReward": "Vasuki Egg",
+    "Groups": [ "Tackle", "Breakable Walls", "Heavy Blocks" ]
+  },
+  {
+    "Name": "Kame",
+    "CommonRewards": "Wool,Carrot,",
+    "RareRewards": "Verdant Gem,Bronze,Kame Egg,",
+    "EggReward": "Kame Egg",
+    "Groups": [ "Summon Rock", "Ground Switches" ]
+  },
+  {
+    "Name": "Sycophantom",
+    "CommonRewards": "Wool,Strawberry,",
+    "RareRewards": "Azure Gem,Stardust,Sycophantom Egg,",
+    "EggReward": "Sycophantom Egg",
+    "Groups": [ "Ghost Form", "Intangibility" ]
+  },
+  {
+    "Name": "Imori",
+    "CommonRewards": "Leather,Iron,",
+    "RareRewards": "Crimson Gem,Reward Box lvl 1,Imori Egg,",
+    "EggReward": "Imori Egg",
+    "Groups": [ "Ignite", "Fire Orbs", "Impassible Vines", "Torches" ]
+  },
+  {
+    "Name": "Qilin",
+    "CommonRewards": "Monster Bell,Level Badge,",
+    "RareRewards": "Raw Hide,Orb+3,Qilin Egg,",
+    "EggReward": "Qilin Egg",
+    "Groups": [ "Mount" ]
+  },
+  {
+    "Name": "Sizzle Knight",
+    "CommonRewards": "Reward Box lvl 1,Level Badge,",
+    "RareRewards": "Crackle Knight Egg,Coat+3,Sun Stone,",
+    "EggReward": "Sizzle Knight Egg",
+    "Groups": [ "Lightning Bolt", "Lightning Orbs", "Torches" ]
+  },
+  {
+    "Name": "Koi",
+    "CommonRewards": "Monster Bell,Wool,",
+    "RareRewards": "Azure Gem,Reward Box lvl 1,Koi Egg,",
+    "EggReward": "Koi Egg",
+    "Groups": [ "Swimming" ]
+  },
+  {
+    "Name": "Tanuki",
+    "CommonRewards": "Smoke Bomb,Phoenix Tear,",
+    "RareRewards": "Raw Hide,Coat,Tanuki Egg,",
+    "EggReward": "Tanuki Egg",
+    "Groups": [ "Summon Mushroom", "Ground Switches" ]
+  },
+  {
+    "Name": "Kanko",
+    "CommonRewards": "Strawberry,Crimson Gem,",
+    "RareRewards": "Reward Box lvl 1,Ornate Pipe,Kanko Egg,",
+    "EggReward": "Kanko Egg",
+    "Groups": [ "Ghost Form", "Intangibility" ]
+  },
+  {
+    "Name": "Dodo",
+    "CommonRewards": "Monster Bell,Potion,",
+    "RareRewards": "Azure Gem,Raw Hide,Dodo Egg,",
+    "EggReward": "Dodo Egg",
+    "Groups": [ "Mount" ]
+  },
+  {
+    "Name": "Kongamato",
+    "CommonRewards": "Leather,Strawberry,",
+    "RareRewards": "Crimson Gem,Scroll+4,Kongamato Egg,",
+    "EggReward": "Kongamato Egg",
+    "Groups": [ "Improved Flying", "Distant Ledges" ]
+  },
+  {
+    "Name": "Ucan",
+    "CommonRewards": "Almond,Steel,",
+    "RareRewards": "Verdant Gem,Raw Hide,Ucan Egg,",
+    "EggReward": "Ucan Egg",
+    "Groups": [ "Slash", "Breakable Walls", "Impassible Vines" ]
+  },
+  {
+    "Name": "Brawlish",
+    "CommonRewards": "Phoenix Tear,Mango,",
+    "RareRewards": "Level Badge,Combo Potion,Brawlish Egg,",
+    "EggReward": "Brawlish Egg",
+    "Groups": [ "Tackle", "Breakable Walls", "Heavy Blocks" ]
+  },
+  {
+    "Name": "Thornish",
+    "CommonRewards": "Crystal Shard,Iron,",
+    "RareRewards": "Bronze,Morning Star+3,Thornish Egg,",
+    "EggReward": "Thornish Egg",
+    "Groups": [ "Improved Swimming" ]
+  },
+  {
+    "Name": "Nautilid",
+    "CommonRewards": "Smoke Bomb,Wool,",
+    "RareRewards": "Azure Gem,Silver,Nautilid Egg,",
+    "EggReward": "Nautilid Egg",
+    "Groups": [ "Improved Swimming" ]
+  },
+  {
+    "Name": "Silvaero",
+    "CommonRewards": "Silk,Monster Bell,",
+    "RareRewards": "Silver Feather,Feather+4,Vaero Egg,",
+    "EggReward": "Silvaero Egg",
+    "Groups": [ "Improved Flying", "Distant Ledges" ]
+  },
+  {
+    "Name": "Elderjel",
+    "CommonRewards": "Crimson Gem,Big Potion,",
+    "RareRewards": "Reward Box lvl 2,Pirate Hook,Elderjel Egg,",
+    "EggReward": "Elderjel Egg",
+    "Groups": [ "Improved Swimming" ]
+  },
+  {
+    "Name": "Manticorb",
+    "CommonRewards": "Monster Bell,Cotton,",
+    "RareRewards": "Red Gem,Blue Gem,Manticorb Egg,",
+    "EggReward": "Manticorb Egg",
+    "Groups": [ "Light", "Dark Rooms" ]
+  },
+  {
+    "Name": "Goblin Miner",
+    "CommonRewards": "Iron,Steel,",
+    "RareRewards": "Silver,Verdant Gem,Goblin Miner Egg,",
+    "EggReward": "Goblin Miner Egg",
+    "Groups": [ "Light", "Crush", "Dark Rooms", "Diamond Blocks", "Breakable Walls" ]
+  },
+  {
+    "Name": "Salahammer",
+    "CommonRewards": "Leather,Steel,",
+    "RareRewards": "Verdant Gem,Combo Potion,Salahammer Egg,",
+    "EggReward": "Salahammer Egg",
+    "Groups": [ "Crush", "Diamond Blocks", "Breakable Walls" ]
+  },
+  {
+    "Name": "Lava Blob",
+    "CommonRewards": "Monster Bell,Carrot,",
+    "RareRewards": "Crimson Gem,Reward Box lvl 2,Lava Blob Egg,",
+    "EggReward": "Lava Blob Egg",
+    "Groups": [ "Ignite", "Fire Orbs", "Impassible Vines", "Torches" ]
+  },
+  {
+    "Name": "Glowdra",
+    "CommonRewards": "Mango,Silk,",
+    "RareRewards": "Level Badge,Volcanic Ash,Glowfly Egg,",
+    "Groups": [ "Light", "Dark Rooms" ]
+  },
+  {
+    "Name": "Draconov",
+    "CommonRewards": "Silk,Smoke Bomb,",
+    "RareRewards": "Hide+4,Azure Gem,Draconov Egg,",
+    "EggReward": "Draconov Egg",
+    "Groups": [ "Flying", "Distant Ledges" ]
+  },
+  {
+    "Name": "Dracogran",
+    "CommonRewards": "Crystal Shard,Strawberry,",
+    "RareRewards": "Shuriken+4,Fire Stone,Draconov Egg,",
+    "EggReward": "Dracogran Egg",
+    "Groups": [ "Improved Flying", "Distant Ledges" ]
+  },
+  {
+    "Name": "Asura",
+    "CommonRewards": "Steel,Crimson Gem,",
+    "RareRewards": "Silver,Bracelet+4,Asura Egg,",
+    "EggReward": "Asura Egg",
+    "Groups": [ "Crush", "Diamond Blocks", "Breakable Walls" ]
+  },
+  {
+    "Name": "Skorch",
+    "CommonRewards": "Monster Bell,Silk,",
+    "RareRewards": "Reward Box lvl 2,Craft Box,Skorch Egg,",
+    "EggReward": "Skorch Egg",
+    "Groups": [ "Ignite", "Fire Orbs", "Impassible Vines", "Torches" ]
+  },
+  {
+    "Name": "Stolby",
+    "CommonRewards": "Level Badge,Linen,",
+    "RareRewards": "Silver,Emerald,Stolby Egg,",
+    "EggReward": "Stolby Egg",
+    "Groups": [ "Ghost Form", "Intangibility" ]
+  },
+  {
+    "Name": "Ornithopter",
+    "CommonRewards": "Linen,Silk,",
+    "RareRewards": "Ruby,Craft Box,Ornithopter Egg,",
+    "EggReward": "Ornithopter Egg",
+    "Groups": [ "Improved Flying", "Distant Ledges" ]
+  },
+  {
+    "Name": "Polterofen",
+    "CommonRewards": "Phoenix Tear,Steel,",
+    "RareRewards": "Ruby,Sapphire,Polterofen Egg,",
+    "EggReward": "Polterofen Egg",
+    "Groups": [ "Fiery Shots", "Fire Orbs", "Impassible Vines", "Torches" ]
+  },
+  {
+    "Name": "Oculus",
+    "CommonRewards": "Peanut,Steel,",
+    "RareRewards": "Gold,Emerald,Oculus Egg,",
+    "EggReward": "Oculus Egg",
+    "Groups": [ "Grapple" ]
+  },
+  {
+    "Name": "Mimic",
+    "CommonRewards": "Linen,Skill Resetter,",
+    "RareRewards": "Gold,Crit Ring+4,Mimic Egg,",
+    "EggReward": "Mimic Egg",
+    "Groups": [ "Fiery Shots", "Fire Orbs", "Impassible Vines", "Torches" ]
+  },
+  {
+    "Name": "Goblin Pilot",
+    "CommonRewards": "Emerald,Sapphire,",
+    "RareRewards": "Ruby,Hammer,Goblin Pilot Egg,",
+    "EggReward": "Goblin Pilot Egg",
+    "Groups": [ "Crush", "Diamond Blocks", "Breakable Walls" ]
+  },
+  {
+    "Name": "Shockhopper",
+    "CommonRewards": "Bronze,Silver,",
+    "RareRewards": "Skill Potion,Craft Box,Shockhopper Egg,",
+    "EggReward": "Shockhopper Egg",
+    "Groups": [ "Shock Freeze", "Ice Orbs", "Lightning Orbs" ]
+  },
+  {
+    "Name": "Targoat",
+    "CommonRewards": "Monster Bell,Phoenix Tear,",
+    "RareRewards": "Azure Gem,Raw Hide,Targoat Egg,",
+    "EggReward": "Targoat Egg",
+    "Groups": [ "Tackle", "Breakable Walls", "Heavy Blocks" ]
+  },
+  {
+    "Name": "Dracozul",
+    "CommonRewards": "Blue Gem,Azure Gem,",
+    "RareRewards": "Draconov Egg,Frozen Tear,Ice Stone,",
+    "EggReward": "Dracozul Egg",
+    "Groups": [ "Improved Flying", "Distant Ledges" ]
+  },
+  {
+    "Name": "Troll",
+    "CommonRewards": "Monster Bell,Level Badge,",
+    "RareRewards": "Big Potion,Raw Hide,Troll Egg,",
+    "EggReward": "Troll Egg",
+    "Groups": [ "Corrosive Jabs", "Water Orbs", "Breakable Walls" ]
+  },
+  {
+    "Name": "Brutus",
+    "CommonRewards": "Level Badge,Mass Potion,",
+    "RareRewards": "Dumbbell,Hide+5,Brutus Egg,",
+    "EggReward": "Brutus Egg",
+    "Groups": [ "Summon Big Rock", "Ground Switches" ]
+  },
+  {
+    "Name": "Mega Rock",
+    "CommonRewards": "Peanut,Steel,",
+    "RareRewards": "Emerald,Giant Seed,Rocky Egg,",
+    "EggReward": "Mega Rock Egg",
+    "Groups": [ "Summon Big Rock", "Ground Switches" ]
+  },
+  {
+    "Name": "Argiope",
+    "CommonRewards": "Linen,Silk,",
+    "RareRewards": "Sapphire,Silver,Argiope Egg,",
+    "EggReward": "Argiope Egg",
+    "Groups": [ "Grapple" ]
+  },
+  {
+    "Name": "Arachlich",
+    "CommonRewards": "Level Badge,Silk,",
+    "RareRewards": "Gold,Phoenix Serum,Arachlich Egg,",
+    "EggReward": "Arachlich Egg",
+    "Groups": [ "Grapple" ]
+  },
+  {
+    "Name": "Moccus",
+    "CommonRewards": "Monster Bell,Banana,",
+    "RareRewards": "Big Potion,Hide+5,Moccus Egg,",
+    "EggReward": "Moccus Egg",
+    "Groups": [ "Mount" ]
+  },
+  {
+    "Name": "Promethean",
+    "CommonRewards": "Steel,Mass Potion,",
+    "RareRewards": "Ruby,Bracer+5,Promethean Egg,",
+    "EggReward": "Promethean Egg",
+    "Groups": [ "Summon Big Rock", "Ground Switches" ]
+  },
+  {
+    "Name": "Draconoir",
+    "CommonRewards": "Silver,Reward Box lvl 3,",
+    "RareRewards": "Draconov Egg,Totem,Dark Stone,",
+    "EggReward": "Draconoir Egg",
+    "Groups": [ "Improved Flying", "Distant Ledges" ]
+  },
+  {
+    "Name": "Spinner",
+    "CommonRewards": "Red Gem,Crimson Gem,",
+    "RareRewards": "Clear Stone,Cape+5,Spinner Egg,",
+    "EggReward": "Spinner Egg",
+    "Groups": [ "Toxic Freeze", "Earth Orbs", "Ice Orbs" ]
+  },
+  {
+    "Name": "Plague Egg",
+    "CommonRewards": "Skill Resetter,Smoke Bomb,",
+    "RareRewards": "Craft Box,Mass Potion,??? Egg,",
+    "EggReward": "??? Egg",
+    "Groups": [ "Ignite", "Fire Orbs", "Impassible Vines", "Torches" ]
+  },
+  {
+    "Name": "Sutsune",
+    "CommonRewards": "Linen,Monster Bell,",
+    "RareRewards": "Ruby,Phoenix Serum,Sutsune Egg,",
+    "EggReward": "Sutsune Egg",
+    "Groups": [ "Secret Vision", "Invisible Platforms" ]
+  },
+  {
+    "Name": "Darnation",
+    "CommonRewards": "Level Badge,Steel,",
+    "RareRewards": "Skill Potion,Emerald,Darnation Egg,",
+    "EggReward": "Darnation Egg",
+    "Groups": [ "Crush", "Diamond Blocks", "Breakable Walls" ]
+  },
+  {
+    "Name": "Thanatos",
+    "CommonRewards": "Linen,Crystal Shard,",
+    "RareRewards": "Sapphire,Gold,Thanatos Egg,",
+    "EggReward": "Thanatos Egg",
+    "Groups": [ "Secret Vision", "Invisible Platforms" ]
+  },
+  {
+    "Name": "Rainbow Blob",
+    "CommonRewards": "Linen,Cookie Mushroom,",
+    "RareRewards": "Emerald,Gold,Rainbow Blob Egg,",
+    "EggReward": "Rainbow Blob Egg",
+    "Groups": [ "Blob Form", "Narrow Corridors" ]
+  },
+  {
+    "Name": "Changeling",
+    "CommonRewards": "Cookie Mushroom,Skill Resetter,",
+    "RareRewards": "Ruby,Sapphire,Changeling Egg,",
+    "EggReward": "Changeling Egg",
+    "Groups": [ "Morph Ball", "Narrow Corridors" ]
+  },
+  {
+    "Name": "King Blob",
+    "CommonRewards": "Cookie Mushroom,Skill Potion,",
+    "RareRewards": "Craft Box,Wand+5,Majestic Crown,",
+    "EggReward": "King Blob Egg",
+    "Groups": [ "Blob Form", "Narrow Corridors" ]
+  },
+  {
+    "Name": "Worm",
+    "CommonRewards": "Smoke Bomb,Cookie Mushroom,",
+    "RareRewards": "Ruby,Gold,Worm Egg,",
+    "EggReward": "Worm Egg",
+    "Groups": [ "Grapple" ]
+  },
+  {
+    "Name": "Vodinoy",
+    "CommonRewards": "Sapphire,Gold,",
+    "RareRewards": "Reward Box lvl 4,Trident,Vodinoy Egg,",
+    "EggReward": "Vodinoy Egg",
+    "Groups": [ "Levitate", "Big Boulders" ]
+  },
+  {
+    "Name": "Aazerach",
+    "CommonRewards": "Linen,Skill Potion,",
+    "RareRewards": "Orb+5,Tarot Card,Aazerach Egg,",
+    "EggReward": "Aazerach Egg",
+    "Groups": [ "Secret Vision", "Invisible Platforms" ]
+  },
+  {
+    "Name": "Diavola",
+    "CommonRewards": "Green Gem,Verdant Gem,",
+    "RareRewards": "Emerald,Thorn Tendril,Diavola Egg,",
+    "EggReward": "Diavola Egg",
+    "Groups": [ "Levitate", "Big Boulders" ]
+  },
+  {
+    "Name": "Gryphonix",
+    "CommonRewards": "Ruby,Phoenix Serum,",
+    "RareRewards": "Skill Potion,Spark,Gryphonix Egg,",
+    "EggReward": "Gryphonix Egg",
+    "Groups": [ "Lofty Mount", "Distant Ledges" ]
+  },
+  {
+    "Name": "Vertraag",
+    "CommonRewards": "Blue Gem,Azure Gem,",
+    "RareRewards": "Sapphire,Hourglass,Vertraag Egg,",
+    "EggReward": "Vertraag Egg",
+    "Groups": [ "Levitate", "Big Boulders" ]
+  },
+  {
+    "Name": "Mad Lord",
+    "CommonRewards": "Skill Potion,Shift Stone,",
+    "RareRewards": "Mad Eye Egg,Abyssal Sword,Demonic Pact,",
+    "EggReward": "Mad Lord Egg",
+    "Groups": [ "Secret Vision", "Invisible Platforms" ]
+  },
+  {
+    "Name": "Ascendant",
+    "CommonRewards": "Craft Box,Skill Potion,",
+    "RareRewards": "Monk Egg,Bead Chain,Primordial Branch,",
+    "EggReward": "Ascendant Egg",
+    "Groups": [ "Secret Vision", "Invisible Platforms" ]
+  },
+  {
+    "Name": "Fumagus",
+    "CommonRewards": "Cookie Mushroom,Linen,",
+    "RareRewards": "Druid Soul,Hood+4,Fungi Egg,",
+    "EggReward": "Fumagus Egg",
+    "Groups": [ "Spore Shroud" ]
+  },
+  {
+    "Name": "Rampede",
+    "CommonRewards": "Steel,Banana,",
+    "RareRewards": "Ruby,Craft Box,Rampede Egg,",
+    "EggReward": "Rampede Egg",
+    "Groups": [ "Charging Mount" ]
+  },
+  {
+    "Name": "Rathops",
+    "CommonRewards": "Linen,Raspberry,",
+    "RareRewards": "Gold,Emerald,Rathops Egg,",
+    "EggReward": "Rathops Egg",
+    "Groups": [ "Charging Mount" ]
+  },
+  {
+    "Name": "Krakaturtle",
+    "CommonRewards": "Peanut,Silk,",
+    "RareRewards": "Emerald,Skill Potion,Krakaturtle Egg,",
+    "EggReward": "Krakaturtle Egg",
+    "Groups": [ "Dual Mobility" ]
+  },
+  {
+    "Name": "Tar Blob",
+    "CommonRewards": "Linen,Silver,",
+    "RareRewards": "Ruby,Gold,Tar Blob Egg,",
+    "EggReward": "Tar Blob Egg",
+    "Groups": [ "Tar Mount" ]
+  },
+  {
+    "Name": "Amberlgna",
+    "CommonRewards": "Linen,Orange,",
+    "RareRewards": "Phoenix Serum,Sapphire,Amberlgna Egg,",
+    "EggReward": "Amberlgna Egg",
+    "Groups": [ "Spore Shroud" ]
+  },
+  {
+    "Name": "Dracomer",
+    "CommonRewards": "Banana,Sapphire,",
+    "RareRewards": "Draconov Egg,Swallow,Deep Stone,",
+    "EggReward": "Dracomer Egg",
+    "Groups": [ "Improved Swimming" ]
+  },
+  {
+    "Name": "Terradrile",
+    "CommonRewards": "Silver,Gold,",
+    "RareRewards": "Shift Stone,Tambourine,Terradrile Egg,",
+    "EggReward": "Terradrile Egg",
+    "Groups": [ "Levitate", "Big Boulders" ]
+  },
+  {
+    "Name": "Bard",
+    "CommonRewards": "Mega Potion,Gold,",
+    "RareRewards": "Bard Egg,Bard Egg,Bard Egg,",
+    "EggReward": "Bard Egg",
+    "Groups": [ "Minnesang", "Magic Walls" ]
+  }
+]

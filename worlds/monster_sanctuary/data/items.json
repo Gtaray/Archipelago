@@ -1,0 +1,6556 @@
+[
+  {
+    "type": "Flag",
+    "items": [
+      {
+        "Name": "Blue Caves Switches Access",
+        "classification": "progression"
+      },
+      {
+        "Name": "Blue Caves to Mountain Path Shortcut",
+        "classification": "useful"
+      },
+      {
+        "Name": "Stronghold Dungeon to Blue Caves Shortcut",
+        "classification": "useful"
+      },
+      {
+        "Name": "Snowy Peaks East 4 Upper Shortcut",
+        "classification": "useful"
+      },
+      {
+        "Name": "Snowy Peaks East Mountain 3 Shortcut",
+        "classification": "useful"
+      },
+      {
+        "Name": "Snowy Peaks to Sun Palace Shortcut",
+        "classification": "useful"
+      }
+    ]
+  },
+  {
+    "type": "Rank",
+    "items": [
+      {
+        "Name": "Champion Defeated",
+        "classification": "progression"
+      }
+    ]
+  },
+  {
+    "type": "Key Item",
+    "items": [
+      {
+        "Name": "Sanctuary Token",
+        "classification": "progression"
+      },
+      {
+        "Name": "Double Jump Boots",
+        "classification": "progression",
+        "tier": 2,
+        "unique": true
+      },
+      {
+        "Name": "Warm Underwear",
+        "classification": "progression",
+        "tier": 3,
+        "unique": true
+      },
+      {
+        "Name": "Runestone Shard",
+        "classification": "progression",
+        "tier": 4,
+        "unique": true
+      },
+      {
+        "Name": "Key of Power",
+        "classification": "progression",
+        "tier": 4,
+        "unique": true
+      },
+      {
+        "Name": "Ahrimaaya",
+        "classification": "progression",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Blob Key",
+        "classification": "progression",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Mozzie",
+        "classification": "progression",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Rare Seashell",
+        "classification": "progression",
+        "tier": 4
+      },
+      {
+        "Name": "Celestial Feather",
+        "classification": "progression",
+        "tier": 4
+      },
+      {
+        "Name": "Mountain Path key",
+        "classification": "progression",
+        "tier": 1,
+        "groups": [
+          "Area Key"
+        ]
+      },
+      {
+        "Name": "Blue Cave key",
+        "classification": "progression",
+        "tier": 2,
+        "groups": [
+          "Area Key"
+        ]
+      },
+      {
+        "Name": "Stronghold Dungeon key",
+        "classification": "progression",
+        "tier": 2,
+        "groups": [
+          "Area Key"
+        ]
+      },
+      {
+        "Name": "Ancient Woods key",
+        "classification": "progression",
+        "tier": 3,
+        "groups": [
+          "Area Key"
+        ]
+      },
+      {
+        "Name": "Magma Chamber key",
+        "classification": "progression",
+        "tier": 4,
+        "groups": [
+          "Area Key"
+        ]
+      },
+      {
+        "Name": "Mystical Workshop key",
+        "classification": "progression",
+        "tier": 4,
+        "groups": [
+          "Area Key"
+        ]
+      },
+      {
+        "Name": "Underworld key",
+        "classification": "progression",
+        "tier": 5,
+        "groups": [
+          "Area Key"
+        ]
+      }
+    ]
+  },
+  {
+    "type": "Crafting Material",
+    "items": [
+      {
+        "Name": "Copper",
+        "classification": "filler",
+        "tier": 1,
+        "groups": [
+          "Up to 4"
+        ]
+      },
+      {
+        "Name": "2x Copper",
+        "classification": "filler",
+        "tier": 1,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "Name": "3x Copper",
+        "classification": "filler",
+        "tier": 1,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "Name": "4x Copper",
+        "classification": "filler",
+        "tier": 1,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "Name": "Iron",
+        "classification": "filler",
+        "tier": 2,
+        "groups": [
+          "Up to 3"
+        ]
+      },
+      {
+        "Name": "2x Iron",
+        "classification": "filler",
+        "tier": 2,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "Name": "3x Iron",
+        "classification": "filler",
+        "tier": 2,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "Name": "Bronze",
+        "classification": "filler",
+        "tier": 3,
+        "groups": [
+          "Up to 3"
+        ]
+      },
+      {
+        "Name": "2x Bronze",
+        "classification": "filler",
+        "tier": 3,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "Name": "3x Bronze",
+        "classification": "filler",
+        "tier": 3,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "Name": "Steel",
+        "classification": "filler",
+        "tier": 4,
+        "groups": [
+          "Up to 2"
+        ]
+      },
+      {
+        "Name": "2x Steel",
+        "classification": "filler",
+        "tier": 4,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "Name": "Silver",
+        "classification": "filler",
+        "tier": 4,
+        "groups": [
+          "Up to 2"
+        ]
+      },
+      {
+        "Name": "2x Silver",
+        "classification": "filler",
+        "tier": 4,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "Name": "Gold",
+        "classification": "filler",
+        "tier": 5
+      },
+      {
+        "Name": "Cotton",
+        "classification": "filler",
+        "tier": 1,
+        "groups": [
+          "Up to 4"
+        ]
+      },
+      {
+        "Name": "2x Cotton",
+        "classification": "filler",
+        "tier": 1,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "Name": "3x Cotton",
+        "classification": "filler",
+        "tier": 1,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "Name": "4x Cotton",
+        "classification": "filler",
+        "tier": 1,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "Name": "Wool",
+        "classification": "filler",
+        "tier": 2,
+        "groups": [
+          "Up to 3"
+        ]
+      },
+      {
+        "Name": "2x Wool",
+        "classification": "filler",
+        "tier": 2,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "Name": "3x Wool",
+        "classification": "filler",
+        "tier": 2,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "Name": "Leather",
+        "classification": "filler",
+        "tier": 3,
+        "groups": [
+          "Up to 3"
+        ]
+      },
+      {
+        "Name": "2x Leather",
+        "classification": "filler",
+        "tier": 3,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "Name": "3x Leather",
+        "classification": "filler",
+        "tier": 3,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "Name": "Raw Hide",
+        "classification": "progression",
+        "tier": 3
+      },
+      {
+        "Name": "Silk",
+        "classification": "filler",
+        "tier": 4,
+        "groups": [
+          "Up to 2"
+        ]
+      },
+      {
+        "Name": "2x Silk",
+        "classification": "filler",
+        "tier": 4,
+        "groups": [
+          "multiple"
+        ]
+      },
+      {
+        "Name": "Linen",
+        "classification": "filler",
+        "tier": 5
+      },
+      {
+        "Name": "Red Gem",
+        "classification": "filler",
+        "tier": 1,
+        "groups": [
+          "Up to 3"
+        ]
+      },
+      {
+        "Name": "2x Red Gem",
+        "classification": "filler",
+        "tier": 1,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "Name": "3x Red Gem",
+        "classification": "filler",
+        "tier": 1,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "Name": "Green Gem",
+        "classification": "filler",
+        "tier": 1,
+        "groups": [
+          "Up to 3"
+        ]
+      },
+      {
+        "Name": "2x Green Gem",
+        "classification": "filler",
+        "tier": 1,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "Name": "3x Green Gem",
+        "classification": "filler",
+        "tier": 1,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "Name": "Blue Gem",
+        "classification": "filler",
+        "tier": 1,
+        "groups": [
+          "Up to 3"
+        ]
+      },
+      {
+        "Name": "2x Blue Gem",
+        "classification": "filler",
+        "tier": 1,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "Name": "3x Blue Gem",
+        "classification": "filler",
+        "tier": 1,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "Name": "Crimson Gem",
+        "classification": "filler",
+        "tier": 3,
+        "groups": [
+          "Up to 2"
+        ]
+      },
+      {
+        "Name": "2x Crimson Gem",
+        "classification": "filler",
+        "tier": 3,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "Name": "Azure Gem",
+        "classification": "filler",
+        "tier": 3,
+        "groups": [
+          "Up to 2"
+        ]
+      },
+      {
+        "Name": "2x Azure Gem",
+        "classification": "filler",
+        "tier": 3,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "Name": "Verdant Gem",
+        "classification": "filler",
+        "tier": 3,
+        "groups": [
+          "Up to 2"
+        ]
+      },
+      {
+        "Name": "2x Verdant Gem",
+        "classification": "filler",
+        "tier": 3,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "Name": "Ruby",
+        "classification": "filler",
+        "tier": 5
+      },
+      {
+        "Name": "Emerald",
+        "classification": "filler",
+        "tier": 5
+      },
+      {
+        "Name": "Sapphire",
+        "classification": "filler",
+        "tier": 5
+      }
+    ]
+  },
+  {
+    "type": "Consumable",
+    "items": [
+      {
+        "Name": "Crystal Shard",
+        "classification": "filler",
+        "tier": 1,
+        "groups": [
+          "Up to 3"
+        ]
+      },
+      {
+        "Name": "2x Crystal Shard",
+        "classification": "filler",
+        "tier": 1,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "Name": "3x Crystal Shard",
+        "classification": "filler",
+        "tier": 1,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "Name": "Monster Bell",
+        "classification": "filler",
+        "tier": 1,
+        "groups": [
+          "Up to 2"
+        ]
+      },
+      {
+        "Name": "2x Monster Bell",
+        "classification": "filler",
+        "tier": 1,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "Name": "Skill Resetter",
+        "classification": "filler",
+        "tier": 2,
+        "groups": [
+          "Up to 2"
+        ]
+      },
+      {
+        "Name": "2x Skill Resetter",
+        "classification": "filler",
+        "tier": 2,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "Name": "Skill Potion",
+        "classification": "filler",
+        "tier": 2
+      },
+      {
+        "Name": "Level Badge",
+        "classification": "filler",
+        "tier": 2,
+        "groups": [
+          "Up to 2"
+        ]
+      },
+      {
+        "Name": "2x Level Badge",
+        "classification": "filler",
+        "tier": 2,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "Name": "Level Badge 42",
+        "classification": "filler",
+        "tier": 5
+      },
+      {
+        "Name": "Shift Stone",
+        "classification": "filler",
+        "tier": 3,
+        "groups": [
+          "Up to 2"
+        ]
+      },
+      {
+        "Name": "2x Shift Stone",
+        "classification": "filler",
+        "tier": 3,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "Name": "Switch Stone",
+        "classification": "filler",
+        "tier": 3,
+        "groups": [
+          "Up to 2"
+        ]
+      },
+      {
+        "Name": "2x Switch Stone",
+        "classification": "filler",
+        "tier": 3,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "Name": "Clear Stone",
+        "classification": "filler",
+        "tier": 3,
+        "groups": [
+          "Up to 2"
+        ]
+      },
+      {
+        "Name": "2x Clear Stone",
+        "classification": "filler",
+        "tier": 3,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "Name": "Craft Box",
+        "classification": "filler",
+        "tier": 1,
+        "groups": [
+          "Up to 3"
+        ]
+      },
+      {
+        "Name": "2x Craft Box",
+        "classification": "filler",
+        "tier": 1,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "Name": "3x Craft Box",
+        "classification": "filler",
+        "tier": 1,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "Name": "Reward Box Lvl 1",
+        "classification": "filler",
+        "tier": 1,
+        "groups": [
+          "Up to 2"
+        ]
+      },
+      {
+        "Name": "2x Reward Box Lvl 1",
+        "classification": "filler",
+        "tier": 1,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "Name": "Reward Box Lvl 2",
+        "classification": "filler",
+        "tier": 2,
+        "groups": [
+          "Up to 2"
+        ]
+      },
+      {
+        "Name": "2x Reward Box Lvl 2",
+        "classification": "filler",
+        "tier": 2,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "Name": "Reward Box Lvl 3",
+        "classification": "filler",
+        "tier": 3,
+        "groups": [
+          "Up to 2"
+        ]
+      },
+      {
+        "Name": "2x Reward Box Lvl 3",
+        "classification": "filler",
+        "tier": 3,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "Name": "Reward Box Lvl 4",
+        "classification": "filler",
+        "tier": 4
+      },
+      {
+        "Name": "Reward Box Lvl 5",
+        "classification": "filler",
+        "tier": 5
+      },
+      {
+        "Name": "Reward Box X",
+        "classification": "filler",
+        "tier": 5
+      },
+      {
+        "Name": "Small Potion",
+        "classification": "filler",
+        "tier": 1,
+        "groups": [
+          "Up to 3"
+        ]
+      },
+      {
+        "Name": "2x Small Potion",
+        "classification": "filler",
+        "tier": 1,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "Name": "3x Small Potion",
+        "classification": "filler",
+        "tier": 1,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "Name": "Potion",
+        "classification": "filler",
+        "tier": 2,
+        "groups": [
+          "Up to 3"
+        ]
+      },
+      {
+        "Name": "2x Potion",
+        "classification": "filler",
+        "tier": 2,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "Name": "3x Potion",
+        "classification": "filler",
+        "tier": 2,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "Name": "Combo Potion",
+        "classification": "filler",
+        "tier": 3
+      },
+      {
+        "Name": "Mass Potion",
+        "classification": "filler",
+        "tier": 3
+      },
+      {
+        "Name": "Big Potion",
+        "classification": "filler",
+        "tier": 4
+      },
+      {
+        "Name": "Mega Potion",
+        "classification": "filler",
+        "tier": 5
+      },
+      {
+        "Name": "Small Antidote",
+        "classification": "filler",
+        "tier": 1,
+        "groups": [
+          "Up to 3"
+        ]
+      },
+      {
+        "Name": "2x Small Antidote",
+        "classification": "filler",
+        "tier": 1,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "Name": "3x Small Antidote",
+        "classification": "filler",
+        "tier": 1,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "Name": "Antidote",
+        "classification": "filler",
+        "tier": 2,
+        "groups": [
+          "Up to 3"
+        ]
+      },
+      {
+        "Name": "2x Antidote",
+        "classification": "filler",
+        "tier": 2,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "Name": "3x Antidote",
+        "classification": "filler",
+        "tier": 2,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "Name": "Mass Antidote",
+        "classification": "filler",
+        "tier": 3
+      },
+      {
+        "Name": "Phoenix Tear",
+        "classification": "filler",
+        "tier": 1,
+        "groups": [
+          "Up to 3"
+        ]
+      },
+      {
+        "Name": "2x Phoenix Tear",
+        "classification": "filler",
+        "tier": 1,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "Name": "3x Phoenix Tear",
+        "classification": "filler",
+        "tier": 1,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "Name": "Phoenix Serum",
+        "classification": "filler",
+        "tier": 3
+      },
+      {
+        "Name": "Smoke bomb",
+        "classification": "filler",
+        "tier": 1,
+        "groups": [
+          "Up to 3"
+        ]
+      },
+      {
+        "Name": "2x Smoke bomb",
+        "classification": "filler",
+        "tier": 1,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "Name": "3x Smoke bomb",
+        "classification": "filler",
+        "tier": 1,
+        "groups": [
+          "Multiple"
+        ]
+      }
+    ]
+  },
+  {
+    "type": "Food",
+    "items": [
+      {
+        "Name": "Walnut",
+        "classification": "filler",
+        "tier": 1,
+        "groups": [
+          "Up to 3"
+        ]
+      },
+      {
+        "Name": "2x Walnut",
+        "classification": "filler",
+        "tier": 1,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "Name": "3x Walnut",
+        "classification": "filler",
+        "tier": 1,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "Name": "Hazelnut",
+        "classification": "filler",
+        "tier": 2,
+        "groups": [
+          "Up to 3"
+        ]
+      },
+      {
+        "Name": "2x Hazelnut",
+        "classification": "filler",
+        "tier": 2,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "Name": "3x Hazelnut",
+        "classification": "filler",
+        "tier": 2,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "Name": "Almond",
+        "classification": "filler",
+        "tier": 3,
+        "groups": [
+          "Up to 2"
+        ]
+      },
+      {
+        "Name": "2x Almond",
+        "classification": "filler",
+        "tier": 3,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "Name": "Peanut",
+        "classification": "filler",
+        "tier": 4
+      },
+      {
+        "Name": "Potato",
+        "classification": "filler",
+        "tier": 1,
+        "groups": [
+          "Up to 3"
+        ]
+      },
+      {
+        "Name": "2x Potato",
+        "classification": "filler",
+        "tier": 1,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "Name": "3x Potato",
+        "classification": "filler",
+        "tier": 1,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "Name": "Corn",
+        "classification": "filler",
+        "tier": 2,
+        "groups": [
+          "Up to 3"
+        ]
+      },
+      {
+        "Name": "2x Corn",
+        "classification": "filler",
+        "tier": 2,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "Name": "3x Corn",
+        "classification": "filler",
+        "tier": 2,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "Name": "Carrot",
+        "classification": "filler",
+        "tier": 3,
+        "groups": [
+          "Up to 2"
+        ]
+      },
+      {
+        "Name": "2x Carrot",
+        "classification": "filler",
+        "tier": 3,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "Name": "Banana",
+        "classification": "filler",
+        "tier": 4
+      },
+      {
+        "Name": "Apple",
+        "classification": "filler",
+        "tier": 1,
+        "groups": [
+          "Up to 3"
+        ]
+      },
+      {
+        "Name": "2x Apple",
+        "classification": "filler",
+        "tier": 1,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "Name": "3x Apple",
+        "classification": "filler",
+        "tier": 1,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "Name": "Pear",
+        "classification": "filler",
+        "tier": 2,
+        "groups": [
+          "Up to 3"
+        ]
+      },
+      {
+        "Name": "2x Pear",
+        "classification": "filler",
+        "tier": 2,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "Name": "3x Pear",
+        "classification": "filler",
+        "tier": 2,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "Name": "Mango",
+        "classification": "filler",
+        "tier": 3,
+        "groups": [
+          "Up to 2"
+        ]
+      },
+      {
+        "Name": "2x Mango",
+        "classification": "filler",
+        "tier": 3,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "Name": "Orange",
+        "classification": "filler",
+        "tier": 4
+      },
+      {
+        "Name": "Berry",
+        "classification": "filler",
+        "tier": 1,
+        "groups": [
+          "Up to 3"
+        ]
+      },
+      {
+        "Name": "2x Berry",
+        "classification": "filler",
+        "tier": 1,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "Name": "3x Berry",
+        "classification": "filler",
+        "tier": 1,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "Name": "Grapes",
+        "classification": "filler",
+        "tier": 2,
+        "groups": [
+          "Up to 3"
+        ]
+      },
+      {
+        "Name": "2x Grapes",
+        "classification": "filler",
+        "tier": 2,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "Name": "3x Grapes",
+        "classification": "filler",
+        "tier": 2,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "Name": "Strawberry",
+        "classification": "filler",
+        "tier": 3,
+        "groups": [
+          "Up to 2"
+        ]
+      },
+      {
+        "Name": "2x Strawberry",
+        "classification": "filler",
+        "tier": 3,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "Name": "Raspberry",
+        "classification": "filler",
+        "tier": 4
+      },
+      {
+        "Name": "Cookie Mushroom",
+        "classification": "filler",
+        "tier": 1
+      }
+    ]
+  },
+  {
+    "type": "Catalyst",
+    "items": [
+      {
+        "Name": "Stardust",
+        "classification": "filler",
+        "tier": 2
+      },
+      {
+        "Name": "Cocoon",
+        "classification": "filler",
+        "tier": 2
+      },
+      {
+        "Name": "Shard of Winter",
+        "classification": "filler",
+        "tier": 2
+      },
+      {
+        "Name": "Sun Stone",
+        "classification": "filler",
+        "tier": 2
+      },
+      {
+        "Name": "Magical Clay",
+        "classification": "filler",
+        "tier": 2
+      },
+      {
+        "Name": "Silver Feather",
+        "classification": "filler",
+        "tier": 2
+      },
+      {
+        "Name": "Volcanic Ash",
+        "classification": "filler",
+        "tier": 2
+      },
+      {
+        "Name": "Fire Stone",
+        "classification": "filler",
+        "tier": 2
+      },
+      {
+        "Name": "Ice Stone",
+        "classification": "filler",
+        "tier": 2
+      },
+      {
+        "Name": "Giant Seed",
+        "classification": "filler",
+        "tier": 2
+      },
+      {
+        "Name": "Dark Stone",
+        "classification": "filler",
+        "tier": 2
+      },
+      {
+        "Name": "Majestic Crown",
+        "classification": "filler",
+        "tier": 2
+      },
+      {
+        "Name": "Demonic Pact",
+        "classification": "filler",
+        "tier": 2
+      },
+      {
+        "Name": "Deep Stone",
+        "classification": "filler",
+        "tier": 2
+      },
+      {
+        "Name": "Primordial Branch",
+        "classification": "filler",
+        "tier": 2
+      },
+      {
+        "Name": "Druid Soul",
+        "classification": "filler",
+        "tier": 2
+      }
+    ]
+  },
+  {
+    "type": "Weapon",
+    "items": [
+      {
+        "Name": "Morning Star",
+        "classification": "filler",
+        "tier": 1
+      },
+      {
+        "Name": "Morning Star+1",
+        "classification": "filler",
+        "tier": 2
+      },
+      {
+        "Name": "Morning Star+2",
+        "classification": "filler",
+        "tier": 3
+      },
+      {
+        "Name": "Morning Star+3",
+        "classification": "filler",
+        "tier": 4
+      },
+      {
+        "Name": "Morning Star+4",
+        "classification": "filler",
+        "tier": 5
+      },
+      {
+        "Name": "Morning Star+5",
+        "classification": "filler",
+        "tier": 5
+      },
+      {
+        "Name": "Claws",
+        "classification": "filler",
+        "tier": 1
+      },
+      {
+        "Name": "Claws+1",
+        "classification": "filler",
+        "tier": 2
+      },
+      {
+        "Name": "Claws+2",
+        "classification": "filler",
+        "tier": 3
+      },
+      {
+        "Name": "Claws+3",
+        "classification": "filler",
+        "tier": 4
+      },
+      {
+        "Name": "Claws+4",
+        "classification": "filler",
+        "tier": 5
+      },
+      {
+        "Name": "Claws+5",
+        "classification": "filler",
+        "tier": 5
+      },
+      {
+        "Name": "Katar",
+        "classification": "filler",
+        "tier": 1
+      },
+      {
+        "Name": "Katar+1",
+        "classification": "filler",
+        "tier": 2
+      },
+      {
+        "Name": "Katar+2",
+        "classification": "filler",
+        "tier": 3
+      },
+      {
+        "Name": "Katar+3",
+        "classification": "filler",
+        "tier": 4
+      },
+      {
+        "Name": "Katar+4",
+        "classification": "filler",
+        "tier": 5
+      },
+      {
+        "Name": "Katar+5",
+        "classification": "filler",
+        "tier": 5
+      },
+      {
+        "Name": "Wand",
+        "classification": "filler",
+        "tier": 1
+      },
+      {
+        "Name": "Wand+1",
+        "classification": "filler",
+        "tier": 2
+      },
+      {
+        "Name": "Wand+2",
+        "classification": "filler",
+        "tier": 3
+      },
+      {
+        "Name": "Wand+3",
+        "classification": "filler",
+        "tier": 4
+      },
+      {
+        "Name": "Wand+4",
+        "classification": "filler",
+        "tier": 5
+      },
+      {
+        "Name": "Wand+5",
+        "classification": "filler",
+        "tier": 5
+      },
+      {
+        "Name": "Orb",
+        "classification": "filler",
+        "tier": 1
+      },
+      {
+        "Name": "Orb+1",
+        "classification": "filler",
+        "tier": 2
+      },
+      {
+        "Name": "Orb+2",
+        "classification": "filler",
+        "tier": 3
+      },
+      {
+        "Name": "Orb+3",
+        "classification": "filler",
+        "tier": 4
+      },
+      {
+        "Name": "Orb+4",
+        "classification": "filler",
+        "tier": 5
+      },
+      {
+        "Name": "Orb+5",
+        "classification": "filler",
+        "tier": 5
+      },
+      {
+        "Name": "Staff",
+        "classification": "filler",
+        "tier": 1
+      },
+      {
+        "Name": "Staff+1",
+        "classification": "filler",
+        "tier": 2
+      },
+      {
+        "Name": "Staff+2",
+        "classification": "filler",
+        "tier": 3
+      },
+      {
+        "Name": "Staff+3",
+        "classification": "filler",
+        "tier": 4
+      },
+      {
+        "Name": "Staff+4",
+        "classification": "filler",
+        "tier": 5
+      },
+      {
+        "Name": "Staff+5",
+        "classification": "filler",
+        "tier": 5
+      },
+      {
+        "Name": "Cestus",
+        "classification": "filler",
+        "tier": 1
+      },
+      {
+        "Name": "Cestus+1",
+        "classification": "filler",
+        "tier": 2
+      },
+      {
+        "Name": "Cestus+2",
+        "classification": "filler",
+        "tier": 3
+      },
+      {
+        "Name": "Cestus+3",
+        "classification": "filler",
+        "tier": 4
+      },
+      {
+        "Name": "Cestus+4",
+        "classification": "filler",
+        "tier": 5
+      },
+      {
+        "Name": "Cestus+5",
+        "classification": "filler",
+        "tier": 5
+      },
+      {
+        "Name": "Kunai",
+        "classification": "filler",
+        "tier": 1
+      },
+      {
+        "Name": "Kunai+1",
+        "classification": "filler",
+        "tier": 2
+      },
+      {
+        "Name": "Kunai+2",
+        "classification": "filler",
+        "tier": 3
+      },
+      {
+        "Name": "Kunai+3",
+        "classification": "filler",
+        "tier": 4
+      },
+      {
+        "Name": "Kunai+4",
+        "classification": "filler",
+        "tier": 5
+      },
+      {
+        "Name": "Kunai+5",
+        "classification": "filler",
+        "tier": 5
+      },
+      {
+        "Name": "Shuriken",
+        "classification": "filler",
+        "tier": 1
+      },
+      {
+        "Name": "Shuriken+1",
+        "classification": "filler",
+        "tier": 2
+      },
+      {
+        "Name": "Shuriken+2",
+        "classification": "filler",
+        "tier": 3
+      },
+      {
+        "Name": "Shuriken+3",
+        "classification": "filler",
+        "tier": 4
+      },
+      {
+        "Name": "Shuriken+4",
+        "classification": "filler",
+        "tier": 5
+      },
+      {
+        "Name": "Shuriken+5",
+        "classification": "filler",
+        "tier": 5
+      },
+      {
+        "Name": "Abyssal Sword",
+        "classification": "filler",
+        "tier": 1,
+        "unique": true
+      },
+      {
+        "Name": "Abyssal Sword+1",
+        "classification": "filler",
+        "tier": 2,
+        "unique": true
+      },
+      {
+        "Name": "Abyssal Sword+2",
+        "classification": "filler",
+        "tier": 3,
+        "unique": true
+      },
+      {
+        "Name": "Abyssal Sword+3",
+        "classification": "filler",
+        "tier": 4,
+        "unique": true
+      },
+      {
+        "Name": "Abyssal Sword+4",
+        "classification": "filler",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Abyssal Sword+5",
+        "classification": "filler",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Bow",
+        "classification": "filler",
+        "tier": 1,
+        "unique": true
+      },
+      {
+        "Name": "Bow+1",
+        "classification": "filler",
+        "tier": 2,
+        "unique": true
+      },
+      {
+        "Name": "Bow+2",
+        "classification": "filler",
+        "tier": 3,
+        "unique": true
+      },
+      {
+        "Name": "Bow+3",
+        "classification": "filler",
+        "tier": 4,
+        "unique": true
+      },
+      {
+        "Name": "Bow+4",
+        "classification": "filler",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Bow+5",
+        "classification": "filler",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Fan",
+        "classification": "filler",
+        "tier": 1,
+        "unique": true
+      },
+      {
+        "Name": "Fan+1",
+        "classification": "filler",
+        "tier": 2,
+        "unique": true
+      },
+      {
+        "Name": "Fan+2",
+        "classification": "filler",
+        "tier": 3,
+        "unique": true
+      },
+      {
+        "Name": "Fan+3",
+        "classification": "filler",
+        "tier": 4,
+        "unique": true
+      },
+      {
+        "Name": "Fan+4",
+        "classification": "filler",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Fan+5",
+        "classification": "filler",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Fishing Rod",
+        "classification": "filler",
+        "tier": 1,
+        "unique": true
+      },
+      {
+        "Name": "Fishing Rod+1",
+        "classification": "filler",
+        "tier": 2,
+        "unique": true
+      },
+      {
+        "Name": "Fishing Rod+2",
+        "classification": "filler",
+        "tier": 3,
+        "unique": true
+      },
+      {
+        "Name": "Fishing Rod+3",
+        "classification": "filler",
+        "tier": 4,
+        "unique": true
+      },
+      {
+        "Name": "Fishing Rod+4",
+        "classification": "filler",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Fishing Rod+5",
+        "classification": "filler",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Hammer",
+        "classification": "filler",
+        "tier": 1,
+        "unique": true
+      },
+      {
+        "Name": "Hammer+1",
+        "classification": "filler",
+        "tier": 2,
+        "unique": true
+      },
+      {
+        "Name": "Hammer+2",
+        "classification": "filler",
+        "tier": 3,
+        "unique": true
+      },
+      {
+        "Name": "Hammer+3",
+        "classification": "filler",
+        "tier": 4,
+        "unique": true
+      },
+      {
+        "Name": "Hammer+4",
+        "classification": "filler",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Hammer+5",
+        "classification": "filler",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Harp",
+        "classification": "filler",
+        "tier": 1,
+        "unique": true
+      },
+      {
+        "Name": "Harp+1",
+        "classification": "filler",
+        "tier": 2,
+        "unique": true
+      },
+      {
+        "Name": "Harp+2",
+        "classification": "filler",
+        "tier": 3,
+        "unique": true
+      },
+      {
+        "Name": "Harp+3",
+        "classification": "filler",
+        "tier": 4,
+        "unique": true
+      },
+      {
+        "Name": "Harp+4",
+        "classification": "filler",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Harp+5",
+        "classification": "filler",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Heavy Mace",
+        "classification": "filler",
+        "tier": 1,
+        "unique": true
+      },
+      {
+        "Name": "Heavy Mace+1",
+        "classification": "filler",
+        "tier": 2,
+        "unique": true
+      },
+      {
+        "Name": "Heavy Mace+2",
+        "classification": "filler",
+        "tier": 3,
+        "unique": true
+      },
+      {
+        "Name": "Heavy Mace+3",
+        "classification": "filler",
+        "tier": 4,
+        "unique": true
+      },
+      {
+        "Name": "Heavy Mace+4",
+        "classification": "filler",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Heavy Mace+5",
+        "classification": "filler",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Hexing Rod",
+        "classification": "filler",
+        "tier": 1,
+        "unique": true
+      },
+      {
+        "Name": "Hexing Rod+1",
+        "classification": "filler",
+        "tier": 2,
+        "unique": true
+      },
+      {
+        "Name": "Hexing Rod+2",
+        "classification": "filler",
+        "tier": 3,
+        "unique": true
+      },
+      {
+        "Name": "Hexing Rod+3",
+        "classification": "filler",
+        "tier": 4,
+        "unique": true
+      },
+      {
+        "Name": "Hexing Rod+4",
+        "classification": "filler",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Hexing Rod+5",
+        "classification": "filler",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Katana",
+        "classification": "filler",
+        "tier": 1,
+        "unique": true
+      },
+      {
+        "Name": "Katana+1",
+        "classification": "filler",
+        "tier": 2,
+        "unique": true
+      },
+      {
+        "Name": "Katana+2",
+        "classification": "filler",
+        "tier": 3,
+        "unique": true
+      },
+      {
+        "Name": "Katana+3",
+        "classification": "filler",
+        "tier": 4,
+        "unique": true
+      },
+      {
+        "Name": "Katana+4",
+        "classification": "filler",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Katana+5",
+        "classification": "filler",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Large Shield",
+        "classification": "filler",
+        "tier": 1,
+        "unique": true
+      },
+      {
+        "Name": "Large Shield+1",
+        "classification": "filler",
+        "tier": 2,
+        "unique": true
+      },
+      {
+        "Name": "Large Shield+2",
+        "classification": "filler",
+        "tier": 3,
+        "unique": true
+      },
+      {
+        "Name": "Large Shield+3",
+        "classification": "filler",
+        "tier": 4,
+        "unique": true
+      },
+      {
+        "Name": "Large Shield+4",
+        "classification": "filler",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Large Shield+5",
+        "classification": "filler",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Mandolin",
+        "classification": "filler",
+        "tier": 1,
+        "unique": true
+      },
+      {
+        "Name": "Mandolin+1",
+        "classification": "filler",
+        "tier": 2,
+        "unique": true
+      },
+      {
+        "Name": "Mandolin+2",
+        "classification": "filler",
+        "tier": 3,
+        "unique": true
+      },
+      {
+        "Name": "Mandolin+3",
+        "classification": "filler",
+        "tier": 4,
+        "unique": true
+      },
+      {
+        "Name": "Mandolin+4",
+        "classification": "filler",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Mandolin+5",
+        "classification": "filler",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Moon Sword",
+        "classification": "filler",
+        "tier": 1,
+        "unique": true
+      },
+      {
+        "Name": "Moon Sword+1",
+        "classification": "filler",
+        "tier": 2,
+        "unique": true
+      },
+      {
+        "Name": "Moon Sword+2",
+        "classification": "filler",
+        "tier": 3,
+        "unique": true
+      },
+      {
+        "Name": "Moon Sword+3",
+        "classification": "filler",
+        "tier": 4,
+        "unique": true
+      },
+      {
+        "Name": "Moon Sword+4",
+        "classification": "filler",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Moon Sword+5",
+        "classification": "filler",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Pirate Hook",
+        "classification": "filler",
+        "tier": 1,
+        "unique": true
+      },
+      {
+        "Name": "Pirate Hook+1",
+        "classification": "filler",
+        "tier": 2,
+        "unique": true
+      },
+      {
+        "Name": "Pirate Hook+2",
+        "classification": "filler",
+        "tier": 3,
+        "unique": true
+      },
+      {
+        "Name": "Pirate Hook+3",
+        "classification": "filler",
+        "tier": 4,
+        "unique": true
+      },
+      {
+        "Name": "Pirate Hook+4",
+        "classification": "filler",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Pirate Hook+5",
+        "classification": "filler",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Purifying Mace",
+        "classification": "filler",
+        "tier": 1,
+        "unique": true
+      },
+      {
+        "Name": "Purifying Mace+1",
+        "classification": "filler",
+        "tier": 2,
+        "unique": true
+      },
+      {
+        "Name": "Purifying Mace+2",
+        "classification": "filler",
+        "tier": 3,
+        "unique": true
+      },
+      {
+        "Name": "Purifying Mace+3",
+        "classification": "filler",
+        "tier": 4,
+        "unique": true
+      },
+      {
+        "Name": "Purifying Mace+4",
+        "classification": "filler",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Purifying Mace+5",
+        "classification": "filler",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Restoring Wand",
+        "classification": "filler",
+        "tier": 1,
+        "unique": true
+      },
+      {
+        "Name": "Restoring Wand+1",
+        "classification": "filler",
+        "tier": 2,
+        "unique": true
+      },
+      {
+        "Name": "Restoring Wand+2",
+        "classification": "filler",
+        "tier": 3,
+        "unique": true
+      },
+      {
+        "Name": "Restoring Wand+3",
+        "classification": "filler",
+        "tier": 4,
+        "unique": true
+      },
+      {
+        "Name": "Restoring Wand+4",
+        "classification": "filler",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Restoring Wand+5",
+        "classification": "filler",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Scepter",
+        "classification": "filler",
+        "tier": 1,
+        "unique": true
+      },
+      {
+        "Name": "Scepter+1",
+        "classification": "filler",
+        "tier": 2,
+        "unique": true
+      },
+      {
+        "Name": "Scepter+2",
+        "classification": "filler",
+        "tier": 3,
+        "unique": true
+      },
+      {
+        "Name": "Scepter+3",
+        "classification": "filler",
+        "tier": 4,
+        "unique": true
+      },
+      {
+        "Name": "Scepter+4",
+        "classification": "filler",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Scepter+5",
+        "classification": "filler",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Scythe",
+        "classification": "filler",
+        "tier": 1,
+        "unique": true
+      },
+      {
+        "Name": "Scythe+1",
+        "classification": "filler",
+        "tier": 2,
+        "unique": true
+      },
+      {
+        "Name": "Scythe+2",
+        "classification": "filler",
+        "tier": 3,
+        "unique": true
+      },
+      {
+        "Name": "Scythe+3",
+        "classification": "filler",
+        "tier": 4,
+        "unique": true
+      },
+      {
+        "Name": "Scythe+4",
+        "classification": "filler",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Scythe+5",
+        "classification": "filler",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Summoned Sword",
+        "classification": "filler",
+        "tier": 1,
+        "unique": true
+      },
+      {
+        "Name": "Summoned Sword+1",
+        "classification": "filler",
+        "tier": 2,
+        "unique": true
+      },
+      {
+        "Name": "Summoned Sword+2",
+        "classification": "filler",
+        "tier": 3,
+        "unique": true
+      },
+      {
+        "Name": "Summoned Sword+3",
+        "classification": "filler",
+        "tier": 4,
+        "unique": true
+      },
+      {
+        "Name": "Summoned Sword+4",
+        "classification": "filler",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Summoned Sword+5",
+        "classification": "filler",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Swallow",
+        "classification": "filler",
+        "tier": 1,
+        "unique": true
+      },
+      {
+        "Name": "Swallow+1",
+        "classification": "filler",
+        "tier": 2,
+        "unique": true
+      },
+      {
+        "Name": "Swallow+2",
+        "classification": "filler",
+        "tier": 3,
+        "unique": true
+      },
+      {
+        "Name": "Swallow+3",
+        "classification": "filler",
+        "tier": 4,
+        "unique": true
+      },
+      {
+        "Name": "Swallow+4",
+        "classification": "filler",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Swallow+5",
+        "classification": "filler",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Thorn Tendril",
+        "classification": "filler",
+        "tier": 1,
+        "unique": true
+      },
+      {
+        "Name": "Thorn Tendril+1",
+        "classification": "filler",
+        "tier": 2,
+        "unique": true
+      },
+      {
+        "Name": "Thorn Tendril+2",
+        "classification": "filler",
+        "tier": 3,
+        "unique": true
+      },
+      {
+        "Name": "Thorn Tendril+3",
+        "classification": "filler",
+        "tier": 4,
+        "unique": true
+      },
+      {
+        "Name": "Thorn Tendril+4",
+        "classification": "filler",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Thorn Tendril+5",
+        "classification": "filler",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Torch",
+        "classification": "filler",
+        "tier": 1,
+        "unique": true
+      },
+      {
+        "Name": "Torch+1",
+        "classification": "filler",
+        "tier": 2,
+        "unique": true
+      },
+      {
+        "Name": "Torch+2",
+        "classification": "filler",
+        "tier": 3,
+        "unique": true
+      },
+      {
+        "Name": "Torch+3",
+        "classification": "filler",
+        "tier": 4,
+        "unique": true
+      },
+      {
+        "Name": "Torch+4",
+        "classification": "filler",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Torch+5",
+        "classification": "filler",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Trident",
+        "classification": "filler",
+        "tier": 1,
+        "unique": true
+      },
+      {
+        "Name": "Trident+1",
+        "classification": "filler",
+        "tier": 2,
+        "unique": true
+      },
+      {
+        "Name": "Trident+2",
+        "classification": "filler",
+        "tier": 3,
+        "unique": true
+      },
+      {
+        "Name": "Trident+3",
+        "classification": "filler",
+        "tier": 4,
+        "unique": true
+      },
+      {
+        "Name": "Trident+4",
+        "classification": "filler",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Trident+5",
+        "classification": "filler",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Warhorn+5",
+        "classification": "filler",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Warhorn+4",
+        "classification": "filler",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Warhorn+3",
+        "classification": "filler",
+        "tier": 4,
+        "unique": true
+      },
+      {
+        "Name": "Warhorn+2",
+        "classification": "filler",
+        "tier": 3,
+        "unique": true
+      },
+      {
+        "Name": "Warhorn+1",
+        "classification": "filler",
+        "tier": 2,
+        "unique": true
+      },
+      {
+        "Name": "Warhorn",
+        "classification": "filler",
+        "tier": 1,
+        "unique": true
+      },
+      {
+        "Name": "Arch Bow",
+        "classification": "filler",
+        "tier": 1,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Arch Bow+1",
+        "classification": "filler",
+        "tier": 2,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Arch Bow+2",
+        "classification": "filler",
+        "tier": 3,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Arch Bow+3",
+        "classification": "filler",
+        "tier": 4,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Arch Bow+4",
+        "classification": "filler",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Arch Bow+5",
+        "classification": "filler",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Assisting Bow",
+        "classification": "filler",
+        "tier": 1,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Assisting Bow+1",
+        "classification": "filler",
+        "tier": 2,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Assisting Bow+2",
+        "classification": "filler",
+        "tier": 3,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Assisting Bow+3",
+        "classification": "filler",
+        "tier": 4,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Assisting Bow+4",
+        "classification": "filler",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Assisting Bow+5",
+        "classification": "filler",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Droid Sphere",
+        "classification": "filler",
+        "tier": 1,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Droid Sphere+1",
+        "classification": "filler",
+        "tier": 2,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Droid Sphere+2",
+        "classification": "filler",
+        "tier": 3,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Droid Sphere+3",
+        "classification": "filler",
+        "tier": 4,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Droid Sphere+4",
+        "classification": "filler",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Droid Sphere+5",
+        "classification": "filler",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Eclipse Sword",
+        "classification": "filler",
+        "tier": 1,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Eclipse Sword+1",
+        "classification": "filler",
+        "tier": 2,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Eclipse Sword+2",
+        "classification": "filler",
+        "tier": 3,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Eclipse Sword+3",
+        "classification": "filler",
+        "tier": 4,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Eclipse Sword+4",
+        "classification": "filler",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Eclipse Sword+5",
+        "classification": "filler",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Fishing Pole",
+        "classification": "filler",
+        "tier": 1,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Fishing Pole+1",
+        "classification": "filler",
+        "tier": 2,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Fishing Pole+2",
+        "classification": "filler",
+        "tier": 3,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Fishing Pole+3",
+        "classification": "filler",
+        "tier": 4,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Fishing Pole+4",
+        "classification": "filler",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Fishing Pole+5",
+        "classification": "filler",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Omni Sword",
+        "classification": "filler",
+        "tier": 1,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Omni Sword+1",
+        "classification": "filler",
+        "tier": 2,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Omni Sword+2",
+        "classification": "filler",
+        "tier": 3,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Omni Sword+3",
+        "classification": "filler",
+        "tier": 4,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Omni Sword+4",
+        "classification": "filler",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Omni Sword+5",
+        "classification": "filler",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "One Punch Fist",
+        "classification": "filler",
+        "tier": 1,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "One Punch Fist+1",
+        "classification": "filler",
+        "tier": 2,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "One Punch Fist+2",
+        "classification": "filler",
+        "tier": 3,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "One Punch Fist+3",
+        "classification": "filler",
+        "tier": 4,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "One Punch Fist+4",
+        "classification": "filler",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "One Punch Fist+5",
+        "classification": "filler",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Projectile Sphere",
+        "classification": "filler",
+        "tier": 1,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Projectile Sphere+1",
+        "classification": "filler",
+        "tier": 2,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Projectile Sphere+2",
+        "classification": "filler",
+        "tier": 3,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Projectile Sphere+3",
+        "classification": "filler",
+        "tier": 4,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Projectile Sphere+4",
+        "classification": "filler",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Projectile Sphere+5",
+        "classification": "filler",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Staff of Doom",
+        "classification": "filler",
+        "tier": 1,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Staff of Doom+1",
+        "classification": "filler",
+        "tier": 2,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Staff of Doom+2",
+        "classification": "filler",
+        "tier": 3,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Staff of Doom+3",
+        "classification": "filler",
+        "tier": 4,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Staff of Doom+4",
+        "classification": "filler",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Staff of Doom+5",
+        "classification": "filler",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Tiny Pin",
+        "classification": "filler",
+        "tier": 1,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Tiny Pin+1",
+        "classification": "filler",
+        "tier": 2,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Tiny Pin+2",
+        "classification": "filler",
+        "tier": 3,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Tiny Pin+3",
+        "classification": "filler",
+        "tier": 4,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Tiny Pin+4",
+        "classification": "filler",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Tiny Pin+5",
+        "classification": "filler",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      }
+    ]
+  },
+  {
+    "type": "Accessory",
+    "classification": "filler",
+    "items": [
+      {
+        "Name": "Shell",
+        "tier": 1
+      },
+      {
+        "Name": "Shell+1",
+        "tier": 2
+      },
+      {
+        "Name": "Shell+2",
+        "tier": 3
+      },
+      {
+        "Name": "Shell+3",
+        "tier": 4
+      },
+      {
+        "Name": "Shell+4",
+        "tier": 5
+      },
+      {
+        "Name": "Shell+5",
+        "tier": 5
+      },
+      {
+        "Name": "Vital Ring",
+        "tier": 1
+      },
+      {
+        "Name": "Vital Ring+1",
+        "tier": 2
+      },
+      {
+        "Name": "Vital Ring+2",
+        "tier": 3
+      },
+      {
+        "Name": "Vital Ring+3",
+        "tier": 4
+      },
+      {
+        "Name": "Vital Ring+4",
+        "tier": 5
+      },
+      {
+        "Name": "Vital Ring+5",
+        "tier": 5
+      },
+      {
+        "Name": "Mana Ring",
+        "tier": 1
+      },
+      {
+        "Name": "Mana Ring+1",
+        "tier": 2
+      },
+      {
+        "Name": "Mana Ring+2",
+        "tier": 3
+      },
+      {
+        "Name": "Mana Ring+3",
+        "tier": 4
+      },
+      {
+        "Name": "Mana Ring+4",
+        "tier": 5
+      },
+      {
+        "Name": "Mana Ring+5",
+        "tier": 5
+      },
+      {
+        "Name": "Sustain Ring",
+        "tier": 1
+      },
+      {
+        "Name": "Sustain Ring+1",
+        "tier": 2
+      },
+      {
+        "Name": "Sustain Ring+2",
+        "tier": 3
+      },
+      {
+        "Name": "Sustain Ring+3",
+        "tier": 4
+      },
+      {
+        "Name": "Sustain Ring+4",
+        "tier": 5
+      },
+      {
+        "Name": "Sustain Ring+5",
+        "tier": 5
+      },
+      {
+        "Name": "Crit Ring",
+        "tier": 1
+      },
+      {
+        "Name": "Crit Ring+1",
+        "tier": 2
+      },
+      {
+        "Name": "Crit Ring+2",
+        "tier": 3
+      },
+      {
+        "Name": "Crit Ring+3",
+        "tier": 4
+      },
+      {
+        "Name": "Crit Ring+4",
+        "tier": 5
+      },
+      {
+        "Name": "Crit Ring+5",
+        "tier": 5
+      },
+      {
+        "Name": "Impact Ring",
+        "tier": 1
+      },
+      {
+        "Name": "Impact Ring+1",
+        "tier": 2
+      },
+      {
+        "Name": "Impact Ring+2",
+        "tier": 3
+      },
+      {
+        "Name": "Impact Ring+3",
+        "tier": 4
+      },
+      {
+        "Name": "Impact Ring+4",
+        "tier": 5
+      },
+      {
+        "Name": "Impact Ring+5",
+        "tier": 5
+      },
+      {
+        "Name": "Bandana",
+        "tier": 1
+      },
+      {
+        "Name": "Bandana+1",
+        "tier": 2
+      },
+      {
+        "Name": "Bandana+2",
+        "tier": 3
+      },
+      {
+        "Name": "Bandana+3",
+        "tier": 4
+      },
+      {
+        "Name": "Bandana+4",
+        "tier": 5
+      },
+      {
+        "Name": "Bandana+5",
+        "tier": 5
+      },
+      {
+        "Name": "Belt",
+        "tier": 1
+      },
+      {
+        "Name": "Belt+1",
+        "tier": 2
+      },
+      {
+        "Name": "Belt+2",
+        "tier": 3
+      },
+      {
+        "Name": "Belt+3",
+        "tier": 4
+      },
+      {
+        "Name": "Belt+4",
+        "tier": 5
+      },
+      {
+        "Name": "Belt+5",
+        "tier": 5
+      },
+      {
+        "Name": "Bracelet",
+        "tier": 1
+      },
+      {
+        "Name": "Bracelet+1",
+        "tier": 2
+      },
+      {
+        "Name": "Bracelet+2",
+        "tier": 3
+      },
+      {
+        "Name": "Bracelet+3",
+        "tier": 4
+      },
+      {
+        "Name": "Bracelet+4",
+        "tier": 5
+      },
+      {
+        "Name": "Bracelet+5",
+        "tier": 5
+      },
+      {
+        "Name": "Bracer",
+        "tier": 1
+      },
+      {
+        "Name": "Bracer+1",
+        "tier": 2
+      },
+      {
+        "Name": "Bracer+2",
+        "tier": 3
+      },
+      {
+        "Name": "Bracer+3",
+        "tier": 4
+      },
+      {
+        "Name": "Bracer+4",
+        "tier": 5
+      },
+      {
+        "Name": "Bracer+5",
+        "tier": 5
+      },
+      {
+        "Name": "Cape",
+        "tier": 1
+      },
+      {
+        "Name": "Cape+1",
+        "tier": 2
+      },
+      {
+        "Name": "Cape+2",
+        "tier": 3
+      },
+      {
+        "Name": "Cape+3",
+        "tier": 4
+      },
+      {
+        "Name": "Cape+4",
+        "tier": 5
+      },
+      {
+        "Name": "Cape+5",
+        "tier": 5
+      },
+      {
+        "Name": "Coat",
+        "tier": 1
+      },
+      {
+        "Name": "Coat+1",
+        "tier": 2
+      },
+      {
+        "Name": "Coat+2",
+        "tier": 3
+      },
+      {
+        "Name": "Coat+4",
+        "tier": 4
+      },
+      {
+        "Name": "Coat+3",
+        "tier": 5
+      },
+      {
+        "Name": "Coat+5",
+        "tier": 5
+      },
+      {
+        "Name": "Diadem",
+        "tier": 1
+      },
+      {
+        "Name": "Diadem+1",
+        "tier": 2
+      },
+      {
+        "Name": "Diadem+2",
+        "tier": 3
+      },
+      {
+        "Name": "Diadem+3",
+        "tier": 4
+      },
+      {
+        "Name": "Diadem+4",
+        "tier": 5
+      },
+      {
+        "Name": "Diadem+5",
+        "tier": 5
+      },
+      {
+        "Name": "Fang",
+        "tier": 1
+      },
+      {
+        "Name": "Fang+1",
+        "tier": 2
+      },
+      {
+        "Name": "Fang+2",
+        "tier": 3
+      },
+      {
+        "Name": "Fang+3",
+        "tier": 4
+      },
+      {
+        "Name": "Fang+4",
+        "tier": 5
+      },
+      {
+        "Name": "Fang+5",
+        "tier": 5
+      },
+      {
+        "Name": "Feather",
+        "tier": 1
+      },
+      {
+        "Name": "Feather+1",
+        "tier": 2
+      },
+      {
+        "Name": "Feather+2",
+        "tier": 3
+      },
+      {
+        "Name": "Feather+3",
+        "tier": 4
+      },
+      {
+        "Name": "Feather+4",
+        "tier": 5
+      },
+      {
+        "Name": "Feather+5",
+        "tier": 5
+      },
+      {
+        "Name": "Gauntlet",
+        "tier": 1
+      },
+      {
+        "Name": "Gauntlet+1",
+        "tier": 2
+      },
+      {
+        "Name": "Gauntlet+2",
+        "tier": 3
+      },
+      {
+        "Name": "Gauntlet+3",
+        "tier": 4
+      },
+      {
+        "Name": "Gauntlet+4",
+        "tier": 5
+      },
+      {
+        "Name": "Gauntlet+5",
+        "tier": 5
+      },
+      {
+        "Name": "Helmet",
+        "tier": 1
+      },
+      {
+        "Name": "Helmet+1",
+        "tier": 2
+      },
+      {
+        "Name": "Helmet+2",
+        "tier": 3
+      },
+      {
+        "Name": "Helmet+3",
+        "tier": 4
+      },
+      {
+        "Name": "Helmet+4",
+        "tier": 5
+      },
+      {
+        "Name": "Helmet+5",
+        "tier": 5
+      },
+      {
+        "Name": "Hide",
+        "tier": 1
+      },
+      {
+        "Name": "Hide+1",
+        "tier": 2
+      },
+      {
+        "Name": "Hide+2",
+        "tier": 3
+      },
+      {
+        "Name": "Hide+3",
+        "tier": 4
+      },
+      {
+        "Name": "Hide+4",
+        "tier": 5
+      },
+      {
+        "Name": "Hide+5",
+        "tier": 5
+      },
+      {
+        "Name": "Hood",
+        "tier": 1
+      },
+      {
+        "Name": "Hood+1",
+        "tier": 2
+      },
+      {
+        "Name": "Hood+2",
+        "tier": 3
+      },
+      {
+        "Name": "Hood+3",
+        "tier": 4
+      },
+      {
+        "Name": "Hood+4",
+        "tier": 5
+      },
+      {
+        "Name": "Hood+5",
+        "tier": 5
+      },
+      {
+        "Name": "Needle",
+        "tier": 1
+      },
+      {
+        "Name": "Needle+1",
+        "tier": 2
+      },
+      {
+        "Name": "Needle+2",
+        "tier": 3
+      },
+      {
+        "Name": "Needle+3",
+        "tier": 4
+      },
+      {
+        "Name": "Needle+4",
+        "tier": 5
+      },
+      {
+        "Name": "Needle+5",
+        "tier": 5
+      },
+      {
+        "Name": "Ribbon",
+        "tier": 1
+      },
+      {
+        "Name": "Ribbon+1",
+        "tier": 2
+      },
+      {
+        "Name": "Ribbon+2",
+        "tier": 3
+      },
+      {
+        "Name": "Ribbon+3",
+        "tier": 4
+      },
+      {
+        "Name": "Ribbon+4",
+        "tier": 5
+      },
+      {
+        "Name": "Ribbon+5",
+        "tier": 5
+      },
+      {
+        "Name": "Scroll",
+        "tier": 1
+      },
+      {
+        "Name": "Scroll+1",
+        "tier": 2
+      },
+      {
+        "Name": "Scroll+2",
+        "tier": 3
+      },
+      {
+        "Name": "Scroll+3",
+        "tier": 4
+      },
+      {
+        "Name": "Scroll+4",
+        "tier": 5
+      },
+      {
+        "Name": "Scroll+5",
+        "tier": 5
+      },
+      {
+        "Name": "Tome",
+        "tier": 1
+      },
+      {
+        "Name": "Tome+1",
+        "tier": 2
+      },
+      {
+        "Name": "Tome+2",
+        "tier": 3
+      },
+      {
+        "Name": "Tome+3",
+        "tier": 4
+      },
+      {
+        "Name": "Tome+4",
+        "tier": 5
+      },
+      {
+        "Name": "Tome+5",
+        "tier": 5
+      },
+      {
+        "Name": "Wizard Hat",
+        "tier": 1
+      },
+      {
+        "Name": "Wizard Hat+1",
+        "tier": 2
+      },
+      {
+        "Name": "Wizard Hat+2",
+        "tier": 3
+      },
+      {
+        "Name": "Wizard Hat+3",
+        "tier": 4
+      },
+      {
+        "Name": "Wizard Hat+4",
+        "tier": 5
+      },
+      {
+        "Name": "Wizard Hat+5",
+        "tier": 5
+      },
+      {
+        "Name": "Ancestral Medal",
+        "tier": 1,
+        "unique": true
+      },
+      {
+        "Name": "Ancestral Medal+1",
+        "tier": 2,
+        "unique": true
+      },
+      {
+        "Name": "Ancestral Medal+2",
+        "tier": 3,
+        "unique": true
+      },
+      {
+        "Name": "Ancestral Medal+3",
+        "tier": 4,
+        "unique": true
+      },
+      {
+        "Name": "Ancestral Medal+4",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Ancestral Medal+5",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Bead Chain",
+        "tier": 1,
+        "unique": true
+      },
+      {
+        "Name": "Bead Chain+1",
+        "tier": 2,
+        "unique": true
+      },
+      {
+        "Name": "Bead Chain+2",
+        "tier": 3,
+        "unique": true
+      },
+      {
+        "Name": "Bead Chain+3",
+        "tier": 4,
+        "unique": true
+      },
+      {
+        "Name": "Bead Chain+4",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Bead Chain+5",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Blood Vessel",
+        "tier": 1,
+        "unique": true
+      },
+      {
+        "Name": "Blood Vessel+1",
+        "tier": 2,
+        "unique": true
+      },
+      {
+        "Name": "Blood Vessel+2",
+        "tier": 3,
+        "unique": true
+      },
+      {
+        "Name": "Blood Vessel+3",
+        "tier": 4,
+        "unique": true
+      },
+      {
+        "Name": "Blood Vessel+4",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Blood Vessel+5",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Brooch",
+        "tier": 1,
+        "unique": true
+      },
+      {
+        "Name": "Brooch+1",
+        "tier": 2,
+        "unique": true
+      },
+      {
+        "Name": "Brooch+2",
+        "tier": 3,
+        "unique": true
+      },
+      {
+        "Name": "Brooch+3",
+        "tier": 4,
+        "unique": true
+      },
+      {
+        "Name": "Brooch+4",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Brooch+5",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Buckler",
+        "tier": 1,
+        "unique": true
+      },
+      {
+        "Name": "Buckler+1",
+        "tier": 2,
+        "unique": true
+      },
+      {
+        "Name": "Buckler+2",
+        "tier": 3,
+        "unique": true
+      },
+      {
+        "Name": "Buckler+3",
+        "tier": 4,
+        "unique": true
+      },
+      {
+        "Name": "Buckler+4",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Buckler+5",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Cauldron",
+        "tier": 1,
+        "unique": true
+      },
+      {
+        "Name": "Cauldron+1",
+        "tier": 2,
+        "unique": true
+      },
+      {
+        "Name": "Cauldron+2",
+        "tier": 3,
+        "unique": true
+      },
+      {
+        "Name": "Cauldron+3",
+        "tier": 4,
+        "unique": true
+      },
+      {
+        "Name": "Cauldron+4",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Cauldron+5",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Charging Sphere",
+        "tier": 1,
+        "unique": true
+      },
+      {
+        "Name": "Charging Sphere+1",
+        "tier": 2,
+        "unique": true
+      },
+      {
+        "Name": "Charging Sphere+2",
+        "tier": 3,
+        "unique": true
+      },
+      {
+        "Name": "Charging Sphere+3",
+        "tier": 4,
+        "unique": true
+      },
+      {
+        "Name": "Charging Sphere+4",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Charging Sphere+5",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Crown",
+        "tier": 1,
+        "unique": true
+      },
+      {
+        "Name": "Crown+1",
+        "tier": 2,
+        "unique": true
+      },
+      {
+        "Name": "Crown+2",
+        "tier": 3,
+        "unique": true
+      },
+      {
+        "Name": "Crown+3",
+        "tier": 4,
+        "unique": true
+      },
+      {
+        "Name": "Crown+4",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Crown+5",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Drum",
+        "tier": 1,
+        "unique": true
+      },
+      {
+        "Name": "Drum+1",
+        "tier": 2,
+        "unique": true
+      },
+      {
+        "Name": "Drum+2",
+        "tier": 3,
+        "unique": true
+      },
+      {
+        "Name": "Drum+3",
+        "tier": 4,
+        "unique": true
+      },
+      {
+        "Name": "Drum+4",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Drum+5",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Dumbbell",
+        "tier": 1,
+        "unique": true
+      },
+      {
+        "Name": "Dumbbell+1",
+        "tier": 2,
+        "unique": true
+      },
+      {
+        "Name": "Dumbbell+2",
+        "tier": 3,
+        "unique": true
+      },
+      {
+        "Name": "Dumbbell+3",
+        "tier": 4,
+        "unique": true
+      },
+      {
+        "Name": "Dumbbell+4",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Dumbbell+5",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Fin",
+        "tier": 1,
+        "unique": true
+      },
+      {
+        "Name": "Fin+1",
+        "tier": 2,
+        "unique": true
+      },
+      {
+        "Name": "Fin+2",
+        "tier": 3,
+        "unique": true
+      },
+      {
+        "Name": "Fin+3",
+        "tier": 4,
+        "unique": true
+      },
+      {
+        "Name": "Fin+4",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Fin+5",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Flute",
+        "tier": 1,
+        "unique": true
+      },
+      {
+        "Name": "Flute+1",
+        "tier": 2,
+        "unique": true
+      },
+      {
+        "Name": "Flute+2",
+        "tier": 3,
+        "unique": true
+      },
+      {
+        "Name": "Flute+3",
+        "tier": 4,
+        "unique": true
+      },
+      {
+        "Name": "Flute+4",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Flute+5",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Frozen Tear",
+        "tier": 1,
+        "unique": true
+      },
+      {
+        "Name": "Frozen Tear+1",
+        "tier": 2,
+        "unique": true
+      },
+      {
+        "Name": "Frozen Tear+2",
+        "tier": 3,
+        "unique": true
+      },
+      {
+        "Name": "Frozen Tear+3",
+        "tier": 4,
+        "unique": true
+      },
+      {
+        "Name": "Frozen Tear+4",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Frozen Tear+5",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Gray Pearl",
+        "tier": 1,
+        "unique": true
+      },
+      {
+        "Name": "Gray Pearl+1",
+        "tier": 2,
+        "unique": true
+      },
+      {
+        "Name": "Gray Pearl+2",
+        "tier": 3,
+        "unique": true
+      },
+      {
+        "Name": "Gray Pearl+3",
+        "tier": 4,
+        "unique": true
+      },
+      {
+        "Name": "Gray Pearl+4",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Gray Pearl+5",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Hourglass",
+        "tier": 1,
+        "unique": true
+      },
+      {
+        "Name": "Hourglass+1",
+        "tier": 2,
+        "unique": true
+      },
+      {
+        "Name": "Hourglass+2",
+        "tier": 3,
+        "unique": true
+      },
+      {
+        "Name": "Hourglass+3",
+        "tier": 4,
+        "unique": true
+      },
+      {
+        "Name": "Hourglass+4",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Hourglass+5",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Infinity Flame",
+        "tier": 1,
+        "unique": true
+      },
+      {
+        "Name": "Infinity Flame+1",
+        "tier": 2,
+        "unique": true
+      },
+      {
+        "Name": "Infinity Flame+2",
+        "tier": 3,
+        "unique": true
+      },
+      {
+        "Name": "Infinity Flame+3",
+        "tier": 4,
+        "unique": true
+      },
+      {
+        "Name": "Infinity Flame+4",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Infinity Flame+5",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Lightning Sphere",
+        "tier": 1,
+        "unique": true
+      },
+      {
+        "Name": "Lightning Sphere+1",
+        "tier": 2,
+        "unique": true
+      },
+      {
+        "Name": "Lightning Sphere+2",
+        "tier": 3,
+        "unique": true
+      },
+      {
+        "Name": "Lightning Sphere+3",
+        "tier": 4,
+        "unique": true
+      },
+      {
+        "Name": "Lightning Sphere+4",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Lightning Sphere+5",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Lucky Clover",
+        "tier": 1,
+        "unique": true
+      },
+      {
+        "Name": "Lucky Clover+1",
+        "tier": 2,
+        "unique": true
+      },
+      {
+        "Name": "Lucky Clover+2",
+        "tier": 3,
+        "unique": true
+      },
+      {
+        "Name": "Lucky Clover+3",
+        "tier": 4,
+        "unique": true
+      },
+      {
+        "Name": "Lucky Clover+4",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Lucky Clover+5",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Mage Flask",
+        "tier": 1,
+        "unique": true
+      },
+      {
+        "Name": "Mage Flask+1",
+        "tier": 2,
+        "unique": true
+      },
+      {
+        "Name": "Mage Flask+2",
+        "tier": 3,
+        "unique": true
+      },
+      {
+        "Name": "Mage Flask+3",
+        "tier": 4,
+        "unique": true
+      },
+      {
+        "Name": "Mage Flask+4",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Mage Flask+5",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Medallion",
+        "tier": 1,
+        "unique": true
+      },
+      {
+        "Name": "Medallion+1",
+        "tier": 2,
+        "unique": true
+      },
+      {
+        "Name": "Medallion+2",
+        "tier": 3,
+        "unique": true
+      },
+      {
+        "Name": "Medallion+3",
+        "tier": 4,
+        "unique": true
+      },
+      {
+        "Name": "Medallion+4",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Medallion+5",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Ocarina",
+        "tier": 1,
+        "unique": true
+      },
+      {
+        "Name": "Ocarina+1",
+        "tier": 2,
+        "unique": true
+      },
+      {
+        "Name": "Ocarina+2",
+        "tier": 3,
+        "unique": true
+      },
+      {
+        "Name": "Ocarina+3",
+        "tier": 4,
+        "unique": true
+      },
+      {
+        "Name": "Ocarina+4",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Ocarina+5",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Omni Ring",
+        "tier": 1,
+        "unique": true
+      },
+      {
+        "Name": "Omni Ring+1",
+        "tier": 2,
+        "unique": true
+      },
+      {
+        "Name": "Omni Ring+2",
+        "tier": 3,
+        "unique": true
+      },
+      {
+        "Name": "Omni Ring+3",
+        "tier": 4,
+        "unique": true
+      },
+      {
+        "Name": "Omni Ring+4",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Omni Ring+5",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Ornate Pipe",
+        "tier": 1,
+        "unique": true
+      },
+      {
+        "Name": "Ornate Pipe+1",
+        "tier": 2,
+        "unique": true
+      },
+      {
+        "Name": "Ornate Pipe+2",
+        "tier": 3,
+        "unique": true
+      },
+      {
+        "Name": "Ornate Pipe+3",
+        "tier": 4,
+        "unique": true
+      },
+      {
+        "Name": "Ornate Pipe+4",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Ornate Pipe+5",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Pandora's Box",
+        "tier": 1,
+        "unique": true
+      },
+      {
+        "Name": "Pandora's Box+1",
+        "tier": 2,
+        "unique": true
+      },
+      {
+        "Name": "Pandora's Box+2",
+        "tier": 3,
+        "unique": true
+      },
+      {
+        "Name": "Pandora's Box+3",
+        "tier": 4,
+        "unique": true
+      },
+      {
+        "Name": "Pandora's Box+4",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Pandora's Box+5",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Poisoned Dart",
+        "tier": 1,
+        "unique": true
+      },
+      {
+        "Name": "Poisoned Dart+1",
+        "tier": 2,
+        "unique": true
+      },
+      {
+        "Name": "Poisoned Dart+2",
+        "tier": 3,
+        "unique": true
+      },
+      {
+        "Name": "Poisoned Dart+3",
+        "tier": 4,
+        "unique": true
+      },
+      {
+        "Name": "Poisoned Dart+4",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Poisoned Dart+5",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Shield Generator",
+        "tier": 1,
+        "unique": true
+      },
+      {
+        "Name": "Shield Generator+1",
+        "tier": 2,
+        "unique": true
+      },
+      {
+        "Name": "Shield Generator+2",
+        "tier": 3,
+        "unique": true
+      },
+      {
+        "Name": "Shield Generator+3",
+        "tier": 4,
+        "unique": true
+      },
+      {
+        "Name": "Shield Generator+4",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Shield Generator+5",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Slime Skin",
+        "tier": 1,
+        "unique": true
+      },
+      {
+        "Name": "Slime Skin+1",
+        "tier": 2,
+        "unique": true
+      },
+      {
+        "Name": "Slime Skin+2",
+        "tier": 3,
+        "unique": true
+      },
+      {
+        "Name": "Slime Skin+3",
+        "tier": 4,
+        "unique": true
+      },
+      {
+        "Name": "Slime Skin+4",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Slime Skin+5",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Spark",
+        "tier": 1,
+        "unique": true
+      },
+      {
+        "Name": "Spark+1",
+        "tier": 2,
+        "unique": true
+      },
+      {
+        "Name": "Spark+2",
+        "tier": 3,
+        "unique": true
+      },
+      {
+        "Name": "Spark+3",
+        "tier": 4,
+        "unique": true
+      },
+      {
+        "Name": "Spark+4",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Spark+5",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Sun Pendant",
+        "tier": 1,
+        "unique": true
+      },
+      {
+        "Name": "Sun Pendant+1",
+        "tier": 2,
+        "unique": true
+      },
+      {
+        "Name": "Sun Pendant+2",
+        "tier": 3,
+        "unique": true
+      },
+      {
+        "Name": "Sun Pendant+3",
+        "tier": 4,
+        "unique": true
+      },
+      {
+        "Name": "Sun Pendant+4",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Sun Pendant+5",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Tambourine",
+        "tier": 1,
+        "unique": true
+      },
+      {
+        "Name": "Tambourine+1",
+        "tier": 2,
+        "unique": true
+      },
+      {
+        "Name": "Tambourine+2",
+        "tier": 3,
+        "unique": true
+      },
+      {
+        "Name": "Tambourine+3",
+        "tier": 4,
+        "unique": true
+      },
+      {
+        "Name": "Tambourine+4",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Tambourine+5",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Tarot Card",
+        "tier": 1,
+        "unique": true
+      },
+      {
+        "Name": "Tarot Card+1",
+        "tier": 2,
+        "unique": true
+      },
+      {
+        "Name": "Tarot Card+2",
+        "tier": 3,
+        "unique": true
+      },
+      {
+        "Name": "Tarot Card+3",
+        "tier": 4,
+        "unique": true
+      },
+      {
+        "Name": "Tarot Card+4",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Tarot Card+5",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Thermal Reactor",
+        "tier": 1,
+        "unique": true
+      },
+      {
+        "Name": "Thermal Reactor+1",
+        "tier": 2,
+        "unique": true
+      },
+      {
+        "Name": "Thermal Reactor+2",
+        "tier": 3,
+        "unique": true
+      },
+      {
+        "Name": "Thermal Reactor+3",
+        "tier": 4,
+        "unique": true
+      },
+      {
+        "Name": "Thermal Reactor+4",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Thermal Reactor+5",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Totem",
+        "tier": 1,
+        "unique": true
+      },
+      {
+        "Name": "Totem+1",
+        "tier": 2,
+        "unique": true
+      },
+      {
+        "Name": "Totem+2",
+        "tier": 3,
+        "unique": true
+      },
+      {
+        "Name": "Totem+3",
+        "tier": 4,
+        "unique": true
+      },
+      {
+        "Name": "Totem+4",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Totem+5",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Warrior Flask",
+        "tier": 1,
+        "unique": true
+      },
+      {
+        "Name": "Warrior Flask+1",
+        "tier": 2,
+        "unique": true
+      },
+      {
+        "Name": "Warrior Flask+2",
+        "tier": 3,
+        "unique": true
+      },
+      {
+        "Name": "Warrior Flask+3",
+        "tier": 4,
+        "unique": true
+      },
+      {
+        "Name": "Warrior Flask+4",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Warrior Flask+5",
+        "tier": 5,
+        "unique": true
+      },
+      {
+        "Name": "Ancient Clock",
+        "tier": 1,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Ancient Clock+1",
+        "tier": 2,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Ancient Clock+2",
+        "tier": 3,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Ancient Clock+3",
+        "tier": 4,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Ancient Clock+4",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Ancient Clock+5",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Cursed Drum",
+        "tier": 1,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Cursed Drum+1",
+        "tier": 2,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Cursed Drum+2",
+        "tier": 3,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Cursed Drum+3",
+        "tier": 4,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Cursed Drum+4",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Cursed Drum+5",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Devonian Medal",
+        "tier": 1,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Devonian Medal+1",
+        "tier": 2,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Devonian Medal+2",
+        "tier": 3,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Devonian Medal+3",
+        "tier": 4,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Devonian Medal+4",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Devonian Medal+5",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Dragon Saddle",
+        "tier": 1,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Dragon Saddle+1",
+        "tier": 2,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Dragon Saddle+2",
+        "tier": 3,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Dragon Saddle+3",
+        "tier": 4,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Dragon Saddle+4",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Dragon Saddle+5",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Dwarven Crown",
+        "tier": 1,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Dwarven Crown+1",
+        "tier": 2,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Dwarven Crown+2",
+        "tier": 3,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Dwarven Crown+3",
+        "tier": 4,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Dwarven Crown+4",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Dwarven Crown+5",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Earth Symbol",
+        "tier": 1,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Earth Symbol+1",
+        "tier": 2,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Earth Symbol+2",
+        "tier": 3,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Earth Symbol+3",
+        "tier": 4,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Earth Symbol+4",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Earth Symbol+5",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Fire Symbol",
+        "tier": 1,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Fire Symbol+1",
+        "tier": 2,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Fire Symbol+2",
+        "tier": 3,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Fire Symbol+3",
+        "tier": 4,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Fire Symbol+4",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Fire Symbol+5",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Goblin Garment",
+        "tier": 1,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Goblin Garment+1",
+        "tier": 2,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Goblin Garment+2",
+        "tier": 3,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Goblin Garment+3",
+        "tier": 4,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Goblin Garment+4",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Goblin Garment+5",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Gold Feather",
+        "tier": 1,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Gold Feather+1",
+        "tier": 2,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Gold Feather+2",
+        "tier": 3,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Gold Feather+3",
+        "tier": 4,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Gold Feather+4",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Gold Feather+5",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Grey Stone",
+        "tier": 1,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Grey Stone+1",
+        "tier": 2,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Grey Stone+2",
+        "tier": 3,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Grey Stone+3",
+        "tier": 4,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Grey Stone+4",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Grey Stone+5",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Heavy Greaves",
+        "tier": 1,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Heavy Greaves+1",
+        "tier": 2,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Heavy Greaves+2",
+        "tier": 3,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Heavy Greaves+3",
+        "tier": 4,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Heavy Greaves+4",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Heavy Greaves+5",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Holy Necklace",
+        "tier": 1,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Holy Necklace+1",
+        "tier": 2,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Holy Necklace+2",
+        "tier": 3,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Holy Necklace+3",
+        "tier": 4,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Holy Necklace+4",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Holy Necklace+5",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Infinity Blaze",
+        "tier": 1,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Infinity Blaze+1",
+        "tier": 2,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Infinity Blaze+2",
+        "tier": 3,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Infinity Blaze+3",
+        "tier": 4,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Infinity Blaze+4",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Infinity Blaze+5",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Lion Fang",
+        "tier": 1,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Lion Fang+1",
+        "tier": 2,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Lion Fang+2",
+        "tier": 3,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Lion Fang+3",
+        "tier": 4,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Lion Fang+4",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Lion Fang+5",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Moon Ring",
+        "tier": 1,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Moon Ring+1",
+        "tier": 2,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Moon Ring+2",
+        "tier": 3,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Moon Ring+3",
+        "tier": 4,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Moon Ring+4",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Moon Ring+5",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Nimble Wings",
+        "tier": 1,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Nimble Wings+1",
+        "tier": 2,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Nimble Wings+2",
+        "tier": 3,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Nimble Wings+3",
+        "tier": 4,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Nimble Wings+4",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Nimble Wings+5",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Pandora's Chest",
+        "tier": 1,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Pandora's Chest+1",
+        "tier": 2,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Pandora's Chest+2",
+        "tier": 3,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Pandora's Chest+3",
+        "tier": 4,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Pandora's Chest+4",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Pandora's Chest+5",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Pure Leaf",
+        "tier": 1,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Pure Leaf+1",
+        "tier": 2,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Pure Leaf+2",
+        "tier": 3,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Pure Leaf+3",
+        "tier": 4,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Pure Leaf+4",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Pure Leaf+5",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Reptilian Idol",
+        "tier": 1,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Reptilian Idol+1",
+        "tier": 2,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Reptilian Idol+2",
+        "tier": 3,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Reptilian Idol+3",
+        "tier": 4,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Reptilian Idol+4",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Reptilian Idol+5",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Sharp Fin",
+        "tier": 1,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Sharp Fin+1",
+        "tier": 2,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Sharp Fin+2",
+        "tier": 3,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Sharp Fin+3",
+        "tier": 4,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Sharp Fin+4",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Sharp Fin+5",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Slimy Ball",
+        "tier": 1,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Slimy Ball+1",
+        "tier": 2,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Slimy Ball+2",
+        "tier": 3,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Slimy Ball+3",
+        "tier": 4,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Slimy Ball+4",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Slimy Ball+5",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Spirit Blaze",
+        "tier": 1,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Spirit Blaze+1",
+        "tier": 2,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Spirit Blaze+2",
+        "tier": 3,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Spirit Blaze+3",
+        "tier": 4,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Spirit Blaze+4",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Spirit Blaze+5",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Static Loop",
+        "tier": 1,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Static Loop+1",
+        "tier": 2,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Static Loop+2",
+        "tier": 3,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Static Loop+3",
+        "tier": 4,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Static Loop+4",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Static Loop+5",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Sun Ring",
+        "tier": 1,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Sun Ring+1",
+        "tier": 2,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Sun Ring+2",
+        "tier": 3,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Sun Ring+3",
+        "tier": 4,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Sun Ring+4",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Sun Ring+5",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Toxic Pot",
+        "tier": 1,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Toxic Pot+1",
+        "tier": 2,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Toxic Pot+2",
+        "tier": 3,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Toxic Pot+3",
+        "tier": 4,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Toxic Pot+4",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Toxic Pot+5",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Warlock Hat",
+        "tier": 1,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Warlock Hat+1",
+        "tier": 2,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Warlock Hat+2",
+        "tier": 3,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Warlock Hat+3",
+        "tier": 4,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Warlock Hat+4",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Warlock Hat+5",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Water Symbol",
+        "tier": 1,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Water Symbol+1",
+        "tier": 2,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Water Symbol+2",
+        "tier": 3,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Water Symbol+3",
+        "tier": 4,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Water Symbol+4",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Water Symbol+5",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Wind Symbol",
+        "tier": 1,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Wind Symbol+1",
+        "tier": 2,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Wind Symbol+2",
+        "tier": 3,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Wind Symbol+3",
+        "tier": 4,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Wind Symbol+4",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      },
+      {
+        "Name": "Wind Symbol+5",
+        "tier": 5,
+        "unique": true,
+        "groups": [
+          "Relic"
+        ]
+      }
+    ]
+  },
+  {
+    "type": "Currency",
+    "items": [
+      {
+        "Name": "100 G",
+        "classification": "filler",
+        "tier": 1
+      },
+      {
+        "Name": "150 G",
+        "classification": "filler",
+        "tier": 1
+      },
+      {
+        "Name": "200 G",
+        "classification": "filler",
+        "tier": 1
+      },
+      {
+        "Name": "250 G",
+        "classification": "filler",
+        "tier": 1
+      },
+      {
+        "Name": "300 G",
+        "classification": "filler",
+        "tier": 2
+      },
+      {
+        "Name": "350 G",
+        "classification": "filler",
+        "tier": 2
+      },
+      {
+        "Name": "400 G",
+        "classification": "filler",
+        "tier": 2
+      },
+      {
+        "Name": "500 G",
+        "classification": "filler",
+        "tier": 2
+      },
+      {
+        "Name": "600 G",
+        "classification": "filler",
+        "tier": 3
+      },
+      {
+        "Name": "700 G",
+        "classification": "filler",
+        "tier": 3
+      },
+      {
+        "Name": "800 G",
+        "classification": "filler",
+        "tier": 3
+      },
+      {
+        "Name": "900 G",
+        "classification": "filler",
+        "tier": 3
+      },
+      {
+        "Name": "1000 G",
+        "classification": "filler",
+        "tier": 4
+      },
+      {
+        "Name": "1200 G",
+        "classification": "filler",
+        "tier": 4
+      },
+      {
+        "Name": "1600 G",
+        "classification": "filler",
+        "tier": 4
+      },
+      {
+        "Name": "1800 G",
+        "classification": "filler",
+        "tier": 4
+      },
+      {
+        "Name": "2000 G",
+        "classification": "filler",
+        "tier": 4
+      },
+      {
+        "Name": "2500 G",
+        "classification": "filler",
+        "tier": 5
+      },
+      {
+        "Name": "3000 G",
+        "classification": "filler",
+        "tier": 5
+      },
+      {
+        "Name": "3500 G",
+        "classification": "filler",
+        "tier": 5
+      },
+      {
+        "Name": "4000 G",
+        "classification": "filler",
+        "tier": 5
+      },
+      {
+        "Name": "4500 G",
+        "classification": "filler",
+        "tier": 5
+      },
+      {
+        "Name": "5000 G",
+        "classification": "filler",
+        "tier": 5
+      }
+    ]
+  },
+  {
+    "type": "Egg",
+    "items": [
+      {
+        "Name": "Vaero Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Rocky Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Minitaur Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Spectral Wolf Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Blob Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Monk Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Steam Golem Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Catzerker Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Fungi Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Grummy Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Magmapillar Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Tengu Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Yowie Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Frosty Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Specter Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Goblin Brute Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Goblin Hood Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Druid Oak Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Molebear Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Glowfly Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Crackle Knight Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Nightwing Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Mad Eye Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Beetloid Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Goblin King Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Goblin Warlock Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Raduga Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Toxiquus Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Ice Blob Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Caraglow Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Aurumtail Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Mogwai Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Crystal Snail Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Akhlut Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Blade Widow Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Sycophantom Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Qilin Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Koi Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Vasuki Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Kame Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Imori Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Ninki Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Tanuki Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Kanko Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Brawlish Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Dodo Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Kongamato Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Thornish Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Nautilid Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Ucan Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Elderjel Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Manticorb Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Goblin Miner Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Salahammer Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Draconov Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Lava Blob Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Skorch Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Arachlich Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Argiope Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Moccus Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Promethean Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Spinner Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Shockhopper Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Targoat Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Stolby Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Polterofen Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Oculus Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Ornithopter Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Mimic Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Goblin Pilot Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Troll Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Brutus Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Sutsune Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Darnation Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Thanatos Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Vodinoy Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "??? Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Changeling Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Rainbow Blob Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Vertraag Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Aazerach Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Gryphonix Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Worm Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Diavola Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Spectral Toad Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Spectral Lion Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Spectral Eagle Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Asura Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Bard Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Rampede Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Tar Blob Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Rathops Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Terradrile Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Amberlgna Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Krakaturtle Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Fumagus Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "G'rulu Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Megataur Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Magmamoth Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Ninki Nanka Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Silvaero Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Sizzle Knight Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Glowdra Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Dracogran Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Dracozul Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Draconoir Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Dracomer Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Mega Rock Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "King Blob Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Mad Lord Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      },
+      {
+        "Name": "Ascendant Egg",
+        "tier": 1,
+        "classification": "skip_balancing"
+      }
+    ]
+  }
+]
