@@ -78,8 +78,9 @@ def fill_restrictive(world: MultiWorld, base_state: CollectionState, locations: 
                 perform_access_check = True
 
             for i, location in enumerate(locations):
+                can_fill = location.can_fill(maximum_exploration_state, item_to_place, perform_access_check)
                 if (not single_player_placement or location.player == item_to_place.player) \
-                        and location.can_fill(maximum_exploration_state, item_to_place, perform_access_check):
+                        and can_fill:
                     # popping by index is faster than removing by content,
                     spot_to_fill = locations.pop(i)
                     # skipping a scan for the element

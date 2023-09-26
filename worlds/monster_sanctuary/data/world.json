@@ -1,5 +1,11 @@
 [
   {
+    "region": "Menu",
+    "connections": [
+      { "region": "MountainPath_North1" }
+    ]
+  },
+  {
     "region": "MountainPath_North1",
     "connections": [
       { "region": "MountainPath_North2" },
@@ -76,6 +82,18 @@
       { "id": 6, "item": "2x Copper" },
       { "id": 8, "item": "Gauntlet" },
       { "id": 9, "item": "Bracelet" }
+    ]
+  },
+  {
+    "region": "MountainPath_NorthHidden",
+    "connections": [
+      { "region": "MountainPath_North5" }
+    ],
+    "chests": [
+      { "id": 4, "item": "Harp" }
+    ],
+    "encounters": [
+      { "id": 2, "monsters": [ "Manticorb", "Manticorb", "Manticorb" ] }
     ]
   },
   {
@@ -203,7 +221,7 @@
       },
       {
         "region":  "BlueCave_ChampionRoom2_WestAccess",
-        "requirements":  [ "blue_cave_champion_room_2_west_access" ]
+        "requirements":  [ "blue_cave_champion_room_2_west_shortcut" ]
       }
     ],
     "chests": [
@@ -291,7 +309,7 @@
     "region": "MountainPath_West5",
     "connections": [
       { "region":  "MountainPath_West2" },
-      { "region":  "MountainPath_Center6" }
+      { "region":  "MountainPath_Center6_Lower" }
     ],
     "encounters": [
       { "id":  1, "monsters":  [ "Catzerker", "Magmapillar", "Magmapillar" ]}
@@ -303,7 +321,7 @@
       { "region":  "MountainPath_West5" }
     ],
     "gifts": [
-      { "id": 134, "item": "Mountain Path Key" },
+      { "id": 134, "item": "Mountain Path key" },
       { "id": 135, "item": "2x Apple" },
       { "id": 136, "item": "2x Potato" }
     ],
@@ -311,7 +329,7 @@
       { "id":  2, "monsters":  [ "Blob", "Blob", "Blob" ]}
     ],
     "champion": [
-      { "id": 3, "monsters": [ "Golem" ] }
+      { "id": 3, "monsters": [ "Steam Golem" ] }
     ]
   },
   {
@@ -486,6 +504,24 @@
       { "id": 2800024, "item":  "3x Craft Box", "requirements": [ "keeper_rank_9" ]  }
     ]
   },
+  {
+    "region": "KeeperStronghold_KeepersTowers",
+    "connections": [
+      { "region": "KeeperStronghold_CenterStairwell" },
+      { "region": "KeeperStronghold_ChampionChallenge" },
+      { "region": "KeeperStronghold_DuelCircle", "requirements": [ "keeper_rank_2" ] }
+    ]
+  },
+  {
+    "region": "KeeperStronghold_DuelCircle",
+    "connections": [
+      { "region": "KeeperStronghold_KeepersTowers" }
+    ],
+    "gifts": [
+      { "id": 701, "item": "Reward Box Lvl 1" }
+    ]
+  },
+
 
   {
     "region": "BlueCave_StrongholdEntrance",
@@ -495,9 +531,6 @@
     ],
     "encounters": [
       { "id": 6, "monsters": [ "Tengu", "Grummy", "Tengu" ] }
-    ],
-    "flags": [
-      { "id":  "blue_caves_switches_access", "name": "Blue Caves Switches Access" }
     ]
   },
   {
@@ -518,6 +551,9 @@
     ],
     "encounters": [
       { "id": 6, "monsters": [ "Grummy", "Grummy", "Tengu" ]}
+    ],
+    "flags": [
+      { "id":  "blue_caves_switches_access", "name": "Blue Caves Switches Access" }
     ]
   },
   {
@@ -542,7 +578,7 @@
       }
     ],
     "chests": [
-      { "id": 0, "item": "Blue Cave Key" },
+      { "id": 0, "item": "Blue Cave key" },
       { "id": 1, "item": "250 G", "requirements": [
         "OR", [
           "blue_caves_switches_access",
@@ -673,7 +709,7 @@
       ] },
       { "id": 7, "item": "4x Copper", "requirements": [
         "OR", [ "double_jump", "improved_flying", "dual_mobility" ]
-      ], "TODO": "Need to create this item" },
+      ] },
       { "id": 9, "item": "Shell+2", "requirements": [
         "OR", [ "double_jump", "distant_ledges" ]
       ] }
@@ -686,7 +722,7 @@
       { "region":  "BlueCave_WestStairwell" }
     ],
     "champion": [
-      { "id": 6, "monsters": [ "Minotaur" ] }
+      { "id": 6, "monsters": [ "Minitaur" ] }
     ]
   },
   {
@@ -715,7 +751,7 @@
     "connections": [
       { "region": "BlueCave_East2_Lower" },
       { "region": "BlueCave_East4" },
-      { "region": "StrongholdDungeon_West4_Shortcut", "requirements": [ "stronghold_dungeon_west_4_access" ]}
+      { "region": "StrongholdDungeon_West4_Shortcut", "requirements": [ "stronghold_dungeon_west_4_shortcut" ]}
     ]
   },
   {
@@ -724,7 +760,7 @@
       { "region": "BlueCave_East2_Lower" }
     ],
      "chests": [
-       { "id": 0, "item": "blue_cave_key" },
+       { "id": 0, "item": "Blue Cave key" },
        { "id": 1, "item": "Green Gem" }
     ],
     "encounters": [
@@ -737,7 +773,7 @@
       { "region": "BlueCave_East2_Upper" }
     ],
      "chests": [
-       { "id": 0, "item": "Blue Cave Key" },
+       { "id": 0, "item": "Blue Cave key" },
        { "id": 1, "item": "Sustain Ring+2" }
      ]
   },
@@ -904,7 +940,7 @@
     ],
     "chests": [
       { "id": 3, "item": "Pear" },
-      { "id": 4, "item": "2x Level Badge", "TODO": "Need to create this" }
+      { "id": 4, "item": "2x Level Badge" }
     ]
   },
   {
@@ -1050,7 +1086,7 @@
       { "region": "BlueCave_WestWaters6_Lower", "requirements": [ "levitate" ] }
     ],
     "chests": [
-      { "id": 0, "item": "2x Reward Box Lvl 3", "TODO": "Need to create this item" },
+      { "id": 0, "item": "2x Reward Box Lvl 3" },
       { "id": 2, "item": "2x Craft Box" }
     ]
   },
@@ -1096,18 +1132,911 @@
     "chests": [
       { "id": 2, "item": "Medallion" }
     ],
-    "champions": [
+    "champion": [
        { "id": 1, "monsters": [ "Specter" ] }
     ]
   },
   {
     "region": "BlueCave_ChampionRoom2_WestAccess",
     "connections": [
-      { "region": "MountainPath_Center6" },
+      { "region": "MountainPath_Center6_Upper" },
       { "region": "BlueCave_ChampionRoom2" }
     ],
     "flags": [
-      { "id":  "blue_cave_champion_room_2_west_access", "name": "Blue Caves to Mountain Path Shortcut Access" }
+      { "id":  "blue_cave_champion_room_2_west_shortcut", "name": "Blue Caves to Mountain Path Shortcut" }
+    ]
+  },
+
+  {
+    "region": "SnowyPeaks_East1",
+    "connections": [
+      { "region":  "MountainPath_SnowyEntrance2" },
+      { "region":  "SnowyPeaks_East2" }
+    ]
+  },
+  {
+    "region": "SnowyPeaks_East2_Lower",
+    "connections": [
+      { "region":  "SnowyPeaks_East1" },
+      {
+        "region": "SnowyPeaks_East2_Upper",
+        "requirements": [ "AND",[
+          "double_jump",
+          "distant_ledges"
+        ]]
+      }
+    ],
+    "chests": [
+      { "id": 7, "item": "Strawberry", "requirements": ["breakable_walls"] }
+    ],
+    "encounters": [
+      { "id": 0, "monsters": [ "Ice Blob", "Yowie", "Ice Blob" ]}
+    ]
+  },
+  {
+    "region": "SnowyPeaks_East2_Upper",
+    "connections": [
+      { "region":  "SnowyPeaks_East2_Lower" },
+      { "region": "SnowyPeaks_East3", "requirements": ["breakable_walls"]}
+    ],
+    "chests": [
+      { "id": 3, "item": "2x Wool", "requirements": ["AND", [ "double_jump", "distant_ledges" ]] },
+      { "id": 4, "item": "Hide +3", "requirements": ["AND", [ "double_jump", "distant_ledges" ]] }
+    ]
+  },
+  {
+    "region": "SnowyPeaks_East3",
+    "connections": [
+      { "region":  "SnowyPeaks_East2_Lower" },
+      {
+        "region":  "SnowyPeaks_East2_Upper",
+        "requirements": [
+          "AND", [
+            "breakable_walls",
+            "OR", [
+              "double_jump",
+              "improved_flying",
+              "dual_mobility",
+              "lofty_mount",
+              "summon_big_rock"]
+            ]
+          ]
+      }
+    ],
+    "chests": [
+      { "id": 8, "item": "Red Gem" },
+      { "id": 9, "item": "2x Hazelnut" },
+      { "id": 10, "item": "Blue Gem", "requirements": [ "OR", [
+        "double_jump",
+        "improved_flying",
+        "dual_mobility",
+        "lofty_mount",
+        "summon_big_rock"
+      ]] }
+    ],
+    "encounters": [
+      { "id": 0, "monsters": [ "Ice Blob", "Ice Blob", "Mogwai" ]},
+      { "id": 5, "monsters": [ "Mogwai", "Yowie", "Mogwai" ]}
+    ]
+  },
+  {
+    "region": "SnowyPeaks_East4_Lower",
+    "connections": [
+      { "region":  "SnowyPeaks_East3" },
+      { "region":  "SnowyPeaks_East4_Middle", "requirements": [
+        "OR", [
+          "double_jump",
+          "improved_flying",
+          "dual_mobility"
+        ]
+      ]}
+    ],
+    "chests": [
+      { "id": 5, "item": "Belt+3", "requirements": [
+        "AND", [
+          "breakable_walls",
+          "OR", [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility",
+            "lofty_mount",
+            "summon_big_rock"
+          ]
+        ]
+      ]}
+    ]
+  },
+  {
+    "region": "SnowyPeaks_East4_Middle",
+    "connections": [
+      { "region":  "SnowyPeaks_East4_Lower" },
+      { "region":  "SnowyPeaks_East4_Upper", "requirements": [
+        "AND", [
+          "snowy_peaks_east4_upper_shortcut",
+          "OR", [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility"
+          ]
+        ]
+      ]}
+    ],
+    "chests": [
+      { "id": 9, "item": "Corn", "requirements": [
+        "OR", [
+          "double_jump",
+          "improved_flying",
+          "dual_mobility"
+        ]
+      ]}
+    ]
+  },
+  {
+    "region": "SnowyPeaks_East4_Upper",
+    "connections": [
+      { "region":  "SnowyPeaks_East4_Middle" },
+      { "region": "SnowyPeaks_EastMountain2" }
+    ],
+    "flags": [
+      { "id":  "snowy_peaks_east4_upper_shortcut", "name": "Snowy Peaks East 4 Upper Shortcut" }
+    ]
+  },
+  {
+    "region": "SnowyPeaks_East5",
+    "connections": [
+      { "region":  "SnowyPeaks_East4_Middle" },
+      { "region": "SnowyPeaks_West1_Upper" }
+    ],
+    "chests": [
+      { "id": 17, "item": "Green Gem", "requirements": [
+        "OR", [
+          "double_jump",
+          "distant_ledges",
+          "ground_switches"
+        ]
+      ]}
+    ],
+    "encounters": [
+      { "id": 19, "monsters": [ "Mogwai", "Mogwai", "Mogwai" ]}
+    ]
+  },
+  {
+    "region": "SnowyPeaks_West1_Upper",
+    "connections": [
+      { "region":  "SnowyPeaks_East5" },
+      { "region": "SnowyPeaks_West1_Lower" },
+      {
+        "region": "SnowyPeaks_West2",
+        "requirements": [
+          "OR", [
+            "double_jump",
+            "distant_ledges"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "region": "SnowyPeaks_West1_Lower",
+    "connections": [
+      {
+        "region":  "SnowyPeaks_West1_Upper",
+        "requirements": [
+          "OR", [
+            "double_jump",
+            "distant_ledges"
+          ]
+        ]
+      },
+      { "region": "SnowyPeaks_SunPalaceEntrance" },
+      {
+        "region": "SnowyPeaks_WestDark",
+        "requirements": [ "breakable_walls" ]
+      }
+    ],
+    "encounters": [
+      { "id": 0, "monsters": [ "Caraglow", "Mogwai", "Caraglow" ]}
+    ]
+  },
+  {
+    "region": "SnowyPeaks_WestDark",
+    "connections": [
+      { "region": "SnowyPeaks_West1_Lower" }
+    ],
+    "chests": [
+      { "id": 3, "item": "Skill Potion", "requirements": [ "AND", [ "dark_rooms", "double_jump" ]]}
+    ]
+  },
+  {
+    "region": "SnowyPeaks_SunPalaceEntrance",
+    "connections": [
+      {
+        "region": "SnowyPeaks_West1_Lower",
+        "requirements": [
+          "OR", [
+            "double_jump",
+            "improved_flying",
+            "lofty_mount",
+            "dual_mobility"
+          ]
+        ]
+      },
+      {
+        "region": "SnowyPeaks_SunPalaceEntrance_Access",
+        "requirements": [
+          "OR", [
+            "snowy_peaks_sun_palace_entrance_shortcut",
+            "warm_underwear"
+          ]
+        ]
+      }
+    ],
+    "chests": [
+      { "id": 5, "item": "Verdant Gem", "requirements": [
+        "AND", [
+          "breakable_walls",
+          "OR", [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility",
+            "lofty_mount"
+          ]
+        ]
+      ]}
+    ]
+  },
+  {
+    "region": "SnowyPeaks_SunPalaceEntrance_Access",
+    "connections": [
+      {
+        "region": "SnowyPeaks_SunPalaceEntrance",
+        "requirements": [
+          "OR", [
+            "double_jump",
+            "distant_ledges",
+            "warm_underwear"
+          ]
+        ]
+      },
+      {
+        "region": "SnowyPeaks_SunPalaceEntrance_Access",
+        "requirements": [
+          "OR", [
+            "snowy_peaks_sun_palace_entrance_shortcut",
+            "warm_underwear"
+          ]
+        ]
+      },
+      { "region": "SunPalace_West1" }
+    ],
+    "chests": [
+      {
+        "id": 5, "item": "Verdant Gem", "requirements": [
+        "AND", [
+          "breakable_walls",
+          "OR", [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility",
+            "lofty_mount"
+          ]
+        ]
+      ]}
+    ],
+    "flags": [
+      { "id":  "snowy_peaks_sun_palace_entrance_shortcut", "name": "Snowy Peaks to Sun Palace Shortcut" }
+    ]
+  },
+  {
+    "region": "SnowyPeaks_West2",
+    "connections": [
+      { "region": "SnowyPeaks_West1_Upper" },
+      {
+        "region": "SnowyPeaks_West3",
+        "requirements": [
+        "OR", [
+            "double_jump",
+            "distant_ledges"
+          ]
+      ]}
+    ],
+    "chests": [
+      { "id":  1, "item": "Almond", "requirements": [ "AND", [ "double_jump", "distant_ledges" ]]}
+    ],
+    "encounters": [
+      { "id": 0, "monsters": [ "Ice Blob", "Caraglow", "Ice Blob" ]}
+    ]
+  },
+  {
+    "region": "SnowyPeaks_West3",
+    "connections": [
+      {
+        "region": "SnowyPeaks_West2",
+        "requirements": [
+          "OR", [
+            "double_jump",
+            "distant_ledges"
+          ]
+      ]},
+      { "region": "SnowyPeaks_West4" }
+    ],
+    "chests": [
+      { "id":  4, "item": "Bracelet+3", "requirements": [
+        "AND", [
+          "breakable_walls",
+          "OR", [
+            "double_jump",
+            "distant_ledges" ]
+          ]
+        ]
+      },
+      { "id": 5, "item": "2x Leather", "requirements": [ "ice_orbs" ]},
+      { "id": 7, "item": "2x Iron", "requirements": [ "OR", [ "double_jump", "improved_flying", "dual_mobility"] ] }
+    ],
+    "encounters": [
+      { "id": 3, "monsters": [ "Ice Blob", "Crystal Snail", "Ice Blob" ]}
+    ]
+  },
+  {
+    "region": "SnowyPeaks_West4",
+    "connections": [
+      { "region": "SnowyPeaks_West3" },
+      { "region": "SnowyPeaks_Lake" },
+      { "region": "SnowyPeaks_WestMountain1", "requirements": [ "double_jump" ] },
+      {
+        "region": "SnowyPeaks_West5",
+        "requirements": [
+          "AND", [
+            "diamond_blocks",
+            "OR", [
+              "double_jump",
+              "improved_flying",
+              "dual_mobility"
+            ]
+          ]
+        ]
+      }
+    ],
+    "chests": [
+      { "id":  7, "item": "Verdant Gem", "requirements": [
+        "AND", [
+          "double_jump",
+          "earth_orbs"
+        ]
+      ]}
+    ],
+    "encounters": [
+      { "id": 3, "monsters": [ "Crystal Snail", "Mogwai", "Crystal Snail" ]}
+    ]
+  },
+  {
+    "region": "SnowyPeaks_Lake_East",
+    "connections":[
+      { "region": "SnowyPeaks_West4" },
+      {
+        "region": "SnowyPeaks_Lake_Lower",
+        "requirements": [ "warm_underwear" ]
+      },
+      {
+        "region": "SnowyPeaks_Lake_West",
+        "requirements": [
+          "AND", [
+            "double_jump",
+            "OR", [
+              "improved_flying",
+              "dual_mobility",
+              "lofty_mount"
+            ]
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "region": "SnowyPeaks_Lake_West",
+    "connections":[
+      {
+        "region": "SnowyPeaks_Lake_Lower",
+        "requirements": [ "warm_underwear" ]
+      },
+      {
+        "region": "SnowyPeaks_Lake_East",
+        "requirements": [
+          "AND", [
+            "double_jump",
+            "OR", [
+              "improved_flying",
+              "dual_mobility",
+              "lofty_mount"
+            ]
+          ]
+        ]
+      }
+    ],
+    "chests": [
+      { "id": 10, "item": "Skill Potion" },
+      { "id": 12, "item": "Shift Stone" }
+    ],
+    "encounters": [
+      { "id": 3, "monsters": [ "Megataur", "Aurumtail", "Megataur" ]}
+    ]
+  },
+  {
+    "region": "SnowyPeaks_Lake_Lower",
+    "connections":[
+      {
+        "region": "SnowyPeaks_Lake_West",
+        "requirements": [
+          "OR", [
+            "swimming",
+            "AND", [
+              "heavy_blocks",
+              "double_jump"
+            ]
+          ]
+        ]
+      },
+      {
+        "region": "SnowyPeaks_Lake_East",
+        "requirements": [
+          "OR", [
+            "swimming",
+            "double_jump",
+            "improved_flying",
+            "dual_mobility"
+          ]
+        ]
+      },
+      { "region": "SnowyPeaks_ChampionRoom" }
+    ],
+    "chests": [
+      { "id": 9, "item": "Bronze" }
+    ]
+  },
+  {
+    "region": "SnowyPeaks_ChampionRoom",
+    "connections": [
+      { "region": "SnowyPeaks_Lake_Lower", "requirements": [ "warm_underwear" ] }
+    ],
+    "chests": [
+      { "id": 11, "item": "Carrot", "requirements": [
+        "OR", [
+          "double_jump",
+          "distant_ledges"
+        ]
+      ]}
+    ],
+    "champion": [
+      { "id": 7, "monsters": [ "Akhlut" ] }
+    ],
+    "gifts": [
+      "TODO: Sanctuary Token is gifted but not sure how"
+    ]
+  },
+  {
+    "region": "SnowyPeaks_West5",
+    "connections": [
+      { "region": "SnowyPeaks_West4", "requirements": [ "diamond_blocks" ] },
+      { "region": "SnowyPeaks_ChampionRoom2", "requirements": [ "double_jump" ] }
+    ],
+    "chests": [
+      { "id": 4, "item": "Bronze" },
+      { "id": 5, "item": "Silver", "requirements": [ "double_jump" ] }
+    ]
+  },
+  {
+    "region": "SnowyPeaks_ChampionRoom",
+    "connections": [
+      { "region": "SnowyPeaks_Lake_Lower", "requirements": [ "warm_underwear" ] }
+    ],
+    "chests": [
+      { "id": 11, "item": "Carrot", "requirements": [
+        "OR", [
+          "double_jump",
+          "distant_ledges"
+        ]
+      ]}
+    ],
+    "champion": [
+      { "id": 7, "monsters": [ "Akhlut" ] }
+    ],
+    "gifts": [
+      "TODO: Sanctuary Token is gifted but not sure how"
+    ]
+  },
+  {
+    "region": "SnowyPeaks_ChampionRoom2",
+    "connections": [
+      { "region": "SnowyPeaks_West5" }
+    ],
+    "champion": [
+      { "id": 0, "monsters": [ "Draconov", "Dracozul","Draconov" ] }
+    ]
+  },
+  {
+    "region": "SnowyPeaks_WestMountain1",
+    "connections": [
+      { "region": "SnowyPeaks_Cryomancer" },
+      {
+        "region": "SnowyPeaks_WestMountain2",
+        "requirements": [
+          "OR", [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility",
+            "lofty_mount"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "region": "SnowyPeaks_Cryomancer",
+    "connections": [
+      { "region": "SnowyPeaks_WestMountain1" }
+    ],
+    "gifts": [
+      "TODO: The shockhopper and reward box lvl 2 gifts here will remain un-randomized for now"
+    ]
+  },
+  {
+    "region": "SnowyPeaks_WestMountain2",
+    "connections": [
+      { "region": "SnowyPeaks_WestMountain1" },
+      { "region": "SnowyPeaks_WestMountain2" }
+    ],
+    "chests": [
+      { "id": 4, "item": "Mass Antidote" }
+    ],
+    "encounters": [
+      { "id": 0, "monsters": [ "Aurumtail", "Aurumtail", "Aurumtail"]}
+    ]
+  },
+  {
+    "region": "SnowyPeaks_WestMountain3",
+    "connections": [
+      { "region": "SnowyPeaks_WestMountain2" },
+      {
+        "region": "SnowyPeaks_WestMountain4",
+        "requirements": [
+          "OR", [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility",
+            "lofty_mount"
+          ]
+        ]
+      },
+      { "region": "SnowyPeaks_WestMountain6" }
+    ],
+    "chests": [
+      { "id": 7, "item": "2x Mango", "requirements": [ "ice_orbs" ] },
+      { "id": 8, "item": "Shift Stone", "requirements": [ "charging_mount" ]  }
+    ]
+  },
+  {
+    "region": "SnowyPeaks_WestMountain6",
+    "connections": [
+      { "region": "SnowyPeaks_WestMountain3" }
+    ],
+    "chests": [
+      { "id": 5, "item": "Bandana+3" }
+    ],
+    "encounters": [
+      { "id": 0, "monsters": [ "Caraglow", "Mogwai", "Mogwai" ]}
+    ]
+  },
+  {
+    "region": "SnowyPeaks_WestMountain4",
+    "connections": [
+      { "region": "SnowyPeaks_WestMountain3" },
+      {
+        "region": "SnowyPeaks_WestMountain5",
+        "requirements": [
+          "OR", [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility",
+            "lofty_mount"
+          ]
+        ]
+      }
+    ],
+    "encounters": [
+      {
+        "id": 4,
+        "monsters": [ "Aurumtail", "Aurumtail", "Crystal Snail" ],
+        "requirements": [
+          "OR", [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility",
+            "lofty_mount"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "region": "SnowyPeaks_WestMountain5",
+    "connections": [
+      { "region": "SnowyPeaks_WestMountain4" },
+      { "region": "SnowyPeaks_WestMountain7" },
+      { "region": "SnowyPeaks_Bridge" }
+    ],
+    "encounters": [
+      { "id": 0, "monsters": [ "Caraglow", "Aurumtail", "Caraglow" ] }
+    ]
+  },
+  {
+    "region": "SnowyPeaks_WestMountain7",
+    "connections": [
+      { "region": "SnowyPeaks_WestMountain5" },
+      { "region": "SnowyPeaks_WestMountainSecret", "requirements": [ "double_jump" ] }
+    ],
+    "chests": [
+      { "id": 6, "item": "Leather", "requirement": ["AND", ["double_jump", "distant_ledges"]] },
+      { "id": 7, "item": "Crimson Gem", "requirement": ["AND", ["double_jump", "distant_ledges", "breakable_walls"]] },
+      { "id": 8, "item": "5000 G", "requirement": ["AND", ["double_jump", "distant_ledges", "secret_vision"]] }
+    ]
+  },
+  {
+    "region": "SnowyPeaks_WestMountainSecret",
+    "connections": [
+      { "region": "SnowyPeaks_WestMountain7" }
+    ],
+    "chests": [
+      { "id": 2, "item": "Scepter" }
+    ]
+  },
+  {
+    "region": "SnowyPeaks_Bridge",
+    "connections": [
+      { "region": "SnowyPeaks_EastMountain1" },
+      { "region": "SnowyPeaks_WestMountain5" }
+    ]
+  },
+  {
+    "region": "SnowyPeaks_EastMountain1",
+    "connections": [
+      { "region": "SnowyPeaks_Bridge" },
+      { "region": "SnowyPeaks_EastMountainTop", "requirements": [ "double_jump" ] },
+      { "region": "SnowyPeaks_EastMountainClothesmaker" }
+    ],
+    "chests": [
+      { "id": 9, "item": "Azure Gem", "requirement": ["AND", ["double_jump", "distant_ledges"]] },
+      { "id": 10, "item": "Skill Resetter", "requirement": [ "distant_ledges" ] }
+    ],
+    "encounters": [
+      { "id": 0, "monsters": ["Megataur", "Caraglow", "Crystal Snail"]}
+    ]
+  },
+  {
+    "region": "SnowyPeaks_EastMountainTop",
+    "connections": [
+      { "region": "SnowyPeaks_EastMountain1" }
+    ],
+    "chests": [
+      { "id": 0, "item": "Scroll+3", "requirements": [ "distant_ledges" ] }
+    ]
+  },
+  {
+    "region": "SnowyPeaks_EastMountainClothesmaker",
+    "connections": [
+      { "region": "SnowyPeaks_EastMountain1" },
+      { "region": "SnowyPeaks_EastMountain4" }
+    ],
+    "gifts": [
+      { "id": 17700033, "item": "Warm Underwear", "requirements": [ "raw_hide" ] },
+      "TODO: There are extra gifts here, but they should stay out of the rando pool until everything is done"
+    ]
+  },
+  {
+    "region": "SnowyPeaks_EastMountain4",
+    "connections": [
+      { "region": "SnowyPeaks_EastMountainClothesmaker", "requirements": [ "double_jump" ] },
+      { "region": "SnowyPeaks_EastMountain2" },
+      { "region": "SnowyPeaks_EastMountain5" }
+    ],
+    "chests": [
+      { "id": 5, "item": "Strawberry", "requirement": ["AND", ["double_jump", "lightning_orbs"]] }
+    ],
+    "encounters": [
+      { "id": 4, "monsters": ["Megataur", "Crystal Snail", "Megataur"]}
+    ]
+  },
+  {
+    "region": "SnowyPeaks_EastMountain2",
+    "connections": [
+      {
+        "region": "SnowyPeaks_EastMountain4",
+        "requirements": [
+          "OR", [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility",
+            "lofty_mount"
+          ]
+        ]
+      },
+      {
+        "region": "SnowyPeaks_HighChallenge",
+        "requirements": [
+          "AND", [
+            "distant_ledges",
+            "breakable_walls"
+          ]
+        ]
+      },
+      { "region": "SnowyPeaks_East4_Upper" }
+    ],
+    "chests": [
+      {
+        "id": 21,
+        "item": "Level Badge",
+        "requirement": [
+          "OR", [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility",
+            "lofty_mount"
+          ]
+        ]
+      },
+      { "id": 22, "item": "Combo Potion", "requirement": ["double_jump"] },
+      { "id": 23, "item": "2x Wool", "requirement": ["double_jump"] }
+    ]
+  },
+  {
+    "region": "SnowyPeaks_EastMountain5",
+    "connections": [
+      {
+        "region": "SnowyPeaks_EastMountain4",
+        "requirements": [
+          "OR", [
+            "double_jump",
+            "distant_ledges",
+            "ground_switches"
+          ]
+        ]
+      },
+      { "region": "SnowyPeaks_EastMountain3" }
+    ],
+    "chests": [
+      { "id": 9, "item": "Helmet+3", "requirement": ["double_jump"] },
+      {
+        "id": 10,
+        "item": "Level Badge",
+        "requirement": [
+          "OR", [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "region": "SnowyPeaks_HighChallenge",
+    "connections": [
+      {
+        "region": "SnowyPeaks_EastMountain2",
+        "requirements": [
+          "AND", [
+            "double_jump",
+            "breakable_walls"
+          ]
+        ]
+      },
+      { "region": "SnowyPeaks_EastMountain3_Shortcut" }
+    ],
+    "chests": [
+      {
+        "id": 11,
+        "item": "Raw Hide",
+        "requirement": [
+          "OR", [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility"
+          ]
+        ]
+      },
+      {
+        "id": 12,
+        "item": "Wizard Hat+3",
+        "requirement": [
+          "AND", [
+            "ice_orbs",
+            "OR", [
+              "double_jump",
+              "improved_flying",
+              "dual_mobility"
+            ]
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "region": "SnowyPeaks_EastMountain3_Shortcut",
+    "connections": [
+      { "region": "SnowyPeaks_HighChallenge" }
+    ],
+    "flags": [
+      { "id":  "snowy_peaks_east_mountain_3_shortcut", "name": "Snowy Peaks East Mountain 3 Shortcut" }
+    ]
+  },
+  {
+    "region": "SnowyPeaks_EastMountain3_Upper",
+    "connections": [
+      { "region": "SnowyPeaks_EastMountain5" },
+      { "region": "SnowyPeaks_EastMountain3_Middle" }
+    ],
+    "chests": [
+      { "id": 24, "item": "Almond", "requirements": [ "double_jump" ]}
+    ],
+    "encounters": [
+      { "id": 7, "monsters": ["Caraglow", "Megataur", "Aurumtail"]}
+    ]
+  },
+  {
+    "region": "SnowyPeaks_EastMountain3_Middle",
+    "connections": [
+      {
+        "region": "SnowyPeaks_EastMountain3_Upper",
+        "requirements": [
+          "OR", [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility"
+          ]
+        ]
+      },
+      {
+        "region": "SnowyPeaks_EastMountain3_Shortcut",
+        "requirements": [
+          "AND", [
+            "snowy_peaks_east_mountain_3_shortcut",
+            "double_jump"
+          ]
+        ]
+      },
+      { "region": "SnowyPeaks_EastMountain3_Lower" }
+    ],
+    "chests": [
+      {
+        "id": 15,
+        "item": "2x Iron",
+        "requirements": [
+          "OR", [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "region": "SnowyPeaks_EastMountain3_Lower",
+    "connections": [
+      { "region": "SnowyPeaks_EastMountain3_Middle", "requirements": [ "OR", ["double_jump", "distant_ledges" ]]},
+      { "region": "SnowyPeaks_EastDark",  "requirements": [ "warm_underwear" ] }
+    ],
+    "chests": [
+      { "id": 18, "item": "Orb+3", "requirements": [ "warm_underwear" ]}
+    ]
+  },
+  {
+    "region": "SnowyPeaks_EastDark",
+    "connections": [
+      { "region": "SnowyPeaks_EastMountain3_Lower", "requirements": [ "warm_underwear" ]}
+    ],
+    "chests": [
+      { "id": 8, "item": "Carrot", "requirements": [ "AND", ["double_jump", "dark_rooms"]]},
+      { "id": 9, "item": "Claws+3", "requirements": [ "AND", ["double_jump", "dark_rooms"]]}
     ]
   }
 ]

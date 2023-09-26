@@ -1,6 +1,6 @@
 from enum import IntEnum
 from typing import List, Dict, Optional
-from BaseClasses import ItemClassification as IC
+from BaseClasses import ItemClassification
 from BaseClasses import MultiWorld, Item
 from worlds.AutoWorld import World
 
@@ -14,23 +14,29 @@ class MonsterSanctuaryItemCategory(IntEnum):
     WEAPON = 5
     ACCESSORY = 6
     CURRENCY = 7
-    MONSTER = 8,
-    RANK = 9,
+    EGG = 8
+    MONSTER = 9,
+    RANK = 10,
+    FLAG = 11
 
 
 class ItemData:
     id: int
-    classification: IC
+    name: str
+    classification: ItemClassification
     category: MonsterSanctuaryItemCategory
     tier: Optional[int]
     unique: bool
     groups: List[str]
 
-    def __init__(self, classification, category, tier = None, unique = False, groups = None):
+    def __init__(self, item_id, name, classification, category, tier=None, unique=False, groups=None):
+        self.id = item_id
+        self.name = name
         self.classification = classification
         self.category = category
         self.tier = tier
         self.unique = unique
+
         if groups is not None:
             self.groups = groups
         else:
@@ -41,67 +47,36 @@ class MonsterSanctuaryItem(Item):
     game: str = "Monster Sanctuary"
     quantity: int = 1
 
-    def __init__(self, name, data: ItemData, player: int = None):
-        super(MonsterSanctuaryItem, self).__init__(
-            name,
-            data.classification,
-            data.id,
-            player)
+    def __init__(self, player: int, name, data: ItemData):
+        super(MonsterSanctuaryItem, self).__init__(name, data.classification, data.id, player)
 
 
-def build_item_ids():
-    i = 0
-    for item in item_table.values():
-        item.id = 970500+ i
-        i+= 1
+# This holds all the item data that is parsed from items.json file
+items_data: Dict[str, ItemData] = {}
+
+
+# region Monster Accessor functions
+def get_monsters() -> Dict[str, ItemData]:
+    return {item_name: items_data[item_name] for item_name in items_data
+            if items_data[item_name].category is MonsterSanctuaryItemCategory.MONSTER}
+
+
+def get_random_monster_name(world: MultiWorld, required_tier: int = None) -> str:
+    valid_items = [item for item in items_data
+                   if is_item_type(item, MonsterSanctuaryItemCategory.MONSTER)
+                   and (required_tier is None or get_item_tier(item) is None or is_item_tier(item, required_tier))]
+
+    return world.random.choice(valid_items)
+# endregion
 
 
 def build_item_groups():
     item_groups = {}
-    for item, data in item_table.items():
+    for item, data in items_data.items():
         for group in data.groups:
-            item_groups[group] = item_groups.get(group, [])+ [item]
+            item_groups[group] = item_groups.get(group, []) + [item]
 
     return item_groups
-
-
-def get_filler_item_name(world: World, itempool: List[MonsterSanctuaryItem]) -> str:
-    """Needs work"""
-    return world.random.choice(
-        [item for item in get_filtered_unique_item_data(itempool)
-         if item_table[item].classification == IC.filler])
-
-
-def get_item_name_from_group(world: World, itempool: List[MonsterSanctuaryItem], *groups) -> str:
-    """Returns the name of a random item with any of the given group names from the item list"""
-    return world.random.choice(
-        [item for item in get_filtered_unique_item_data(itempool)
-         if is_item_in_group(item, *groups)]
-    )
-
-
-def get_item_name_not_in_group(world: World, itempool: List[MonsterSanctuaryItem], *groups):
-    """Returns the name of a random item with none of the given group names from the item list"""
-    return world.random.choice(
-        [item for item in get_filtered_unique_item_data(itempool)
-         if not is_item_in_group(item, *groups)]
-    )
-
-
-def get_filtered_unique_item_data(itempool: List[MonsterSanctuaryItem]) -> Dict[str, ItemData]:
-    """Given a list of items, this returns a subset of that list with unique items removed
-    if the unique item is already in the item pool"""
-    return {item: item_table[item] for item in item_table
-            if not item_table[item].unique
-            or not is_in_item_pool(item, itempool)}
-
-
-def is_item_in_group(item: str, *groups: str):
-    """Checks to see fi the item is in any of the given groups"""
-    # If there's on groups to check, then we return true
-    if len(groups) == 0:
-        return True
-    return not set(item_table[item].groups).isdisjoint(groups)
 
 
 def is_in_item_pool(item: str, itempool: List[MonsterSanctuaryItem]) -> bool:
@@ -109,20 +84,28 @@ def is_in_item_pool(item: str, itempool: List[MonsterSanctuaryItem]) -> bool:
     return item in [pool_item.name for pool_item in itempool]
 
 
+def is_item_in_group(item: str, *groups: str):
+    """Checks to see fi the item is in any of the given groups"""
+    # If there's on groups to check, then we return true
+    if len(groups) == 0:
+        return True
+    return not set(items_data[item].groups).isdisjoint(groups)
+
+
 def get_item_type(item_name: str) -> Optional[MonsterSanctuaryItemCategory]:
-    item = item_table.get(item_name)
+    item = items_data.get(item_name)
     if item is None:
         return None
 
     return item.category
 
 
-def is_item_type(item_name: str, type: MonsterSanctuaryItemCategory) -> bool:
-    return get_item_type(item_name) == type
+def is_item_type(item_name: str, item_type: MonsterSanctuaryItemCategory) -> bool:
+    return get_item_type(item_name) == item_type
 
 
 def get_item_tier(item_name: str) -> Optional[int]:
-    item = item_table.get(item_name)
+    item = items_data.get(item_name)
     if item is None:
         return None
 
@@ -131,6 +114,14 @@ def get_item_tier(item_name: str) -> Optional[int]:
 
 def is_item_tier(item: str, tier: int) -> bool:
     return get_item_tier(item) == tier
+
+
+def get_filtered_unique_item_data(itempool: List[MonsterSanctuaryItem]) -> Dict[str, ItemData]:
+    """Given a list of items, this returns a subset of that list with unique items removed
+    if the unique item is already in the item pool"""
+    return {item: items_data[item] for item in items_data
+            if not items_data[item].unique
+            or not is_in_item_pool(item, itempool)}
 
 
 def get_random_item_name(world: World,
@@ -153,13 +144,12 @@ def get_random_item_name(world: World,
     if "Multiple" not in group_exclude:
         group_exclude.append("Multiple")
 
-    # Not Worrying about tier right now
-    # if tier is not None:
-    #     group_filter.append("Tier " + str(tier))
-
     valid_items = [item for item in get_filtered_unique_item_data(itempool)
                    if not is_item_type(item, MonsterSanctuaryItemCategory.MONSTER)
-                   and not is_item_type(item, MonsterSanctuaryItemCategory.KEYITEM)  # This will probably need removing, but for now it's fine
+                   and not is_item_type(item, MonsterSanctuaryItemCategory.KEYITEM)
+                   and not is_item_type(item, MonsterSanctuaryItemCategory.FLAG)
+                   and not is_item_type(item, MonsterSanctuaryItemCategory.RANK)
+                   and not is_item_type(item, MonsterSanctuaryItemCategory.EGG)
                    and is_item_in_group(item, *group_include)
                    and not is_item_in_group(item, *group_exclude)
                    and (required_type is None or get_item_type(item) == required_type)
@@ -169,7 +159,7 @@ def get_random_item_name(world: World,
         return None
 
     base_item_name = world.random.choice(valid_items)
-    base_item = item_table.get(base_item_name)
+    base_item = items_data.get(base_item_name)
 
     name_prepend = None
     if "Up to 2" in base_item.groups:
@@ -182,1026 +172,18 @@ def get_random_item_name(world: World,
             name_prepend = "3x"
         elif roll >= 6:
             name_prepend = "2x"
+    elif "Up to 4" in base_item.groups:
+        roll = world.random.randint(1, 10)
+        if roll >= 10:
+            name_prepend = "4x"
+        elif roll >= 8:
+            name_prepend = "2x"
+        elif roll >= 5:
+            name_prepend = "2x"
 
     if name_prepend is not None:
-        new_item_name = name_prepend + " " + base_item_name
-        if new_item_name is not None and item_table.get(new_item_name) is not None:
+        new_item_name = f"{name_prepend} {base_item_name}"
+        if new_item_name is not None and items_data.get(new_item_name) is not None:
             base_item_name = new_item_name
 
     return base_item_name
-
-
-def get_random_monster_name(world: World, required_tier: int = None) -> str:
-    valid_items = [item for item in item_table
-                   if is_item_type(item, MonsterSanctuaryItemCategory.MONSTER)
-                   and (required_tier is None or get_item_tier(item) is None or is_item_tier(item, required_tier))]
-
-    return world.random.choice(valid_items)
-
-
-item_table = {
-    # Champion battles / Keeper ranks
-    "Champion Defeated":        ItemData(IC.progression, MonsterSanctuaryItemCategory.RANK),
-
-    # Key Items
-    "Sanctuary Token":          ItemData(IC.progression, MonsterSanctuaryItemCategory.KEYITEM),
-    "Double Jump Boots":        ItemData(IC.progression, MonsterSanctuaryItemCategory.KEYITEM, unique=True),
-    "Warm Underwear":           ItemData(IC.progression, MonsterSanctuaryItemCategory.KEYITEM, unique=True),
-    "Runestone Shard":          ItemData(IC.progression, MonsterSanctuaryItemCategory.KEYITEM, unique=True),
-    "Key of Power":             ItemData(IC.progression, MonsterSanctuaryItemCategory.KEYITEM, unique=True),
-    "Ahrimaaya":                ItemData(IC.progression, MonsterSanctuaryItemCategory.KEYITEM, unique=True),
-    "Blob Key":                 ItemData(IC.progression, MonsterSanctuaryItemCategory.KEYITEM, unique=True),
-    "Mozzie":                   ItemData(IC.progression, MonsterSanctuaryItemCategory.KEYITEM, unique=True),
-    "Rare Seashell":            ItemData(IC.progression, MonsterSanctuaryItemCategory.KEYITEM),
-    "Celestial Feather":        ItemData(IC.progression, MonsterSanctuaryItemCategory.KEYITEM),
-    "Mountain Path Key":        ItemData(IC.progression, MonsterSanctuaryItemCategory.KEYITEM,groups=["Area Key"]),
-    "Blue Caves Key":           ItemData(IC.progression, MonsterSanctuaryItemCategory.KEYITEM,groups=["Area Key"]),
-    "Stronghold Dungeon Key":   ItemData(IC.progression, MonsterSanctuaryItemCategory.KEYITEM,groups=["Area Key"]),
-    "Ancient Woods Key":        ItemData(IC.progression, MonsterSanctuaryItemCategory.KEYITEM,groups=["Area Key"]),
-    "Magma Chamber Key":        ItemData(IC.progression, MonsterSanctuaryItemCategory.KEYITEM,groups=["Area Key"]),
-    "Mystical Workshop Key":    ItemData(IC.progression, MonsterSanctuaryItemCategory.KEYITEM,groups=["Area Key"]),
-    "Underworld Key":           ItemData(IC.progression, MonsterSanctuaryItemCategory.KEYITEM,groups=["Area Key"]),
-
-    # Crafting Materials
-    "Copper":           ItemData(IC.filler, MonsterSanctuaryItemCategory.CRAFTINGMATERIAL, 1, groups=["Up to 3"]),
-    "2x Copper":        ItemData(IC.filler, MonsterSanctuaryItemCategory.CRAFTINGMATERIAL, 1, groups=["Multiple"]),
-    "3x Copper":        ItemData(IC.filler, MonsterSanctuaryItemCategory.CRAFTINGMATERIAL, 1, groups=["Multiple"]),
-    "Iron":             ItemData(IC.filler, MonsterSanctuaryItemCategory.CRAFTINGMATERIAL, 2, groups=["Up to 3"]),
-    "2x Iron":          ItemData(IC.filler, MonsterSanctuaryItemCategory.CRAFTINGMATERIAL, 2, groups=["Multiple"]),
-    "3x Iron":          ItemData(IC.filler, MonsterSanctuaryItemCategory.CRAFTINGMATERIAL, 2, groups=["Multiple"]),
-    "Bronze":           ItemData(IC.filler, MonsterSanctuaryItemCategory.CRAFTINGMATERIAL, 2, groups=["Up to 3"]),
-    "2x Bronze":        ItemData(IC.filler, MonsterSanctuaryItemCategory.CRAFTINGMATERIAL, 2, groups=["Multiple"]),
-    "3x Bronze":        ItemData(IC.filler, MonsterSanctuaryItemCategory.CRAFTINGMATERIAL, 2, groups=["Multiple"]),
-    "Steel":            ItemData(IC.filler, MonsterSanctuaryItemCategory.CRAFTINGMATERIAL, 4, groups=["Up to 2"]),
-    "2x Steel":         ItemData(IC.filler, MonsterSanctuaryItemCategory.CRAFTINGMATERIAL, 4, groups=["Multiple"]),
-    "Silver":           ItemData(IC.filler, MonsterSanctuaryItemCategory.CRAFTINGMATERIAL, 4, groups=["Up to 2"]),
-    "2x Silver":        ItemData(IC.filler, MonsterSanctuaryItemCategory.CRAFTINGMATERIAL, 4, groups=["Multiple"]),
-    "Gold":             ItemData(IC.filler, MonsterSanctuaryItemCategory.CRAFTINGMATERIAL, 5),
-    "Cotton":           ItemData(IC.filler, MonsterSanctuaryItemCategory.CRAFTINGMATERIAL, 1, groups=["Up to 3"]),
-    "2x Cotton":        ItemData(IC.filler, MonsterSanctuaryItemCategory.CRAFTINGMATERIAL, 1, groups=["Multiple"]),
-    "3x Cotton":        ItemData(IC.filler, MonsterSanctuaryItemCategory.CRAFTINGMATERIAL, 1, groups=["Multiple"]),
-    "Wool":             ItemData(IC.filler, MonsterSanctuaryItemCategory.CRAFTINGMATERIAL, 2, groups=["Up to 3"]),
-    "2x Wool":          ItemData(IC.filler, MonsterSanctuaryItemCategory.CRAFTINGMATERIAL, 2, groups=["Multiple"]),
-    "3x Wool":          ItemData(IC.filler, MonsterSanctuaryItemCategory.CRAFTINGMATERIAL, 2, groups=["Multiple"]),
-    "Leather":          ItemData(IC.filler, MonsterSanctuaryItemCategory.CRAFTINGMATERIAL, 3, groups=["Up to 3"]),
-    "2x Leather":       ItemData(IC.filler, MonsterSanctuaryItemCategory.CRAFTINGMATERIAL, 3, groups=["Multiple"]),
-    "3x Leather":       ItemData(IC.filler, MonsterSanctuaryItemCategory.CRAFTINGMATERIAL, 3, groups=["Multiple"]),
-    # Raw Hide unlocks a check, so it has to be progression
-    "Raw Hide":         ItemData(IC.progression, MonsterSanctuaryItemCategory.CRAFTINGMATERIAL, 3),
-    "Silk":             ItemData(IC.filler, MonsterSanctuaryItemCategory.CRAFTINGMATERIAL, 4),
-    "2x Silk":          ItemData(IC.filler, MonsterSanctuaryItemCategory.CRAFTINGMATERIAL, 4, groups=["Multiple"]),
-    "Linen":            ItemData(IC.filler, MonsterSanctuaryItemCategory.CRAFTINGMATERIAL, 5),
-    "Red Gem":          ItemData(IC.filler, MonsterSanctuaryItemCategory.CRAFTINGMATERIAL, 1, groups=["Up to 3"]),
-    "2x Red Gem":       ItemData(IC.filler, MonsterSanctuaryItemCategory.CRAFTINGMATERIAL, 1, groups=["Multiple"]),
-    "3x Red Gem":       ItemData(IC.filler, MonsterSanctuaryItemCategory.CRAFTINGMATERIAL, 1, groups=["Multiple"]),
-    "Green Gem":        ItemData(IC.filler, MonsterSanctuaryItemCategory.CRAFTINGMATERIAL, 1, groups=["Up to 3"]),
-    "2x Green Gem":     ItemData(IC.filler, MonsterSanctuaryItemCategory.CRAFTINGMATERIAL, 1, groups=["Multiple"]),
-    "3x Green Gem":     ItemData(IC.filler, MonsterSanctuaryItemCategory.CRAFTINGMATERIAL, 1, groups=["Multiple"]),
-    "Blue Gem":         ItemData(IC.filler, MonsterSanctuaryItemCategory.CRAFTINGMATERIAL, 1, groups=["Up to 3"]),
-    "2x Blue Gem":      ItemData(IC.filler, MonsterSanctuaryItemCategory.CRAFTINGMATERIAL, 1, groups=["Multiple"]),
-    "3x Blue Gem":      ItemData(IC.filler, MonsterSanctuaryItemCategory.CRAFTINGMATERIAL, 1, groups=["Multiple"]),
-    "Crimson Gem":      ItemData(IC.filler, MonsterSanctuaryItemCategory.CRAFTINGMATERIAL, 3, groups=["Up to 2"]),
-    "2x Crimson Gem":   ItemData(IC.filler, MonsterSanctuaryItemCategory.CRAFTINGMATERIAL, 3, groups=["Multiple"]),
-    "Verdant Gem":      ItemData(IC.filler, MonsterSanctuaryItemCategory.CRAFTINGMATERIAL, 3, groups=["Up to 2"]),
-    "2x Verdant Gem":   ItemData(IC.filler, MonsterSanctuaryItemCategory.CRAFTINGMATERIAL, 3, groups=["Multiple"]),
-    "Azure Gem":        ItemData(IC.filler, MonsterSanctuaryItemCategory.CRAFTINGMATERIAL, 3, groups=["Up to 2"]),
-    "2x Azure Gem":     ItemData(IC.filler, MonsterSanctuaryItemCategory.CRAFTINGMATERIAL, 3, groups=["Multiple"]),
-    "Ruby":             ItemData(IC.filler, MonsterSanctuaryItemCategory.CRAFTINGMATERIAL, 5),
-    "Emerald":          ItemData(IC.filler, MonsterSanctuaryItemCategory.CRAFTINGMATERIAL, 5),
-    "Sapphire":         ItemData(IC.filler, MonsterSanctuaryItemCategory.CRAFTINGMATERIAL, 5),
-
-    # Consumables
-    # this might need to be adjusted, because teleporting to keeper stronghold early might break things
-    "Crystal Shard":    ItemData(IC.filler, MonsterSanctuaryItemCategory.CONSUMABLE, 1, groups=["Up to 3"]),
-    "2x Crystal Shard": ItemData(IC.filler, MonsterSanctuaryItemCategory.CONSUMABLE, 1, groups=["Multiple"]),
-    "3x Crystal Shard": ItemData(IC.filler, MonsterSanctuaryItemCategory.CONSUMABLE, 1, groups=["Multiple"]),
-    "Monster Bell":     ItemData(IC.filler, MonsterSanctuaryItemCategory.CONSUMABLE, 1, groups=["Up to 2"]),
-    "2x Monster Bell":  ItemData(IC.filler, MonsterSanctuaryItemCategory.CONSUMABLE, 1, groups=["Multiple"]),
-    "Skill Resetter":   ItemData(IC.filler, MonsterSanctuaryItemCategory.CONSUMABLE, 2, groups=["Up to 2"]),
-    "2x Skill Resetter":ItemData(IC.filler, MonsterSanctuaryItemCategory.CONSUMABLE, 2, groups=["Multiple"]),
-    "Skill Potion":     ItemData(IC.useful, MonsterSanctuaryItemCategory.CONSUMABLE, 2),
-    "Level Badge":      ItemData(IC.useful, MonsterSanctuaryItemCategory.CONSUMABLE, 2),
-    # the below tiers might be off and need balancing
-    "Level Badge 42":   ItemData(IC.useful, MonsterSanctuaryItemCategory.CONSUMABLE, 5),
-    "Shift Stone":      ItemData(IC.useful, MonsterSanctuaryItemCategory.CONSUMABLE, 3, groups=["Up to 2"]),
-    "2x Shift Stone":   ItemData(IC.useful, MonsterSanctuaryItemCategory.CONSUMABLE, 3, groups=["Multiple"]),
-    "Switch Stone":     ItemData(IC.useful, MonsterSanctuaryItemCategory.CONSUMABLE, 3, groups=["Up to 2"]),
-    "2x Switch Stone":  ItemData(IC.useful, MonsterSanctuaryItemCategory.CONSUMABLE, 3, groups=["Multiple"]),
-    "Clear Stone":      ItemData(IC.filler, MonsterSanctuaryItemCategory.CONSUMABLE, 3, groups=["Up to 2"]),
-    "2x Clear Stone":   ItemData(IC.filler, MonsterSanctuaryItemCategory.CONSUMABLE, 3, groups=["Multiple"]),
-    "Craft Box":        ItemData(IC.filler, MonsterSanctuaryItemCategory.CONSUMABLE, 1, groups=["Up to 3"]),
-    "2x Craft Box":     ItemData(IC.filler, MonsterSanctuaryItemCategory.CONSUMABLE, 1, groups=["Multiple"]),
-    "3x Craft Box":     ItemData(IC.filler, MonsterSanctuaryItemCategory.CONSUMABLE, 1, groups=["Multiple"]),
-    "Reward Box Lvl 1": ItemData(IC.useful, MonsterSanctuaryItemCategory.CONSUMABLE, 1),
-    "Reward Box Lvl 2": ItemData(IC.useful, MonsterSanctuaryItemCategory.CONSUMABLE, 2),
-    "Reward Box Lvl 3": ItemData(IC.useful, MonsterSanctuaryItemCategory.CONSUMABLE, 3),
-    "Reward Box Lvl 4": ItemData(IC.useful, MonsterSanctuaryItemCategory.CONSUMABLE, 4),
-    "Reward Box Lvl 5": ItemData(IC.useful, MonsterSanctuaryItemCategory.CONSUMABLE, 5),
-    "Reward Box X":     ItemData(IC.useful, MonsterSanctuaryItemCategory.CONSUMABLE, 5),
-    "Small Potion":     ItemData(IC.filler, MonsterSanctuaryItemCategory.CONSUMABLE, 1, groups=["Up to 3"]),
-    "2x Small Potion":  ItemData(IC.filler, MonsterSanctuaryItemCategory.CONSUMABLE, 1, groups=["Multiple"]),
-    "3x Small Potion":  ItemData(IC.filler, MonsterSanctuaryItemCategory.CONSUMABLE, 1, groups=["Multiple"]),
-    "Potion":           ItemData(IC.filler, MonsterSanctuaryItemCategory.CONSUMABLE, 2, groups=["Up to 3"]),
-    "2x Potion":        ItemData(IC.filler, MonsterSanctuaryItemCategory.CONSUMABLE, 2, groups=["Multiple"]),
-    "3x Potion":        ItemData(IC.filler, MonsterSanctuaryItemCategory.CONSUMABLE, 2, groups=["Multiple"]),
-    "Mass Potion":      ItemData(IC.useful, MonsterSanctuaryItemCategory.CONSUMABLE, 3),
-    "Combo Potion":     ItemData(IC.filler, MonsterSanctuaryItemCategory.CONSUMABLE, 3),
-    "Big Potion":       ItemData(IC.filler, MonsterSanctuaryItemCategory.CONSUMABLE, 4),
-    "Mega Potion":      ItemData(IC.filler, MonsterSanctuaryItemCategory.CONSUMABLE, 5),
-    "Antidote":         ItemData(IC.filler, MonsterSanctuaryItemCategory.CONSUMABLE, 1, groups=["Up to 3"]),
-    "2x Antidote":      ItemData(IC.filler, MonsterSanctuaryItemCategory.CONSUMABLE, 1, groups=["Multiple"]),
-    "3x Antidote":      ItemData(IC.filler, MonsterSanctuaryItemCategory.CONSUMABLE, 1, groups=["Multiple"]),
-    "Mass Antidote":    ItemData(IC.filler, MonsterSanctuaryItemCategory.CONSUMABLE, 2),
-    "Phoenix Tear":     ItemData(IC.filler, MonsterSanctuaryItemCategory.CONSUMABLE, 1, groups=["Up to 3"]),
-    "2x Phoenix Tear":  ItemData(IC.filler, MonsterSanctuaryItemCategory.CONSUMABLE, 1, groups=["Multiple"]),
-    "3x Phoenix Tear":  ItemData(IC.filler, MonsterSanctuaryItemCategory.CONSUMABLE, 1, groups=["Multiple"]),
-    "Phoenix Serum":    ItemData(IC.filler, MonsterSanctuaryItemCategory.CONSUMABLE, 3),
-    "Smoke Bomb":       ItemData(IC.filler, MonsterSanctuaryItemCategory.CONSUMABLE, 1, groups=["Up to 3"]),
-    "2x Smoke Bomb":    ItemData(IC.filler, MonsterSanctuaryItemCategory.CONSUMABLE, 1, groups=["Multiple"]),
-    "3x Smoke Bomb":    ItemData(IC.filler, MonsterSanctuaryItemCategory.CONSUMABLE, 1, groups=["Multiple"]),
-
-    # Foods
-    "Walnut":           ItemData(IC.filler, MonsterSanctuaryItemCategory.FOOD, 1, groups=["Up to 3"]),
-    "2x Walnut":        ItemData(IC.filler, MonsterSanctuaryItemCategory.FOOD, 1, groups=["Multiple"]),
-    "3x Walnut":        ItemData(IC.filler, MonsterSanctuaryItemCategory.FOOD, 1, groups=["Multiple"]),
-    "Hazelnut":         ItemData(IC.filler, MonsterSanctuaryItemCategory.FOOD, 2, groups=["Up to 3"]),
-    "2x Hazelnut":      ItemData(IC.filler, MonsterSanctuaryItemCategory.FOOD, 2, groups=["Multiple"]),
-    "3x Hazelnut":      ItemData(IC.filler, MonsterSanctuaryItemCategory.FOOD, 2, groups=["Multiple"]),
-    "Almond":           ItemData(IC.filler, MonsterSanctuaryItemCategory.FOOD, 3, groups=["Up to 2"]),
-    "2x Almond":        ItemData(IC.filler, MonsterSanctuaryItemCategory.FOOD, 3, groups=["Multiple"]),
-    "Peanut":           ItemData(IC.filler, MonsterSanctuaryItemCategory.FOOD, 4),
-    "Potato":           ItemData(IC.filler, MonsterSanctuaryItemCategory.FOOD, 1, groups=["Up to 3"]),
-    "2x Potato":        ItemData(IC.filler, MonsterSanctuaryItemCategory.FOOD, 1, groups=["Multiple"]),
-    "3x Potato":        ItemData(IC.filler, MonsterSanctuaryItemCategory.FOOD, 1, groups=["Multiple"]),
-    "Corn":             ItemData(IC.filler, MonsterSanctuaryItemCategory.FOOD, 2, groups=["Up to 3"]),
-    "2x Corn":          ItemData(IC.filler, MonsterSanctuaryItemCategory.FOOD, 2, groups=["Multiple"]),
-    "3x Corn":          ItemData(IC.filler, MonsterSanctuaryItemCategory.FOOD, 2, groups=["Multiple"]),
-    "Carrot":           ItemData(IC.filler, MonsterSanctuaryItemCategory.FOOD, 3, groups=["Up to 2"]),
-    "2x Carrot":        ItemData(IC.filler, MonsterSanctuaryItemCategory.FOOD, 3, groups=["Multiple"]),
-    "Banana":           ItemData(IC.filler, MonsterSanctuaryItemCategory.FOOD, 4),
-    "Apple":            ItemData(IC.filler, MonsterSanctuaryItemCategory.FOOD, 1, groups=["Up to 3"]),
-    "2x Apple":         ItemData(IC.filler, MonsterSanctuaryItemCategory.FOOD, 1, groups=["Multiple"]),
-    "3x Apple":         ItemData(IC.filler, MonsterSanctuaryItemCategory.FOOD, 1, groups=["Multiple"]),
-    "Pear":             ItemData(IC.filler, MonsterSanctuaryItemCategory.FOOD, 2, groups=["Up to 3"]),
-    "2x Pear":          ItemData(IC.filler, MonsterSanctuaryItemCategory.FOOD, 2, groups=["Multiple"]),
-    "3x Pear":          ItemData(IC.filler, MonsterSanctuaryItemCategory.FOOD, 2, groups=["Multiple"]),
-    "Mango":            ItemData(IC.filler, MonsterSanctuaryItemCategory.FOOD, 3, groups=["Up to 2"]),
-    "2x Mango":         ItemData(IC.filler, MonsterSanctuaryItemCategory.FOOD, 3, groups=["Multiple"]),
-    "Orange":           ItemData(IC.filler, MonsterSanctuaryItemCategory.FOOD, 4),
-    "Berry":            ItemData(IC.filler, MonsterSanctuaryItemCategory.FOOD, 1, groups=["Up to 3"]),
-    "2x Berry":         ItemData(IC.filler, MonsterSanctuaryItemCategory.FOOD, 1, groups=["Multiple"]),
-    "3x Berry":         ItemData(IC.filler, MonsterSanctuaryItemCategory.FOOD, 1, groups=["Multiple"]),
-    "Grapes":           ItemData(IC.filler, MonsterSanctuaryItemCategory.FOOD, 2, groups=["Up to 3"]),
-    "2x Grapes":        ItemData(IC.filler, MonsterSanctuaryItemCategory.FOOD, 2, groups=["Multiple"]),
-    "3x Grapes":        ItemData(IC.filler, MonsterSanctuaryItemCategory.FOOD, 2, groups=["Multiple"]),
-    "Strawberry":       ItemData(IC.filler, MonsterSanctuaryItemCategory.FOOD, 3, groups=["Up to 2"]),
-    "2x Strawberry":    ItemData(IC.filler, MonsterSanctuaryItemCategory.FOOD, 3, groups=["Multiple"]),
-    "Raspberry":        ItemData(IC.filler, MonsterSanctuaryItemCategory.FOOD, 4),
-    "Cookie Mushroom":  ItemData(IC.filler, MonsterSanctuaryItemCategory.FOOD, 1),
-
-    # Catalysts
-    "Stardust":         ItemData(IC.useful, MonsterSanctuaryItemCategory.CATALYST, 2),
-    "Cocoon":           ItemData(IC.useful, MonsterSanctuaryItemCategory.CATALYST, 2),
-    "Shard of Winter":  ItemData(IC.useful, MonsterSanctuaryItemCategory.CATALYST, 2),
-    "Magical Clay":     ItemData(IC.useful, MonsterSanctuaryItemCategory.CATALYST, 2),
-    "Sun Stone":        ItemData(IC.useful, MonsterSanctuaryItemCategory.CATALYST, 2),
-    "Silver Feather":   ItemData(IC.useful, MonsterSanctuaryItemCategory.CATALYST, 2),
-    "Volcanic Ash":     ItemData(IC.useful, MonsterSanctuaryItemCategory.CATALYST, 2),
-    "Fire Stone":       ItemData(IC.useful, MonsterSanctuaryItemCategory.CATALYST, 2),
-    "Ice Stone":        ItemData(IC.useful, MonsterSanctuaryItemCategory.CATALYST, 2),
-    "Giant Seed":       ItemData(IC.useful, MonsterSanctuaryItemCategory.CATALYST, 2),
-    "Dark Stone":       ItemData(IC.useful, MonsterSanctuaryItemCategory.CATALYST, 2),
-    "Majestic Crown":   ItemData(IC.useful, MonsterSanctuaryItemCategory.CATALYST, 2),
-    "Demonic Pact":     ItemData(IC.useful, MonsterSanctuaryItemCategory.CATALYST, 2),
-    "Primordial Branch":ItemData(IC.useful, MonsterSanctuaryItemCategory.CATALYST, 2),
-    "Druid Soul":       ItemData(IC.useful, MonsterSanctuaryItemCategory.CATALYST, 2),
-    "Deep Stone":       ItemData(IC.useful, MonsterSanctuaryItemCategory.CATALYST, 2),
-
-    # Basic Weapons
-    "Morning Star":     ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 1),
-    "Morning Star+1":   ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 2),
-    "Morning Star+2":   ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 3),
-    "Morning Star+3":   ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 4),
-    "Morning Star+4":   ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5),
-    "Morning Star+5":   ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5),
-    "Claws":            ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 1),
-    "Claws+1":          ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 2),
-    "Claws+2":          ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 3),
-    "Claws+3":          ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 4),
-    "Claws+4":          ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5),
-    "Claws+5":          ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5),
-    "Katar":            ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 1),
-    "Katar+1":          ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 2),
-    "Katar+2":          ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 3),
-    "Katar+3":          ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 4),
-    "Katar+4":          ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5),
-    "Katar+5":          ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5),
-    "Wand":             ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 1),
-    "Wand+1":           ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 2),
-    "Wand+2":           ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 3),
-    "Wand+3":           ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 4),
-    "Wand+4":           ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5),
-    "Wand+5":           ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5),
-    "Orb":              ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 1),
-    "Orb+1":            ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 2),
-    "Orb+2":            ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 3),
-    "Orb+3":            ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 4),
-    "Orb+4":            ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5),
-    "Orb+5":            ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5),
-    "Staff":            ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 1),
-    "Staff+1":          ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 2),
-    "Staff+2":          ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 3),
-    "Staff+3":          ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 4),
-    "Staff+4":          ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5),
-    "Staff+5":          ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5),
-    "Cestus":           ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 1),
-    "Cestus+1":         ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 2),
-    "Cestus+2":         ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 3),
-    "Cestus+3":         ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 4),
-    "Cestus+4":         ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5),
-    "Cestus+5":         ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5),
-    "Kunai":            ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 1),
-    "Kunai+1":          ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 2),
-    "Kunai+2":          ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 3),
-    "Kunai+3":          ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 4),
-    "Kunai+4":          ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5),
-    "Kunai+5":          ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5),
-    "Shuriken":         ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 1),
-    "Shuriken+1":       ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 2),
-    "Shuriken+2":       ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 3),
-    "Shuriken+3":       ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 4),
-    "Shuriken+4":       ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5),
-    "Shuriken+5":       ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 6),
-    # Unique Weapons
-    "Abyssal Sword":    ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 1, unique=True),
-    "Abyssal Sword+1":  ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 2, unique=True),
-    "Abyssal Sword+2":  ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 3, unique=True),
-    "Abyssal Sword+3":  ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 4, unique=True),
-    "Abyssal Sword+4":  ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5, unique=True),
-    "Abyssal Sword+5":  ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5, unique=True),
-    "Bow":              ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 1, unique=True),
-    "Bow+1":            ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 2, unique=True),
-    "Bow+2":            ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 3, unique=True),
-    "Bow+3":            ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 4, unique=True),
-    "Bow+4":            ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5, unique=True),
-    "Bow+5":            ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5, unique=True),
-    "Fan":              ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 1, unique=True),
-    "Fan+1":            ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 2, unique=True),
-    "Fan+2":            ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 3, unique=True),
-    "Fan+3":            ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 4, unique=True),
-    "Fan+4":            ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5, unique=True),
-    "Fan+5":            ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5, unique=True),
-    "Fishing Rod":      ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 1, unique=True),
-    "Fishing Rod+1":    ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 2, unique=True),
-    "Fishing Rod+2":    ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 3, unique=True),
-    "Fishing Rod+3":    ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 4, unique=True),
-    "Fishing Rod+4":    ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5, unique=True),
-    "Fishing Rod+5":    ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5, unique=True),
-    "Hammer":           ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 1, unique=True),
-    "Hammer+1":         ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 2, unique=True),
-    "Hammer+2":         ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 3, unique=True),
-    "Hammer+3":         ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 4, unique=True),
-    "Hammer+4":         ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5, unique=True),
-    "Hammer+5":         ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5, unique=True),
-    "Harp":             ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 1, unique=True),
-    "Harp+1":           ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 2, unique=True),
-    "Harp+2":           ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 3, unique=True),
-    "Harp+3":           ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 4, unique=True),
-    "Harp+4":           ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5, unique=True),
-    "Harp+5":           ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5, unique=True),
-    "Heavy Mace":       ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 1, unique=True),
-    "Heavy Mace+1":     ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 2, unique=True),
-    "Heavy Mace+2":     ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 3, unique=True),
-    "Heavy Mace+3":     ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 4, unique=True),
-    "Heavy Mace+4":     ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5, unique=True),
-    "Heavy Mace+5":     ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5, unique=True),
-    "Hexing Rod":       ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 1, unique=True),
-    "Hexing Rod+1":     ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 2, unique=True),
-    "Hexing Rod+2":     ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 3, unique=True),
-    "Hexing Rod+3":     ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 4, unique=True),
-    "Hexing Rod+4":     ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5, unique=True),
-    "Hexing Rod+5":     ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5, unique=True),
-    "Katana":           ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 1, unique=True),
-    "Katana+1":         ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 2, unique=True),
-    "Katana+2":         ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 3, unique=True),
-    "Katana+3":         ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 4, unique=True),
-    "Katana+4":         ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5, unique=True),
-    "Katana+5":         ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5, unique=True),
-    "Large Shield":     ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 1, unique=True),
-    "Large Shield+1":   ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 2, unique=True),
-    "Large Shield+2":   ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 3, unique=True),
-    "Large Shield+3":   ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 4, unique=True),
-    "Large Shield+4":   ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5, unique=True),
-    "Large Shield+5":   ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5, unique=True),
-    "Mandolin ":        ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 1, unique=True),
-    "Mandolin+1":       ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 2, unique=True),
-    "Mandolin+2":       ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 3, unique=True),
-    "Mandolin+3":       ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 4, unique=True),
-    "Mandolin+4":       ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5, unique=True),
-    "Mandolin+5":       ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5, unique=True),
-    "Moon Sword":       ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 1, unique=True),
-    "Moon Sword+1":     ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 2, unique=True),
-    "Moon Sword+2":     ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 3, unique=True),
-    "Moon Sword+3":     ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 4, unique=True),
-    "Moon Sword+4":     ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5, unique=True),
-    "Moon Sword+5":     ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5, unique=True),
-    "Pirate Hook":      ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 1, unique=True),
-    "Pirate Hook+1":    ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 2, unique=True),
-    "Pirate Hook+2":    ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 3, unique=True),
-    "Pirate Hook+3":    ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 4, unique=True),
-    "Pirate Hook+4":    ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5, unique=True),
-    "Pirate Hook+5":    ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5, unique=True),
-    "Purifying Mace":   ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 1, unique=True),
-    "Purifying Mace+1": ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 2, unique=True),
-    "Purifying Mace+2": ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 3, unique=True),
-    "Purifying Mace+3": ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 4, unique=True),
-    "Purifying Mace+4": ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5, unique=True),
-    "Purifying Mace+5": ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5, unique=True),
-    "Restoring Wand":   ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 1, unique=True),
-    "Restoring Wand+1": ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 2, unique=True),
-    "Restoring Wand+2": ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 3, unique=True),
-    "Restoring Wand+3": ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 4, unique=True),
-    "Restoring Wand+4": ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5, unique=True),
-    "Restoring Wand+5": ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5, unique=True),
-    "Scepter":          ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 1, unique=True),
-    "Scepter+1":        ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 2, unique=True),
-    "Scepter+2":        ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 3, unique=True),
-    "Scepter+3":        ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 4, unique=True),
-    "Scepter+4":        ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5, unique=True),
-    "Scepter+5":        ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5, unique=True),
-    "Scythe":           ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 1, unique=True),
-    "Scythe+1":         ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 2, unique=True),
-    "Scythe+2":         ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 3, unique=True),
-    "Scythe+3":         ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 4, unique=True),
-    "Scythe+4":         ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5, unique=True),
-    "Scythe+5":         ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5, unique=True),
-    "Summoned Sword":   ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 1, unique=True),
-    "Summoned Sword+1": ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 2, unique=True),
-    "Summoned Sword+2": ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 3, unique=True),
-    "Summoned Sword+3": ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 4, unique=True),
-    "Summoned Sword+4": ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5, unique=True),
-    "Summoned Sword+5": ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5, unique=True),
-    "Swallow":          ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 1, unique=True),
-    "Swallow+1":        ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 2, unique=True),
-    "Swallow+2":        ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 3, unique=True),
-    "Swallow+3":        ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 4, unique=True),
-    "Swallow+4":        ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5, unique=True),
-    "Swallow+5":        ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5, unique=True),
-    "Thorn Tendril":    ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 1, unique=True),
-    "Thorn Tendril+1":  ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 2, unique=True),
-    "Thorn Tendril+2":  ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 3, unique=True),
-    "Thorn Tendril+3":  ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 4, unique=True),
-    "Thorn Tendril+4":  ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5, unique=True),
-    "Thorn Tendril+5":  ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5, unique=True),
-    "Torch":            ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 1, unique=True),
-    "Torch+1":          ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 2, unique=True),
-    "Torch+2":          ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 3, unique=True),
-    "Torch+3":          ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 4, unique=True),
-    "Torch+4":          ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5, unique=True),
-    "Torch+5":          ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5, unique=True),
-    "Trident":          ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 1, unique=True),
-    "Trident+1":        ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 2, unique=True),
-    "Trident+2":        ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 3, unique=True),
-    "Trident+3":        ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 4, unique=True),
-    "Trident+4":        ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5, unique=True),
-    "Trident+5":        ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5, unique=True),
-    "Warhorn":          ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 1, unique=True),
-    "Warhorn+1":        ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 2, unique=True),
-    "Warhorn+2":        ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 3, unique=True),
-    "Warhorn+3":        ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 4, unique=True),
-    "Warhorn+4":        ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5, unique=True),
-    "Warhorn+5":        ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5, unique=True),
-
-    # Relic Weapons
-    "Arch Bow":             ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 1, unique=True, groups=["Relic"]),
-    "Arch Bow+1":           ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 2, unique=True, groups=["Relic"]),
-    "Arch Bow+2":           ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 3, unique=True, groups=["Relic"]),
-    "Arch Bow+3":           ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 4, unique=True, groups=["Relic"]),
-    "Arch Bow+4":           ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5, unique=True, groups=["Relic"]),
-    "Arch Bow+5":           ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5, unique=True, groups=["Relic"]),
-    "Assisting Bow":        ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 1, unique=True, groups=["Relic"]),
-    "Assisting Bow+1":      ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 2, unique=True, groups=["Relic"]),
-    "Assisting Bow+2":      ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 3, unique=True, groups=["Relic"]),
-    "Assisting Bow+3":      ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 4, unique=True, groups=["Relic"]),
-    "Assisting Bow+4":      ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5, unique=True, groups=["Relic"]),
-    "Assisting Bow+5":      ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5, unique=True, groups=["Relic"]),
-    "Droid Sphere":         ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 1, unique=True, groups=["Relic"]),
-    "Droid Sphere+1":       ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 2, unique=True, groups=["Relic"]),
-    "Droid Sphere+2":       ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 3, unique=True, groups=["Relic"]),
-    "Droid Sphere+3":       ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 4, unique=True, groups=["Relic"]),
-    "Droid Sphere+4":       ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5, unique=True, groups=["Relic"]),
-    "Droid Sphere+5":       ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5, unique=True, groups=["Relic"]),
-    "Eclipse Sword":        ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 1, unique=True, groups=["Relic"]),
-    "Eclipse Sword+1":      ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 2, unique=True, groups=["Relic"]),
-    "Eclipse Sword+2":      ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 3, unique=True, groups=["Relic"]),
-    "Eclipse Sword+3":      ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 4, unique=True, groups=["Relic"]),
-    "Eclipse Sword+4":      ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5, unique=True, groups=["Relic"]),
-    "Eclipse Sword+5":      ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5, unique=True, groups=["Relic"]),
-    "Fishing Pole":         ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 1, unique=True, groups=["Relic"]),
-    "Fishing Pole+1":       ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 2, unique=True, groups=["Relic"]),
-    "Fishing Pole+2":       ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 3, unique=True, groups=["Relic"]),
-    "Fishing Pole+3":       ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 4, unique=True, groups=["Relic"]),
-    "Fishing Pole+4":       ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5, unique=True, groups=["Relic"]),
-    "Fishing Pole+5":       ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5, unique=True, groups=["Relic"]),
-    "Grim Ripper":          ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 1, unique=True, groups=["Relic"]),
-    "Grim Ripper+1":        ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 2, unique=True, groups=["Relic"]),
-    "Grim Ripper+2":        ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 3, unique=True, groups=["Relic"]),
-    "Grim Ripper+3":        ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 4, unique=True, groups=["Relic"]),
-    "Grim Ripper+4":        ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5, unique=True, groups=["Relic"]),
-    "Grim Ripper+5":        ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5, unique=True, groups=["Relic"]),
-    "Omni Sword":           ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 1, unique=True, groups=["Relic"]),
-    "Omni Sword+1":         ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 2, unique=True, groups=["Relic"]),
-    "Omni Sword+2":         ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 3, unique=True, groups=["Relic"]),
-    "Omni Sword+3":         ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 4, unique=True, groups=["Relic"]),
-    "Omni Sword+4":         ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5, unique=True, groups=["Relic"]),
-    "Omni Sword+5":         ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5, unique=True, groups=["Relic"]),
-    "One Punch Fist":       ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 1, unique=True, groups=["Relic"]),
-    "One Punch Fist+1":     ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 2, unique=True, groups=["Relic"]),
-    "One Punch Fist+2":     ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 3, unique=True, groups=["Relic"]),
-    "One Punch Fist+3":     ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 4, unique=True, groups=["Relic"]),
-    "One Punch Fist+4":     ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5, unique=True, groups=["Relic"]),
-    "One Punch Fist+5":     ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5, unique=True, groups=["Relic"]),
-    "Projectile Sphere":    ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 1, unique=True, groups=["Relic"]),
-    "Projectile Sphere+1":  ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 2, unique=True, groups=["Relic"]),
-    "Projectile Sphere+2":  ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 3, unique=True, groups=["Relic"]),
-    "Projectile Sphere+3":  ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 4, unique=True, groups=["Relic"]),
-    "Projectile Sphere+4":  ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5, unique=True, groups=["Relic"]),
-    "Projectile Sphere+5":  ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5, unique=True, groups=["Relic"]),
-    "Staff of Doom":        ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 1, unique=True, groups=["Relic"]),
-    "Staff of Doom+1":      ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 2, unique=True, groups=["Relic"]),
-    "Staff of Doom+2":      ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 3, unique=True, groups=["Relic"]),
-    "Staff of Doom+3":      ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 4, unique=True, groups=["Relic"]),
-    "Staff of Doom+4":      ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5, unique=True, groups=["Relic"]),
-    "Staff of Doom+5":      ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5, unique=True, groups=["Relic"]),
-    "Tiny Pin":             ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 1, unique=True, groups=["Relic"]),
-    "Tiny Pin+1":           ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 2, unique=True, groups=["Relic"]),
-    "Tiny Pin+2":           ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 3, unique=True, groups=["Relic"]),
-    "Tiny Pin+3":           ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 4, unique=True, groups=["Relic"]),
-    "Tiny Pin+4":           ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5, unique=True, groups=["Relic"]),
-    "Tiny Pin+5":           ItemData(IC.filler, MonsterSanctuaryItemCategory.WEAPON, 5, unique=True, groups=["Relic"]),
-
-    # Basic Accessories
-    "Shell":            ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True),
-    "Shell+1":          ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True),
-    "Shell+2":          ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True),
-    "Shell+3":          ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True),
-    "Shell+4":          ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Shell+5":          ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Vital Ring":       ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True),
-    "Vital Ring+1":     ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True),
-    "Vital Ring+2":     ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True),
-    "Vital Ring+3":     ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True),
-    "Vital Ring+4":     ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Vital Ring+5":     ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Mana Ring":        ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True),
-    "Mana Ring+1":      ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True),
-    "Mana Ring+2":      ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True),
-    "Mana Ring+3":      ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True),
-    "Mana Ring+4":      ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Mana Ring+5":      ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Sustain Ring":     ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True),
-    "Sustain Ring+1":   ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True),
-    "Sustain Ring+2":   ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True),
-    "Sustain Ring+3":   ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True),
-    "Sustain Ring+4":   ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Sustain Ring+5":   ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Crit Ring":        ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True),
-    "Crit Ring+1":      ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True),
-    "Crit Ring+2":      ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True),
-    "Crit Ring+3":      ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True),
-    "Crit Ring+4":      ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Crit Ring+5":      ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Impact Ring":      ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True),
-    "Impact Ring+1":    ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True),
-    "Impact Ring+2":    ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True),
-    "Impact Ring+3":    ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True),
-    "Impact Ring+4":    ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Impact Ring+5":    ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Bandana":          ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True),
-    "Bandana+1":        ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True),
-    "Bandana+2":        ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True),
-    "Bandana+3":        ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True),
-    "Bandana+4":        ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Bandana+5":        ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Belt":             ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True),
-    "Belt+1":           ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True),
-    "Belt+2":           ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True),
-    "Belt+3":           ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True),
-    "Belt+4":           ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Belt+5":           ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Bracelet":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True),
-    "Bracelet+1":       ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True),
-    "Bracelet+2":       ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True),
-    "Bracelet+3":       ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True),
-    "Bracelet+4":       ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Bracelet+5":       ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Bracer":           ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True),
-    "Bracer+1":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True),
-    "Bracer+2":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True),
-    "Bracer+3":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True),
-    "Bracer+4":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Bracer+5":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Cape":             ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True),
-    "Cape+1":           ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True),
-    "Cape+2":           ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True),
-    "Cape+3":           ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True),
-    "Cape+4":           ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Cape+5":           ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Coat":             ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True),
-    "Coat+1":           ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True),
-    "Coat+2":           ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True),
-    "Coat+3":           ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True),
-    "Coat+4":           ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Coat+5":           ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Diadem":           ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True),
-    "Diadem+1":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True),
-    "Diadem+2":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True),
-    "Diadem+3":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True),
-    "Diadem+4":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Diadem+5":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Fang":             ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True),
-    "Fang+1":           ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True),
-    "Fang+2":           ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True),
-    "Fang+3":           ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True),
-    "Fang+4":           ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Fang+5":           ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Feather":          ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True),
-    "Feather+1":        ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True),
-    "Feather+2":        ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True),
-    "Feather+3":        ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True),
-    "Feather+4":        ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Feather+5":        ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Gauntlet":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True),
-    "Gauntlet+1":       ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True),
-    "Gauntlet+2":       ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True),
-    "Gauntlet+3":       ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True),
-    "Gauntlet+4":       ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Gauntlet+5":       ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Helmet":           ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True),
-    "Helmet+1":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True),
-    "Helmet+2":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True),
-    "Helmet+3":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True),
-    "Helmet+4":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Helmet+5":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Hide":             ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True),
-    "Hide+1":           ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True),
-    "Hide+2":           ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True),
-    "Hide+3":           ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True),
-    "Hide+4":           ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Hide+5":           ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Hood":             ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True),
-    "Hood+1":           ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True),
-    "Hood+2":           ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True),
-    "Hood+3":           ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True),
-    "Hood+4":           ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Hood+5":           ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Needle":           ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True),
-    "Needle+1":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True),
-    "Needle+2":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True),
-    "Needle+3":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True),
-    "Needle+ 4":        ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Needle+5":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Ribbon":           ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True),
-    "Ribbon+1":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True),
-    "Ribbon+2":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True),
-    "Ribbon+3":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True),
-    "Ribbon+4":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Ribbon+5":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Scroll":           ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True),
-    "Scroll+1":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True),
-    "Scroll+2":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True),
-    "Scroll+3":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True),
-    "Scroll+4":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Scroll+5":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Tome":             ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True),
-    "Tome+1":           ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True),
-    "Tome+2":           ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True),
-    "Tome+3":           ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True),
-    "Tome+4":           ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Tome+5":           ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Wizard Hat":       ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True),
-    "Wizard Hat+1":     ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True),
-    "Wizard Hat+2":     ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True),
-    "Wizard Hat+3":     ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True),
-    "Wizard Hat+4":     ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Wizard Hat+5":     ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-
-    # Unique Accessories
-    "Ancestral Medal":      ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True),
-    "Ancestral Medal+1":    ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True),
-    "Ancestral Medal+2":    ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True),
-    "Ancestral Medal+3":    ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True),
-    "Ancestral Medal+4":    ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Ancestral Medal+5":    ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Bead Chain":           ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True),
-    "Bead Chain+1":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True),
-    "Bead Chain+2":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True),
-    "Bead Chain+3":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True),
-    "Bead Chain+4":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Bead Chain+5":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Blood Vessel":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True),
-    "Blood Vessel+1":       ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True),
-    "Blood Vessel+2":       ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True),
-    "Blood Vessel+3":       ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True),
-    "Blood Vessel+4":       ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Blood Vessel+5":       ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Brooch":               ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True),
-    "Brooch+1":             ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True),
-    "Brooch+2":             ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True),
-    "Brooch+3":             ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True),
-    "Brooch+4":             ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Brooch+5":             ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Buckler":              ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True),
-    "Buckler+1":            ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True),
-    "Buckler+2":            ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True),
-    "Buckler+3":            ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True),
-    "Buckler+4":            ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Buckler+5":            ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Cauldron":             ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True),
-    "Cauldron+1":           ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True),
-    "Cauldron+2":           ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True),
-    "Cauldron+3":           ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True),
-    "Cauldron+4":           ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Cauldron+5":           ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Charging Sphere":      ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True),
-    "Charging Sphere+1":    ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True),
-    "Charging Sphere+2":    ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True),
-    "Charging Sphere+3":    ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True),
-    "Charging Sphere+4":    ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Charging Sphere+5":    ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Crown":                ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True),
-    "Crown+1":              ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True),
-    "Crown+2":              ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True),
-    "Crown+3":              ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True),
-    "Crown+4":              ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Crown+5":              ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Drum":                 ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True),
-    "Drum+1":               ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True),
-    "Drum+2":               ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True),
-    "Drum+3":               ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True),
-    "Drum+4":               ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Drum+5":               ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Dumbbell":             ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True),
-    "Dumbbell+1":           ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True),
-    "Dumbbell+2":           ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True),
-    "Dumbbell+3":           ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True),
-    "Dumbbell+4":           ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Dumbbell+5":           ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Fin":                  ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True),
-    "Fin+1":                ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True),
-    "Fin+2":                ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True),
-    "Fin+3":                ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True),
-    "Fin+4":                ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Fin+5":                ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Flute":                ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True),
-    "Flute+1":              ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True),
-    "Flute+2":              ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True),
-    "Flute+3":              ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True),
-    "Flute+4":              ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Flute+5":              ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Frozen Tear":          ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True),
-    "Frozen Tear+1":        ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True),
-    "Frozen Tear+2":        ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True),
-    "Frozen Tear+3":        ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True),
-    "Frozen Tear+4":        ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Frozen Tear+5":        ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Gray Pearl":           ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True),
-    "Gray Pearl+1":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True),
-    "Gray Pearl+2":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True),
-    "Gray Pearl+3":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True),
-    "Gray Pearl+4":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Gray Pearl+5":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Hourglass":            ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True),
-    "Hourglass+1":          ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True),
-    "Hourglass+2":          ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True),
-    "Hourglass+3":          ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True),
-    "Hourglass+4":          ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Hourglass+5":          ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Infinity Flame":       ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True),
-    "Infinity Flame+1":     ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True),
-    "Infinity Flame+2":     ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True),
-    "Infinity Flame+3":     ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True),
-    "Infinity Flame+4":     ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Infinity Flame+5":     ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Lightning Sphere":     ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True),
-    "Lightning Sphere+1":   ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True),
-    "Lightning Sphere+2":   ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True),
-    "Lightning Sphere+3":   ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True),
-    "Lightning Sphere+4":   ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Lightning Sphere+5":   ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Lucky Clover":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True),
-    "Lucky Clover+1":       ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True),
-    "Lucky Clover+2":       ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True),
-    "Lucky Clover+3":       ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True),
-    "Lucky Clover+4":       ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Lucky Clover+5":       ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Mage Flask":           ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True),
-    "Mage Flask+1":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True),
-    "Mage Flask+2":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True),
-    "Mage Flask+3":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True),
-    "Mage Flask+4":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Mage Flask+5":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Medallion":            ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True),
-    "Medallion+1":          ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True),
-    "Medallion+2":          ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True),
-    "Medallion+3":          ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True),
-    "Medallion+4":          ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Medallion+5":          ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Ocarina":              ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True),
-    "Ocarina+1":            ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True),
-    "Ocarina+2":            ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True),
-    "Ocarina+3":            ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True),
-    "Ocarina+4":            ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Ocarina+5":            ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Omni Ring":            ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True),
-    "Omni Ring+1":          ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True),
-    "Omni Ring+2":          ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True),
-    "Omni Ring+3":          ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True),
-    "Omni Ring+4":          ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Omni Ring+5":          ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Ornate Pipe":          ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True),
-    "Ornate Pipe+1":        ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True),
-    "Ornate Pipe+2":        ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True),
-    "Ornate Pipe+3":        ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True),
-    "Ornate Pipe+4":        ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Ornate Pipe+5":        ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Pandora's Box":        ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True),
-    "Pandora's Box+1":      ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True),
-    "Pandora's Box+2":      ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True),
-    "Pandora's Box+3":      ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True),
-    "Pandora's Box+4":      ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Pandora's Box+5":      ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Poisoned Dart":        ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True),
-    "Poisoned Dart+1":      ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True),
-    "Poisoned Dart+2":      ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True),
-    "Poisoned Dart+3":      ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True),
-    "Poisoned Dart+4":      ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Poisoned Dart+5":      ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Shield Generator":     ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True),
-    "Shield Generator+1":   ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True),
-    "Shield Generator+2":   ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True),
-    "Shield Generator+3":   ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True),
-    "Shield Generator+4":   ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Shield Generator+5":   ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Slime Skin":           ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True),
-    "Slime Skin+1":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True),
-    "Slime Skin+2":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True),
-    "Slime Skin+3":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True),
-    "Slime Skin+4":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Slime Skin+5":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Spark":                ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True),
-    "Spark+1":              ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True),
-    "Spark+2":              ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True),
-    "Spark+3":              ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True),
-    "Spark+4":              ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Spark+5":              ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Sun Pendant":          ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True),
-    "Sun Pendant+1":        ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True),
-    "Sun Pendant+2":        ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True),
-    "Sun Pendant+3":        ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True),
-    "Sun Pendant+4":        ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Sun Pendant+5":        ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Tambourine":           ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True),
-    "Tambourine+1":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True),
-    "Tambourine+2":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True),
-    "Tambourine+3":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True),
-    "Tambourine+4":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Tambourine+5":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Tarot Card":           ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True),
-    "Tarot Card+1":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True),
-    "Tarot Card+2":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True),
-    "Tarot Card+3":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True),
-    "Tarot Card+4":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Tarot Card+5":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Thermal Reactor":      ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True),
-    "Thermal Reactor+1":    ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True),
-    "Thermal Reactor+2":    ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True),
-    "Thermal Reactor+3":    ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True),
-    "Thermal Reactor+4":    ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Thermal Reactor+5":    ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Totem":                ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True),
-    "Totem+1":              ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True),
-    "Totem+2":              ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True),
-    "Totem+3":              ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True),
-    "Totem+4":              ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Totem+5":              ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Warrior Flask":        ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True),
-    "Warrior Flask+1":      ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True),
-    "Warrior Flask+2":      ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True),
-    "Warrior Flask+3":      ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True),
-    "Warrior Flask+4":      ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-    "Warrior Flask+5":      ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True),
-
-    # Relic Accessories
-    "Ancient Clock":        ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True, groups=["Relic"]),
-    "Ancient Clock+1":      ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True, groups=["Relic"]),
-    "Ancient Clock+2":      ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True, groups=["Relic"]),
-    "Ancient Clock+3":      ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True, groups=["Relic"]),
-    "Ancient Clock+4":      ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True, groups=["Relic"]),
-    "Ancient Clock+5":      ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True, groups=["Relic"]),
-    "Cursed Drum":          ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True, groups=["Relic"]),
-    "Cursed Drum+1":        ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True, groups=["Relic"]),
-    "Cursed Drum+2":        ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True, groups=["Relic"]),
-    "Cursed Drum+3":        ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True, groups=["Relic"]),
-    "Cursed Drum+4":        ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True, groups=["Relic"]),
-    "Cursed Drum+5":        ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True, groups=["Relic"]),
-    "Devonian Medal":       ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True, groups=["Relic"]),
-    "Devonian Medal+1":     ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True, groups=["Relic"]),
-    "Devonian Medal+2":     ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True, groups=["Relic"]),
-    "Devonian Medal+3":     ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True, groups=["Relic"]),
-    "Devonian Medal+4":     ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True, groups=["Relic"]),
-    "Devonian Medal+5":     ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True, groups=["Relic"]),
-    "Dragon Saddle":        ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True, groups=["Relic"]),
-    "Dragon Saddle+1":      ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True, groups=["Relic"]),
-    "Dragon Saddle+2":      ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True, groups=["Relic"]),
-    "Dragon Saddle+3":      ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True, groups=["Relic"]),
-    "Dragon Saddle+4":      ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True, groups=["Relic"]),
-    "Dragon Saddle+5":      ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True, groups=["Relic"]),
-    "Dwarven Crown":        ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True, groups=["Relic"]),
-    "Dwarven Crown+1":      ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True, groups=["Relic"]),
-    "Dwarven Crown+2":      ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True, groups=["Relic"]),
-    "Dwarven Crown+3":      ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True, groups=["Relic"]),
-    "Dwarven Crown+4":      ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True, groups=["Relic"]),
-    "Dwarven Crown+5":      ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True, groups=["Relic"]),
-    "Earth Symbol":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True, groups=["Relic"]),
-    "Earth Symbol+1":       ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True, groups=["Relic"]),
-    "Earth Symbol+2":       ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True, groups=["Relic"]),
-    "Earth Symbol+3":       ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True, groups=["Relic"]),
-    "Earth Symbol+4":       ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True, groups=["Relic"]),
-    "Earth Symbol+5":       ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True, groups=["Relic"]),
-    "Fire Symbol":          ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True, groups=["Relic"]),
-    "Fire Symbol+1":        ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True, groups=["Relic"]),
-    "Fire Symbol+2":        ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True, groups=["Relic"]),
-    "Fire Symbol+3":        ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True, groups=["Relic"]),
-    "Fire Symbol+4":        ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True, groups=["Relic"]),
-    "Fire Symbol+5":        ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True, groups=["Relic"]),
-    "Goblin Garment":       ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True, groups=["Relic"]),
-    "Goblin Garment+1":     ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True, groups=["Relic"]),
-    "Goblin Garment+2":     ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True, groups=["Relic"]),
-    "Goblin Garment+3":     ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True, groups=["Relic"]),
-    "Goblin Garment+4":     ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True, groups=["Relic"]),
-    "Goblin Garment+5":     ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True, groups=["Relic"]),
-    "Gold Feather":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True, groups=["Relic"]),
-    "Gold Feather+1":       ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True, groups=["Relic"]),
-    "Gold Feather+2":       ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True, groups=["Relic"]),
-    "Gold Feather+3":       ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True, groups=["Relic"]),
-    "Gold Feather+4":       ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True, groups=["Relic"]),
-    "Gold Feather+5":       ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True, groups=["Relic"]),
-    "Grey Stone":           ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True, groups=["Relic"]),
-    "Grey Stone+1":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True, groups=["Relic"]),
-    "Grey Stone+2":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True, groups=["Relic"]),
-    "Grey Stone+3":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True, groups=["Relic"]),
-    "Grey Stone+4":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True, groups=["Relic"]),
-    "Grey Stone+5":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True, groups=["Relic"]),
-    "Heavy Greaves":        ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True, groups=["Relic"]),
-    "Heavy Greaves+1":      ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True, groups=["Relic"]),
-    "Heavy Greaves+2":      ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True, groups=["Relic"]),
-    "Heavy Greaves+3":      ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True, groups=["Relic"]),
-    "Heavy Greaves+4":      ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True, groups=["Relic"]),
-    "Heavy Greaves+5":      ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True, groups=["Relic"]),
-    "Holy Necklace":        ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True, groups=["Relic"]),
-    "Holy Necklace+1":      ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True, groups=["Relic"]),
-    "Holy Necklace+2":      ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True, groups=["Relic"]),
-    "Holy Necklace+3":      ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True, groups=["Relic"]),
-    "Holy Necklace+4":      ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True, groups=["Relic"]),
-    "Holy Necklace+5":      ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True, groups=["Relic"]),
-    "Infinity Blaze":       ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True, groups=["Relic"]),
-    "Infinity Blaze+1":     ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True, groups=["Relic"]),
-    "Infinity Blaze+2":     ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True, groups=["Relic"]),
-    "Infinity Blaze+3":     ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True, groups=["Relic"]),
-    "Infinity Blaze+4":     ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True, groups=["Relic"]),
-    "Infinity Blaze+5":     ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True, groups=["Relic"]),
-    "Lion Fang":            ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True, groups=["Relic"]),
-    "Lion Fang+1":          ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True, groups=["Relic"]),
-    "Lion Fang+2":          ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True, groups=["Relic"]),
-    "Lion Fang+3":          ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True, groups=["Relic"]),
-    "Lion Fang+4":          ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True, groups=["Relic"]),
-    "Lion Fang+5":          ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True, groups=["Relic"]),
-    "Moon Ring":            ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True, groups=["Relic"]),
-    "Moon Ring+1":          ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True, groups=["Relic"]),
-    "Moon Ring+2":          ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True, groups=["Relic"]),
-    "Moon Ring+3":          ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True, groups=["Relic"]),
-    "Moon Ring+4":          ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True, groups=["Relic"]),
-    "Moon Ring+5":          ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True, groups=["Relic"]),
-    "Nimble Wings":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True, groups=["Relic"]),
-    "Nimble Wings+1":       ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True, groups=["Relic"]),
-    "Nimble Wings+2":       ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True, groups=["Relic"]),
-    "Nimble Wings+3":       ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True, groups=["Relic"]),
-    "Nimble Wings+4":       ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True, groups=["Relic"]),
-    "Nimble Wings+5":       ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True, groups=["Relic"]),
-    "Pandora's Chest":      ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True, groups=["Relic"]),
-    "Pandora's Chest+1":    ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True, groups=["Relic"]),
-    "Pandora's Chest+2":    ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True, groups=["Relic"]),
-    "Pandora's Chest+3":    ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True, groups=["Relic"]),
-    "Pandora's Chest+4":    ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True, groups=["Relic"]),
-    "Pandora's Chest+5":    ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True, groups=["Relic"]),
-    "Pure Leaf":            ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True, groups=["Relic"]),
-    "Pure Leaf+1":          ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True, groups=["Relic"]),
-    "Pure Leaf+2":          ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True, groups=["Relic"]),
-    "Pure Leaf+3":          ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True, groups=["Relic"]),
-    "Pure Leaf+4":          ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True, groups=["Relic"]),
-    "Pure Leaf+5":          ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True, groups=["Relic"]),
-    "Reptilian Idol":       ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True, groups=["Relic"]),
-    "Reptilian Idol+1":     ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True, groups=["Relic"]),
-    "Reptilian Idol+2":     ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True, groups=["Relic"]),
-    "Reptilian Idol+3":     ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True, groups=["Relic"]),
-    "Reptilian Idol+4":     ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True, groups=["Relic"]),
-    "Reptilian Idol+5":     ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True, groups=["Relic"]),
-    "Sharp Fin":            ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True, groups=["Relic"]),
-    "Sharp Fin+1":          ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True, groups=["Relic"]),
-    "Sharp Fin+2":          ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True, groups=["Relic"]),
-    "Sharp Fin+3":          ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True, groups=["Relic"]),
-    "Sharp Fin+4":          ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True, groups=["Relic"]),
-    "Sharp Fin+5":          ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True, groups=["Relic"]),
-    "Slimy Ball":           ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True, groups=["Relic"]),
-    "Slimy Ball+1":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True, groups=["Relic"]),
-    "Slimy Ball+2":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True, groups=["Relic"]),
-    "Slimy Ball+3":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True, groups=["Relic"]),
-    "Slimy Ball+4":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True, groups=["Relic"]),
-    "Slimy Ball+5":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True, groups=["Relic"]),
-    "Spirit Blaze":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True, groups=["Relic"]),
-    "Spirit Blaze+1":       ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True, groups=["Relic"]),
-    "Spirit Blaze+2":       ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True, groups=["Relic"]),
-    "Spirit Blaze+3":       ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True, groups=["Relic"]),
-    "Spirit Blaze+4":       ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True, groups=["Relic"]),
-    "Spirit Blaze+5":       ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True, groups=["Relic"]),
-    "Static Loop":          ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True, groups=["Relic"]),
-    "Static Loop+1":        ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True, groups=["Relic"]),
-    "Static Loop+2":        ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True, groups=["Relic"]),
-    "Static Loop+3":        ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True, groups=["Relic"]),
-    "Static Loop+4":        ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True, groups=["Relic"]),
-    "Static Loop+5":        ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True, groups=["Relic"]),
-    "Sun Ring":             ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True, groups=["Relic"]),
-    "Sun Ring+1":           ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True, groups=["Relic"]),
-    "Sun Ring+2":           ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True, groups=["Relic"]),
-    "Sun Ring+3":           ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True, groups=["Relic"]),
-    "Sun Ring+4":           ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True, groups=["Relic"]),
-    "Sun Ring+5":           ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True, groups=["Relic"]),
-    "Toxic Pot":            ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True, groups=["Relic"]),
-    "Toxic Pot+1":          ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True, groups=["Relic"]),
-    "Toxic Pot+2":          ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True, groups=["Relic"]),
-    "Toxic Pot+3":          ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True, groups=["Relic"]),
-    "Toxic Pot+4":          ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True, groups=["Relic"]),
-    "Toxic Pot+5":          ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True, groups=["Relic"]),
-    "Warlock Hat":          ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True, groups=["Relic"]),
-    "Warlock Hat+1":        ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True, groups=["Relic"]),
-    "Warlock Hat+2":        ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True, groups=["Relic"]),
-    "Warlock Hat+3":        ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True, groups=["Relic"]),
-    "Warlock Hat+4":        ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True, groups=["Relic"]),
-    "Warlock Hat+5":        ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True, groups=["Relic"]),
-    "Water Symbol":         ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True, groups=["Relic"]),
-    "Water Symbol+1":       ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True, groups=["Relic"]),
-    "Water Symbol+2":       ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True, groups=["Relic"]),
-    "Water Symbol+3":       ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True, groups=["Relic"]),
-    "Water Symbol+4":       ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True, groups=["Relic"]),
-    "Water Symbol+5":       ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True, groups=["Relic"]),
-    "Wind Symbol":          ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 1, unique=True, groups=["Relic"]),
-    "Wind Symbol+1":        ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 2, unique=True, groups=["Relic"]),
-    "Wind Symbol+2":        ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 3, unique=True, groups=["Relic"]),
-    "Wind Symbol+3":        ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 4, unique=True, groups=["Relic"]),
-    "Wind Symbol+4":        ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True, groups=["Relic"]),
-    "Wind Symbol+5":        ItemData(IC.filler, MonsterSanctuaryItemCategory.ACCESSORY, 5, unique=True, groups=["Relic"]),
-
-    # Gold
-    "100 G":    ItemData(IC.filler, MonsterSanctuaryItemCategory.CURRENCY, 1),
-    "150 G":    ItemData(IC.filler, MonsterSanctuaryItemCategory.CURRENCY, 1),
-    "200 G":    ItemData(IC.filler, MonsterSanctuaryItemCategory.CURRENCY, 1),
-    "250 G":    ItemData(IC.filler, MonsterSanctuaryItemCategory.CURRENCY, 1),
-    "300 G":    ItemData(IC.filler, MonsterSanctuaryItemCategory.CURRENCY, 2),
-    "350 G":    ItemData(IC.filler, MonsterSanctuaryItemCategory.CURRENCY, 2),
-    "400 G":    ItemData(IC.filler, MonsterSanctuaryItemCategory.CURRENCY, 2),
-    "500 G":    ItemData(IC.filler, MonsterSanctuaryItemCategory.CURRENCY, 2),
-    "600 G":    ItemData(IC.filler, MonsterSanctuaryItemCategory.CURRENCY, 3),
-    "700 G":    ItemData(IC.filler, MonsterSanctuaryItemCategory.CURRENCY, 3),
-    "800 G":    ItemData(IC.filler, MonsterSanctuaryItemCategory.CURRENCY, 3),
-    "900 G":    ItemData(IC.filler, MonsterSanctuaryItemCategory.CURRENCY, 3),
-    "1000 G":   ItemData(IC.filler, MonsterSanctuaryItemCategory.CURRENCY, 4),
-    "1200 G":   ItemData(IC.filler, MonsterSanctuaryItemCategory.CURRENCY, 4),
-    "1400 G":   ItemData(IC.filler, MonsterSanctuaryItemCategory.CURRENCY, 4),
-    "1600 G":   ItemData(IC.filler, MonsterSanctuaryItemCategory.CURRENCY, 4),
-    "1800 G":   ItemData(IC.filler, MonsterSanctuaryItemCategory.CURRENCY, 4),
-    "2000 G":   ItemData(IC.filler, MonsterSanctuaryItemCategory.CURRENCY, 4),
-    "2500 G":   ItemData(IC.filler, MonsterSanctuaryItemCategory.CURRENCY, 5),
-    "3000 G":   ItemData(IC.filler, MonsterSanctuaryItemCategory.CURRENCY, 5),
-    "3500 G":   ItemData(IC.filler, MonsterSanctuaryItemCategory.CURRENCY, 5),
-    "4000 G":   ItemData(IC.filler, MonsterSanctuaryItemCategory.CURRENCY, 5),
-    "4500 G":   ItemData(IC.filler, MonsterSanctuaryItemCategory.CURRENCY, 5),
-    "5000 G":   ItemData(IC.filler, MonsterSanctuaryItemCategory.CURRENCY, 5),
-
-    # Monsters
-    # "Spectral Wolf":        ItemData(IC.progression, MonsterSanctuaryItemCategory.MONSTER, groups=["Tackle", "Breakable Walls", "Impassible Vines"]),
-    # "Spectral Toad":        ItemData(IC.progression, MonsterSanctuaryItemCategory.MONSTER, groups=["Tackle", "Breakable Walls", "Heavy Blocks"]),
-    # "Spectral Eagle":       ItemData(IC.progression, MonsterSanctuaryItemCategory.MONSTER, groups=["Flying", "Distant Ledges"]),
-    # "Spectral Lion":        ItemData(IC.progression, MonsterSanctuaryItemCategory.MONSTER, groups=["Claws", "Breakable Walls", "Impassible Vines"]),
-    "Blob":                 ItemData(IC.skip_balancing, MonsterSanctuaryItemCategory.MONSTER, groups=["Water Orbs"]),
-    "Magmapillar":          ItemData(IC.skip_balancing, MonsterSanctuaryItemCategory.MONSTER, groups=["Ignite", "Impassible Vines", "Flame Orbs", "Torches"]),
-    "Rocky":                ItemData(IC.skip_balancing, MonsterSanctuaryItemCategory.MONSTER, groups=["Summon Rock", "Ground Switches"]),
-    "Vaero":                ItemData(IC.skip_balancing, MonsterSanctuaryItemCategory.MONSTER, groups=["Flying", "Distant Ledges"]),
-    "Catzerker":            ItemData(IC.skip_balancing, MonsterSanctuaryItemCategory.MONSTER, groups=["Slash", "Impassible Vines", "Breakable Walls"]),
-    "Yowie":                ItemData(IC.skip_balancing, MonsterSanctuaryItemCategory.MONSTER, groups=["Tackle", "Breakable Walls", "Heavy Blocks"]),
-    "Steam Golem":          ItemData(IC.skip_balancing, MonsterSanctuaryItemCategory.MONSTER, groups=["Tackle", "Breakable Walls", "Heavy Blocks"]),
-    "Monk":                 ItemData(IC.skip_balancing, MonsterSanctuaryItemCategory.MONSTER, groups=["Heavy Punch", "Breakable Walls"]),
-    # "Tanuki":               ItemData(IC.progression, MonsterSanctuaryItemCategory.MONSTER, groups=["Summon Mushroom", "Ground Switches"]),
-    "Manticorb":            ItemData(IC.skip_balancing, MonsterSanctuaryItemCategory.MONSTER, groups=["Light", "Dark Rooms"])
-}
-

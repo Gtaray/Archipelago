@@ -108,7 +108,7 @@ class Goal(Choice):
 monster_sanctuary_options = {
     "randomize_monsters": RandomizeMonsters,
     "match_monster_tier": MatchMonsterTier,
-    "randomize_champions": RandomizeMonsters,
+    "randomize_champions": RandomizeChampions,
     "randomize_monster_shifts": RandomizeMonsterShifts,
     "encounter_evolved_monsters": CanEncounterEvolvedMonsters,
     "minimum_egg_drop_rate": MinimumEggDropRate,
