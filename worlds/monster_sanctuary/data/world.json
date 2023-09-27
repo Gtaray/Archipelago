@@ -68,7 +68,7 @@
       },
       { "region": "MountainPath_Center1" },
       {
-        "region": "MountainPath_Center1",
+        "region": "MountainPath_East1",
         "requirements": [ "keeper_rank_1" ]
       },
       {
@@ -242,8 +242,8 @@
   {
     "region": "MountainPath_Center7",
     "connections": [
-      { "region":  "MountainPath_West6" },
-      { "region":  "MountainPath_West3" }
+      { "region":  "MountainPath_Center6_Upper" },
+      { "region":  "MountainPath_Center3" }
     ],
     "champion": [
       { "id": 1, "monsters": [ "Monk" ] }
@@ -270,6 +270,7 @@
       { "region":  "MountainPath_West3" },
       { "region":  "MountainPath_West4" },
       { "region":  "MountainPath_West5" },
+      { "region":  "MountainPath_SnowyEntrance" },
       { "region":  "MountainPath_WestHidden2", "requirements":  [ "narrow_corridors" ] }
     ],
     "chests": [
@@ -318,7 +319,7 @@
   {
     "region": "MountainPath_West6",
     "connections": [
-      { "region":  "MountainPath_West5" }
+      { "region":  "MountainPath_West4" }
     ],
     "gifts": [
       { "id": 134, "item": "Mountain Path key" },
@@ -429,7 +430,8 @@
       { "region":  "KeeperStronghold_LivingRoom2" },
       { "region":  "KeeperStronghold_Smith" },
       { "region":  "KeeperStronghold_Storage" },
-      { "region":  "KeeperStronghold_Library" }
+      { "region":  "KeeperStronghold_Library" },
+      { "region":  "KeeperStronghold_KeepersTowers" }
     ]
   },
   {
@@ -626,7 +628,7 @@
   {
     "region": "BlueCave_NorthFork_West",
     "connections": [
-      { "region": "BlueCave_NorthFork_West" }
+      { "region": "BlueCave_Chains2" }
     ],
     "chests": [
       { "id": 11, "item": "Bracelet+2" }
@@ -739,6 +741,7 @@
     "region": "BlueCave_East2_Lower",
     "connections": [
       { "region": "BlueCave_East1" },
+      { "region": "BlueCave_East3" },
       {
         "region": "BlueCave_East2_Upper",
         "requirements": [
@@ -1059,9 +1062,7 @@
         "requirements": [
           "OR", [ "double_jump", "summon_big_rock", "distant_ledges", "swimming" ]
         ]
-      },
-      { "region": "BlueCave_WestWatersHidden2" },
-      { "region": "BlueCave_AquaEntrance_Upper" }
+      }
     ]
   },
   {
@@ -1095,7 +1096,7 @@
     "connections": [
       { "region": "BlueCave_WestWaters6_Lower" },
       { "region": "SunPalace_East1" },
-      { "region": "BlueCave_AquaEntrance_Upper" }
+      { "region": "BlueCave_AquaEntrance_Lower" }
     ],
     "encounters": [
       { "id": 2, "monsters": ["Monk", "Grummy", "Monk"]}
@@ -1182,11 +1183,763 @@
   {
     "region": "BlueCave_ChampionRoom2_WestAccess",
     "connections": [
-      { "region": "MountainPath_Center6_Upper" },
+      { "region": "MountainPath_Center6_Lower" },
       { "region": "BlueCave_ChampionRoom2" }
     ],
     "flags": [
       { "id":  "blue_cave_champion_room_2_west_shortcut", "name": "Blue Caves to Mountain Path Shortcut" }
+    ]
+  },
+
+  {
+    "region": "StrongholdDungeon_Entrance",
+    "connections": [
+      { "region": "KeeperStronghold_EastStairwell" },
+      { "region": "StrongholdDungeon_North1" },
+      { "region": "StrongholdDungeon_Jail" }
+    ]
+  },
+  {
+    "region": "StrongholdDungeon_Jail",
+    "connections": [
+      { "region": "StrongholdDungeon_Entrance" }
+    ],
+    "chests": [
+      { "id": 5, "item": "Grape" },
+      { "id": 5, "item": "Crystal Shard", "requirements": [ "ground_switches" ] }
+    ]
+  },
+  {
+    "region": "StrongholdDungeon_North1",
+    "connections": [
+      { "region": "StrongholdDungeon_Entrance" },
+      { "region": "StrongholdDungeon_North2" }
+    ],
+    "encounters": [
+      { "id": 3, "monsters": [ "Crackle Knight", "Grummy", "Crackle Knight" ] }
+    ]
+  },
+  {
+    "region": "StrongholdDungeon_North2",
+    "connections": [
+      { "region": "StrongholdDungeon_North1" },
+      { "region": "StrongholdDungeon_North3" },
+      { "region": "StrongholdDungeon_North6" },
+      { "region": "StrongholdDungeon_Central1" }
+    ],
+    "chests": [
+      { "id": 17, "item": "Corn" }
+    ]
+  },
+  {
+    "region": "StrongholdDungeon_North3",
+    "connections": [
+      { "region": "StrongholdDungeon_North2" },
+      { "region": "StrongholdDungeon_North4" }
+    ],
+    "encounters": [
+      { "id": 3, "monsters": [ "Nightwing", "Crackle Knight", "Nightwing" ] }
+    ]
+  },
+  {
+    "region": "StrongholdDungeon_North4",
+    "connections": [
+      { "region": "StrongholdDungeon_North2" },
+      { "region": "StrongholdDungeon_North4" },
+      {
+        "region": "MysticalWorkshop_South1",
+        "requirements": [
+          "AND", [
+            "double_jump",
+            "OR", [
+              "improved_flying",
+              "lofty_mount",
+              "dual_mobility"
+            ]
+          ]
+        ]
+      }
+    ],
+    "chests": [
+      { "id": 2, "item": "Switch Stone", "requirements": [
+        "AND", [
+          "double_jump",
+          "OR", [
+            "improved_flying",
+            "lofty_mount",
+            "dual_mobility"
+          ]
+        ]
+      ] }
+    ]
+  },
+  {
+    "region": "StrongholdDungeon_North5",
+    "connections": [
+      { "region": "StrongholdDungeon_North4" },
+      { "region": "AncientWoods_West1" }
+    ],
+    "chests": [
+      { "id": 3, "item": "3x Bronze", "requirements": [
+        "OR", [
+          "double_jump",
+          "ground_switches",
+          "distant_ledges"
+        ]
+      ] }
+    ],
+    "encounters": [
+      { "id": 2, "monsters": [ "Crackle Knight", "Nightwing", "Crackle Knight" ] }
+    ]
+  },
+  {
+    "region": "StrongholdDungeon_North6",
+    "connections": [
+      { "region": "StrongholdDungeon_North2" },
+      { "region": "StrongholdDungeon_West1" },
+      { "region": "StrongholdDungeon_Central2" },
+      {
+        "region": "StrongholdDungeon_NorthHidden",
+        "requirements": [
+          "OR", [
+            "double_jump",
+            "distant_ledges",
+            "summon_big_rock"
+          ]
+        ]
+      }
+    ],
+    "chests": [
+      { "id": 18, "item": "Mass Potion", "requirements": [
+        "AND", [
+          "lightning_orbs",
+          "OR", [
+            "double_jump",
+            "distant_ledges"
+          ]
+        ]
+      ] }
+    ]
+  },
+  {
+    "region": "StrongholdDungeon_NorthHidden",
+    "connections": [
+      { "region": "StrongholdDungeon_North6" }
+    ],
+    "chests": [
+      { "id": 0, "item": "500 G" }
+    ]
+  },
+  {
+    "region": "StrongholdDungeon_Central1",
+    "connections": [
+      { "region": "StrongholdDungeon_Central2" },
+      { "region": "StrongholdDungeon_Central3" }
+    ],
+    "chests": [
+      { "id": 19, "item": "2x Iron", "requirements": [
+        "AND", [
+          "double_jump",
+          "distant_ledges"
+        ]
+      ] }
+    ],
+    "encounters": [
+      { "id": 0, "monsters": [ "Mad Eye", "Crackle Knight", "Mad Eye" ] }
+    ]
+  },
+  {
+    "region": "StrongholdDungeon_Central2",
+    "connections": [
+      { "region": "StrongholdDungeon_North6" },
+      { "region": "StrongholdDungeon_Central1" }
+    ],
+    "encounters": [
+      { "id": 2, "monsters": [ "G'rulu", "Crackle Knight", "G'rulu" ] }
+    ]
+  },
+  {
+    "region": "StrongholdDungeon_Central3",
+    "connections": [
+      {
+        "region": "StrongholdDungeon_Central1",
+        "requirements": [
+          "OR", [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility"
+          ]
+        ]
+      },
+      { "region": "StrongholdDungeon_Central4" }
+    ],
+    "chests": [
+      { "id": 0, "item": "Morning Star+2" },
+      { "id": 15, "item": "Mass Potion", "requirements": [
+        "OR", [
+          "double_jump",
+          "improved_flying",
+          "dual_mobility"]
+        ]
+      }
+    ]
+  },
+  {
+    "region": "StrongholdDungeon_Central4",
+    "connections": [
+      {
+        "region": "StrongholdDungeon_Central3",
+        "requirements": [
+          "OR", [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility"
+          ]
+        ]
+      },
+      { "region": "StrongholdDungeon_Central5_Upper" },
+      { "region": "StrongholdDungeon_Central7" }
+    ],
+    "encounters": [
+      "TODO: hidden encounter: { \"id\": 2, \"monsters\": [ \"Mad Eye\", \"G'rulu\", \"Mad Eye\" ] },"
+    ],
+    "gifts": [
+      { "id": 0, "item": "Ahrimaaya", "requirements": [ "post_game" ] },
+      { "id": 0, "item": "Reward Box Lvl 4", "requirements": [ "post_game" ] },
+      "TODO: Figure out if these need to be randomized, because they are technically postgame"
+    ]
+  },
+  {
+    "region": "StrongholdDungeon_Central5_Upper",
+    "connections": [
+      {
+        "region": "StrongholdDungeon_Central5_Lower",
+        "requirements": [
+          "OR",[
+            "double_jump",
+            "distant_ledges"
+          ]
+        ]
+      },
+      {
+        "region": "StrongholdDungeon_Central4",
+        "requirements": [
+          "OR",[
+            "double_jump",
+            "distant_ledges"
+          ]
+        ]
+      }
+    ],
+    "chests": [
+      { "id": 7, "item": "Skill Resetter", "requirements": [
+        "OR", [
+          "double_jump",
+          "distant_ledges"]
+        ]
+      }
+    ]
+  },
+  {
+    "region": "StrongholdDungeon_Central5_Lower",
+    "connections": [
+      {
+        "region": "StrongholdDungeon_Central5_Upper",
+        "requirements": [
+          "OR", [
+            "AND", [
+              "lightning_orbs",
+              "OR", [
+                "double_jump",
+                "distant_ledges",
+                "summon_big_rock"
+              ]
+            ],
+            "AND", [
+              "double_jump",
+              "OR", [
+                "summon_big_rock",
+                "improved_flying",
+                "dual_mobility",
+                "lofty_mount"
+              ]
+            ]
+          ]
+        ]
+      },
+      { "region": "AncientWoods_DungeonEntrance" }
+    ]
+  },
+  {
+    "region": "StrongholdDungeon_Central6",
+    "connections": [
+      { "region":  "StrongholdDungeon_South1" },
+      { "region":  "StrongholdDungeon_Central7" }
+    ]
+  },
+  {
+    "region": "StrongholdDungeon_Central7",
+    "connections": [
+      { "region": "StrongholdDungeon_Central6" },
+      { "region": "StrongholdDungeon_East1_East" },
+      {
+        "region": "StrongholdDungeon_Central4",
+        "requirements": [
+          "OR", [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility",
+            "lofty_mount"
+          ]
+        ]
+      },
+      {
+        "region": "StrongholdDungeon_Hidden1",
+        "requirements": [
+          "OR", [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility",
+            "lofty_mount"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "region": "StrongholdDungeon_Hidden1",
+    "connections": [
+      { "region": "StrongholdDungeon_Central7" },
+      { "region": "StrongholdDungeon_SummonRoom", "requirements": [ "summon_big_rock" ] }
+    ],
+    "chests": [
+      { "id": 8, "item": "Red Gem" },
+      { "id": 10, "item": "Blue Gem" },
+      { "id": 11, "item": "Green Gem" },
+      { "id": 12, "item": "Shift Stone", "requirements": [ "summon_big_rock" ] }
+    ]
+  },
+  {
+    "region": "StrongholdDungeon_SummonRoom",
+    "connections": [
+      { "region": "StrongholdDungeon_Hidden1" }
+    ],
+    "champion": [
+      { "id": 1, "item": "Aazerach", "requirements": [ "ahrimaaya" ] }
+    ]
+  },
+  {
+    "region": "StrongholdDungeon_South1",
+    "connections": [
+      {
+        "region": "StrongholdDungeon_Central6",
+        "requirements": [
+          "OR", [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility"]
+        ]
+      },
+      {
+        "region": "StrongholdDungeon_South2",
+        "requirements": [
+          "OR", [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility"]
+        ]
+      }
+    ],
+    "chests": [
+      { "id": 5, "item": "Hazelnut", "requirements": [
+        "OR", [
+          "double_jump",
+          "improved_flying",
+          "dual_mobility"]
+      ]}
+    ]
+  },
+  {
+    "region": "StrongholdDungeon_South2",
+    "connections": [
+      { "region": "StrongholdDungeon_South1" },
+      { "region": "StrongholdDungeon_South3" }
+    ],
+    "champion": [
+      { "id": 2, "monsters": [ "Beetloid" ] }
+    ]
+  },
+  {
+    "region": "StrongholdDungeon_South3",
+    "connections": [
+      { "region": "StrongholdDungeon_South2" },
+      {
+        "region": "StrongholdDungeon_West3",
+        "requirements": [
+          "OR", [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility",
+            "lofty_mount",
+            "summon_big_rock"
+          ]
+        ]
+      },
+      { "region": "StrongholdDungeon_South4", "requirements": ["dungeon_key"]}
+    ]
+  },
+  {
+    "region": "StrongholdDungeon_South4",
+    "connections": [
+      { "region": "StrongholdDungeon_South2", "requirements": ["double_jump"] },
+      {
+        "region": "StrongholdDungeon_South5",
+        "requirements": [
+          "OR", [
+            "double_jump",
+            "distant_ledges",
+            "ground_switches",
+            "swimming"
+          ]
+        ]
+      }
+    ],
+    "chests": [
+      { "id": 6, "item": "Green Gem", "requirements": [ "heavy_blocks" ] }
+    ],
+    "encounters": [
+      { "id": 4, "monsters": [ "G'rulu", "G'rulu", "G'rulu" ] }
+    ]
+  },
+  {
+    "region": "StrongholdDungeon_South5",
+    "connections": [
+      { "region": "StrongholdDungeon_South4" },
+      { "region": "StrongholdDungeon_Library" }
+    ],
+    "encounters": [
+      { "id": 1, "monsters": [ "Toxiquus", "Toxiquus", "Mad Eye" ] }
+    ]
+  },
+  {
+    "region": "StrongholdDungeon_Library",
+    "connections": [
+      { "region": "StrongholdDungeon_South5" },
+      { "region": "StrongholdDungeon_Library2", "requirements": ["narrow_corridors"] }
+    ],
+    "encounters": [
+      "TODO: Encounter ID 6"
+    ],
+    "gifts": [
+      "TODO: Gift of Reward Box Lvl 1"
+    ]
+  },
+  {
+    "region": "StrongholdDungeon_Library2",
+    "connections": [
+      { "region": "StrongholdDungeon_Library", "requirements": ["narrow_corridors"] }
+    ],
+    "chests": [
+      { "id": 1, "item": "Tome+3" },
+      { "id": 2, "item": "2x Reward Box Lvl 3" }
+    ]
+  },
+  {
+    "region": "StrongholdDungeon_West1",
+    "connections": [
+      { "region": "StrongholdDungeon_North6" },
+      { "region": "StrongholdDungeon_West2" }
+    ],
+    "chests": [
+      { "id": 5, "item": "Blue Gem", "requirements": [ "breakable_walls" ] },
+      { "id": 12, "item": "2x Iron", "requirements": [
+        "AND", [
+          "heavy_blocks",
+          "OR", [
+            "double_jump",
+            "ground_switches",
+            "distant_ledges"
+          ]
+        ]
+      ] }
+    ],
+    "encounters": [
+      { "id": 3, "monsters": [ "Grummy", "G'rulu", "Grummy" ]}
+    ]
+  },
+  {
+    "region": "StrongholdDungeon_West2",
+    "connections": [
+      { "region": "StrongholdDungeon_West2" },
+      { "region": "StrongholdDungeon_West4" },
+      { "region": "StrongholdDungeon_South3_Shortcut", "requirements": ["stronghold_dungeon_south_3_shortcut"] }
+    ]
+  },
+  {
+    "region": "StrongholdDungeon_West3_Shortcut",
+    "connections": [
+      { "region": "StrongholdDungeon_West3" },
+      { "region": "StrongholdDungeon_West2" }
+    ]
+  },
+  {
+    "region": "StrongholdDungeon_West3",
+    "connections": [
+      { "region": "StrongholdDungeon_South3" },
+      { "region": "StrongholdDungeon_South3_Shortcut" },
+      { "region": "StrongholdDungeon_Hidden", "requirements": [ "breakable_walls" ] }
+    ],
+    "chests": [
+      { "id": 9, "item": "Red Gem" }
+    ],
+    "flags": [
+      { "id": "stronghold_dungeon_south_3_shortcut", "name": "Stronghold Dungeon South 3 Shortcut"}
+    ]
+  },
+  {
+    "region": "StrongholdDungeon_West4",
+    "connections": [
+      { "region": "StrongholdDungeon_West2" },
+      { "region": "StrongholdDungeon_West4_Shortcut"}
+    ],
+    "encounters": [
+      { "id": 3, "monsters": [ "G'rulu", "Grummy", "G'rulu" ]}
+    ]
+  },
+  {
+    "region": "StrongholdDungeon_West4_Shortcut",
+    "connections": [
+      { "region": "StrongholdDungeon_West4"},
+      { "region": "BlueCave_East2_Upper" }
+    ],
+    "flags": [
+      { "id": "stronghold_dungeon_west_4_shortcut", "name": "Stronghold Dungeon to Blue Caves Shortcut" }
+    ]
+  },
+  {
+    "region": "StrongholdDungeon_WestHidden",
+    "connections": [
+      { "region": "StrongholdDungeon_West3" },
+      { "region": "StrongholdDungeon_West2_Hidden" }
+    ],
+    "chests": [
+      { "id": 3, "item": "3x Reward Box Lvl 1", "requirements": ["breakable_walls"] }
+    ]
+  },
+  {
+    "region": "StrongholdDungeon_West2_Hidden",
+    "connections": [
+      { "region": "StrongholdDungeon_WestHidden" },
+      { "region": "StrongholdDungeon_West4_Hidden" }
+    ]
+  },
+  {
+    "region": "StrongholdDungeon_West4_Hidden",
+    "connections": [
+      { "region": "StrongholdDungeon_West2_Hidden" }
+    ],
+    "chests": [
+      { "id": 15, "item": "Crit Ring+3" }
+    ]
+  },
+  {
+    "region": "StrongholdDungeon_East1",
+    "connections": [
+      {
+        "region": "StrongholdDungeon_Central7",
+        "requirements": [
+          "OR", [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility",
+            "lofty_mount"
+          ]
+        ]
+      },
+      {
+        "region": "StrongholdDungeon_East2",
+        "requirements": [
+          "OR", [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility",
+            "lofty_mount"
+          ]
+        ]
+      },
+      {
+        "region": "StrongholdDungeon_East2",
+        "requirements": [
+          "OR", [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility",
+            "lofty_mount"
+          ]
+        ]
+      }
+    ],
+    "chests": [
+      { "id": 6, "item": "Corn", "requirements": [
+        "OR", [
+          "double_jump",
+          "improved_flying",
+          "dual_mobility"
+        ]
+      ] },
+      { "id": 7, "item": "Hazelnut", "requirements": [
+        "OR", [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility",
+            "lofty_mount"
+          ]
+        ] },
+      { "id": 9, "item": "Gauntlet+2", "requirements": [
+        "AND", [
+          "double_jump",
+          "OR", [
+            "improved_flying",
+            "dual_mobility",
+            "lofty_mount"
+          ]
+        ]
+      ] }
+    ],
+    "encounters": [
+      { "id": 4, "monsters": [ "Toxiquus", "Mad Eye", "Toxiquus" ], "requirements": [
+        "OR", [
+          "double_jump",
+          "distant_ledges",
+          "summon_big_rock"
+        ]
+      ]}
+    ]
+  },
+  {
+    "region": "StrongholdDungeon_East2",
+    "connections": [
+      {
+        "region": "StrongholdDungeon_East2",
+        "requirements": [
+          "OR", [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility"
+          ]
+        ]
+      },
+      { "region": "StrongholdDungeon_East3" },
+      { "region": "StrongholdDungeon_EastKeys" }
+    ]
+  },
+  {
+    "region": "StrongholdDungeon_East3",
+    "connections": [
+      { "region": "StrongholdDungeon_East2" },
+      { "region": "StrongholdDungeon_East4" },
+      {
+        "region": "StrongholdDungeon_East5",
+        "requirements": [
+          "OR", [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility"
+          ]
+        ]
+      }
+    ],
+    "chests": [
+      { "id": 11, "item": "Drum", "requirements": [
+        "AND", [
+          "dark_rooms",
+          "double_jump"
+        ]
+      ]}
+    ],
+    "encounters": [
+      { "id": 3, "monsters": [ "Toxiquus", "Toxiquus", "Toxiquus" ]}
+    ]
+  },
+  {
+    "region": "StrongholdDungeon_East4",
+    "connections": [
+      { "region": "StrongholdDungeon_East3" },
+      { "region": "MagmaChamber_West1" }
+    ]
+  },
+  {
+    "region": "StrongholdDungeon_East5",
+    "connections": [
+      {
+        "region": "StrongholdDungeon_East1",
+        "requirements": [
+          "OR", [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility",
+            "summon_big_rock"
+          ]
+        ]
+      },
+      {
+        "region": "StrongholdDungeon_East3",
+        "requirements": [
+          "OR", [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility",
+            "summon_big_rock"
+          ]
+        ]
+      }
+    ],
+    "chests": [
+      { "id": 10, "item": "Wizard Hat+2", "requirements": [
+        "OR", [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility",
+            "summon_big_rock"
+          ]
+      ]}
+    ]
+  },
+  {
+    "region": "StrongholdDungeon_EastKeys",
+    "connections": [
+      {
+        "region": "StrongholdDungeon_East2",
+        "requirements": [
+          "OR", [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility"
+          ]
+        ]
+      },
+      {
+        "region": "StrongholdDungeon_EastHidden",
+        "requirements": [
+          "AND", [
+            "double_jump",
+            "dark_rooms"
+          ]
+        ]
+      }
+    ],
+    "chests": [
+      { "id": 0, "item": "Stronghold Dungeon key" },
+      { "id": 1, "item": "Stronghold Dungeon key" }
+    ]
+  },
+  {
+    "region": "StrongholdDungeon_EastHidden",
+    "connections": [
+      { "region": "StrongholdDungeon_EastHidden" }
+    ],
+    "chests": [
+      { "id": 0, "item": "Dungeon Explorer Costume", "requirements": [ "ice_orbs" ] }
     ]
   },
 
@@ -1245,7 +1998,8 @@
               "summon_big_rock"]
             ]
           ]
-      }
+      },
+      { "region": "SnowyPeaks_East4_Lower" }
     ],
     "chests": [
       { "id": 8, "item": "Red Gem" },
@@ -1293,6 +2047,7 @@
   {
     "region": "SnowyPeaks_East4_Middle",
     "connections": [
+      { "region":  "SnowyPeaks_East5" },
       { "region":  "SnowyPeaks_East4_Lower" },
       { "region":  "SnowyPeaks_East4_Upper", "requirements": [
         "AND", [
@@ -1443,7 +2198,7 @@
         ]
       },
       {
-        "region": "SnowyPeaks_SunPalaceEntrance_Access",
+        "region": "SunPalace_West1",
         "requirements": [
           "OR", [
             "snowy_peaks_sun_palace_entrance_shortcut",
@@ -1727,7 +2482,7 @@
     "region": "SnowyPeaks_WestMountain2",
     "connections": [
       { "region": "SnowyPeaks_WestMountain1" },
-      { "region": "SnowyPeaks_WestMountain2" }
+      { "region": "SnowyPeaks_WestMountain3" }
     ],
     "chests": [
       { "id": 4, "item": "Mass Antidote" }
@@ -2006,7 +2761,8 @@
   {
     "region": "SnowyPeaks_EastMountain3_Shortcut",
     "connections": [
-      { "region": "SnowyPeaks_HighChallenge" }
+      { "region": "SnowyPeaks_HighChallenge" },
+      { "region": "SnowyPeaks_EastMountain3_Middle" }
     ],
     "flags": [
       { "id":  "snowy_peaks_east_mountain_3_shortcut", "name": "Snowy Peaks East Mountain 3 Shortcut" }

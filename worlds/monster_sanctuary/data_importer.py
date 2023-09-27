@@ -140,6 +140,8 @@ def parse_item_type(text) -> Optional[MonsterSanctuaryItemCategory]:
         return MonsterSanctuaryItemCategory.MONSTER
     elif text == "Flag":
         return MonsterSanctuaryItemCategory.FLAG
+    elif text == "Costume":
+        return MonsterSanctuaryItemCategory.COSTUME
 
     return None
 
