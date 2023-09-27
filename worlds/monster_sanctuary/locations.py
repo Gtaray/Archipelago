@@ -118,6 +118,8 @@ def add_gift_data(location_id, gift_data, region_name):
 
 def add_encounter_data(location_id, encounter_data, region_name, category=MonsterSanctuaryLocationCategory.MONSTER):
 	result: Dict[int, LocationData] = {}
+	if isinstance(encounter_data, str):
+		breakpoint()
 	encounter_name = f"{region_name}_{encounter_data['id']}"
 
 	# All wild encounters have 3 monster slots, even if it's a champion with only one monster
@@ -125,6 +127,8 @@ def add_encounter_data(location_id, encounter_data, region_name, category=Monste
 	# normally only 1 monster is present.
 	for i in range(3):
 		monster_name = None
+		if encounter_data.get("monsters") is None:
+			breakpoint()
 		if i < len(encounter_data["monsters"]):
 			monster_name = encounter_data["monsters"][i]
 
