@@ -1245,7 +1245,7 @@
     "region": "StrongholdDungeon_North4",
     "connections": [
       { "region": "StrongholdDungeon_North2" },
-      { "region": "StrongholdDungeon_North4" },
+      { "region": "StrongholdDungeon_North5" },
       {
         "region": "MysticalWorkshop_South1",
         "requirements": [
@@ -1401,12 +1401,17 @@
       { "region": "StrongholdDungeon_Central7" }
     ],
     "encounters": [
-      "TODO: hidden encounter: { \"id\": 2, \"monsters\": [ \"Mad Eye\", \"G'rulu\", \"Mad Eye\" ] },"
+      { "id": 2, "monsters": [ "Mad Eye", "G'rulu", "Mad Eye" ], "requirements": [
+        "OR", [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility"
+          ]
+      ]}
     ],
     "gifts": [
-      { "id": 0, "item": "Ahrimaaya", "requirements": [ "post_game" ] },
-      { "id": 0, "item": "Reward Box Lvl 4", "requirements": [ "post_game" ] },
-      "TODO: Figure out if these need to be randomized, because they are technically postgame"
+      { "id": 12100029, "item": "Ahrimaaya", "requirements": [ "post_game" ] },
+      "TODO: Re-add these once the post game is reachable via logic maybe? Or maybe just ignore this altogether"
     ]
   },
   {
@@ -1458,7 +1463,7 @@
             "AND", [
               "double_jump",
               "OR", [
-                "summon_big_rock",
+                "ground_switches",
                 "improved_flying",
                 "dual_mobility",
                 "lofty_mount"
@@ -1481,7 +1486,7 @@
     "region": "StrongholdDungeon_Central7",
     "connections": [
       { "region": "StrongholdDungeon_Central6" },
-      { "region": "StrongholdDungeon_East1_East" },
+      { "region": "StrongholdDungeon_East1" },
       {
         "region": "StrongholdDungeon_Central4",
         "requirements": [
@@ -1503,7 +1508,25 @@
             "lofty_mount"
           ]
         ]
+      },
+      {
+        "region": "StrongholdDungeon_CentralHidden",
+        "requirements": [
+          "AND", [
+            "dark_rooms",
+            "double_jump"
+          ]
+        ]
       }
+    ]
+  },
+  {
+    "region": "StrongholdDungeon_CentralHidden",
+    "connections": [
+      { "region": "StrongholdDungeon_Central7" }
+    ],
+    "chests": [
+      { "id": 3, "item": "Skill Potion" }
     ]
   },
   {
@@ -1525,7 +1548,7 @@
       { "region": "StrongholdDungeon_Hidden1" }
     ],
     "champion": [
-      { "id": 1, "item": "Aazerach", "requirements": [ "ahrimaaya" ] }
+      { "id": 1, "monsters": [ "Aazerach" ], "requirements": [ "ahrimaaya" ] }
     ]
   },
   {
@@ -1670,7 +1693,6 @@
   {
     "region": "StrongholdDungeon_West2",
     "connections": [
-      { "region": "StrongholdDungeon_West2" },
       { "region": "StrongholdDungeon_West4" },
       { "region": "StrongholdDungeon_South3_Shortcut", "requirements": ["stronghold_dungeon_south_3_shortcut"] }
     ]
@@ -1686,8 +1708,8 @@
     "region": "StrongholdDungeon_West3",
     "connections": [
       { "region": "StrongholdDungeon_South3" },
-      { "region": "StrongholdDungeon_South3_Shortcut" },
-      { "region": "StrongholdDungeon_Hidden", "requirements": [ "breakable_walls" ] }
+      { "region": "StrongholdDungeon_West3_Shortcut" },
+      { "region": "StrongholdDungeon_WestHidden", "requirements": [ "breakable_walls" ] }
     ],
     "chests": [
       { "id": 9, "item": "Red Gem" }
@@ -1768,7 +1790,7 @@
         ]
       },
       {
-        "region": "StrongholdDungeon_East2",
+        "region": "StrongholdDungeon_East5",
         "requirements": [
           "OR", [
             "double_jump",
@@ -1820,7 +1842,7 @@
     "region": "StrongholdDungeon_East2",
     "connections": [
       {
-        "region": "StrongholdDungeon_East2",
+        "region": "StrongholdDungeon_East1",
         "requirements": [
           "OR", [
             "double_jump",
@@ -1936,7 +1958,7 @@
   {
     "region": "StrongholdDungeon_EastHidden",
     "connections": [
-      { "region": "StrongholdDungeon_EastHidden" }
+      { "region": "StrongholdDungeon_EastKeys" }
     ],
     "chests": [
       { "id": 0, "item": "Dungeon Explorer Costume", "requirements": [ "ice_orbs" ] }
@@ -2389,7 +2411,18 @@
       { "region": "SnowyPeaks_ChampionRoom" }
     ],
     "chests": [
-      { "id": 9, "item": "Bronze" }
+      { "id": 9, "item": "Bronze", "requirements": [
+        "OR", [
+          "swimming",
+          "AND", [
+            "double_jump",
+            "OR", [
+              "mount",
+              "heavy_blocks"
+            ]
+          ]
+        ]
+      ] }
     ]
   },
   {

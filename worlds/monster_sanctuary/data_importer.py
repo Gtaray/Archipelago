@@ -31,6 +31,9 @@ def load_world():
 
             region_name: str = region.name
             for chest_data in region_data.get("chests") or []:
+                # Hack because we store comments as strings
+                if isinstance(chest_data, str):
+                    continue
                 location = add_chest_data(location_id, chest_data, region_name)
                 locations_by_id[location_id] = location
                 location_id += 1
@@ -44,16 +47,25 @@ def load_world():
                 location_id += 1
 
             for encounter_data in region_data.get("encounters") or []:
+                # Hack because we store comments as strings
+                if isinstance(encounter_data, str):
+                    continue
                 result = add_encounter_data(location_id, encounter_data, region_name)
                 locations_by_id.update(result[0])
                 location_id = result[1]
 
             for champion_data in region_data.get("champion") or []:
+                # Hack because we store comments as strings
+                if isinstance(champion_data, str):
+                    continue
                 result = add_champion_data(location_id, champion_data, region_name)
                 locations_by_id.update(result[0])
                 location_id = result[1]
 
             for flag_data in region_data.get("flags") or []:
+                # Hack because we store comments as strings
+                if isinstance(flag_data, str):
+                    continue
                 location = add_flag_data(location_id, flag_data, region_name)
                 locations_by_id[location_id] = location
                 location_id += 1
