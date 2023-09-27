@@ -17,7 +17,8 @@ class MonsterSanctuaryItemCategory(IntEnum):
     EGG = 8
     MONSTER = 9,
     RANK = 10,
-    FLAG = 11
+    FLAG = 11,
+    COSTUME = 12
 
 
 class ItemData:

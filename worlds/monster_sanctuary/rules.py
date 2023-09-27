@@ -96,6 +96,10 @@ def blue_cave_champion_room_2_west_shortcut(state: CollectionState, player: int)
     return state.has("Blue Caves to Mountain Path Shortcut", player)
 
 
+def stronghold_dungeon_south_3_shortcut(state: CollectionState, player: int) -> bool:
+    return state.has("Stronghold Dungeon South 3 Shortcut", player)
+
+
 def stronghold_dungeon_west_4_shortcut(state: CollectionState, player: int) -> bool:
     return state.has("Stronghold Dungeon to Blue Caves Shortcut", player)
 
@@ -129,6 +133,10 @@ def raw_hide(state: CollectionState, player: int) -> bool:
 
 def all_sanctuary_tokens(state: CollectionState, player: int) -> bool:
     return state.has("Sanctuary Token", player, 5)
+
+
+def post_game(state: CollectionState, player: int) -> bool:
+    return state.has("Defeated Mad Lord", player)
 # endregion
 
 
@@ -199,6 +207,10 @@ def workshop_key(state: CollectionState, player: int, count: int = 1) -> bool:
 
 def underworld_key(state: CollectionState, player: int, count: int = 1) -> bool:
     return state.has("Underworld key", player, count)
+
+
+def ahrimaaya(state: CollectionState, player: int, count: int = 1) -> bool:
+    return state.has("Ahrimaaya", player, count)
 # endregion
 
 
