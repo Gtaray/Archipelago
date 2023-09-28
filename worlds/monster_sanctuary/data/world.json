@@ -541,15 +541,31 @@
       { "region": "BlueCave_StrongholdEntrance" },
       { "region": "BlueCave_Platforms" },
       {
-        "region": "BlueCave_Switches",
-        "requirements": [ "blue_cave_key" ]
+        "region": "BlueCave_Switches_KeyDoor",
+        "requirements": [
+          "OR", [
+            "blue_cave_key",
+            "blue_cave_switches_unlocked"
+          ]
+        ]
       }
+    ]
+  },
+  {
+    "region": "BlueCave_Switches_KeyDoor",
+    "connections": [
+      { "region": "BlueCave_North1" },
+      { "region": "BlueCave_Switches" }
+    ],
+    "flags": [
+      { "id":  "blue_cave_switches_unlocked", "name": "Blue Caves Switches Unlocked" },
+      { "id":  "blue_cave_key_used", "name": "Blue Caves Key Used" }
     ]
   },
   {
     "region": "BlueCave_Switches",
     "connections": [
-      { "region":  "BlueCave_North1" }
+      { "region":  "BlueCave_Switches_KeyDoor" }
     ],
     "encounters": [
       { "id": 6, "monsters": [ "Grummy", "Grummy", "Tengu" ]}
@@ -694,12 +710,17 @@
     "connections": [
       { "region": "BlueCave_West1" },
       { "region": "BlueCave_East1" },
-      { "region": "BlueCave_South1_Upper", "requirements": [ "blue_cave_key" ] },
       {
-        "region": "BlueCave_ChampionRoom",
+        "region": "BlueCave_South1_Upper_KeyDoor",
+        "requirements": [
+          "OR", ["blue_cave_key", "blue_cave_south_unlocked"]
+        ]
+      },
+      {
+        "region": "BlueCave_ChampionRoom_KeyDoor",
         "requirements": [
           "AND",[
-            "blue_cave_key",
+            "OR", ["blue_cave_key", "blue_cave_champion_unlocked"],
             "OR", [ "double_jump", "improved_flying", "dual_mobility" ]
           ]
         ]
@@ -718,9 +739,30 @@
     ]
   },
   {
+    "region": "BlueCave_South1_Upper_KeyDoor",
+    "connections": [
+      { "region": "BlueCave_CentralPart" },
+      { "region": "BlueCave_South1_Upper" }
+    ],
+    "flags": [
+      { "id":  "blue_cave_south_unlocked", "name": "Blue Caves South Unlocked" },
+      { "id":  "blue_cave_key_used", "name": "Blue Caves Key Used" }
+    ]
+  },
+  {
+    "region": "BlueCave_ChampionRoom_KeyDoor",
+    "connections": [
+
+    ],
+    "flags": [
+      { "id":  "blue_cave_champion_unlocked", "name": "Blue Caves Champion Unlocked" },
+      { "id":  "blue_cave_key_used", "name": "Blue Caves Key Used" }
+    ]
+  },
+  {
     "region": "BlueCave_ChampionRoom",
     "connections": [
-      { "region":  "BlueCave_CentralPart" },
+      { "region":  "BlueCave_ChampionRoom_KeyDoor" },
       { "region":  "BlueCave_WestStairwell" }
     ],
     "champion": [
@@ -783,7 +825,12 @@
   {
     "region": "BlueCave_South1_Upper",
     "connections": [
-      { "region": "BlueCave_CentralPart" },
+      {
+        "region": "BlueCave_South1_Upper_KeyDoor",
+        "requirements": [
+          "OR", ["blue_cave_key", "blue_cave_south_unlocked"]
+        ]
+      },
       { "region": "BlueCave_South1_Middle" }
     ],
     "encounters": [

@@ -179,14 +179,31 @@ def keeper_rank_9(state: CollectionState, player: int) -> bool:
 # endregion
 
 
-# region Area Keys. This will need some major work once I figure out how keys work
+# region Area Keys.
+def has_enough_keys(state: CollectionState, player: int, key_name: str, used_name: str) -> bool:
+    key_count = state.count(key_name, player)
+    used_count = state.count(used_name, player)
+    return key_count > used_count
+
+
 def mountain_path_key(state: CollectionState, player: int, count: int = 1) -> bool:
     return state.has("Mountain Path key", player, count)
 
 
 def blue_cave_key(state: CollectionState, player: int, count: int = 1) -> bool:
-    flag = state.has("Blue Cave key", player, count)
-    return flag
+    return has_enough_keys(state, player, "Blue Cave key", "Blue Caves Key Used")
+
+
+def blue_cave_switches_unlocked(state: CollectionState, player: int) -> bool:
+    return state.has("Blue Caves Switches Unlocked", player)
+
+
+def blue_cave_south_unlocked(state: CollectionState, player: int) -> bool:
+    return state.has("Blue Caves South Unlocked", player)
+
+
+def blue_cave_champion_unlocked(state: CollectionState, player: int) -> bool:
+    return state.has("Blue Caves Champion Unlocked", player)
 
 
 def dungeon_key(state: CollectionState, player: int, count: int = 1) -> bool:
