@@ -316,10 +316,6 @@ def fire_orbs(state: CollectionState, player: int) -> bool:
     return state.has_group("Fire Orbs", player)
 
 
-def fiery_shots(state: CollectionState, player: int) -> bool:
-    return state.has_group("Fiery Shots", player)
-
-
 def water_orbs(state: CollectionState, player: int) -> bool:
     return state.has_group("Water Orbs", player)
 

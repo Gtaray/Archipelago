@@ -282,7 +282,7 @@ class MonsterSanctuaryWorld(World):
             for location in region.locations:
                 data = LOCATIONS.locations_data[location.name]
                 if data.category == LocationCategory.FLAG:
-                    # print(f"Placing flag '{data.default_item}' in {data.name}")
+                    print(f"Placing flag '{data.default_item}' in {data.name}")
                     location.place_locked_item(self.create_item(data.default_item))
 
     # called to place player's items into the MultiWorld's itempool. After this step all regions and items have to
