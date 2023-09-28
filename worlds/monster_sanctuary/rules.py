@@ -12,6 +12,7 @@ class Operation(Enum):
 
 class AccessCondition:
     function_name: Optional[str] = None
+    invert: bool = False
 
     def __init__(self, requirements: List, operation: Operation = Operation.NONE):
         self.operands: List[AccessCondition] = []
@@ -23,7 +24,12 @@ class AccessCondition:
             return
 
         if len(requirements) == 1:
-            self.function_name = requirements[0]
+            params = requirements[0].split()
+            if len(params) == 2:
+                self.invert = params[0].lower() == "not"
+                self.function_name = params[1]
+            else:
+                self.function_name = requirements[0]
 
         # if function name was set above, then we know that this is a leaf node
         # and can set the access rule and return
@@ -73,7 +79,10 @@ class AccessCondition:
     def has_access(self, state: CollectionState, player: int) -> bool:
         # if this node has no child conditions, return its own state
         if self.is_leaf():
-            return self.access_rule(state, player)
+            if self.invert:
+                return not self.access_rule(state, player)
+            else:
+                return self.access_rule(state, player)
 
         # If there are no operands to operate on, then return true
         if not self.operands:
@@ -206,12 +215,48 @@ def blue_cave_champion_unlocked(state: CollectionState, player: int) -> bool:
     return state.has("Blue Caves Champion Unlocked", player)
 
 
-def dungeon_key(state: CollectionState, player: int, count: int = 1) -> bool:
-    return state.has("Stronghold Dungeon key", player, count)
+def dungeon_key(state: CollectionState, player: int) -> bool:
+    return has_enough_keys(state, player, "Stronghold Dungeon key", "Stronghold Dungeon Key Used")
+
+
+def stronghold_dungeon_south_unlocked(state: CollectionState, player: int) -> bool:
+    return state.has("Stronghold Dungeon South Unlocked", player)
+
+
+def stronghold_dungeon_east_unlocked(state: CollectionState, player: int) -> bool:
+    return state.has("Stronghold Dungeon East Unlocked", player)
+
+
+def sun_palace_raise_center_1(state: CollectionState, player: int) -> bool:
+    return state.has("Sun Palace Raise Center", player, 1)
+
+
+def sun_palace_raise_center_2(state: CollectionState, player: int) -> bool:
+    return state.has("Sun Palace Raise Center", player, 2)
+
+
+def sun_palace_raise_center_3(state: CollectionState, player: int) -> bool:
+    return state.has("Sun Palace Raise Center", player, 3)
+
+
+def sun_palace_lower_water_1(state: CollectionState, player: int) -> bool:
+    return state.has("Sun Palace Lower Water", player, 1)
+
+
+def sun_palace_lower_water_2(state: CollectionState, player: int) -> bool:
+    return state.has("Sun Palace Lower Water", player, 2)
+
+
+def sun_palace_east_shortcut(state: CollectionState, player: int) -> bool:
+    return state.has("Sun Palace East Shortcut", player, 1)
+
+
+def sun_palace_west_shortcut(state: CollectionState, player: int) -> bool:
+    return state.has("Sun Palace West Shortcut", player, 1)
 
 
 def ancient_woods_key(state: CollectionState, player: int, count: int = 1) -> bool:
-    return state.has("Ancient Woods key", player, count)
+    return has_enough_keys(state, player, "Ancient Woods key", "Ancient Woods Key Used")
 
 
 def magma_chamber_key(state: CollectionState, player: int, count: int = 1) -> bool:
@@ -271,6 +316,10 @@ def fire_orbs(state: CollectionState, player: int) -> bool:
     return state.has_group("Fire Orbs", player)
 
 
+def fiery_shots(state: CollectionState, player: int) -> bool:
+    return state.has_group("Fiery Shots", player)
+
+
 def water_orbs(state: CollectionState, player: int) -> bool:
     return state.has_group("Water Orbs", player)
 
@@ -285,6 +334,10 @@ def earth_orbs(state: CollectionState, player: int) -> bool:
 
 def ice_orbs(state: CollectionState, player: int) -> bool:
     return state.has_group("Ice Orbs", player)
+
+
+def distant_ice_orbs(state: CollectionState, player: int) -> bool:
+    return state.has_group("Distant Ice Orbs", player)
 
 
 def summon_rock(state: CollectionState, player: int) -> bool:

@@ -554,12 +554,12 @@
   {
     "region": "BlueCave_Switches_KeyDoor",
     "connections": [
-      { "region": "BlueCave_North1" },
-      { "region": "BlueCave_Switches" }
+      { "region": "BlueCave_North1", "requirements": [ "blue_cave_switches_unlocked" ] },
+      { "region": "BlueCave_Switches", "requirements": [ "blue_cave_switches_unlocked" ] }
     ],
     "flags": [
       { "id":  "blue_cave_switches_unlocked", "name": "Blue Caves Switches Unlocked" },
-      { "id":  "blue_cave_key_used", "name": "Blue Caves Key Used" }
+      { "id":  "blue_cave_key_used1", "name": "Blue Caves Key Used" }
     ]
   },
   {
@@ -741,22 +741,23 @@
   {
     "region": "BlueCave_South1_Upper_KeyDoor",
     "connections": [
-      { "region": "BlueCave_CentralPart" },
-      { "region": "BlueCave_South1_Upper" }
+      { "region": "BlueCave_CentralPart", "requirements": [ "blue_cave_south_unlocked" ] },
+      { "region": "BlueCave_South1_Upper", "requirements": [ "blue_cave_south_unlocked" ] }
     ],
     "flags": [
       { "id":  "blue_cave_south_unlocked", "name": "Blue Caves South Unlocked" },
-      { "id":  "blue_cave_key_used", "name": "Blue Caves Key Used" }
+      { "id":  "blue_cave_key_used2", "name": "Blue Caves Key Used" }
     ]
   },
   {
     "region": "BlueCave_ChampionRoom_KeyDoor",
     "connections": [
-
+      { "region": "BlueCave_CentralPart", "requirements": [ "blue_cave_champion_unlocked" ] },
+      { "region": "BlueCave_ChampionRoom", "requirements": [ "blue_cave_champion_unlocked" ] }
     ],
     "flags": [
       { "id":  "blue_cave_champion_unlocked", "name": "Blue Caves Champion Unlocked" },
-      { "id":  "blue_cave_key_used", "name": "Blue Caves Key Used" }
+      { "id":  "blue_cave_key_used3", "name": "Blue Caves Key Used" }
     ]
   },
   {
@@ -1142,7 +1143,7 @@
     "region": "BlueCave_AquaEntrance_Upper",
     "connections": [
       { "region": "BlueCave_WestWaters6_Lower" },
-      { "region": "SunPalace_East1" },
+      { "region": "SunPalace_East1_East" },
       { "region": "BlueCave_AquaEntrance_Lower" }
     ],
     "encounters": [
@@ -1533,7 +1534,7 @@
     "region": "StrongholdDungeon_Central7",
     "connections": [
       { "region": "StrongholdDungeon_Central6" },
-      { "region": "StrongholdDungeon_East1" },
+      { "region": "StrongholdDungeon_East1_NW" },
       {
         "region": "StrongholdDungeon_Central4",
         "requirements": [
@@ -1655,13 +1656,37 @@
           ]
         ]
       },
-      { "region": "StrongholdDungeon_South4", "requirements": ["dungeon_key"]}
+      {
+        "region": "StrongholdDungeon_South3_KeyDoor",
+        "requirements": [
+          "OR", [ "dungeon_key", "stronghold_dungeon_south_unlocked" ]
+        ]
+      }
+    ]
+  },
+  {
+    "region": "StrongholdDungeon_South3_KeyDoor",
+    "connections": [
+      { "region": "StrongholdDungeon_South3", "requirements": [ "stronghold_dungeon_south_unlocked" ] },
+      { "region": "StrongholdDungeon_South4" }
+    ],
+    "flags": [
+      { "id":  "stronghold_dungeon_south_unlocked", "name": "Stronghold Dungeon South Unlocked" },
+      { "id":  "stronghold_dungeon_key_used1", "name": "Stronghold Dungeon Key Used" }
     ]
   },
   {
     "region": "StrongholdDungeon_South4",
     "connections": [
-      { "region": "StrongholdDungeon_South2", "requirements": ["double_jump"] },
+      {
+        "region": "StrongholdDungeon_South3_KeyDoor",
+        "requirements": [
+          "AND",[
+            "OR", [ "dungeon_key", "stronghold_dungeon_south_unlocked" ],
+            "double_jump"
+          ]
+        ]
+      },
       {
         "region": "StrongholdDungeon_South5",
         "requirements": [
@@ -1812,10 +1837,39 @@
     ]
   },
   {
-    "region": "StrongholdDungeon_East1",
+    "region": "StrongholdDungeon_East1_NW",
     "connections": [
       {
         "region": "StrongholdDungeon_Central7",
+        "requirements": [
+          "OR", [ "double_jump", "improved_flying", "dual_mobility",  "lofty_mount" ]
+        ]
+      },
+      {
+        "region": "StrongholdDungeon_East1_KeyDoor",
+        "requirements": [
+          "OR", [ "dungeon_key", "stronghold_dungeon_east_unlocked" ]
+        ]
+      },
+      { "region": "StrongholdDungeon_East1_SW" }
+    ]
+  },
+  {
+    "region": "StrongholdDungeon_East1_KeyDoor",
+    "connections": [
+      { "region": "StrongholdDungeon_East1_NW", "requirements": [ "stronghold_dungeon_east_unlocked" ] },
+      { "region": "StrongholdDungeon_East1_NE", "requirements": [ "stronghold_dungeon_east_unlocked" ] }
+    ],
+    "flags": [
+      { "id":  "stronghold_dungeon_east_unlocked", "name": "Stronghold Dungeon East Unlocked" },
+      { "id":  "stronghold_dungeon_key_used2", "name": "Stronghold Dungeon Key Used" }
+    ]
+  },
+  {
+    "region": "StrongholdDungeon_East1_NE",
+    "connections": [
+      {
+        "region": "StrongholdDungeon_East5",
         "requirements": [
           "OR", [
             "double_jump",
@@ -1825,6 +1879,53 @@
           ]
         ]
       },
+      {
+        "region": "StrongholdDungeon_East1_KeyDoor",
+        "requirements": [
+          "OR", [ "dungeon_key", "stronghold_dungeon_east_unlocked" ]
+        ]
+      },
+      { "region": "StrongholdDungeon_East1_SE" }
+    ],
+     "chests": [
+      { "id": 7, "item": "Hazelnut", "requirements": [
+        "OR", [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility",
+            "lofty_mount"]
+        ]
+      }
+    ]
+  },
+  {
+    "region": "StrongholdDungeon_East1_SW",
+    "connections": [
+      {
+        "region": "StrongholdDungeon_East1_SE",
+        "requirements": [
+          "OR", [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility",
+            "lofty_mount"
+          ]
+        ]
+      }
+    ],
+    "chests": [
+       { "id": 6, "item": "Corn", "requirements": [
+        "OR", [
+          "double_jump",
+          "improved_flying",
+          "dual_mobility"
+        ]
+      ] }
+    ]
+  },
+  {
+    "region": "StrongholdDungeon_East1_SE",
+    "connections": [
       {
         "region": "StrongholdDungeon_East2",
         "requirements": [
@@ -1837,33 +1938,16 @@
         ]
       },
       {
-        "region": "StrongholdDungeon_East5",
+        "region": "StrongholdDungeon_East1_NW",
         "requirements": [
-          "OR", [
+          "AND", [
             "double_jump",
-            "improved_flying",
-            "dual_mobility",
             "lofty_mount"
           ]
         ]
       }
     ],
     "chests": [
-      { "id": 6, "item": "Corn", "requirements": [
-        "OR", [
-          "double_jump",
-          "improved_flying",
-          "dual_mobility"
-        ]
-      ] },
-      { "id": 7, "item": "Hazelnut", "requirements": [
-        "OR", [
-            "double_jump",
-            "improved_flying",
-            "dual_mobility",
-            "lofty_mount"
-          ]
-        ] },
       { "id": 9, "item": "Gauntlet+2", "requirements": [
         "AND", [
           "double_jump",
@@ -1889,7 +1973,7 @@
     "region": "StrongholdDungeon_East2",
     "connections": [
       {
-        "region": "StrongholdDungeon_East1",
+        "region": "StrongholdDungeon_East1_SE",
         "requirements": [
           "OR", [
             "double_jump",
@@ -1941,7 +2025,7 @@
     "region": "StrongholdDungeon_East5",
     "connections": [
       {
-        "region": "StrongholdDungeon_East1",
+        "region": "StrongholdDungeon_East1_NE",
         "requirements": [
           "OR", [
             "double_jump",
@@ -2274,8 +2358,7 @@
             "warm_underwear"
           ]
         ]
-      },
-      { "region": "SunPalace_West1" }
+      }
     ],
     "chests": [
       {
@@ -2917,6 +3000,716 @@
     "chests": [
       { "id": 8, "item": "Carrot", "requirements": [ "AND", ["double_jump", "dark_rooms"]]},
       { "id": 9, "item": "Claws+3", "requirements": [ "AND", ["double_jump", "dark_rooms"]]}
+    ]
+  },
+
+  {
+    "region": "SunPalace_East1_East",
+    "connections": [
+      { "region": "BlueCave_AquaEntrance_Upper" },
+      {
+        "region": "SunPalace_East1_Center",
+        "requirements": [
+          "lightning_orbs"
+        ]
+      }
+    ]
+  },
+  {
+    "region": "SunPalace_East1_Center",
+    "connections": [
+      {
+        "region": "SunPalace_East1_East",
+        "requirements": [
+          "lightning_orbs"
+        ]
+      },
+      {
+        "region": "SunPalace_East1_West",
+        "requirements": [
+          "earth_orbs"
+        ]
+      }
+    ],
+    "chests": [
+      { "id": 7, "item": "Blue Gem" },
+      { "id": 8, "item": "Green Gem" },
+      { "id": 9, "item": "Red Gem" }
+    ]
+  },
+  {
+    "region": "SunPalace_East1_West",
+    "connections": [
+      { "region": "SunPalace_East2" },
+      {
+        "region": "SunPalace_East1_Center",
+        "requirements": [
+          "earth_orbs"
+        ]
+      }
+    ],
+    "encounters": [
+      { "id": 3, "monsters": [ "Vasuki", "Blade Widow", "Vasuki" ]}
+    ]
+  },
+  {
+    "region": "SunPalace_EastChampion",
+    "connections": [
+      { "region": "SunPalace_East2" }
+    ],
+    "champion": [
+      { "id": 2, "monsters": [ "Diavola" ]}
+    ]
+  },
+  {
+    "region": "SunPalace_East2",
+    "connections": [
+      { "region": "SunPalace_East1_West" },
+      { "region": "SunPalace_East3" },
+      {
+        "region": "SunPalace_EastChampion",
+        "requirements": [
+          "OR", [
+            "secret_vision",
+            "AND", ["double_jump", "lofty_mount"]
+          ]
+        ]
+      }
+    ],
+    "chests": [
+      { "id": 2, "item": "2x Wool" }
+    ],
+    "encounters": [
+      { "id": 3, "monsters": [ "Blade Widow", "Blade Widow", "Blade Widow" ]}
+    ]
+  },
+  {
+    "region": "SunPalace_East3",
+    "connections": [
+      { "region": "SunPalace_East2" },
+      { "region": "SunPalace_East4" },
+      { "region": "SunPalace_East6", "requirements": ["sun_palace_east_shortcut"] }
+    ],
+    "chests": [
+      { "id": 5, "item": "2x Almond", "requirements": [
+        "OR", [
+          "AND", [ "double_jump", "distant_ledges" ],
+          "improved_flying",
+          "dual_mobility" ]
+      ] },
+      { "id": 5, "item": "Crimson Gem", "requirements": [
+        "AND", [
+          "ground_switches",
+          "OR", [
+            "AND", [ "double_jump", "distant_ledges" ],
+            "improved_flying",
+            "dual_mobility"
+          ]
+        ]
+      ] }
+    ],
+    "encounters": [
+      { "id": 7, "monsters": [ "Ninki Nanka", "Vasuki", "Ninki Nanka" ]},
+      { "id": 8, "monsters": [ "Vasuki", "Blade Widow", "Vasuki" ]}
+    ]
+  },
+  {
+    "region": "SunPalace_East4",
+    "connections": [
+      { "region": "SunPalace_East3" },
+      { "region": "SunPalace_Center" }
+    ],
+    "chests": [
+      { "id": 4, "item": "Cestus+3", "requirements": [ "water_orbs" ] }
+    ],
+    "encounters": [
+      { "id": 5, "monsters": [ "Vasuki","Ninki Nanka", "Vasuki" ]}
+    ]
+  },
+  {
+    "region": "SunPalace_East5",
+    "connections": [
+      { "region": "SunPalace_EastSewers5" },
+      { "region": "SunPalace_East6", "requirements": ["double_jump"] }
+    ]
+  },
+  {
+    "region": "SunPalace_East6",
+    "connections": [
+      { "region": "SunPalace_East5" },
+      { "region": "SunPalace_East3" }
+    ],
+    "encounters": [
+      { "id": 3, "monsters": [ "Ninki Nanka", "Ninki Nanka", "Ninki Nanka" ]}
+    ],
+    "champion": [
+      { "id": 3, "monsters": [ "Qilin" ]}
+    ],
+    "flags": [
+      { "id": "sun_palace_east_shortcut", "name": "Sun Palace East Shortcut" },
+      { "id": "sun_palace_raise_center_2", "name": "Sun Palace Raise Center" }
+    ]
+  },
+  {
+    "region": "SunPalace_Center",
+    "connections": [
+      { "region": "SunPalace_West3" },
+      { "region": "SunPalace_South1_Upper" },
+      {
+        "region": "SunPalace_North1",
+        "requirements": [
+          "AND", [
+            "sun_palace_raise_center_3",
+            "OR", [
+              "double_jump",
+              "improved_flying",
+              "dual_mobility",
+              "lofty_mount",
+              "summon_big_rock"
+            ]
+          ]
+        ]
+      },
+      {
+        "region": "SunPalace_North3",
+        "requirements": [
+          "AND", [
+            "sun_palace_raise_center_3",
+            "OR", [
+              "double_jump",
+              "improved_flying",
+              "dual_mobility",
+              "lofty_mount",
+              "summon_big_rock"
+            ]
+          ]
+        ]
+      }
+    ],
+    "chests": [
+      { "id": 13, "item": "Skill Potion", "requirements": [
+        "AND", [
+          "sun_palace_raise_center_2",
+          "OR", [ "double_jump", "distant_ledges" ]
+        ]
+      ]}
+    ],
+    "flags": [
+      {
+        "id": "sun_palace_lower_water_1",
+        "name": "Sun Palace Lower Water",
+        "requirements": [ "sun_palace_raise_center_1" ]
+      },
+      {
+        "id": "sun_palace_lower_water_2",
+        "name": "Sun Palace Lower Water",
+        "requirements": [ "sun_palace_raise_center_2" ]
+      }
+    ]
+  },
+  {
+    "region": "SunPalace_West2",
+    "connections": [
+      { "region": "SunPalace_West1" },
+      { "region": "SunPalace_West3" },
+      { "region": "SunPalace_West5" }
+    ],
+    "chests": [
+      { "id": 4, "item": "Sun Stone", "requirements": [
+        "AND", [ "double_jump", "distant_ledges" ]
+      ] }
+    ],
+    "encounters": [
+      { "id": 2, "monsters": [ "Imori", "Ninki Nanka", "Imori" ], "requirements": [
+        "OR", [ "double_jump", "distant_ledges" ]
+      ]}
+    ]
+  },
+  {
+    "region": "SunPalace_West1",
+    "connections": [
+      { "region": "SunPalace_West2" },
+      { "region": "SnowyPeaks_SunPalaceEntrance_Access" }
+    ],
+    "chests": [
+      { "id": 3, "item": "Azure Gem", "requirements": [
+        "OR", [ "double_jump", "distant_ledges" ]
+      ] },
+      { "id": 5, "item": "Verdant Gem" }
+    ],
+    "encounters": [
+      { "id": 2, "monsters": [ "Imori", "Imori", "Imori" ], "requirements": [
+        "OR", [ "double_jump", "distant_ledges" ]
+      ]},
+      { "id": 4, "monsters": [ "Blade Widow", "Imori", "Blade Widow" ]}
+    ]
+  },
+  {
+    "region": "SunPalace_West2",
+    "connections": [
+      {
+        "region": "SunPalace_West1",
+        "requirements": [ "OR", [ "double_jump", "distant_ledges" ] ]
+      },
+      { "region": "SunPalace_West3" },
+      { "region": "SunPalace_West5", "requirements": ["sun_palace_west_shortcut"] }
+    ],
+    "chests": [
+      { "id": 4, "item": "Sun Stone", "requirements": [
+        "AND", [ "double_jump", "distant_ledges" ]
+      ] }
+    ],
+    "encounters": [
+      { "id": 2, "monsters": [ "Imori", "Ninki Nanka", "Imori" ], "requirements": [
+        "OR", [ "double_jump", "distant_ledges" ]
+      ]}
+    ]
+  },
+  {
+    "region": "SunPalace_West3",
+    "connections": [
+      { "region": "SunPalace_West2" },
+      { "region": "SunPalace_Center" }
+    ],
+    "chests": [
+      { "id": 2, "item": "Coat+4", "requirements": [ "mount" ] }
+    ],
+    "gifts": [
+      { "id": 19700006, "item": "3x Monster Bell" },
+      "TODO: Figure out what the requirements for this are"
+    ]
+  },
+  {
+    "region": "SunPalace_West4",
+    "connections": [
+      {
+        "region": "SunPalace_West5",
+        "requirements": [
+          "OR", [ "double_jump", "distant_ledges" ]
+        ]
+      },
+      { "region": "SunPalace_WestSewers2" }
+    ],
+    "chests": [
+      { "id": 0, "item": "Switch Stone" },
+      { "id": 2, "item": "Skill Resetter", "requirements": [
+        "OR", [
+          "swimming",
+          "AND", [
+            "double_jump",
+            "OR", [
+              "improved_flying",
+              "dual_mobility",
+              "summon_big_rock"
+            ]
+          ]
+        ]
+      ] },
+      { "id": 4, "item": "Monster Bell" }
+    ]
+  },
+  {
+    "region": "SunPalace_West5",
+    "connections": [
+      { "region": "SunPalace_West2" },
+      { "region": "SunPalace_West4" }
+    ],
+    "encounters": [
+      { "id": 0, "monsters": [ "Blade Widow", "Ninki Nanka", "Blade Widow" ]}
+    ],
+    "flags": [
+      { "id": "sun_palace_raise_center_3", "name": "Sun Palace Raise Center" },
+      { "id": "sun_palace_west_shortcut", "name": "Sun Palace West Shortcut" }
+    ]
+  },
+  {
+    "region": "SunPalace_South1_Upper",
+    "connections": [
+      {
+        "region": "SunPalace_Center",
+        "requirements": [
+          "OR", [
+            "sun_palace_lower_water_1",
+            "AND", [
+              "NOT sun_palace_lower_water_1",
+              "OR", [
+                "swimming",
+                "double_jump",
+                "improved_flying",
+                "dual_mobility",
+                "summon_big_rock"
+              ]
+            ]
+          ]
+        ]
+      },
+      {
+        "region": "SunPalace_South2",
+        "requirements": [ "OR", ["double_jump", "distant_ledges"]]
+      },
+      {
+        "region": "SunPalace_South1_Lower",
+        "requirements": [
+          "OR", [
+            "AND", [
+              "swimming",
+              "NOT sun_palace_lower_water_1"
+            ],
+            "AND", [
+              "sun_palace_lower_water_1",
+              "OR", [
+                "double_jump",
+                "improved_flying",
+                "dual_mobility"
+              ]
+            ]
+          ]
+        ]
+      }
+    ],
+    "chests": [
+      { "id": 13, "item": "2x Iron", "requirements": [
+        "OR", [
+            "AND", [
+              "NOT sun_palace_lower_water_1",
+              "swimming"
+            ],
+            "AND", [
+              "sun_palace_lower_water_1",
+              "OR", [
+                "double_jump",
+                "improved_flying",
+                "dual_mobility",
+                "lofty_mount",
+                "summon_big_rock"
+              ]
+            ]
+          ]
+      ]}
+    ]
+  },
+  {
+    "region": "SunPalace_South1_Lower",
+    "connections": [
+      {
+        "region": "SunPalace_South1_Upper",
+        "requirements": [
+          "OR", [
+            "AND", [
+              "NOT sun_palace_lower_water_1",
+              "swimming"
+            ],
+            "AND", [
+              "sun_palace_lower_water_1",
+              "double_jump"
+            ]
+          ]
+        ]
+      },
+      {
+        "region": "SunPalace_EastSewers1",
+        "requirements": [
+          "OR", [
+            "AND", [
+              "NOT sun_palace_lower_water_2",
+              "swimming"
+            ],
+            "sun_palace_lower_water_2",
+            "double_jump"
+          ]
+        ]
+      },
+      {
+        "region": "SunPalace_WestSewers1",
+        "requirements": [
+          "OR", [
+            "AND", [
+              "NOT sun_palace_lower_water_2",
+              "swimming"
+            ],
+            "AND", [
+              "sun_palace_lower_water_2",
+              "OR", [
+                "double_jump",
+                "improved_flying",
+                "dual_mobility"
+              ]
+            ]
+          ]
+        ]
+      }
+    ],
+    "chests": [
+      { "id": 5, "item": "Carrot", "requirements": [
+        "OR", [ "double_jump", "improved_flying", "dual_mobility", "lofty_mount" ]
+      ]},
+      { "id": 6, "item": "Level Badge", "requirements": [
+        "OR", [
+          "AND", [ "NOT sun_palace_lower_water_2", "swimming" ],
+          "AND", [
+            "sun_palace_lower_water_2",
+            "OR", [ "double_jump", "improved_flying", "dual_mobility" ] ]
+          ]
+      ] },
+      { "id": 7, "item": "Phoenix Tear", "requirements": [
+        "OR", [
+          "AND", [ "NOT sun_palace_lower_water_2", "swimming" ],
+          "sun_palace_lower_water_2",
+          "double_jump"
+        ]
+      ] },
+      { "id": 8, "item": "Reward Box Lvl 1", "requirements": [
+        "OR", [
+          "AND", [ "NOT sun_palace_lower_water_2", "swimming" ],
+          "AND", [
+            "sun_palace_lower_water_2",
+            "OR", [ "double_jump", "improved_flying", "dual_mobility", "lofty_mount", "summon_big_rock" ] ]
+          ]
+      ] }
+    ]
+  },
+  {
+    "region": "SunPalace_South2",
+    "connections": [
+      { "region": "SunPalace_South1_Upper" },
+      { "region": "SunPalace_South3" }
+    ],
+    "encounters": [
+      { "id": 0, "monsters": [ "Vasuki", "Sycophantum", "Imori" ]}
+    ]
+  },
+  {
+    "region": "SunPalace_South3",
+    "connections": [
+      { "region": "SunPalace_South2" },
+      {
+        "region": "SunPalace_South4",
+        "requirements": [
+          "OR", ["double_jump", "improved_flying", "dual_mobility"]
+        ]
+      }
+    ],
+    "chests": [
+      { "id": 5, "item": "Bandana+5", "requirements": [ "distant_ice_orbs" ] },
+      { "id": 5, "item": "2x Leather", "requirements": [ "fiery_shots" ]}
+    ],
+    "encounters": [
+      { "id": 0, "monsters": [ "Imori", "Ninki Nanka", "Imori" ]}
+    ]
+  },
+  {
+    "region": "SunPalace_South4",
+    "connections": [
+      { "region": "SunPalace_South2" },
+      { "region": "SunPalace_South3" }
+    ],
+    "flags": [
+      { "id": "sun_palace_raise_center_1", "name": "Sun Palace Raise Center" }
+    ]
+  },
+  {
+    "region": "SunPalace_EastSewers1",
+    "connections": [
+      { "region": "SunPalace_South1_Lower" },
+      { "region": "SunPalace_EastSewers2" }
+    ],
+    "encounters": [
+      { "id": 2, "monsters": [ "Kame", "Vasuki", "Kame" ]}
+    ]
+  },
+  {
+    "region": "SunPalace_EastSewers2",
+    "connections": [
+      { "region": "SunPalace_EastSewers1" },
+      { "region": "SunPalace_EastSewers3" },
+      { "region": "SunPalace_EastSewers6", "requirements": ["sun_palace_lower_water_2"] }
+    ],
+    "chests": [
+      { "id": 6, "item": "Level Badge", "requirements": [
+        "OR", [
+          "AND", [ "NOT sun_palace_lower_water_2", "swimming" ],
+          "sun_palace_lower_water_2",
+          "double_jump"
+        ]
+      ]}
+    ],
+    "encounters": [
+      { "id": 2, "monsters": [ "Kame", "Sycophantum", "Kame" ]}
+    ]
+  },
+  {
+    "region": "SunPalace_EastSewers3",
+    "connections": [
+      { "region": "SunPalace_EastSewers2" },
+      { "region": "SunPalace_EastSewers4" }
+    ],
+    "encounters": [
+      { "id": 2, "monsters": [ "Sycophantum", "Sycophantum", "Sycophantum" ]}
+    ]
+  },
+  {
+    "region": "SunPalace_EastSewers4",
+    "connections": [
+      { "region": "SunPalace_EastSewers3" },
+      { "region": "SunPalace_EastSewers5" }
+    ],
+    "chests": [
+      "TODO: See if this is doable with a swimming creature while water is raised",
+      { "id": 4, "item": "Crimson Gem", "requirements": [
+        "AND", [
+          "sun_palace_lower_water_2",
+          "OR", [ "double_jump", "lofty_mount" ]
+        ]
+      ]}
+    ]
+  },
+  {
+    "region": "SunPalace_EastSewers5",
+    "connections": [
+      { "region": "SunPalace_EastSewers4" },
+      { "region": "SunPalace_East5" }
+    ],
+    "encounters": [
+      { "id": 2, "monsters": [ "Kame", "Sycophantum", "Sycophantum" ]}
+    ]
+  },
+  {
+    "region": "SunPalace_EastSewers6",
+    "connections": [
+      {
+        "region": "SunPalace_EastSewers2",
+        "requirements": [
+          "OR", [
+            "AND", [ "swimming", "NOT sun_palace_lower_water_2" ],
+            "AND", [
+              "sun_palace_lower_water_2",
+              "OR", [ "double_jump", "improved_flying", "dual_mobility" ]
+            ]
+          ]
+        ]
+      }
+    ],
+    "chests": [
+      { "id": 5, "item": "Vital Ring+4", "requirements": [
+        "AND", [ "breakable_walls", "heavy_blocks" ]
+      ] },
+      { "id": 7, "item": "Crystal Shard" }
+    ]
+  },
+  {
+    "region": "SunPalace_WestSewers1",
+    "connections": [
+      { "region": "SunPalace_South1_Lower" },
+      {
+        "region": "SunPalace_WestSewers3",
+        "requirements": [
+          "OR", [ "swimming", "double_jump" ]
+        ]
+      },
+      { "region": "SunPalace_WestSewers4" }
+    ],
+    "chests": [
+      { "id": 4, "item": "2x Smoke Bomb", "requirements": [ "heavy_blocks" ]}
+    ]
+  },
+  {
+    "region": "SunPalace_WestSewers2",
+    "connections": [
+      { "region": "SunPalace_WestSewers3" },
+      {
+        "region": "SunPalace_West4",
+        "requirements": [
+          "OR", [
+            "AND", [ "swimming", "NOT sun_palace_lower_water_2" ],
+            "AND", [
+              "sun_palace_lower_water_2",
+              "OR", [ "double_jump", "improved_flying", "dual_mobility", "lofty_mount", "summon_big_rock" ]
+            ]
+          ]
+        ]
+      },
+      { "region": "SunPalace_WestSewersSecret", "requirements": [ "breakable_walls" ] },
+      {
+        "region": "SunPalace_WestSewersSecret2",
+        "requirements": [
+          "AND", [
+            "sun_palace_lower_water_2",
+            "grapple",
+            "OR", [ "double_jump", "improved_flying", "dual_mobility", "lofty_mount", "summon_big_rock" ]
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "region": "SunPalace_WestSewers3",
+    "connections": [
+      { "region": "SunPalace_WestSewers1" },
+      {
+        "region": "SunPalace_WestSewers2",
+        "requirements": [
+          "OR", [ "double_jump", "swimming", "sun_palace_lower_water_2" ]
+        ]
+      }
+    ],
+    "encounters": [
+      { "id": 0, "monsters": [ "Imori", "Kame", "Kame" ]}
+    ]
+  },
+  {
+    "region": "SunPalace_WestSewers4",
+    "connections": [
+      {
+        "region": "SunPalace_WestSewers1",
+        "requirements": [
+          "OR", [
+            "AND", [ "swimming", "NOT sun_palace_lower_water_2" ],
+            "AND", [
+              "sun_palace_lower_water_2",
+              "OR", [ "double_jump", "distant_ledges", "ground_switches" ]
+            ]
+          ]
+        ]
+      }
+    ],
+    "chests": [
+      { "id": 4, "item": "Switch Stone", "requirements": [ "swimming" ]},
+      { "id": 5, "item": "2x Level Badge", "requirements": [ "swimming" ]}
+    ]
+  },
+  {
+    "region": "SunPalace_WestSewersSecret",
+    "connections": [
+      { "region": "SunPalace_WestSewers2" }
+    ],
+    "chests": [
+      { "id": 1, "item": "Bronze", "requirements": [
+        "OR", [
+          "AND", [ "swimming", "NOT sun_palace_lower_water_2" ],
+          "AND", [
+            "sun_palace_lower_water_2",
+            "OR", [ "double_jump", "distant_ledges" ]
+          ]
+        ]
+      ]},
+      { "id": 2, "item": "2x Mango", "requirements": [
+        "OR", [
+          "AND", [ "swimming", "NOT sun_palace_lower_water_2" ],
+          "AND", [
+            "sun_palace_lower_water_2",
+            "OR", [ "double_jump", "distant_ledges" ]
+          ]
+        ]
+      ]}
+    ]
+  },
+  {
+    "region": "SunPalace_WestSewersSecret2",
+    "connections": [
+      { "region": "SunPalace_WestSewers2" }
+    ],
+    "chests": [
+      { "id": 0, "item": "Shuriken+5" }
     ]
   }
 ]
