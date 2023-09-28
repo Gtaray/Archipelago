@@ -1,0 +1,28 @@
+from worlds.monster_sanctuary.tests.Areas.TestArea import TestArea
+
+
+class SnowyPeaksTests(TestArea):
+    def test_shortcuts(self):
+        self.starting_regions = ["SnowyPeaks_East4_Middle"]
+        self.run_tests([
+            ["snowy_peaks_east4_upper_shortcut", False, []],
+            ["snowy_peaks_east4_upper_shortcut", False, ["Silvaero"]],
+            ["snowy_peaks_east4_upper_shortcut", True, ["Double Jump Boots"]],
+            ["snowy_peaks_east4_upper_shortcut", True, ["Snowy Peaks East 4 Upper Shortcut", "Silvaero"]]
+        ])
+
+        self.starting_regions = ["SnowyPeaks_EastMountain3_Middle"]
+        self.run_tests([
+            ["snowy_peaks_east_mountain_3_shortcut", False, []],
+            ["snowy_peaks_east_mountain_3_shortcut", False, ["Silvaero"]],
+            ["snowy_peaks_east_mountain_3_shortcut", False, ["Double Jump Boots"]],
+            ["snowy_peaks_east_mountain_3_shortcut", True, ["Snowy Peaks East Mountain 3 Shortcut",
+                                                            "Double Jump Boots"]],
+            ["snowy_peaks_east_mountain_3_shortcut", True, ["Snowy Peaks East Mountain 3 Shortcut", "Silvaero"]]
+        ])
+
+        self.starting_regions = ["SnowyPeaks_SunPalaceEntrance"]
+        self.run_tests([
+            ["snowy_peaks_sun_palace_entrance_shortcut", False, []],
+            ["snowy_peaks_sun_palace_entrance_shortcut", True, ["Warm Underwear"]]
+        ])

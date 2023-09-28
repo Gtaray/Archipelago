@@ -96,9 +96,8 @@ class AccessCondition:
 
 
 # region Navigation Flags
-def blue_caves_switches_access(state: CollectionState, player: int) -> bool:
-    flag = state.has("Blue Caves Switches Access", player)
-    return flag
+def blue_cave_switches_access(state: CollectionState, player: int) -> bool:
+    return state.has("Blue Caves Switches Access", player)
 
 
 def blue_cave_champion_room_2_west_shortcut(state: CollectionState, player: int) -> bool:
@@ -132,8 +131,7 @@ def double_jump(state: CollectionState, player: int) -> bool:
 
 
 def warm_underwear(state: CollectionState, player: int) -> bool:
-    flag = state.has("Warm Underwear", player, 1)
-    return flag
+    return state.has("Warm Underwear", player, 1)
 
 
 def raw_hide(state: CollectionState, player: int) -> bool:
@@ -151,8 +149,7 @@ def post_game(state: CollectionState, player: int) -> bool:
 
 # region Keeper Rank
 def keeper_rank_1(state: CollectionState, player: int) -> bool:
-    flag = state.has("Champion Defeated", player, 1)
-    return flag
+    return state.has("Champion Defeated", player, 1)
 
 
 def keeper_rank_2(state: CollectionState, player: int) -> bool:

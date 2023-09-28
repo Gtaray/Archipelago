@@ -571,7 +571,7 @@
       { "id": 6, "monsters": [ "Grummy", "Grummy", "Tengu" ]}
     ],
     "flags": [
-      { "id":  "blue_caves_switches_access", "name": "Blue Caves Switches Access" }
+      { "id":  "blue_cave_switches_access", "name": "Blue Caves Switches Access" }
     ]
   },
   {
@@ -582,7 +582,7 @@
         "region": "BlueCave_NorthFork_Lower",
         "requirements": [
           "OR", [
-            "blue_caves_switches_access",
+            "blue_cave_switches_access",
             "AND", [
               "double_jump",
               "OR", [
@@ -599,7 +599,7 @@
       { "id": 0, "item": "Blue Cave key" },
       { "id": 1, "item": "250 G", "requirements": [
         "OR", [
-          "blue_caves_switches_access",
+          "blue_cave_switches_access",
           "double_jump",
           "distant_ledges"
         ]
@@ -1254,7 +1254,7 @@
     ],
     "chests": [
       { "id": 5, "item": "Grape" },
-      { "id": 5, "item": "Crystal Shard", "requirements": [ "ground_switches" ] }
+      { "id": 7, "item": "Crystal Shard", "requirements": [ "ground_switches" ] }
     ]
   },
   {
@@ -1926,6 +1926,7 @@
   {
     "region": "StrongholdDungeon_East1_SE",
     "connections": [
+      { "region": "StrongholdDungeon_East1_SW" },
       {
         "region": "StrongholdDungeon_East2",
         "requirements": [
@@ -2962,7 +2963,7 @@
         "requirements": [
           "AND", [
             "snowy_peaks_east_mountain_3_shortcut",
-            "double_jump"
+            "OR", ["double_jump", "improved_flying", "dual_mobility"]
           ]
         ]
       },
@@ -3130,7 +3131,9 @@
     "region": "SunPalace_East5",
     "connections": [
       { "region": "SunPalace_EastSewers5" },
-      { "region": "SunPalace_East6", "requirements": ["double_jump"] }
+      { "region": "SunPalace_East6", "requirements": [
+        "OR", ["double_jump", "improved_flying", "dual_mobility"]
+      ] }
     ]
   },
   {
@@ -3153,6 +3156,7 @@
   {
     "region": "SunPalace_Center",
     "connections": [
+      { "region": "SunPalace_East4" },
       { "region": "SunPalace_West3" },
       { "region": "SunPalace_South1_Upper" },
       {
@@ -3188,9 +3192,15 @@
     ],
     "chests": [
       { "id": 13, "item": "Skill Potion", "requirements": [
-        "AND", [
-          "sun_palace_raise_center_2",
-          "OR", [ "double_jump", "distant_ledges" ]
+        "OR", [
+          "AND", [
+            "NOT sun_palace_raise_center_2",
+            "swimming"
+          ],
+          "AND", [
+            "sun_palace_raise_center_2",
+            "OR", [ "double_jump", "distant_ledges" ]
+          ]
         ]
       ]}
     ],
@@ -3603,7 +3613,13 @@
       {
         "region": "SunPalace_WestSewers3",
         "requirements": [
-          "OR", [ "swimming", "double_jump" ]
+          "OR", [
+            "AND", [
+              "NOT sun_palace_lower_water_2",
+              "OR", ["swimming", "double_jump" ]
+            ],
+            "sun_palace_lower_water_2"
+          ]
         ]
       },
       { "region": "SunPalace_WestSewers4" }
