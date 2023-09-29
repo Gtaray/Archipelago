@@ -1,5 +1,3 @@
-import unittest
-
 from worlds.monster_sanctuary.tests.Areas.TestArea import TestArea
 
 
@@ -47,4 +45,3 @@ class BlueCavesTests(TestArea):
         self.run_tests([
             ["blue_cave_champion_room_2_west_shortcut", True, []]
         ])
-

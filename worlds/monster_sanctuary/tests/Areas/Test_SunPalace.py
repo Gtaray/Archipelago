@@ -1,5 +1,3 @@
-import unittest
-
 from worlds.monster_sanctuary.tests.Areas.TestArea import TestArea
 
 

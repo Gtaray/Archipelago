@@ -1,5 +1,4 @@
-from worlds.generic.Rules import add_item_rule, add_rule, location_item_name
-from BaseClasses import LocationProgressType, MultiWorld, Location, Region, Entrance, CollectionState
+from BaseClasses import CollectionState
 from typing import List, Optional
 from enum import Enum
 
@@ -196,7 +195,7 @@ def mountain_path_key(state: CollectionState, player: int, count: int = 1) -> bo
     return state.has("Mountain Path key", player, count)
 
 
-def blue_cave_key(state: CollectionState, player: int, count: int = 1) -> bool:
+def blue_cave_key(state: CollectionState, player: int) -> bool:
     return has_enough_keys(state, player, "Blue Cave key", "Blue Caves Key Used")
 
 
@@ -252,7 +251,7 @@ def sun_palace_west_shortcut(state: CollectionState, player: int) -> bool:
     return state.has("Sun Palace West Shortcut", player, 1)
 
 
-def ancient_woods_key(state: CollectionState, player: int, count: int = 1) -> bool:
+def ancient_woods_key(state: CollectionState, player: int) -> bool:
     return has_enough_keys(state, player, "Ancient Woods key", "Ancient Woods Key Used")
 
 

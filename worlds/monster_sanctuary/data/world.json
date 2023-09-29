@@ -42,8 +42,7 @@
         "requirements": [
           "OR", [ "double_jump", "distant_ledges" ]
         ]},
-      { "id": 4, "item": "Kunai"
-      },
+      { "id": 4, "item": "Kunai" },
       { "id": 5, "item": "Vital Ring", "requirements": [ "breakable_walls" ] },
       { "id": 6, "item": "Cestus" }
     ]
@@ -1722,11 +1721,8 @@
       { "region": "StrongholdDungeon_South5" },
       { "region": "StrongholdDungeon_Library2", "requirements": ["narrow_corridors"] }
     ],
-    "encounters": [
-      "TODO: Encounter ID 6"
-    ],
     "gifts": [
-      "TODO: Gift of Reward Box Lvl 1"
+      { "id": 14200159, "item": "Reward Box Lvl 1"}
     ]
   },
   {
