@@ -717,7 +717,7 @@
     "CommonRewards": "Cookie Mushroom,Linen,",
     "RareRewards": "Druid Soul,Hood+4,Fungi Egg,",
     "EggReward": "Fumagus Egg",
-    "Groups": [ "Spore Shroud" ]
+    "Groups": [ "Spore Shroud", "Magic Vines" ]
   },
   {
     "Name": "Rampede",
@@ -752,7 +752,7 @@
     "CommonRewards": "Linen,Orange,",
     "RareRewards": "Phoenix Serum,Sapphire,Amberlgna Egg,",
     "EggReward": "Amberlgna Egg",
-    "Groups": [ "Spore Shroud" ]
+    "Groups": [ "Spore Shroud", "Magic Vines" ]
   },
   {
     "Name": "Dracomer",

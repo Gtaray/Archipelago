@@ -138,7 +138,7 @@ def add_encounter_data(location_id, encounter_data, region_name, category=Monste
 		if encounter_data.get("monsters") is None:
 			breakpoint()
 		if i < len(encounter_data.get("monsters")):
-			monster_name = encounter_data("monsters")[i]
+			monster_name = encounter_data.get("monsters")[i]
 
 		location = LocationData(
 			location_id=location_id,

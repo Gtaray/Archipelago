@@ -3,10 +3,10 @@ import os
 from typing import Optional, Dict
 
 from BaseClasses import ItemClassification
-from items import ItemData, MonsterSanctuaryItemCategory, items_data
-from locations import LocationData, add_chest_data, add_champion_data, add_gift_data, add_flag_data, add_encounter_data
-from regions import RegionData, MonsterSanctuaryConnection, regions_data
-from rules import AccessCondition
+from .items import ItemData, MonsterSanctuaryItemCategory, items_data
+from .locations import LocationData, add_chest_data, add_champion_data, add_gift_data, add_flag_data, add_encounter_data
+from .regions import RegionData, MonsterSanctuaryConnection, regions_data
+from .rules import AccessCondition
 
 
 def load_world():

@@ -3723,5 +3723,1347 @@
     "chests": [
       { "id": 0, "item": "Shuriken+5" }
     ]
+  },
+
+  {
+    "region": "AncientWoods_West1",
+    "connections": [
+      { "region": "StrongholdDungeon_North5" },
+      { "region": "AncientWoods_West2_Upper" }
+    ],
+    "chests": [
+      { "id": 4, "item": "Grape" }
+    ],
+    "encounters": [
+      { "id": 1, "monsters": [ "Magmamoth", "Magmapillar", "Druid Oak" ]}
+    ]
+  },
+  {
+    "region": "AncientWoods_West2_Upper",
+    "connections": [
+      { "region": "AncientWoods_West1" },
+      { "region": "AncientWoods_West3" },
+      { "region": "AncientWoods_West2_Lower" }
+    ]
+  },
+  {
+    "region": "AncientWoods_West2_Lower",
+    "connections": [
+      {
+        "region": "AncientWoods_West2_Upper",
+        "requirements": [
+          "OR", ["double_jump", "summon_big_rock", "improved_flying", "dual_mobility", "lofty_mount"]
+        ]
+      },
+      { "region": "AncientWoods_West4" },
+      { "region": "AncientWoods_WestJumpPuzzle" }
+    ]
+  },
+  {
+    "region": "AncientWoods_West3",
+    "connections": [
+      { "region": "AncientWoods_West2_Upper" }
+    ],
+    "chests": [
+      { "id": 0, "item": "Green Gem" }
+    ],
+    "encounters": [
+      { "id": 1, "monsters": [ "Druid Oak", "Magmamoth", "Druid Oak" ]}
+    ]
+  },
+  {
+    "region": "AncientWoods_West4",
+    "connections": [
+      { "region": "AncientWoods_West2_Lower" },
+      { "region": "AncientWoods_West5" }
+    ],
+    "chests": [
+      { "id": 2, "item": "Hazelnut" }
+    ],
+    "encounters": [
+      { "id": 1, "monsters": [ "Nightwing", "Molebear", "Nightwing" ]}
+    ]
+  },
+  {
+    "region": "AncientWoods_West5",
+    "connections": [
+      { "region": "AncientWoods_West4" },
+      { "region": "AncientWoods_Center4" }
+    ],
+    "chests": [
+      { "id": 1, "item": "Corn", "requirements": ["breakable_walls"] }
+    ]
+  },
+  {
+    "region": "AncientWoods_West6",
+    "connections": [
+      {
+        "region": "AncientWoods_Center4",
+        "requirements": [ "double_jump" ]
+      },
+      {
+        "region": "AncientWoods_WestHidden2",
+        "requirements": [
+          "AND", ["impassible_vines", "breakable_walls"]
+        ]
+      },
+      {
+        "region": "AncientWoods_West7",
+        "requirements": [
+          "AND", ["double_jump", "distant_ledges"]
+        ]
+      }
+    ],
+    "chests": [
+      { "id": 6, "item": "2x Wool", "requirements": ["impassible_vines"] },
+      { "id": 7, "item": "2x Iron", "requirements": [
+        "AND", ["double_jump", "distant_ledges"]
+      ] }
+    ],
+    "encounters": [
+      { "id": 7, "monsters": [ "Molebear", "Molebear", "Molebear" ]}
+    ]
+  },
+  {
+    "region": "AncientWoods_West7",
+    "connections": [
+      {
+        "region": "AncientWoods_West6",
+        "requirements": [
+          "OR", [
+            "impassible_vines",
+            "AND", [ "double_jump", "distant_ledges" ]
+          ]
+        ]
+      },
+      {
+        "region": "AncientWoods_WestDescent",
+        "requirements": [
+          "OR", [
+            "impassible_vines",
+            "AND", [ "double_jump", "distant_ledges" ]
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "region": "AncientWoods_WestJumpPuzzle",
+    "connections": [
+      {
+        "region": "AncientWoods_West2_Lower",
+        "requirements": [
+          "OR", ["double_jump", "distant_ledges"]
+        ]
+      },
+      {
+        "region": "AncientWoods_WestHidden",
+        "requirements": [
+          "OR", ["double_jump", "distant_ledges"]
+        ]
+      }
+    ],
+    "chests": [
+      { "id": 46, "item": "2x Level Badge", "requirements": [
+          "OR", ["double_jump", "distant_ledges"]
+      ] }
+    ]
+  },
+  {
+    "region": "AncientWoods_WestHidden",
+    "connections": [
+      { "region": "AncientWoods_WestJumpPuzzle" }
+    ],
+    "chests": [
+      { "id": 2, "item": "Sustain Ring+3", "requirements": [
+          "OR", ["double_jump", "improved_flying", "dual_mobility", "lofty_mount"]
+      ] }
+    ]
+  },
+  {
+    "region": "AncientWoods_WestHidden2",
+    "connections": [
+      { "region": "AncientWoods_West6" }
+    ],
+    "chests": [
+      { "id": 0, "item": "2x Mass Antidote" }
+    ]
+  },
+  {
+    "region": "AncientWoods_WestDescent_Upper",
+    "connections": [
+      { "region": "AncientWoods_West7" }
+    ],
+    "chests": [
+      { "id": 12, "item": "3x Reward Box Lvl 4", "requirements": [ "magic_vines"]}
+    ]
+  },
+  {
+    "region": "AncientWoods_WestDescent_Middle",
+    "connections": [
+      {
+        "region": "AncientWoods_WestDescent_Upper",
+        "requirements": [
+          "OR", ["double_jump", "improved_flying", "dual_mobility"]
+        ]
+      },
+      { "region": "AncientWoods_WestDescent_Lower" },
+      { "region": "AncientWoods_SouthHidden1", "requirements": ["breakable_walls"] }
+    ]
+  },
+  {
+    "region": "AncientWoods_WestDescent_Lower",
+    "connections": [
+      {
+        "region": "AncientWoods_WestDescent_Middle",
+        "requirements": [
+          "OR", ["double_jump", "improved_flying", "dual_mobility"]
+        ]
+      },
+      { "region": "AncientWoods_WestDescent2" },
+      { "region": "AncientWoods_WestDescent3" }
+    ]
+  },
+  {
+    "region": "AncientWoods_WestDescent2",
+    "connections": [
+      { "region": "AncientWoods_WestDescent" },
+      { "region": "StrongholdDungeon_East4" }
+    ],
+    "chests": [
+      { "id": 4, "item": "2x Combo Potion", "requirements": [
+        "OR", ["double_jump", "improved_flying", "dual_mobility"]
+      ]},
+      { "id": 105, "item": "2x Combo Potion", "requirements": [
+        "OR", ["double_jump", "improved_flying", "dual_mobility"]
+      ]}
+    ]
+  },
+  {
+    "region": "AncientWoods_WestDescent3",
+    "connections": [
+      { "region": "AncientWoods_WestDescent" },
+      { "region": "AncientWoods_DarkRoom2" },
+      { "region": "AncientWoods_DungeonEntrance", "requirements": [ "double_jump" ] }
+    ],
+    "chests": [
+      { "id": 12, "item": "Cocoon", "requirements": [
+        "OR", ["double_jump", "distant_ledges", "ground_switches"]
+      ] }
+    ],
+    "encounters": [
+      { "id": 8, "monsters": [ "Molebear", "Nightwing", "Molebear" ]}
+    ]
+  },
+  {
+    "region": "AncientWoods_DungeonEntrance",
+    "connections": [
+      { "region": "AncientWoods_WestDescent3" },
+      { "region": "StrongholdDungeon_Central5" }
+    ]
+  },
+  {
+    "region": "AncientWoods_DarkRoom2",
+    "connections": [
+      { "region": "AncientWoods_WestDescent3" }
+    ],
+    "chests": [
+      { "id": 2, "item": "Pear", "requirements": [
+        "OR", [
+          "AND", ["dark_rooms", "double_jump" ],
+          "AND", [
+            "torches",
+            "OR", ["double_jump", "flying", "improved_flying", "dual_mobility"]
+          ]
+        ]
+      ]}
+    ]
+  },
+  {
+    "region": "AncientWoods_Center1",
+    "connections": [
+      { "region": "AncientWoods_Center2" },
+      {
+        "region": "AncientWoods_Center3",
+        "requirements":  [
+          "OR", ["double_jump", "improved_flying", "dual_mobility", "lofty_mount", "summon_big_rock"]
+        ]
+      },
+      { "region": "AncientWoods_Center4" }
+    ],
+    "chests": [
+      { "id": 0, "item": "Red Gem", "requirements": [
+        "OR",["double_jump", "improved_flying", "dual_mobility", "lofty_mount", "summon_big_rock"]]
+      },
+      { "id": 1, "item": "2x Iron" }
+    ],
+    "encounters": [
+      { "id": 5, "monsters": [ "Magmamoth", "Molebear", "Druid Oak" ]},
+      { "id": 6, "monsters": [ "Magmamoth", "Druid Oak", "Magmamoth" ]}
+    ]
+  },
+  {
+    "region": "AncientWoods_Center2",
+    "connections": [
+      { "region": "AncientWoods_Center1" },
+      {
+        "region": "AncientWoods_Center_KeyDoor",
+        "requirements": [
+          "OR", ["two_ancient_woods_keys", "ancient_woods_center_unlocked"]
+        ]
+      }
+    ],
+    "encounters": [
+      { "id": 1, "monsters": ["Druid Oak", "Druid Oak", "Druid Oak"] }
+    ]
+  },
+  {
+    "region": "AncientWoods_Center3",
+    "connections": [
+      { "region": "AncientWoods_Center1" },
+      { "region": "AncientWoods_TreeOfEvolution" }
+    ],
+    "encounters": [
+      { "id": 1, "monsters": ["Magmamoth", "Magmapillar", "Magmamoth"] }
+    ]
+  },
+  {
+    "region": "AncientWoods_Center4",
+    "connections": [
+      { "region": "AncientWoods_West5" },
+      { "region": "AncientWoods_West6" },
+      { "region": "AncientWoods_Center1" },
+      { "region": "AncientWoods_DoorPuzzle" }
+    ],
+    "chests": [
+      { "id": 1, "item": "Corn", "requirements": ["breakable_walls"] }
+    ]
+  },
+  {
+    "region": "AncientWoods_Center_KeyDoor",
+    "connections": [
+      { "region": "AncientWoods_Center2", "requirements": ["ancient_woods_center_unlocked"] },
+      { "region": "AncientWoods_Center5", "requirements": ["ancient_woods_center_unlocked"] }
+    ],
+    "flags": [
+      { "id":  "ancient_woods_center_unlocked", "name": "Ancient Woods Center Unlocked" },
+      { "id":  "ancient_woods_key_used1", "name": "Ancient Woods Key Used" },
+      { "id":  "ancient_woods_key_used2", "name": "Ancient Woods Key Used" }
+    ]
+  },
+  {
+    "region": "AncientWoods_Center5",
+    "connections": [
+      {
+        "region": "AncientWoods_Center_KeyDoor",
+        "requirements": [
+          "OR", ["two_ancient_woods_keys", "ancient_woods_center_unlocked"]
+        ]
+      },
+      { "region": "AncientWoods_Center6" }
+    ],
+    "chests": [
+      { "id": 4, "item": "500 G" }
+    ],
+    "encounters": [
+      { "id": 1, "monsters": [ "Goblin Brute", "Goblin Hood", "Goblin Hood"]},
+      { "id": 3, "monsters": [ "Goblin Warlock", "Goblin Hood", "Goblin Warlock"]}
+    ]
+  },
+  {
+    "region": "AncientWoods_Center6",
+    "connections": [
+      { "region": "AncientWoods_Center5" },
+      { "region": "AncientWoods_Center7" },
+      { "region": "AncientWoods_North1" }
+    ],
+    "chests": [
+      { "id": 3, "item": "Claws+2", "requirements": ["double_jump"] }
+    ],
+    "gifts": [
+      { "id": 8500062, "item": "Reward Box Lvl 1" }
+    ],
+    "encounters": [
+      { "id": 7, "monsters": [ "Goblin Hood", "Goblin Warlock", "Goblin Hood"]}
+    ]
+  },
+  {
+    "region": "AncientWoods_Center7",
+    "connections": [
+      { "region": "AncientWoods_Center6" },
+      { "region": "AncientWoods_East1" },
+      { "region": "AncientWoods_South1" }
+    ],
+    "chests": [
+      { "id": 6, "item": "2x Hazelnut", "requirements": ["lightning_orbs"] }
+    ],
+    "encounters": [
+      { "id": 6, "monsters": [ "Goblin Brute", "Goblin Hood", "Goblin Hood"]}
+    ]
+  },
+  {
+    "region": "AncientWoods_North1",
+    "connections": [
+      { "region": "AncientWoods_Center6" },
+      { "region": "AncientWoods_North4" },
+      { "region": "AncientWoods_North2" }
+    ]
+  },
+  {
+    "region": "AncientWoods_North2",
+    "connections": [
+      { "region": "AncientWoods_North1" },
+      {
+        "region": "AncientWoods_North_KeyDoor",
+        "requirements": [
+          "OR", ["ancient_woods_key", "ancient_woods_north_unlocked"]
+        ]
+      }
+    ]
+  },
+  {
+    "region": "AncientWoods_North_KeyDoor",
+    "connections": [
+      { "region": "AncientWoods_North2", "requirements": ["ancient_woods_north_unlocked"] },
+      { "region": "AncientWoods_North3", "requirements": ["ancient_woods_north_unlocked"] }
+    ],
+    "flags": [
+      { "id":  "ancient_woods_north_unlocked", "name": "Ancient Woods North Unlocked" },
+      { "id":  "ancient_woods_key_used3", "name": "Ancient Woods Key Used" }
+    ]
+  },
+  {
+    "region": "AncientWoods_North3",
+    "connections": [
+      { "region": "AncientWoods_North_KeyDoor" },
+      { "region": "AncientWoods_East1_Shortcut" }
+    ],
+    "chests": [
+      { "id": 10, "item": "400 G" },
+      { "id": 11, "item": "Cape+3" }
+    ],
+    "champion": [
+      { "id": 9, "monsters": ["Goblin Hood", "Goblin King", "Goblin Warlock"]}
+    ]
+  },
+  {
+    "region": "AncientWoods_North4",
+    "connections": [
+      { "region": "AncientWoods_North1" },
+      { "region": "AncientWoods_North5" }
+    ],
+    "encounters": [
+      { "id": 1, "monsters": [ "Goblin Brute", "Goblin Warlock", "Goblin Brute"]}
+    ]
+  },
+  {
+    "region": "AncientWoods_North5",
+    "connections": [
+      { "region": "AncientWoods_North4" }
+    ],
+    "chests": [
+      { "id": 0, "item": "Ancient Woods key" }
+    ]
+  },
+  {
+    "region": "AncientWoods_East1_Shortcut",
+    "connections": [
+      { "region": "AncientWoods_East1" },
+      { "region": "AncientWoods_North3" }
+    ],
+    "chests": [
+      { "id": 6, "item": "2x Smoke Bomb", "requirements": [
+        "OR", ["double_jump", "distant_ledges"]
+      ] }
+    ],
+    "flags": [
+      { "id": "ancient_woods_east_shortcut", "name": "Ancient Woods East Shortcut"}
+    ]
+  },
+  {
+    "region": "AncientWoods_East1",
+    "connections": [
+      { "region": "AncientWoods_East1_Shortcut", "requirements": ["ancient_woods_east_shortcut"] },
+      { "region": "AncientWoods_Center7" },
+      { "region": "AncientWoods_East2_West" }
+    ],
+    "encounters": [
+      { "id": 1, "monsters": [ "Goblin Brute", "Goblin Warlock", "Goblin Brute"]}
+    ]
+  },
+  {
+    "region": "AncientWoods_East2_West",
+    "connections": [
+      { "region": "AncientWoods_East1" },
+      { "region": "AncientWoods_East2_East", "requirements": ["ancient_woods_beach_access"] }
+    ],
+    "flags": [
+      {
+        "id": "ancient_woods_beach_access",
+        "name": "Ancient Woods Beach Access",
+        "requirements": ["AND", ["lightning_orbs", "water_orbs", "fire_orbs", "earth_orbs" ]]
+      }
+    ]
+  },
+  {
+    "region": "AncientWoods_East2_East",
+    "connections": [
+      { "region": "AncientWoods_East2_West", "requirements": ["ancient_woods_beach_access"] },
+      { "region": "AncientWoods_East3" }
+    ]
+  },
+  {
+    "region": "AncientWoods_East3",
+    "connections": [
+      { "region": "AncientWoods_East2_East", "requirements": ["ancient_woods_beach_access"] },
+      { "region": "AncientWoods_East4", "requirements": [
+        "AND", [
+          "double_jump",
+          "OR", ["improved_flying", "dual_mobility", "lofty_mount"]
+        ]
+      ] },
+      { "region": "HorizonBeach_Farm" }
+    ],
+    "champion": [
+      {"id": 1, "monsters": ["Raduga"]}
+    ]
+  },
+  {
+    "region": "AncientWoods_East4",
+    "connections": [
+      { "region": "AncientWoods_East3" }
+    ],
+    "chests": [
+      { "id": 0, "item": "2x Craft Box" },
+      { "id": 2, "item": "Skill Potion" },
+      { "id": 4, "item": "Lightning Sphere", "requirements": ["grapple"] }
+    ]
+  },
+  {
+    "region": "AncientWoods_South1",
+    "connections": [
+      { "region": "AncientWoods_Center7" },
+      { "region": "AncientWoods_South2" },
+      { "region": "AncientWoods_DarkRoom" },
+      { "region": "AncientWoods_South1_Lower" }
+    ],
+    "chests": [
+      { "id": 6, "item": "Hide+2", "requirements": ["breakable_walls"] }
+    ]
+  },
+  {
+    "region": "AncientWoods_South1_Lower",
+    "connections": [
+      {
+        "region": "AncientWoods_South1",
+        "requirements": [
+          "OR",["double_jump", "distant_ledges"]]
+      },
+      {
+        "region": "MagmaChamber_North5_Upper",
+        "requirements": ["ancient_woods_magma_chamber_shortcut"]
+      }
+    ],
+    "flags": [
+      { "id": "ancient_woods_magma_chamber_1", "name": "Ancient Woods to Magma Chamber Shortcut"}
+    ]
+  },
+  {
+     "region": "AncientWoods_South2",
+    "connections": [
+      { "region": "AncientWoods_South1" },
+      { "region": "AncientWoods_South3" },
+      {
+        "region": "AncientWoods_South4",
+        "requirements": [
+          "AND", [
+            "double_jump",
+            "OR", ["improved_flying", "dual_mobility", "lofty_mount"]
+          ]
+        ]
+      }
+    ],
+    "encounters": [
+      {"id": 1, "monsters": ["Glowfly", "Nightwing", "Glowfly"]},
+      {"id": 4, "monsters": ["Glowfly", "Molebear", "Glowfly"]}
+    ]
+  },
+  {
+     "region": "AncientWoods_South3",
+    "connections": [
+      { "region": "AncientWoods_South2" }
+    ],
+    "chests": [
+      { "id": 3, "item": "Crystal Shard" },
+      { "id": 7, "item": "Blue Gem" }
+    ],
+    "encounters": [
+      {"id": 1, "monsters": ["Glowfly", "Glowfly", "Glowfly"]}
+    ]
+  },
+  {
+     "region": "AncientWoods_South4",
+    "connections": [
+      { "region": "AncientWoods_South3" },
+      { "region": "AncientWoods_SouthHidden2" }
+    ],
+    "chests": [
+      { "id": 1, "item": "Morning Star+4" }
+    ]
+  },
+  {
+    "region": "AncientWoods_DarkRoom",
+    "connections": [
+      { "region": "AncientWoods_South1" }
+    ],
+    "chests": [
+      { "id": 3, "item": "2x Bronze", "requirements": [
+        "AND", ["dark_rooms", "double_jump" ]]
+      }
+    ]
+  },
+  {
+    "region": "AncientWoods_TorchesRoom",
+    "connections": [
+      { "region": "AncientWoods_South2" }
+    ],
+    "chests": [
+      { "id": 3, "item": "Skill Potion", "requirements": [ "torches" ]},
+      { "id": 7, "item": "2x Potion", "requirements": [ "torches" ]}
+    ]
+  },
+  {
+    "region": "AncientWoods_SouthHidden1_West",
+    "connections": [
+      { "region": "AncientWoods_WestDescent_Middle" },
+      {
+        "region": "AncientWoods_SouthHidden1_East",
+        "requirements": [
+          "AND", [
+            "OR", ["torches", "dark_rooms"],
+            "double_jump",
+            "OR", ["improved_flying", "dual_mobility", "lofty_mount"]
+          ]
+        ]
+      }
+    ],
+    "chests": [
+      { "id": 3, "item": "2x Level Badge", "requirements": [
+        "AND", [
+            "OR", ["torches", "dark_rooms"],
+            "OR", ["double_jump", "improved_flying", "dual_mobility", "lofty_mount"]
+          ]
+      ]}
+    ]
+  },
+  {
+    "region": "AncientWoods_SouthHidden1_East",
+    "connections": [
+      { "region": "AncientWoods_SouthHidden2" },
+      { "region": "AncientWoods_SouthHidden1_West" }
+    ],
+    "chests": [
+      { "id": 8, "item": "2000 G", "requirements": ["OR", ["torches", "dark_rooms"]]}
+    ]
+  },
+  {
+    "region": "AncientWoods_SouthHidden2",
+    "connections": [
+      {
+        "region": "AncientWoods_SouthHidden1_East",
+        "requirements": [
+          "AND", ["dark_rooms", "double_jump"]
+        ]
+      },
+      {
+        "region": "AncientWoods_SouthHidden3",
+        "requirements": [
+          "AND", ["dark_rooms", "double_jump"]
+        ]
+      }
+    ],
+    "encounters": [
+      { "id": 1, "monsters": ["Troll", "Troll", "Troll"] }
+    ]
+  },
+  {
+    "region": "AncientWoods_SouthHidden3",
+    "connections": [
+      {
+        "region": "AncientWoods_SouthHidden2",
+        "requirements": [
+          "AND", ["dark_rooms", "double_jump"]
+        ]
+      },
+      {
+        "region": "AncientWoods_SouthChampion",
+        "requirements": [
+          "AND", ["dark_rooms", "double_jump"]
+        ]
+      }
+    ],
+    "chests": [
+      { "id": 2, "item": "Craft Box", "requirements": [
+        "AND", ["dark_rooms", "double_jump"]
+      ]}
+    ],
+    "encounters": [
+      { "id": 1, "monsters": ["Argiope", "Troll", "Argiope"] }
+    ]
+  },
+  {
+    "region": "AncientWoods_South4",
+    "connections": [
+      {
+        "region": "AncientWoods_South4",
+        "requirements": [
+          "AND", ["dark_rooms", "double_jump"]
+        ]
+      },
+      {
+        "region": "AncientWoods_SouthChampion",
+        "requirements": [
+          "AND", ["dark_rooms", "double_jump"]
+        ]
+      }
+    ],
+    "encounters": [
+      { "id": 1, "monsters": [ "Troll", "Troll", "Glowfly" ]}
+    ]
+  },
+  {
+    "region": "AncientWoods_SouthChampion",
+    "connections": [
+      { "region": "AncientWoods_SouthHidden3" },
+      { "region": "AncientWoods_SouthHidden4" }
+    ],
+    "champions": [
+      { "id": 1, "monsters": ["Brutus"] }
+    ]
+  },
+  {
+    "region": "AncientWoods_TreeOfEvolution",
+    "connections": [
+      { "region": "AncientWoods_Center3" }
+    ],
+    "chests": [
+      { "id": 7, "item": "Ancient Woods key" }
+    ],
+    "gifts": [
+      { "id": 9900049, "item": "Magical Clay" }
+    ]
+  },
+  {
+    "region": "AncientWoods_DoorPuzzle",
+    "connections": [
+      { "region": "AncientWoods_Center4" }
+    ],
+    "chests": [
+      { "id": 13, "item": "2x Wool" },
+      { "id": 14, "item": "Ancient Woods key" },
+      { "id": 15, "item": "Tome+2" }
+    ]
+  },
+
+  {
+    "region": "HorizonBeach_Farm",
+    "connections": [
+      { "region": "AncientWoods_East3" },
+      { "region": "HorizonBeach_West1" }
+    ]
+  },
+  {
+    "region": "HorizonBeach_West1",
+    "connections": [
+      { "region": "HorizonBeach_Farm" },
+      { "region": "HorizonBeach_West2", "requirements": ["swimming"] }
+    ],
+    "chests": [
+      {"id": 0, "item": "Level Badge", "requirements": [
+        "OR", ["double_jump", "swimming"]
+      ]}
+    ]
+  },
+  {
+    "region": "HorizonBeach_West2",
+    "connections": [
+      { "region": "HorizonBeach_West1" },
+      { "region": "HorizonBeach_West3" }
+    ],
+    "encounters": [
+      { "id": 0, "monsters": [ "Ucan", "Vaero", "Ucan" ]},
+      { "id": 1, "monsters": [ "Dodo", "Ucan", "Dodo" ]}
+    ]
+  },
+  {
+    "region": "HorizonBeach_West3",
+    "connections": [
+      { "region": "HorizonBeach_West2" },
+      { "region": "HorizonBeach_West4" }
+    ],
+    "chests": [
+      { "id": 0, "item": "Rare Seashell", "requirements": [
+        "AND", [
+          "double_jump",
+          "OR", ["improved_flying", "dual_mobility", "lofty_mount"]
+        ]
+      ]},
+      { "id": 3, "item": "Shift Stone", "requirements": [
+        "AND", [
+          "double_jump",
+          "OR", ["improved_flying", "dual_mobility", "lofty_mount"]
+        ]
+      ]}
+    ],
+    "encounters": [
+      { "id": 1, "monsters": [ "Dodo", "Vaero", "Dodo" ]}
+    ]
+  },
+  {
+    "region": "HorizonBeach_West4",
+    "connections": [
+      {
+        "region": "HorizonBeach_West3",
+        "requirements": [
+          "OR", ["double_jump", "swimming", "distant_ledges"]
+      ] },
+      { "region": "HorizonBeach_West5" }
+    ],
+    "chests": [
+      {"id": 3, "item": "Reward Box Lvl 2" }
+    ]
+  },
+  {
+    "region": "HorizonBeach_West5",
+    "connections": [
+      { "region": "HorizonBeach_West4" },
+      { "region": "HorizonBeach_Center1" }
+    ],
+    "encounters": [
+      { "id": 0, "monsters": [ "Brawlish", "Ucan", "Brawlish" ]}
+    ]
+  },
+  {
+    "region": "HorizonBeach_Center1",
+    "connections": [
+      { "region": "HorizonBeach_West5", "requirements": ["OR", ["double_jump", "swimming"]] },
+      { "region": "HorizonBeach_Center2", "requirements": ["AND", ["swimming", "horizon_beach_center_shortcut"]] },
+      { "region": "HorizonBeach_Labyrinth" }
+    ],
+    "chests": [
+      { "id": 3, "item": "Belt+4", "requirements": [
+        "OR", ["improved_swimming", "dual_mobility"]
+        ]
+      }
+    ],
+    "gifts": [
+      {"id": 21900081, "item": "Reward Box Lvl 2", "requirements": ["memorial_ring"]}
+    ],
+    "encounters": [
+      { "id": 1, "monsters": [ "Brawlish", "Brawlish", "Toxiquus" ]}
+    ]
+  },
+  {
+    "region": "HorizonBeach_Center2",
+    "connections": [
+      { "id": "HorizonBeach_Center2_Shortcut" },
+      { "id": "HorizonBeach_Center3" }
+    ],
+    "chests": [
+      { "id": 3, "item": "2x Monster Bell", "requirements": [
+        "OR", [ "double_jump", "improved_flying", "dual_mobility", "lofty_mount"]
+      ]},
+      { "id": 5, "item": "Crit Ring+4", "requirements": [
+        "OR", [ "double_jump", "improved_flying", "dual_mobility", "lofty_mount"]
+      ]}
+    ],
+    "encounters": [
+      {"id": 1, "monsters": ["Ucan", "Ucan", "Dodo"]},
+      {"id": 4, "monsters": ["Silvaero", "Vaero", "Silvaero"], "requirements": [
+        "OR", ["double_jump", "improved_flying", "lofty_mount", "dual_mobility"]
+      ]}
+    ]
+  },
+  {
+    "region": "HorizonBeach_Center2_Shortcut",
+    "connections": [
+      {"region": "HorizonBeach_Center2" },
+      {"region": "HorizonBeach_Center1", "requirements": ["horizon_beach_center_shortcut"] }
+    ],
+    "flags": [
+      {"id": "horizon_beach_center_shortcut", "name": "Horizon Beach Center Shortcut"}
+    ]
+  },
+  {
+    "region": "HorizonBeach_Center3",
+    "connections": [
+      { "region": "HorizonBeach_Labyrinth", "requirements": ["swimming"]},
+      { "region": "HorizonBeach_Center2", "requirements": ["swimming"]},
+      { "region": "HorizonBeach_Center4" }
+    ],
+    "chests": [
+      { "id": 1, "item": "Big Potion", "requirements": [
+        "AND", ["swimming", "breakable_walls"]
+      ]},
+      { "id": 5, "item": "Crystal Shard", "requirements": ["swimming"]}
+    ],
+    "encounters": [
+      { "id": 4, "monsters": [ "Thornish", "Koi", "Thornish" ], "requirements": ["swimming"] },
+      { "id": 8, "monsters": [ "Koi", "Thornish", "Koi" ], "requirements": ["swimming"] }
+    ]
+  },
+  {
+    "region": "HorizonBeach_Center4",
+    "connections": [
+      { "region": "HorizonBeach_Center3", "requirements": ["swimming"]},
+      { "region": "HorizonBeach_Center5", "requirements": ["swimming"]},
+      { "region": "HorizonBeach_Center6", "requirements": ["swimming"]}
+    ],
+    "chests": [
+      { "id": 4, "item": "Skill Potion", "requirements": ["improved swimming"]},
+      { "id": 9, "item": "Crimson Gem", "requirements": ["improved swimming"]}
+    ],
+    "encounters": [
+      { "id": 1, "monsters": [ "Thornish", "Brawlish", "Thornish" ], "requirements": ["swimming"] }
+    ]
+  },
+  {
+    "region": "HorizonBeach_Center5",
+    "connections": [
+      { "region": "HorizonBeach_Center4", "requirements": ["swimming"]},
+      { "region": "HorizonBeach_FWExit", "requirements": ["forgotten_world_to_horizon_beach_shortcut"]}
+    ],
+    "chests": [
+      { "id": 3, "item": "Rare Seashell", "requirements": ["swimming"]},
+      { "id": 6, "item": "Azure Gem", "requirements": [
+        "AND", [
+          "ice_orbs",
+          "heavy_blocks",
+          "OR", ["double_jump", "swimming"]
+        ]
+      ]}
+    ]
+  },
+  {
+    "region": "HorizonBeach_Center6",
+    "connections": [
+      { "region": "HorizonBeach_Center4"},
+      { "region": "HorizonBeach_East1", "requirements": ["swimming"]},
+      { "region": "HorizonBeach_East3", "requirements": ["improved_swimming"]}
+    ],
+    "chests": [
+      { "id": 0, "item": "Level Badge", "requirements": ["swimming"]}
+    ]
+  },
+  {
+    "region": "HorizonBeach_East1",
+    "connections": [
+      { "region": "HorizonBeach_Center6" },
+      {
+        "region": "HorizonBeach_East2_Upper",
+        "requirements":[
+          "OR", ["double_jump", "improved_flying", "dual_mobility"]
+        ]
+      }
+    ],
+    "chests": [
+      {"id": 0, "item": "Verdant Gem", "requirements": [
+        "OR", ["double_jump", "improved_flying", "dual_mobility", "lofty_mount"]
+      ]}
+    ],
+    "encounters": [
+      {
+        "id": 1,
+        "monsters": ["Kongamato", "Kongamato", "Dodo"],
+        "requirements": [
+          "OR", ["double_jump", "dual_mobility", "improved_flying"]
+        ]
+      }
+    ]
+  },
+  {
+    "region": "HorizonBeach_East2_Upper",
+    "connections": [
+      {"region": "HorizonBeach_East1"},
+      {
+        "region": "HorizonBeach_East1",
+        "requirements":[
+          "OR", ["double_jump", "improved_flying", "dual_mobility"]
+        ]
+      },
+      {
+        "region": "HorizonBeach_East4",
+        "requirements":[
+          "OR", ["double_jump", "improved_flying", "dual_mobility"]
+        ]
+      },
+      {"region": "HorizonBeach_East1_Middle"}
+    ],
+    "chests": [
+      { "id": 53, "item": "Bronze", "requirements": [
+        "OR", ["double_jump", "distant_ledges"]
+      ]}
+    ],
+    "encounters": [
+      {"id": 51, "monsters": ["Kongamato", "Vaero", "Kongamato"], "requirements": [
+        "OR", ["double_jump", "improved_flying", "dual_mobility"]
+      ]}
+    ]
+  },
+  {
+    "region": "HorizonBeach_East2_Middle",
+    "connections": [
+      { "region": "HorizonBeach_Fisher" },
+      {
+        "region": "HorizonBeach_East2_Upper",
+        "requirements": [
+          "OR", ["double_jump", "improved_flying", "dual_mobility"]
+        ]
+      },
+      { "region": "HorizonBeach_East2_Lower" }
+    ],
+    "chests": [
+      { "id": 57, "item": "1000 G", "requirements": ["breakable_walls"]},
+      { "id": 58, "item": "Reward Box Lvl 2", "requirements": [
+        "OR", ["double_jump", "distant_ledges"]
+      ]}
+    ]
+  },
+  {
+    "region": "HorizonBeach_East2_Lower",
+    "connections": [
+      { "region": "HorizonBeach_East3" },
+      { "region": "HorizonBeach_EastHidden", "requirements": ["narrow_corridors"] },
+      { "region": "HorizonBeach_East2_Middle", "requirements": ["swimming"] }
+    ],
+    "chests": [
+      { "id": 54, "item": "Shell+4", "requirements": [
+        "AND", [
+          "double_jump",
+          "OR",["improved_flying", "dual_mobility"]]
+      ]},
+      { "id": 55, "item": "2x Smoke Bomb" }
+    ],
+    "encounters": [
+      { "id": 59, "monsters": ["Thornish", "Ucan", "Thornish"]}
+    ]
+  },
+  {
+    "region": "HorizonBeach_East3",
+    "connections": [
+      {"region": "HorizonBeach_East2", "requirements": ["improved_swimming"]},
+      {"region": "HorizonBeach_Center6"}
+    ],
+    "chests": [
+      {"id": 4, "item": "Rare Seashell", "requirements": ["swimming"]}
+    ]
+  },
+  {
+    "region": "HorizonBeach_East4",
+    "connections": [
+      {
+        "region": "HorizonBeach_East2_Upper",
+        "requirements": [
+          "OR", ["double_jump", "improved_flying", "dual_mobility"]
+        ]
+      },
+      {
+        "region": "HorizonBeach_East5",
+        "requirements": [
+          "OR", ["double_jump", "improved_flying", "dual_mobility"]
+        ]
+      }
+    ]
+  },
+  {
+    "region": "HorizonBeach_East5",
+    "connections": [
+      { "region": "HorizonBeach_East4" }
+    ],
+    "chests": [
+      {"id": 3, "item": "Silver Feather"},
+      {"id": 4, "item": "Skill Potion"}
+    ],
+    "encounters": [
+      {"id": 2, "monsters": ["Silvaero", "Kongamato", "Silvaero"]}
+    ],
+    "gifts": [
+      "TODO: Figure out when the NPC shows up",
+      {"id": 24500009, "item": "Switch Stone"}
+    ]
+  },
+  {
+    "region": "HorizonBeach_East6",
+    "connections": [
+      { "region": "HorizonBeach_East2_Upper" }
+    ],
+    "chests": [
+      {"id": 0, "item": "Carrot", "requirements": [
+          "OR", ["double_jump", "improved_flying", "dual_mobility"]]},
+      {"id": 2, "item": "Gauntlet+4"}
+    ],
+    "encounters": [
+      {"id": 1, "monsters": ["Kongamato", "Silvaero", "Kongamato"]}
+    ]
+  },
+  {
+    "region": "HorizonBeach_Fisher",
+    "connections": [
+      {"region": "HorizonBeach_East2_Middle"}
+    ],
+    "chests": [
+      {"id": 2, "item": "Reward Box Lvl 2", "requirements": [
+        "OR", ["swimming", "double_jump", "distant_ledges", "ground_switches"]
+      ]}
+    ],
+    "gifts": [
+      {"id": 24300040, "item": "Fishing Rod", "requirements": ["all_rare_seashells"]}
+    ]
+  },
+  {
+    "region": "HorizonBeach_EastHidden",
+    "connections": [
+      { "region": "HorizonBeach_East2_Lower", "requirements": [
+        "AND", ["narrow_corridors", "double_jump"]
+      ]},
+      { "region": "HorizonBeach_EastChampion", "requirements": ["narrow_corridors"]}
+    ],
+    "chests": [
+      {"id": 1, "item": "Mega Potion", "requirements": [
+        "AND", ["narrow_corridors", "double_jump"]
+      ]}
+    ]
+  },
+  {
+    "region": "HorizonBeach_EastChampion",
+    "connections": [
+      { "region": "HorizonBeach_EastHidden" }
+    ],
+    "chests": [
+      { "id": 1, "item": "Sapphire" },
+      { "id": 3, "item": "Shift Stone", "requirements": ["narrow_corridors"] }
+    ],
+    "champion": [
+      { "id": 2, "monsters": ["Vodinoy"], "requirements": ["narrow_corridors"] }
+    ]
+  },
+  {
+    "region": "HorizonBeach_Labyrinth",
+    "connections": [
+      {"region": "HorizonBeach_Center1", "requirements": ["swimming"]},
+      {"region": "HorizonBeach_Center3", "requirements": ["swimming"]},
+      {"region": "HorizonBeach_South1", "requirements": ["swimming"]}
+    ],
+    "chests": [
+      {"id": 27, "item": "Level Badge", "requirements": ["swimming"]},
+      {"id": 28, "item": "Rare Seashell", "requirements": ["improved_swimming"]}
+    ]
+  },
+  {
+    "region": "HorizonBeach_South1",
+    "connections": [
+      {"region": "HorizonBeach_Labyrinth" },
+      {"region": "HorizonBeach_South2" }
+    ],
+    "encounters": [
+      {"id": 2, "monsters": ["Brawlish", "Brawlish", "Nautilid"]}
+    ]
+  },
+  {
+    "region": "HorizonBeach_South2",
+    "connections": [
+      {"region": "HorizonBeach_South1", "requirements": ["swimming"]},
+      {"region": "HorizonBeach_South3", "requirements": ["swimming"]},
+      {"region": "HorizonBeach_South6", "requirements": ["swimming"]},
+      {"region": "HorizonBeach_TreasureCaveEntrance", "requirements": ["swimming"]}
+    ],
+    "encounters": [
+      {"id": 2, "monsters": ["Nautilid", "Toxiquus", "Nautilid"]}
+    ]
+  },
+  {
+    "region": "HorizonBeach_South3",
+    "connections": [
+      {"region": "HorizonBeach_South2", "requirements": ["swimming"]},
+      {"region": "HorizonBeach_South4", "requirements": ["swimming"]}
+    ]
+  },
+  {
+    "region": "HorizonBeach_South4",
+    "connections": [
+      {"region": "HorizonBeach_South3"},
+      {"region": "HorizonBeach_South5", "requirements": ["swimming"]}
+    ],
+    "chests": [
+      {"id": 2, "item": "Phoenix Tear"}
+    ]
+  },
+  {
+    "region": "HorizonBeach_South5",
+    "connections": [
+      {"region": "HorizonBeach_South4", "requirements": ["swimming"]},
+      {"region": "HorizonBeach_Pit", "requirements": ["swimming"]}
+    ],
+    "encounters": [
+      {"id": 2, "monsters": ["Ucan", "Bawlish", "Ucan"]}
+    ]
+  },
+  {
+    "region": "HorizonBeach_Pit",
+    "connections": [
+      {"region": "HorizonBeach_South5"}
+    ],
+    "flags": [
+      {"id": "horizon_beach_rescue_leonard", "name": "Rescued Leonard", "requirements": ["improved_flying"]}
+    ]
+  },
+  {
+    "region": "HorizonBeach_Pit_Secret",
+    "connections": [
+      {"region": "HorizonBeach_TreasureCave4"}
+    ],
+    "chests": [
+      {"id": 2, "item": "Moon Sword"}
+    ]
+  },
+  {
+    "region": "HorizonBeach_TreasureCaveEntrance",
+    "connections": [
+      {"region": "HorizonBeach_South2"},
+      {"region": "HorizonBeach_TreasureCave1", "requirements": ["horizon_beach_rescue_leonard"]}
+    ]
+  },
+  {
+    "region": "HorizonBeach_TreasureCave1",
+    "connections": [
+      {"region": "HorizonBeach_TreasureCaveEntrance"},
+      {"region": "HorizonBeach_TreasureCave2"}
+    ],
+    "encounters": [
+      {"id": 2, "monsters": ["Nautilid", "Thornish", "Nautilid"]}
+    ]
+  },
+  {
+    "region": "HorizonBeach_TreasureCave2",
+    "connections": [
+      {"region": "HorizonBeach_TreasureCave1", "requirements": ["swimming"]},
+      {"region": "HorizonBeach_TreasureCave3"},
+      {"region": "HorizonBeach_TreasureCave4", "requirements": [
+        "OR", ["double_jump", "ground_switches", "distant_ledges"]
+      ]},
+      {"region": "HorizonBeach_TreasureCave5", "requirements": ["swimming"]},
+      {"region": "HorizonBeach_FWEntrance1"}
+    ],
+    "chests": [
+      {"id": 2, "item": "Rare Seashell", "requirements": [
+        "AND", [
+          "swimming",
+          "OR", ["double_jump", "ground_switches", "distant_ledges"]
+        ]
+      ]}
+    ]
+  },
+  {
+    "region": "HorizonBeach_TreasureCave3",
+    "connections": [
+      {"region": "HorizonBeach_TreasureCave2"}
+    ],
+    "chests": [
+      {"id": 2, "item": "Memorial Ring"}
+    ]
+  },
+  {
+    "region": "HorizonBeach_TreasureCave4",
+    "connections": [
+      {"region": "HorizonBeach_TreasureCave2"},
+      {"region": "HorizonBeach_Pit_Secret"}
+    ]
+  },
+  {
+    "region": "HorizonBeach_TreasureCave5",
+    "connections": [
+      {"region": "HorizonBeach_TreasureCave2"},
+      {"region": "HorizonBeach_Champion"}
+    ],
+    "chests": [
+      {"id": 3, "item": "2x Combo Potion", "requirements": [
+        "OR", ["double_jump", "swimming"]
+      ]}
+    ],
+    "encounters": [
+      {"id": 2, "monsters": ["Nautilid", "Nautilid", "Nautilid"]}
+    ]
+  },
+  {
+    "region": "HorizonBeach_Champion",
+    "connections": [
+      {"region": "HorizonBeach_TreasureCave5"},
+      {"region": "MagmaChamber_East3"}
+    ],
+    "chests": [
+      {"id": 7, "item": "2000 G"}
+    ],
+    "gifts": [
+      {"id": 24200124, "item": "Sanctuary Token"},
+      "TODO: There's a skill potion gift in this room that I don't know how to trigger"
+    ],
+    "champion": [
+      {"id": 2, "monsters": ["Elderjel"]}
+    ]
+  },
+  {
+    "region": "HorizonBeach_FWEntrance1",
+    "connections": [
+      {"region": "HorizonBeach_TreasureCave2"},
+      {"region": "HorizonBeach_FWEntrance2"}
+    ],
+    "chests": [
+      {"id": 7, "item": "2000 G", "requirements": ["swimming"]}
+    ]
+  },
+  {
+    "region": "HorizonBeach_FWEntrance2",
+    "connections": [
+      {"region": "HorizonBeach_FWEntrance1", "requirements": [
+        "OR", [
+          "secret_vision",
+          "AND", ["double_jump", "lofty_mount"]
+        ]
+      ]},
+      {"region": "HorizonBeach_FWEntrance3", "requirements": [
+        "OR", [
+          "secret_vision",
+          "AND", ["double_jump", "lofty_mount"]
+        ]
+      ]}
+    ]
+  },
+  {
+    "region": "HorizonBeach_FWEntrance3",
+    "connections": [
+      {"region": "HorizonBeach_FWEntrance2"},
+      {"region": "HorizonBeach_FWEntrance4"}
+    ]
+  },
+  {
+    "region": "HorizonBeach_FWEntrance4",
+    "connections": [
+      {"region": "HorizonBeach_FWEntrance3"},
+      {"region": "ForgottenWorld_Fall1"}
+    ]
+  },
+  {
+    "region": "HorizonBeach_FWExit",
+    "connections": [
+      { "region": "HorizonBeach_Center5", "requirements": ["forgotten_world_to_horizon_beach_shortcut"]},
+      { "region": "ForgottenWorld_Climb5" }
+    ],
+    "flags": [
+      {
+        "id": "forgotten_world_to_horizon_beach_shortcut",
+        "name": "Forgotten World to Horizon Beach Shortcut",
+        "requirements": ["summon_big_rock"]
+      }
+    ]
   }
 ]

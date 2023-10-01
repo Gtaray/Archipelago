@@ -81,6 +81,38 @@
       {
         "Name": "Ancient Woods Key Used",
         "classification": "progression"
+      },
+      {
+        "Name": "Ancient Woods Center Unlocked",
+        "classification": "progression"
+      },
+      {
+        "Name": "Ancient Woods North Unlocked",
+        "classification": "progression"
+      },
+      {
+        "Name": "Ancient Woods East Shortcut",
+        "classification": "progression"
+      },
+      {
+        "Name": "Ancient Woods to Magma Chamber Shortcut",
+        "classification": "progression"
+      },
+      {
+        "Name": "Ancient Woods Beach Access",
+        "classification": "progression"
+      },
+      {
+        "Name": "Horizon Beach Center Shortcut",
+        "classification": "useful"
+      },
+      {
+        "Name": "Forgotten World to Horizon Beach Shortcut",
+        "classification": "useful"
+      },
+      {
+        "Name": "Rescued Leonard",
+        "classification": "progression"
       }
     ]
   },
