@@ -35,6 +35,7 @@ class AccessCondition:
         if self.function_name is not None:
             func = globals().get(self.function_name)
             if func is None:
+                breakpoint()
                 raise KeyError(f"Access function '{self.function_name}' is not defined")
             else:
                 self.access_rule = func
@@ -143,6 +144,10 @@ def stronghold_dungeon_east_unlocked(state: CollectionState, player: int) -> boo
     return state.has("Stronghold Dungeon East Unlocked", player)
 
 
+def stronghold_dungeon_library_access(state: CollectionState, player: int) -> bool:
+    return state.has("Stronghold Dungeon Library Access", player)
+
+
 def sun_palace_raise_center_1(state: CollectionState, player: int) -> bool:
     return state.has("Sun Palace Raise Center", player, 1)
 
@@ -199,8 +204,48 @@ def horizon_beach_rescue_leonard(state: CollectionState, player: int) -> bool:
     return state.has("Rescued Leonard", player)
 
 
+def horizon_beach_to_magma_chamber_shortcut(state: CollectionState, player: int) -> bool:
+    return state.has("Horizon Beach To Magma Chamber Shortcut", player)
+
+
+def magma_chamber_north_shortcut(state: CollectionState, player: int) -> bool:
+    return state.has("Magma Chamber North Shortcut", player)
+
+
+def magma_chamber_center_shortcut(state: CollectionState, player: int) -> bool:
+    return state.has("Magma Chamber Center Shortcut", player)
+
+
+def magma_chamber_east_shortcut(state: CollectionState, player: int) -> bool:
+    return state.has("Magma Chamber East Shortcut", player)
+
+
+def magma_chamber_south_shortcut(state: CollectionState, player: int) -> bool:
+    return state.has("Magma Chamber South Shortcut", player)
+
+
+def magma_chamber_lower_lava(state: CollectionState, player: int) -> bool:
+    return state.has("Magma Chamber Lowered Lava", player)
+
+
+def magma_chamber_alchemist_lab_unlocked(state: CollectionState, player: int) -> bool:
+    return state.has("Magma Chamber Alchemist Lab Unlocked", player)
+
+
+def magma_chamber_mozzie_room_unlocked(state: CollectionState, player: int) -> bool:
+    return state.has("Magma Chamber Mozzie Room Unlocked", player)
+
+
 def forgotten_world_to_horizon_beach_shortcut(state: CollectionState, player: int) -> bool:
     return state.has("Forgotten World to Horizon Beach Shortcut", player)
+
+
+def forgotten_world_to_magma_chamber_shortcut(state: CollectionState, player: int) -> bool:
+    return state.has("Forgotten World to Magma Chamber Shortcut", player)
+
+
+def blob_key_accessible(state: CollectionState, player: int) -> bool:
+    return state.has("Blob Key Accessible", player)
 
 
 def post_game(state: CollectionState, player: int) -> bool:
@@ -231,6 +276,14 @@ def memorial_ring(state: CollectionState, player: int) -> bool:
 
 def all_rare_seashells(state: CollectionState, player: int) -> bool:
     return state.has("Rare Seashell", player, 5)
+
+
+def runestone_shard(state: CollectionState, player: int) -> bool:
+    return state.has("Runestone Shard", player)
+
+
+def mozzie(state: CollectionState, player: int) -> bool:
+    return state.has("Mozzie", player)
 # endregion
 
 
@@ -310,8 +363,8 @@ def two_ancient_woods_keys(state: CollectionState, player: int) -> bool:
     return has_enough_keys(state, player, "Ancient Woods key", "Ancient Woods Key Used", 2)
 
 
-def magma_chamber_key(state: CollectionState, player: int, count: int = 1) -> bool:
-    return state.has("Magma Chamber key", player, count)
+def magma_chamber_key(state: CollectionState, player: int) -> bool:
+    return has_enough_keys(state, player, "Magma Chamber key", "Magma Chamber Key Used")
 
 
 def workshop_key(state: CollectionState, player: int, count: int = 1) -> bool:
@@ -324,6 +377,10 @@ def underworld_key(state: CollectionState, player: int, count: int = 1) -> bool:
 
 def ahrimaaya(state: CollectionState, player: int, count: int = 1) -> bool:
     return state.has("Ahrimaaya", player, count)
+
+
+def all_blob_keys_used(state: CollectionState, player: int) -> bool:
+    return state.has("Blob Key Used", player, 3)
 # endregion
 
 

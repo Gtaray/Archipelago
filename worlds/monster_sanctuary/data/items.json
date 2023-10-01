@@ -51,6 +51,10 @@
         "classification": "useful"
       },
       {
+        "Name": "Stronghold Dungeon Library Access",
+        "classification": "progression"
+      },
+      {
         "Name": "Snowy Peaks East 4 Upper Shortcut",
         "classification": "useful"
       },
@@ -111,7 +115,51 @@
         "classification": "useful"
       },
       {
+        "Name": "Horizon Beach To Magma Chamber Shortcut",
+        "classification": "progression"
+      },
+      {
         "Name": "Rescued Leonard",
+        "classification": "progression"
+      },
+      {
+        "Name": "Magma Chamber Lowered Lava",
+        "classification": "progression"
+      },
+      {
+        "Name": "Magma Chamber North Shortcut",
+        "classification": "useful"
+      },
+      {
+        "Name": "Magma Chamber Center Shortcut",
+        "classification": "useful"
+      },
+      {
+        "Name": "Magma Chamber East Shortcut",
+        "classification": "useful"
+      },
+      {
+        "Name": "Magma Chamber South Shortcut",
+        "classification": "useful"
+      },
+      {
+        "Name": "Magma Chamber Key Used",
+        "classification": "progression"
+      },
+      {
+        "Name": "Magma Chamber Alchemist Lab Unlocked",
+        "classification": "progression"
+      },
+      {
+        "Name": "Magma Chamber Mozzie Room Unlocked",
+        "classification": "progression"
+      },
+      {
+        "Name": "Forgotten World to Magma Chamber Shortcut",
+        "classification": "useful"
+      },
+      {
+        "Name": "Blob Key Accessible",
         "classification": "progression"
       }
     ]

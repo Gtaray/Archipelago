@@ -38,6 +38,6 @@ class AncientWoodsTests(TestArea):
         self.run_tests([
             ["ancient_woods_magma_chamber_2", False, []],
             ["ancient_woods_magma_chamber_2", False, ["Ancient Woods to Magma Chamber Shortcut"]],
-            ["ancient_woods_magma_chamber_2", False, ["Ancient Woods to Magma Chamber Shortcut",
+            ["ancient_woods_magma_chamber_2", True, ["Ancient Woods to Magma Chamber Shortcut",
                                                       "Ancient Woods to Magma Chamber Shortcut"]]
         ])

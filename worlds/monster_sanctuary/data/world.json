@@ -1723,6 +1723,9 @@
     ],
     "gifts": [
       { "id": 14200159, "item": "Reward Box Lvl 1"}
+    ],
+    "flags": [
+      {"id": "stronghold_dungeon_library_access", "name": "Stronghold Dungeon Library Access"}
     ]
   },
   {
@@ -2015,7 +2018,7 @@
     "region": "StrongholdDungeon_East4",
     "connections": [
       { "region": "StrongholdDungeon_East3" },
-      { "region": "MagmaChamber_West1" }
+      { "region": "MagmaChamber_West1_West" }
     ]
   },
   {
@@ -4999,7 +5002,7 @@
     "region": "HorizonBeach_Champion",
     "connections": [
       {"region": "HorizonBeach_TreasureCave5"},
-      {"region": "MagmaChamber_East3"}
+      {"region": "MagmaChamber_East3_Lower"}
     ],
     "chests": [
       {"id": 7, "item": "2000 G"}
@@ -5065,6 +5068,859 @@
         "name": "Forgotten World to Horizon Beach Shortcut",
         "requirements": ["summon_big_rock"]
       }
+    ]
+  },
+  {
+    "region": "MagmaChamber_West1_West",
+    "connections": [
+      { "region": "StrongholdDungeon_East4"},
+      { "region": "MagmaChamber_West1_East", "requirements": ["mount"]}
+    ]
+  },
+  {
+    "region": "MagmaChamber_West1_East",
+    "connections": [
+      { "region": "MagmaChamber_West1_West", "requirements": ["mount"]},
+      { "region": "MagmaChamber_West6_Upper"}
+    ],
+    "chests": [
+      {"id": 41, "item": "2x Bronze"}
+    ]
+  },
+  {
+    "region": "MagmaChamber_West2",
+    "connections": [
+      {"region": "MagmaChamber_West6_Upper"},
+      {"region": "MagmaChamber_West3"}
+    ],
+    "chests": [
+      {"id": 4, "item": "2x Almond"}
+    ],
+    "encounters": [
+      {"id": 1, "monsters": ["Glowdra", "Glowfly", "Glowdra"]}
+    ]
+  },
+  {
+    "region": "MagmaChamber_West3",
+    "connections": [
+      {"region": "MagmaChamber_West2"},
+      {"region": "MagmaChamber_West4_Lower", "requirements": [
+        "OR", ["double_jump", "distant_ledges", "ground_switches"]
+      ]},
+      {"region": "MagmaChamber_Center1"}
+    ]
+  },
+  {
+    "region": "MagmaChamber_West4_Lower",
+    "connections": [
+      {"region": "MagmaChamber_West3"},
+      {"region": "MagmaChamber_West4_Ledge", "requirements": [
+        "OR", ["double_jump", "improved_flying", "dual_mobility"]
+      ]},
+      {"region": "MagmaChamber_West4_Upper", "requirements": [
+        "OR", ["double_jump", "improved_flying", "dual_mobility", "lofty_mount"]
+      ]}
+    ]
+  },
+  {
+    "region": "MagmaChamber_West4_Ledge",
+    "connections": [
+      {"region": "MagmaChamber_West4_Lower"}
+    ],
+    "chests": [
+      {"id": 3, "item": "2x Mass Potion", "requirements": [
+        "OR", ["double_jump", "distant_ledges"]
+      ]}
+    ]
+  },
+  {
+    "region": "MagmaChamber_West4_Upper",
+    "connections": [
+      {"region": "MagmaChamber_West4_Lower"},
+      {"region": "MagmaChamber_West5"}
+    ],
+    "chests": [
+      {"id": 0, "item": "Skill Potion", "requirements": [
+        "AND", ["dark_rooms", "breakable_walls"]
+      ]}
+    ]
+  },
+  {
+    "region": "MagmaChamber_West5",
+    "connections": [
+      {"region": "MagmaChamber_West4_Upper"},
+      {"region": "MagmaChamber_North2"}
+    ],
+    "encounters": [
+      {"id": 0, "monsters": ["Draconov", "Goblin Miner", "Goblin Miner"]}
+    ]
+  },
+  {
+    "region": "MagmaChamber_West6_Upper",
+    "connections": [
+      {"region": "MagmaChamber_West1_East"},
+      {"region": "MagmaChamber_West6_Lower"},
+      {"region": "MagmaChamber_West2"}
+    ]
+  },
+  {
+    "region": "MagmaChamber_West6_Lower",
+    "connections": [
+      {"region": "MagmaChamber_West6_Upper", "requirements": [
+        "OR", ["double_jump", "distant_ledges", "ground_switches"]
+      ]},
+      {"region": "MagmaChamber_West7"}
+    ],
+    "chests": [
+      {"id": 1, "item": "Mango"}
+    ]
+  },
+  {
+    "region": "MagmaChamber_West7",
+    "connections": [
+      {"region": "MagmaChamber_West6_Lower"},
+      {"region": "BlobBurg_East1", "requirements": ["all_blob_keys_used"]}
+    ],
+    "flags": [
+      {"id": "blob_key_accessible", "name": "Blob Key Accessible"}
+    ]
+  },
+  {
+    "region": "MagmaChamber_North1",
+    "connections": [
+      {"region": "MagmaChamber_North2"},
+      {"region": "MagmaChamber_North3"}
+    ],
+    "chests": [
+      { "id": 5, "item": "2x Steel" }
+    ],
+    "encounters": [
+      {"id": 4, "monsters": ["Goblin Miner", "Salahammer", "Goblin Miner"]}
+    ]
+  },
+  {
+    "region": "MagmaChamber_North2",
+    "connections": [
+      {"region": "MagmaChamber_North1"},
+      {"region": "MagmaChamber_North5_Lower"}
+    ],
+    "chests": [
+      { "id": 0, "item": "Dragon Lord Costume", "requirements": [
+        "AND", [
+          "double_jump",
+          "OR", ["lofty_mount", "improved_flying", "dual_mobility"]
+        ]
+      ]},
+      { "id": 1, "item": "Dragon Lord Costume alt", "requirements": [
+        "AND", [
+          "double_jump",
+          "OR", ["lofty_mount", "improved_flying", "dual_mobility"]
+        ]
+      ]}
+    ]
+  },
+  {
+    "region": "MagmaChamber_North3",
+    "connections": [
+      {"region": "MagmaChamber_North1"},
+      {"region": "MagmaChamber_North5"},
+      {"region": "MagmaChamber_North8_East"}
+    ],
+    "chests": [
+      { "id": 4, "item": "Verdant Gem" }
+    ]
+  },
+  {
+    "region": "MagmaChamber_North4",
+    "connections": [
+      {"region": "MagmaChamber_North5_Lower"},
+      {"region": "MagmaChamber_Runestone"}
+    ]
+  },
+  {
+    "region": "MagmaChamber_North5_Lower",
+    "connections": [
+      {"region": "MagmaChamber_North5_Upper", "requirements": [
+        "OR", ["double_jump", "distant_ledges", "ground_switches"]
+      ]},
+      {"region": "MagmaChamber_North2"},
+      {"region": "MagmaChamber_North4"},
+      {"region": "MagmaChamber_North7"}
+    ]
+  },
+  {
+    "region": "MagmaChamber_North5_Upper",
+    "connections": [
+      {"region": "MagmaChamber_North5_Lower"},
+      {"region": "AncientWoods_South1_Lower", "requirements": ["ancient_woods_magma_chamber_shortcut"]}
+    ],
+    "chests": [
+      {"id": 3, "item": "Raw Hide"}
+    ],
+    "flags": [
+      {"id": "ancient_woods_magma_chamber_2", "name": "Ancient Woods to Magma Chamber Shortcut"}
+    ]
+  },
+  {
+    "region": "MagmaChamber_North6",
+    "connections": [
+      {"region": "MagmaChamber_Runestone"},
+      {"region": "MagmaChamber_East1"}
+    ],
+    "encounters": [
+      {"id": 4, "monsters": ["Glowfly", "Goblin Miner", "Glowdra"]}
+    ]
+  },
+  {
+    "region": "MagmaChamber_North7",
+    "connections": [
+      {"region": "MagmaChamber_North5_Lower"}
+    ],
+    "chests": [
+      {"id": 4, "item": "Silver", "requirements": [
+        "AND", ["dark_rooms", "double_jump"]
+      ]}
+    ]
+  },
+  {
+    "region": "MagmaChamber_North8_East",
+    "connections": [
+      {"region": "MagmaChamber_North3" },
+      {"region": "MagmaChamber_North8_West", "requirements": ["magma_chamber_north_shortcut"] }
+    ]
+  },
+  {
+    "region": "MagmaChamber_North8_West",
+    "connections": [
+      {"region": "MagmaChamber_Center7" },
+      {"region": "MagmaChamber_North8_East", "requirements": ["magma_chamber_north_shortcut"] }
+    ],
+    "flags": [
+      {"id": "magma_chamber_north_shortcut", "name": "Magma Chamber North Shortcut"}
+    ]
+  },
+  {
+    "region": "MagmaChamber_Runestone",
+    "connections": [
+      {"region": "MagmaChamber_North4"},
+      {"region": "MagmaChamber_North6"}
+    ],
+    "flags": [
+      {
+        "id": "magma_chamber_lower_lava",
+        "name": "Magma Chamber Lowered Lava",
+        "requirements": [
+          "AND", [
+            "stronghold_dungeon_library_access",
+            "runestone_shard"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "region": "MagmaChamber_East1",
+    "connections": [
+      {"region": "MagmaChamber_East2"},
+      {"region": "MagmaChamber_North6"},
+      {"region": "MagmaChamber_Center9_Upper", "requirements": ["magma_chamber_east_shortcut"]}
+    ],
+    "chests": [
+      {"id": 3, "item": "Grey Pearl", "requirements": ["diamond_blocks"]}
+    ]
+  },
+  {
+    "region": "MagmaChamber_East2",
+    "connections": [
+      {"region": "MagmaChamber_East1"},
+      {"region": "MagmaChamber_East3", "requirements": ["horizon_beach_to_magma_chamber_shortcut"]}
+    ],
+    "chests": [
+      {"id": 3, "item": "Level Badge"}
+    ],
+    "encounters": [
+      {"id": 4, "monsters": ["Goblin Miner", "Glowdra", "Goblin Miner"]}
+    ]
+  },
+  {
+    "region": "MagmaChamber_East3_Upper",
+    "connections": [
+      {
+        "region": "MagmaChamber_East2",
+        "requirements": ["horizon_beach_to_magma_chamber_shortcut"]
+      },
+      {"region": "MagmaChamber_East3_Lower"},
+      {"region": "MagmaChamber_GoblinTrader"}
+    ],
+    "flags": [
+      {"id": "horizon_beach_to_magma_chamber_shortcut", "name": "Horizon Beach To Magma Chamber Shortcut"}
+    ]
+  },
+  {
+    "region": "MagmaChamber_East3_Lower",
+    "connections": [
+      {
+        "region": "MagmaChamber_East3_Upper",
+        "requirements": ["swimming"]
+      },
+      {"region": "HorizonBeach_Champion"}
+    ]
+  },
+  {
+    "region": "MagmaChamber_Center1",
+    "connections": [
+      {"region": "MagmaChamber_West3"},
+      {"region": "MagmaChamber_Center2_Middle", "requirements": [
+        "OR", ["double_jump", "distant_ledges"]
+      ]}
+    ],
+    "encounters": [
+      {"id": 0, "monsters": ["Salahammer", "Lava Blob", "Salahammer"]}
+    ]
+  },
+  {
+    "region": "MagmaChamber_Center2_Middle",
+    "connections": [
+      {"region": "MagmaChamber_Center1"},
+      {"region": "MagmaChamber_Center2_Lower", "requirements": ["magma_chamber_lower_lava"]},
+      {"region": "MagmaChamber_Center2_Upper", "requirements": [
+        "OR", ["double_jump", "ground_switches", "distant_ledges"]
+      ]}
+    ],
+    "chests": [
+      {"id": 9, "item": "Volcanic Ash", "requirements": [
+        "OR", [
+          "magma_chamber_lower_lava",
+          "AND", [
+            "double_jump",
+            "OR", ["improved_flying", "dual_mobility"]
+          ]
+        ]
+      ]}
+    ]
+  },
+  {
+    "region": "MagmaChamber_Center2_Upper",
+    "connections": [
+      {"region": "MagmaChamber_Center3"},
+      {"region": "MagmaChamber_Center4_West"},
+      {"region": "MagmaChamber_Center2_Middle"}
+    ],
+    "encounters": [
+      {"id": 0, "monsters": ["Draconov", "Glowdra", "Draconov"]}
+    ]
+  },
+  {
+    "region": "MagmaChamber_Center2_Lower",
+    "connections": [
+      {"region": "MagmaChamber_Center5", "requirements": [
+        "OR", ["double_jump", "distant_ledges"]
+      ]},
+      {"region": "MagmaChamber_Center2_Middle", "requirements": ["magma_chamber_lower_lava"]}
+    ],
+    "chests": [
+      {"id": 16, "item": "Kunai+4"}
+    ]
+  },
+  {
+    "region": "MagmaChamber_Center3",
+    "connections": [
+      {"region": "MagmaChamber_Center2_Upper"}
+    ],
+    "chests": [
+      {"id": 1, "item": "Runestone Shard"}
+    ]
+  },
+  {
+    "region": "MagmaChamber_Center4_West",
+    "connections": [
+      {"region": "MagmaChamber_Center2_Upper"},
+      {"region": "MagmaChamber_Center4_East", "requirements": ["magma_chamber_center_shortcut"]}
+    ],
+    "chests": [
+      {"id": 0, "item": "Silk"}
+    ]
+  },
+  {
+    "region": "MagmaChamber_Center4_East",
+    "connections": [
+      {"region": "MagmaChamber_Center4_West", "requirements": ["magma_chamber_center_shortcut"]},
+      {"region": "MagmaChamber_Center7"}
+    ],
+    "chests": [
+      {"id": 3, "item": "Crimson Gem"}
+    ],
+    "encounters": [
+      {"id": 6, "monsters": ["Lava Blob", "Salahammer", "Lava Blob"]}
+    ],
+    "flags": [
+      {"id": "magma_chamber_center_shortcut", "name": "Magma Chamber Center Shortcut"}
+    ]
+  },
+  {
+    "region": "MagmaChamber_Center5",
+    "connections": [
+      {"region": "MagmaChamber_Center2_Lower"},
+      {"region": "MagmaChamber_CenterMagmaRoom"},
+      {"region": "MagmaChamber_South1"}
+    ],
+    "chests": [
+      {"id": 0, "item": "1000 G"}
+    ]
+  },
+  {
+    "region": "MagmaChamber_Center6_Lower",
+    "connections": [
+      {"region": "MagmaChamber_South2"},
+      {"region": "MagmaChamber_Center6_Upper", "requirements": [
+        "OR", ["double_jump", "improved_flying", "dual_mobility", "lofty_mount"]
+      ]}
+    ],
+    "chests": [
+      {"id": 12, "item": "Azure Gem"}
+    ]
+  },
+  {
+    "region": "MagmaChamber_Center6_Upper",
+    "connections": [
+      {"region": "MagmaChamber_Center7"},
+      {"region": "MagmaChamber_Center6_Lower"},
+      {"region": "MagmaChamber_AlchemistLab_West"}
+    ],
+    "encounters": [
+      {"id": 10, "monsters": ["Lava Blob", "Salahammer", "Draconov"]}
+    ]
+  },
+  {
+    "region": "MagmaChamber_Center7",
+    "connections": [
+      {"region": "MagmaChamber_Center4_East"},
+      {"region": "MagmaChamber_Center6_Upper"},
+      {"region": "MagmaChamber_North8_West", "requirements": [
+        "OR", ["double_jump", "distant_ledges", "ground_switches"]
+      ]}
+    ],
+    "chests": [
+      {"id": 1, "item": "2x Silver", "requirements": ["diamond_blocks"]}
+    ]
+  },
+  {
+    "region": "MagmaChamber_Center8",
+    "connections": [
+      {"region": "MagmaChamber_Center9_Lower"},
+      {"region": "MagmaChamber_AlchemistLab_East"}
+    ],
+    "encounters": [
+      {"id": 6, "monsters": ["Draconov", "Glowdra", "Dracogran"]}
+    ]
+  },
+  {
+    "region": "MagmaChamber_Center9_Lower",
+    "connections": [
+      {"region": "MagmaChamber_Center8", "requirements": [
+        "OR", ["double_jump", "distant_ledges"]
+      ]},
+      {"region": "MagmaChamber_Center10", "requirements": [
+        "OR", ["double_jump", "distant_ledges"]
+      ]},
+      {"region": "MagmaChamber_Center9_Middle", "requirements": [
+        "OR", ["double_jump", "distant_ledges"]
+      ]}
+    ]
+  },
+  {
+    "region": "MagmaChamber_Center9_Middle",
+    "connections": [
+      {"region": "MagmaChamber_Center9_Lower"},
+      {"region": "MagmaChamber_Center9_Upper", "requirements": [
+        "OR", ["double_jump", "improved_flying", "dual_mobility"]
+      ]},
+      {"region": "MagmaChamber_PuppyRoom_KeyDoor", "requirements": [
+        "OR", ["magma_chamber_key", "magma_chamber_mozzie_room_unlocked"]
+      ]}
+    ],
+    "chests": [
+      {"id": 12, "item": "Silver"}
+    ]
+  },
+  {
+    "region": "MagmaChamber_Center9_Upper",
+    "connections": [
+      {"region": "MagmaChamber_East1", "requirements": ["magma_chamber_east_shortcut"]},
+      {"region": "MagmaChamber_Center9_Middle"}
+    ],
+    "flags": [
+      {"id": "magma_chamber_east_shortcut", "name": "Magma Chamber East Shortcut"}
+    ]
+  },
+  {
+    "region": "MagmaChamber_Center10",
+    "connections": [
+      {"region": "MagmaChamber_South4_Upper"},
+      {"region": "MagmaChamber_Center11", "requirements": [
+        "AND", [
+          "double_jump",
+          "OR", ["improved_flying", "dual_mobility"]
+        ]
+      ]},
+      {"region": "MagmaChamber_Center9_Lower", "requirements": [
+        "OR", ["double_jump", "distant_ledges", "ground_switches"]
+      ]}
+    ],
+    "chests": [
+      {"id": 6, "item": "Raw Hide"}
+    ]
+  },
+  {
+    "region": "MagmaChamber_Center11",
+    "connections": [
+      {"region": "MagmaChamber_Center10"}
+    ],
+    "chests": [
+      {"id": 15, "item": "2x Steel"},
+      {"id": 17, "item": "Omni Ring", "requirements": [
+        "AND", ["ground_switches", "double_jump"]
+      ]}
+    ],
+    "encounters": [
+      {"id": 14, "monsters": ["Lava Blob", "Salahammer", "Salahammer"]}
+    ]
+  },
+  {
+    "region": "MagmaChamber_South1",
+    "connections": [
+      {"region": "MagmaChamber_Center5"},
+      {"region": "MagmaChamber_South2"}
+    ],
+    "encounters": [
+      {"id": 0, "monsters": ["Lava Blob", "Lava Blob", "Lava Blob"]}
+    ]
+  },
+  {
+    "region": "MagmaChamber_South2",
+    "connections": [
+      {"region": "MagmaChamber_South1"},
+      {"region": "MagmaChamber_Center6_Lower"},
+      {"region": "MagmaChamber_South3_West"}
+    ],
+    "chests": [
+      {"id": 1, "item": "Bracer+4", "requirements": [
+        "AND", [
+          "double_jump",
+          "OR", ["improved_flying", "dual_mobility"]
+        ]
+      ]}
+    ],
+    "encounters": [
+      {"id": 0, "monsters": ["Draconov", "Dracogran", "Draconov"]}
+    ]
+  },
+  {
+    "region": "MagmaChamber_South3_West",
+    "connections": [
+      {"region": "MagmaChamber_South2"},
+      {"region": "MagmaChamber_South3_East", "requirements": ["magma_chamber_south_shortcut"]}
+    ],
+    "chests": [
+      {"id": 3, "item": "Magma Chamber key"}
+    ],
+    "encounters": [
+      {"id": 0, "monsters": ["Dracogran", "Draconov", "Dracogran"]}
+    ]
+  },
+  {
+    "region": "MagmaChamber_South3_East",
+    "connections": [
+      {"region": "MagmaChamber_South5"},
+      {"region": "MagmaChamber_South3_West", "requirements": ["magma_chamber_south_shortcut"]}
+    ],
+    "flags": [
+      {"id": "magma_chamber_south_shortcut", "name": "Magma Chamber South Shortcut"}
+    ]
+  },
+  {
+    "region": "MagmaChamber_South4_Upper",
+    "connections": [
+      {"region": "MagmaChamber_South4_Lower"},
+      {"region": "MagmaChamber_Center10"},
+      {"region": "MagmaChamber_Champion2", "requirements": [
+        "OR", ["double_jump", "ground_switches", "distant_ledges"]
+      ]}
+    ]
+  },
+  {
+    "region": "MagmaChamber_South4_Lower",
+    "connections": [
+      {"region": "MagmaChamber_South4_Upper", "requirements": [
+        "OR", ["double_jump", "improved_flying", "dual_mobility", "lofty_mount"]
+      ]},
+      {"region": "MagmaChamber_South6_East", "requirements": [
+        "OR", ["double_jump", "distant_ledges", "mount"]
+      ]},
+      {"region": "MagmaChamber_South7_West", "requirements": [
+        "OR", ["double_jump", "distant_ledges"]
+      ]}
+    ],
+    "chests": [
+      {"id": 7, "item": "Needle+4", "requirements": [
+        "OR", ["double_jump", "improved_flying", "dual_mobility", "lofty_mount"]
+      ]}
+    ],
+    "encounters": [
+      {"id": 6, "monsters": ["Lava Blob", "Dracogran", "Lava Blob"]}
+    ]
+  },
+  {
+    "region": "MagmaChamber_South5",
+    "connections": [
+      {"region": "MagmaChamber_South6_West"},
+      {"region": "MagmaChamber_South3_East"},
+      {"region": "MagmaChamber_Champion"},
+      {"region": "MagmaChamber_TarPit", "requirements": ["magic_walls"]}
+    ],
+    "chests": [
+      {"id": 20, "item": "Staff+4"},
+      {"id": 21, "item": "Silk"},
+      {"id": 22, "item": "2x Craft Box", "requirements": [
+        "AND", [
+          "grapple",
+          "OR", ["double_jump", "distant_ledges"]
+        ]
+      ]}
+    ]
+  },
+  {
+    "region": "MagmaChamber_South6_East",
+    "connections": [
+      {"region": "MagmaChamber_South6_West", "requirements": [
+        "OR", ["double_jump", "distant_ledges"]
+      ]},
+      {"region": "MagmaChamber_South4_Lower"}
+    ]
+  },
+  {
+    "region": "MagmaChamber_South6_West",
+    "connections": [
+      {"region": "MagmaChamber_South6_East", "requirements": [
+        "OR", ["double_jump", "distant_ledges"]
+      ]},
+      {"region": "MagmaChamber_South5"}
+    ],
+    "encounters": [
+      {"id": 0, "monsters": ["Dracogran", "Draconov", "Dracogran"]}
+    ]
+  },
+  {
+    "region": "MagmaChamber_South7_East",
+    "connections": [
+      {"region": "MagmaChamber_South7_West", "requirements": ["mount"]},
+      {"region": "MagmaChamber_South8", "requirements": ["breakable_walls"]}
+    ],
+    "chests": [
+      {"id": 4, "item": "2x Leather"}
+    ]
+  },
+  {
+    "region": "MagmaChamber_South7_West",
+    "connections": [
+      {"region": "MagmaChamber_South7_East", "requirements": ["mount"]},
+      {"region": "MagmaChamber_South4_Lower"}
+    ]
+  },
+  {
+    "region": "MagmaChamber_South8",
+    "connections": [
+      {"region": "MagmaChamber_South7_East", "requirements": ["breakable_walls"]},
+      {"region": "MagmaChamber_South9_West"}
+    ],
+    "chests": [
+      {"id": 0, "item": "2x Silver"},
+      {"id": 1, "item": "Raw Hide"}
+    ]
+  },
+  {
+    "region": "MagmaChamber_South9_West",
+    "connections": [
+      {"region": "MagmaChamber_South8"},
+      {"region": "MagmaChamber_South9_East", "requirements": [
+        "OR", ["double_jump", "distant_ledges"]
+      ]}
+    ]
+  },
+  {
+    "region": "MagmaChamber_South9_East",
+    "connections": [
+      {"region": "MagmaChamber_South9_Shortcut", "requirements": ["forgotten_world_to_magma_chamber_shortcut"]},
+      {"region": "MagmaChamber_South9_West", "requirements": [
+        "OR", ["double_jump", "distant_ledges"]
+      ]}
+    ],
+    "chests": [
+      {"id": 8, "item": "Craft Box"}
+    ]
+  },
+  {
+    "region": "MagmaChamber_South9_Shortcut",
+    "connections": [
+      {"region": "MagmaChamber_South9_East", "requirements": ["forgotten_world_to_magma_chamber_shortcut"]},
+      {"region": "ForgottenWorld_MCPath3", "requirements": ["forgotten_world_to_magma_chamber_shortcut"]}
+    ],
+    "flags": [
+      {"id": "forgotten_world_to_magma_chamber_shortcut", "name": "Forgotten World to Magma Chamber Shortcut"}
+    ]
+  },
+  {
+    "region": "MagmaChamber_AlchemistLab_West",
+    "connections": [
+      {"region": "MagmaChamber_Center6_Upper"},
+      {
+        "region": "MagmaChamber_AlchemistLab_KeyDoor",
+        "requirements": [
+          "OR", ["magma_chamber_key", "magma_chamber_alchemist_lab_unlocked"]
+      ]}
+    ]
+  },
+  {
+    "region": "MagmaChamber_AlchemistLab_KeyDoor",
+    "connections": [
+      {"region": "MagmaChamber_AlchemistLab_West", "requirements": ["magma_chamber_alchemist_lab_unlocked"]},
+      {"region": "MagmaChamber_AlchemistLab_East", "requirements": ["magma_chamber_alchemist_lab_unlocked"]}
+    ],
+    "flags": [
+      {"id": "magma_chamber_alchemist_lab_unlocked", "name": "Magma Chamber Alchemist Lab Unlocked"},
+      {"id": "magma_chamber_key_used", "name": "Magma Chamber Key Used"}
+    ]
+  },
+  {
+    "region": "MagmaChamber_AlchemistLab_East",
+    "connections": [
+      {"region": "MagmaChamber_Center8"},
+      {
+        "region": "MagmaChamber_AlchemistLab_KeyDoor",
+        "requirements": [
+          "OR", ["magma_chamber_key", "magma_chamber_alchemist_lab_unlocked"]
+      ]}
+    ],
+    "gifts": [
+      "TODO: There's a gift ID 27700082 (Reward Box Lvl 2) here but I don't know how to get it"
+    ]
+  },
+  {
+    "region": "MagmaChamber_PuppyRoom_KeyDoor",
+    "connections": [
+      {"region": "MagmaChamber_PuppyRoom", "requirements": ["magma_chamber_mozzie_room_unlocked"]},
+      {"region": "MagmaChamber_Center9_Middle", "requirements": ["magma_chamber_mozzie_room_unlocked"]}
+    ],
+    "flags": [
+      {"id": "magma_chamber_mozzie_room_unlocked", "name": "Magma Chamber Mozzie Room Unlocked"},
+      {"id": "magma_chamber_key_used", "name": "Magma Chamber Key Used"}
+    ]
+  },
+  {
+    "region": "MagmaChamber_PuppyRoom",
+    "connections": [
+      {"region": "MagmaChamber_PuppyRoom_KeyDoor", "requirements": ["magma_chamber_mozzie_room_unlocked"]}
+    ],
+    "gifts": [
+      {"id": 44200172, "item": "Mozzie"}
+    ]
+  },
+  {
+    "region": "MagmaChamber_CenterMagmaRoom",
+    "connections": [
+      {"region": "MagmaChamber_Center5"}
+    ],
+    "chests": [
+      {"id": 1, "item": "2x Reward Box Lvl 4", "requirements": [
+        "AND", ["secret_vision", "double_jump"]
+      ]},
+      {"id": 6, "item": "Omni Ring", "requirements": [
+        "AND", ["secret_vision", "double_jump"]
+      ]}
+    ]
+  },
+  {
+    "region": "MagmaChamber_TarPit",
+    "connections": [
+      {"region": "MagmaChamber_South5"}
+    ],
+    "chests": [
+      {"id": 0, "item": "3x Reward Box Lvl X", "requirements": [
+        "OR", ["tar", "dual_mobility"]
+      ]}
+    ]
+  },
+  {
+    "region": "MagmaChamber_GoblinTrader",
+    "connections": [
+      {"region": "MagmaChamber_East3"}
+    ]
+  },
+  {
+    "region": "MagmaChamber_Champion",
+    "connections": [
+      {"region": "MagmaChamber_South5"}
+    ],
+    "champion": [
+      {"id": 0, "monsters": ["Asura"]}
+    ],
+    "gifts": [
+      {"id": 28600001, "item": "Sanctuary Token"}
+    ]
+  },
+  {
+    "region": "MagmaChamber_Champion2",
+    "connections": [
+      {"region": "MagmaChamber_South4_Upper"},
+      {"region": "MagmaChamber_LegendaryKeeperRoom", "requirements": ["levitate"]}
+    ],
+    "champion": [
+      {"id": 6, "monsters": ["Gryphonix"], "requirements": ["levitate"]}
+    ],
+    "chests": [
+      {"id": 0, "item": "Skill Potion", "requirements": ["levitate"]},
+      {"id": 7, "item": "Craft Box"}
+    ]
+  },
+  {
+    "region": "MagmaChamber_LegendaryKeeperRoom",
+    "connections": [
+      {"region": "MagmaChamber_Champion2"}
+    ],
+    "gifts": [
+      {"id": 43900165, "item": "Magma Chamber key", "requirements": [
+        "OR", ["double_jump", "improved_flying", "dual_mobility"]
+      ]},
+      {"id": 43900176, "item": "Gold", "requirements": [
+        "AND", [
+          "mozzie",
+          "OR", ["double_jump", "improved_flying", "dual_mobility"]
+        ]
+      ]},
+      {"id": 43900178, "item": "Linen", "requirements": [
+        "AND", [
+          "mozzie",
+          "OR", ["double_jump", "improved_flying", "dual_mobility"]
+        ]
+      ]},
+      {"id": 43900179, "item": "Emerald", "requirements": [
+        "AND", [
+          "mozzie",
+          "OR", ["double_jump", "improved_flying", "dual_mobility"]
+        ]
+      ]},
+      {"id": 43900180, "item": "Ruby", "requirements": [
+        "AND", [
+          "mozzie",
+          "OR", ["double_jump", "improved_flying", "dual_mobility"]
+        ]
+      ]},
+      {"id": 43900181, "item": "Sapphire", "requirements": [
+        "AND", [
+          "mozzie",
+          "OR", ["double_jump", "improved_flying", "dual_mobility"]
+        ]
+      ]}
     ]
   }
 ]
