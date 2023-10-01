@@ -286,6 +286,17 @@ def mountain_path_key(state: CollectionState, player: int, count: int = 1) -> bo
 def blue_cave_key(state: CollectionState, player: int) -> bool:
     return has_enough_keys(state, player, "Blue Cave key", "Blue Caves Key Used")
 
+def blue_cave_switches_unlocked(state: CollectionState, player: int) -> bool:
+    return state.has("Blue Caves Switches Unlocked", player)
+
+
+def blue_cave_south_unlocked(state: CollectionState, player: int) -> bool:
+    return state.has("Blue Caves South Unlocked", player)
+
+
+def blue_cave_champion_unlocked(state: CollectionState, player: int) -> bool:
+    return state.has("Blue Caves Champion Unlocked", player)
+
 
 def dungeon_key(state: CollectionState, player: int) -> bool:
     return has_enough_keys(state, player, "Stronghold Dungeon key", "Stronghold Dungeon Key Used")
