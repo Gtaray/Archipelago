@@ -4273,6 +4273,7 @@
     "connections": [
       { "region": "AncientWoods_South1" },
       { "region": "AncientWoods_South3" },
+      { "region": "AncientWoods_TorchesRoom" },
       {
         "region": "AncientWoods_South4",
         "requirements": [
@@ -4566,8 +4567,8 @@
   {
     "region": "HorizonBeach_Center2",
     "connections": [
-      { "id": "HorizonBeach_Center2_Shortcut" },
-      { "id": "HorizonBeach_Center3" }
+      { "region": "HorizonBeach_Center2_Shortcut" },
+      { "region": "HorizonBeach_Center3" }
     ],
     "chests": [
       { "id": 3, "item": "2x Monster Bell", "requirements": [
@@ -4686,7 +4687,7 @@
     "connections": [
       {"region": "HorizonBeach_East1"},
       {
-        "region": "HorizonBeach_East1",
+        "region": "HorizonBeach_East6",
         "requirements":[
           "OR", ["double_jump", "improved_flying", "dual_mobility"]
         ]
@@ -4697,7 +4698,7 @@
           "OR", ["double_jump", "improved_flying", "dual_mobility"]
         ]
       },
-      {"region": "HorizonBeach_East1_Middle"}
+      {"region": "HorizonBeach_East2_Middle"}
     ],
     "chests": [
       { "id": 53, "item": "Bronze", "requirements": [

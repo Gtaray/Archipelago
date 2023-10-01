@@ -384,8 +384,8 @@ class MonsterSanctuaryWorld(World):
     # item pointing to the item. location.item.player can be used to see if it's a local item.
     def generate_output(self, output_directory: str):
         pass
-        # from Utils import visualize_regions
-        # visualize_regions(self.multiworld.get_region("Menu", self.player), "D:\\Downloads\\world.puml")
+        from Utils import visualize_regions
+        visualize_regions(self.multiworld.get_region("Menu", self.player), "D:\\Downloads\\world.puml")
 
     # fill_slot_data and modify_multidata can be used to modify the data that will be used by
     # the server to host the MultiWorld.
