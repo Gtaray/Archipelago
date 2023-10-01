@@ -1,5 +1,4 @@
-from worlds.generic.Rules import add_item_rule, add_rule, location_item_name
-from BaseClasses import LocationProgressType, MultiWorld, Location, Region, Entrance, CollectionState
+from BaseClasses import CollectionState
 from typing import List, Optional
 from enum import Enum
 
@@ -12,6 +11,7 @@ class Operation(Enum):
 
 class AccessCondition:
     function_name: Optional[str] = None
+    invert: bool = False
 
     def __init__(self, requirements: List, operation: Operation = Operation.NONE):
         self.operands: List[AccessCondition] = []
@@ -23,7 +23,12 @@ class AccessCondition:
             return
 
         if len(requirements) == 1:
-            self.function_name = requirements[0]
+            params = requirements[0].split()
+            if len(params) == 2:
+                self.invert = params[0].lower() == "not"
+                self.function_name = params[1]
+            else:
+                self.function_name = requirements[0]
 
         # if function name was set above, then we know that this is a leaf node
         # and can set the access rule and return
@@ -73,7 +78,10 @@ class AccessCondition:
     def has_access(self, state: CollectionState, player: int) -> bool:
         # if this node has no child conditions, return its own state
         if self.is_leaf():
-            return self.access_rule(state, player)
+            if self.invert:
+                return not self.access_rule(state, player)
+            else:
+                return self.access_rule(state, player)
 
         # If there are no operands to operate on, then return true
         if not self.operands:
@@ -87,9 +95,20 @@ class AccessCondition:
 
 
 # region Navigation Flags
-def blue_caves_switches_access(state: CollectionState, player: int) -> bool:
-    flag = state.has("Blue Caves Switches Access", player)
-    return flag
+def blue_cave_switches_unlocked(state: CollectionState, player: int) -> bool:
+    return state.has("Blue Caves Switches Unlocked", player)
+
+
+def blue_cave_south_unlocked(state: CollectionState, player: int) -> bool:
+    return state.has("Blue Caves South Unlocked", player)
+
+
+def blue_cave_champion_unlocked(state: CollectionState, player: int) -> bool:
+    return state.has("Blue Caves Champion Unlocked", player)
+
+
+def blue_cave_switches_access(state: CollectionState, player: int) -> bool:
+    return state.has("Blue Caves Switches Access", player)
 
 
 def blue_cave_champion_room_2_west_shortcut(state: CollectionState, player: int) -> bool:
@@ -114,6 +133,78 @@ def snowy_peaks_east_mountain_3_shortcut(state: CollectionState, player: int) ->
 
 def snowy_peaks_sun_palace_entrance_shortcut(state: CollectionState, player: int) -> bool:
     return state.has("Snowy Peaks to Sun Palace Shortcut", player)
+
+
+def stronghold_dungeon_south_unlocked(state: CollectionState, player: int) -> bool:
+    return state.has("Stronghold Dungeon South Unlocked", player)
+
+
+def stronghold_dungeon_east_unlocked(state: CollectionState, player: int) -> bool:
+    return state.has("Stronghold Dungeon East Unlocked", player)
+
+
+def sun_palace_raise_center_1(state: CollectionState, player: int) -> bool:
+    return state.has("Sun Palace Raise Center", player, 1)
+
+
+def sun_palace_raise_center_2(state: CollectionState, player: int) -> bool:
+    return state.has("Sun Palace Raise Center", player, 2)
+
+
+def sun_palace_raise_center_3(state: CollectionState, player: int) -> bool:
+    return state.has("Sun Palace Raise Center", player, 3)
+
+
+def sun_palace_lower_water_1(state: CollectionState, player: int) -> bool:
+    return state.has("Sun Palace Lower Water", player, 1)
+
+
+def sun_palace_lower_water_2(state: CollectionState, player: int) -> bool:
+    return state.has("Sun Palace Lower Water", player, 2)
+
+
+def sun_palace_east_shortcut(state: CollectionState, player: int) -> bool:
+    return state.has("Sun Palace East Shortcut", player, 1)
+
+
+def sun_palace_west_shortcut(state: CollectionState, player: int) -> bool:
+    return state.has("Sun Palace West Shortcut", player, 1)
+
+
+def ancient_woods_center_unlocked(state: CollectionState, player: int) -> bool:
+    return state.has("Ancient Woods Center Unlocked", player, 1)
+
+
+def ancient_woods_north_unlocked(state: CollectionState, player: int) -> bool:
+    return state.has("Ancient Woods North Unlocked", player, 1)
+
+
+def ancient_woods_east_shortcut(state: CollectionState, player: int) -> bool:
+    return state.has("Ancient Woods East Shortcut", player, 1)
+
+
+def ancient_woods_beach_access(state: CollectionState, player: int) -> bool:
+    return state.has("Ancient Woods Beach Access", player, 1)
+
+
+def ancient_woods_magma_chamber_shortcut(state: CollectionState, player: int) -> bool:
+    return state.has("Ancient Woods to Magma Chamber Shortcut", player, 2)
+
+
+def horizon_beach_center_shortcut(state: CollectionState, player: int) -> bool:
+    return state.has("Horizon Beach Center Shortcut", player)
+
+
+def horizon_beach_rescue_leonard(state: CollectionState, player: int) -> bool:
+    return state.has("Rescued Leonard", player)
+
+
+def forgotten_world_to_horizon_beach_shortcut(state: CollectionState, player: int) -> bool:
+    return state.has("Forgotten World to Horizon Beach Shortcut", player)
+
+
+def post_game(state: CollectionState, player: int) -> bool:
+    return state.has("Defeated Mad Lord", player)
 # endregion
 
 
@@ -123,8 +214,7 @@ def double_jump(state: CollectionState, player: int) -> bool:
 
 
 def warm_underwear(state: CollectionState, player: int) -> bool:
-    flag = state.has("Warm Underwear", player, 1)
-    return flag
+    return state.has("Warm Underwear", player, 1)
 
 
 def raw_hide(state: CollectionState, player: int) -> bool:
@@ -135,15 +225,18 @@ def all_sanctuary_tokens(state: CollectionState, player: int) -> bool:
     return state.has("Sanctuary Token", player, 5)
 
 
-def post_game(state: CollectionState, player: int) -> bool:
-    return state.has("Defeated Mad Lord", player)
+def memorial_ring(state: CollectionState, player: int) -> bool:
+    return state.has("Memorial Ring", player, 1)
+
+
+def all_rare_seashells(state: CollectionState, player: int) -> bool:
+    return state.has("Rare Seashell", player, 5)
 # endregion
 
 
 # region Keeper Rank
 def keeper_rank_1(state: CollectionState, player: int) -> bool:
-    flag = state.has("Champion Defeated", player, 1)
-    return flag
+    return state.has("Champion Defeated", player, 1)
 
 
 def keeper_rank_2(state: CollectionState, player: int) -> bool:
@@ -180,19 +273,18 @@ def keeper_rank_9(state: CollectionState, player: int) -> bool:
 
 
 # region Area Keys.
-def has_enough_keys(state: CollectionState, player: int, key_name: str, used_name: str) -> bool:
+def has_enough_keys(state: CollectionState, player: int, key_name: str, used_name: str, required: int = 1) -> bool:
     key_count = state.count(key_name, player)
     used_count = state.count(used_name, player)
-    return key_count > used_count
+    return key_count >= required and key_count > used_count
 
 
 def mountain_path_key(state: CollectionState, player: int, count: int = 1) -> bool:
     return state.has("Mountain Path key", player, count)
 
 
-def blue_cave_key(state: CollectionState, player: int, count: int = 1) -> bool:
+def blue_cave_key(state: CollectionState, player: int) -> bool:
     return has_enough_keys(state, player, "Blue Cave key", "Blue Caves Key Used")
-
 
 def blue_cave_switches_unlocked(state: CollectionState, player: int) -> bool:
     return state.has("Blue Caves Switches Unlocked", player)
@@ -206,12 +298,16 @@ def blue_cave_champion_unlocked(state: CollectionState, player: int) -> bool:
     return state.has("Blue Caves Champion Unlocked", player)
 
 
-def dungeon_key(state: CollectionState, player: int, count: int = 1) -> bool:
-    return state.has("Stronghold Dungeon key", player, count)
+def dungeon_key(state: CollectionState, player: int) -> bool:
+    return has_enough_keys(state, player, "Stronghold Dungeon key", "Stronghold Dungeon Key Used")
 
 
-def ancient_woods_key(state: CollectionState, player: int, count: int = 1) -> bool:
-    return state.has("Ancient Woods key", player, count)
+def ancient_woods_key(state: CollectionState, player: int) -> bool:
+    return has_enough_keys(state, player, "Ancient Woods key", "Ancient Woods Key Used")
+
+
+def two_ancient_woods_keys(state: CollectionState, player: int) -> bool:
+    return has_enough_keys(state, player, "Ancient Woods key", "Ancient Woods Key Used", 2)
 
 
 def magma_chamber_key(state: CollectionState, player: int, count: int = 1) -> bool:
@@ -287,6 +383,10 @@ def ice_orbs(state: CollectionState, player: int) -> bool:
     return state.has_group("Ice Orbs", player)
 
 
+def distant_ice_orbs(state: CollectionState, player: int) -> bool:
+    return state.has_group("Distant Ice Orbs", player)
+
+
 def summon_rock(state: CollectionState, player: int) -> bool:
     return state.has_group("Summon Rock", player)
 
@@ -329,6 +429,10 @@ def narrow_corridors(state: CollectionState, player: int) -> bool:
 
 def magic_walls(state: CollectionState, player: int) -> bool:
     return state.has_group("Magic Walls", player)
+
+
+def magic_vines(state: CollectionState, player: int) -> bool:
+    return state.has_group("Magic Vines", player)
 
 
 def fiery_shots(state: CollectionState, player: int) -> bool:

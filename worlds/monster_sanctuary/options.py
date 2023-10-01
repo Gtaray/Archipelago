@@ -1,12 +1,13 @@
-from Options import Toggle, Choice, Range, SpecialRange, TextChoice, DeathLink
+from Options import Toggle, Choice, Range, DeathLink
 
 # TODO: Other potential options
 # Randomize starting monster (because right not logic doesn't care about starting monster's ability)
-    # Randomize from the original starting 4
-    # Randomize to any monster
+#   Randomize from the original starting 4
+#   Randomize to any monster
 # Randomize keeper's monsters
 # Remove locked doors
 # Randomize shops
+
 
 class RandomizeMonsters(Choice):
     """Are monsters randomized?

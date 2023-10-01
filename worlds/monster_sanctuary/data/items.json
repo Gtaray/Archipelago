@@ -3,6 +3,22 @@
     "type": "Flag",
     "items": [
       {
+        "Name": "Blue Caves Key Used",
+        "classification": "progression"
+      },
+      {
+        "Name": "Blue Caves Switches Unlocked",
+        "classification": "progression"
+      },
+      {
+        "Name": "Blue Caves South Unlocked",
+        "classification": "progression"
+      },
+      {
+        "Name": "Blue Caves Champion Unlocked",
+        "classification": "progression"
+      },
+      {
         "Name": "Blue Caves Switches Access",
         "classification": "progression"
       },
@@ -13,6 +29,18 @@
       {
         "Name": "Stronghold Dungeon South 3 Shortcut",
         "classification": "useful"
+      },
+      {
+        "Name": "Stronghold Dungeon Key Used",
+        "classification": "progression"
+      },
+      {
+        "Name": "Stronghold Dungeon South Unlocked",
+        "classification": "progression"
+      },
+      {
+        "Name": "Stronghold Dungeon East Unlocked",
+        "classification": "progression"
       },
       {
         "Name": "Stronghold Dungeon to Blue Caves Shortcut",
@@ -33,6 +61,58 @@
       {
         "Name": "Snowy Peaks to Sun Palace Shortcut",
         "classification": "useful"
+      },
+      {
+        "Name": "Sun Palace Raise Center",
+        "classification": "progression"
+      },
+      {
+        "Name": "Sun Palace Lower Water",
+        "classification": "progression"
+      },
+      {
+        "Name": "Sun Palace East Shortcut",
+        "classification": "progression"
+      },
+      {
+        "Name": "Sun Palace West Shortcut",
+        "classification": "progression"
+      },
+      {
+        "Name": "Ancient Woods Key Used",
+        "classification": "progression"
+      },
+      {
+        "Name": "Ancient Woods Center Unlocked",
+        "classification": "progression"
+      },
+      {
+        "Name": "Ancient Woods North Unlocked",
+        "classification": "progression"
+      },
+      {
+        "Name": "Ancient Woods East Shortcut",
+        "classification": "progression"
+      },
+      {
+        "Name": "Ancient Woods to Magma Chamber Shortcut",
+        "classification": "progression"
+      },
+      {
+        "Name": "Ancient Woods Beach Access",
+        "classification": "progression"
+      },
+      {
+        "Name": "Horizon Beach Center Shortcut",
+        "classification": "useful"
+      },
+      {
+        "Name": "Forgotten World to Horizon Beach Shortcut",
+        "classification": "useful"
+      },
+      {
+        "Name": "Rescued Leonard",
+        "classification": "progression"
       }
     ]
   },

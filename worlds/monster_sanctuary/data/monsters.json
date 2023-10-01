@@ -263,7 +263,7 @@
     "CommonRewards": "Smoke Bomb,Wool,",
     "RareRewards": "Bronze,Shuriken+3,Mogwai Egg,",
     "EggReward": "Mogwai Egg",
-    "Groups": [ "Snowball Toss", "Ice Orbs" ]
+    "Groups": [ "Snowball Toss", "Ice Orbs", "Distant Ice Orbs" ]
   },
   {
     "Name": "Crystal Snail",
@@ -528,7 +528,7 @@
     "CommonRewards": "Bronze,Silver,",
     "RareRewards": "Skill Potion,Craft Box,Shockhopper Egg,",
     "EggReward": "Shockhopper Egg",
-    "Groups": [ "Shock Freeze", "Ice Orbs", "Lightning Orbs" ]
+    "Groups": [ "Shock Freeze", "Ice Orbs", "Lightning Orbs", "Distant Ice Orbs" ]
   },
   {
     "Name": "Targoat",
@@ -605,7 +605,7 @@
     "CommonRewards": "Red Gem,Crimson Gem,",
     "RareRewards": "Clear Stone,Cape+5,Spinner Egg,",
     "EggReward": "Spinner Egg",
-    "Groups": [ "Toxic Freeze", "Earth Orbs", "Ice Orbs" ]
+    "Groups": [ "Toxic Freeze", "Earth Orbs", "Ice Orbs", "Distant Ice Orbs" ]
   },
   {
     "Name": "Plague Egg",
@@ -717,7 +717,7 @@
     "CommonRewards": "Cookie Mushroom,Linen,",
     "RareRewards": "Druid Soul,Hood+4,Fungi Egg,",
     "EggReward": "Fumagus Egg",
-    "Groups": [ "Spore Shroud" ]
+    "Groups": [ "Spore Shroud", "Magic Vines" ]
   },
   {
     "Name": "Rampede",
@@ -752,7 +752,7 @@
     "CommonRewards": "Linen,Orange,",
     "RareRewards": "Phoenix Serum,Sapphire,Amberlgna Egg,",
     "EggReward": "Amberlgna Egg",
-    "Groups": [ "Spore Shroud" ]
+    "Groups": [ "Spore Shroud", "Magic Vines" ]
   },
   {
     "Name": "Dracomer",

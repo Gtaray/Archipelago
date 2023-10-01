@@ -1,9 +1,7 @@
 from enum import IntEnum
 from typing import Optional, Dict, List
-from copy import deepcopy
 
-from BaseClasses import MultiWorld, Location, Region, CollectionState
-from worlds.AutoWorld import World
+from BaseClasses import Location, Region
 from worlds.monster_sanctuary.rules import AccessCondition
 
 
@@ -27,6 +25,7 @@ class LocationData:
 	encounter_id: Optional[str]
 	monster_id: Optional[int]  # 0, 1, or 2. Index of a monster in an encounter
 	event: bool
+	hint: Optional[str]
 
 	def __init__(
 			self,
@@ -37,7 +36,8 @@ class LocationData:
 			default_item: Optional[str] = None,
 			access_condition: Optional[AccessCondition] = None,
 			encounter_id: Optional[str] = None,
-			event: bool = False):
+			event: bool = False,
+			hint: Optional[str]= None):
 		self.location_id = location_id
 		self.name = name
 		self.region = region
@@ -46,6 +46,7 @@ class LocationData:
 		self.access_condition = access_condition
 		self.encounter_id = encounter_id
 		self.event = event
+		self.hint = hint
 
 
 class MonsterSanctuaryLocation(Location):
@@ -55,12 +56,18 @@ class MonsterSanctuaryLocation(Location):
 			self,
 			player: int,
 			name: str,
-			id: Optional[int] = None,
+			address: Optional[int] = None,
 			parent: Optional[Region] = None,
 			access_condition: Optional[AccessCondition] = None):
-		super().__init__(player, name, id, parent)
+		super().__init__(player, name, address, parent)
 
 		self.access_rule = lambda state: access_condition.has_access(state, player)
+
+		data = locations_data.get(name)
+		if data is None:
+			return
+		if data.hint is not None:
+			self._hint_text = data.hint
 
 
 # This holds all the location data that is parsed from world.json file
@@ -93,7 +100,8 @@ def add_chest_data(location_id, chest_data, region_name):
 		region=region_name,
 		category=MonsterSanctuaryLocationCategory.CHEST,
 		default_item=chest_data["item"],
-		access_condition=AccessCondition(chest_data.get("requirements"))
+		access_condition=AccessCondition(chest_data.get("requirements")),
+		hint=chest_data.get("hint")
 	)
 
 	locations_data[location.name] = location
@@ -120,7 +128,7 @@ def add_encounter_data(location_id, encounter_data, region_name, category=Monste
 	result: Dict[int, LocationData] = {}
 	if isinstance(encounter_data, str):
 		breakpoint()
-	encounter_name = f"{region_name}_{encounter_data['id']}"
+	encounter_name = f"{region_name}_{encounter_data.get('id')}"
 
 	# All wild encounters have 3 monster slots, even if it's a champion with only one monster
 	# this is so that champion shuffle can shuffle encounters with 3 monsters into locations where
@@ -129,8 +137,8 @@ def add_encounter_data(location_id, encounter_data, region_name, category=Monste
 		monster_name = None
 		if encounter_data.get("monsters") is None:
 			breakpoint()
-		if i < len(encounter_data["monsters"]):
-			monster_name = encounter_data["monsters"][i]
+		if i < len(encounter_data.get("monsters")):
+			monster_name = encounter_data.get("monsters")[i]
 
 		location = LocationData(
 			location_id=location_id,

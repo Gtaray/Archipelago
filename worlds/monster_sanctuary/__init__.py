@@ -282,20 +282,11 @@ class MonsterSanctuaryWorld(World):
             for location in region.locations:
                 data = LOCATIONS.locations_data[location.name]
                 if data.category == LocationCategory.FLAG:
-                    # print(f"Placing flag '{data.default_item}' in {data.name}")
                     location.place_locked_item(self.create_item(data.default_item))
 
     # called to place player's items into the MultiWorld's itempool. After this step all regions and items have to
     # be in the MultiWorld's regions and itempool, and these lists should not be modified afterward.
     def create_items(self) -> None:
-        # Monsters are placed before items, with very little inherent logic. Items are them placed afterward
-        # taking into account the locations of monsters and what explore abilities players will have access too
-        self.place_monsters()
-        self.place_champions()
-        self.place_keeper_battles()
-        self.place_ranks()
-        self.place_events()
-
         pool: list[MonsterSanctuaryItem] = []
 
         loc_count = len([loc for loc in LOCATIONS.locations_data if LOCATIONS.locations_data[loc].category == LocationCategory.CHEST or LOCATIONS.locations_data[loc].category == LocationCategory.GIFT])
@@ -349,7 +340,10 @@ class MonsterSanctuaryWorld(World):
 
     # create any item on demand
     def create_item(self, item_name: str) -> MonsterSanctuaryItem:
-        return MonsterSanctuaryItem(self.player, item_name, items.items_data[item_name])
+        data = items.items_data.get(item_name)
+        if data is None:
+            breakpoint()
+        return MonsterSanctuaryItem(self.player, item_name, data)
 
     # called to set access and item rules on locations and entrances. Locations have to be defined before this,
     # or rule application can miss them.
@@ -358,7 +352,13 @@ class MonsterSanctuaryWorld(World):
 
     # called after the previous steps. Some placement and player specific randomizations can be done here.
     def generate_basic(self) -> None:
-        pass
+        # Monsters are placed before items, with very little inherent logic. Items are them placed afterward
+        # taking into account the locations of monsters and what explore abilities players will have access too
+        self.place_monsters()
+        self.place_champions()
+        self.place_keeper_battles()
+        self.place_ranks()
+        self.place_events()
 
     # called to modify item placement before, during and after the regular fill process, before generate_output.
     # If items need to be placed during pre_fill, these items can be determined and created using get_prefill_items

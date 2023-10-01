@@ -1,20 +1,20 @@
 import json
 import os
-from typing import List, Optional, Dict
+from typing import Optional, Dict
 
-from BaseClasses import MultiWorld, ItemClassification
-from worlds.monster_sanctuary.items import ItemData, MonsterSanctuaryItemCategory, items_data
-from worlds.monster_sanctuary.locations import LocationData, add_chest_data, add_champion_data, add_gift_data, add_flag_data, add_encounter_data
-from worlds.monster_sanctuary.regions import RegionData, MonsterSanctuaryConnection, regions_data
-from worlds.monster_sanctuary.rules import AccessCondition
+from BaseClasses import ItemClassification
+from .items import ItemData, MonsterSanctuaryItemCategory, items_data
+from .locations import LocationData, add_chest_data, add_champion_data, add_gift_data, add_flag_data, add_encounter_data
+from .regions import RegionData, MonsterSanctuaryConnection, regions_data
+from .rules import AccessCondition
 
 
 def load_world():
     locations_by_id: Dict[int, LocationData] = {}
     location_id: int = 970500
 
-    dir = os.path.dirname(__file__)
-    world_file = os.path.join(dir, "data/world.json")
+    directory = os.path.dirname(__file__)
+    world_file = os.path.join(directory, "data/world.json")
 
     with open(world_file) as file:
         data = json.load(file)
@@ -76,9 +76,9 @@ def load_world():
 def load_items():
     item_id: int = 970500
 
-    dir = os.path.dirname(__file__)
-    items_file = os.path.join(dir, "data/items.json")
-    monsters_file = os.path.join(dir, "data/monsters.json")
+    directory = os.path.dirname(__file__)
+    items_file = os.path.join(directory, "data/items.json")
+    monsters_file = os.path.join(directory, "data/monsters.json")
 
     with open(items_file) as file:
         data = json.load(file)
