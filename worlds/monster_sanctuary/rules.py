@@ -244,12 +244,66 @@ def forgotten_world_to_magma_chamber_shortcut(state: CollectionState, player: in
     return state.has("Forgotten World to Magma Chamber Shortcut", player)
 
 
+def underworld_east_catacomb_7_access(state: CollectionState, player: int) -> bool:
+    return state.has("Underworld East Catacomb 7 Access", player)
+
+
+def underworld_east_catacomb_8_shortcut(state: CollectionState, player: int) -> bool:
+    return state.has("Underworld East Catacomb 8 Shortcut", player)
+
+
+def underworld_east_catacomb_6_shortcut(state: CollectionState, player: int) -> bool:
+    return state.has("Underworld East Catacomb 6 Shortcut", player)
+
+
+def underworld_east_catacomb_pillar_control(state: CollectionState, player: int) -> bool:
+    return state.has("Underworld East Catacomb Pillar Control", player)
+
+
+def underworld_east_catacomb_unlocked(state: CollectionState, player: int) -> bool:
+    return state.has("Underworld East Catacomb Unlocked", player)
+
+
+def underworld_west_catacomb_center_entrance(state: CollectionState, player: int) -> bool:
+    return state.has("Underworld West Catacomb Center Entrance", player)
+
+
+def underworld_west_catacomb_4_access(state: CollectionState, player: int) -> bool:
+    return state.has("Underworld West Catacomb 4 Access", player)
+
+
+def underworld_west_catacomb_4_shortcut(state: CollectionState, player: int) -> bool:
+    return state.has("Underworld West Catacomb 4 Shortcut", player)
+
+
+def underworld_west_catacomb_7_shortcut(state: CollectionState, player: int) -> bool:
+    return state.has("Underworld West Catacomb 7 Shortcut", player)
+
+
+def underworld_west_catacomb_9_interior_access(state: CollectionState, player: int) -> bool:
+    return state.has("Underworld West Catacomb 9 Interior Access", player)
+
+
+def underworld_west_catacomb_roof_access(state: CollectionState, player: int) -> bool:
+    return state.has("Underworld West Catacomb Roof Access", player)
+
+
+def underworld_to_sun_palace_shortcut(state: CollectionState, player: int) -> bool:
+    return state.has("Underworld to Sun Palace Shortcut", player)
+
+
 def blob_key_accessible(state: CollectionState, player: int) -> bool:
     return state.has("Blob Key Accessible", player)
 
 
 def post_game(state: CollectionState, player: int) -> bool:
     return state.has("Defeated Mad Lord", player)
+# endregion
+
+
+# region Keeper battles
+def ostanes(state: CollectionState, player: int) -> bool:
+    return state.has("Ostanes Battle", player, 1)
 # endregion
 
 
@@ -339,17 +393,6 @@ def mountain_path_key(state: CollectionState, player: int, count: int = 1) -> bo
 def blue_cave_key(state: CollectionState, player: int) -> bool:
     return has_enough_keys(state, player, "Blue Cave key", "Blue Caves Key Used")
 
-def blue_cave_switches_unlocked(state: CollectionState, player: int) -> bool:
-    return state.has("Blue Caves Switches Unlocked", player)
-
-
-def blue_cave_south_unlocked(state: CollectionState, player: int) -> bool:
-    return state.has("Blue Caves South Unlocked", player)
-
-
-def blue_cave_champion_unlocked(state: CollectionState, player: int) -> bool:
-    return state.has("Blue Caves Champion Unlocked", player)
-
 
 def dungeon_key(state: CollectionState, player: int) -> bool:
     return has_enough_keys(state, player, "Stronghold Dungeon key", "Stronghold Dungeon Key Used")
@@ -371,8 +414,8 @@ def workshop_key(state: CollectionState, player: int, count: int = 1) -> bool:
     return state.has("Mystical Workshop key", player, count)
 
 
-def underworld_key(state: CollectionState, player: int, count: int = 1) -> bool:
-    return state.has("Underworld key", player, count)
+def underworld_key(state: CollectionState, player: int) -> bool:
+    return has_enough_keys(state, player, "Underworld key", "Underworld Key Used")
 
 
 def ahrimaaya(state: CollectionState, player: int, count: int = 1) -> bool:

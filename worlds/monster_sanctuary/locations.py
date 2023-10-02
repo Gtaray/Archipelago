@@ -94,6 +94,9 @@ def get_champions() -> Dict[str, List[str]]:
 def add_chest_data(location_id, chest_data, region_name):
 	chest_name = f"{region_name}_{chest_data['id']}"
 
+	if chest_data.get("item") is None:
+		breakpoint()
+
 	location = LocationData(
 		location_id=location_id,
 		name=chest_name,

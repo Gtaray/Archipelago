@@ -159,7 +159,64 @@
         "classification": "useful"
       },
       {
+        "Name": "Underworld Key Used",
+        "classification": "progression"
+      },
+      {
+        "Name": "Underworld East Catacomb 7 Access",
+        "classification": "progression"
+      },
+      {
+        "Name": "Underworld East Catacomb 8 Shortcut",
+        "classification": "progression"
+      },
+      {
+        "Name": "Underworld East Catacomb 6 Shortcut",
+        "classification": "progression"
+      },
+      {
+        "Name": "Underworld East Catacomb Unlocked",
+        "classification": "progression"
+      },
+      {
+        "Name": "Underworld East Catacomb Pillar Control",
+        "classification": "progression"
+      },
+      {
+        "Name": "Underworld West Catacomb Center Entrance",
+        "classification": "progression"
+      },
+      {
+        "Name": "Underworld West Catacomb Roof Access",
+        "classification": "progression"
+      },
+      {
+        "Name": "Underworld West Catacomb 4 Access",
+        "classification": "progression"
+      },
+      {
+        "Name": "Underworld West Catacomb 4 Shortcut",
+        "classification": "progression"
+      },
+      {
+        "Name": "Underworld West Catacomb 7 Shortcut",
+        "classification": "progression"
+      },
+      {
+        "Name": "Underworld West Catacomb 9 Interior Access",
+        "classification": "progression"
+      },
+      {
+        "Name": "Underworld to Sun Palace Shortcut",
+        "classification": "progression"
+      },
+      {
         "Name": "Blob Key Accessible",
+        "classification": "progression"
+      },
+
+      {
+        "Name": "Ostanes Battle",
         "classification": "progression"
       }
     ]
