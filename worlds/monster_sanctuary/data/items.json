@@ -211,7 +211,31 @@
         "classification": "progression"
       },
       {
+        "Name": "Mystical Workshop North Shortcut",
+        "classification": "progression"
+      },
+      {
+        "Name": "Mystical Workshop North Unlocked",
+        "classification": "progression"
+      },
+      {
+        "Name": "Mystical Workshop Key Used",
+        "classification": "progression"
+      },
+      {
+        "Name": "Abandoned Tower Access",
+        "classification": "progression"
+      },
+      {
         "Name": "Blob Key Accessible",
+        "classification": "progression"
+      },
+      {
+        "Name": "Blob Key Used",
+        "classification": "progression"
+      },
+      {
+        "Name": "Blob Burg Access",
         "classification": "progression"
       },
 

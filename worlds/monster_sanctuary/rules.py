@@ -292,8 +292,48 @@ def underworld_to_sun_palace_shortcut(state: CollectionState, player: int) -> bo
     return state.has("Underworld to Sun Palace Shortcut", player)
 
 
+def mystical_workshop_north_unlocked(state: CollectionState, player: int) -> bool:
+    return state.has("Mystical Workshop North Unlocked", player)
+
+
+def mystical_workshop_north_shortcut(state: CollectionState, player: int) -> bool:
+    return state.has("Mystical Workshop North Shortcut", player)
+
+
+def abandoned_tower_access(state: CollectionState, player: int) -> bool:
+    return state.has("Abandoned Tower Access", player)
+
+
 def blob_key_accessible(state: CollectionState, player: int) -> bool:
     return state.has("Blob Key Accessible", player)
+
+
+def all_blob_keys_used(state: CollectionState, player: int) -> bool:
+    return state.has("Blob Key Used", player, 3)
+
+
+def blob_burg_access_1(state: CollectionState, player: int) -> bool:
+    return state.has("Blob Burg Access", player, 1)
+
+
+def blob_burg_access_2(state: CollectionState, player: int) -> bool:
+    return state.has("Blob Burg Access", player, 2)
+
+
+def blob_burg_access_3(state: CollectionState, player: int) -> bool:
+    return state.has("Blob Burg Access", player, 3)
+
+
+def blob_burg_access_4(state: CollectionState, player: int) -> bool:
+    return state.has("Blob Burg Access", player, 4)
+
+
+def blob_burg_access_5(state: CollectionState, player: int) -> bool:
+    return state.has("Blob Burg Access", player, 5)
+
+
+def blob_burg_access_6(state: CollectionState, player: int) -> bool:
+    return state.has("Blob Burg Access", player, 6)
 
 
 def post_game(state: CollectionState, player: int) -> bool:
@@ -414,8 +454,8 @@ def magma_chamber_key(state: CollectionState, player: int) -> bool:
     return has_enough_keys(state, player, "Magma Chamber key", "Magma Chamber Key Used")
 
 
-def workshop_key(state: CollectionState, player: int, count: int = 1) -> bool:
-    return state.has("Mystical Workshop key", player, count)
+def workshop_key(state: CollectionState, player: int) -> bool:
+    return has_enough_keys(state, player, "Mystical Workshop key", "Mystical Workshop Key Used", 3)
 
 
 def underworld_key(state: CollectionState, player: int) -> bool:
@@ -424,10 +464,6 @@ def underworld_key(state: CollectionState, player: int) -> bool:
 
 def ahrimaaya(state: CollectionState, player: int, count: int = 1) -> bool:
     return state.has("Ahrimaaya", player, count)
-
-
-def all_blob_keys_used(state: CollectionState, player: int) -> bool:
-    return state.has("Blob Key Used", player, 3)
 # endregion
 
 

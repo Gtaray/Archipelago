@@ -2091,7 +2091,7 @@
       { "id": 1, "item": "Stronghold Dungeon key" }
     ],
     "flags": [
-      {"id": "sun_palace_blob_key", "name": "Blob Key Used", "requirements": "blob_key"}
+      {"id": "stronghold_dungeon_blob_key", "name": "Blob Key Used", "requirements": ["blob_key"]}
     ]
   },
   {
@@ -3596,7 +3596,7 @@
       { "id": 7, "item": "Crystal Shard" }
     ],
     "flags": [
-      {"id": "sun_palace_blob_key", "name": "Blob Key Used", "requirements": "blob_key"}
+      {"id": "sun_palace_blob_key", "name": "Blob Key Used", "requirements": ["blob_key"]}
     ]
   },
   {
@@ -3719,6 +3719,13 @@
     ],
     "chests": [
       { "id": 0, "item": "Shuriken+5" }
+    ]
+  },
+  {
+    "region": "SunPalace_North1",
+    "connections": [
+      {"region": "SunPalace_North2"},
+      {"region": "SunPalace_Center"}
     ]
   },
   {
@@ -6530,6 +6537,792 @@
     ],
     "chests": [
       {"id": 1, "item": "Phoenix Serum", "requirements": ["breakable_walls"]}
+    ]
+  },
+
+  {
+    "region": "MysticalWorkshop_South1",
+    "connections": [
+      {"region": "MysticalWorkshop_South2", "requirements": [
+        "OR", ["double_jump", "distant_ledges"]
+      ]},
+      {"region": "MysticalWorkshop_South6", "requirements": ["breakable_walls"]},
+      {"region": "StrongholdDungeon_North4"}
+    ]
+  },
+  {
+    "region": "MysticalWorkshop_South2",
+    "connections": [
+      {"region": "MysticalWorkshop_South1"},
+      {"region": "MysticalWorkshop_South3_Middle"}
+    ],
+    "encounters": [
+      {"id": 0, "monsters": ["Stolby", "Steam Golem", "Stolby"]}
+    ]
+  },
+  {
+    "region": "MysticalWorkshop_South3_Middle",
+    "connections": [
+      {"region": "MysticalWorkshop_South2"},
+      {"region": "MysticalWorkshop_South4"},
+      {"region": "MysticalWorkshop_South3_Upper", "requirements": [
+        "OR", ["double_jump", "improved_flying", "dual_mobility", "summon_big_rock"]
+      ]},
+      {"region": "MysticalWorkshop_South3_Lower"}
+    ]
+  },
+  {
+    "region": "MysticalWorkshop_South3_Lower",
+    "connections": [
+      {"region": "MysticalWorkshop_South5"},
+      {"region": "MysticalWorkshop_South3_Middle", "requirements": [
+        "OR", ["double_jump", "distant_ledges", "ground_switches"]
+      ]}
+    ],
+    "encounters": [
+      {"id": 1, "monsters": ["Stolby", "Oculus", "Stolby"]}
+    ]
+  },
+  {
+    "region": "MysticalWorkshop_South3_Upper",
+    "connections": [
+      {"region": "MysticalWorkshop_Center2"},
+      {"region": "MysticalWorkshop_South3_Middle"}
+    ]
+  },
+  {
+    "region": "MysticalWorkshop_South4",
+    "connections": [
+      {"region": "MysticalWorkshop_South3_Lower"}
+    ],
+    "chests": [
+      {"id": 18, "item": "3x Craft Box", "requirements": [
+        "AND", ["ground_switches", "heavy_blocks", "double_jump"]
+      ]},
+      {"id": 19, "item": "Skill Potion", "requirements": [
+        "AND", ["ground_switches", "heavy_blocks", "double_jump"]
+      ]}
+    ]
+  },
+  {
+    "region": "MysticalWorkshop_South5",
+    "connections": [
+      {"region": "MysticalWorkshop_South3_Lower"}
+    ],
+    "chests": [
+      {"id": 5, "item": "2x Level Badge"},
+      {"id": 7, "item": "Ribbon+5", "requirements": ["diamond_blocks"]}
+    ]
+  },
+  {
+    "region": "MysticalWorkshop_South6",
+    "connections": [
+      {"region": "MysticalWorkshop_South1"}
+    ],
+    "chests": [
+      {"id": 0, "item": "Skill Potion"}
+    ]
+  },
+  {
+    "region": "MysticalWorkshop_Center1_Lower",
+    "connections": [
+      {"region": "MysticalWorkshop_Center1_Upper", "requirements": [
+        "OR", ["double_jump", "improved_flying", "dual_mobility", "summon_big_rock"]
+      ]},
+      {"region": "MysticalWorkshop_Center2"},
+      {"region": "MysticalWorkshop_Center6"}
+    ]
+  },
+  {
+    "region": "MysticalWorkshop_Center1_Upper",
+    "connections": [
+      {"region": "MysticalWorkshop_Center1_Lower"},
+      {"region": "MysticalWorkshop_Center4"},
+      {"region": "MysticalWorkshop_West3_Access"}
+    ],
+    "encounters": [
+      {"id": 5, "monsters": ["Salahammer", "Polterferon", "Salahammer"]}
+    ]
+  },
+  {
+    "region": "MysticalWorkshop_Center2",
+    "connections": [
+      {"region": "MysticalWorkshop_Center1_Lower"},
+      {"region": "MysticalWorkshop_Center3_Upper"}
+    ],
+    "encounters": [
+      {"id": 0, "monsters": ["Polterferon", "Steam Golem", "Polterferon"]}
+    ]
+  },
+  {
+    "region": "MysticalWorkshop_Center3",
+    "connections": [
+      {"region": "MysticalWorkshop_Center8"},
+      {"region": "MysticalWorkshop_East1", "requirements": [
+        "OR", ["double_jump", "distant_ledges"]
+      ]}
+    ],
+    "chests": [
+      {"id": 0, "item": "Craft Box", "requirements": [
+        "AND", [
+          "double_jump",
+          "OR", ["improved_flying", "dual_mobility", "lofty_mount"]
+        ]
+      ]},
+      {"id": 1, "item": "2x Linen", "requirements": [
+        "OR", ["double_jump", "distant_ledges"]
+      ]}
+    ],
+    "encounters": [
+      {"id": 3, "monsters": ["Polterferon", "Salahammer", "Polterferon"]}
+    ]
+  },
+  {
+    "region": "MysticalWorkshop_Center4",
+    "connections": [
+      {"region": "MysticalWorkshop_Center1_Upper"},
+      {"region": "MysticalWorkshop_Center5_Lower", "requirements": [
+        "OR", ["double_jump", "ground_switches", "distant_ledges"]
+      ]}
+    ],
+    "chests": [
+      {"id": 1, "item": "Raspberry", "requirements": [
+        "OR", ["double_jump", "ground_switches", "distant_ledges"]
+      ]}
+    ]
+  },
+  {
+    "region": "MysticalWorkshop_Center5_Lower",
+    "connections": [
+      {"region": "MysticalWorkshop_Center4"},
+      {"region": "MysticalWorkshop_Center5_Middle", "requirements": [
+        "AND", ["double_jump", "distant_ledges"]
+      ]}
+    ],
+    "chests": [
+      {"id": 5, "item": "Phoenix Serum"}
+    ],
+    "encounters": [
+      {"id": 7, "monsters": ["Ornithopter", "Oculus", "Ornithopter"]}
+    ]
+  },
+  {
+    "region": "MysticalWorkshop_Center5_Middle",
+    "connections": [
+      {"region": "MysticalWorkshop_Center8"},
+      {"region": "MysticalWorkshop_Center9"},
+      {"region": "MysticalWorkshop_Center5_Lower"},
+      {"region": "MysticalWorkshop_Center5_Upper", "requirements": [
+        "AND", [
+          "double_jump",
+          "OR", ["improved_flying", "dual_mobility", "lofty_mount"]
+        ]
+      ]}
+    ],
+    "chests": [
+      {"id": 6, "item": "1500 G", "requirements": [
+        "AND", ["double_jump", "distant_ledges"]
+      ]}
+    ]
+  },
+  {
+    "region": "MysticalWorkshop_Center5_Upper",
+    "connections": [
+      {"region": "MysticalWorkshop_Center5_Middle"},
+      {"region": "MysticalWorkshop_Center7"}
+    ],
+    "chests": [
+      {"id": 3, "item": "2x Level Badge", "requirements": [
+        "OR", ["double_jump", "distant_ledges"]
+      ]}
+    ]
+  },
+  {
+    "region": "MysticalWorkshop_Center6",
+    "connections": [
+      {"region": "MysticalWorkshop_Center2_Lower", "requirements": [
+        "OR", ["double_jump", "ground_switches", "distant_ledges", "mount"]
+      ]},
+      {"region": "MysticalWorkshop_GolemMerchant"}
+    ],
+    "chests": [
+      {"id": 3, "item": "Summoned Sword", "requirements": [
+        "AND", ["fiery_shots", "double_jump"]
+      ]}
+    ]
+  },
+  {
+    "region": "MysticalWorkshop_Center7",
+    "connections": [
+      {"region": "MysticalWorkshop_Center5_Upper"}
+    ],
+    "chests": [
+      {"id": 0, "item": "2x Gold", "requirements": ["grapple"]},
+      {"id": 1, "item": "2x Silver"}
+    ],
+    "encounters": [
+      {"id": 2, "monsters": ["Mimic", "Mimic", "Mimic"]}
+    ]
+  },
+  {
+    "region": "MysticalWorkshop_Center8",
+    "connections": [
+      {"region": "MysticalWorkshop_Center5_Middle"},
+      {"region": "MysticalWorkshop_West1"},
+      {"region": "MysticalWorkshop_Center3"}
+    ],
+    "chests": [
+      {"id": 6, "item": "2x Silk"}
+    ],
+    "encounters": [
+      {"id": 3, "monsters": ["Oculus", "Ornithopter", "Oculus"]},
+      {"id": 5, "monsters": ["Mimic", "Mimic", "Mimic"]}
+    ]
+  },
+  {
+    "region": "MysticalWorkshop_Center9",
+    "connections": [
+      {"region": "MysticalWorkshop_Center5_Middle"}
+    ],
+    "chests": [
+      {"id": 0, "item": "Old World Costume", "requirements": [
+        "AND", ["ice_orbs", "lightning_orbs"]
+      ]}
+    ]
+  },
+  {
+    "region": "MysticalWorkshop_West1",
+    "connections": [
+      {"region": "MysticalWorkshop_West2", "requirements": [
+        "OR", ["double_jump", "ground_switches", "distant_ledges"]
+      ]},
+      {"region": "MysticalWorkshop_Center8", "requirements": [
+        "OR", ["double_jump", "ground_switches", "distant_ledges"]
+      ]}
+    ],
+    "encounters": [
+      {"id": 0, "monsters": ["Ornithopter", "Ornithopter", "Ornithopter"]}
+    ]
+  },
+  {
+    "region": "MysticalWorkshop_West2",
+    "connections": [
+      {"region": "MysticalWorkshop_West1"}
+    ],
+    "chests": [
+      {"id": 8, "item": "Mystical Workshop key"},
+      {"id": 9, "item": "Feather+5", "requirements": [
+        "AND", ["mount", "double_jump"]
+      ]}
+    ]
+  },
+  {
+    "region": "MysticalWorkshop_West3_Access",
+    "connections": [
+      {"region": "MysticalWorkshop_Center1_Lower"},
+      {"region": "MysticalWorkshop_West3", "requirements": ["abandoned_tower_access"]}
+    ],
+    "chests": [
+      {"id": 0, "item": "Smoke Bomb"}
+    ]
+  },
+  {
+    "region": "MysticalWorkshop_West3",
+    "connections": [
+      {"region": "AbandonedTower_Entrance"},
+      {"region": "MysticalWorkshop_West3_Access", "requirements": ["abandoned_tower_access"]}
+    ]
+  },
+  {
+    "region": "MysticalWorkshop_East1",
+    "connections": [
+      {"region": "MysticalWorkshop_Center3", "requirements": [
+        "OR", ["double_jump", "ground_switches", "distant_ledges"]
+      ]},
+      {"region": "MysticalWorkshop_East2", "requirements": [
+        "OR", ["double_jump", "ground_switches", "distant_ledges"]
+      ]},
+      {"region": "MysticalWorkshop_North1", "requirements": [
+        "OR", ["double_jump", "ground_switches", "distant_ledges"]
+      ]}
+    ],
+    "chests": [
+      {"id": 9, "item": "Bracelet+5", "requirements": [
+        "OR", ["double_jump", "ground_switches", "distant_ledges"]
+      ]}
+    ]
+  },
+  {
+    "region": "MysticalWorkshop_East2",
+    "connections": [
+      {"region": "MysticalWorkshop_East1"},
+      {"region": "MysticalWorkshop_East3"},
+      {"region": "MysticalWorkshop_North2"}
+    ],
+    "chests": [
+      {"id": 1, "item": "2x Linen", "requirements": [
+        "OR", ["double_jump", "ground_switches", "distant_ledges"]
+      ]}
+    ],
+    "encounters": [
+      {"id": 2, "monsters": ["Oculus", "Steam Golem", "Polterferon"]}
+    ]
+  },
+  {
+    "region": "MysticalWorkshop_East3",
+    "connections": [
+      {"region": "MysticalWorkshop_East2"}
+    ],
+    "chests": [
+      {"id": 3, "item": "Ruby"}
+    ],
+    "flags": [
+      {"id": "mystical_workshop_blob_key", "name": "Blob Key Used", "requirements": ["blob_key"]}
+    ]
+  },
+  {
+    "region": "MysticalWorkshop_North1",
+    "connections": [
+      {"region": "MysticalWorkshop_East1"},
+      {"region": "MysticalWorkshop_North3"},
+      {"region": "MysticalWorkshop_North6", "requirements": [
+        "OR", ["double_jump", "improved_flying", "dual_mobility", "summon_big_rock"]
+      ]}
+    ],
+    "chests": [
+      {"id": 0, "item": "2x Big Potion", "requirements": [
+        "OR", ["double_jump", "improved_flying", "dual_mobility", "summon_big_rock"]
+      ]},
+      {"id": 1, "item": "Sapphire", "requirements": [
+        "OR", ["double_jump", "improved_flying", "dual_mobility", "summon_big_rock"]
+      ]}
+    ],
+    "encounters": [
+      {"id": 3, "monsters": ["Ornithoper", "Oculus", "Ornithoper"]},
+      {"id": 7, "monsters": ["Oculus", "Oculus", "Oculus"], "requirements": [
+        "OR", ["double_jump", "improved_flying", "dual_mobility", "summon_big_rock"]
+      ]}
+    ]
+  },
+  {
+    "region": "MysticalWorkshop_North2",
+    "connections": [
+      {"region": "MysticalWorkshop_East2"},
+      {"region": "MysticalWorkshop_North4_Shortcut"}
+    ],
+    "chests": [
+      {"id": 1, "item": "Orange", "requirements": [
+        "OR", ["double_jump", "improved_flying", "dual_mobility"]
+      ]}
+    ]
+  },
+  {
+    "region": "MysticalWorkshop_North3",
+    "connections": [
+      {"region": "MysticalWorkshop_North1"}
+    ],
+    "chests": [
+      {"id": 5, "item": "Mystical Workshop key", "requirements": [
+        "AND", [
+          "double_jump",
+          "OR", ["improved_flying", "dual_mobility", "lofty_mount"]]
+      ]}
+    ],
+    "encounters": [
+      {"id": 6, "monsters": ["Mimic", "Mimic", "Mimic"], "requirements": [
+        "AND", [
+          "double_jump",
+          "OR", ["improved_flying", "dual_mobility", "lofty_mount"]]
+      ]}
+    ]
+  },
+  {
+    "region": "MysticalWorkshop_North4_KeyDoor",
+    "connections": [
+      {"region": "MysticalWorkshop_North6"},
+      {"region": "MysticalWorkshop_North4_Lower", "requirements": [
+        "OR", ["mystical_workshop_north_unlocked", "workshop_key"]]}
+    ],
+    "flags": [
+      {"id": "mystical_workshop_north_unlocked", "name": "Mystical Workshop North Unlocked"},
+      {"id": "mystical_workshop_key_used", "name": "Mystical Workshop Key Used"}
+    ]
+  },
+  {
+    "region": "MysticalWorkshop_North4_Lower",
+    "connections": [
+      {"region": "MysticalWorkshop_North4_Shortcut", "requirements": ["mystical_workshop_north_shortcut"]},
+      {"region": "MysticalWorkshop_North4_KeyDoor"},
+      {"region": "MysticalWorkshop_North4_Upper", "requirements": [
+        "OR", ["double_jump", "improved_flying", "dual_mobility"]
+      ]}
+    ],
+    "flags": [
+      {"id": "mystical_workshop_north_shortcut", "name": "Mystical Workshop North Shortcut"}
+    ]
+  },
+  {
+    "region": "MysticalWorkshop_North4_Upper",
+    "connections": [
+      {"region": "MysticalWorkshop_North4_Lower"},
+      {"region": "MysticalWorkshop_Clock"},
+      {"region": "MysticalWorkshop_North5"}
+    ],
+    "chests": [
+      {"id": 8, "item": "Banana"}
+    ],
+    "champion": [
+      {"id": 0, "monsters": ["Goblin Pilot"]}
+    ]
+  },
+  {
+    "region": "MysticalWorkshop_North4_Shortcut",
+    "connections": [
+      {"region": "MysticalWorkshop_North4_Lower", "requirements": ["mystical_workshop_north_shortcut"]},
+      {"region": "MysticalWorkshop_North2"}
+    ],
+    "chests": [
+      {"id": 9, "item": "Mystical Workshop key"}
+    ]
+  },
+  {
+    "region": "MysticalWorkshop_North5",
+    "connections": [
+      {"region": "MysticalWorkshop_North4_Upper"},
+      {"region": "MysticalWorkshop_MadEyeRoom", "requirements": [
+        "OR", ["double_jump", "distant_ledges", "ground_switches"]
+      ]}
+    ]
+  },
+  {
+    "region": "MysticalWorkshop_North6",
+    "connections": [
+      {"region": "MysticalWorkshop_North1"},
+      {"region": "MysticalWorkshop_North4_KeyDoor", "requirements": ["double_jump"]}
+    ],
+    "chests": [
+      {"id": 0, "item": "Emerald", "requirements": ["double_jump"]}
+    ],
+    "encounters": [
+      {"id": 3, "monsters": ["Stolby", "Polterferon", "Polterferon"], "requirements": [
+        "OR", ["double_jump", "distant_ledges", "ground_switches"]
+      ]},
+      {"id": 6, "monsters": ["Stolby", "Stolby", "Stolby"], "requirements": ["double_jump"]}
+    ]
+  },
+  {
+    "region": "MysticalWorkshop_Clock",
+    "connections": [
+      {"region": "MysticalWorkshop_North4_Upper"},
+      {"region": "MysticalWorkshop_Hidden"},
+      {"region": "MysticalWorkshop_Vertraag"}
+    ]
+  },
+  {
+    "region": "MysticalWorkshop_GolemMerchant",
+    "connections": [
+      {"region": "MysticalWorkshop_Center6"}
+    ]
+  },
+  {
+    "region": "MysticalWorkshop_Hidden",
+    "connections": [
+      {"region": "MysticalWorkshop_Clock"}
+    ],
+    "chests": [
+      {"id": 0, "item": "2x Gold", "requirements": ["levitate"]},
+      {"id": 1, "item": "Shift Stone", "requirements": ["levitate"]},
+      {"id": 3, "item": "3000 G"}
+    ]
+  },
+  {
+    "region": "MysticalWorkshop_Vertraag",
+    "connections": [
+      {"region": "MysticalWorkshop_Clock"}
+    ],
+    "champion": [
+      {"id": 0, "monsters": ["Vertraag"]}
+    ]
+  },
+  {
+    "region": "MysticalWorkshop_MadEyeRoom",
+    "connections": [
+      {"region": "MysticalWorkshop_North5"}
+    ],
+    "flags": [
+      {"id": "abandoned_tower_access", "name": "Abandoned Tower Access"}
+    ]
+  },
+
+  {
+    "region": "BlobBurg_East1",
+    "connections": [
+      {"region": "MagmaChamber_West7"},
+      {"region": "BlobBurg_East2"}
+    ],
+    "encounters": [
+      {"id": 1, "monsters": ["Blob", "Ice Blob", "Lava Blob"]}
+    ]
+  },
+  {
+    "region": "BlobBurg_East2",
+    "connections": [
+      {"region": "BlobBurg_East1", "requirements": [
+        "OR", ["double_jump", "distant_ledges"]
+      ]},
+      {"region": "BlobBurg_East3"},
+      {"region": "BlobBurg_EastHidden", "requirements": [
+        "AND", [
+          "narrow_corridors",
+          "OR", ["double_jump", "improved_flying", "dual_mobility", "lofty_mount"]
+        ]
+      ]}
+    ],
+    "chests": [
+      {"id": 2, "item": "Linen", "requirements": [
+        "OR", ["double_jump", "improved_flying", "dual_mobility", "lofty_mount"]
+      ]}
+    ],
+    "encounters": [
+      {"id": 1, "monsters": ["Blob", "Ice Blob", "Lava Blob"]}
+    ]
+  },
+  {
+    "region": "BlobBurg_East3",
+    "connections": [
+      {"region": "BlobBurg_East2"},
+      {"region": "BlobBurg_Center1"}
+    ],
+    "chests": [
+      {"id": 1, "item": "Linen"}
+    ],
+    "encounters": [
+      {"id": 25, "monsters": ["Rainbow Blob", "Lava Blob", "Rainbow Blob"]}
+    ]
+  },
+  {
+    "region": "BlobBurg_East4",
+    "connections": [
+      {"region": "BlobBurg_Center1"},
+      {"region": "BlobBurg_East5"}
+    ],
+    "chests": [
+      {"id": 1, "item": "Sapphire"}
+    ]
+  },
+  {
+    "region": "BlobBurg_East5",
+    "connections": [
+      {"region": "BlobBurg_East4"}
+    ],
+    "encounters": [
+      {"id": 1, "monsters": ["Rainbow Blob", "Rainbow Blob", "Rainbow Blob"]}
+    ],
+    "gifts": [
+      {"id": 41200001, "item": "Gold"}
+    ],
+    "flags": [
+      {"id": "blob_burg_access_2", "name": "Blob Burg Access"}
+    ]
+  },
+  {
+    "region": "BlobBurg_EastHidden",
+    "connections": [
+      {"region": "BlobBurg_East2"}
+    ],
+    "chests": [
+      {"id": 2, "item": "2x Cookie Mushroom"}
+    ]
+  },
+  {
+    "region": "BlobBurg_Center1",
+    "connections": [
+      {"region": "BlobBurg_East3", "requirements": [
+        "OR", ["double_jump", "improved_flying", "dual_mobility"]
+      ]},
+      {"region": "BlobBurg_Center3", "requirements": [
+        "AND", [
+          "blob_burg_access_2",
+          "OR", ["double_jump", "improved_flying", "dual_mobility"]
+        ]
+      ]},
+      {"region": "BlobBurg_Center2"},
+      {"region": "BlobBurg_East4", "requirements": ["blob_burg_access_1"]}
+    ],
+    "chests": [
+      {"id": 8, "item": "2x Steel", "requirements": [
+        "OR", ["double_jump", "improved_flying", "dual_mobility"]
+      ]}
+    ]
+  },
+  {
+    "region": "BlobBurg_Center2",
+    "connections": [
+      {"region": "BlobBurg_Center1"},
+      {"region": "BlobBurg_Center4", "requirements": ["blob_burg_access_3"]}
+    ],
+    "chests": [
+      {"id": 0, "item": "Phoenix Serum"}
+    ],
+    "encounters": [
+      {"id": 1, "monsters": ["Rainbow Blob", "Ice Blob", "Changeling"]}
+    ],
+    "gifts": [
+      {"id": 41300001, "item": "2x Linen"}
+    ],
+    "flags": [
+      {"id": "blob_burg_access_1", "name": "Blob Burg Access"}
+    ]
+  },
+  {
+    "region": "BlobBurg_Center3",
+    "connections": [
+      {"region": "BlobBurg_Center1"},
+      {"region": "BlobBurg_Worms", "requirements": ["blob_burg_access_6"]}
+    ],
+    "encounters": [
+      {"id": 1, "monsters": ["Changeling", "Blob", "Changeling"]}
+    ],
+    "gifts": [
+      {"id": 41200001, "item": "Emerald"}
+    ],
+    "flags": [
+      {"id": "blob_burg_access_3", "name": "Blob Burg Access"}
+    ]
+  },
+  {
+    "region": "BlobBurg_Center4",
+    "connections": [
+      {"region": "BlobBurg_Center2", "requirements": [
+        "OR", ["double_jump", "distant_ledges"]
+      ]},
+      {"region": "BlobBurg_South1"},
+      {"region": "BlobBurg_West1", "requirements": ["blob_burg_access_4"]},
+      {"region": "BlobBurg_Center5", "requirements": [
+        "AND", [
+          "blob_burg_access_5",
+          "OR", ["double_jump", "improved_flying", "dual_mobility"]
+        ]
+      ]}
+    ],
+    "chests": [
+      {"id": 4, "item": "Craft Box", "requirements": ["distant_ledges"]}
+    ]
+  },
+  {
+    "region": "BlobBurg_Center5",
+    "connections": [
+      {"region": "BlobBurg_Center4"},
+      {"region": "BlobBurg_Champion"}
+    ],
+    "encounters": [
+      {"id": 0, "monsters": ["Rainbow Blob", "Changeling", "Rainbow Blob"]}
+    ]
+  },
+  {
+    "region": "BlobBurg_West1",
+    "connections": [
+      {"region": "BlobBurg_Center4", "requirements": ["swimming"]},
+      {"region": "BlobBurg_West2", "requirements": ["swimming"]}
+    ],
+    "chests": [
+      {"id": 1, "item": "2x Linen", "requirements": ["narrow_corridors"]},
+      {"id": 3, "item": "Shift Stone", "requirements": ["improved_swimming"]},
+      {"id": 10, "item": "2x Mass Antidote", "requirements": ["improved_swimming"]}
+    ],
+    "encounters": [
+      {"id": 0, "monsters": ["Changeling", "Changeling", "Changeling"]}
+    ]
+  },
+  {
+    "region": "BlobBurg_West2",
+    "connections": [
+      {"region": "BlobBurg_West1"}
+    ],
+    "gifts": [
+      {"id": 41700001, "item": "Bandana+5", "requirements": [
+        "AND", [
+          "double_jump",
+          "OR", ["improved_flying", "dual_mobility", "lofty_mount"]
+        ]
+      ]}
+    ],
+    "flags": [
+      {"id": "blob_burg_access_5", "name": "Blob Burg Access", "requirements": [
+        "AND", [
+          "double_jump",
+          "OR", ["improved_flying", "dual_mobility", "lofty_mount"]
+        ]
+      ]}
+    ]
+  },
+  {
+    "region": "BlobBurg_South1",
+    "connections": [
+      {"region": "BlobBurg_Center4", "requirements": [
+        "OR",["swimming", "double_jump"]]},
+      {"region": "BlobBurg_South2", "requirements": [
+        "OR",["swimming", "double_jump"]]}
+    ],
+    "encounters": [
+      {"id": 0, "monsters": ["Changeling", "Lava Blob", "Changeling"]}
+    ]
+  },
+  {
+    "region": "BlobBurg_South2",
+    "connections": [
+      {"region": "BlobBurg_South1"}
+    ],
+    "chests": [
+      {"id": 0, "item": "2x Mega Potion", "requirements": ["levitate"]},
+      {"id": 1, "item": "Switch Stone", "requirements": ["swimming"]}
+    ],
+    "gifts": [
+      {"id": 42000001, "item": "Skill Potion", "requirements": [
+        "AND", [
+          "double_jump",
+          "OR", ["improved_flying", "dual_mobility", "lofty_mount"]
+        ]
+      ]}
+    ],
+    "flags": [
+      {"id": "blob_burg_access_4", "name": "Blob Burg Access", "requirements": [
+        "AND", [
+          "double_jump",
+          "OR", ["improved_flying", "dual_mobility", "lofty_mount"]
+        ]
+      ]}
+    ]
+  },
+  {
+    "region": "BlobBurg_Champion",
+    "connections": [
+      {"region": "BlobBurg_Center5"}
+    ],
+    "champion": [
+      {"id": 0, "monsters": ["King Blob"]}
+    ],
+    "gifts": [
+      {"id": 42600001, "item": "Slime Skin"}
+    ],
+    "flags": [
+      {"id": "blob_burg_access_6", "name": "Blob Burg Access"}
+    ]
+  },
+  {
+    "region": "BlobBurg_Worms",
+    "connections": [
+      {"region": "BlobBurg_Center3"}
+    ],
+    "chests": [
+      {"id": 3, "item": "Fang+5"},
+      {"id": 4, "item": "Hexing Rod", "requirements": [
+        "AND", ["secret_vision", "double_jump"]
+      ]}
+    ],
+    "encounters": [
+      {"id": 1, "monsters": ["Worm", "Worm", "Worm"]},
+      {"id": 2, "monsters": ["Worm", "Worm", "Worm"]}
     ]
   }
 ]

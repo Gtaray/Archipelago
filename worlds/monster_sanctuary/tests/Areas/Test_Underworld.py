@@ -30,10 +30,10 @@ class UnderworldTests(TestArea):
     def test_keys(self):
         self.starting_regions = ["Underworld_EastCatacomb3"]
         self.run_tests([
-            ["underworld_east_catacomb7_access", False, []],
+            ["underworld_east_catacomb_7_access", False, []],
             ["underworld_east_catacomb_unlocked", True, ["Underworld key"]],
             ["underworld_east_catacomb_unlocked", False, ["Underworld key", "Underworld Key Used"]],
-            ["underworld_east_catacomb7_access", True, ["Underworld East Catacomb Unlocked"]]
+            ["underworld_east_catacomb_7_access", True, ["Underworld East Catacomb Unlocked"]]
         ])
 
     def test_progression(self):
