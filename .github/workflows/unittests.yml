@@ -5,10 +5,8 @@ name: unittests
 
 on:
   push:
-    breaches:
+    branches:
       - monster-sanctuary
-      
-  push:
     paths:
       - '**'
       - '!docs/**'
