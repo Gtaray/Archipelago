@@ -323,7 +323,8 @@
     "gifts": [
       { "id": 134, "item": "Mountain Path key" },
       { "id": 135, "item": "2x Apple" },
-      { "id": 136, "item": "2x Potato" }
+      { "id": 136, "item": "2x Potato" },
+      { "id": 2100040, "item": "Blob Key", "requirements": ["blob_key_accessible"]}
     ],
     "encounters": [
       { "id":  2, "monsters":  [ "Blob", "Blob", "Blob" ]}
@@ -2088,6 +2089,9 @@
     "chests": [
       { "id": 0, "item": "Stronghold Dungeon key" },
       { "id": 1, "item": "Stronghold Dungeon key" }
+    ],
+    "flags": [
+      {"id": "sun_palace_blob_key", "name": "Blob Key Used", "requirements": "blob_key"}
     ]
   },
   {
@@ -3590,6 +3594,9 @@
         "AND", [ "breakable_walls", "heavy_blocks" ]
       ] },
       { "id": 7, "item": "Crystal Shard" }
+    ],
+    "flags": [
+      {"id": "sun_palace_blob_key", "name": "Blob Key Used", "requirements": "blob_key"}
     ]
   },
   {

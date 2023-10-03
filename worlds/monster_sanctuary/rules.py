@@ -338,6 +338,10 @@ def runestone_shard(state: CollectionState, player: int) -> bool:
 
 def mozzie(state: CollectionState, player: int) -> bool:
     return state.has("Mozzie", player)
+
+
+def blob_key(state: CollectionState, player: int) -> bool:
+    return state.has("Blob Key", player)
 # endregion
 
 
