@@ -13,7 +13,7 @@ class AccessCondition:
     function_name: Optional[str] = None
     invert: bool = False
 
-    def __init__(self, requirements: List, operation: Operation = Operation.NONE):
+    def __init__(self, requirements: List[object], operation: Operation = Operation.NONE):
         self.operands: List[AccessCondition] = []
         self.operation: Operation = operation
         self.access_rule = None
@@ -63,7 +63,7 @@ class AccessCondition:
                 op = Operation.AND
                 i += 1
             elif requirements[i] == "OR":
-                op = operation.OR
+                op = Operation.OR
                 i += 1
 
             reqs = requirements[i]
@@ -73,12 +73,15 @@ class AccessCondition:
 
             i += 1
 
-    def is_leaf(self):
+    def is_leaf(self) -> bool:
         return self.operation is Operation.NONE and len(self.operands) == 0
 
     def has_access(self, state: CollectionState, player: int) -> bool:
         # if this node has no child conditions, return its own state
         if self.is_leaf():
+            if self.access_rule is None:
+                return True
+
             if self.invert:
                 return not self.access_rule(state, player)
             else:

@@ -92,7 +92,7 @@ def get_champions() -> Dict[str, List[str]]:
 	return result
 
 
-def add_chest_data(location_id, chest_data, region_name):
+def add_chest_data(location_id, chest_data, region_name) -> LocationData:
 	chest_name = f"{region_name}_{chest_data['id']}"
 
 	if chest_data.get("item") is None:
@@ -112,7 +112,7 @@ def add_chest_data(location_id, chest_data, region_name):
 	return location
 
 
-def add_gift_data(location_id, gift_data, region_name):
+def add_gift_data(location_id, gift_data, region_name) -> LocationData:
 	gift_name = f"{region_name}_{gift_data['id']}"
 
 	location = LocationData(
@@ -128,7 +128,10 @@ def add_gift_data(location_id, gift_data, region_name):
 	return location
 
 
-def add_encounter_data(location_id, encounter_data, region_name, category=MonsterSanctuaryLocationCategory.MONSTER):
+def add_encounter_data(location_id,
+						encounter_data,
+						region_name,
+						category=MonsterSanctuaryLocationCategory.MONSTER) -> (Dict[int, LocationData], int):
 	result: Dict[int, LocationData] = {}
 	if isinstance(encounter_data, str):
 		breakpoint()
@@ -165,7 +168,7 @@ def add_encounter_data(location_id, encounter_data, region_name, category=Monste
 	return result, location_id
 
 
-def add_champion_data(location_id, champion_data, region_name):
+def add_champion_data(location_id, champion_data, region_name) -> (Dict[int, LocationData], int):
 	event_name = f"{region_name}_Champion"
 
 	rank_event = LocationData(
@@ -190,7 +193,7 @@ def add_champion_data(location_id, champion_data, region_name):
 	return new_locations, location_id
 
 
-def add_flag_data(location_id, flag_data, region_name):
+def add_flag_data(location_id, flag_data, region_name) -> LocationData:
 	location = LocationData(
 		location_id=location_id,
 		name=flag_data["id"],

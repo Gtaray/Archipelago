@@ -10,7 +10,7 @@ from .regions import RegionData, MonsterSanctuaryConnection, regions_data
 from .rules import AccessCondition
 
 
-def load_world():
+def load_world() -> None:
     locations_by_id: Dict[int, LocationData] = {}
     location_id: int = 970500
 
@@ -82,7 +82,7 @@ def load_world():
             locations_data[location_name].postgame = True
 
 
-def load_items():
+def load_items() -> None:
     item_id: int = 970500
 
     directory = os.path.dirname(__file__)

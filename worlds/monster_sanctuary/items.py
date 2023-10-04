@@ -49,7 +49,7 @@ class MonsterSanctuaryItem(Item):
     game: str = "Monster Sanctuary"
     quantity: int = 1
 
-    def __init__(self, player: int, name, data: ItemData):
+    def __init__(self, player: int, name: str, data: ItemData):
         super(MonsterSanctuaryItem, self).__init__(name, data.classification, data.id, player)
 
 
@@ -63,7 +63,7 @@ def get_monsters() -> Dict[str, ItemData]:
             if items_data[item_name].category is MonsterSanctuaryItemCategory.MONSTER}
 
 
-def get_random_monster_name(world: MultiWorld, required_tier: int = None) -> str:
+def get_random_monster_name(world: MultiWorld, required_tier: Optional[int] = None) -> str:
     valid_items = [item for item in items_data
                    if is_item_type(item, MonsterSanctuaryItemCategory.MONSTER)
                    and (required_tier is None or get_item_tier(item) is None or is_item_tier(item, required_tier))]
@@ -72,7 +72,7 @@ def get_random_monster_name(world: MultiWorld, required_tier: int = None) -> str
 # endregion
 
 
-def build_item_groups():
+def build_item_groups() -> None:
     item_groups = {}
     for item, data in items_data.items():
         for group in data.groups:
@@ -86,7 +86,7 @@ def is_in_item_pool(item: str, itempool: List[MonsterSanctuaryItem]) -> bool:
     return item in [pool_item.name for pool_item in itempool]
 
 
-def is_item_in_group(item: str, *groups: str):
+def is_item_in_group(item: str, *groups: str) -> bool:
     """Checks to see fi the item is in any of the given groups"""
     # If there's on groups to check, then we return true
     if len(groups) == 0:
@@ -128,10 +128,8 @@ def get_filtered_unique_item_data(itempool: List[MonsterSanctuaryItem]) -> Dict[
 
 def get_random_item_name(world: World,
                          itempool: List[MonsterSanctuaryItem],
-                         group_include: List[str] = None,
-                         group_exclude: List[str] = None,
-                         required_type: str = None,
-                         required_tier: int = None) -> Optional[str]:
+                         group_include: Optional[List[str]] = None,
+                         group_exclude: Optional[List[str]] = None) -> Optional[str]:
     """Gets a random item name from the master item list with the following restrictions:
     Unique items already in the item pool will not be added a second time
     Items with groups that intersect with group_exclude will not be added
@@ -153,9 +151,7 @@ def get_random_item_name(world: World,
                    and not is_item_type(item, MonsterSanctuaryItemCategory.RANK)
                    and not is_item_type(item, MonsterSanctuaryItemCategory.EGG)
                    and is_item_in_group(item, *group_include)
-                   and not is_item_in_group(item, *group_exclude)
-                   and (required_type is None or get_item_type(item) == required_type)
-                   and (required_tier is None or get_item_tier(item) is None or is_item_tier(item, required_tier))]
+                   and not is_item_in_group(item, *group_exclude)]
 
     if len(valid_items) == 0:
         return None
