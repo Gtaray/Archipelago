@@ -25,6 +25,7 @@ class LocationData:
 	encounter_id: Optional[str]
 	monster_id: Optional[int]  # 0, 1, or 2. Index of a monster in an encounter
 	event: bool
+	postgame: bool = False
 	hint: Optional[str]
 
 	def __init__(
@@ -142,6 +143,8 @@ def add_encounter_data(location_id, encounter_data, region_name, category=Monste
 			breakpoint()
 		if i < len(encounter_data.get("monsters")):
 			monster_name = encounter_data.get("monsters")[i]
+		else:
+			monster_name = "Empty Slot"
 
 		location = LocationData(
 			location_id=location_id,

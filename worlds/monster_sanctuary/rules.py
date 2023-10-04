@@ -336,14 +336,38 @@ def blob_burg_access_6(state: CollectionState, player: int) -> bool:
     return state.has("Blob Burg Access", player, 6)
 
 
+def forgotten_world_jungle_shortcut(state: CollectionState, player: int) -> bool:
+    return state.has("Forgotten World Jungle Shortcut", player)
+
+
+def forgotten_world_caves_shortcut(state: CollectionState, player: int) -> bool:
+    return state.has("Forgotten World Caves Shortcut", player)
+
+
+def forgotten_world_waters_shortcut(state: CollectionState, player: int) -> bool:
+    return state.has("Forgotten World Waters Shortcut", player)
+
+
+def forgotten_world_dracomer_defeated(state: CollectionState, player: int) -> bool:
+    return state.has("Forgotten World Dracomer Defeated", player)
+
+
+def abandoned_tower_south_shortcut(state: CollectionState, player: int) -> bool:
+    return state.has("Abandoned Tower South Shortcut", player)
+
+
+def abandoned_tower_center_shortcut(state: CollectionState, player: int) -> bool:
+    return state.has("Abandoned Tower Center Shortcut", player)
+
+
 def post_game(state: CollectionState, player: int) -> bool:
-    return state.has("Defeated Mad Lord", player)
+    return state.has("Mad Lord Defeated", player)
 # endregion
 
 
 # region Keeper battles
 def ostanes(state: CollectionState, player: int) -> bool:
-    return state.has("Ostanes Battle", player, 1)
+    return state.has("Ostanes", player, 1)
 # endregion
 
 
@@ -357,7 +381,7 @@ def warm_underwear(state: CollectionState, player: int) -> bool:
 
 
 def raw_hide(state: CollectionState, player: int) -> bool:
-    return state.has("Raw hide", player)
+    return state.has("Raw Hide", player)
 
 
 def all_sanctuary_tokens(state: CollectionState, player: int) -> bool:
@@ -382,6 +406,14 @@ def mozzie(state: CollectionState, player: int) -> bool:
 
 def blob_key(state: CollectionState, player: int) -> bool:
     return state.has("Blob Key", player)
+
+
+def key_of_power(state: CollectionState, player: int) -> bool:
+    return state.has("Key of Power", player)
+
+
+def all_celestial_feathers(state: CollectionState, player: int) -> bool:
+    return state.has("Celestial Feather", player, 3)
 # endregion
 
 
@@ -485,6 +517,14 @@ def swimming(state: CollectionState, player: int) -> bool:
     return (basic_swimming(state, player)
             or improved_swimming(state, player)
             or dual_mobility(state, player))
+
+
+def mount(state: CollectionState, player: int) -> bool:
+    return (basic_mount(state, player)
+            or sonar_mount(state, player)
+            or tar_mount(state, player)
+            or charging_mount(state, player)
+            or lofty_mount(state, player))
 
 
 def tar(state: CollectionState, player: int) -> bool:
@@ -607,8 +647,12 @@ def spore_shroud(state: CollectionState, player: int) -> bool:
     return state.has_group("Spore Shroud", player)
 
 
-def mount(state: CollectionState, player: int) -> bool:
+def basic_mount(state: CollectionState, player: int) -> bool:
     return state.has_group("Mount", player)
+
+
+def sonar_mount(state: CollectionState, player: int) -> bool:
+    return state.has_group("Sonar Mount", player)
 
 
 def tar_mount(state: CollectionState, player: int) -> bool:

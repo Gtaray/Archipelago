@@ -103,6 +103,10 @@
         "classification": "progression"
       },
       {
+        "Name": "Ostanes",
+        "classification": "progression"
+      },
+      {
         "Name": "Ancient Woods Beach Access",
         "classification": "progression"
       },
@@ -223,10 +227,6 @@
         "classification": "progression"
       },
       {
-        "Name": "Abandoned Tower Access",
-        "classification": "progression"
-      },
-      {
         "Name": "Blob Key Accessible",
         "classification": "progression"
       },
@@ -238,9 +238,44 @@
         "Name": "Blob Burg Access",
         "classification": "progression"
       },
-
       {
         "Name": "Ostanes Battle",
+        "classification": "progression"
+      },
+      {
+        "Name": "Forgotten World Jungle Shortcut",
+        "classification": "progression"
+      },
+      {
+        "Name": "Forgotten World Caves Shortcut",
+        "classification": "progression"
+      },
+      {
+        "Name": "Forgotten World Waters Shortcut",
+        "classification": "useful"
+      },
+      {
+        "Name": "Forgotten World Dracomer Defeated",
+        "classification": "progression"
+      },
+      {
+        "Name": "Abandoned Tower Access",
+        "classification": "progression"
+      },
+      {
+        "Name": "Abandoned Tower South Shortcut",
+        "classification": "useful"
+      },
+      {
+        "Name": "Abandoned Tower Center Shortcut",
+        "classification": "useful"
+      },
+      {
+        "Name": "Mad Lord Defeated",
+        "classification": "progression"
+      },
+      {
+        "Name": "Victory",
         "classification": "progression"
       }
     ]
@@ -259,7 +294,8 @@
     "items": [
       {
         "Name": "Sanctuary Token",
-        "classification": "progression"
+        "classification": "progression",
+        "count": 5
       },
       {
         "Name": "Double Jump Boots",
@@ -304,14 +340,22 @@
         "unique": true
       },
       {
+        "Name": "Memorial Ring",
+        "classification": "progression",
+        "tier": 1,
+        "unique": true
+      },
+      {
         "Name": "Rare Seashell",
         "classification": "progression",
-        "tier": 4
+        "tier": 4,
+        "count": 5
       },
       {
         "Name": "Celestial Feather",
         "classification": "progression",
-        "tier": 4
+        "tier": 4,
+        "count": 3
       },
       {
         "Name": "Mountain Path key",
@@ -327,7 +371,8 @@
         "tier": 2,
         "groups": [
           "Area Key"
-        ]
+        ],
+        "count": 3
       },
       {
         "Name": "Stronghold Dungeon key",
@@ -335,7 +380,8 @@
         "tier": 2,
         "groups": [
           "Area Key"
-        ]
+        ],
+        "count": 2
       },
       {
         "Name": "Ancient Woods key",
@@ -343,7 +389,8 @@
         "tier": 3,
         "groups": [
           "Area Key"
-        ]
+        ],
+        "count": 3
       },
       {
         "Name": "Magma Chamber key",
@@ -351,7 +398,8 @@
         "tier": 4,
         "groups": [
           "Area Key"
-        ]
+        ],
+        "count": 2
       },
       {
         "Name": "Mystical Workshop key",
@@ -359,7 +407,8 @@
         "tier": 4,
         "groups": [
           "Area Key"
-        ]
+        ],
+        "count": 3
       },
       {
         "Name": "Underworld key",
@@ -368,6 +417,11 @@
         "groups": [
           "Area Key"
         ]
+      },
+      {
+        "Name": "Bard Egg",
+        "tier": 1,
+        "classification": "progression"
       }
     ]
   },
@@ -6667,11 +6721,6 @@
       },
       {
         "Name": "Asura Egg",
-        "tier": 1,
-        "classification": "skip_balancing"
-      },
-      {
-        "Name": "Bard Egg",
         "tier": 1,
         "classification": "skip_balancing"
       },

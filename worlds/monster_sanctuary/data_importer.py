@@ -4,7 +4,8 @@ from typing import Optional, Dict
 
 from BaseClasses import ItemClassification
 from .items import ItemData, MonsterSanctuaryItemCategory, items_data
-from .locations import LocationData, add_chest_data, add_champion_data, add_gift_data, add_flag_data, add_encounter_data
+from .locations import (LocationData, locations_data,
+                        add_chest_data, add_champion_data, add_gift_data, add_flag_data, add_encounter_data)
 from .regions import RegionData, MonsterSanctuaryConnection, regions_data
 from .rules import AccessCondition
 
@@ -72,6 +73,14 @@ def load_world():
 
             regions_data[region.name] = region
 
+    # Go through the postgame.json file and mark every location name in that file
+    # as a post-game location
+    postgame_file = os.path.join(directory, "data/postgame.json")
+    with open(postgame_file) as file:
+        data = json.load(file)
+        for location_name in data:
+            locations_data[location_name].postgame = True
+
 
 def load_items():
     item_id: int = 970500
@@ -107,6 +116,9 @@ def load_items():
                     item_data.get("unique") or False,
                     item_data.get("groups")
                 )
+
+                if item_category == MonsterSanctuaryItemCategory.KEYITEM:
+                    item.count = item_data.get("count") or 1
 
                 items_data[item.name] = item
                 item_id += 1

@@ -11,13 +11,14 @@ from Options import Toggle, Choice, Range, DeathLink
 
 class RandomizeMonsters(Choice):
     """Are monsters randomized?
+
     No: Monsters are not randomized
-    Yes: All monsters are randomized to any monster
+    Any: All monsters are randomized to any monster
     By Specie: All monsters of a given specie are randomized to the same specie.
     by Encounter: All monsters of the same specie within an encounter are randomized to the same specie"""
     display_name = "Randomize Monsters"
     option_no = 0
-    option_yes = 1
+    option_any = 1
     option_by_specie = 2
     option_by_encounter = 3
     default = 1
@@ -32,6 +33,7 @@ class MatchMonsterTier(Toggle):
 
 class RandomizeChampions(Choice):
     """Randomize champions
+
     No: Champions will not be randomized
     Default: Champions will be randomized according to the Randomize Monsters game option
     Shuffle: Champions will be shuffled around
@@ -46,6 +48,7 @@ class RandomizeChampions(Choice):
 
 class RandomizeMonsterShifts(Choice):
     """When do shifted monsters start appearing?
+
     Never: Shifted monsters will never appear in the wild
     After Sun Palace: Shifted monsters will start appearing after completing the Sun Palace storyline
     Any Time: Shifted monsters can appear any time"""
@@ -72,6 +75,7 @@ class MinimumEggDropRate(Range):
 
 class RandomizeItems(Choice):
     """How are items randomized?
+
     Any: Items are randomized to any other item
     By Tier: Attempt to match the original item's tier
     By Type: Attempt to match the original item's type (weapon, consumable, food, etc.)
@@ -92,17 +96,17 @@ class IncludeChaosRelics(Toggle):
 
 class Goal(Choice):
     """Goal to complete.
+
     Defeat Mad Lord: Defeat the Mad Lord
-    Defeat Legendary Keepers: Defeat all legendary keepers"""
+    Defeat All Champions: Defeat all 27 Champions"""
     display_name = "Goal"
     option_defeat_mad_lord = 0
-    option_defeat_legendary_keepers = 1
+    option_defeat_all_champions = 1
     default = 0
 
     def get_event_name(self) -> str:
         return {
             self.option_defeat_mad_lord: "Defeat Mad Lord",
-            self.option_defeat_legendary_keepers: "Defeat All Legendary Keepers",
         }[self.value]
 
 

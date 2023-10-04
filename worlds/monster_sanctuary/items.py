@@ -29,6 +29,7 @@ class ItemData:
     tier: Optional[int]
     unique: bool
     groups: List[str]
+    count: int = 1  # how many of this item should be added to the game
 
     def __init__(self, item_id, name, classification, category, tier=None, unique=False, groups=None):
         self.id = item_id

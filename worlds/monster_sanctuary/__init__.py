@@ -1,8 +1,7 @@
-from typing import List, Set, Dict, Optional
+from typing import List, Dict, Optional
 
-import Utils
-from BaseClasses import Item, MultiWorld, Tutorial, Location, ItemClassification, Entrance
-from Options import Range, Toggle, VerifyKeys
+from BaseClasses import MultiWorld, Tutorial, ItemClassification, Entrance
+from Options import Range, Toggle
 from worlds.AutoWorld import World, WebWorld
 
 from . import data_importer
@@ -10,9 +9,10 @@ from . import regions as REGIONS
 from . import items as ITEMS
 from . import locations as LOCATIONS
 
-from .items import ItemData,MonsterSanctuaryItem
+from .items import ItemData, MonsterSanctuaryItem, MonsterSanctuaryItemCategory
 from .items import MonsterSanctuaryItemCategory as ItemCategory
-from .locations import MonsterSanctuaryLocationCategory as LocationCategory, MonsterSanctuaryLocation
+from .locations import MonsterSanctuaryLocationCategory as LocationCategory, MonsterSanctuaryLocation, \
+    MonsterSanctuaryLocationCategory
 from .options import monster_sanctuary_options
 from .regions import RegionData, MonsterSanctuaryRegion
 
@@ -47,12 +47,15 @@ class MonsterSanctuaryWorld(World):
     item_name_to_id = {}
     location_name_to_id = {}
 
+    number_of_locations = 0
+
     def __init__(self, world: MultiWorld, player: int):
         load_data()
 
         MonsterSanctuaryWorld.item_name_groups = ITEMS.build_item_groups()
         MonsterSanctuaryWorld.item_name_to_id = {item.name: item.id for item in ITEMS.items_data.values()}
-        MonsterSanctuaryWorld.location_name_to_id = {location.name: location.location_id for location in locations.locations_data.values()}
+        MonsterSanctuaryWorld.location_name_to_id = {location.name: location.location_id
+                                                     for location in locations.locations_data.values()}
 
         super().__init__(world, player)
 
@@ -124,12 +127,34 @@ class MonsterSanctuaryWorld(World):
         for location_name in LOCATIONS.locations_data:
             location_data = LOCATIONS.locations_data[location_name]
             region = self.multiworld.get_region(location_data.region, self.player)
-            region.locations += [MonsterSanctuaryLocation(
+            location = MonsterSanctuaryLocation(
                 self.player,
                 location_data.name,
                 location_data.location_id,
                 region,
-                location_data.access_condition)]
+                location_data.access_condition)
+
+            # if the goal is to defeat the mad lord, then
+            # we do not add any post-game locations
+            if self.goal == "defeat_mad_lord" and location_data.postgame:
+                continue
+
+            # Keep track of how many chest/gift location there are, because we need this count
+            # to generate the correct number of filler items
+            if (location_data.category == MonsterSanctuaryLocationCategory.GIFT
+                    or location_data.category == MonsterSanctuaryLocationCategory.CHEST):
+                self.number_of_locations += 1
+
+            region.locations.append(location)
+
+    def set_victory_condition(self):
+        if self.goal == "defeat_mad_lord":
+            self.multiworld.completion_condition[self.player] = lambda state: (
+                state.has("Victory", self.player))
+
+        elif self.goal == "defeat_all_champions":
+            self.multiworld.completion_condition[self.player] = lambda state: (
+                state.has("Champion Defeated", self.player, 27))
 
     def place_monsters(self):
         monsters: Dict[str, ItemData] = ITEMS.get_monsters()
@@ -143,7 +168,6 @@ class MonsterSanctuaryWorld(World):
             monsters = self.shuffle_dictionary(monsters)
 
         # Place monsters
-        print("Placing Monsters")
         for region in self.multiworld.regions:
             for location in region.locations:
                 data = LOCATIONS.locations_data[location.name]
@@ -199,8 +223,6 @@ class MonsterSanctuaryWorld(World):
         # Place the selected monster
         location.place_locked_item(monster)
 
-        # print(f"{location.name}: {data.default_item} -> {monster_name}")
-
     def place_champions(self):
         champions: Dict[str, List[str]] = LOCATIONS.get_champions()
 
@@ -208,7 +230,6 @@ class MonsterSanctuaryWorld(World):
         if self.randomize_champions == "shuffle":
             champions = self.shuffle_dictionary(champions)
 
-        print("Placing Champions")
         for region in self.multiworld.regions:
             for location in region.locations:
                 data = LOCATIONS.locations_data[location.name]
@@ -247,8 +268,6 @@ class MonsterSanctuaryWorld(World):
         location.place_locked_item(monster)
 
     def place_keeper_battles(self):
-        # Place monsters
-        print("Placing Keeper Battles")
         for region in self.multiworld.regions:
             for location in region.locations:
                 data = LOCATIONS.locations_data[location.name]
@@ -267,7 +286,6 @@ class MonsterSanctuaryWorld(World):
         location.place_locked_item(monster)
 
     def place_ranks(self):
-        print("Placing Ranks")
         for region in self.multiworld.regions:
             for location in region.locations:
                 data = LOCATIONS.locations_data[location.name]
@@ -277,20 +295,16 @@ class MonsterSanctuaryWorld(World):
                     location.place_locked_item(rank_item)
 
     def place_events(self):
-        print("Placing Flags")
         for region in self.multiworld.regions:
             for location in region.locations:
                 data = LOCATIONS.locations_data[location.name]
-                if data.category == LocationCategory.FLAG:
+                if data.category == LocationCategory.FLAG and location.item is None:
                     location.place_locked_item(self.create_item(data.default_item))
 
     # called to place player's items into the MultiWorld's itempool. After this step all regions and items have to
     # be in the MultiWorld's regions and itempool, and these lists should not be modified afterward.
     def create_items(self) -> None:
         pool: list[MonsterSanctuaryItem] = []
-
-        loc_count = len([loc for loc in LOCATIONS.locations_data if LOCATIONS.locations_data[loc].category == LocationCategory.CHEST or LOCATIONS.locations_data[loc].category == LocationCategory.GIFT])
-        print(f"Number of Location: {loc_count}")
 
         # These items are not naturally put in the general item pool, and are handled separately
         item_exclusions = ["Multiple"]
@@ -299,50 +313,28 @@ class MonsterSanctuaryWorld(World):
         if not self.include_chaos_relics:
             item_exclusions.append("Relic")
 
-        for location_name in LOCATIONS.locations_data:
-            location = LOCATIONS.locations_data[location_name]
+        # Add all key items to the pool
+        key_items = [item_name for item_name in ITEMS.items_data
+                     if ITEMS.items_data[item_name].category == MonsterSanctuaryItemCategory.KEYITEM]
+        # Raw Hide is a non-key item that also gates a check, so we force adding one
+        key_items.append("Raw Hide")
 
-            # Monsters and champions are placed earlier
-            if not (location.category == LocationCategory.CHEST
-                    or location.category == LocationCategory.GIFT):
-                continue
+        for key_item in key_items:
+            for i in range(ITEMS.items_data[key_item].count):
+                pool.append(self.create_item(key_item))
 
-            # If this location contains a key item, add it and move on.
-            # This should handle key items that show up multiple times
-            if ITEMS.is_item_type(location.default_item, ItemCategory.KEYITEM):
-                pool += [self.create_item(location.default_item)]
-                continue
+        # TODO: Make a better way to fill the item pool
+        while len(pool) < self.number_of_locations:
+            item = self.create_item(ITEMS.get_random_item_name(self, pool, group_exclude=item_exclusions))
+            pool.append(item)
 
-            item_tier = None
-
-            # Match tier
-            # This might not work long-term. We need to make sure items get put in chests
-            # whose default item matches their tier, and this needs to happen after
-            # key items are placed
-            # This might end up with a mismatch in the number of items and locations of each tier
-            # in which case we just need to fill with whatever item we can?
-            # or we need to dynamically swap out items in the item pool if that's possible.
-            if self.randomize_items == "by_tier":
-                item_tier = items.get_item_tier(location.default_item)
-
-            item_name = items.get_random_item_name(self, pool,
-                                                   required_tier=item_tier,
-                                                   group_exclude=item_exclusions)
-
-            # This will break if any item returns None because
-            # the itempool count will not match the location count
-            if item_name is not None:
-                item = self.create_item(item_name)
-                pool += [item]
-
-            # print(location.default_item + " -> " + item_name)
         self.multiworld.itempool += pool
 
     # create any item on demand
     def create_item(self, item_name: str) -> MonsterSanctuaryItem:
         data = items.items_data.get(item_name)
         if data is None:
-            breakpoint()
+            raise KeyError(f"Item '{item_name}' has no data")
         return MonsterSanctuaryItem(self.player, item_name, data)
 
     # called to set access and item rules on locations and entrances. Locations have to be defined before this,
@@ -354,6 +346,7 @@ class MonsterSanctuaryWorld(World):
     def generate_basic(self) -> None:
         # Monsters are placed before items, with very little inherent logic. Items are them placed afterward
         # taking into account the locations of monsters and what explore abilities players will have access too
+        self.set_victory_condition()
         self.place_monsters()
         self.place_champions()
         self.place_keeper_battles()
@@ -383,7 +376,6 @@ class MonsterSanctuaryWorld(World):
     # self.multiworld.get_locations(self.player) has all locations for the player, with attribute
     # item pointing to the item. location.item.player can be used to see if it's a local item.
     def generate_output(self, output_directory: str):
-        pass
         from Utils import visualize_regions
         visualize_regions(self.multiworld.get_region("Menu", self.player), "D:\\Downloads\\world.puml")
 

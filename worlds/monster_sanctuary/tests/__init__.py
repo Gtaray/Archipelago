@@ -1,4 +1,5 @@
-from test.TestBase import TestBase, WorldTestBase
+from test.TestBase import WorldTestBase
+from test.general.TestImplemented import TestImplemented
 
 
 class MonsterSanctuaryTestBase(WorldTestBase):

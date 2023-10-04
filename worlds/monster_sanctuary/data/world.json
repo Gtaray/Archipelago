@@ -1463,7 +1463,7 @@
     ],
     "gifts": [
       { "id": 12100029, "item": "Ahrimaaya", "requirements": [ "post_game" ] },
-      "TODO: Re-add these once the post game is reachable via logic maybe? Or maybe just ignore this altogether"
+      { "id": 12100041, "item": "Reward Box Lvl 4", "requirements": [ "post_game" ] }
     ]
   },
   {
@@ -4159,6 +4159,9 @@
     ],
     "champion": [
       { "id": 9, "monsters": ["Goblin Hood", "Goblin King", "Goblin Warlock"]}
+    ],
+    "flags": [
+      {"id": "ostanes", "name": "Ostanes"}
     ]
   },
   {
@@ -6998,7 +7001,12 @@
     "region": "MysticalWorkshop_North6",
     "connections": [
       {"region": "MysticalWorkshop_North1"},
-      {"region": "MysticalWorkshop_North4_KeyDoor", "requirements": ["double_jump"]}
+      {"region": "MysticalWorkshop_North4_KeyDoor", "requirements": [
+        "AND", [
+          "double_jump",
+          "OR", ["mystical_workshop_north_unlocked", "workshop_key"]
+        ]
+      ]}
     ],
     "chests": [
       {"id": 0, "item": "Emerald", "requirements": ["double_jump"]}
@@ -7323,6 +7331,1335 @@
     "encounters": [
       {"id": 1, "monsters": ["Worm", "Worm", "Worm"]},
       {"id": 2, "monsters": ["Worm", "Worm", "Worm"]}
+    ]
+  },
+
+  {
+    "region": "ForgottenWorld_Fall1",
+    "connections": [
+      {"region": "ForgottenWorld_Fall2"},
+      {"region": "ForgottenWorld_FallHidden", "requirements": ["dark_rooms"]}
+    ]
+  },
+  {
+    "region": "ForgottenWorld_FallHidden",
+    "connections": [
+      {"region": "ForgottenWorld_Fall1"}
+    ],
+    "chests": [
+      {"id": 0, "item": "3x Silver"},
+      {"id": 2, "item": "2x Gold"},
+      {"id": 3, "item": "4x Bronze"}
+    ]
+  },
+  {
+    "region": "ForgottenWorld_Fall2",
+    "connections": [
+      {"region": "ForgottenWorld_ForgottenWorldIntro"}
+    ]
+  },
+  {
+    "region": "ForgottenWorld_ForgottenWorldIntro",
+    "connections": [
+      {"region": "ForgottenWorld_Fall2"},
+      {"region": "ForgottenWorld_Jungle1", "requirements": [
+        "OR", ["swimming", "double_jump", "distant_ledges", "ground_switches"]
+      ]}
+    ]
+  },
+  {
+    "region": "ForgottenWorld_Jungle1",
+    "connections": [
+      {"region": "ForgottenWorld_Jungle2"},
+      {"region": "ForgottenWorld_Caves1"},
+      {"region": "ForgottenWorld_ForgottenWorldIntro", "requirements": [
+        "OR", ["double_jump", "distant_ledges"]
+      ]}
+    ],
+    "chests": [
+      {"id": 1, "item": "Gold", "requirements": [
+        "OR", ["double_jump", "distant_ledges"]
+      ]},
+      {"id": 3, "item": "Hood+5", "requirements": [
+        "AND", [
+          "double_jump",
+          "OR", ["improved_flying", "dual_mobility", "lofty_mount"]
+        ]
+      ]}
+    ],
+    "encounters": [
+      {"id": 0, "monsters": ["Rathops", "Rathops", "Kongamato"]}
+    ]
+  },
+  {
+    "region": "ForgottenWorld_Jungle2",
+    "connections": [
+      {"region": "ForgottenWorld_Jungle1"},
+      {"region": "ForgottenWorld_Jungle3"}
+    ],
+    "encounters": [
+      {"id": 0, "monsters": ["Rampede", "Rathops", "Rampede"]}
+    ]
+  },
+  {
+    "region": "ForgottenWorld_Jungle3",
+    "connections": [
+      {"region": "ForgottenWorld_Jungle2"},
+      {"region": "ForgottenWorld_Jungle4"},
+      {"region": "ForgottenWorld_JungleHidden", "requirements": [
+        "AND", [
+          "double_jump",
+          "OR", ["improved_flying", "dual_mobility", "lofty_mount", "summon_big_rock"]
+        ]
+      ]}
+    ],
+    "chests": [
+      {"id": 1, "item": "3x Linen", "requirements": [
+        "OR", ["double_jump", "improved_flying", "dual_mobility", "lofty_mount", "summon_big_rock"]
+      ]}
+    ],
+    "encounters": [
+      {"id": 4, "monsters": ["Rathops", "Rampede", "Rathops"]}
+    ]
+  },
+  {
+    "region": "ForgottenWorld_Jungle4",
+    "connections": [
+      {"region": "ForgottenWorld_Jungle3"},
+      {"region": "ForgottenWorld_Jungle5"},
+      {"region": "ForgottenWorld_JungleShortcut", "requirements": ["forgotten_world_jungle_shortcut"]}
+    ],
+    "encounters": [
+      {"id": 0, "monsters": ["Rampede", "Krakaturtle", "Rampede"]},
+      {"id": 3, "monsters": ["Rathops", "Krakaturtle", "Rathops"]}
+    ]
+  },
+  {
+    "region": "ForgottenWorld_Jungle5",
+    "connections": [
+      {"region": "ForgottenWorld_Jungle4"},
+      {"region": "ForgottenWorld_Jungle6", "requirements": [
+        "OR", ["double_jump", "distant_ledges", "ground_switches"]
+      ]},
+      {"region": "ForgottenWorld_TarPits1", "requirements": ["magic_vines"]}
+    ],
+    "encounters": [
+      {"id": 7, "monsters": ["Kongamato", "Amberlgna", "Amberlgna"]},
+      {"id": 8, "monsters": ["Rathops", "Amberlgna", "Rampede"]}
+    ]
+  },
+  {
+    "region": "ForgottenWorld_Jungle5_Hidden",
+    "connections": [
+      {"region": "ForgottenWorld_TarPitsHidden1"}
+    ],
+    "chests": [
+      {"id": 0, "item": "Warhorn", "requirements": [
+        "OR", ["magic_vines", "magic_walls"]
+      ]}
+    ]
+  },
+  {
+    "region": "ForgottenWorld_Jungle6",
+    "connections": [
+      {"region": "ForgottenWorld_Jungle5"},
+      {"region": "ForgottenWorld_Climb1", "requirements": [
+        "OR", ["double_jump", "improved_flying", "dual_mobility", "lofty_mount"]
+      ]}
+    ],
+    "chests": [
+      {"id": 0, "item": "4000 G", "requirements": [
+        "AND", ["magic_vines", "double_jump", "breakable_walls"]
+      ]},
+      {"id": 3, "item": "Shift Stone", "requirements": [
+        "OR", ["double_jump", "improved_flying", "dual_mobility", "lofty_mount"]
+      ]},
+      {"id": 34, "item": "Skill Potion", "requirements": [
+        "AND", ["secret_vision", "double_jump", "magic_vines"]
+      ]}
+    ]
+  },
+  {
+    "region": "ForgottenWorld_JungleHidden",
+    "connections": [
+      {"region": "ForgottenWorld_Jungle3"}
+    ],
+    "chests": [
+      {"id": 23, "item": "Lucky Clover", "requirements": ["charging_mount"]}
+    ]
+  },
+  {
+    "region": "ForgottenWorld_JungleShortcut",
+    "connections": [
+      {"region": "ForgottenWorld_TarPits8"},
+      {"region": "ForgottenWorld_Jungle4", "requirements": ["forgotten_world_jungle_shortcut"]}
+    ],
+    "flags": [
+      {
+        "id": "forgotten_world_jungle_shortcut",
+        "name": "Forgotten World Jungle Shortcut",
+        "requirements": ["diamond_blocks"]}
+    ]
+  },
+  {
+    "region": "ForgottenWorld_TarPits1",
+    "connections": [
+      {"region": "ForgottenWorld_Jungle5"},
+      {"region": "ForgottenWorld_TarPits2"},
+      {"region": "ForgottenWorld_TarPitsHidden1", "requirements": [
+        "AND", ["tar_mount", "double_jump", "breakable_walls"]
+      ]}
+    ],
+    "chests": [
+      {"id": 1, "item": "2x Sapphire", "requirements": [
+        "AND", ["tar_mount", "double_jump"]
+      ]}
+    ]
+  },
+  {
+    "region": "ForgottenWorld_TarPits2",
+    "connections": [
+      {"region": "ForgottenWorld_TarPits1"},
+      {"region": "ForgottenWorld_TarPits3"}
+    ],
+    "encounters": [
+      {"id": 0, "monsters": ["Tar Blob", "Tar Blob", "Tar Blob"]}
+    ]
+  },
+  {
+    "region": "ForgottenWorld_TarPits3",
+    "connections": [
+      {"region": "ForgottenWorld_TarPits2", "requirements": [
+        "AND", ["tar_mount", "double_jump"]
+      ]},
+      {"region": "ForgottenWorld_TarPits4"}
+    ],
+    "chests": [
+      {"id": 0, "item": "2x Reward Box Lvl 3", "requirements": [
+        "OR", ["tar_mount", "double_jump"]
+      ]},
+      {"id": 1, "item": "2x Peanut", "requirements": [
+        "OR", ["tar_mount", "double_jump"]
+      ]}
+    ]
+  },
+  {
+    "region": "ForgottenWorld_TarPits4",
+    "connections": [
+      {"region": "ForgottenWorld_TarPits3"},
+      {"region": "ForgottenWorld_TarPits5_Upper"}
+    ],
+    "chests": [
+      {"id": 1, "item": "2x Craft Box", "requirements": ["breakable_walls"]}
+    ],
+    "encounters": [
+      {"id": 0, "monsters": ["Tar Blob", "Amberlgna", "Tar Blob"]},
+      {"id": 4, "monsters": ["Krakaturtle", "Tar Blob", "Crystal Snail"]}
+    ],
+    "gifts": [
+      {"id": 52800001, "item": "Celestial Feather"}
+    ]
+  },
+  {
+    "region": "ForgottenWorld_TarPits5_Upper",
+    "connections": [
+      {"region": "ForgottenWorld_TarPits4"},
+      {"region": "ForgottenWorld_TarPits5_Lower"},
+      {"region": "ForgottenWorld_TarPits6"}
+    ]
+  },
+  {
+    "region": "ForgottenWorld_TarPits5_Lower",
+    "connections": [
+      {"region": "ForgottenWorld_Waters5"},
+      {"region": "ForgottenWorld_TarPits5_Upper", "requirements": [
+        "OR", ["double_jump", "distant_ledges", "ground_switches"]
+      ]},
+      {"region": "ForgottenWorld_TarPits9"}
+    ],
+    "chests": [
+      {"id": 1, "item": "2x Strawberry"}
+    ]
+  },
+  {
+    "region": "ForgottenWorld_TarPits6",
+    "connections": [
+      {"region": "ForgottenWorld_TarPits5_Upper"},
+      {"region": "ForgottenWorld_TarPits7"}
+    ]
+  },
+  {
+    "region": "ForgottenWorld_TarPits7",
+    "connections": [
+      {"region": "ForgottenWorld_TarPits6"},
+      {"region": "ForgottenWorld_TarPits8"},
+      {"region": "ForgottenWorld_WorldTree"}
+    ]
+  },
+  {
+    "region": "ForgottenWorld_TarPits8",
+    "connections": [
+      {"region": "ForgottenWorld_TarPits7"},
+      {"region": "ForgottenWorld_JungleShortcut", "requirements": [
+        "OR", ["double_jump", "summon_big_rock", "distant_ledges"]
+      ]}
+    ],
+    "chests": [
+      {"id": 0, "item": "Shift Stone", "requirements": [
+        "AND", ["double_jump", "tar_mount"]
+      ]}
+    ]
+  },
+  {
+    "region": "ForgottenWorld_TarPits9",
+    "connections": [
+      {"region": "ForgottenWorld_TarPits5_Lower"}
+    ],
+    "chests": [
+      {"id": 0, "item": "Warrior Flask", "requirements": [
+        "AND", [
+          "double_jump",
+          "OR", ["lofty_mount", "tar_mount", "dual_mobility"]
+        ]
+      ]}
+    ]
+  },
+  {
+    "region": "ForgottenWorld_TarPitsHidden1",
+    "connections": [
+      {"region": "ForgottenWorld_Jungle5_Hidden"},
+      {"region": "ForgottenWorld_TarPits1"}
+    ]
+  },
+  {
+    "region": "ForgottenWorld_Waters1_Upper",
+    "connections": [
+      {"region": "ForgottenWorld_WorldTree", "requirements": ["magic_walls"]},
+      {"region": "ForgottenWorld_Waters1_Middle"}
+    ],
+    "chests": [
+      {"id": 5, "item": "2x Mega Potion", "requirements": ["charging_mount"]}
+    ]
+  },
+  {
+    "region": "ForgottenWorld_Waters1_Middle",
+    "connections": [
+      {"region": "ForgottenWorld_Waters5"},
+      {"region": "ForgottenWorld_DracomerLair", "requirements": [
+        "AND", ["swimming", "forgotten_world_waters_shortcut"]
+      ]},
+      {"region": "ForgottenWorld_Waters1_Upper", "requirements": [
+        "OR", ["double_jump", "improved_flying", "dual_mobility", "lofty_mount"]
+      ]},
+      {"region": "ForgottenWorld_Waters1_Lower"}
+    ]
+  },
+  {
+    "region": "ForgottenWorld_Waters1_Lower",
+    "connections": [
+      {"region": "ForgottenWorld_Waters2"},
+      {"region": "ForgottenWorld_Waters1_Middle", "requirements": ["swimming"]}
+    ],
+    "chests": [
+      {"id": 7, "item": "Silver", "requirements": ["swimming"]}
+    ]
+  },
+  {
+    "region": "ForgottenWorld_Waters2",
+    "connections": [
+      {"region": "ForgottenWorld_Waters3"},
+      {"region": "ForgottenWorld_Waters1_Lower", "requirements": ["swimming"]}
+    ],
+    "chests": [
+      {"id": 4, "item": "Orange", "requirements": ["improved_swimming"]},
+      {"id": 5, "item": "Clear Stone"}
+    ]
+  },
+  {
+    "region": "ForgottenWorld_Waters3",
+    "connections": [
+      {"region": "ForgottenWorld_Waters2"},
+      {"region": "ForgottenWorld_Waters4", "requirements": ["swimming"]}
+    ],
+    "encounters": [
+      {"id": 0, "monsters": ["Krakaturtle", "Krakaturtle", "Krakaturtle"]}
+    ]
+  },
+  {
+    "region": "ForgottenWorld_Waters4",
+    "connections": [
+      {"region": "ForgottenWorld_Waters3", "requirements": ["swimming"]},
+      {"region": "ForgottenWorld_DracomerLair", "requirements": ["improved_swimming"]},
+      {"region": "ForgottenWorld_WatersHidden", "requirements": ["improved_swimming"]}
+    ]
+  },
+  {
+    "region": "ForgottenWorld_WatersHidden",
+    "connections": [
+      {"region": "ForgottenWorld_Waters4"}
+    ],
+    "chests": [
+      {"id": 11, "item": "3x Craft Box"}
+    ]
+  },
+  {
+    "region": "ForgottenWorld_DracomerLair",
+    "connections": [
+      {"region": "ForgottenWorld_Waters4"},
+      {"region": "ForgottenWorld_Waters1", "requirements": ["forgotten_world_waters_shortcut"]}
+    ],
+    "chests": [
+      {"id": 2, "item": "4000 G", "requirements": ["swimming"]}
+    ],
+    "champion": [
+      {"id": 1, "monsters": ["Dracomer"], "requirements": ["swimming"]}
+    ],
+    "flags": [
+      {
+        "id": "forgotten_world_waters_shortcut",
+        "name": "Forgotten World Waters Shortcut",
+        "requirements": [
+          "AND", ["breakable_walls", "swimming"]
+        ]
+      },
+      {
+        "id": "forgotten_world_dracomer_defeated",
+        "name": "Forgotten World Dracomer Defeated",
+        "requirements": ["swimming"]
+      }
+    ]
+  },
+  {
+    "region": "ForgottenWorld_Caves1",
+    "connections": [
+      {"region": "ForgottenWorld_Caves2_Upper"},
+      {"region": "ForgottenWorld_Caves4"},
+      {"region": "ForgottenWorld_Jungle1"}
+    ],
+    "chests": [
+      {"id": 1, "item": "Emerald", "requirements": [
+        "OR", ["double_jump", "distant_ledges", "ground_switches"]
+      ]}
+    ],
+    "encounters": [
+      {"id": 0, "monsters": ["Fungi", "Fumagus", "Fungi"]}
+    ]
+  },
+  {
+    "region": "ForgottenWorld_Caves2_Upper",
+    "connections": [
+      {"region": "ForgottenWorld_Caves1"},
+      {"region": "ForgottenWorld_Caves3"},
+      {"region": "ForgottenWorld_MCPath1"},
+      {"region": "ForgottenWorld_Caves2_Lower"}
+    ]
+  },
+  {
+    "region": "ForgottenWorld_Caves2_Lower",
+    "connections": [
+      {"region": "ForgottenWorld_Caves2_Upper", "requirements": [
+        "OR", ["double_jump", "improved_flying", "dual_mobility"]
+      ]},
+      {"region": "ForgottenWorld_Caves5_Upper"}
+    ],
+    "chests": [
+      {"id": 8, "item": "Shift Stone", "requirements": ["magic_walls"]}
+    ]
+  },
+  {
+    "region": "ForgottenWorld_Caves3",
+    "connections": [
+      {"region": "ForgottenWorld_Caves2_Upper"},
+      {"region": "ForgottenWorld_Caves11"}
+    ],
+    "encounters": [
+      {"id": 0, "monsters": ["Fumagus", "Rathops", "Fumagus"]}
+    ]
+  },
+  {
+    "region": "ForgottenWorld_Caves4",
+    "connections": [
+      {"region": "ForgottenWorld_Caves1"},
+      {"region": "ForgottenWorld_Caves5_Upper", "requirements": [
+        "OR", ["double_jump", "improved_flying", "dual_mobility"]
+      ]},
+      {"region": "ForgottenWorld_Caves6", "requirements": [
+        "OR", ["double_jump", "improved_flying", "dual_mobility"]
+      ]}
+    ],
+    "chests": [
+      {"id": 0, "item": "3x Silk", "requirements": [
+        "AND", ["double_jump", "grapple"]
+      ]}
+    ]
+  },
+  {
+    "region": "ForgottenWorld_Caves5_Lower",
+    "connections": [
+      {"region": "ForgottenWorld_Caves8"},
+      {"region": "ForgottenWorld_Caves9"},
+      {"region": "ForgottenWorld_Caves5_Upper", "requirements": [
+        "OR", ["double_jump", "magic_vines"]
+      ]}
+    ],
+    "chests": [
+      {"id": 12, "item": "2x Crimson Gem", "requirements": [
+        "AND", [
+          "magic_vines",
+          "breakable_walls",
+          "OR", ["double_jump", "improved_flying", "dual_mobility", "lofty_mount"]
+        ]
+      ]}
+    ]
+  },
+  {
+    "region": "ForgottenWorld_Caves5_Upper",
+    "connections": [
+      {"region": "ForgottenWorld_Caves2_Lower", "requirements": [
+        "AND", ["double_jump", "magic_vines"]
+      ]},
+      {"region": "ForgottenWorld_Caves4", "requirements": [
+        "AND", ["double_jump", "magic_vines"]
+      ]},
+      {"region": "ForgottenWorld_Caves5_Lower", "requirements": [
+        "AND", ["double_jump", "magic_vines"]
+      ]}
+    ],
+    "chests": [
+      {"id": 4, "item": "2x Banana", "requirements": ["magic_vines"]},
+      {"id": 5, "item": "Switch Stone", "requirements": ["magic_vines"]}
+    ]
+  },
+  {
+    "region": "ForgottenWorld_Caves6",
+    "connections": [
+      {"region": "ForgottenWorld_Caves4"},
+      {"region": "ForgottenWorld_Caves7"},
+      {"region": "ForgottenWorld_Caves8"},
+      {"region": "ForgottenWorld_Caves12"}
+    ],
+    "chests": [
+      {"id": 5, "item": "2x Ruby", "requirements": [
+        "AND", [
+          "breakable_walls",
+          "OR", ["double_jump", "distant_ledges"]
+        ]
+      ]},
+      {"id": 8, "item": "Katar+5", "requirements": ["magic_vines"]}
+    ],
+    "encounters": [
+      {"id": 0, "monsters": ["Rampede", "Fumagus", "Rampede"]},
+      {"id": 3, "monsters": ["Fungi", "Fumagus", "Fungi"]}
+    ]
+  },
+  {
+    "region": "ForgottenWorld_Caves7",
+    "connections": [
+      {"region": "ForgottenWorld_Caves6"},
+      {"region": "ForgottenWorld_WorldTree"}
+    ],
+    "encounters": [
+      {"id": 0, "monsters": ["Tar Blob", "Fumagus", "Tar Blob"]}
+    ]
+  },
+  {
+    "region": "ForgottenWorld_Caves8",
+    "connections": [
+      {"region": "ForgottenWorld_Caves5"},
+      {"region": "ForgottenWorld_Caves6"}
+    ]
+  },
+  {
+    "region": "ForgottenWorld_Caves9",
+    "connections": [
+      {"region": "ForgottenWorld_Caves5_Lower"},
+      {"region": "ForgottenWorld_Caves10"}
+    ],
+    "chests": [
+      {"id": 2, "item": "2x Strawberry", "requirements": ["magic_vines"]}
+    ],
+    "encounters": [
+      {"id": 3, "monsters": ["Fumagus", "Tar Blob", "Krakaturtle"]}
+    ]
+  },
+  {
+    "region": "ForgottenWorld_Caves10",
+    "connections": [
+      {"region": "ForgottenWorld_Caves9"},
+      {"region": "ForgottenWorld_Caves11_Lower", "requirements": [
+        "OR", ["double_jump", "improved_flying", "dual_mobility"]
+      ]},
+      {"region": "ForgottenWorld_CavesStudy"},
+      {"region": "ForgottenWorld_TerradrileLair1", "requirements": [
+        "AND", ["diamond_blocks", "breakable_walls"]
+      ]}
+    ],
+    "encounters": [
+      {"id": 16, "monsters": ["Crystal Snail", "Rampede", "Crystal Snail"]}
+    ]
+  },
+  {
+    "region": "ForgottenWorld_Caves11_Upper",
+    "connections": [
+      {"region": "ForgottenWorld_Caves11_Lower", "requirements": ["forgotten_world_caves_shortcut"]},
+      {"region": "ForgottenWorld_Caves3"},
+      {"region": "ForgottenWorld_WandererRoom"}
+    ]
+  },
+  {
+    "region": "ForgottenWorld_Caves11_Lower",
+    "connections": [
+      {"region": "ForgottenWorld_Caves11_Upper", "requirements": [
+        "AND", [
+          "forgotten_world_caves_shortcut",
+          "OR", ["double_jump", "improved_flying", "dual_mobility"]
+        ]
+      ]},
+      {"region": "ForgottenWorld_Caves10"}
+    ],
+    "flags": [
+      {"id": "forgotten_world_caves_shortcut", "name": "Forgotten World Caves Shortcut"}
+    ]
+  },
+  {
+    "region": "ForgottenWorld_Caves12",
+    "connections": [
+      {"region": "ForgottenWorld_DarkRoom"},
+      {"region": "ForgottenWorld_Caves6", "requirements": [
+        "OR", ["double_jump", "improved_flying", "dual_mobility"]
+      ]}
+    ],
+    "chests": [
+      {"id": 0, "item": "Torch", "requirements": ["dual_mobility"]}
+    ]
+  },
+  {
+    "region": "ForgottenWorld_DarkRoom",
+    "connections": [
+      {"region": "ForgottenWorld_Caves12"}
+    ],
+    "chests": [
+      {"id": 14, "item": "Flute", "requirements": ["sonar_mount"]}
+    ]
+  },
+  {
+    "region": "ForgottenWorld_CavesStudy",
+    "connections": [
+      {"region": "ForgottenWorld_Caves10"}
+    ],
+    "gifts": [
+      {"id": 50400001, "item": "Celestial Feather"}
+    ]
+  },
+  {
+    "region": "ForgottenWorld_WandererRoom",
+    "connections": [
+      {"region": "ForgottenWorld_Caves11_Upper"}
+    ],
+    "gifts": [
+      {"id": 45100110, "item": "Bard Egg", "requirements": ["all_celestial_feathers"]}
+    ]
+  },
+  {
+    "region": "ForgottenWorld_WorldTree",
+    "connections": [
+      {"region": "ForgottenWorld_TarPits7", "requiremetns": [
+        "OR", ["double_jump", "improved_flying", "dual_mobility", "lofty_mount"]
+      ]},
+      {"region": "ForgottenWorld_Caves7"},
+      {"region": "ForgottenWorld_Waters1_Upper", "requirements": ["magic_walls"]}
+    ],
+    "chests": [
+      {"id": 1, "item": "2x Phoenix Serum"}
+    ],
+    "gifts": [
+      {"id": 46100009, "item": "Mandolin", "requirements": ["forgotten_world_dracomer_defeated"]}
+    ]
+  },
+  {
+    "region": "ForgottenWorld_TerradrileLair1",
+    "connections": [
+      {"region": "ForgottenWorld_Caves10", "requirements": [
+        "OR", ["double_jump", "improved_flying", "dual_mobility"]
+      ]},
+      {"region": "ForgottenWorld_TerradrileLair2", "requirements": [
+        "AND", ["breakable_walls", "narrow_corridors"]
+      ]}
+    ],
+    "chests": [
+      {"id": 2, "item": "2500 G", "requirements": ["breakable_walls"]}
+    ],
+    "encounters": [
+      {"id": 0, "monsters": ["Fumagus", "Krakaturtle", "Tar Blob"], "requirements": ["breakable_walls"]}
+    ]
+  },
+  {
+    "region": "ForgottenWorld_TerradrileLair2",
+    "connections": [
+      {"region": "ForgottenWorld_TerradrileLair1"}
+    ],
+    "chests": [
+      {"id": 3, "item": "Craft Box", "requirements": ["charging_mount"]},
+      {"id": 8, "item": "Gold", "requirements": ["breakable_walls"]}
+    ],
+    "champion": [
+      {"id": 4, "monsters": ["Terradrile"]}
+    ]
+  },
+  {
+    "region": "ForgottenWorld_MCPath1",
+    "connections": [
+      {"region": "ForgottenWorld_MCPath2", "requirements": [
+        "AND", [
+          "double_jump",
+          "OR", ["double_jump", "improved_flying", "dual_mobility"]
+        ]
+      ]},
+      {"region": "ForgottenWorld_Caves2_Upper"}
+    ],
+    "chests": [
+      {"id": 0, "item": "Mage Flask", "requirements": [
+        "AND", [
+          "levitate",
+          "double_jump",
+          "OR", ["improved_flying", "dual_mobility", "lofty_mount"]]
+      ]}
+    ]
+  },
+  {
+    "region": "ForgottenWorld_MCPath2",
+    "connections": [
+      {"region": "ForgottenWorld_MCPath1"},
+      {"region": "ForgottenWorld_MCPath3"}
+    ],
+    "chests": [
+      {"id": 12, "item": "2x Craft Box", "requirements": ["diamond_blocks"]}
+    ]
+  },
+  {
+    "region": "ForgottenWorld_MCPath3",
+    "connections": [
+      {"region": "ForgottenWorld_MCPath2"},
+      {"region": "MagmaChamber_South9_Shortcut", "requirements": [
+        "OR", ["double_jump", "distant_ledges"]
+      ]}
+    ],
+    "chests": [
+      {"id": 3, "item": "3x Cookie Mushroom", "requirements": [
+        "AND", [
+          "breakable_walls",
+          "OR", ["double_jump", "distant_ledges"]
+        ]
+      ]}
+    ]
+  },
+  {
+    "region": "ForgottenWorld_Climb1",
+    "connections": [
+      {"region": "ForgottenWorld_Jungle6"},
+      {"region": "ForgottenWorld_Climb2"},
+      {"region": "ForgottenWorld_ClimbPuzzle", "requirements": ["impassible_vines"]}
+    ],
+    "gifts": [
+      {"id": 46600001, "item": "Celestial Feather"}
+    ]
+  },
+  {
+    "region": "ForgottenWorld_ClimbPuzzle",
+    "connections": [
+      {"region": "ForgottenWorld_Climb1"}
+    ],
+    "gifts": [
+      {"id": 2, "item": "2x Peanut", "requirements": [
+        "AND", ["fiery_shots", "distant_ledges"]
+      ]},
+      {"id": 3, "item": "Purifying Mace", "requirements": [
+        "AND", [
+          "fiery_shots",
+          "heavy_blocks",
+          "OR", [
+            "AND", ["secret_vision", "summon_big_rock"],
+            "AND", [
+              "double_jump",
+              "OR", ["summon_big_rock", "secret_vision", "improved_flying", "dual_mobility", "lofty_mount"]
+            ]
+          ]
+        ]
+      ]}
+    ]
+  },
+  {
+    "region": "ForgottenWorld_Climb2",
+    "connections": [
+      {"region": "ForgottenWorld_Climb1"},
+      {"region": "ForgottenWorld_Climb3"}
+    ],
+    "chests": [
+      {"id": 3, "item": "Mega Potion", "requirements": [
+        "OR", ["double_jump", "improved_flying", "dual_mobility", "lofty_mount"]
+      ]},
+      {"id": 4, "item": "2x Steel", "requirements": [
+        "OR", ["double_jump", "improved_flying", "dual_mobility", "lofty_mount", "summon_big_rock"]
+      ]},
+      {"id": 5, "item": "3x Skill Resetter", "requirements": [
+        "OR", ["double_jump", "improved_flying", "dual_mobility", "lofty_mount"]
+      ]}
+    ],
+    "encounters": [
+      {"id": 0, "monsters": ["Kongamato", "Amberlgna", "Krakaturtle"], "requirements": [
+        "OR", ["double_jump", "improved_flying", "dual_mobility", "lofty_mount"]
+      ]}
+    ]
+  },
+  {
+    "region": "ForgottenWorld_Climb3",
+    "connections": [
+      {"region": "ForgottenWorld_Climb2"},
+      {"region": "ForgottenWorld_Climb4", "requirements": [
+        "OR", ["double_jump", "improved_flying", "dual_mobility"]
+      ]}
+    ],
+    "chests": [
+      {"id": 3, "item": "Ruby", "requirements": ["magic_walls"]}
+    ],
+    "encounters": [
+      {"id": 1, "monsters": ["Glowdra", "Amberlgna", "Glowdra"], "requirements": [
+        "OR", ["double_jump", "improved_flying", "dual_mobility"]
+      ]}
+    ]
+  },
+  {
+    "region": "ForgottenWorld_Climb4",
+    "connections": [
+      {"region": "ForgottenWorld_Climb3"},
+      {"region": "ForgottenWorld_ClimbSide"},
+      {"region": "ForgottenWorld_Climb5", "requirements": [
+        "OR", ["double_jump", "improved_flying", "dual_mobility"]
+      ]}
+    ],
+    "chests": [
+      {"id": 9, "item": "2x Reward Box Lvl 4", "requirements": [
+        "AND", [
+          "charging_mount",
+          "OR", ["double_jump", "improved_flying", "dual_mobility"]
+        ]
+      ]},
+      {"id": 10, "item": "Switch Stone", "requirements": [
+        "AND", [
+          "charging_mount",
+          "OR", ["double_jump", "improved_flying", "dual_mobility"]
+        ]
+      ]},
+      {"id": 11, "item": "Skill Potion", "requirements": ["double_jump"]},
+      {"id": 13, "item": "Gold", "requirements": [
+        "OR", ["double_jump", "improved_flying", "dual_mobility"]
+      ]},
+      {"id": 14, "item": "Sapphire", "requirements": [
+        "OR", ["double_jump", "distant_ledges", "ground_switches"]
+      ]},
+      {"id": 23, "item": "2x Crystal Shard", "requirements": [
+        "OR", ["double_jump", "improved_flying", "dual_mobility"]
+      ]}
+    ],
+    "encounters": [
+      {"id": 0, "monsters": ["Amberlgna", "Glowdra", "Amberlgna"]},
+      {"id": 12, "monsters": ["Kongamato", "Glowdra", "Amberlgna"], "requirements": [
+        "OR", ["double_jump", "improved_flying", "dual_mobility"]
+      ]}
+    ]
+  },
+  {
+    "region": "ForgottenWorld_Climb5",
+    "connections": [
+      {"region": "ForgottenWorld_Climb4"},
+      {"region": "HorizonBeach_FWExit"}
+    ],
+    "chests": [
+      {"id": 3, "item": "Silver"}
+    ]
+  },
+  {
+    "region": "ForgottenWorld_ClimbSide",
+    "connections": [
+      {"region": "ForgottenWorld_Climb4"}
+    ],
+    "chests": [
+      {"id": 1, "item": "Fan", "requirements": [
+        "AND", ["double_jump", "lofty_mount"]
+      ]},
+      {"id": 3, "item": "2x Emerald", "requirements": [
+        "OR", ["double_jump", "improved_flying", "dual_mobility"]
+      ]}
+    ]
+  },
+
+  {
+    "region": "AbandonedTower_Entrance",
+    "connections": [
+      {"region": "MysticalWorkshop_West3"},
+      {"region": "AbandonedTower_South1", "requirements": ["key_of_power"]}
+    ]
+  },
+  {
+    "region": "AbandonedTower_South1",
+    "connections": [
+      {"region": "AbandonedTower_Entrance"},
+      {"region": "AbandonedTower_South2"},
+      {"region": "AbandonedTower_South3_Lower"}
+    ]
+  },
+  {
+    "region": "AbandonedTower_South2",
+    "connections": [
+      {"region": "AbandonedTower_South1"},
+      {"region": "AbandonedTower_South4", "requirements": [
+        "OR", ["double_jump", "improved_flying", "dual_mobility", "lofty_mount", "summon_big_rock"]
+      ]}
+    ],
+    "chests": [
+      {"id": 1, "item": "2x Ruby", "requirements": ["water_orbs"]}
+    ],
+    "encounters": [
+      {"id": 3, "monsters": ["Sutsune", "Thanatos", "Sutsune"], "requirements": [
+        "OR", ["double_jump", "improved_flying", "dual_mobility", "lofty_mount", "summon_big_rock"]
+      ]}
+    ]
+  },
+  {
+    "region": "AbandonedTower_South3_Lower",
+    "connections": [
+      {"region": "AbandonedTower_South1"},
+      {"region": "AbandonedTower_South3_Upper", "requirements": [
+        "OR", ["double_jump", "improved_flying", "dual_mobility", "lofty_mount", "summon_big_rock"]
+      ]}
+    ],
+    "encounters": [
+      {"id": 0, "monsters": ["Thanatos", "Beetloid", "Thanatos"]}
+    ]
+  },
+  {
+    "region": "AbandonedTower_South3_Upper",
+    "connections": [
+      {"region": "AbandonedTower_South3_Lower"},
+      {"region": "AbandonedTower_South4"}
+    ],
+    "chests": [
+      {"id": 1, "item": "Shell+5", "requirements": ["grapple"]}
+    ]
+  },
+  {
+    "region": "AbandonedTower_South4",
+    "connections": [
+      {"region": "AbandonedTower_South2"},
+      {"region": "AbandonedTower_South3_Upper"},
+      {"region": "AbandonedTower_South5"}
+    ]
+  },
+  {
+    "region": "AbandonedTower_South5",
+    "connections": [
+      {"region": "AbandonedTower_South4"},
+      {"region": "AbandonedTower_South7", "requirements": [
+        "OR", ["double_jump", "improved_flying", "dual_mobility", "lofty_mount", "summon_big_rock"]
+      ]}
+    ],
+    "chests": [
+      {"id": 3, "item": "Switch Stone", "requirements": ["summon_big_rock"]}
+    ],
+    "encounters": [
+      {"id": 0, "monsters": ["Specter", "Sutsune", "Specter"]}
+    ]
+  },
+  {
+    "region": "AbandonedTower_South6",
+    "connections": [
+      {"region": "AbandonedTower_South7"},
+      {"region": "AbandonedTower_Center1_Lower", "requirements": ["double_jump"]}
+    ],
+    "chests": [
+      {"id": 3, "item": "2x Emerald", "requirements": [
+        "AND", ["double_jump", "ground_switches"]
+      ]}
+    ],
+    "encounters": [
+      {"id": 1, "monsters": ["Sutsune", "Raduga", "Sutsune"]}
+    ]
+  },
+  {
+    "region": "AbandonedTower_South7",
+    "connections": [
+      {"region": "AbandonedTower_South5"},
+      {"region": "AbandonedTower_South6"},
+      {"region": "AbandonedTower_South8"},
+      {"region": "AbandonedTower_SouthHidden", "requirements": ["breakable_walls"]},
+      {"region": "AbandonedTower_SouthHidden2", "requirements": ["narrow_corridors"]}
+    ],
+    "chests": [
+      {"id": 3, "item": "Gauntlet+5", "requirements": ["fire_orbs"]},
+      {"id": 7, "item": "Switch Stone", "requirements": ["breakable_walls"]}
+    ]
+  },
+  {
+    "region": "AbandonedTower_South8",
+    "connections": [
+      {"region": "AbandonedTower_South7"},
+      {"region": "AbandonedTower_South8_Shortcut", "requirements": ["abandoned_tower_south_shortcut"]}
+    ],
+    "chests": [
+      {"id": 3, "item": "2x Sapphire", "requirements": [
+        "AND", [
+          "double_jump",
+          "OR", ["improved_flying", "dual_mobility"]
+        ]
+      ]},
+      {"id": 7, "item": "2x Clear Stone", "requirements": [
+        "OR", ["double_jump", "ground_switches", "distant_ledges"]
+      ]}
+    ],
+    "encounters": [
+      {"id": 0, "monsters": ["Sutsune", "Thanatos", "Qilin"]}
+    ]
+  },
+  {
+    "region": "AbandonedTower_South8_Shortcut",
+    "connections": [
+      {"region": "AbandonedTower_Center3_Lower", "requirements": [
+        "OR", ["double_jump", "improved_flying", "dual_mobility", "lofty_mount"]
+      ]},
+      {"region": "AbandonedTower_South8", "requirements": ["abandoned_tower_south_shortcut"]}
+    ],
+    "flags": [
+      {"id": "abandoned_tower_south_shortcut", "name": "Abandoned Tower South Shortcut"}
+    ]
+  },
+  {
+    "region": "AbandonedTower_SouthHidden",
+    "connections": [
+      {"region": "AbandonedTower_South7"}
+    ],
+    "chests": [
+      {"id": 1, "item": "2x Mega Potion"}
+    ]
+  },
+  {
+    "region": "AbandonedTower_SouthHidden2",
+    "connections": [
+      {"region": "AbandonedTower_South7"}
+    ],
+    "chests": [
+      {"id": 0, "item": "Phoenix Serum"},
+      {"id": 3, "item": "2x Craft box"}
+    ]
+  },
+  {
+    "region": "AbandonedTower_Center1_Lower",
+    "connections": [
+      {"region": "AbandonedTower_South6"},
+      {"region": "AbandonedTower_Center1_Upper", "requirements": [
+        "OR", ["double_jump", "improved_flying", "dual_mobility"]
+      ]}
+    ],
+    "encounters": [
+      {"id": 1, "monsters": ["Darnation", "Sutsune", "Darnation"]}
+    ]
+  },
+  {
+    "region": "AbandonedTower_Center1_Upper",
+    "connections": [
+      {"region": "AbandonedTower_Center1_Lower"},
+      {"region": "AbandonedTower_Center2"},
+      {"region": "AbandonedTower_Center3_Upper", "requirements": [
+        "OR", ["double_jump", "improved_flying", "dual_mobility"]
+      ]}
+    ]
+  },
+  {
+    "region": "AbandonedTower_Center2",
+    "connections": [
+      {"region": "AbandonedTower_Center1_Upper"}
+    ],
+    "chests": [
+      {"id": 3, "item": "Staff+5", "requirements": ["lightning_orbs"]}
+    ]
+  },
+  {
+    "region": "AbandonedTower_Center3_Lower",
+    "connections": [
+      {"region": "AbandonedTower_South8_Shortcut"},
+      {"region": "AbandonedTower_Center3_Upper", "requirements": [
+        "OR", ["double_jump", "distant_ledges"]
+      ]}
+    ],
+    "chests": [
+      {"id": 10, "item": "3x Linen", "requirements": [
+        "AND", [
+          "heavy_blocks",
+          "OR", ["double_jump", "ground_switches", "distant_ledges"]
+        ]
+      ]},
+      {"id": 11, "item": "2x Phoenix Serum", "requirements": [
+        "AND", [
+          "heavy_blocks",
+          "OR", ["double_jump", "ground_switches", "distant_ledges"]
+        ]
+      ]}
+    ]
+  },
+  {
+    "region": "AbandonedTower_Center3_Upper",
+    "connections": [
+      {"region": "AbandonedTower_Center3_Lower"},
+      {"region": "AbandonedTower_Center1_Upper"},
+      {"region": "AbandonedTower_Center4"}
+    ]
+  },
+  {
+    "region": "AbandonedTower_Center4",
+    "connections": [
+      {"region": "AbandonedTower_Center3_Upper"},
+      {"region": "AbandonedTower_Center5", "requirements": [
+        "OR", ["double_jump", "improved_flying", "dual_mobility"]
+      ]}
+    ],
+    "encounters": [
+      {"id": 1, "monsters": ["Thanatos", "Darnation", "Thanatos"], "requirements": [
+        "OR", ["double_jump", "improved_flying", "dual_mobility"]
+      ]}
+    ]
+  },
+  {
+    "region": "AbandonedTower_Center5",
+    "connections": [
+      {"region": "AbandonedTower_Center4"},
+      {"region": "AbandonedTower_Center6"}
+    ],
+    "chests": [
+      {"id": 4, "item": "Buckler", "requirements": [
+        "AND", ["double_jump", "lofty_mount"]]}
+    ]
+  },
+  {
+    "region": "AbandonedTower_Center6",
+    "connections": [
+      {"region": "AbandonedTower_Center5"},
+      {"region": "AbandonedTower_Center7", "requirements": [
+        "OR", ["double_jump", "improved_flying", "dual_mobility", "lofty_mount", "summon_big_rock"]
+      ]}
+    ],
+    "chests": [
+      {"id": 5, "item": "Skill Potion", "requirements": [
+        "AND", ["double_jump", "mount"]]}
+    ]
+  },
+  {
+    "region": "AbandonedTower_Center7",
+    "connections": [
+      {"region": "AbandonedTower_Center6"},
+      {"region": "AbandonedTower_Center8"},
+      {"region": "AbandonedTower_Center10", "requirements": [
+        "OR", ["double_jump", "improved_flying", "dual_mobility"]
+      ]}
+    ]
+  },
+  {
+    "region": "AbandonedTower_Center8",
+    "connections": [
+      {"region": "AbandonedTower_Center7"},
+      {"region": "AbandonedTower_Center9"}
+    ],
+    "gifts": [
+      {"id": 38300133, "item": "Reward Box Lvl 4"}
+    ]
+  },
+  {
+    "region": "AbandonedTower_Center9",
+    "connections": [
+      {"region": "AbandonedTower_Center8"},
+      {"region": "AbandonedTower_Center11", "requirements": [
+        "OR", ["double_jump", "improved_flying", "dual_mobility", "lofty_mount", "summon_big_rock"]
+      ]},
+      {"region": "AbandonedTower_Center12", "requirements": [
+        "OR", ["double_jump", "improved_flying", "dual_mobility"]
+      ]}
+    ],
+    "chests": [
+      {"id": 8, "item": "2x Level Badge", "requirements": [
+        "OR", ["double_jump", "improved_flying", "dual_mobility", "lofty_mount", "summon_big_rock"]]}
+    ]
+  },
+  {
+    "region": "AbandonedTower_Center10",
+    "connections": [
+      {"region": "AbandonedTower_Center7"},
+      {"region": "AbandonedTower_Center10_Shortcut", "requirements": ["abandoned_tower_center_shortcut"]}
+    ],
+    "chests": [
+      {"id": 5, "item": "Shift Stone", "requirements": ["improved_swimming"]}
+    ]
+  },
+  {
+    "region": "AbandonedTower_Center10_Shortcut",
+    "connections": [
+      {"region": "AbandonedTower_Center7"},
+      {"region": "AbandonedTower_Center10", "requirements": ["abandoned_tower_center_shortcut"]},
+      {"region": "AbandonedTower_Center12"}
+    ],
+    "flags": [
+      {"id": "abandoned_tower_center_shortcut", "name": "Abandoned Tower Center Shortcut"}
+    ]
+  },
+  {
+    "region": "AbandonedTower_Center11",
+    "connections": [
+      {"region": "AbandonedTower_Center9"}
+    ],
+    "chests": [
+      {"id": 1, "item": "3x Silk", "requirements": ["torches"]},
+      {"id": 5, "item": "3x Steel", "requirements": [
+        "OR",["dark_rooms", "torches"]]}
+    ]
+  },
+  {
+    "region": "AbandonedTower_Center12",
+    "connections": [
+      {"region": "AbandonedTower_Center9"},
+      {"region": "AbandonedTower_Center10_Shortcut"},
+      {"region": "AbandonedTower_North1"}
+    ],
+    "chests": [
+      {"id": 7, "item": "3x Skill Resetter"}
+    ],
+    "encounters": [
+      {"id": 6, "monsters": ["Qilin", "Darnation", "Raduga"]}
+    ]
+  },
+  {
+    "region": "AbandonedTower_North1",
+    "connections": [
+      {"region": "AbandonedTower_Center12"},
+      {"region": "AbandonedTower_North2"}
+    ],
+    "gifts": [
+      {"id": 38800022, "item": "Reward Box Lvl 4"}
+    ]
+  },
+  {
+    "region": "AbandonedTower_North2",
+    "connections": [
+      {"region": "AbandonedTower_North1"},
+      {"region": "AbandonedTower_North3", "requirements": [
+        "OR", ["double_jump", "improved_flying", "dual_mobility"]
+      ]},
+      {"region": "AbandonedTower_North4", "requirements": [
+        "OR", ["double_jump", "improved_flying", "dual_mobility"]
+      ]}
+    ]
+  },
+  {
+    "region": "AbandonedTower_North3",
+    "connections": [
+      {"region": "AbandonedTower_North2"},
+      {"region": "AbandonedTower_North5"}
+    ],
+    "chests": [
+      {"id": 5, "item": "2x Craft Box", "requirements": ["earth_orbs"]}
+    ],
+    "encounters": [
+      {"id": 6, "monsters": ["Sutsune", "Beetloid", "Sutsune"]}
+    ]
+  },
+  {
+    "region": "AbandonedTower_North4",
+    "connections": [
+      {"region": "AbandonedTower_North2"}
+    ],
+    "chests": [
+      {"id": 5, "item": "Cestus+5", "requirements": ["ice_orbs"]}
+    ]
+  },
+  {
+    "region": "AbandonedTower_North5",
+    "connections": [
+      {"region": "AbandonedTower_North3"},
+      {"region": "AbandonedTower_North6"}
+    ],
+    "chests": [
+      {"id": 8, "item": "Switch Stone", "requirements": ["double_jump"]}
+    ]
+  },
+  {
+    "region": "AbandonedTower_North6",
+    "connections": [
+      {"region": "AbandonedTower_North5"},
+      {"region": "AbandonedTower_North7", "requirements": [
+        "OR", ["double_jump", "improved_flying", "dual_mobility", "lofty_mount", "summon_big_rock"]
+      ]},
+      {"region": "AbandonedTower_North8", "requirements": [
+        "OR", ["double_jump", "improved_flying", "dual_mobility", "lofty_mount", "summon_big_rock"]
+      ]}
+    ],
+    "encounters": [
+      {"id": 1, "monsters": ["Darnation", "Thanatos", "Darnation"]}
+    ]
+  },
+  {
+    "region": "AbandonedTower_North7",
+    "connections": [
+      {"region": "AbandonedTower_North6"}
+    ],
+    "chests": [
+      {"id": 8, "item": "Restoring Wand", "requirements": [
+        "AND", ["secret_vision", "double_jump"]
+      ]}
+    ]
+  },
+  {
+    "region": "AbandonedTower_North8",
+    "connections": [
+      {"region": "AbandonedTower_North6"},
+      {"region": "AbandonedTower_North9", "requirements": [
+        "OR", ["double_jump", "distant_ledges", "summon_big_rock"]
+      ]},
+      {"region": "AbandonedTower_NorthHidden", "requirements": ["breakable_walls"]}
+    ],
+    "encounters": [
+      {"id": 1, "monsters": ["Darnation", "Darnation", "Darnation"]}
+    ]
+  },
+  {
+    "region": "AbandonedTower_North9",
+    "connections": [
+      {"region": "AbandonedTower_North8"},
+      {"region": "AbandonedTower_Final"}
+    ],
+    "gifts": [
+      {"id": 39700006, "item": "Reward Box Lvl 4"}
+    ]
+  },
+  {
+    "region": "AbandonedTower_NorthHidden",
+    "connections": [
+      {"region": "AbandonedTower_North8"}
+    ],
+    "chests": [
+      {"id": 1, "item": "2500 G"},
+      {"id": 2, "item": "Shift Stone"}
+    ]
+  },
+  {
+    "region": "AbandonedTower_Final",
+    "connections": [
+      {"region": "AbandonedTower_North9"}
+    ],
+    "chests": [
+      "TODO: There's a chest (ID 5) here with 2 reward box lvl 4, but it's postgame so not putting it in for now"
+    ],
+    "champion": [
+      {"id": 1, "monsters": ["Mad Lord"]}
+    ],
+    "flags": [
+      {"id": "mad_lord_defeated", "name": "Mad Lord Defeated"},
+      {"id": "mad_lord_victory_condition", "name": "Victory"}
     ]
   }
 ]

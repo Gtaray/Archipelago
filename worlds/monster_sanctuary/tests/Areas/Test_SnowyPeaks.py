@@ -26,3 +26,10 @@ class SnowyPeaksTests(TestArea):
             ["snowy_peaks_sun_palace_entrance_shortcut", False, []],
             ["snowy_peaks_sun_palace_entrance_shortcut", True, ["Warm Underwear"]]
         ])
+
+    def test_progression(self):
+        self.starting_regions = ["SnowyPeaks_EastMountainClothesmaker"]
+        self.run_tests([
+            ["SnowyPeaks_EastMountainClothesmaker_17700033", False, []],
+            ["SnowyPeaks_EastMountainClothesmaker_17700033", True, ["Raw Hide"]]
+        ])

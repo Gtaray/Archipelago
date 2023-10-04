@@ -1,10 +1,14 @@
 [
   {
+    "Name": "Empty Slot",
+    "Groups": []
+  },
+  {
     "Name": "Spectral Wolf",
     "CommonRewards": "",
     "RareRewards": "",
     "EggReward": "Spectral Wolf Egg",
-    "Groups": [ "Claws", "Breakable Walls", "Impassible Vines" ]
+    "Groups": [ "Breakable Walls", "Impassible Vines" ]
   },
   {
     "Name": "Spectral Toad",
@@ -25,7 +29,7 @@
     "CommonRewards": "",
     "RareRewards": "",
     "EggReward": "Spectral Lion Egg",
-    "Groups": [ "Claws", "Breakable Walls", "Impassible Vines" ]
+    "Groups": [ "Breakable Walls", "Impassible Vines" ]
   },
   {
     "Name": "Blob",
@@ -185,7 +189,7 @@
     "CommonRewards": "Potion,Iron,",
     "RareRewards": "Red Gem,Katar+2,Molebear Egg,",
     "EggReward": "Molebear Egg",
-    "Groups": [ "Claws", "Breakable Walls", "Impassible Vines" ]
+    "Groups": [ "Breakable Walls", "Impassible Vines" ]
   },
   {
     "Name": "Glowfly",
