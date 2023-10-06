@@ -60,19 +60,24 @@ items_data: Dict[str, ItemData] = {}
 # region Monster Accessor functions
 def get_monsters() -> Dict[str, ItemData]:
     return {item_name: items_data[item_name] for item_name in items_data
-            if items_data[item_name].category is MonsterSanctuaryItemCategory.MONSTER}
+            if items_data[item_name].category is MonsterSanctuaryItemCategory.MONSTER
+            and item_name not in ["Empty Slot",
+                                  "Spectral Wolf",
+                                  "Spectral Toad",
+                                  "Spectral Eagle",
+                                  "Spectral Lion",
+                                  "Bard"]}
 
 
 def get_random_monster_name(world: MultiWorld, required_tier: Optional[int] = None) -> str:
-    valid_items = [item for item in items_data
-                   if is_item_type(item, MonsterSanctuaryItemCategory.MONSTER)
-                   and (required_tier is None or get_item_tier(item) is None or is_item_tier(item, required_tier))]
+    valid_items = [item for item in get_monsters()
+                   if (required_tier is None or get_item_tier(item) is None or is_item_tier(item, required_tier))]
 
     return world.random.choice(valid_items)
 # endregion
 
 
-def build_item_groups() -> None:
+def build_item_groups() -> Dict:
     item_groups = {}
     for item, data in items_data.items():
         for group in data.groups:

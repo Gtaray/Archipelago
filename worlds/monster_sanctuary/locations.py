@@ -22,7 +22,7 @@ class LocationData:
 	region: str
 	default_item: Optional[str]
 	access_condition = Optional[AccessCondition]
-	encounter_id: Optional[str]
+	object_id: Optional[str]
 	monster_id: Optional[int]  # 0, 1, or 2. Index of a monster in an encounter
 	event: bool
 	postgame: bool = False
@@ -36,16 +36,16 @@ class LocationData:
 			category: MonsterSanctuaryLocationCategory,
 			default_item: Optional[str] = None,
 			access_condition: Optional[AccessCondition] = None,
-			encounter_id: Optional[str] = None,
+			object_id: Optional[str] = None,
 			event: bool = False,
-			hint: Optional[str]= None):
+			hint: Optional[str]=None):
 		self.location_id = location_id
 		self.name = name
 		self.region = region
 		self.default_item = default_item
 		self.category = category
 		self.access_condition = access_condition
-		self.encounter_id = encounter_id
+		self.object_id = object_id
 		self.event = event
 		self.hint = hint
 
@@ -105,8 +105,12 @@ def add_chest_data(location_id, chest_data, region_name) -> LocationData:
 		category=MonsterSanctuaryLocationCategory.CHEST,
 		default_item=chest_data["item"],
 		access_condition=AccessCondition(chest_data.get("requirements")),
+		object_id=chest_data["id"],
 		hint=chest_data.get("hint")
 	)
+
+	if locations_data.get(location.name) is not None:
+		raise KeyError(f"{location.name} already exists in locations_data")
 
 	locations_data[location.name] = location
 	return location
@@ -121,17 +125,18 @@ def add_gift_data(location_id, gift_data, region_name) -> LocationData:
 		region=region_name,
 		category=MonsterSanctuaryLocationCategory.GIFT,
 		default_item=gift_data["item"],
-		access_condition=AccessCondition(gift_data.get("requirements"))
+		access_condition=AccessCondition(gift_data.get("requirements")),
+		object_id=gift_data["id"],
 	)
+
+	if locations_data.get(location.name) is not None:
+		raise KeyError(f"{location.name} already exists in locations_data")
 
 	locations_data[location.name] = location
 	return location
 
 
-def add_encounter_data(location_id,
-						encounter_data,
-						region_name,
-						category=MonsterSanctuaryLocationCategory.MONSTER) -> (Dict[int, LocationData], int):
+def add_encounter_data(location_id, encounter_data, region_name, category=MonsterSanctuaryLocationCategory.MONSTER) -> (Dict[int, LocationData], int):
 	result: Dict[int, LocationData] = {}
 	if isinstance(encounter_data, str):
 		breakpoint()
@@ -155,11 +160,14 @@ def add_encounter_data(location_id,
 			region=region_name,
 			category=category,
 			default_item=monster_name,
-			encounter_id=encounter_name,
-			access_condition=AccessCondition(encounter_data.get("requirements"))
+			access_condition=AccessCondition(encounter_data.get("requirements")),
+			object_id=encounter_data["id"],
 		)
 
 		location.monster_id = i
+
+		if locations_data.get(location.name) is not None:
+			raise KeyError(f"{location.name} already exists in locations_data")
 
 		locations_data[location.name] = location
 		result[location_id] = location
@@ -176,7 +184,7 @@ def add_champion_data(location_id, champion_data, region_name) -> (Dict[int, Loc
 		name=event_name,
 		region=region_name,
 		category=MonsterSanctuaryLocationCategory.RANK,
-		default_item=None,
+		default_item="Champion Defeated",
 		access_condition=AccessCondition(champion_data.get("requirements"))
 	)
 	locations_data[rank_event.name] = rank_event
@@ -202,6 +210,9 @@ def add_flag_data(location_id, flag_data, region_name) -> LocationData:
 		category=MonsterSanctuaryLocationCategory.FLAG,
 		access_condition=AccessCondition(flag_data.get("requirements"))
 	)
+
+	if locations_data.get(location.name) is not None:
+		raise KeyError(f"{location.name} already exists in locations_data")
 
 	locations_data[location.name] = location
 	return location

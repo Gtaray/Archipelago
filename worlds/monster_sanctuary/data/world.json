@@ -28,7 +28,7 @@
     ],
     "encounters": [
       { "id": 1, "monsters": [ "Blob", "Blob", "Magmapillar" ] },
-      { "id": 1, "monsters": [ "Magmapillar", "Rocky", "Magmapillar" ] }
+      { "id": 2, "monsters": [ "Magmapillar", "Rocky", "Magmapillar" ] }
     ]
   },
   {
@@ -225,7 +225,8 @@
     ],
     "chests": [
       { "id": 2, "item":  "Pandora's Box", "requirements":  [ "fire_orbs" ] },
-      { "id": 10, "item":  "2x Potion", "requirements": [ "water_orbs" ] }
+      { "id": 10, "item":  "2x Potion", "requirements": [ "water_orbs" ] },
+      { "id": 5, "item":  "Wizard Hat" }
     ]
   },
   {
@@ -235,7 +236,7 @@
       { "region":  "MountainPath_Center7" }
     ],
     "chests": [
-      { "id": 5, "item":  "Wizard Hat" }
+      {"id": 6, "item": "Ocarina"}
     ]
   },
   {
@@ -243,6 +244,9 @@
     "connections": [
       { "region":  "MountainPath_Center6_Upper" },
       { "region":  "MountainPath_Center3" }
+    ],
+    "chests": [
+      {"id": 3, "item": "Sustain Ring"}
     ],
     "champion": [
       { "id": 1, "monsters": [ "Monk" ] }
@@ -302,7 +306,7 @@
       { "id": 6, "item": "Gauntlet+3", "requirements": [ "double_jump" ] }
     ],
     "encounters": [
-      { "id":  4, "monsters":  [ "Yowie", "Catzerker", "Yowie" ]}
+      { "id":  2, "monsters":  [ "Yowie", "Catzerker", "Yowie" ]}
     ]
   },
   {
@@ -1257,7 +1261,7 @@
       { "region": "StrongholdDungeon_Entrance" }
     ],
     "chests": [
-      { "id": 5, "item": "Grape" },
+      { "id": 5, "item": "Grapes" },
       { "id": 7, "item": "Crystal Shard", "requirements": [ "ground_switches" ] }
     ]
   },
@@ -2139,7 +2143,7 @@
     ],
     "chests": [
       { "id": 3, "item": "2x Wool", "requirements": ["AND", [ "double_jump", "distant_ledges" ]] },
-      { "id": 4, "item": "Hide +3", "requirements": ["AND", [ "double_jump", "distant_ledges" ]] }
+      { "id": 4, "item": "Hide+3", "requirements": ["AND", [ "double_jump", "distant_ledges" ]] }
     ]
   },
   {
@@ -3087,7 +3091,7 @@
           "improved_flying",
           "dual_mobility" ]
       ] },
-      { "id": 5, "item": "Crimson Gem", "requirements": [
+      { "id": 6, "item": "Crimson Gem", "requirements": [
         "AND", [
           "ground_switches",
           "OR", [
@@ -3135,7 +3139,7 @@
       { "id": 3, "monsters": [ "Ninki Nanka", "Ninki Nanka", "Ninki Nanka" ]}
     ],
     "champion": [
-      { "id": 3, "monsters": [ "Qilin" ]}
+      { "id": 2, "monsters": [ "Qilin" ]}
     ],
     "flags": [
       { "id": "sun_palace_east_shortcut", "name": "Sun Palace East Shortcut" },
@@ -3241,27 +3245,6 @@
         "OR", [ "double_jump", "distant_ledges" ]
       ]},
       { "id": 4, "monsters": [ "Blade Widow", "Imori", "Blade Widow" ]}
-    ]
-  },
-  {
-    "region": "SunPalace_West2",
-    "connections": [
-      {
-        "region": "SunPalace_West1",
-        "requirements": [ "OR", [ "double_jump", "distant_ledges" ] ]
-      },
-      { "region": "SunPalace_West3" },
-      { "region": "SunPalace_West5", "requirements": ["sun_palace_west_shortcut"] }
-    ],
-    "chests": [
-      { "id": 4, "item": "Sun Stone", "requirements": [
-        "AND", [ "double_jump", "distant_ledges" ]
-      ] }
-    ],
-    "encounters": [
-      { "id": 2, "monsters": [ "Imori", "Ninki Nanka", "Imori" ], "requirements": [
-        "OR", [ "double_jump", "distant_ledges" ]
-      ]}
     ]
   },
   {
@@ -3474,7 +3457,7 @@
       { "region": "SunPalace_South3" }
     ],
     "encounters": [
-      { "id": 0, "monsters": [ "Vasuki", "Sycophantum", "Imori" ]}
+      { "id": 0, "monsters": [ "Vasuki", "Sycophantom", "Imori" ]}
     ]
   },
   {
@@ -3490,7 +3473,7 @@
     ],
     "chests": [
       { "id": 5, "item": "Bandana+5", "requirements": [ "distant_ice_orbs" ] },
-      { "id": 5, "item": "2x Leather", "requirements": [ "fiery_shots" ]}
+      { "id": 6, "item": "2x Leather", "requirements": [ "fiery_shots" ]}
     ],
     "encounters": [
       { "id": 0, "monsters": [ "Imori", "Ninki Nanka", "Imori" ]}
@@ -3533,7 +3516,7 @@
       ]}
     ],
     "encounters": [
-      { "id": 2, "monsters": [ "Kame", "Sycophantum", "Kame" ]}
+      { "id": 2, "monsters": [ "Kame", "Sycophantom", "Kame" ]}
     ]
   },
   {
@@ -3543,7 +3526,7 @@
       { "region": "SunPalace_EastSewers4" }
     ],
     "encounters": [
-      { "id": 2, "monsters": [ "Sycophantum", "Sycophantum", "Sycophantum" ]}
+      { "id": 2, "monsters": [ "Sycophantom", "Sycophantom", "Sycophantom" ]}
     ]
   },
   {
@@ -3569,7 +3552,7 @@
       { "region": "SunPalace_East5" }
     ],
     "encounters": [
-      { "id": 2, "monsters": [ "Kame", "Sycophantum", "Sycophantum" ]}
+      { "id": 2, "monsters": [ "Kame", "Sycophantom", "Sycophantom" ]}
     ]
   },
   {
@@ -3618,7 +3601,7 @@
       { "region": "SunPalace_WestSewers4" }
     ],
     "chests": [
-      { "id": 4, "item": "2x Smoke Bomb", "requirements": [ "heavy_blocks" ]}
+      { "id": 4, "item": "2x Smoke bomb", "requirements": [ "heavy_blocks" ]}
     ]
   },
   {
@@ -3739,6 +3722,15 @@
       {"id": 20800142, "item": "Sanctuary Token"}
     ]
   },
+  {
+    "region": "SunPalace_North3",
+    "connections": [
+      {"region": "SunPalace_Center"}
+    ],
+    "champion": [
+      {"id": 3, "monsters": ["Kanko"], "requirements": ["fire_orbs"]}
+    ]
+  },
 
   {
     "region": "AncientWoods_West1",
@@ -3747,7 +3739,7 @@
       { "region": "AncientWoods_West2_Upper" }
     ],
     "chests": [
-      { "id": 4, "item": "Grape" }
+      { "id": 4, "item": "Grapes" }
     ],
     "encounters": [
       { "id": 1, "monsters": [ "Magmamoth", "Magmapillar", "Druid Oak" ]}
@@ -4190,7 +4182,7 @@
       { "region": "AncientWoods_North3" }
     ],
     "chests": [
-      { "id": 6, "item": "2x Smoke Bomb", "requirements": [
+      { "id": 6, "item": "2x Smoke bomb", "requirements": [
         "OR", ["double_jump", "distant_ledges"]
       ] }
     ],
@@ -4456,7 +4448,7 @@
       { "region": "AncientWoods_SouthHidden3" },
       { "region": "AncientWoods_SouthHidden4" }
     ],
-    "champions": [
+    "champion": [
       { "id": 1, "monsters": ["Brutus"] }
     ]
   },
@@ -4470,6 +4462,9 @@
     ],
     "gifts": [
       { "id": 9900049, "item": "Magical Clay" }
+    ],
+    "flags": [
+      {"id": "tree_of_evolution_access", "name": "Tree of Evolution Access"}
     ]
   },
   {
@@ -4761,7 +4756,7 @@
           "double_jump",
           "OR",["improved_flying", "dual_mobility"]]
       ]},
-      { "id": 55, "item": "2x Smoke Bomb" }
+      { "id": 55, "item": "2x Smoke bomb" }
     ],
     "encounters": [
       { "id": 59, "monsters": ["Thornish", "Ucan", "Thornish"]}
@@ -4924,7 +4919,7 @@
       {"region": "HorizonBeach_Pit", "requirements": ["swimming"]}
     ],
     "encounters": [
-      {"id": 2, "monsters": ["Ucan", "Bawlish", "Ucan"]}
+      {"id": 2, "monsters": ["Ucan", "Brawlish", "Ucan"]}
     ]
   },
   {
@@ -5341,7 +5336,7 @@
       {"region": "MagmaChamber_Center9_Upper", "requirements": ["magma_chamber_east_shortcut"]}
     ],
     "chests": [
-      {"id": 3, "item": "Grey Pearl", "requirements": ["diamond_blocks"]}
+      {"id": 3, "item": "Gray Pearl", "requirements": ["diamond_blocks"]}
     ]
   },
   {
@@ -5803,7 +5798,7 @@
     ],
     "flags": [
       {"id": "magma_chamber_alchemist_lab_unlocked", "name": "Magma Chamber Alchemist Lab Unlocked"},
-      {"id": "magma_chamber_key_used", "name": "Magma Chamber Key Used"}
+      {"id": "magma_chamber_key_used2", "name": "Magma Chamber Key Used"}
     ]
   },
   {
@@ -5828,7 +5823,7 @@
     ],
     "flags": [
       {"id": "magma_chamber_mozzie_room_unlocked", "name": "Magma Chamber Mozzie Room Unlocked"},
-      {"id": "magma_chamber_key_used", "name": "Magma Chamber Key Used"}
+      {"id": "magma_chamber_key_used1", "name": "Magma Chamber Key Used"}
     ]
   },
   {
@@ -5860,7 +5855,7 @@
       {"region": "MagmaChamber_South5"}
     ],
     "chests": [
-      {"id": 0, "item": "3x Reward Box Lvl X", "requirements": [
+      {"id": 0, "item": "3x Reward Box X", "requirements": [
         "OR", ["tar", "dual_mobility"]
       ]}
     ]
@@ -6097,7 +6092,7 @@
       {"id": 4, "item": "Underworld key"}
     ],
     "encounters": [
-      {"id": 5, "monsters": ["Argipe", "Arachlich", "Argiope"]}
+      {"id": 5, "monsters": ["Argiope", "Arachlich", "Argiope"]}
     ]
   },
   {
@@ -6644,7 +6639,7 @@
       {"region": "MysticalWorkshop_West3_Access"}
     ],
     "encounters": [
-      {"id": 5, "monsters": ["Salahammer", "Polterferon", "Salahammer"]}
+      {"id": 5, "monsters": ["Salahammer", "Polterofen", "Salahammer"]}
     ]
   },
   {
@@ -6654,7 +6649,7 @@
       {"region": "MysticalWorkshop_Center3_Upper"}
     ],
     "encounters": [
-      {"id": 0, "monsters": ["Polterferon", "Steam Golem", "Polterferon"]}
+      {"id": 0, "monsters": ["Polterofen", "Steam Golem", "Polterofen"]}
     ]
   },
   {
@@ -6677,7 +6672,7 @@
       ]}
     ],
     "encounters": [
-      {"id": 3, "monsters": ["Polterferon", "Salahammer", "Polterferon"]}
+      {"id": 3, "monsters": ["Polterofen", "Salahammer", "Polterofen"]}
     ]
   },
   {
@@ -6826,7 +6821,7 @@
       {"region": "MysticalWorkshop_West3", "requirements": ["abandoned_tower_access"]}
     ],
     "chests": [
-      {"id": 0, "item": "Smoke Bomb"}
+      {"id": 0, "item": "Smoke bomb"}
     ]
   },
   {
@@ -6868,7 +6863,7 @@
       ]}
     ],
     "encounters": [
-      {"id": 2, "monsters": ["Oculus", "Steam Golem", "Polterferon"]}
+      {"id": 2, "monsters": ["Oculus", "Steam Golem", "Polterofen"]}
     ]
   },
   {
@@ -6901,7 +6896,7 @@
       ]}
     ],
     "encounters": [
-      {"id": 3, "monsters": ["Ornithoper", "Oculus", "Ornithoper"]},
+      {"id": 3, "monsters": ["Ornithopter", "Oculus", "Ornithopter"]},
       {"id": 7, "monsters": ["Oculus", "Oculus", "Oculus"], "requirements": [
         "OR", ["double_jump", "improved_flying", "dual_mobility", "summon_big_rock"]
       ]}
@@ -7012,7 +7007,7 @@
       {"id": 0, "item": "Emerald", "requirements": ["double_jump"]}
     ],
     "encounters": [
-      {"id": 3, "monsters": ["Stolby", "Polterferon", "Polterferon"], "requirements": [
+      {"id": 3, "monsters": ["Stolby", "Polterofen", "Polterofen"], "requirements": [
         "OR", ["double_jump", "distant_ledges", "ground_switches"]
       ]},
       {"id": 6, "monsters": ["Stolby", "Stolby", "Stolby"], "requirements": ["double_jump"]}
@@ -8348,7 +8343,7 @@
     ],
     "chests": [
       {"id": 0, "item": "Phoenix Serum"},
-      {"id": 3, "item": "2x Craft box"}
+      {"id": 3, "item": "2x Craft Box"}
     ]
   },
   {

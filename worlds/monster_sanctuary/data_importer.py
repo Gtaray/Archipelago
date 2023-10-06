@@ -109,7 +109,7 @@ def load_items() -> None:
 
                 item = ItemData(
                     item_id,
-                    item_data["Name"],
+                    item_data["name"],
                     item_classification,
                     item_category,
                     item_data.get("tier"),

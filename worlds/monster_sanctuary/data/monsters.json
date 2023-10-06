@@ -260,7 +260,7 @@
     "CommonRewards": "Leather,Iron,",
     "RareRewards": "Verdant Gem,Raw Hide,Minitaur Egg,",
     "EggReward": "Megataur Egg",
-    "Groups": [ "Freeze", "Ice Orbs" ]
+    "Groups": [ "Slash", "Breakable Walls", "Impassible Vines" ]
   },
   {
     "Name": "Mogwai",
@@ -414,7 +414,7 @@
     "CommonRewards": "Silk,Monster Bell,",
     "RareRewards": "Silver Feather,Feather+4,Vaero Egg,",
     "EggReward": "Silvaero Egg",
-    "Groups": [ "Improved Flying", "Distant Ledges" ]
+    "Groups": [ "Flying", "Distant Ledges" ]
   },
   {
     "Name": "Elderjel",
@@ -469,7 +469,7 @@
     "CommonRewards": "Crystal Shard,Strawberry,",
     "RareRewards": "Shuriken+4,Fire Stone,Draconov Egg,",
     "EggReward": "Dracogran Egg",
-    "Groups": [ "Improved Flying", "Distant Ledges" ]
+    "Groups": [ "Flying", "Distant Ledges" ]
   },
   {
     "Name": "Asura",
@@ -546,7 +546,7 @@
     "CommonRewards": "Blue Gem,Azure Gem,",
     "RareRewards": "Draconov Egg,Frozen Tear,Ice Stone,",
     "EggReward": "Dracozul Egg",
-    "Groups": [ "Improved Flying", "Distant Ledges" ]
+    "Groups": [ "Flying", "Distant Ledges" ]
   },
   {
     "Name": "Troll",
@@ -567,7 +567,7 @@
     "CommonRewards": "Peanut,Steel,",
     "RareRewards": "Emerald,Giant Seed,Rocky Egg,",
     "EggReward": "Mega Rock Egg",
-    "Groups": [ "Summon Big Rock", "Ground Switches" ]
+    "Groups": [ "Summon Rock", "Ground Switches" ]
   },
   {
     "Name": "Argiope",
@@ -602,7 +602,7 @@
     "CommonRewards": "Silver,Reward Box lvl 3,",
     "RareRewards": "Draconov Egg,Totem,Dark Stone,",
     "EggReward": "Draconoir Egg",
-    "Groups": [ "Improved Flying", "Distant Ledges" ]
+    "Groups": [ "Flying", "Distant Ledges" ]
   },
   {
     "Name": "Spinner",
@@ -658,7 +658,7 @@
     "CommonRewards": "Cookie Mushroom,Skill Potion,",
     "RareRewards": "Craft Box,Wand+5,Majestic Crown,",
     "EggReward": "King Blob Egg",
-    "Groups": [ "Blob Form", "Narrow Corridors" ]
+    "Groups": [ ]
   },
   {
     "Name": "Worm",
@@ -707,21 +707,21 @@
     "CommonRewards": "Skill Potion,Shift Stone,",
     "RareRewards": "Mad Eye Egg,Abyssal Sword,Demonic Pact,",
     "EggReward": "Mad Lord Egg",
-    "Groups": [ "Secret Vision", "Invisible Platforms" ]
+    "Groups": [ "Flying", "Distant Ledges" ]
   },
   {
     "Name": "Ascendant",
     "CommonRewards": "Craft Box,Skill Potion,",
     "RareRewards": "Monk Egg,Bead Chain,Primordial Branch,",
     "EggReward": "Ascendant Egg",
-    "Groups": [ "Secret Vision", "Invisible Platforms" ]
+    "Groups": [ "Heavy Punch", "Breakable Walls", "Heavy Blocks" ]
   },
   {
     "Name": "Fumagus",
     "CommonRewards": "Cookie Mushroom,Linen,",
     "RareRewards": "Druid Soul,Hood+4,Fungi Egg,",
     "EggReward": "Fumagus Egg",
-    "Groups": [ "Spore Shroud", "Magic Vines" ]
+    "Groups": [ "Summon Mushroom", "Ground Switches" ]
   },
   {
     "Name": "Rampede",
@@ -763,7 +763,7 @@
     "CommonRewards": "Banana,Sapphire,",
     "RareRewards": "Draconov Egg,Swallow,Deep Stone,",
     "EggReward": "Dracomer Egg",
-    "Groups": [ "Improved Swimming" ]
+    "Groups": [ "Swimming" ]
   },
   {
     "Name": "Terradrile",

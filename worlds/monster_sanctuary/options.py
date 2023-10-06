@@ -37,12 +37,12 @@ class RandomizeChampions(Choice):
     No: Champions will not be randomized
     Default: Champions will be randomized according to the Randomize Monsters game option
     Shuffle: Champions will be shuffled around
-    Random: Champions will be completely randomized ignoring restrictions on the rest of the monster pool"""
+    Any: Champions will be completely randomized ignoring restrictions on the rest of the monster pool"""
     display_name = "Randomize Champions"
     option_no = 0
     option_default = 1
     option_shuffle = 2
-    options_random = 3
+    option_any = 3
     default = 1
 
 
@@ -65,12 +65,11 @@ class CanEncounterEvolvedMonsters(Toggle):
     default = 1
 
 
-class MinimumEggDropRate(Range):
-    """Minimum egg drop rate for each monster. If value is 0, then the drop rate will be unchanged"""
-    display_name = "Minimum Egg Drop Rate"
-    range_start = 0
-    range_end = 100
-    default = 0
+class MonstersAlwaysDropEggs(Toggle):
+    """If enabled, monsters will always drop an egg if you don't already have one.
+    This is not shown in the rewards screen."""
+    display_name = "Monsters always drop eggs"
+    default = 1
 
 
 class RandomizeItems(Choice):
@@ -94,6 +93,14 @@ class IncludeChaosRelics(Toggle):
     default = 1
 
 
+class ExpMultiplier(Range):
+    """Modifier for experience gained. When specifying a number, XP is multiplied by this amount"""
+    display_name = "Experience Multiplier"
+    range_start = 1
+    range_end = 5
+    default = 1
+
+
 class Goal(Choice):
     """Goal to complete.
 
@@ -112,13 +119,12 @@ class Goal(Choice):
 
 monster_sanctuary_options = {
     "randomize_monsters": RandomizeMonsters,
-    "match_monster_tier": MatchMonsterTier,
     "randomize_champions": RandomizeChampions,
-    "randomize_monster_shifts": RandomizeMonsterShifts,
-    "encounter_evolved_monsters": CanEncounterEvolvedMonsters,
-    "minimum_egg_drop_rate": MinimumEggDropRate,
+    "monster_shift_rule": RandomizeMonsterShifts,
+    "monsters_always_drop_egg": MonstersAlwaysDropEggs,
     "randomize_items": RandomizeItems,
     "include_chaos_relics": IncludeChaosRelics,
+    "exp_multiplier": ExpMultiplier,
     "goal": Goal,
     "death_link": DeathLink
 }

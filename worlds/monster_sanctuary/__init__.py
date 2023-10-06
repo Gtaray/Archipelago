@@ -40,23 +40,20 @@ class MonsterSanctuaryWorld(World):
     web = MonsterSanctuaryWebWorld()
     option_definitions = monster_sanctuary_options
 
+    load_data()
+
     data_version = 0
     topology_present = True
 
-    item_name_groups = {}
-    item_name_to_id = {}
-    location_name_to_id = {}
+    item_name_groups = ITEMS.build_item_groups()
+    item_name_to_id = {item.name: item.id for item in ITEMS.items_data.values()}
+    location_name_to_id = {location.name: location.location_id
+                           for location in LOCATIONS.locations_data.values()}
+    location_names = [location.name for location in LOCATIONS.locations_data.values()]
 
     number_of_locations = 0
 
     def __init__(self, world: MultiWorld, player: int):
-        load_data()
-
-        MonsterSanctuaryWorld.item_name_groups = ITEMS.build_item_groups()
-        MonsterSanctuaryWorld.item_name_to_id = {item.name: item.id for item in ITEMS.items_data.values()}
-        MonsterSanctuaryWorld.location_name_to_id = {location.name: location.location_id
-                                                     for location in LOCATIONS.locations_data.values()}
-
         super().__init__(world, player)
 
     # is a class method called at the start of generation to check the existence of prerequisite files,
@@ -181,21 +178,20 @@ class MonsterSanctuaryWorld(World):
 
     def place_monster(self, location, monsters, monsters_by_encounter) -> None:
         data = LOCATIONS.locations_data[location.name]
-        monster_name: Optional[str] = None
-
-        # When placing monsters, if the default item is None, then we lock the location and move on
-        # this is because champion encounters frequently have only one monster, even though there are three slots
-        # and we need to keep three slots because we can shuffle champion encounters around
-        # The only reason champion encounters get into this function is because we're randomizing them
-        # with default rules. If that's the case, then we leave the empty locations alone.
-        if data.default_item is None:
-            location.locked = True
-            return
+        monster_name: str = data.default_item
 
         # TODO: Add a global list to pull from so that mons don't get re-used til all monsters have been placed
-        # Not randomizing monsters, so we put the default monster back in its location
-        if self.randomize_monsters == "no":
-            monster_name = data.default_item
+        # Don't need to add a case for no randomization, because the default item is used for monster_name above
+
+        # When placing monsters, if the default item is Empty Slot, then we leave the location alone
+        # This is because champion encounters frequently have only one monster, even though there are three slots
+        # We need to keep three slots so that we can shuffle champion encounters around
+        # The only reason a champion encounter gets into this function is because we're randomizing them
+        # with default rules. If that's the case, then we leave the empty locations alone.
+        if data.default_item == "Empty Slot":
+            # We still want to create an "Empty Slot" item to fill the location with so that all locations are filled
+            # and so it doesn't get filled with items
+            pass
 
         # We already shuffled the monsters list above, so we just pull from it here
         elif self.randomize_monsters == "by_specie":
@@ -204,18 +200,15 @@ class MonsterSanctuaryWorld(World):
         # if randomizing by encounter, every encounter maps monsters 1 to 1 with another monster
         elif self.randomize_monsters == "by_encounter":
             if monsters_by_encounter.get(location.name) is None:
-                monsters_by_encounter[data.encounter_id] = {}
-            if monsters_by_encounter[data.encounter_id].get(data.default_item) is None:
-                monsters_by_encounter[data.encounter_id][
+                monsters_by_encounter[data.object_id] = {}
+            if monsters_by_encounter[data.object_id].get(data.default_item) is None:
+                monsters_by_encounter[data.object_id][
                     data.default_item] = ITEMS.get_random_monster_name(self.multiworld)
-            monster_name = monsters_by_encounter[data.encounter_id][data.default_item]
+            monster_name = monsters_by_encounter[data.object_id][data.default_item]
 
         # If nothing else, randomize the monster
-        else:
+        elif self.randomize_monsters == "any":
             monster_name = ITEMS.get_random_monster_name(self.multiworld)
-
-        if monster_name is None:
-            return
 
         # create the item
         monster = self.create_item(monster_name)
@@ -239,29 +232,30 @@ class MonsterSanctuaryWorld(World):
 
     def place_champion(self, location, champions) -> None:
         data = LOCATIONS.locations_data[location.name]
-        monster_name: Optional[str] = None
+        monster_name: str = data.default_item
 
-        if self.randomize_champions == "no" or self.randomize_champions == "shuffle":
+        # The default case it handled with the place_monsters() method.
+        # We do this so that champions and normal battles
+        # share the same monster randomization settings
+        if self.randomize_champions == "default":
+            return
+
+        elif self.randomize_champions == "no" or self.randomize_champions == "shuffle":
+            # Don't have to worry about Empty Slots here because they simply get shuffled around
+            # with the rest of the encounter, and we handle the Empty Slot later in this method
             monster_name = champions[data.region][data.monster_id]
-
-        # We should never hit this, because the default case it handled
-        # with the place_monsters() function. We do this so that champions and normal battles
-        # share the same monster randomization settings, like shuffle
-        elif self.randomize_champions == "default":
-            pass
 
         # TODO: Probably add more detail to this?
         elif self.randomize_champions == "random":
-            monster_name = ITEMS.get_random_monster_name(self.multiworld)
-
-        # if the monster name is empty, we lock the location and move on
-        # This occurs because all champion encounters have three monster slots,
-        # but 2 are empty in a lot of cases.
-        if monster_name is None:
-            location.item_rule = lambda item: False
-            return
+            # Do not randomize any locations that would have an empty slot by default
+            # This is so that champion encounters that normally only have one monster
+            # remain with only a single monster
+            if data.default_item != "Empty Slot":
+                monster_name = ITEMS.get_random_monster_name(self.multiworld)
 
         # create the item
+        # This will allow creating "Empty Slot" objects, which is fine
+        # because the client will just ignore that data
         monster = self.create_item(monster_name)
 
         # Place the selected monster
@@ -316,8 +310,20 @@ class MonsterSanctuaryWorld(World):
         # Add all key items to the pool
         key_items = [item_name for item_name in ITEMS.items_data
                      if ITEMS.items_data[item_name].category == MonsterSanctuaryItemCategory.KEYITEM]
-        # Raw Hide is a non-key item that also gates a check, so we force adding one
+        # Add items that are not technically key items, but are progressions items and should be added
         key_items.append("Raw Hide")
+        key_items.append("Koi Egg")
+        key_items.append("Bard Egg")
+        key_items.append("Shard of Winter")
+        key_items.append("Fire Stone")
+        key_items.append("Ice Stone")
+        key_items.append("Giant Seed")
+        key_items.append("Dark Stone")
+        key_items.append("Majestic Crown")
+        key_items.append("Demonic Pact")
+        key_items.append("Deep Stone")
+        key_items.append("Primordial Branch")
+        key_items.append("Druid Soul")
 
         for key_item in key_items:
             for i in range(ITEMS.items_data[key_item].count):
@@ -383,5 +389,10 @@ class MonsterSanctuaryWorld(World):
 
     # fill_slot_data and modify_multidata can be used to modify the data that will be used by
     # the server to host the MultiWorld.
-    def fill_slot_data(self) -> None:
-        pass
+    def fill_slot_data(self) -> dict:
+        print(self.monster_shift_rule)
+        return {
+            "exp_multiplier": self.exp_multiplier,
+            "monsters_always_drop_egg": self.monsters_always_drop_egg,
+            "monster_shift_rule": self.monster_shift_rule
+        }

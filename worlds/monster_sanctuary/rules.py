@@ -563,7 +563,8 @@ def earth_orbs(state: CollectionState, player: int) -> bool:
 
 
 def ice_orbs(state: CollectionState, player: int) -> bool:
-    return state.has_group("Ice Orbs", player)
+    return (state.has_group("Ice Orbs", player)
+            or check_evolution("Minitaur", "Shard of Winter", state, player))
 
 
 def distant_ice_orbs(state: CollectionState, player: int) -> bool:
@@ -579,7 +580,8 @@ def summon_mushroom(state: CollectionState, player: int) -> bool:
 
 
 def summon_big_rock(state: CollectionState, player: int) -> bool:
-    return state.has_group("Summon Big Rock", player)
+    return (state.has_group("Summon Big Rock", player)
+            or check_evolution("Rocky", "Giant Seed", state, player))
 
 
 def flying(state: CollectionState, player: int) -> bool:
@@ -587,7 +589,11 @@ def flying(state: CollectionState, player: int) -> bool:
 
 
 def improved_flying(state: CollectionState, player: int) -> bool:
-    return state.has_group("Improved Flying", player)
+    return (state.has_group("Improved Flying", player)
+            or check_evolution("Draconov", "Fire Stone", state, player)
+            or check_evolution("Draconov", "Ice Stone", state, player)
+            or check_evolution("Draconov", "Dark Stone", state, player)
+            or check_evolution("Vaero", "Silver Feather", state, player))
 
 
 def lofty_mount(state: CollectionState, player: int) -> bool:
@@ -599,7 +605,8 @@ def basic_swimming(state: CollectionState, player: int) -> bool:
 
 
 def improved_swimming(state: CollectionState, player: int) -> bool:
-    return state.has_group("Improved Swimming", player)
+    return (state.has_group("Improved Swimming", player)
+            or check_evolution("Draconov", "Deep Stone", state, player))
 
 
 def dual_mobility(state: CollectionState, player: int) -> bool:
@@ -607,7 +614,12 @@ def dual_mobility(state: CollectionState, player: int) -> bool:
 
 
 def narrow_corridors(state: CollectionState, player: int) -> bool:
-    return state.has_group("Narrow Corridors", player)
+    return (state.has_group("Narrow Corridors", player)
+            or check_evolution("Blob", "Majestic Crown", state, player)
+            or check_evolution("Ice Blob", "Majestic Crown", state, player)
+            or check_evolution("Lava Blob", "Majestic Crown", state, player)
+            or check_evolution("Rainbow Blob", "Majestic Crown", state, player)
+            or check_evolution("Tar Blob", "Majestic Crown", state, player))
 
 
 def magic_walls(state: CollectionState, player: int) -> bool:
@@ -615,7 +627,8 @@ def magic_walls(state: CollectionState, player: int) -> bool:
 
 
 def magic_vines(state: CollectionState, player: int) -> bool:
-    return state.has_group("Magic Vines", player)
+    return (state.has_group("Magic Vines", player)
+            or check_evolution("Fungi", "Druid Soul", state, player))
 
 
 def fiery_shots(state: CollectionState, player: int) -> bool:
@@ -643,11 +656,14 @@ def levitate(state: CollectionState, player: int) -> bool:
 
 
 def secret_vision(state: CollectionState, player: int) -> bool:
-    return state.has_group("Secret Vision", player)
+    return (state.has_group("Secret Vision", player)
+            or check_evolution("Mad Eye", "Demonic Pact", state, player)
+            or check_evolution("Monk", "Primordial Branch", state, player))
 
 
 def spore_shroud(state: CollectionState, player: int) -> bool:
-    return state.has_group("Spore Shroud", player)
+    return (state.has_group("Spore Shroud", player)
+            or check_evolution("Fungi", "Druid Soul", state, player))
 
 
 def basic_mount(state: CollectionState, player: int) -> bool:
@@ -665,3 +681,8 @@ def tar_mount(state: CollectionState, player: int) -> bool:
 def charging_mount(state: CollectionState, player: int) -> bool:
     return state.has_group("Charging Mount", player)
 # endregion
+
+
+def check_evolution(base_form: str, evo_item: str, state: CollectionState, player: int) -> bool:
+    return (state.has("Tree of Evolution Access", player)
+            and state.has(base_form, player) and state.has(evo_item, player))
