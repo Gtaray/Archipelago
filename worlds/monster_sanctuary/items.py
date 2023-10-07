@@ -1,3 +1,4 @@
+import math
 from enum import IntEnum
 from typing import List, Dict, Optional
 from BaseClasses import ItemClassification
@@ -55,12 +56,10 @@ class MonsterSanctuaryItem(Item):
 
 # This holds all the item data that is parsed from items.json file
 items_data: Dict[str, ItemData] = {}
+item_drop_probabilities: List[MonsterSanctuaryItemCategory] = []
 
 
 # region Monster Accessor functions
-monster_list: Dict[str, ItemData] = {}
-
-
 def get_monsters() -> Dict[str, ItemData]:
     return {item_name: items_data[item_name] for item_name in items_data
             if items_data[item_name].category is MonsterSanctuaryItemCategory.MONSTER
@@ -132,6 +131,22 @@ def get_filtered_unique_item_data(itempool: List[MonsterSanctuaryItem]) -> Dict[
             or not is_in_item_pool(item, itempool)}
 
 
+def build_item_probability_table(multiworld: MultiWorld, world: World) -> None:
+    probabilities = {
+        MonsterSanctuaryItemCategory.CRAFTINGMATERIAL: world.drop_chance_craftingmaterial,
+        MonsterSanctuaryItemCategory.CONSUMABLE: world.drop_chance_consumable,
+        MonsterSanctuaryItemCategory.FOOD: world.drop_chance_food,
+        MonsterSanctuaryItemCategory.CATALYST: world.drop_chance_catalyst,
+        MonsterSanctuaryItemCategory.WEAPON: world.drop_chance_weapon,
+        MonsterSanctuaryItemCategory.ACCESSORY: world.drop_chance_accessory,
+        MonsterSanctuaryItemCategory.CURRENCY: world.drop_chance_currency,
+    }
+
+    for item_type in probabilities:
+        for i in range(probabilities[item_type]):
+            item_drop_probabilities.append(item_type)
+
+
 def get_random_item_name(world: World,
                          itempool: List[MonsterSanctuaryItem],
                          group_include: Optional[List[str]] = None,
@@ -140,6 +155,7 @@ def get_random_item_name(world: World,
     Unique items already in the item pool will not be added a second time
     Items with groups that intersect with group_exclude will not be added
     Only items whose groups intersect with group_include will be selected from"""
+
     if group_include is None:
         group_include = []
     if group_exclude is None:
@@ -150,34 +166,31 @@ def get_random_item_name(world: World,
     if "Multiple" not in group_exclude:
         group_exclude.append("Multiple")
 
+    item_type = world.multiworld.random.choice(item_drop_probabilities)
     valid_items = [item for item in get_filtered_unique_item_data(itempool)
-                   if not is_item_type(item, MonsterSanctuaryItemCategory.MONSTER)
-                   and not is_item_type(item, MonsterSanctuaryItemCategory.KEYITEM)
-                   and not is_item_type(item, MonsterSanctuaryItemCategory.FLAG)
-                   and not is_item_type(item, MonsterSanctuaryItemCategory.RANK)
-                   and not is_item_type(item, MonsterSanctuaryItemCategory.EGG)
+                   if is_item_type(item, item_type)
                    and is_item_in_group(item, *group_include)
                    and not is_item_in_group(item, *group_exclude)]
 
     if len(valid_items) == 0:
         return None
 
-    base_item_name = world.random.choice(valid_items)
+    base_item_name = world.multiworld.random.choice(valid_items)
     base_item = items_data.get(base_item_name)
 
     name_prepend = None
     if "Up to 2" in base_item.groups:
-        roll = world.random.randint(1, 10)
+        roll = world.multiworld.random.randint(1, 10)
         if roll >= 7:
             name_prepend = "2x"
     elif "Up to 3" in base_item.groups:
-        roll = world.random.randint(1, 10)
+        roll = world.multiworld.random.randint(1, 10)
         if roll >= 9:
             name_prepend = "3x"
         elif roll >= 6:
             name_prepend = "2x"
     elif "Up to 4" in base_item.groups:
-        roll = world.random.randint(1, 10)
+        roll = world.multiworld.random.randint(1, 10)
         if roll >= 10:
             name_prepend = "4x"
         elif roll >= 8:

@@ -65,6 +65,90 @@ class MonstersAlwaysDropEggs(Toggle):
     default = 1
 
 
+class CraftingMaterialDropChance(Range):
+    """Frequency that a random non-progression item is a crafting material
+
+    The higher this value is compared to the other drop chances, the more frequently it will occur.
+    For example, if this value is twice the value of all other drop chances,
+    then this type of item will occur twice as often as the others. If left at 0, this item type will never drop."""
+    display_name = "Crafting Material Drop Chance"
+    range_start = 0
+    range_end = 100
+    default = 50
+
+
+class ConsumableDropChance(Range):
+    """Frequency that a random non-progression item is a consumable
+
+    The higher this value is compared to the other drop chances, the more frequently it will occur.
+    For example, if this value is twice the value of all other drop chances,
+    then this type of item will occur twice as often as the others. If left at 0, this item type will never drop."""
+    display_name = "Consumable Drop Chance"
+    range_start = 0
+    range_end = 100
+    default = 50
+
+
+class FoodDropChance(Range):
+    """Frequency that a random non-progression item is a food item
+
+    The higher this value is compared to the other drop chances, the more frequently it will occur.
+    For example, if this value is twice the value of all other drop chances,
+    then this type of item will occur twice as often as the others. If left at 0, this item type will never drop."""
+    display_name = "Food Drop Chance"
+    range_start = 0
+    range_end = 100
+    default = 50
+
+
+class CatalystDropChance(Range):
+    """Frequency that a random non-progression item is a catalyst
+
+    The higher this value is compared to the other drop chances, the more frequently it will occur.
+    For example, if this value is twice the value of all other drop chances,
+    then this type of item will occur twice as often as the others. If left at 0, this item type will never drop."""
+    display_name = "Catalyst Drop Chance"
+    range_start = 0
+    range_end = 100
+    default = 50
+
+
+class WeaponDropChance(Range):
+    """Frequency that a random non-progression item is a weapon
+
+    The higher this value is compared to the other drop chances, the more frequently it will occur.
+    For example, if this value is twice the value of all other drop chances,
+    then this type of item will occur twice as often as the others. If left at 0, this item type will never drop."""
+    display_name = "Weapon Drop Chance"
+    range_start = 0
+    range_end = 100
+    default = 50
+
+
+class AccessoryDropChance(Range):
+    """Frequency that a random non-progression item is an accessory
+
+    The higher this value is compared to the other drop chances, the more frequently it will occur.
+    For example, if this value is twice the value of all other drop chances,
+    then this type of item will occur twice as often as the others. If left at 0, this item type will never drop."""
+    display_name = "Accessory Drop Chance"
+    range_start = 0
+    range_end = 100
+    default = 50
+
+
+class GoldDropChance(Range):
+    """Frequency that a random non-progression item is gold
+
+    The higher this value is compared to the other drop chances, the more frequently it will occur.
+    For example, if this value is twice the value of all other drop chances,
+    then this type of item will occur twice as often as the others. If left at 0, this item type will never drop."""
+    display_name = "Gold Drop Chance"
+    range_start = 0
+    range_end = 100
+    default = 50
+
+
 class IncludeChaosRelics(Toggle):
     """Include Relics of Chaos in the random item pool"""
     display_name = "Include Relics of Chaos"
@@ -100,6 +184,13 @@ monster_sanctuary_options = {
     "randomize_monsters": RandomizeMonsters,
     "monster_shift_rule": RandomizeMonsterShifts,
     "monsters_always_drop_egg": MonstersAlwaysDropEggs,
+    "drop_chance_craftingmaterial": CraftingMaterialDropChance,
+    "drop_chance_consumable": ConsumableDropChance,
+    "drop_chance_food": FoodDropChance,
+    "drop_chance_catalyst": CatalystDropChance,
+    "drop_chance_weapon": WeaponDropChance,
+    "drop_chance_accessory": AccessoryDropChance,
+    "drop_chance_currency": GoldDropChance,
     "include_chaos_relics": IncludeChaosRelics,
     "exp_multiplier": ExpMultiplier,
     "goal": Goal,

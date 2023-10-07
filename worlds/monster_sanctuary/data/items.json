@@ -491,7 +491,7 @@
         "classification": "filler",
         "tier": 2,
         "groups": [
-          "Up to 3"
+          "Up to 4"
         ]
       },
       {
@@ -504,6 +504,14 @@
       },
       {
         "name": "3x Iron",
+        "classification": "filler",
+        "tier": 2,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "name": "4x Iron",
         "classification": "filler",
         "tier": 2,
         "groups": [
@@ -651,7 +659,7 @@
         "classification": "filler",
         "tier": 2,
         "groups": [
-          "Up to 3"
+          "Up to 4"
         ]
       },
       {
@@ -671,11 +679,19 @@
         ]
       },
       {
+        "name": "4x Wool",
+        "classification": "filler",
+        "tier": 2,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
         "name": "Leather",
         "classification": "filler",
         "tier": 3,
         "groups": [
-          "Up to 3"
+          "Up to 4"
         ]
       },
       {
@@ -688,6 +704,14 @@
       },
       {
         "name": "3x Leather",
+        "classification": "filler",
+        "tier": 3,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "name": "4x Leather",
         "classification": "filler",
         "tier": 3,
         "groups": [
@@ -824,7 +848,7 @@
         "classification": "filler",
         "tier": 3,
         "groups": [
-          "Up to 2"
+          "Up to 3"
         ]
       },
       {
@@ -836,11 +860,19 @@
         ]
       },
       {
+        "name": "3x Crimson Gem",
+        "classification": "filler",
+        "tier": 3,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
         "name": "Azure Gem",
         "classification": "filler",
         "tier": 3,
         "groups": [
-          "Up to 2"
+          "Up to 3"
         ]
       },
       {
@@ -852,15 +884,31 @@
         ]
       },
       {
+        "name": "3x Azure Gem",
+        "classification": "filler",
+        "tier": 3,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
         "name": "Verdant Gem",
         "classification": "filler",
         "tier": 3,
         "groups": [
-          "Up to 2"
+          "Up to 3"
         ]
       },
       {
         "name": "2x Verdant Gem",
+        "classification": "filler",
+        "tier": 3,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "name": "3x Verdant Gem",
         "classification": "filler",
         "tier": 3,
         "groups": [
