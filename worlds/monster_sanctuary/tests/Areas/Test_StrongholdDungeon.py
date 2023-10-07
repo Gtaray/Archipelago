@@ -9,7 +9,7 @@ class StrongholdDungeonTests(TestArea):
             ["stronghold_dungeon_east_unlocked", False, []],
             ["stronghold_dungeon_east_unlocked", False, ["Stronghold Dungeon key"]],
             ["stronghold_dungeon_east_unlocked", True, ["Double Jump Boots", "Stronghold Dungeon key"]],
-            ["stronghold_dungeon_east_unlocked", True, ["Silvaero", "Stronghold Dungeon key"]],
+            ["stronghold_dungeon_east_unlocked", True, ["Kongamato", "Stronghold Dungeon key"]],
         ])
 
     def test_keys(self):

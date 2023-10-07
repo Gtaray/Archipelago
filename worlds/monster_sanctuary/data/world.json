@@ -3215,7 +3215,7 @@
     "connections": [
       { "region": "SunPalace_West1" },
       { "region": "SunPalace_West3" },
-      { "region": "SunPalace_West5" }
+      { "region": "SunPalace_West5", "requirements": ["sun_palace_west_shortcut"] }
     ],
     "chests": [
       { "id": 4, "item": "Sun Stone", "requirements": [

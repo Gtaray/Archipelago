@@ -62,29 +62,29 @@ class UnderworldTests(TestArea):
             ["Underworld_WestCatacomb1_8", False, []],
 
             # First check that we can get in to the catacomb from both directions
-            ["Underworld_WestCatacomb1_8", True, ["Double Jump Boots", "Silvaero"]],
-            ["underworld_west_catacomb_center_entrance", True, ["Double Jump Boots", "Silvaero"]],
+            ["Underworld_WestCatacomb1_8", True, ["Double Jump Boots", "Kongamato"]],
+            ["underworld_west_catacomb_center_entrance", True, ["Double Jump Boots", "Kongamato"]],
             ["underworld_west_catacomb_4_shortcut", False, []],
             ["underworld_west_catacomb_4_shortcut", True, ["Underworld West Catacomb Center Entrance", "Vaero"]],
 
             # Once inside, you need to access the west half of catacomb 4 through catacomb 3
             ["underworld_west_catacomb_4_access", False, []],
-            ["underworld_west_catacomb_4_access", True, ["Double Jump Boots", "Silvaero", "Brutus"]],
-            ["underworld_west_catacomb_4_access", True, ["Double Jump Boots", "Silvaero", "Underworld West Catacomb 4 Access"]],
+            ["underworld_west_catacomb_4_access", True, ["Double Jump Boots", "Kongamato", "Brutus"]],
+            ["underworld_west_catacomb_4_access", True, ["Double Jump Boots", "Kongamato", "Underworld West Catacomb 4 Access"]],
 
             # Now get access to the catacomb 7 shortcut
             # There might be another requirement to get to this location, but that will require player experience
             ["underworld_west_catacomb_7_shortcut", False, []],
-            ["underworld_west_catacomb_7_shortcut", True, ["Double Jump Boots", "Silvaero"]],
+            ["underworld_west_catacomb_7_shortcut", True, ["Double Jump Boots", "Kongamato"]],
 
             # Now the player needs roof access so they can do the final loop around the building
             # There might be another requirement to get to this location, but that will require player experience
             ["underworld_west_catacomb_roof_access", False, []],
-            ["underworld_west_catacomb_roof_access", True, ["Double Jump Boots", "Silvaero"]],
+            ["underworld_west_catacomb_roof_access", True, ["Double Jump Boots", "Kongamato"]],
 
             # Finally put it all together to get to the end
             ["underworld_west_catacomb_9_interior_access", True, [
-                "Double Jump Boots", "Silvaero",
+                "Double Jump Boots", "Kongamato",
                 "Underworld West Catacomb Center Entrance",
                 "Underworld West Catacomb 4 Shortcut",
                 "Underworld West Catacomb 4 Access",

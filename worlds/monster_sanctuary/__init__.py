@@ -202,8 +202,8 @@ class MonsterSanctuaryWorld(World):
             if monsters_by_encounter.get(location.name) is None:
                 monsters_by_encounter[data.object_id] = {}
             if monsters_by_encounter[data.object_id].get(data.default_item) is None:
-                monsters_by_encounter[data.object_id][
-                    data.default_item] = ITEMS.get_random_monster_name(self.multiworld)
+                monsters_by_encounter[data.object_id][data.default_item] = (
+                    ITEMS.get_random_monster_name(self.multiworld))
             monster_name = monsters_by_encounter[data.object_id][data.default_item]
 
         # If nothing else, randomize the monster

@@ -7,13 +7,13 @@ class SunPalaceTests(TestArea):
         self.run_tests([
             ["sun_palace_raise_center_1", False, []],
             ["sun_palace_raise_center_1", True, ["Double Jump Boots"]],
-            ["sun_palace_raise_center_1", True, ["Silvaero"]],
+            ["sun_palace_raise_center_1", True, ["Kongamato"]],
 
             ["sun_palace_raise_center_2", False, []],
             ["sun_palace_raise_center_2", True, ["Krakaturtle"]],
             ["sun_palace_raise_center_2", True, ["Sun Palace Lower Water", "Krakaturtle"]],
             ["sun_palace_raise_center_2", True, ["Sun Palace Lower Water", "Double Jump Boots"]],
-            ["sun_palace_raise_center_2", True, ["Sun Palace Lower Water", "Sun Palace Lower Water", "Silvaero"]],
+            ["sun_palace_raise_center_2", True, ["Sun Palace Lower Water", "Sun Palace Lower Water", "Kongamato"]],
 
             ["sun_palace_raise_center_3", False, []],
             ["sun_palace_raise_center_3", True, ["Krakaturtle"]],
@@ -22,7 +22,7 @@ class SunPalaceTests(TestArea):
             ["sun_palace_raise_center_3", True, ["Sun Palace Lower Water", "Sun Palace Lower Water",
                                                  "Double Jump Boots"]],
             ["sun_palace_raise_center_3", True, ["Sun Palace Lower Water", "Sun Palace Lower Water",
-                                                 "Silvaero"]]
+                                                 "Kongamato"]]
         ])
 
     def test_lowering_water(self):

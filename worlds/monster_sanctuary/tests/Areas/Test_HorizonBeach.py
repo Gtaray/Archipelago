@@ -21,9 +21,10 @@ class HorizonBeachTests(TestArea):
         self.starting_regions = ["HorizonBeach_West1"]
         self.run_tests([
             ["horizon_beach_rescue_leonard", False, []],
-            ["horizon_beach_rescue_leonard", False, ["Silvaero"]],
+            ["horizon_beach_rescue_leonard", False, ["Kongamato"]],
             ["horizon_beach_rescue_leonard", False, ["Koi"]],
-            ["horizon_beach_rescue_leonard", True, ["Koi", "Silvaero"]],
+            ["horizon_beach_rescue_leonard", True, ["Koi", "Kongamato"]],
+            ["horizon_beach_rescue_leonard", True, ["Koi", "Vaero", "Silver Feather", "Tree of Evolution Access"]],
 
             ["HorizonBeach_Champion_Champion", False, []],
             ["HorizonBeach_Champion_Champion", False, ["Koi"]],

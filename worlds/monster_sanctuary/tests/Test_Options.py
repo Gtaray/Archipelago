@@ -2,7 +2,6 @@ from typing import Dict
 
 from worlds.monster_sanctuary.tests import MonsterSanctuaryTestBase
 from ..locations import locations_data, MonsterSanctuaryLocationCategory
-from ..options import monster_sanctuary_options
 
 
 # region Test Monster Rando Settings
