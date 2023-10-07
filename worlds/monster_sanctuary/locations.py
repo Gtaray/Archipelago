@@ -75,6 +75,10 @@ class MonsterSanctuaryLocation(Location):
 locations_data: Dict[str, LocationData] = {}
 
 
+def get_locations_of_type(*categories: MonsterSanctuaryLocationCategory):
+	return [locations_data[name] for name in locations_data if locations_data[name].category in categories]
+
+
 def get_champions() -> Dict[str, List[str]]:
 	# Key is the region name, value is a list of monster names for that champion encounter
 	result: Dict[str, List[Optional[str]]] = {}

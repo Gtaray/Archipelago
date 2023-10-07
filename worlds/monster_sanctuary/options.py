@@ -24,13 +24,6 @@ class RandomizeMonsters(Choice):
     default = 1
 
 
-class MatchMonsterTier(Toggle):
-    """Should monsters be randomized to other monsters of roughly the same strength?
-    Does nothing if monsters are not randomized"""
-    display_name = "Randomized Monsters Match Strength"
-    default = 0
-
-
 class RandomizeChampions(Choice):
     """Randomize champions
 
@@ -72,21 +65,6 @@ class MonstersAlwaysDropEggs(Toggle):
     default = 1
 
 
-class RandomizeItems(Choice):
-    """How are items randomized?
-
-    Any: Items are randomized to any other item
-    By Tier: Attempt to match the original item's tier
-    By Type: Attempt to match the original item's type (weapon, consumable, food, etc.)
-    By Type and Tier: Attempts to match the original item's type and tier"""
-    display_name = "Randomize Items"
-    option_any = 0
-    option_by_tier = 1
-    option_by_type = 2,
-    option_type_and_tier = 3
-    default = 1
-
-
 class IncludeChaosRelics(Toggle):
     """Include Relics of Chaos in the random item pool"""
     display_name = "Include Relics of Chaos"
@@ -118,11 +96,10 @@ class Goal(Choice):
 
 
 monster_sanctuary_options = {
-    "randomize_monsters": RandomizeMonsters,
     "randomize_champions": RandomizeChampions,
+    "randomize_monsters": RandomizeMonsters,
     "monster_shift_rule": RandomizeMonsterShifts,
     "monsters_always_drop_egg": MonstersAlwaysDropEggs,
-    "randomize_items": RandomizeItems,
     "include_chaos_relics": IncludeChaosRelics,
     "exp_multiplier": ExpMultiplier,
     "goal": Goal,

@@ -2,10 +2,11 @@ import unittest
 from argparse import Namespace
 
 from BaseClasses import MultiWorld, CollectionState, ItemClassification
+from test.TestBase import WorldTestBase, TestBase
 from worlds import AutoWorld
 
 
-class TestArea(unittest.TestCase):
+class TestArea(TestBase, WorldTestBase):
     def setUp(self):
         # Copied from ALttP tests
         self.multiworld = MultiWorld(1)

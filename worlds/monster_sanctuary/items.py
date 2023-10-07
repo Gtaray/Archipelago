@@ -58,6 +58,9 @@ items_data: Dict[str, ItemData] = {}
 
 
 # region Monster Accessor functions
+monster_list: Dict[str, ItemData] = {}
+
+
 def get_monsters() -> Dict[str, ItemData]:
     return {item_name: items_data[item_name] for item_name in items_data
             if items_data[item_name].category is MonsterSanctuaryItemCategory.MONSTER
@@ -69,10 +72,8 @@ def get_monsters() -> Dict[str, ItemData]:
                                   "Bard"]}
 
 
-def get_random_monster_name(world: MultiWorld, required_tier: Optional[int] = None) -> str:
-    valid_items = [item for item in get_monsters()
-                   if (required_tier is None or get_item_tier(item) is None or is_item_tier(item, required_tier))]
-
+def get_random_monster_name(world: MultiWorld) -> str:
+    valid_items = [item for item in get_monsters()]
     return world.random.choice(valid_items)
 # endregion
 

@@ -12,7 +12,7 @@ from . import locations as LOCATIONS
 from .items import ItemData, MonsterSanctuaryItem, MonsterSanctuaryItemCategory
 from .items import MonsterSanctuaryItemCategory as ItemCategory
 from .locations import MonsterSanctuaryLocationCategory as LocationCategory, MonsterSanctuaryLocation, \
-    MonsterSanctuaryLocationCategory
+    MonsterSanctuaryLocationCategory, LocationData
 from .options import monster_sanctuary_options
 from .regions import RegionData, MonsterSanctuaryRegion
 
@@ -154,29 +154,55 @@ class MonsterSanctuaryWorld(World):
                 state.has("Champion Defeated", self.player, 27))
 
     def place_monsters(self) -> None:
-        monsters: Dict[str, ItemData] = ITEMS.get_monsters()
+        # This is used to keep track of monsters that have yet to be placed
+        monsters: List[ItemData] = []
+
+        # Used if the monster randomizer setting is set to "by specie"
+        # This is a 1 to 1 map of one monster to another monster type
+        shuffled_monsters: Dict[str, ItemData] = {}
 
         # this is used if the monster randomizer settings are set to "by encounter"
         # in which case we use this to store monster data by location name
         monsters_by_encounter: Dict[str, Dict[str, str]] = {}
 
-        # Globally maps monsters 1 to 1 with other monsters randomly
         if self.randomize_monsters == "by_specie":
-            monsters = self.shuffle_dictionary(monsters)
+            # Globally maps monsters 1 to 1 with other monsters randomly
+            # Every monster is guaranteed to show up. Though some monsters could be more
+            # difficult to track down, such as Plague Egg, Skorch, champions, worm, etc.
+            # This could mean that progression is gated behind finding one of these rare mons
+            shuffled_monsters = self.shuffle_dictionary(ITEMS.get_monsters())
+
+        elif self.randomize_monsters == "by_encounter" or self.randomize_monsters == "any":
+            monsters = list(ITEMS.get_monsters().values())
+            self.multiworld.random.shuffle(monsters)
+
 
         # Place monsters
-        for region in self.multiworld.regions:
-            for location in region.locations:
-                data = LOCATIONS.locations_data[location.name]
+        monster_locations: List[LocationData] = []
 
-                # If champions are randomized using default monster rando rules
-                # then we lump it in with these settings. The main reason we do this is so that the
-                # normal and champion encounters can use the same by-encounter and shuffle lists
-                if (data.category == LocationCategory.MONSTER or
-                        (data.category == LocationCategory.CHAMPION and self.randomize_champions == "default")):
-                    self.place_monster(location, monsters, monsters_by_encounter)
+        # If champions are randomized using default monster rando rules
+        # then we lump it in with these settings. The main reason we do this is so that the
+        # normal and champion encounters can use the same by-encounter and shuffle lists
+        if self.randomize_champions == "default":
+            monster_locations = LOCATIONS.get_locations_of_type(LocationCategory.MONSTER, LocationCategory.CHAMPION)
+        else:
+            monster_locations = LOCATIONS.get_locations_of_type(LocationCategory.MONSTER)
 
-    def place_monster(self, location, monsters, monsters_by_encounter) -> None:
+        # Since we don't want to fill out a full list of monsters and shuffle that, we have to
+        # shuffle the list of locations. This solves the issue where every monster shows up
+        # exactly once in every 111 monster locations
+        self.multiworld.random.shuffle(monster_locations)
+
+        for location_data in monster_locations:
+            # If we've placed all monsters in the list, then we refill the list again
+            if len(monsters) == 0:
+                monsters = list(ITEMS.get_monsters().values())
+                self.multiworld.random.shuffle(monsters)
+
+            location = self.multiworld.get_location(location_data.name, self.player)
+            self.place_monster(location, monsters, shuffled_monsters, monsters_by_encounter)
+
+    def place_monster(self, location, monsters, shuffled_monsters, monsters_by_encounter) -> None:
         data = LOCATIONS.locations_data[location.name]
         monster_name: str = data.default_item
 
@@ -190,25 +216,27 @@ class MonsterSanctuaryWorld(World):
         # with default rules. If that's the case, then we leave the empty locations alone.
         if data.default_item == "Empty Slot":
             # We still want to create an "Empty Slot" item to fill the location with so that all locations are filled
-            # and so it doesn't get filled with items
+            # and so it doesn't get filled with items. This if case is here as information to future readers
             pass
 
         # We already shuffled the monsters list above, so we just pull from it here
         elif self.randomize_monsters == "by_specie":
-            monster_name = monsters[data.default_item].name
+            monster_name = shuffled_monsters[data.default_item].name
 
         # if randomizing by encounter, every encounter maps monsters 1 to 1 with another monster
         elif self.randomize_monsters == "by_encounter":
+            data = monsters.pop(0)
+
             if monsters_by_encounter.get(location.name) is None:
                 monsters_by_encounter[data.object_id] = {}
             if monsters_by_encounter[data.object_id].get(data.default_item) is None:
-                monsters_by_encounter[data.object_id][data.default_item] = (
-                    ITEMS.get_random_monster_name(self.multiworld))
+                monsters_by_encounter[data.object_id][data.default_item] = data.name
             monster_name = monsters_by_encounter[data.object_id][data.default_item]
 
         # If nothing else, randomize the monster
         elif self.randomize_monsters == "any":
-            monster_name = ITEMS.get_random_monster_name(self.multiworld)
+            data = monsters.pop(0)
+            monster_name = data.name
 
         # create the item
         monster = self.create_item(monster_name)
