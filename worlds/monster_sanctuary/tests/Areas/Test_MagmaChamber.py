@@ -38,7 +38,10 @@ class MagmaChamberTests(TestArea):
         self.run_tests([
             ["magma_chamber_alchemist_lab_unlocked", False, []],
             ["magma_chamber_alchemist_lab_unlocked", True, ["Magma Chamber key"]],
-            ["magma_chamber_alchemist_lab_unlocked", False, ["Magma Chamber Key Used", "Magma Chamber key"]],
+            ["magma_chamber_alchemist_lab_unlocked", False, ["Magma Chamber Mozzie Room Unlocked",
+                                                             "Magma Chamber key"]],
+            ["magma_chamber_alchemist_lab_unlocked", True, ["Magma Chamber Mozzie Room Unlocked",
+                                                            "Magma Chamber key", "Magma Chamber key"]],
             ["magma_chamber_alchemist_lab_unlocked", True, ["Magma Chamber Alchemist Lab Unlocked"]]
         ])
 
@@ -46,7 +49,10 @@ class MagmaChamberTests(TestArea):
         self.run_tests([
             ["magma_chamber_mozzie_room_unlocked", False, []],
             ["magma_chamber_mozzie_room_unlocked", True, ["Magma Chamber key"]],
-            ["magma_chamber_mozzie_room_unlocked", False, ["Magma Chamber Key Used", "Magma Chamber key"]],
+            ["magma_chamber_mozzie_room_unlocked", False, ["Magma Chamber Alchemist Lab Unlocked",
+                                                           "Magma Chamber key"]],
+            ["magma_chamber_mozzie_room_unlocked", True, ["Magma Chamber Alchemist Lab Unlocked",
+                                                          "Magma Chamber key", "Magma Chamber key"]],
             ["magma_chamber_mozzie_room_unlocked", True, ["Magma Chamber Mozzie Room Unlocked"]]
         ])
 

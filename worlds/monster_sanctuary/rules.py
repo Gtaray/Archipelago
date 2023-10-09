@@ -459,42 +459,72 @@ def keeper_rank_9(state: CollectionState, player: int) -> bool:
 
 
 # region Area Keys.
-def has_enough_keys(state: CollectionState, player: int, key_name: str, used_name: str, required: int = 1) -> bool:
-    key_count = state.count(key_name, player)
-    used_count = state.count(used_name, player)
-    return key_count >= required and key_count > used_count
-
-
 def mountain_path_key(state: CollectionState, player: int, count: int = 1) -> bool:
     return state.has("Mountain Path key", player, count)
 
 
 def blue_cave_key(state: CollectionState, player: int) -> bool:
-    return has_enough_keys(state, player, "Blue Cave key", "Blue Caves Key Used")
+    number_used = 0
+    if state.has("Blue Caves Switches Unlocked", player):
+        number_used += 1
+    if state.has("Blue Caves Champion Unlocked", player):
+        number_used += 1
+    if state.has("Blue Caves South Unlocked", player):
+        number_used += 1
+    key_count = state.count("Blue Cave key", player)
+    return key_count > number_used
 
 
 def dungeon_key(state: CollectionState, player: int) -> bool:
-    return has_enough_keys(state, player, "Stronghold Dungeon key", "Stronghold Dungeon Key Used")
+    number_used = 0
+    if state.has("Stronghold Dungeon South Unlocked", player):
+        number_used += 1
+    if state.has("Stronghold Dungeon East Unlocked", player):
+        number_used += 1
+    key_count = state.count("Stronghold Dungeon key", player)
+    return key_count > number_used
 
 
 def ancient_woods_key(state: CollectionState, player: int) -> bool:
-    return has_enough_keys(state, player, "Ancient Woods key", "Ancient Woods Key Used")
+    number_used = 0
+    if state.has("Ancient Woods Center Unlocked", player):
+        number_used += 2
+    if state.has("Ancient Woods North Unlocked", player):
+        number_used += 1
+    key_count = state.count("Ancient Woods key", player)
+    return key_count > number_used
 
 
 def two_ancient_woods_keys(state: CollectionState, player: int) -> bool:
-    return has_enough_keys(state, player, "Ancient Woods key", "Ancient Woods Key Used", 2)
+    number_used = 0
+    if state.has("Ancient Woods Center Unlocked", player):
+        number_used += 2
+    if state.has("Ancient Woods North Unlocked", player):
+        number_used += 1
+    key_count = state.count("Ancient Woods key", player)
+    return (key_count - number_used) >= 2
 
 
 def magma_chamber_key(state: CollectionState, player: int) -> bool:
-    return has_enough_keys(state, player, "Magma Chamber key", "Magma Chamber Key Used")
+    number_used = 0
+    if state.has("Magma Chamber Alchemist Lab Unlocked", player):
+        number_used += 1
+    if state.has("Magma Chamber Mozzie Room Unlocked", player):
+        number_used += 1
+    key_count = state.count("Magma Chamber key", player)
+    return key_count > number_used
 
 
 def workshop_key(state: CollectionState, player: int) -> bool:
-    return has_enough_keys(state, player, "Mystical Workshop key", "Mystical Workshop Key Used", 3)
+    number_used = 0
+    if state.has("Mystical Workshop North Unlocked", player):
+        number_used = 3
+    key_count = state.count("Mystical Workshop key", player)
+    return (key_count - number_used) >= 3
 
 
 def underworld_key(state: CollectionState, player: int) -> bool:
-    return has_enough_keys(state, player, "Underworld key", "Underworld Key Used")
+    return state.has("Underworld key", player)
 
 
 def ahrimaaya(state: CollectionState, player: int, count: int = 1) -> bool:

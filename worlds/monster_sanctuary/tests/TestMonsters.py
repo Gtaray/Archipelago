@@ -1,8 +1,33 @@
-from typing import Dict
-
+from worlds.monster_sanctuary import items, locations, MonsterSanctuaryLocationCategory
 from worlds.monster_sanctuary.tests import MonsterSanctuaryTestBase
-from ..locations import locations_data, MonsterSanctuaryLocationCategory
 
+
+class TestMonsters(MonsterSanctuaryTestBase):
+    def test_special_monsters_are_not_added(self):
+        monsters = items.get_monsters()
+        special_mons = ["Empty Slot", "Spectral Wolf", "Spectral Toad", "Spectral Eagle", "Spectral Lion", "Bard"]
+
+        # Asserts that there are no monsters in the monster list that match the above listed special mons
+        self.assertFalse(set(monsters.keys()) & set(special_mons))
+
+    def test_all_monsters_are_available(self):
+        monsters = {}
+        for location_name in locations.locations_data:
+            data = locations.locations_data[location_name]
+            if not (data.category == MonsterSanctuaryLocationCategory.MONSTER
+                    or data.category == MonsterSanctuaryLocationCategory.CHAMPION):
+                continue
+
+            location = self.multiworld.get_location(location_name, self.player)
+            if location.item.name == "Empty Slot":
+                continue
+
+            if monsters.get(location.item.name) is None:
+                monsters[location.item.name] = True
+
+        # if we have the right number of monsters in this list, that means all monsters
+        # are unique and accounted for because it's a dictionary with unique keys
+        self.assertEqual(len(monsters), 106)
 
 # region Test Monster Rando Settings
 class TestNoRandomization(MonsterSanctuaryTestBase):
@@ -65,9 +90,9 @@ class ChampionTestsBase(MonsterSanctuaryTestBase):
         self.assertEqual("Empty Slot", self.multiworld.get_location("BlueCave_ChampionRoom_6_1", 1).item.name)
         self.assertEqual("Empty Slot", self.multiworld.get_location("BlueCave_ChampionRoom_6_2", 1).item.name)
 
-        self.assertNotEqual("Empty Slot", self.multiworld.get_location("BlueCave_ChampionRoom3_1_0", 1).item.name)
-        self.assertNotEqual("Empty Slot", self.multiworld.get_location("BlueCave_ChampionRoom3_1_1", 1).item.name)
-        self.assertNotEqual("Empty Slot", self.multiworld.get_location("BlueCave_ChampionRoom3_1_2", 1).item.name)
+        self.assertNotEqual("Empty Slot", self.multiworld.get_location("BlueCave_ChampionRoom3_0_0", 1).item.name)
+        self.assertNotEqual("Empty Slot", self.multiworld.get_location("BlueCave_ChampionRoom3_0_1", 1).item.name)
+        self.assertNotEqual("Empty Slot", self.multiworld.get_location("BlueCave_ChampionRoom3_0_2", 1).item.name)
 
         self.assertNotEqual("Empty Slot", self.multiworld.get_location("BlueCave_ChampionRoom2_1_0", 1).item.name)
         self.assertEqual("Empty Slot", self.multiworld.get_location("BlueCave_ChampionRoom2_1_1", 1).item.name)
@@ -106,7 +131,7 @@ class TestChampionsShuffled(ChampionTestsBase):
         "MountainPath_West6_3": ["Steam Golem"],
         "BlueCave_ChampionRoom_6": ["Minitaur"],
         "BlueCave_ChampionRoom2_1": ["Specter"],
-        "BlueCave_ChampionRoom3_1": ["Monk", "Ascendant", "Monk"],
+        "BlueCave_ChampionRoom3_0": ["Monk", "Ascendant", "Monk"],
         "StrongholdDungeon_SummonRoom_1": ["Azerach"],
         "StrongholdDungeon_South2_2": ["Beetloid"],
         "SnowyPeaks_ChampionRoom_7": ["Akhlut"],

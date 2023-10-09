@@ -7,6 +7,8 @@ class AncientWoodsTests(TestArea):
         self.run_tests([
             ["ancient_woods_center_unlocked", False, []],
             ["ancient_woods_center_unlocked", False, ["Ancient Woods key"]],
+            ["ancient_woods_center_unlocked", False, ["Ancient Woods key", "Ancient Woods key",
+                                                     "Ancient Woods North Unlocked"]],
             ["ancient_woods_center_unlocked", True, ["Ancient Woods key", "Ancient Woods key"]],
             ["ancient_woods_center_unlocked", True, ["Ancient Woods Center Unlocked"]],
         ])
@@ -15,6 +17,8 @@ class AncientWoodsTests(TestArea):
         self.run_tests([
             ["ancient_woods_center_unlocked", False, []],
             ["ancient_woods_center_unlocked", False, ["Ancient Woods key"]],
+            ["ancient_woods_center_unlocked", False, ["Ancient Woods key", "Ancient Woods key",
+                                                      "Ancient Woods North Unlocked"]],
             ["ancient_woods_center_unlocked", True, ["Ancient Woods key", "Ancient Woods key"]],
             ["ancient_woods_center_unlocked", True, ["Ancient Woods Center Unlocked"]],
         ])
@@ -22,6 +26,11 @@ class AncientWoodsTests(TestArea):
         self.starting_regions = ["AncientWoods_North2"]
         self.run_tests([
             ["ancient_woods_north_unlocked", False, []],
+            ["ancient_woods_center_unlocked", False, ["Ancient Woods key", "Ancient Woods North Unlocked"]],
+            ["ancient_woods_center_unlocked", False, ["Ancient Woods key", "Ancient Woods key",
+                                                      "Ancient Woods North Unlocked"]],
+            ["ancient_woods_center_unlocked", True, ["Ancient Woods key", "Ancient Woods key",
+                                                     "Ancient Woods key", "Ancient Woods North Unlocked"]],
             ["ancient_woods_north_unlocked", True, ["Ancient Woods key"]],
             ["ancient_woods_north_unlocked", True, ["Ancient Woods North Unlocked"]],
         ])

@@ -18,8 +18,8 @@ class StrongholdDungeonTests(TestArea):
             ["stronghold_dungeon_south_unlocked", False, []],
             ["stronghold_dungeon_south_unlocked", True, ["Stronghold Dungeon key"]],
             ["stronghold_dungeon_south_unlocked", True, ["Stronghold Dungeon South Unlocked"]],
-            ["stronghold_dungeon_south_unlocked", False, ["Stronghold Dungeon Key Used", "Stronghold Dungeon key"]],
-            ["stronghold_dungeon_south_unlocked", True, ["Stronghold Dungeon Key Used", "Stronghold Dungeon key",
+            ["stronghold_dungeon_south_unlocked", False, ["Stronghold Dungeon East Unlocked", "Stronghold Dungeon key"]],
+            ["stronghold_dungeon_south_unlocked", True, ["Stronghold Dungeon East Unlocked", "Stronghold Dungeon key",
                                                          "Stronghold Dungeon key"]],
         ])
 
@@ -28,7 +28,8 @@ class StrongholdDungeonTests(TestArea):
             ["stronghold_dungeon_east_unlocked", False, []],
             ["stronghold_dungeon_east_unlocked", True, ["Stronghold Dungeon key"]],
             ["stronghold_dungeon_east_unlocked", True, ["Stronghold Dungeon East Unlocked"]],
-            ["stronghold_dungeon_east_unlocked", False, ["Stronghold Dungeon Key Used", "Stronghold Dungeon key"]],
-            ["stronghold_dungeon_east_unlocked", True, ["Stronghold Dungeon Key Used", "Stronghold Dungeon key",
+            ["stronghold_dungeon_east_unlocked", False, ["Stronghold Dungeon South Unlocked",
+                                                         "Stronghold Dungeon key"]],
+            ["stronghold_dungeon_east_unlocked", True, ["Stronghold Dungeon South Unlocked", "Stronghold Dungeon key",
                                                         "Stronghold Dungeon key"]],
         ])

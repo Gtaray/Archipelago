@@ -11,8 +11,10 @@ class BlueCavesTests(TestArea):
             ["blue_cave_switches_unlocked", True, ["Blue Caves Switches Unlocked"]],
 
             # Test whether used keys allow or disallow access
-            ["blue_cave_switches_unlocked", False, ["Blue Caves Key Used", "Blue Cave key"]],
-            ["blue_cave_switches_unlocked", True, ["Blue Caves Key Used", "Blue Cave key", "Blue Cave key"]]
+            ["blue_cave_switches_unlocked", False, ["Blue Caves Champion Unlocked", "Blue Cave key"]],
+            ["blue_cave_switches_unlocked", True, ["Blue Caves Champion Unlocked", "Blue Cave key", "Blue Cave key"]],
+            ["blue_cave_switches_unlocked", True, ["Blue Caves Champion Unlocked", "Blue Caves South Unlocked",
+                                                   "Blue Cave key", "Blue Cave key", "Blue Cave key"]]
         ])
 
         self.starting_regions = ["BlueCave_CentralPart"]
@@ -21,16 +23,16 @@ class BlueCavesTests(TestArea):
             ["blue_cave_south_unlocked", False, ["Blue Caves Champion Unlocked"]],
             ["blue_cave_south_unlocked", True, ["Blue Caves South Unlocked"]],
             ["blue_cave_south_unlocked", True, ["Blue Cave key"]],
-            ["blue_cave_south_unlocked", False, ["Blue Caves Key Used", "Blue Cave key"]],
-            ["blue_cave_south_unlocked", True, ["Blue Caves Key Used", "Blue Cave key", "Blue Cave key"]],
+            ["blue_cave_south_unlocked", False, ["Blue Caves Switches Unlocked", "Blue Cave key"]],
+            ["blue_cave_south_unlocked", True, ["Blue Caves Switches Unlocked", "Blue Cave key", "Blue Cave key"]],
 
             ["blue_cave_champion_unlocked", False, []],
             ["blue_cave_champion_unlocked", False, ["Blue Caves South Unlocked"]],
             ["blue_cave_champion_unlocked", True, ["Blue Caves Champion Unlocked", "Double Jump Boots"]],
             ["blue_cave_champion_unlocked", True, ["Blue Cave key", "Double Jump Boots"]],
-            ["blue_cave_champion_unlocked", False, ["Blue Caves Key Used", "Blue Cave key",
+            ["blue_cave_champion_unlocked", False, ["Blue Caves South Unlocked", "Blue Cave key",
                                                     "Double Jump Boots"]],
-            ["blue_cave_champion_unlocked", True, ["Blue Caves Key Used", "Blue Cave key", "Blue Cave key",
+            ["blue_cave_champion_unlocked", True, ["Blue Caves South Unlocked", "Blue Cave key", "Blue Cave key",
                                                    "Double Jump Boots"]]
         ])
 

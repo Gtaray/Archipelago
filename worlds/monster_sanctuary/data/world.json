@@ -562,8 +562,7 @@
       { "region": "BlueCave_Switches", "requirements": [ "blue_cave_switches_unlocked" ] }
     ],
     "flags": [
-      { "id":  "blue_cave_switches_unlocked", "name": "Blue Caves Switches Unlocked" },
-      { "id":  "blue_cave_key_used1", "name": "Blue Caves Key Used" }
+      { "id":  "blue_cave_switches_unlocked", "name": "Blue Caves Switches Unlocked" }
     ]
   },
   {
@@ -749,8 +748,7 @@
       { "region": "BlueCave_South1_Upper", "requirements": [ "blue_cave_south_unlocked" ] }
     ],
     "flags": [
-      { "id":  "blue_cave_south_unlocked", "name": "Blue Caves South Unlocked" },
-      { "id":  "blue_cave_key_used2", "name": "Blue Caves Key Used" }
+      { "id":  "blue_cave_south_unlocked", "name": "Blue Caves South Unlocked" }
     ]
   },
   {
@@ -760,8 +758,7 @@
       { "region": "BlueCave_ChampionRoom", "requirements": [ "blue_cave_champion_unlocked" ] }
     ],
     "flags": [
-      { "id":  "blue_cave_champion_unlocked", "name": "Blue Caves Champion Unlocked" },
-      { "id":  "blue_cave_key_used3", "name": "Blue Caves Key Used" }
+      { "id":  "blue_cave_champion_unlocked", "name": "Blue Caves Champion Unlocked" }
     ]
   },
   {
@@ -866,6 +863,9 @@
       },
       { "region": "BlueCave_South3" },
       { "region": "BlueCave_South4" }
+    ],
+    "chests": [
+      {"id": 5, "item": "Belt+2"}
     ]
   },
   {
@@ -957,7 +957,7 @@
       { "region":  "BlueCave_South7" }
     ],
     "champion": [
-      { "id": 1, "monsters": [ "Monk", "Ascendant", "Monk" ] }
+      { "id": 0, "monsters": [ "Monk", "Ascendant", "Monk" ] }
     ]
   },
   {
@@ -1205,7 +1205,7 @@
       { "id": 6, "item": "Combo Potion", "requirements": [ "lightning_orbs" ] }
     ],
     "gifts": [
-      "TODO: Figure out the gifts from Bex"
+      { "id": 10500008, "item": "3x Crystal Shard" }
     ]
   },
   {
@@ -1230,7 +1230,7 @@
       { "region": "BlueCave_WestWaters7_West" }
     ],
     "chests": [
-      { "id": 2, "item": "Medallion" }
+      { "id": 3, "item": "Medallion" }
     ],
     "champion": [
        { "id": 1, "monsters": [ "Specter" ] }
@@ -1294,7 +1294,7 @@
       { "region": "StrongholdDungeon_North4" }
     ],
     "encounters": [
-      { "id": 3, "monsters": [ "Nightwing", "Crackle Knight", "Nightwing" ] }
+      { "id": 2, "monsters": [ "Nightwing", "Crackle Knight", "Nightwing" ] }
     ]
   },
   {
@@ -1679,8 +1679,7 @@
       { "region": "StrongholdDungeon_South4" }
     ],
     "flags": [
-      { "id":  "stronghold_dungeon_south_unlocked", "name": "Stronghold Dungeon South Unlocked" },
-      { "id":  "stronghold_dungeon_key_used1", "name": "Stronghold Dungeon Key Used" }
+      { "id":  "stronghold_dungeon_south_unlocked", "name": "Stronghold Dungeon South Unlocked" }
     ]
   },
   {
@@ -1869,8 +1868,7 @@
       { "region": "StrongholdDungeon_East1_NE", "requirements": [ "stronghold_dungeon_east_unlocked" ] }
     ],
     "flags": [
-      { "id":  "stronghold_dungeon_east_unlocked", "name": "Stronghold Dungeon East Unlocked" },
-      { "id":  "stronghold_dungeon_key_used2", "name": "Stronghold Dungeon Key Used" }
+      { "id":  "stronghold_dungeon_east_unlocked", "name": "Stronghold Dungeon East Unlocked" }
     ]
   },
   {
@@ -2104,7 +2102,7 @@
       { "region": "StrongholdDungeon_EastKeys" }
     ],
     "chests": [
-      { "id": 0, "item": "Dungeon Explorer Costume", "requirements": [ "ice_orbs" ] }
+      { "id": 0, "item": "Dungeon Explorer", "requirements": [ "ice_orbs" ] }
     ]
   },
 
@@ -2598,6 +2596,9 @@
     "chests": [
       { "id": 4, "item": "Bronze" },
       { "id": 5, "item": "Silver", "requirements": [ "double_jump" ] }
+    ],
+    "encounters": [
+      {"id": 0, "monsters": ["Targoat", "Targoat", "Targoat"], "requirements": ["double_jump"]}
     ]
   },
   {
@@ -4053,9 +4054,7 @@
       { "region": "AncientWoods_Center5", "requirements": ["ancient_woods_center_unlocked"] }
     ],
     "flags": [
-      { "id":  "ancient_woods_center_unlocked", "name": "Ancient Woods Center Unlocked" },
-      { "id":  "ancient_woods_key_used1", "name": "Ancient Woods Key Used" },
-      { "id":  "ancient_woods_key_used2", "name": "Ancient Woods Key Used" }
+      { "id":  "ancient_woods_center_unlocked", "name": "Ancient Woods Center Unlocked" }
     ]
   },
   {
@@ -4135,8 +4134,7 @@
       { "region": "AncientWoods_North3", "requirements": ["ancient_woods_north_unlocked"] }
     ],
     "flags": [
-      { "id":  "ancient_woods_north_unlocked", "name": "Ancient Woods North Unlocked" },
-      { "id":  "ancient_woods_key_used3", "name": "Ancient Woods Key Used" }
+      { "id":  "ancient_woods_north_unlocked", "name": "Ancient Woods North Unlocked" }
     ]
   },
   {
@@ -5215,13 +5213,13 @@
       {"region": "MagmaChamber_North5_Lower"}
     ],
     "chests": [
-      { "id": 0, "item": "Dragon Lord Costume", "requirements": [
+      { "id": 0, "item": "Dragon Lord", "requirements": [
         "AND", [
           "double_jump",
           "OR", ["lofty_mount", "improved_flying", "dual_mobility"]
         ]
       ]},
-      { "id": 1, "item": "Dragon Lord Costume alt", "requirements": [
+      { "id": 1, "item": "Dragon Lord (alt)", "requirements": [
         "AND", [
           "double_jump",
           "OR", ["lofty_mount", "improved_flying", "dual_mobility"]
@@ -5797,8 +5795,7 @@
       {"region": "MagmaChamber_AlchemistLab_East", "requirements": ["magma_chamber_alchemist_lab_unlocked"]}
     ],
     "flags": [
-      {"id": "magma_chamber_alchemist_lab_unlocked", "name": "Magma Chamber Alchemist Lab Unlocked"},
-      {"id": "magma_chamber_key_used2", "name": "Magma Chamber Key Used"}
+      {"id": "magma_chamber_alchemist_lab_unlocked", "name": "Magma Chamber Alchemist Lab Unlocked"}
     ]
   },
   {
@@ -5822,8 +5819,7 @@
       {"region": "MagmaChamber_Center9_Middle", "requirements": ["magma_chamber_mozzie_room_unlocked"]}
     ],
     "flags": [
-      {"id": "magma_chamber_mozzie_room_unlocked", "name": "Magma Chamber Mozzie Room Unlocked"},
-      {"id": "magma_chamber_key_used1", "name": "Magma Chamber Key Used"}
+      {"id": "magma_chamber_mozzie_room_unlocked", "name": "Magma Chamber Mozzie Room Unlocked"}
     ]
   },
   {
@@ -6053,8 +6049,7 @@
       {"region": "Underworld_EastCatacomb4", "requirements": ["underworld_east_catacomb_unlocked"]}
     ],
     "flags": [
-      {"id": "underworld_east_catacomb_unlocked", "name": "Underworld East Catacomb Unlocked"},
-      {"id": "underworld_key_used", "name": "Underworld Key Used"}
+      {"id": "underworld_east_catacomb_unlocked", "name": "Underworld East Catacomb Unlocked"}
     ]
   },
   {
@@ -6783,7 +6778,7 @@
       {"region": "MysticalWorkshop_Center5_Middle"}
     ],
     "chests": [
-      {"id": 0, "item": "Old World Costume", "requirements": [
+      {"id": 0, "item": "Old World Tycoon", "requirements": [
         "AND", ["ice_orbs", "lightning_orbs"]
       ]}
     ]
@@ -6942,8 +6937,7 @@
         "OR", ["mystical_workshop_north_unlocked", "workshop_key"]]}
     ],
     "flags": [
-      {"id": "mystical_workshop_north_unlocked", "name": "Mystical Workshop North Unlocked"},
-      {"id": "mystical_workshop_key_used", "name": "Mystical Workshop Key Used"}
+      {"id": "mystical_workshop_north_unlocked", "name": "Mystical Workshop North Unlocked"}
     ]
   },
   {

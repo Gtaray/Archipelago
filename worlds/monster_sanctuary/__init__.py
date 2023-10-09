@@ -1,4 +1,4 @@
-from typing import List, Dict, Optional
+from typing import List, Dict, Optional, TextIO
 
 from BaseClasses import MultiWorld, Tutorial, ItemClassification, Entrance
 from Options import Range, Toggle
@@ -325,7 +325,7 @@ class MonsterSanctuaryWorld(World):
     # called to place player's items into the MultiWorld's itempool. After this step all regions and items have to
     # be in the MultiWorld's regions and itempool, and these lists should not be modified afterward.
     def create_items(self) -> None:
-        ITEMS.build_item_probability_table(self.multiworld, self)
+        ITEMS.build_item_probability_table(self)
         pool: List[MonsterSanctuaryItem] = []
 
         # These items are not naturally put in the general item pool, and are handled separately

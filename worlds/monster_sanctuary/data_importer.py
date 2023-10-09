@@ -11,6 +11,7 @@ from .rules import AccessCondition
 
 
 def load_world() -> None:
+    locations_data.clear()
     locations_by_id: Dict[int, LocationData] = {}
     location_id: int = 970500
 

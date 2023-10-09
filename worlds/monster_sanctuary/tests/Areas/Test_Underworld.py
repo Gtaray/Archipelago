@@ -32,7 +32,6 @@ class UnderworldTests(TestArea):
         self.run_tests([
             ["underworld_east_catacomb_7_access", False, []],
             ["underworld_east_catacomb_unlocked", True, ["Underworld key"]],
-            ["underworld_east_catacomb_unlocked", False, ["Underworld key", "Underworld Key Used"]],
             ["underworld_east_catacomb_7_access", True, ["Underworld East Catacomb Unlocked"]]
         ])
 

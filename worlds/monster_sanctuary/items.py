@@ -131,7 +131,7 @@ def get_filtered_unique_item_data(itempool: List[MonsterSanctuaryItem]) -> Dict[
             or not is_in_item_pool(item, itempool)}
 
 
-def build_item_probability_table(multiworld: MultiWorld, world: World) -> None:
+def build_item_probability_table(world: World) -> None:
     probabilities = {
         MonsterSanctuaryItemCategory.CRAFTINGMATERIAL: world.drop_chance_craftingmaterial,
         MonsterSanctuaryItemCategory.CONSUMABLE: world.drop_chance_consumable,
@@ -142,6 +142,17 @@ def build_item_probability_table(multiworld: MultiWorld, world: World) -> None:
         MonsterSanctuaryItemCategory.CURRENCY: world.drop_chance_currency,
     }
 
+    # If the weights don't sum to 100, then we multiply them all by 10 so that the
+    # sum is much higher. This solves the issue where at low totals we can't accurately
+    # calculate a single percentage for the costumes section
+    if sum(probabilities.values()) < 100:
+        probabilities = {key: probabilities[key] * 10 for key in probabilities}
+
+    # Costumes are always forced to a 1% drop rate. Maybe a setting to disable this later
+    # but for now it's just a flat 1% chance.
+    probabilities[MonsterSanctuaryItemCategory.COSTUME] = math.ceil(sum(probabilities.values()) * 0.01)
+
+    item_drop_probabilities.clear()
     for item_type in probabilities:
         for i in range(probabilities[item_type]):
             item_drop_probabilities.append(item_type)
@@ -155,7 +166,6 @@ def get_random_item_name(world: World,
     Unique items already in the item pool will not be added a second time
     Items with groups that intersect with group_exclude will not be added
     Only items whose groups intersect with group_include will be selected from"""
-
     if group_include is None:
         group_include = []
     if group_exclude is None:
@@ -169,6 +179,7 @@ def get_random_item_name(world: World,
     item_type = world.multiworld.random.choice(item_drop_probabilities)
     valid_items = [item for item in get_filtered_unique_item_data(itempool)
                    if is_item_type(item, item_type)
+                   and "+" not in item  # Filter out any equipment with a higher level. We handle this below
                    and is_item_in_group(item, *group_include)
                    and not is_item_in_group(item, *group_exclude)]
 
@@ -178,19 +189,51 @@ def get_random_item_name(world: World,
     base_item_name = world.multiworld.random.choice(valid_items)
     base_item = items_data.get(base_item_name)
 
+    # weapons and accessories can gen at a higher tier, so we determine that here
+    if (item_type == MonsterSanctuaryItemCategory.WEAPON
+            or item_type == MonsterSanctuaryItemCategory.ACCESSORY):
+        return roll_random_equipment_level(world, base_item)
+
+    return roll_random_item_quantity(world, base_item)
+
+
+def roll_random_equipment_level(world: World, base_item: ItemData) -> str:
+    """Randomly rolls to determine an equipment's level (+0, +1, +2, +3, +4, or +5)"""
+    name_append = None
+    roll = world.multiworld.random.randint(1, 100)
+
+    if roll > 95:
+        name_append = "+5"
+    elif roll > 85:
+        name_append = "+4"
+    elif roll > 70:
+        name_append = "+3"
+    elif roll > 50:
+        name_append = "+2"
+    elif roll > 25:
+        name_append = "+1"
+
+    if name_append is not None:
+        new_item_name = f"{base_item.name} {name_append}"
+        if new_item_name is not None and items_data.get(new_item_name) is not None:
+            base_item = items_data[new_item_name]
+
+    return base_item.name
+
+
+def roll_random_item_quantity(world: World, base_item: ItemData) -> str:
     name_prepend = None
+    roll = world.multiworld.random.randint(1, 10)
+
     if "Up to 2" in base_item.groups:
-        roll = world.multiworld.random.randint(1, 10)
-        if roll >= 7:
+        if roll >= 5:
             name_prepend = "2x"
     elif "Up to 3" in base_item.groups:
-        roll = world.multiworld.random.randint(1, 10)
-        if roll >= 9:
+        if roll >= 8:
             name_prepend = "3x"
-        elif roll >= 6:
+        elif roll >= 5:
             name_prepend = "2x"
     elif "Up to 4" in base_item.groups:
-        roll = world.multiworld.random.randint(1, 10)
         if roll >= 10:
             name_prepend = "4x"
         elif roll >= 8:
@@ -199,8 +242,8 @@ def get_random_item_name(world: World,
             name_prepend = "2x"
 
     if name_prepend is not None:
-        new_item_name = f"{name_prepend} {base_item_name}"
+        new_item_name = f"{name_prepend} {base_item.name}"
         if new_item_name is not None and items_data.get(new_item_name) is not None:
-            base_item_name = new_item_name
+            base_item = items_data[new_item_name]
 
-    return base_item_name
+    return base_item.name

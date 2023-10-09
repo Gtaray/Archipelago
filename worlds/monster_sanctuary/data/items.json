@@ -3,10 +3,6 @@
     "type": "Flag",
     "items": [
       {
-        "name": "Blue Caves Key Used",
-        "classification": "progression"
-      },
-      {
         "name": "Blue Caves Switches Unlocked",
         "classification": "progression"
       },
@@ -29,10 +25,6 @@
       {
         "name": "Stronghold Dungeon South 3 Shortcut",
         "classification": "useful"
-      },
-      {
-        "name": "Stronghold Dungeon Key Used",
-        "classification": "progression"
       },
       {
         "name": "Stronghold Dungeon South Unlocked",
@@ -80,10 +72,6 @@
       },
       {
         "name": "Sun Palace West Shortcut",
-        "classification": "progression"
-      },
-      {
-        "name": "Ancient Woods Key Used",
         "classification": "progression"
       },
       {
@@ -151,10 +139,6 @@
         "classification": "useful"
       },
       {
-        "name": "Magma Chamber Key Used",
-        "classification": "progression"
-      },
-      {
         "name": "Magma Chamber Alchemist Lab Unlocked",
         "classification": "progression"
       },
@@ -165,10 +149,6 @@
       {
         "name": "Forgotten World to Magma Chamber Shortcut",
         "classification": "useful"
-      },
-      {
-        "name": "Underworld Key Used",
-        "classification": "progression"
       },
       {
         "name": "Underworld East Catacomb 7 Access",
@@ -224,10 +204,6 @@
       },
       {
         "name": "Mystical Workshop North Unlocked",
-        "classification": "progression"
-      },
-      {
-        "name": "Mystical Workshop Key Used",
         "classification": "progression"
       },
       {
@@ -434,19 +410,31 @@
     "type": "Costume",
     "items": [
       {
-        "name": "Dungeon Explorer Costume",
+        "name": "Dungeon Explorer",
         "classification": "filler"
       },
       {
-        "name": "Dragon Lord Costume",
+        "name": "Dragon Lord",
         "classification": "filler"
       },
       {
-        "name": "Dragon Lord Costume alt",
+        "name": "Dragon Lord (alt)",
         "classification": "filler"
       },
       {
-        "name": "Old World Costume",
+        "name": "Old World Tycoon",
+        "classification": "filler"
+      },
+      {
+        "name": "Winter Explorer",
+        "classification": "filler"
+      },
+      {
+        "name": "Keeper Master",
+        "classification": "filler"
+      },
+      {
+        "name": "Monster Tamer",
         "classification": "filler"
       }
     ]

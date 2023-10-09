@@ -75,6 +75,10 @@ class MonsterSanctuaryLocation(Location):
 locations_data: Dict[str, LocationData] = {}
 
 
+def clear_data():
+	locations_data.clear()
+
+
 def get_locations_of_type(*categories: MonsterSanctuaryLocationCategory):
 	return [locations_data[name] for name in locations_data if locations_data[name].category in categories]
 
