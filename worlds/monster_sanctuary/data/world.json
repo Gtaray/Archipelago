@@ -485,7 +485,8 @@
       { "region":  "KeeperStronghold_ParentsRoom" },
       {
         "region":  "StrongholdDungeon_Entrance",
-        "requirements": [ "keeper_rank_2" ]
+        "requirements": [
+          "AND", ["keeper_rank_2", "blue_caves_story_complete"] ]
       }
     ]
   },
@@ -769,6 +770,9 @@
     ],
     "champion": [
       { "id": 6, "monsters": [ "Minitaur" ] }
+    ],
+    "flags": [
+      {"id": "blue_caves_story_complete", "name": "Blue Caves Story Complete"}
     ]
   },
   {
@@ -5851,9 +5855,7 @@
       {"region": "MagmaChamber_South5"}
     ],
     "chests": [
-      {"id": 0, "item": "3x Reward Box X", "requirements": [
-        "OR", ["tar", "dual_mobility"]
-      ]}
+      {"id": 0, "item": "3x Reward Box X", "requirements": ["tar"]}
     ]
   },
   {
@@ -7496,12 +7498,12 @@
       {"region": "ForgottenWorld_Jungle5"},
       {"region": "ForgottenWorld_TarPits2"},
       {"region": "ForgottenWorld_TarPitsHidden1", "requirements": [
-        "AND", ["tar_mount", "double_jump", "breakable_walls"]
+        "AND", ["tar", "double_jump", "breakable_walls"]
       ]}
     ],
     "chests": [
       {"id": 1, "item": "2x Sapphire", "requirements": [
-        "AND", ["tar_mount", "double_jump"]
+        "AND", ["double_jump", "tar"]
       ]}
     ]
   },
@@ -7519,16 +7521,16 @@
     "region": "ForgottenWorld_TarPits3",
     "connections": [
       {"region": "ForgottenWorld_TarPits2", "requirements": [
-        "AND", ["tar_mount", "double_jump"]
+        "AND", ["tar", "double_jump"]
       ]},
       {"region": "ForgottenWorld_TarPits4"}
     ],
     "chests": [
       {"id": 0, "item": "2x Reward Box Lvl 3", "requirements": [
-        "OR", ["tar_mount", "double_jump"]
+        "OR", ["tar", "double_jump"]
       ]},
       {"id": 1, "item": "2x Peanut", "requirements": [
-        "OR", ["tar_mount", "double_jump"]
+        "OR", ["tar", "double_jump"]
       ]}
     ]
   },
@@ -7595,7 +7597,7 @@
     ],
     "chests": [
       {"id": 0, "item": "Shift Stone", "requirements": [
-        "AND", ["double_jump", "tar_mount"]
+        "AND", [ "double_jump", "tar" ]
       ]}
     ]
   },

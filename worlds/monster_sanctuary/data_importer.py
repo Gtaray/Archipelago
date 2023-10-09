@@ -131,7 +131,7 @@ def load_items() -> None:
             monster = ItemData(
                 item_id,
                 monster_data["Name"],
-                ItemClassification.progression_skip_balancing,
+                ItemClassification.progression,
                 MonsterSanctuaryItemCategory.MONSTER,
                 groups=monster_data.get("Groups")
             )

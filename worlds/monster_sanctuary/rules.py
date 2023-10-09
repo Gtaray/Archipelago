@@ -119,6 +119,10 @@ def blue_cave_champion_room_2_west_shortcut(state: CollectionState, player: int)
     return state.has("Blue Caves to Mountain Path Shortcut", player)
 
 
+def blue_caves_story_complete(state: CollectionState, player: int) -> bool:
+    return state.has("Blue Caves Story Complete", player)
+
+
 def stronghold_dungeon_south_3_shortcut(state: CollectionState, player: int) -> bool:
     return state.has("Stronghold Dungeon South 3 Shortcut", player)
 
