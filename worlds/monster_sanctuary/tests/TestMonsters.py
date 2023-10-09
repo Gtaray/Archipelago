@@ -1,3 +1,5 @@
+from typing import Dict
+
 from worlds.monster_sanctuary import items, locations, MonsterSanctuaryLocationCategory
 from worlds.monster_sanctuary.tests import MonsterSanctuaryTestBase
 
@@ -37,8 +39,8 @@ class TestNoRandomization(MonsterSanctuaryTestBase):
     }
 
     def test_monsters_are_not_randomized(self):
-        for location_name in locations_data:
-            data = locations_data[location_name]
+        for location_name in locations.locations_data:
+            data = locations.locations_data[location_name]
 
             # Only test monster locations
             if data.category != MonsterSanctuaryLocationCategory.MONSTER:
@@ -57,8 +59,8 @@ class TestMonstersShuffled(MonsterSanctuaryTestBase):
     def test_monsters_are_not_randomized(self):
         monster_map: Dict[str, str] = {}
 
-        for location_name in locations_data:
-            data = locations_data[location_name]
+        for location_name in locations.locations_data:
+            data = locations.locations_data[location_name]
 
             # Only test monster locations
             if data.category != MonsterSanctuaryLocationCategory.MONSTER:
