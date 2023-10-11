@@ -1,5 +1,7 @@
+from typing import List
+
 from test.TestBase import TestBase
-from worlds.monster_sanctuary import items, locations
+from worlds.monster_sanctuary import items, locations, MonsterSanctuaryItem, MonsterSanctuaryItemCategory
 from worlds.monster_sanctuary.tests import MonsterSanctuaryTestBase
 
 
@@ -16,6 +18,21 @@ class TestItems(MonsterSanctuaryTestBase):
 class TestDefaultItemProbability(MonsterSanctuaryTestBase):
     def test_default_probability(self):
         self.assertEqual(len(items.item_drop_probabilities), 354)
+
+    def test_no_key_items_generate(self):
+        itempool: List[MonsterSanctuaryItem] = []
+        item_exclusions = ["Multiple"]
+        for i in range(1000):
+            item_name = items.get_random_item_name(self.multiworld.worlds[1], itempool, group_exclude=item_exclusions)
+            item = items.MonsterSanctuaryItem(self.player, item_name, items.items_data[item_name])
+            itempool.append(item)
+
+        key_items = [item for item in itempool if items.items_data[item.name] == MonsterSanctuaryItemCategory.KEYITEM]
+        self.assertEqual(0, len(key_items))
+        rank_items = [item for item in itempool if items.items_data[item.name] == MonsterSanctuaryItemCategory.RANK]
+        self.assertEqual(0, len(rank_items))
+        flag_items = [item for item in itempool if items.items_data[item.name] == MonsterSanctuaryItemCategory.FLAG]
+        self.assertEqual(0, len(flag_items))
 
 
 class TestMinimumItemProbability(MonsterSanctuaryTestBase):

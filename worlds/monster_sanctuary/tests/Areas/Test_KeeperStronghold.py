@@ -6,5 +6,7 @@ class KeeperStrongholdTests(TestArea):
         self.starting_regions = ["KeeperStronghold_EastStairwell"]
         self.run_tests([
             ["StrongholdDungeon_Jail_5", False, []],
-            ["StrongholdDungeon_Jail_5", True, ["Champion Defeated", "Champion Defeated", "Champion Defeated"]],
+            ["StrongholdDungeon_Jail_5", False, ["Champion Defeated", "Champion Defeated", "Champion Defeated"]],
+            ["StrongholdDungeon_Jail_5", True, ["Champion Defeated", "Champion Defeated",
+                                                 "Champion Defeated", "Blue Caves Story Complete"]],
         ])

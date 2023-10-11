@@ -1415,7 +1415,7 @@
       { "region": "StrongholdDungeon_Central1" }
     ],
     "encounters": [
-      { "id": 2, "monsters": [ "G'rulu", "Crackle Knight", "G'rulu" ] }
+      { "id": 0, "monsters": [ "G'rulu", "Crackle Knight", "G'rulu" ] }
     ]
   },
   {
@@ -1578,6 +1578,9 @@
           ]
         ]
       }
+    ],
+    "encounters": [
+      {"id": 4, "monsters": ["Mad Eye", "Mad Eye", "Mad Eye"]}
     ]
   },
   {
