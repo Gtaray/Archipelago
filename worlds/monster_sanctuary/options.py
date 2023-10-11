@@ -7,36 +7,20 @@ from Options import Toggle, Choice, Range, DeathLink
 # Randomize keeper's monsters
 # Remove locked doors
 # Randomize shops
-
-
-class RandomizeMonsters(Choice):
-    """Are monsters randomized?
-
-    No: Monsters are not randomized
-    Any: All monsters are randomized to any monster
-    By Specie: All monsters of a given specie are randomized to the same specie.
-    by Encounter: All monsters of the same specie within an encounter are randomized to the same specie"""
-    display_name = "Randomize Monsters"
-    option_no = 0
-    option_any = 1
-    option_by_specie = 2
-    option_by_encounter = 3
-    default = 1
+# I would like to bring back all of the monster randomization options, but AP is making it really difficult
 
 
 class RandomizeChampions(Choice):
     """Randomize champions
 
     No: Champions will not be randomized
-    Default: Champions will be randomized according to the Randomize Monsters game option
     Shuffle: Champions will be shuffled around
     Any: Champions will be completely randomized ignoring restrictions on the rest of the monster pool"""
     display_name = "Randomize Champions"
     option_no = 0
-    option_default = 1
-    option_shuffle = 2
-    option_any = 3
-    default = 1
+    option_shuffle = 1
+    option_any = 2
+    default = 2
 
 
 class RandomizeMonsterShifts(Choice):
@@ -53,8 +37,14 @@ class RandomizeMonsterShifts(Choice):
 
 
 class CanEncounterEvolvedMonsters(Toggle):
-    """Can evolved monsters be encountered in the wild"""
+    """Determines whether evolved monsters be encountered in the wild."""
     display_name = "Evolved Monsters in the Wild"
+    default = 1
+
+
+class CanChampionMonstersAppearInWild(Toggle):
+    """Determines whether champion monsters appear in the wild."""
+    display_name = "Champions appear in wild"
     default = 1
 
 
@@ -181,8 +171,9 @@ class Goal(Choice):
 
 monster_sanctuary_options = {
     "randomize_champions": RandomizeChampions,
-    "randomize_monsters": RandomizeMonsters,
     "monster_shift_rule": RandomizeMonsterShifts,
+    "champions_in_wild": CanChampionMonstersAppearInWild,
+    "evolutions_in_wild": CanEncounterEvolvedMonsters,
     "monsters_always_drop_egg": MonstersAlwaysDropEggs,
     "drop_chance_craftingmaterial": CraftingMaterialDropChance,
     "drop_chance_consumable": ConsumableDropChance,

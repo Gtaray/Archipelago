@@ -6,7 +6,7 @@ from test.TestBase import WorldTestBase, TestBase
 from worlds import AutoWorld
 
 
-class TestArea(TestBase, WorldTestBase):
+class TestArea(WorldTestBase):
     def setUp(self):
         # Copied from ALttP tests
         self.multiworld = MultiWorld(1)

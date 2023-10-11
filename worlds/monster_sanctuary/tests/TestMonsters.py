@@ -1,6 +1,6 @@
 from typing import Dict
 
-from worlds.monster_sanctuary import items, locations, MonsterSanctuaryLocationCategory
+from worlds.monster_sanctuary import items, locations, MonsterSanctuaryLocationCategory, MonsterSanctuaryItemCategory
 from worlds.monster_sanctuary.tests import MonsterSanctuaryTestBase
 
 
@@ -31,49 +31,39 @@ class TestMonsters(MonsterSanctuaryTestBase):
         # are unique and accounted for because it's a dictionary with unique keys
         self.assertEqual(len(monsters), 106)
 
+    def test_correct_number_of_monsters(self):
+        number_of_locations = 0
+        for region in self.multiworld.regions:
+            for location in region.locations:
+                if locations.locations_data[location.name].category == MonsterSanctuaryLocationCategory.MONSTER:
+                    number_of_locations += 1
+
+        number_of_monsters = sum(items.items_data[item.name].category == MonsterSanctuaryItemCategory.MONSTER
+                                 for item in self.multiworld.itempool)
+
+        self.assertEqual(number_of_locations, number_of_monsters)
+
+
 # region Test Monster Rando Settings
 class TestNoRandomization(MonsterSanctuaryTestBase):
     options = {
-        "randomize_monsters": 0,
-        "randomize_items": 0
+        "randomize_champions": 0
     }
 
-    def test_monsters_are_not_randomized(self):
+    def test_champions_are_not_randomized(self):
         for location_name in locations.locations_data:
             data = locations.locations_data[location_name]
 
             # Only test monster locations
-            if data.category != MonsterSanctuaryLocationCategory.MONSTER:
+            if data.category != MonsterSanctuaryLocationCategory.CHAMPION:
+                continue
+            if data.default_item == "Empty Slot":
                 continue
 
             expected = data.default_item
-            actual = self.multiworld.get_location(location_name, self.player).item.name
+            location = self.multiworld.get_location(location_name, self.player)
+            actual = location.item.name
             self.assertEqual(expected, actual)
-
-
-class TestMonstersShuffled(MonsterSanctuaryTestBase):
-    options = {
-        "randomize_monsters": 2
-    }
-
-    def test_monsters_are_not_randomized(self):
-        monster_map: Dict[str, str] = {}
-
-        for location_name in locations.locations_data:
-            data = locations.locations_data[location_name]
-
-            # Only test monster locations
-            if data.category != MonsterSanctuaryLocationCategory.MONSTER:
-                continue
-
-            actual = self.multiworld.get_location(location_name, self.player).item.name
-            # The first time a monster shows up in a location, we add it to the dict
-            # and then continue. Any further instance of that monster should be the same
-            if monster_map.get(data.default_item) is None:
-                monster_map[data.default_item] = actual
-                continue
-
-            self.assertEqual(monster_map[data.default_item], actual)
 # endregion
 
 
@@ -171,13 +161,4 @@ class TestChampionsShuffled(ChampionTestsBase):
                 shuffled_champions[location_name].append(loc.item.name)
 
         self.assertCountEqual(self.champions, shuffled_champions)
-
-
-class TestChampionsRandomized(ChampionTestsBase):
-    options = {
-        "randomize_champions": 3
-    }
-
-    def test_empty_champion_slot_remain_empty(self):
-        self.assert_empty_champion_slot_remain_empty()
 # endregion

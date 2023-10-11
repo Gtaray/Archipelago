@@ -1,4 +1,4 @@
-from typing import List, Dict, Optional, TextIO
+from typing import List, Dict
 
 from BaseClasses import MultiWorld, Tutorial, ItemClassification, Entrance
 from Options import Range, Toggle
@@ -51,10 +51,20 @@ class MonsterSanctuaryWorld(World):
                            for location in LOCATIONS.locations_data.values()}
     location_names = [location.name for location in LOCATIONS.locations_data.values()]
 
-    number_of_locations = 0
-
     def __init__(self, world: MultiWorld, player: int):
         super().__init__(world, player)
+        # Tracks which monsters have been placed as champions, so that we don't re-use them
+        self.champions_used: List[str] = []
+
+        # Handles shuffled and default settings for champions
+        self.champion_data: Dict[str, List[str]] = LOCATIONS.get_champions()
+
+        # Generic list of all available monsters. Can be modified by shuffling,
+        # or by removing champions/evolved mons from the list
+        self.monsters: Dict[str, ItemData] = ITEMS.get_monsters()
+
+        self.number_of_item_locations = 0
+        self.number_of_monster_locations = 0
 
     # is a class method called at the start of generation to check the existence of prerequisite files,
     # usually a ROM for games which require one.
@@ -136,11 +146,30 @@ class MonsterSanctuaryWorld(World):
             if self.goal == "defeat_mad_lord" and location_data.postgame:
                 continue
 
-            # Keep track of how many chest/gift location there are, because we need this count
-            # to generate the correct number of filler items
+            if location_data.category == MonsterSanctuaryLocationCategory.CHAMPION:
+                # The only time we want to mess with empty slots is when champion randomization
+                # is set to shuffle. If it's not shuffle, we ignore Empty Slot locations and move on
+                if self.randomize_champions != "shuffle" and location_data.default_item == "Empty Slot":
+                    continue
+
+                # If we are shuffling champions, we look up the shuffled dictionary and see if the slot
+                # is supposed to be empty or not. if it's supposed to be empty, then we skip the locatin
+                if (self.randomize_champions == "shuffle" and
+                        self.champion_data[region.name][location_data.monster_id] == "Empty Slot"):
+                    continue
+
+            if location_data.category == MonsterSanctuaryLocationCategory.MONSTER:
+                self.number_of_monster_locations += 1
+                location.item_rule = lambda item: (
+                        item.player == location.player and
+                        ITEMS.items_data[item.name].category == MonsterSanctuaryItemCategory.MONSTER)
+
+            # Item and gift locations CANNOT contain monsters
             if (location_data.category == MonsterSanctuaryLocationCategory.GIFT
                     or location_data.category == MonsterSanctuaryLocationCategory.CHEST):
-                self.number_of_locations += 1
+                location.item_rule = lambda item: (
+                        ITEMS.items_data[item.name].category != MonsterSanctuaryItemCategory.MONSTER)
+                self.number_of_item_locations += 1
 
             region.locations.append(location)
 
@@ -153,139 +182,69 @@ class MonsterSanctuaryWorld(World):
             self.multiworld.completion_condition[self.player] = lambda state: (
                 state.has("Champion Defeated", self.player, 27))
 
-    def place_monsters(self) -> None:
-        # This is used to keep track of monsters that have yet to be placed
-        monsters: List[ItemData] = []
+    def prepare_monster_lists(self) -> None:
+        # Remove evolutions from encounter pool if necessary
+        if not self.evolutions_in_wild:
+            del self.monsters["G'rulu"]
+            del self.monsters["Magmamoth"]
+            del self.monsters["Megataur"]
+            del self.monsters["Ninki Nanka"]
+            del self.monsters["Sizzle Knight"]
+            del self.monsters["Silvaero"]
+            del self.monsters["Glowdra"]
+            del self.monsters["Dracogran"]
+            del self.monsters["Dracozul"]
+            del self.monsters["Mega Rock"]
+            del self.monsters["Draconoir"]
+            del self.monsters["King Blob"]
+            del self.monsters["Mad Lord"]
+            del self.monsters["Ascendant"]
+            del self.monsters["Fumagus"]
+            del self.monsters["Dracomer"]
 
-        # Used if the monster randomizer setting is set to "by specie"
-        # This is a 1 to 1 map of one monster to another monster type
-        shuffled_monsters: Dict[str, ItemData] = {}
-
-        # this is used if the monster randomizer settings are set to "by encounter"
-        # in which case we use this to store monster data by location name
-        monsters_by_encounter: Dict[str, Dict[str, str]] = {}
-
-        if self.randomize_monsters == "by_specie":
-            # Globally maps monsters 1 to 1 with other monsters randomly
-            # Every monster is guaranteed to show up. Though some monsters could be more
-            # difficult to track down, such as Plague Egg, Skorch, champions, worm, etc.
-            # This could mean that progression is gated behind finding one of these rare mons
-            shuffled_monsters = self.shuffle_dictionary(ITEMS.get_monsters())
-
-        elif self.randomize_monsters == "by_encounter" or self.randomize_monsters == "any":
-            monsters = list(ITEMS.get_monsters().values())
-            self.multiworld.random.shuffle(monsters)
-
-        # Place monsters
-        monster_locations: List[LocationData] = []
-
-        # If champions are randomized using default monster rando rules
-        # then we lump it in with these settings. The main reason we do this is so that the
-        # normal and champion encounters can use the same by-encounter and shuffle lists
-        if self.randomize_champions == "default":
-            monster_locations = LOCATIONS.get_locations_of_type(LocationCategory.MONSTER, LocationCategory.CHAMPION)
-        else:
-            monster_locations = LOCATIONS.get_locations_of_type(LocationCategory.MONSTER)
-
-        # Since we don't want to fill out a full list of monsters and shuffle that, we have to
-        # shuffle the list of locations. This solves the issue where every monster shows up
-        # exactly once in every 111 monster locations
-        self.multiworld.random.shuffle(monster_locations)
-
-        for location_data in monster_locations:
-            # If we've placed all monsters in the list, then we refill the list again
-            if len(monsters) == 0:
-                monsters = list(ITEMS.get_monsters().values())
-                self.multiworld.random.shuffle(monsters)
-
-            location = self.multiworld.get_location(location_data.name, self.player)
-            self.place_monster(location, monsters, shuffled_monsters, monsters_by_encounter)
-
-    def place_monster(self, location, monsters, shuffled_monsters, monsters_by_encounter) -> None:
-        data = LOCATIONS.locations_data[location.name]
-        monster_name: str = data.default_item
-
-        # TODO: Add a global list to pull from so that mons don't get re-used til all monsters have been placed
-        # Don't need to add a case for no randomization, because the default item is used for monster_name above
-
-        # When placing monsters, if the default item is Empty Slot, then we leave the location alone
-        # This is because champion encounters frequently have only one monster, even though there are three slots
-        # We need to keep three slots so that we can shuffle champion encounters around
-        # The only reason a champion encounter gets into this function is because we're randomizing them
-        # with default rules. If that's the case, then we leave the empty locations alone.
-        if data.default_item == "Empty Slot":
-            # We still want to create an "Empty Slot" item to fill the location with so that all locations are filled
-            # and so it doesn't get filled with items. This if case is here as information to future readers
-            pass
-
-        # We already shuffled the monsters list above, so we just pull from it here
-        elif self.randomize_monsters == "by_specie":
-            monster_name = shuffled_monsters[data.default_item].name
-
-        # if randomizing by encounter, every encounter maps monsters 1 to 1 with another monster
-        elif self.randomize_monsters == "by_encounter":
-            data = monsters.pop(0)
-
-            if monsters_by_encounter.get(location.name) is None:
-                monsters_by_encounter[data.object_id] = {}
-            if monsters_by_encounter[data.object_id].get(data.default_item) is None:
-                monsters_by_encounter[data.object_id][data.default_item] = data.name
-            monster_name = monsters_by_encounter[data.object_id][data.default_item]
-
-        # If nothing else, randomize the monster
-        elif self.randomize_monsters == "any":
-            data = monsters.pop(0)
-            monster_name = data.name
-
-        # create the item
-        monster = self.create_item(monster_name)
-
-        # Place the selected monster
-        location.place_locked_item(monster)
+        # Lastly, if we don't want champions to show up in the wild,
+        if self.champions_in_wild:
+            for champion in self.champions_used:
+                if self.monsters.get(champion) is not None:
+                    del self.monsters[champion]
 
     def place_champions(self) -> None:
-        champions: Dict[str, List[str]] = LOCATIONS.get_champions()
-
-        # Globally maps champion encounters 1 to 1 with other champion encounters
+        # We start by shuffling the champion dictionary, if necessary
         if self.randomize_champions == "shuffle":
-            champions = self.shuffle_dictionary(champions)
+            self.champion_data = self.shuffle_dictionary(self.champion_data)
 
-        for region in self.multiworld.regions:
-            for location in region.locations:
-                data = LOCATIONS.locations_data[location.name]
+        # In this case, we randomize champions to literally anything
+        elif self.randomize_champions == "any":
+            for region_name in self.champion_data:
+                for i in range(len(self.champion_data[region_name])):
+                    if self.champion_data[region_name][i] == "Empty Slot":
+                        continue
+                    self.champion_data[region_name][i] = ITEMS.get_random_monster_name(self.multiworld)
 
-                if data.category == LocationCategory.CHAMPION:
-                    self.place_champion(location, champions)
+        # After setting the champion data above, we go through and add those monsters to the 'used'
+        # in case the 'champions don't appear in the wild' option is enabled.
+        for region_name in self.champion_data:
+            # For champion fights with more than one monster, we always take the middle one
+            # which is the second element in the array.
+            # Champion fights with 1 monster, we take the first element (obviously)
+            if len(self.champion_data[region_name]) > 1:
+                self.champions_used.append(self.champion_data[region_name][1])
+            else:
+                self.champions_used.append(self.champion_data[region_name][0])
 
-    def place_champion(self, location, champions) -> None:
-        data = LOCATIONS.locations_data[location.name]
-        monster_name: str = data.default_item
+        for location in [location_name
+                         for location_name in LOCATIONS.locations_data
+                         if LOCATIONS.locations_data[location_name].default_item != "Empty Slot"
+                         and LOCATIONS.locations_data[location_name].category == MonsterSanctuaryLocationCategory.CHAMPION]:
+            self.place_champion(location)
 
-        # The default case it handled with the place_monsters() method.
-        # We do this so that champions and normal battles
-        # share the same monster randomization settings
-        if self.randomize_champions == "default":
-            return
+    def place_champion(self, location_name: str) -> None:
+        data = LOCATIONS.locations_data[location_name]
+        monster_name: str = self.champion_data[data.region][data.monster_id]
 
-        elif self.randomize_champions == "no" or self.randomize_champions == "shuffle":
-            # Don't have to worry about Empty Slots here because they simply get shuffled around
-            # with the rest of the encounter, and we handle the Empty Slot later in this method
-            monster_name = champions[data.region][data.monster_id]
-
-        # TODO: Probably add more detail to this?
-        elif self.randomize_champions == "random":
-            # Do not randomize any locations that would have an empty slot by default
-            # This is so that champion encounters that normally only have one monster
-            # remain with only a single monster
-            if data.default_item != "Empty Slot":
-                monster_name = ITEMS.get_random_monster_name(self.multiworld)
-
-        # create the item
-        # This will allow creating "Empty Slot" objects, which is fine
-        # because the client will just ignore that data
         monster = self.create_item(monster_name)
 
-        # Place the selected monster
+        location = self.multiworld.get_location(location_name, self.player)
         location.place_locked_item(monster)
 
     def place_keeper_battles(self) -> None:
@@ -328,6 +287,7 @@ class MonsterSanctuaryWorld(World):
         ITEMS.build_item_probability_table(self)
         pool: List[MonsterSanctuaryItem] = []
 
+        # ITEMS
         # These items are not naturally put in the general item pool, and are handled separately
         item_exclusions = ["Multiple"]
 
@@ -357,12 +317,24 @@ class MonsterSanctuaryWorld(World):
             for i in range(ITEMS.items_data[key_item].count):
                 pool.append(self.create_item(key_item))
 
-        # TODO: Make a better way to fill the item pool
-        while len(pool) < self.number_of_locations:
+        while len(pool) < self.number_of_item_locations:
             item_name = ITEMS.get_random_item_name(self, pool, group_exclude=item_exclusions)
             if item_name is not None:
-                item = self.create_item(item_name)
-                pool.append(item)
+                pool.append(self.create_item(item_name))
+
+        self.multiworld.itempool += pool
+
+        # MONSTERS
+        self.prepare_monster_lists()
+        pool = []  # Re-set the temp item pool to empty
+
+        for monster in self.monsters:
+            pool.append(self.create_item(monster))
+
+        monster_names = list(self.monsters.keys())
+        while len(pool) < self.number_of_monster_locations:
+            monster_name = self.multiworld.random.choice(monster_names)
+            pool.append(self.create_item(monster_name))
 
         self.multiworld.itempool += pool
 
@@ -383,7 +355,6 @@ class MonsterSanctuaryWorld(World):
         # Monsters are placed before items, with very little inherent logic. Items are them placed afterward
         # taking into account the locations of monsters and what explore abilities players will have access too
         self.set_victory_condition()
-        self.place_monsters()
         self.place_champions()
         self.place_keeper_battles()
         self.place_ranks()

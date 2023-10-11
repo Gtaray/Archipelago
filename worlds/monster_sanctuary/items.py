@@ -71,9 +71,9 @@ def get_monsters() -> Dict[str, ItemData]:
                                   "Bard"]}
 
 
-def get_random_monster_name(world: MultiWorld) -> str:
+def get_random_monster_name(multiworld: MultiWorld) -> str:
     valid_items = [item for item in get_monsters()]
-    return world.random.choice(valid_items)
+    return multiworld.random.choice(valid_items)
 # endregion
 
 
