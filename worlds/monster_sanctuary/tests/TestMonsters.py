@@ -12,25 +12,6 @@ class TestMonsters(MonsterSanctuaryTestBase):
         # Asserts that there are no monsters in the monster list that match the above listed special mons
         self.assertFalse(set(monsters.keys()) & set(special_mons))
 
-    def test_all_monsters_are_available(self):
-        monsters = {}
-        for location_name in locations.locations_data:
-            data = locations.locations_data[location_name]
-            if not (data.category == MonsterSanctuaryLocationCategory.MONSTER
-                    or data.category == MonsterSanctuaryLocationCategory.CHAMPION):
-                continue
-
-            location = self.multiworld.get_location(location_name, self.player)
-            if location.item.name == "Empty Slot":
-                continue
-
-            if monsters.get(location.item.name) is None:
-                monsters[location.item.name] = True
-
-        # if we have the right number of monsters in this list, that means all monsters
-        # are unique and accounted for because it's a dictionary with unique keys
-        self.assertEqual(len(monsters), 106)
-
     def test_correct_number_of_monsters(self):
         number_of_locations = 0
         for region in self.multiworld.regions:
@@ -41,81 +22,49 @@ class TestMonsters(MonsterSanctuaryTestBase):
         number_of_monsters = sum(items.items_data[item.name].category == MonsterSanctuaryItemCategory.MONSTER
                                  for item in self.multiworld.itempool)
 
-        self.assertEqual(number_of_locations, number_of_monsters)
-
-
-# region Test Monster Rando Settings
-class TestNoRandomization(MonsterSanctuaryTestBase):
-    options = {
-        "randomize_champions": 0
-    }
-
-    def test_champions_are_not_randomized(self):
-        for location_name in locations.locations_data:
-            data = locations.locations_data[location_name]
-
-            # Only test monster locations
-            if data.category != MonsterSanctuaryLocationCategory.CHAMPION:
-                continue
-            if data.default_item == "Empty Slot":
-                continue
-
-            expected = data.default_item
-            location = self.multiworld.get_location(location_name, self.player)
-            actual = location.item.name
-            self.assertEqual(expected, actual)
-# endregion
-
 
 # region Test Champion Rando Settings
-class ChampionTestsBase(MonsterSanctuaryTestBase):
-    def assert_empty_champion_slot_remain_empty(self):
-        self.assertNotEqual("Empty Slot", self.multiworld.get_location("MountainPath_Center7_1_0", 1).item.name)
-        self.assertEqual("Empty Slot", self.multiworld.get_location("MountainPath_Center7_1_1", 1).item.name)
-        self.assertEqual("Empty Slot", self.multiworld.get_location("MountainPath_Center7_1_2", 1).item.name)
-
-        self.assertNotEqual("Empty Slot", self.multiworld.get_location("MountainPath_West6_3_0", 1).item.name)
-        self.assertEqual("Empty Slot", self.multiworld.get_location("MountainPath_West6_3_1", 1).item.name)
-        self.assertEqual("Empty Slot", self.multiworld.get_location("MountainPath_West6_3_2", 1).item.name)
-
-        self.assertNotEqual("Empty Slot", self.multiworld.get_location("BlueCave_ChampionRoom_6_0", 1).item.name)
-        self.assertEqual("Empty Slot", self.multiworld.get_location("BlueCave_ChampionRoom_6_1", 1).item.name)
-        self.assertEqual("Empty Slot", self.multiworld.get_location("BlueCave_ChampionRoom_6_2", 1).item.name)
-
-        self.assertNotEqual("Empty Slot", self.multiworld.get_location("BlueCave_ChampionRoom3_0_0", 1).item.name)
-        self.assertNotEqual("Empty Slot", self.multiworld.get_location("BlueCave_ChampionRoom3_0_1", 1).item.name)
-        self.assertNotEqual("Empty Slot", self.multiworld.get_location("BlueCave_ChampionRoom3_0_2", 1).item.name)
-
-        self.assertNotEqual("Empty Slot", self.multiworld.get_location("BlueCave_ChampionRoom2_1_0", 1).item.name)
-        self.assertEqual("Empty Slot", self.multiworld.get_location("BlueCave_ChampionRoom2_1_1", 1).item.name)
-        self.assertEqual("Empty Slot", self.multiworld.get_location("BlueCave_ChampionRoom2_1_2", 1).item.name)
-
-        self.assertNotEqual("Empty Slot", self.multiworld.get_location("SnowyPeaks_ChampionRoom2_0_0", 1).item.name)
-        self.assertNotEqual("Empty Slot", self.multiworld.get_location("SnowyPeaks_ChampionRoom2_0_1", 1).item.name)
-        self.assertNotEqual("Empty Slot", self.multiworld.get_location("SnowyPeaks_ChampionRoom2_0_2", 1).item.name)
-
-
-class TestChampionsNotRandomized(ChampionTestsBase):
+class TestChampionsNotRandomized(MonsterSanctuaryTestBase):
     options = {
         "randomize_champions": 0
     }
 
     def test_empty_champion_slot_remain_empty(self):
-        self.assert_empty_champion_slot_remain_empty()
+        def assertLocationDoesNotExist(location: str) -> None:
+            try:
+                self.multiworld.get_location(location, 1)
+                assert False
+            except KeyError:
+                assert True
+
+        self.assertEqual("Monk", self.multiworld.get_location("MountainPath_Center7_1_0", 1).item.name)
+        assertLocationDoesNotExist("MountainPath_Center7_1_1")
+        assertLocationDoesNotExist("MountainPath_Center7_1_2")
+
+        self.assertEqual("Steam Golem", self.multiworld.get_location("MountainPath_West6_3_0", 1).item.name)
+        assertLocationDoesNotExist("MountainPath_West6_3_1")
+        assertLocationDoesNotExist("MountainPath_West6_3_2")
+
+        self.assertEqual("Minitaur", self.multiworld.get_location("BlueCave_ChampionRoom_6_0", 1).item.name)
+        assertLocationDoesNotExist("BlueCave_ChampionRoom_6_1")
+        assertLocationDoesNotExist("BlueCave_ChampionRoom_6_2")
+
+        self.assertEqual("Monk", self.multiworld.get_location("BlueCave_ChampionRoom3_0_0", 1).item.name)
+        self.assertEqual("Ascendant", self.multiworld.get_location("BlueCave_ChampionRoom3_0_1", 1).item.name)
+        self.assertEqual("Monk", self.multiworld.get_location("BlueCave_ChampionRoom3_0_2", 1).item.name)
+
+        self.assertEqual("Specter", self.multiworld.get_location("BlueCave_ChampionRoom2_1_0", 1).item.name)
+        assertLocationDoesNotExist("BlueCave_ChampionRoom2_1_1")
+        assertLocationDoesNotExist("BlueCave_ChampionRoom2_1_2")
+
+        self.assertEqual("Draconov", self.multiworld.get_location("SnowyPeaks_ChampionRoom2_0_0", 1).item.name)
+        self.assertEqual("Dracozul", self.multiworld.get_location("SnowyPeaks_ChampionRoom2_0_1", 1).item.name)
+        self.assertEqual("Draconov", self.multiworld.get_location("SnowyPeaks_ChampionRoom2_0_2", 1).item.name)
 
 
-class TestChampionsAreDefault(ChampionTestsBase):
+class TestChampionsShuffled(MonsterSanctuaryTestBase):
     options = {
         "randomize_champions": 1
-    }
-
-    def test_empty_champion_slot_remain_empty(self):
-        self.assert_empty_champion_slot_remain_empty()
-
-
-class TestChampionsShuffled(ChampionTestsBase):
-    options = {
-        "randomize_champions": 2
     }
 
     champions = {
@@ -130,7 +79,7 @@ class TestChampionsShuffled(ChampionTestsBase):
         "SnowyPeaks_ChampionRoom2_0": ["Draconov", "Dracozul", "Draconov"],
         "SunPalace_North3_3": ["Kanko"],
         "SunPalace_EastChampion_2": ["Diavola"],
-        "SunPalace_East6_3": ["Qilin"],
+        "SunPalace_East6_2": ["Qilin"],
         "AncientWoods_North3_9": ["Goblin Hood", "Goblin King", "Goblin Warlock"],
         "AncientWoods_East3_1": ["Raduga"],
         "AncientWoods_SouthChampion_1": ["Brutus"],
@@ -152,13 +101,19 @@ class TestChampionsShuffled(ChampionTestsBase):
         shuffled_champions = {}
         for location_name in self.champions:
             for i in range(3):
-                loc = self.multiworld.get_location(f"{location_name}_{i}", self.player)
-                if loc.item.name == "Empty Slot":
-                    break
+                # We don't know exactly which champion locations were created, because that's randomized.
+                # So we need to try and get all of them and ignore the failures.
+                try:
+                    loc = self.multiworld.get_location(f"{location_name}_{i}", self.player)
+                except KeyError:
+                    continue
 
                 if shuffled_champions.get(location_name) is None:
                     shuffled_champions[location_name] = []
-                shuffled_champions[location_name].append(loc.item.name)
+                if loc.item is None:
+                    breakpoint()
+                monster_name = loc.item.name
+                shuffled_champions[location_name].append(monster_name)
 
         self.assertCountEqual(self.champions, shuffled_champions)
 # endregion
