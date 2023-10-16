@@ -13,6 +13,7 @@ import io
 import collections
 import importlib
 import logging
+import warnings
 
 from argparse import Namespace
 from settings import Settings, get_settings
@@ -216,7 +217,13 @@ def get_cert_none_ssl_context():
 def get_public_ipv4() -> str:
     import socket
     import urllib.request
-    ip = socket.gethostbyname(socket.gethostname())
+    try:
+        ip = socket.gethostbyname(socket.gethostname())
+    except socket.gaierror:
+        # if hostname or resolvconf is not set up properly, this may fail
+        warnings.warn("Could not resolve own hostname, falling back to 127.0.0.1")
+        ip = "127.0.0.1"
+
     ctx = get_cert_none_ssl_context()
     try:
         ip = urllib.request.urlopen("https://checkip.amazonaws.com/", context=ctx, timeout=10).read().decode("utf8").strip()
@@ -234,7 +241,13 @@ def get_public_ipv4() -> str:
 def get_public_ipv6() -> str:
     import socket
     import urllib.request
-    ip = socket.gethostbyname(socket.gethostname())
+    try:
+        ip = socket.gethostbyname(socket.gethostname())
+    except socket.gaierror:
+        # if hostname or resolvconf is not set up properly, this may fail
+        warnings.warn("Could not resolve own hostname, falling back to ::1")
+        ip = "::1"
+
     ctx = get_cert_none_ssl_context()
     try:
         ip = urllib.request.urlopen("https://v6.ident.me", context=ctx, timeout=10).read().decode("utf8").strip()
@@ -446,11 +459,21 @@ def init_logging(name: str, loglevel: typing.Union[str, int] = logging.INFO, wri
         write_mode,
         encoding="utf-8-sig")
     file_handler.setFormatter(logging.Formatter(log_format))
+
+    class Filter(logging.Filter):
+        def __init__(self, filter_name, condition):
+            super().__init__(filter_name)
+            self.condition = condition
+
+        def filter(self, record: logging.LogRecord) -> bool:
+            return self.condition(record)
+
+    file_handler.addFilter(Filter("NoStream", lambda record: not getattr(record,  "NoFile", False)))
     root_logger.addHandler(file_handler)
     if sys.stdout:
-        root_logger.addHandler(
-            logging.StreamHandler(sys.stdout)
-        )
+        stream_handler = logging.StreamHandler(sys.stdout)
+        stream_handler.addFilter(Filter("NoFile", lambda record: not getattr(record, "NoStream", False)))
+        root_logger.addHandler(stream_handler)
 
     # Relay unhandled exceptions to logger.
     if not getattr(sys.excepthook, "_wrapped", False):  # skip if already modified
@@ -657,6 +680,11 @@ def messagebox(title: str, text: str, error: bool = False) -> None:
         if zenity:
             return run(zenity, f"--title={title}", f"--text={text}", "--error" if error else "--info")
 
+    elif is_windows:
+        import ctypes
+        style = 0x10 if error else 0x0
+        return ctypes.windll.user32.MessageBoxW(0, text, title, style)
+    
     # fall back to tk
     try:
         import tkinter
