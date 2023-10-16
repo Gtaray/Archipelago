@@ -76,6 +76,7 @@ class MonsterSanctuaryWorld(World):
     # Already has access to player options and RNG.
     def generate_early(self) -> None:
         self.prepare_monster_lists()
+        self.multiworld.local_items[self.player].value |= self.item_name_groups["Monster"]
 
     def shuffle_dictionary(self, dictionary) -> Dict:
         keys = list(dictionary.keys())
@@ -144,7 +145,7 @@ class MonsterSanctuaryWorld(World):
 
             if location_data.category == MonsterSanctuaryLocationCategory.MONSTER:
                 self.number_of_monster_locations += 1
-                location.item_rule = lambda item, loc = location: items.can_monster_be_placed(item, loc)
+                location.item_rule = lambda item, loc = location: ITEMS.can_monster_be_placed(item, loc)
 
             # Item and gift locations CANNOT contain monsters
             if (location_data.category == MonsterSanctuaryLocationCategory.GIFT
@@ -311,15 +312,6 @@ class MonsterSanctuaryWorld(World):
         self.place_ranks()
         self.place_events()
 
-        print("MONSTER SLOTS: " + str(len([location for location in self.multiworld.get_locations(self.player) if LOCATIONS.locations_data[location.name].category == MonsterSanctuaryLocationCategory.MONSTER])))
-        print("MONSTERS: " + str(len([item for item in self.multiworld.itempool if item.player == self.player and ITEMS.is_item_type(item.name, MonsterSanctuaryItemCategory.MONSTER)])))
-        print("ITEM SLOTS: " + str(len([location for location in self.multiworld.get_locations(self.player) if
-                                           LOCATIONS.is_location_type(location.name, MonsterSanctuaryLocationCategory.CHEST, MonsterSanctuaryLocationCategory.GIFT)])))
-        print("ITEMS: " + str(len([item for item in self.multiworld.itempool if item.player == self.player and ITEMS.is_item_type(item.name, MonsterSanctuaryItemCategory.KEYITEM, MonsterSanctuaryItemCategory.CRAFTINGMATERIAL, MonsterSanctuaryItemCategory.CONSUMABLE, MonsterSanctuaryItemCategory.FOOD, MonsterSanctuaryItemCategory.CATALYST, MonsterSanctuaryItemCategory.WEAPON, MonsterSanctuaryItemCategory.ACCESSORY, MonsterSanctuaryItemCategory.CURRENCY, MonsterSanctuaryItemCategory.EGG, MonsterSanctuaryItemCategory.COSTUME)])))
-
-        print("EMPTY LOCATIONS: " + str(len([location for location in self.multiworld.get_locations(self.player) if location.item is None])))
-        print("TOTAL ITEMS: " + str(len([item for item in self.multiworld.itempool if item.player == self.player])))
-
         for location_name in LOCATIONS.locations_data:
             data = LOCATIONS.locations_data[location_name]
             location = None
@@ -337,8 +329,6 @@ class MonsterSanctuaryWorld(World):
                 breakpoint()
             if data.category == MonsterSanctuaryLocationCategory.CHAMPION and location.item is None:
                 breakpoint()
-
-
 
     # called to modify item placement before, during and after the regular fill process, before generate_output.
     # If items need to be placed during pre_fill, these items can be determined and created using get_prefill_items
@@ -362,15 +352,13 @@ class MonsterSanctuaryWorld(World):
     # creates the output files if there is output to be generated. When this is called,
     # self.multiworld.get_locations(self.player) has all locations for the player, with attribute
     # item pointing to the item. location.item.player can be used to see if it's a local item.
-    def generate_output(self, output_directory: str) -> None:
-        pass
+    # def generate_output(self, output_directory: str) -> None:
         # from Utils import visualize_regions
         # visualize_regions(self.multiworld.get_region("Menu", self.player), "D:\\Downloads\\world.puml")
 
     # fill_slot_data and modify_multidata can be used to modify the data that will be used by
     # the server to host the MultiWorld.
     def fill_slot_data(self) -> dict:
-        print(self.monster_shift_rule)
         return {
             "exp_multiplier": self.options.exp_multiplier,
             "monsters_always_drop_egg": self.options.monsters_always_drop_egg,
