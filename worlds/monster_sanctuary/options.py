@@ -49,8 +49,7 @@ class CanChampionMonstersAppearInWild(Toggle):
 
 
 class MonstersAlwaysDropEggs(Toggle):
-    """If enabled, monsters will always drop an egg if you don't already have one.
-    This is not shown in the rewards screen."""
+    """If enabled, monsters will always drop an egg."""
     display_name = "Monsters always drop eggs"
     default = 1
 
@@ -153,6 +152,12 @@ class ExpMultiplier(Range):
     default = 1
 
 
+class SkipIntro(Toggle):
+    """Skip the intro cut scenes and tutorial dialog when starting a new file."""
+    display_name = "Skip Intro Cutscenes"
+    default = 0
+
+
 class Goal(Choice):
     """Goal to complete.
 
@@ -184,6 +189,7 @@ monster_sanctuary_options = {
     "drop_chance_currency": GoldDropChance,
     "include_chaos_relics": IncludeChaosRelics,
     "exp_multiplier": ExpMultiplier,
+    "skip_intro": SkipIntro,
     "goal": Goal,
     "death_link": DeathLink
 }

@@ -107,8 +107,8 @@ def get_item_type(item_name: str) -> Optional[MonsterSanctuaryItemCategory]:
     return item.category
 
 
-def is_item_type(item_name: str, item_type: MonsterSanctuaryItemCategory) -> bool:
-    return get_item_type(item_name) == item_type
+def is_item_type(item_name: str, *item_types: MonsterSanctuaryItemCategory) -> bool:
+    return get_item_type(item_name) in item_types
 
 
 def get_item_tier(item_name: str) -> Optional[int]:

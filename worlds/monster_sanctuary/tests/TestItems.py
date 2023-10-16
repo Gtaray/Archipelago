@@ -14,6 +14,21 @@ class TestItems(MonsterSanctuaryTestBase):
                 print(f"{data.default_item} was not found")
             self.assertIsNot(item, None)
 
+    def test_get_item_type(self):
+        self.assertTrue(items.is_item_type("Champion Defeated", MonsterSanctuaryItemCategory.RANK))
+        self.assertFalse(items.is_item_type("Feather",
+                                            MonsterSanctuaryItemCategory.RANK,
+                                            MonsterSanctuaryItemCategory.MONSTER,
+                                            MonsterSanctuaryItemCategory.FLAG))
+
+    def test_key_items_appear_correct_number_of_times(self):
+        key_items = [items.items_data[item_name] for item_name in items.items_data
+                     if items.items_data[item_name].category == MonsterSanctuaryItemCategory.KEYITEM]
+        for key_item in key_items:
+            item_pool_items = [item for item in self.multiworld.itempool
+                               if item.name == key_item.name]
+            self.assertEqual(key_item.count, len(item_pool_items), key_item.name)
+
 
 class TestDefaultItemProbability(MonsterSanctuaryTestBase):
     def test_default_probability(self):

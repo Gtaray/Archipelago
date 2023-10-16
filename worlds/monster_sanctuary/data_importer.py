@@ -8,6 +8,12 @@ from .locations import (LocationData, locations_data,
                         add_chest_data, add_champion_data, add_gift_data, add_flag_data, add_encounter_data)
 from .regions import RegionData, MonsterSanctuaryConnection, regions_data
 from .rules import AccessCondition
+from . import data
+
+try:
+    from importlib.resources import files
+except ImportError:
+    from importlib_resources import files  # noqa
 
 
 def load_world() -> None:
@@ -15,12 +21,9 @@ def load_world() -> None:
     locations_by_id: Dict[int, LocationData] = {}
     location_id: int = 970500
 
-    directory = os.path.dirname(__file__)
-    world_file = os.path.join(directory, "data/world.json")
-
-    with open(world_file) as file:
-        data = json.load(file)
-        for region_data in data:
+    with files(data).joinpath("world.json").open() as file:
+        json_data = json.load(file)
+        for region_data in json_data:
             region = RegionData(region_data["region"])
 
             if region_data.get("connections") is None:
@@ -76,23 +79,18 @@ def load_world() -> None:
 
     # Go through the postgame.json file and mark every location name in that file
     # as a post-game location
-    postgame_file = os.path.join(directory, "data/postgame.json")
-    with open(postgame_file) as file:
-        data = json.load(file)
-        for location_name in data:
+    with files(data).joinpath("postgame.json").open() as file:
+        json_data = json.load(file)
+        for location_name in json_data:
             locations_data[location_name].postgame = True
 
 
 def load_items() -> None:
     item_id: int = 970500
 
-    directory = os.path.dirname(__file__)
-    items_file = os.path.join(directory, "data/items.json")
-    monsters_file = os.path.join(directory, "data/monsters.json")
-
-    with open(items_file) as file:
-        data = json.load(file)
-        for item_category_data in data:
+    with files(data).joinpath("items.json").open() as file:
+        items_file = json.load(file)
+        for item_category_data in items_file:
             item_category = parse_item_type(item_category_data["type"])
             if item_category is None:
                 raise KeyError(f"Item Type '{item_category}' does not match any existing item types")
@@ -124,10 +122,10 @@ def load_items() -> None:
                 items_data[item.name] = item
                 item_id += 1
 
-    with open(monsters_file) as file:
-        data = json.load(file)
+    with files(data).joinpath("monsters.json").open() as file:
+        monster_file = json.load(file)
 
-        for monster_data in data:
+        for monster_data in monster_file:
             monster = ItemData(
                 item_id,
                 monster_data["Name"],

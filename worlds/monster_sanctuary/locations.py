@@ -97,10 +97,6 @@ def get_champions() -> Dict[str, List[str]]:
 
 		result[location.region][location.monster_id] = location.default_item
 
-	# Now that the dictionary is built, we go through and remove any None entries
-	for region_name in result:
-		result[region_name] = [champion for champion in result[region_name] if champion != "Empty Slot"]
-
 	return result
 
 
