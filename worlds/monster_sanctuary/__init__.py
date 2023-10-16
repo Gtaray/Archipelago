@@ -75,18 +75,6 @@ class MonsterSanctuaryWorld(World):
     # called per player before any items or locations are created. You can set properties on your world here.
     # Already has access to player options and RNG.
     def generate_early(self) -> None:
-        # Pull values in from settings to the world instance
-        for (option_name, option) in monster_sanctuary_options.items():
-            result = getattr(self.multiworld, option_name)[self.player]
-            if isinstance(result, Range):
-                option_value = int(result)
-            elif isinstance(result, Toggle):
-                option_value = bool(result)
-            else:
-                option_value = result.current_key
-            setattr(self, option_name, option_value)
-
-        # We have to do this early so that the lists are set up for when we create locations
         self.prepare_monster_lists()
 
     def shuffle_dictionary(self, dictionary) -> Dict:
@@ -147,7 +135,7 @@ class MonsterSanctuaryWorld(World):
 
             # if the goal is to defeat the mad lord, then
             # we do not add any post-game locations
-            if self.goal == "defeat_mad_lord" and location_data.postgame:
+            if self.options.goal == "defeat_mad_lord" and location_data.postgame:
                 continue
 
             if location_data.category == MonsterSanctuaryLocationCategory.CHAMPION:
@@ -156,37 +144,33 @@ class MonsterSanctuaryWorld(World):
 
             if location_data.category == MonsterSanctuaryLocationCategory.MONSTER:
                 self.number_of_monster_locations += 1
-                location.item_rule = lambda item: (
-                        item.player == location.player and
-                        ITEMS.items_data[item.name].category == MonsterSanctuaryItemCategory.MONSTER)
+                location.item_rule = lambda item, loc = location: items.can_monster_be_placed(item, loc)
 
             # Item and gift locations CANNOT contain monsters
             if (location_data.category == MonsterSanctuaryLocationCategory.GIFT
                     or location_data.category == MonsterSanctuaryLocationCategory.CHEST):
-                location.item_rule = lambda item: (not ITEMS.is_item_type(item.name,
-                                                                          MonsterSanctuaryItemCategory.RANK,
-                                                                          MonsterSanctuaryItemCategory.MONSTER,
-                                                                          MonsterSanctuaryItemCategory.FLAG))
+                # Item locations can be filled with any item from another player, as well as items from this game
+                location.item_rule = lambda item, loc = location: ITEMS.can_item_be_placed(item, loc)
                 self.number_of_item_locations += 1
 
             region.locations.append(location)
 
     def set_victory_condition(self) -> None:
-        if self.goal == "defeat_mad_lord":
+        if self.options.goal == "defeat_mad_lord":
             self.multiworld.completion_condition[self.player] = lambda state: (
                 state.has("Victory", self.player))
 
-        elif self.goal == "defeat_all_champions":
+        elif self.options.goal == "defeat_all_champions":
             self.multiworld.completion_condition[self.player] = lambda state: (
                 state.has("Champion Defeated", self.player, 27))
 
     def prepare_monster_lists(self) -> None:
         # We start by shuffling the champion dictionary, if necessary
-        if self.randomize_champions == "shuffle":
+        if self.options.randomize_champions == "shuffle":
             self.champion_data = self.shuffle_dictionary(self.champion_data)
 
         # In this case, we randomize champions to literally anything
-        elif self.randomize_champions == "any":
+        elif self.options.randomize_champions == "any":
             for region_name in self.champion_data:
                 for i in range(len(self.champion_data[region_name])):
                     if self.champion_data[region_name][i] == "Empty Slot":
@@ -205,7 +189,7 @@ class MonsterSanctuaryWorld(World):
                 self.champions_used.append(self.champion_data[region_name][1])
 
         # Remove evolutions from encounter pool if necessary
-        if not self.evolutions_in_wild:
+        if not self.options.evolutions_in_wild:
             del self.monsters["G'rulu"]
             del self.monsters["Magmamoth"]
             del self.monsters["Megataur"]
@@ -224,64 +208,40 @@ class MonsterSanctuaryWorld(World):
             del self.monsters["Dracomer"]
 
         # Lastly, if we don't want champions to show up in the wild,
-        if self.champions_in_wild:
+        if self.options.champions_in_wild:
             for champion in self.champions_used:
                 if self.monsters.get(champion) is not None:
                     del self.monsters[champion]
 
-    def place_champions(self) -> None:
-        for location in [location_name
-                         for location_name in LOCATIONS.locations_data
-                         if LOCATIONS.locations_data[location_name].category == MonsterSanctuaryLocationCategory.CHAMPION]:
-            self.place_champion(location)
-
-    def place_champion(self, location_name: str) -> None:
-        data = LOCATIONS.locations_data[location_name]
-        monster_name: str = self.champion_data[data.region][data.monster_id]
-
-        monster = self.create_item(monster_name)
-
-        location = self.multiworld.get_location(location_name, self.player)
-        location.place_locked_item(monster)
-
-    def place_keeper_battles(self) -> None:
-        for region in self.multiworld.get_regions(self.player):
-            for location in region.locations:
-                data = LOCATIONS.locations_data[location.name]
-
-                if data.category == LocationCategory.KEEPER:
-                    self.place_keeper_battle(location)
-
-    def place_keeper_battle(self, location) -> None:
-        data = LOCATIONS.locations_data[location.name]
-        monster_name = ITEMS.get_random_monster_name(self.multiworld)
-        monster = self.create_item(monster_name)
-
-        # Monsters placed in keeper battles need to be marked as NOT progression
-        monster.classification = ItemClassification.filler
-
-        location.place_locked_item(monster)
-
     def place_ranks(self) -> None:
-        for region in self.multiworld.get_regions(self.player):
-            for location in region.locations:
-                data = LOCATIONS.locations_data[location.name]
+        for location_name in [location_name
+                              for location_name in LOCATIONS.locations_data
+                              if LOCATIONS.locations_data[location_name].category == MonsterSanctuaryLocationCategory.RANK]:
 
-                if data.category == LocationCategory.RANK:
-                    rank_item = self.create_item("Champion Defeated")
-                    location.place_locked_item(rank_item)
+            location = self.multiworld.get_location(location_name, self.player)
+            location.place_locked_item(self.create_item("Champion Defeated"))
 
     def place_events(self) -> None:
-        for region in self.multiworld.get_regions(self.player):
-            for location in region.locations:
-                data = LOCATIONS.locations_data[location.name]
-                if data.category == LocationCategory.FLAG and location.item is None:
-                    location.place_locked_item(self.create_item(data.default_item))
+        for location_name in [location_name
+                              for location_name in LOCATIONS.locations_data
+                              if LOCATIONS.locations_data[
+                                     location_name].category == MonsterSanctuaryLocationCategory.FLAG]:
+            data = LOCATIONS.locations_data[location_name]
+            location = self.multiworld.get_location(location_name, self.player)
+            location.place_locked_item(self.create_item(data.default_item))
 
     # called to place player's items into the MultiWorld's itempool. After this step all regions and items have to
     # be in the MultiWorld's regions and itempool, and these lists should not be modified afterward.
     def create_items(self) -> None:
-        ITEMS.build_item_probability_table(self)
+        ITEMS.build_item_probability_table({
+            MonsterSanctuaryItemCategory.CRAFTINGMATERIAL: self.options.drop_chance_craftingmaterial,
+            MonsterSanctuaryItemCategory.CONSUMABLE: self.options.drop_chance_consumable,
+            MonsterSanctuaryItemCategory.FOOD: self.options.drop_chance_food,
+            MonsterSanctuaryItemCategory.CATALYST: self.options.drop_chance_catalyst,
+            MonsterSanctuaryItemCategory.WEAPON: self.options.drop_chance_weapon,
+            MonsterSanctuaryItemCategory.ACCESSORY: self.options.drop_chance_accessory,
+            MonsterSanctuaryItemCategory.CURRENCY: self.options.drop_chance_currency,
+        })
         pool: List[MonsterSanctuaryItem] = []
 
         # ITEMS
@@ -289,7 +249,7 @@ class MonsterSanctuaryWorld(World):
         item_exclusions = ["Multiple"]
 
         # Exclude relics of chaos if the option isn't enabled
-        if not self.include_chaos_relics:
+        if not self.options.include_chaos_relics:
             item_exclusions.append("Relic")
 
         # Add all key items to the pool
@@ -333,7 +293,7 @@ class MonsterSanctuaryWorld(World):
 
         self.multiworld.itempool += pool
 
-    # create any item on demand
+        # create any item on demand
     def create_item(self, item_name: str) -> MonsterSanctuaryItem:
         data = ITEMS.items_data.get(item_name)
         if data is None:
@@ -347,13 +307,38 @@ class MonsterSanctuaryWorld(World):
 
     # called after the previous steps. Some placement and player specific randomizations can be done here.
     def generate_basic(self) -> None:
-        # Monsters are placed before items, with very little inherent logic. Items are them placed afterward
-        # taking into account the locations of monsters and what explore abilities players will have access too
         self.set_victory_condition()
-        # self.place_champions()
-        self.place_keeper_battles()
         self.place_ranks()
         self.place_events()
+
+        print("MONSTER SLOTS: " + str(len([location for location in self.multiworld.get_locations(self.player) if LOCATIONS.locations_data[location.name].category == MonsterSanctuaryLocationCategory.MONSTER])))
+        print("MONSTERS: " + str(len([item for item in self.multiworld.itempool if item.player == self.player and ITEMS.is_item_type(item.name, MonsterSanctuaryItemCategory.MONSTER)])))
+        print("ITEM SLOTS: " + str(len([location for location in self.multiworld.get_locations(self.player) if
+                                           LOCATIONS.is_location_type(location.name, MonsterSanctuaryLocationCategory.CHEST, MonsterSanctuaryLocationCategory.GIFT)])))
+        print("ITEMS: " + str(len([item for item in self.multiworld.itempool if item.player == self.player and ITEMS.is_item_type(item.name, MonsterSanctuaryItemCategory.KEYITEM, MonsterSanctuaryItemCategory.CRAFTINGMATERIAL, MonsterSanctuaryItemCategory.CONSUMABLE, MonsterSanctuaryItemCategory.FOOD, MonsterSanctuaryItemCategory.CATALYST, MonsterSanctuaryItemCategory.WEAPON, MonsterSanctuaryItemCategory.ACCESSORY, MonsterSanctuaryItemCategory.CURRENCY, MonsterSanctuaryItemCategory.EGG, MonsterSanctuaryItemCategory.COSTUME)])))
+
+        print("EMPTY LOCATIONS: " + str(len([location for location in self.multiworld.get_locations(self.player) if location.item is None])))
+        print("TOTAL ITEMS: " + str(len([item for item in self.multiworld.itempool if item.player == self.player])))
+
+        for location_name in LOCATIONS.locations_data:
+            data = LOCATIONS.locations_data[location_name]
+            location = None
+            try:
+                location = self.multiworld.get_location(location_name, self.player)
+            finally:
+                if location is None:
+                    continue
+
+            if data.category == MonsterSanctuaryLocationCategory.FLAG and location.item is None:
+                breakpoint()
+            if data.category == MonsterSanctuaryLocationCategory.RANK and location.item is None:
+                breakpoint()
+            if data.category == MonsterSanctuaryLocationCategory.KEEPER and location.item is None:
+                breakpoint()
+            if data.category == MonsterSanctuaryLocationCategory.CHAMPION and location.item is None:
+                breakpoint()
+
+
 
     # called to modify item placement before, during and after the regular fill process, before generate_output.
     # If items need to be placed during pre_fill, these items can be determined and created using get_prefill_items
@@ -387,8 +372,8 @@ class MonsterSanctuaryWorld(World):
     def fill_slot_data(self) -> dict:
         print(self.monster_shift_rule)
         return {
-            "exp_multiplier": self.exp_multiplier,
-            "monsters_always_drop_egg": self.monsters_always_drop_egg,
-            "monster_shift_rule": self.monster_shift_rule,
-            "skip_intro": self.skip_intro
+            "exp_multiplier": self.options.exp_multiplier,
+            "monsters_always_drop_egg": self.options.monsters_always_drop_egg,
+            "monster_shift_rule": self.options.monster_shift_rule,
+            "skip_intro": self.options.skip_intro
         }

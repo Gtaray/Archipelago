@@ -79,6 +79,11 @@ def clear_data():
 	locations_data.clear()
 
 
+def is_location_type(location: str, *types: MonsterSanctuaryLocationCategory) -> bool:
+	data = locations_data[location]
+	return data.category in types
+
+
 def get_locations_of_type(*categories: MonsterSanctuaryLocationCategory):
 	return [locations_data[name] for name in locations_data if locations_data[name].category in categories]
 

@@ -6,19 +6,20 @@ from test.TestBase import WorldTestBase, TestBase
 from worlds import AutoWorld
 
 
-class TestArea(WorldTestBase):
+class TestArea(unittest.TestCase):
     def setUp(self):
-        # Copied from ALttP tests
+        # Originally copied from ALttP tests
         self.multiworld = MultiWorld(1)
         self.multiworld.game = {1: "Monster Sanctuary"}
         self.multiworld.set_seed(None)
 
         args = Namespace()
-        for name, option in AutoWorld.AutoWorldRegister.world_types["Monster Sanctuary"].option_definitions.items():
-            setattr(args, name, {1: option.from_any(option.default)})
-
+        self.multiworld.options = {}
+        for name, option in AutoWorld.AutoWorldRegister.world_types["Monster Sanctuary"].options_dataclass.type_hints.items():
+            setattr(args, name, {
+                1: option.from_any(self.multiworld.options.get(name, getattr(option, "default")))
+            })
         self.multiworld.set_options(args)
-        self.multiworld.set_default_common_options()
 
         self.starting_regions = []  # Where to start exploring
         self.remove_exits = []

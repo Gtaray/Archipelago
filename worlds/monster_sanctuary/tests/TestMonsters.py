@@ -22,6 +22,8 @@ class TestMonsters(MonsterSanctuaryTestBase):
         number_of_monsters = sum(items.items_data[item.name].category == MonsterSanctuaryItemCategory.MONSTER
                                  for item in self.multiworld.itempool)
 
+        self.assertEqual(number_of_monsters, number_of_monsters)
+
 
 # region Test Champion Rando Settings
 class TestChampionsNotRandomized(MonsterSanctuaryTestBase):

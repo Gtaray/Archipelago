@@ -74,7 +74,28 @@ def get_monsters() -> Dict[str, ItemData]:
 def get_random_monster_name(multiworld: MultiWorld) -> str:
     valid_items = [item for item in get_monsters()]
     return multiworld.random.choice(valid_items)
+
+
+def can_monster_be_placed(item, location) -> bool:
+    flag = (item.player == location.player and
+            is_item_type(item.name, MonsterSanctuaryItemCategory.MONSTER))
+    return flag
 # endregion
+
+
+def can_item_be_placed(item, location) -> bool:
+    return (item.player != location.player or
+            is_item_type(item.name,
+                         MonsterSanctuaryItemCategory.KEYITEM,
+                         MonsterSanctuaryItemCategory.CRAFTINGMATERIAL,
+                         MonsterSanctuaryItemCategory.CONSUMABLE,
+                         MonsterSanctuaryItemCategory.FOOD,
+                         MonsterSanctuaryItemCategory.CATALYST,
+                         MonsterSanctuaryItemCategory.WEAPON,
+                         MonsterSanctuaryItemCategory.ACCESSORY,
+                         MonsterSanctuaryItemCategory.EGG,
+                         MonsterSanctuaryItemCategory.CURRENCY,
+                         MonsterSanctuaryItemCategory.COSTUME))
 
 
 def build_item_groups() -> Dict:
@@ -108,6 +129,10 @@ def get_item_type(item_name: str) -> Optional[MonsterSanctuaryItemCategory]:
 
 
 def is_item_type(item_name: str, *item_types: MonsterSanctuaryItemCategory) -> bool:
+    # For any item not in the item data dictionary, return false
+    # This solves the problem with items from other worlds not having a type
+    if items_data.get(item_name) is None:
+        return False
     return get_item_type(item_name) in item_types
 
 
@@ -131,17 +156,7 @@ def get_filtered_unique_item_data(itempool: List[MonsterSanctuaryItem]) -> Dict[
             or not is_in_item_pool(item, itempool)}
 
 
-def build_item_probability_table(world: World) -> None:
-    probabilities = {
-        MonsterSanctuaryItemCategory.CRAFTINGMATERIAL: world.drop_chance_craftingmaterial,
-        MonsterSanctuaryItemCategory.CONSUMABLE: world.drop_chance_consumable,
-        MonsterSanctuaryItemCategory.FOOD: world.drop_chance_food,
-        MonsterSanctuaryItemCategory.CATALYST: world.drop_chance_catalyst,
-        MonsterSanctuaryItemCategory.WEAPON: world.drop_chance_weapon,
-        MonsterSanctuaryItemCategory.ACCESSORY: world.drop_chance_accessory,
-        MonsterSanctuaryItemCategory.CURRENCY: world.drop_chance_currency,
-    }
-
+def build_item_probability_table(probabilities: Dict[MonsterSanctuaryItemCategory, int]) -> None:
     # If the weights don't sum to 100, then we multiply them all by 10 so that the
     # sum is much higher. This solves the issue where at low totals we can't accurately
     # calculate a single percentage for the costumes section
