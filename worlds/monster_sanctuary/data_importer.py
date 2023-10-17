@@ -126,12 +126,16 @@ def load_items() -> None:
         monster_file = json.load(file)
 
         for monster_data in monster_file:
+            groups = monster_data.get("Groups")
+            if groups is None:
+                groups = []
+            groups.append("Monster")
             monster = ItemData(
                 item_id,
                 monster_data["Name"],
                 ItemClassification.progression,
                 MonsterSanctuaryItemCategory.MONSTER,
-                groups=monster_data.get("Groups")
+                groups=groups
             )
 
             items_data[monster.name] = monster

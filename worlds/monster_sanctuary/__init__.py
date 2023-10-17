@@ -3,6 +3,7 @@ from typing import List, Dict
 from BaseClasses import MultiWorld, Tutorial, ItemClassification, Entrance
 from Options import Range, Toggle
 from worlds.AutoWorld import World, WebWorld
+from Utils import __version__
 
 from . import data_importer
 from . import regions as REGIONS
@@ -75,6 +76,12 @@ class MonsterSanctuaryWorld(World):
     # called per player before any items or locations are created. You can set properties on your world here.
     # Already has access to player options and RNG.
     def generate_early(self) -> None:
+        if not hasattr(self, "options"):  # forget proper syntax here
+            self.options = lambda: None  # just need an object to bind to
+            # Pull values in from settings to the world instance
+            for (option_name, option) in monster_sanctuary_options.items():
+                result = getattr(self.multiworld, option_name)[self.player]
+                setattr(self.options, option_name, int(result))
         self.prepare_monster_lists()
         self.multiworld.local_items[self.player].value |= self.item_name_groups["Monster"]
 
@@ -136,7 +143,7 @@ class MonsterSanctuaryWorld(World):
 
             # if the goal is to defeat the mad lord, then
             # we do not add any post-game locations
-            if self.options.goal == "defeat_mad_lord" and location_data.postgame:
+            if self.get_option("goal") == 0 and location_data.postgame:
                 continue
 
             if location_data.category == MonsterSanctuaryLocationCategory.CHAMPION:
@@ -157,21 +164,21 @@ class MonsterSanctuaryWorld(World):
             region.locations.append(location)
 
     def set_victory_condition(self) -> None:
-        if self.options.goal == "defeat_mad_lord":
+        if self.get_option("goal") == 0:
             self.multiworld.completion_condition[self.player] = lambda state: (
                 state.has("Victory", self.player))
 
-        elif self.options.goal == "defeat_all_champions":
+        elif self.get_option("goal") == 1:
             self.multiworld.completion_condition[self.player] = lambda state: (
                 state.has("Champion Defeated", self.player, 27))
 
     def prepare_monster_lists(self) -> None:
         # We start by shuffling the champion dictionary, if necessary
-        if self.options.randomize_champions == "shuffle":
+        if self.get_option("randomize_champions") == 1:
             self.champion_data = self.shuffle_dictionary(self.champion_data)
 
         # In this case, we randomize champions to literally anything
-        elif self.options.randomize_champions == "any":
+        elif self.get_option("randomize_champions") == 2:
             for region_name in self.champion_data:
                 for i in range(len(self.champion_data[region_name])):
                     if self.champion_data[region_name][i] == "Empty Slot":
@@ -190,7 +197,7 @@ class MonsterSanctuaryWorld(World):
                 self.champions_used.append(self.champion_data[region_name][1])
 
         # Remove evolutions from encounter pool if necessary
-        if not self.options.evolutions_in_wild:
+        if self.get_option("evolutions_in_wild") == 0:
             del self.monsters["G'rulu"]
             del self.monsters["Magmamoth"]
             del self.monsters["Megataur"]
@@ -209,7 +216,7 @@ class MonsterSanctuaryWorld(World):
             del self.monsters["Dracomer"]
 
         # Lastly, if we don't want champions to show up in the wild,
-        if self.options.champions_in_wild:
+        if self.get_option("champions_in_wild") == 0:
             for champion in self.champions_used:
                 if self.monsters.get(champion) is not None:
                     del self.monsters[champion]
@@ -235,13 +242,13 @@ class MonsterSanctuaryWorld(World):
     # be in the MultiWorld's regions and itempool, and these lists should not be modified afterward.
     def create_items(self) -> None:
         ITEMS.build_item_probability_table({
-            MonsterSanctuaryItemCategory.CRAFTINGMATERIAL: self.options.drop_chance_craftingmaterial,
-            MonsterSanctuaryItemCategory.CONSUMABLE: self.options.drop_chance_consumable,
-            MonsterSanctuaryItemCategory.FOOD: self.options.drop_chance_food,
-            MonsterSanctuaryItemCategory.CATALYST: self.options.drop_chance_catalyst,
-            MonsterSanctuaryItemCategory.WEAPON: self.options.drop_chance_weapon,
-            MonsterSanctuaryItemCategory.ACCESSORY: self.options.drop_chance_accessory,
-            MonsterSanctuaryItemCategory.CURRENCY: self.options.drop_chance_currency,
+            MonsterSanctuaryItemCategory.CRAFTINGMATERIAL: self.get_option("drop_chance_craftingmaterial"),
+            MonsterSanctuaryItemCategory.CONSUMABLE: self.get_option("drop_chance_consumable"),
+            MonsterSanctuaryItemCategory.FOOD: self.get_option("drop_chance_food"),
+            MonsterSanctuaryItemCategory.CATALYST: self.get_option("drop_chance_catalyst"),
+            MonsterSanctuaryItemCategory.WEAPON: self.get_option("drop_chance_weapon"),
+            MonsterSanctuaryItemCategory.ACCESSORY: self.get_option("drop_chance_accessory"),
+            MonsterSanctuaryItemCategory.CURRENCY: self.get_option("drop_chance_currency"),
         })
         pool: List[MonsterSanctuaryItem] = []
 
@@ -250,7 +257,7 @@ class MonsterSanctuaryWorld(World):
         item_exclusions = ["Multiple"]
 
         # Exclude relics of chaos if the option isn't enabled
-        if not self.options.include_chaos_relics:
+        if self.get_option("include_chaos_relics") == 0:
             item_exclusions.append("Relic")
 
         # Add all key items to the pool
@@ -312,24 +319,6 @@ class MonsterSanctuaryWorld(World):
         self.place_ranks()
         self.place_events()
 
-        for location_name in LOCATIONS.locations_data:
-            data = LOCATIONS.locations_data[location_name]
-            location = None
-            try:
-                location = self.multiworld.get_location(location_name, self.player)
-            finally:
-                if location is None:
-                    continue
-
-            if data.category == MonsterSanctuaryLocationCategory.FLAG and location.item is None:
-                breakpoint()
-            if data.category == MonsterSanctuaryLocationCategory.RANK and location.item is None:
-                breakpoint()
-            if data.category == MonsterSanctuaryLocationCategory.KEEPER and location.item is None:
-                breakpoint()
-            if data.category == MonsterSanctuaryLocationCategory.CHAMPION and location.item is None:
-                breakpoint()
-
     # called to modify item placement before, during and after the regular fill process, before generate_output.
     # If items need to be placed during pre_fill, these items can be determined and created using get_prefill_items
     # def pre_fill(self):
@@ -360,8 +349,15 @@ class MonsterSanctuaryWorld(World):
     # the server to host the MultiWorld.
     def fill_slot_data(self) -> dict:
         return {
-            "exp_multiplier": self.options.exp_multiplier,
-            "monsters_always_drop_egg": self.options.monsters_always_drop_egg,
-            "monster_shift_rule": self.options.monster_shift_rule,
-            "skip_intro": self.options.skip_intro
+            "exp_multiplier": self.get_option("exp_multiplier"),
+            "monsters_always_drop_egg": self.get_option("monsters_always_drop_egg"),
+            "monster_shift_rule": self.get_option("monster_shift_rule"),
+            "skip_intro": self.get_option("skip_intro")
         }
+
+    # Have to do this until the new options system is actually released for real
+    def get_option(self, option: str):
+        if hasattr(self, "options"):
+            return getattr(self.options, option).value
+        else:
+            return getattr(self, option)

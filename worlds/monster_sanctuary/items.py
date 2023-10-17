@@ -41,10 +41,9 @@ class ItemData:
         self.unique = unique
 
         if groups is not None:
-            groups.append("Monster")
             self.groups = groups
         else:
-            self.groups = ["Monster"]
+            self.groups = []
 
 
 class MonsterSanctuaryItem(Item):
