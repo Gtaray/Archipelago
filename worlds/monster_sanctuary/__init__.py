@@ -358,6 +358,10 @@ class MonsterSanctuaryWorld(World):
     # Have to do this until the new options system is actually released for real
     def get_option(self, option: str):
         if hasattr(self, "options"):
-            return getattr(self.options, option).value
+            opt = getattr(self.options, option)
+            if hasattr(opt, "value"):
+                return getattr(opt, "value")
+            else:
+                return getattr(self.options, option)
         else:
             return getattr(self, option)

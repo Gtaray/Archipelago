@@ -10,6 +10,7 @@ from worlds.monster_sanctuary import data_importer, locations, MonsterSanctuaryL
 if __name__ == '__main__':
     region_map = {}
     monsters = []
+    number_of_checks = {}
     data_importer.load_world()
 
     for location_name in locations.locations_data:
@@ -25,6 +26,12 @@ if __name__ == '__main__':
             continue
 
         parts = data.region.split('_')
+
+        if (data.category == MonsterSanctuaryLocationCategory.CHEST
+                or data.category == MonsterSanctuaryLocationCategory.GIFT):
+            if parts[0] not in number_of_checks.keys():
+                number_of_checks[parts[0]] = 0
+            number_of_checks[parts[0]] += 1
 
         # Because regions normally are structured like
         # "{area name}_{room name}"
@@ -55,5 +62,10 @@ if __name__ == '__main__':
     # Serializing and write monster/champion locations
     json_object = json.dumps(monsters, indent=4)
     with open("data/monster_locations.json", "w") as outfile:
+        outfile.write(json_object)
+
+    # Serializing the total number of checks for regions
+    json_object = json.dumps(number_of_checks, indent=4)
+    with open("data/number_of_checks.json", "w") as outfile:
         outfile.write(json_object)
 

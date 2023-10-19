@@ -1262,11 +1262,21 @@
   {
     "region": "StrongholdDungeon_Jail",
     "connections": [
-      { "region": "StrongholdDungeon_Entrance" }
+      { "region": "StrongholdDungeon_Entrance" },
+      { "region": "StrongholdDungeon_JailHidden", "requirements": ["breakable_walls"] }
     ],
     "chests": [
       { "id": 5, "item": "Grapes" },
       { "id": 7, "item": "Crystal Shard", "requirements": [ "ground_switches" ] }
+    ]
+  },
+  {
+    "region": "StrongholdDungeon_JailHidden",
+    "connections": [
+      { "region": "StrongholdDungeon_Jail" }
+    ],
+    "chests": [
+      { "id": 2, "item": "Katana" }
     ]
   },
   {
@@ -2785,7 +2795,7 @@
     ]
   },
   {
-    "region": "SnowyPeaks_EastMountainClothesmaker",
+    "region": "SnowyPeaks_EastMountainClothesmakerHouse",
     "connections": [
       { "region": "SnowyPeaks_EastMountain1" },
       { "region": "SnowyPeaks_EastMountain4" }
@@ -3683,24 +3693,8 @@
       { "region": "SunPalace_WestSewers2" }
     ],
     "chests": [
-      { "id": 1, "item": "Bronze", "requirements": [
-        "OR", [
-          "AND", [ "swimming", "NOT sun_palace_lower_water_2" ],
-          "AND", [
-            "sun_palace_lower_water_2",
-            "OR", [ "double_jump", "distant_ledges" ]
-          ]
-        ]
-      ]},
-      { "id": 2, "item": "2x Mango", "requirements": [
-        "OR", [
-          "AND", [ "swimming", "NOT sun_palace_lower_water_2" ],
-          "AND", [
-            "sun_palace_lower_water_2",
-            "OR", [ "double_jump", "distant_ledges" ]
-          ]
-        ]
-      ]}
+      { "id": 1, "item": "Bronze", "requirements": ["double_jump"]},
+      { "id": 2, "item": "2x Mango", "requirements": ["double_jump"]}
     ]
   },
   {
@@ -3836,7 +3830,7 @@
       ] }
     ],
     "encounters": [
-      { "id": 7, "monsters": [ "Molebear", "Molebear", "Molebear" ]}
+      { "id": 8, "monsters": [ "Molebear", "Molebear", "Molebear" ]}
     ]
   },
   {
@@ -3937,6 +3931,9 @@
       },
       { "region": "AncientWoods_WestDescent2" },
       { "region": "AncientWoods_WestDescent3" }
+    ],
+    "encounters": [
+      {"id": 0, "monsters": ["Nightwing Molebear, Nightwing"]}
     ]
   },
   {
@@ -4111,7 +4108,7 @@
       { "id": 6, "item": "2x Hazelnut", "requirements": ["lightning_orbs"] }
     ],
     "encounters": [
-      { "id": 6, "monsters": [ "Goblin Brute", "Goblin Hood", "Goblin Hood"]}
+      { "id": 1, "monsters": [ "Goblin Brute", "Goblin Hood", "Goblin Hood"]}
     ]
   },
   {
@@ -5024,7 +5021,7 @@
     ],
     "gifts": [
       {"id": 24200124, "item": "Sanctuary Token"},
-      "TODO: There's a skill potion gift in this room that I don't know how to trigger"
+      {"id": 24200118, "item": "Skill Potion"}
     ],
     "champion": [
       {"id": 2, "monsters": ["Elderjel"]}
