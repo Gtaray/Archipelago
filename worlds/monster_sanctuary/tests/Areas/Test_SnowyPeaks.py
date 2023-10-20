@@ -28,8 +28,8 @@ class SnowyPeaksTests(TestArea):
         ])
 
     def test_progression(self):
-        self.starting_regions = ["SnowyPeaks_EastMountainClothesmaker"]
+        self.starting_regions = ["SnowyPeaks_ClothesmakerHouse"]
         self.run_tests([
-            ["SnowyPeaks_EastMountainClothesmaker_17700033", False, []],
-            ["SnowyPeaks_EastMountainClothesmaker_17700033", True, ["Raw Hide"]]
+            ["SnowyPeaks_ClothesmakerHouse_17700033", False, []],
+            ["SnowyPeaks_ClothesmakerHouse_17700033", True, ["Raw Hide"]]
         ])

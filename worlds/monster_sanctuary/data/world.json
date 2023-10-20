@@ -2775,7 +2775,7 @@
     "connections": [
       { "region": "SnowyPeaks_Bridge" },
       { "region": "SnowyPeaks_EastMountainTop", "requirements": [ "double_jump" ] },
-      { "region": "SnowyPeaks_EastMountainClothesmaker" }
+      { "region": "SnowyPeaks_ClothesmakerHouse" }
     ],
     "chests": [
       { "id": 9, "item": "Azure Gem", "requirement": ["AND", ["double_jump", "distant_ledges"]] },
@@ -2795,7 +2795,7 @@
     ]
   },
   {
-    "region": "SnowyPeaks_EastMountainClothesmakerHouse",
+    "region": "SnowyPeaks_ClothesmakerHouse",
     "connections": [
       { "region": "SnowyPeaks_EastMountain1" },
       { "region": "SnowyPeaks_EastMountain4" }
@@ -2808,7 +2808,7 @@
   {
     "region": "SnowyPeaks_EastMountain4",
     "connections": [
-      { "region": "SnowyPeaks_EastMountainClothesmaker", "requirements": [ "double_jump" ] },
+      { "region": "SnowyPeaks_ClothesmakerHouse", "requirements": [ "double_jump" ] },
       { "region": "SnowyPeaks_EastMountain2" },
       { "region": "SnowyPeaks_EastMountain5" }
     ],
@@ -3933,7 +3933,7 @@
       { "region": "AncientWoods_WestDescent3" }
     ],
     "encounters": [
-      {"id": 0, "monsters": ["Nightwing Molebear, Nightwing"]}
+      {"id": 0, "monsters": ["Nightwing", "Molebear", "Nightwing"]}
     ]
   },
   {
