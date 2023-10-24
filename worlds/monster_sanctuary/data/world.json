@@ -4129,6 +4129,9 @@
           "OR", ["ancient_woods_key", "ancient_woods_north_unlocked"]
         ]
       }
+    ],
+    "encounters": [
+      {"id": 3, "monsters": ["Goblin Brute", "Goblin Warlock", "Goblin Hood"]}
     ]
   },
   {
@@ -4425,7 +4428,7 @@
     ]
   },
   {
-    "region": "AncientWoods_South4",
+    "region": "AncientWoods_SouthHidden4",
     "connections": [
       {
         "region": "AncientWoods_South4",
@@ -5813,7 +5816,7 @@
       ]}
     ],
     "gifts": [
-      "TODO: There's a gift ID 27700082 (Reward Box Lvl 2) here but I don't know how to get it"
+      {"id": 27700082, "item": "Reward Box lvl 2"}
     ]
   },
   {
