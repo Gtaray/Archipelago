@@ -7,7 +7,7 @@ from .items import ItemData, MonsterSanctuaryItemCategory, items_data
 from .locations import (LocationData, locations_data,
                         add_chest_data, add_champion_data, add_gift_data, add_flag_data, add_encounter_data)
 from .regions import RegionData, MonsterSanctuaryConnection, regions_data
-from .rules import AccessCondition
+from .rules import AccessCondition, plotless_data, Plotless
 from . import data
 
 try:
@@ -83,6 +83,25 @@ def load_world() -> None:
         json_data = json.load(file)
         for location_name in json_data:
             locations_data[location_name].postgame = True
+
+
+def load_plotless() -> None:
+    with files(data).joinpath("plotless.json").open() as file:
+        plotless_file = json.load(file)
+        for item in plotless_file:
+            region = item.get("region")
+            type = item.get("type")
+            requirements = AccessCondition(item.get("requirements"))
+            connection = item.get("connection")
+            object_id = item.get("object_id")
+            id = item.get("id")
+
+            plotless_data[region] = Plotless(
+                type,
+                requirements,
+                connection,
+                object_id,
+                id)
 
 
 def load_items() -> None:

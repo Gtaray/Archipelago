@@ -3,6 +3,166 @@
     "type": "Flag",
     "items": [
       {
+        "name": "Ability - Claws",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Tackle",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Slash",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Heavy Punch",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Toxic Slam",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Light Crush",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Crush",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Corrosive Jabs",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Charging Mount",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Ignite",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Fiery Shots",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Minnesang",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Bubble Burst",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Lightning Bolt",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Shock Freeze",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Slime Shot",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Jewel Blast",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Toxic Freeze",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Freeze",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Snowball Toss",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Flying",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Improved Flying",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Lofty Mount",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Dual Mobility",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Swimming",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Improved Swimming",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Mount",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Sonar Mount",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Tar Mount",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Summon Rock",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Summon Mushroom",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Summon Big Rock",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Light",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Ghost Form",
+        "classification": "useful"
+      },
+      {
+        "name": "Ability - Spore Shroud",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Grapple",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Blob Form",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Morph Ball",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Levitate",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Secret Vision",
+        "classification": "progression"
+      },
+      {
         "name": "Blue Caves Switches Unlocked",
         "classification": "progression"
       },
@@ -104,6 +264,10 @@
       },
       {
         "name": "Tree of Evolution Access",
+        "classification": "progression"
+      },
+      {
+        "name": "Goblin King Defeated",
         "classification": "progression"
       },
       {

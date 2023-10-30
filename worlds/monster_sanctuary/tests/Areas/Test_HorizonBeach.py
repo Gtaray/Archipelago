@@ -23,11 +23,11 @@ class HorizonBeachTests(TestArea):
             ["horizon_beach_rescue_leonard", False, []],
             ["horizon_beach_rescue_leonard", False, ["Kongamato"]],
             ["horizon_beach_rescue_leonard", False, ["Koi"]],
-            ["horizon_beach_rescue_leonard", True, ["Koi", "Kongamato"]],
-            ["horizon_beach_rescue_leonard", True, ["Koi", "Vaero", "Silver Feather", "Tree of Evolution Access"]],
+            ["horizon_beach_rescue_leonard", True, ["Goblin King Defeated", "Koi", "Kongamato"]],
+            ["horizon_beach_rescue_leonard", True, ["Goblin King Defeated", "Koi", "Vaero", "Silver Feather", "Tree of Evolution Access"]],
 
             ["HorizonBeach_Champion_Champion", False, []],
             ["HorizonBeach_Champion_Champion", False, ["Koi"]],
             ["HorizonBeach_Champion_Champion", False, ["Rescued Leonard"]],
-            ["HorizonBeach_Champion_Champion", True, ["Koi", "Rescued Leonard"]],
+            ["HorizonBeach_Champion_Champion", True, ["Goblin King Defeated", "Koi", "Rescued Leonard"]],
         ])

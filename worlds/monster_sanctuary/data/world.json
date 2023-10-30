@@ -3,6 +3,48 @@
     "region": "Menu",
     "connections": [
       { "region": "MountainPath_North1" }
+    ],
+    "flags": [
+      {"id": "ability_claws", "name": "Ability - Claws"},
+      {"id": "ability_tackle", "name": "Ability - Tackle"},
+      {"id": "ability_slash", "name": "Ability - Slash"},
+      {"id": "ability_heavy_punch", "name": "Ability - Heavy Punch"},
+      {"id": "ability_toxic_slam", "name": "Ability - Toxic Slam"},
+      {"id": "ability_light_crush", "name": "Ability - Light Crush"},
+      {"id": "ability_crush", "name": "Ability - Crush"},
+      {"id": "ability_corrosive_jabs", "name": "Ability - Corrosive Jabs"},
+      {"id": "ability_charging_mount", "name": "Ability - Charging Mount"},
+      {"id": "ability_ignite", "name": "Ability - Ignite"},
+      {"id": "ability_fiery_shots", "name": "Ability - Fiery Shots"},
+      {"id": "ability_minnesang", "name": "Ability - Minnesang"},
+      {"id": "ability_bubble_burst", "name": "Ability - Bubble Burst"},
+      {"id": "ability_lightning_bolt", "name": "Ability - Lightning Bolt"},
+      {"id": "ability_shock_freeze", "name": "Ability - Shock Freeze"},
+      {"id": "ability_slime_shot", "name": "Ability - Slime Shot"},
+      {"id": "ability_jewel_blast", "name": "Ability - Jewel Blast"},
+      {"id": "ability_toxic_freeze", "name": "Ability - Toxic Freeze"},
+      {"id": "ability_freeze", "name": "Ability - Freeze"},
+      {"id": "ability_snowball_toss", "name": "Ability - Snowball Toss"},
+      {"id": "ability_flying", "name": "Ability - Flying"},
+      {"id": "ability_improved_flying", "name": "Ability - Improved Flying"},
+      {"id": "ability_lofty_mount", "name": "Ability - Lofty Mount"},
+      {"id": "ability_dual_mobility", "name": "Ability - Dual Mobility"},
+      {"id": "ability_swimming", "name": "Ability - Swimming"},
+      {"id": "ability_improved_swimming", "name": "Ability - Improved Swimming"},
+      {"id": "ability_mount", "name": "Ability - Mount"},
+      {"id": "ability_sonar_mount", "name": "Ability - Sonar Mount"},
+      {"id": "ability_tar_mount", "name": "Ability - Tar Mount"},
+      {"id": "ability_summon_rock", "name": "Ability - Summon Rock"},
+      {"id": "ability_summon_mushroom", "name": "Ability - Summon Mushroom"},
+      {"id": "ability_summon_big_rock", "name": "Ability - Summon Big Rock"},
+      {"id": "ability_light", "name": "Ability - Light"},
+      {"id": "ability_ghost_form", "name": "Ability - Ghost Form"},
+      {"id": "ability_spore_shroud", "name": "Ability - Spore Shroud"},
+      {"id": "ability_grapple", "name": "Ability - Grapple"},
+      {"id": "ability_blob_form", "name": "Ability - Blob Form"},
+      {"id": "ability_morph_ball", "name": "Ability - Morph Ball"},
+      {"id": "ability_levitate", "name": "Ability - Levitate"},
+      {"id": "ability_secret_vision", "name": "Ability - Secret Vision"}
     ]
   },
   {
@@ -352,7 +394,8 @@
       { "region":  "MountainPath_West2" }
     ],
     "chests": [
-      { "id": 1, "item":  "Shift Stone" }
+      { "id": 1, "item":  "Shift Stone", "requirements": [
+        "AND", ["double_jump", "narrow_corridors"]] }
     ]
   },
   {
@@ -362,7 +405,13 @@
       {
         "region":  "MountainPath_SnowyEntrance2",
         "requirements": [
-          "AND", [ "double_jump", "distant_ledges" ]
+          "OR", [
+            "improved_flying",
+            "AND", [
+              "double_jump",
+              "OR", ["distant_ledges", "mount"]
+            ]
+          ]
         ]
       }
     ]
@@ -374,7 +423,13 @@
       {
         "region":  "MountainPath_SnowyEntrance",
         "requirements": [
-          "AND", [ "double_jump", "distant_ledges" ]
+          "OR", [
+            "improved_flying",
+            "AND", [
+              "double_jump",
+              "OR", ["distant_ledges", "mount"]
+            ]
+          ]
         ]
       }
     ],
@@ -3522,16 +3577,10 @@
     "connections": [
       { "region": "SunPalace_EastSewers1" },
       { "region": "SunPalace_EastSewers3" },
-      { "region": "SunPalace_EastSewers6", "requirements": ["sun_palace_lower_water_2"] }
+      { "region": "SunPalace_EastSewers6" }
     ],
     "chests": [
-      { "id": 6, "item": "Level Badge", "requirements": [
-        "OR", [
-          "AND", [ "NOT sun_palace_lower_water_2", "swimming" ],
-          "sun_palace_lower_water_2",
-          "double_jump"
-        ]
-      ]}
+      { "id": 6, "item": "Level Badge", "requirements": ["double_jump"] }
     ],
     "encounters": [
       { "id": 2, "monsters": [ "Kame", "Sycophantom", "Kame" ]}
@@ -3554,12 +3603,8 @@
       { "region": "SunPalace_EastSewers5" }
     ],
     "chests": [
-      "TODO: See if this is doable with a swimming creature while water is raised",
       { "id": 4, "item": "Crimson Gem", "requirements": [
-        "AND", [
-          "sun_palace_lower_water_2",
-          "OR", [ "double_jump", "lofty_mount" ]
-        ]
+        "OR", [ "double_jump", "lofty_mount" ]
       ]}
     ]
   },
@@ -3579,13 +3624,7 @@
       {
         "region": "SunPalace_EastSewers2",
         "requirements": [
-          "OR", [
-            "AND", [ "swimming", "NOT sun_palace_lower_water_2" ],
-            "AND", [
-              "sun_palace_lower_water_2",
-              "OR", [ "double_jump", "improved_flying", "dual_mobility" ]
-            ]
-          ]
+          "OR", [ "double_jump", "improved_flying", "dual_mobility" ]
         ]
       },
       {"region": "Underworld_West1", "requirements": ["underworld_to_sun_palace_shortcut"]}
@@ -3604,18 +3643,7 @@
     "region": "SunPalace_WestSewers1",
     "connections": [
       { "region": "SunPalace_South1_Lower" },
-      {
-        "region": "SunPalace_WestSewers3",
-        "requirements": [
-          "OR", [
-            "AND", [
-              "NOT sun_palace_lower_water_2",
-              "OR", ["swimming", "double_jump" ]
-            ],
-            "sun_palace_lower_water_2"
-          ]
-        ]
-      },
+      { "region": "SunPalace_WestSewers3" },
       { "region": "SunPalace_WestSewers4" }
     ],
     "chests": [
@@ -3629,13 +3657,7 @@
       {
         "region": "SunPalace_West4",
         "requirements": [
-          "OR", [
-            "AND", [ "swimming", "NOT sun_palace_lower_water_2" ],
-            "AND", [
-              "sun_palace_lower_water_2",
-              "OR", [ "double_jump", "improved_flying", "dual_mobility", "lofty_mount", "summon_big_rock" ]
-            ]
-          ]
+          "OR", [ "double_jump", "improved_flying", "dual_mobility", "lofty_mount", "summon_big_rock" ]
         ]
       },
       { "region": "SunPalace_WestSewersSecret", "requirements": [ "breakable_walls" ] },
@@ -3643,7 +3665,6 @@
         "region": "SunPalace_WestSewersSecret2",
         "requirements": [
           "AND", [
-            "sun_palace_lower_water_2",
             "grapple",
             "OR", [ "double_jump", "improved_flying", "dual_mobility", "lofty_mount", "summon_big_rock" ]
           ]
@@ -3658,7 +3679,7 @@
       {
         "region": "SunPalace_WestSewers2",
         "requirements": [
-          "OR", [ "double_jump", "swimming", "sun_palace_lower_water_2" ]
+          "OR", [ "double_jump", "swimming" ]
         ]
       }
     ],
@@ -3672,13 +3693,7 @@
       {
         "region": "SunPalace_WestSewers1",
         "requirements": [
-          "OR", [
-            "AND", [ "swimming", "NOT sun_palace_lower_water_2" ],
-            "AND", [
-              "sun_palace_lower_water_2",
-              "OR", [ "double_jump", "distant_ledges", "ground_switches" ]
-            ]
-          ]
+          "OR", [ "double_jump", "distant_ledges", "ground_switches" ]
         ]
       }
     ],
@@ -3846,7 +3861,7 @@
         ]
       },
       {
-        "region": "AncientWoods_WestDescent",
+        "region": "AncientWoods_WestDescent_Upper",
         "requirements": [
           "OR", [
             "impassible_vines",
@@ -3939,7 +3954,7 @@
   {
     "region": "AncientWoods_WestDescent2",
     "connections": [
-      { "region": "AncientWoods_WestDescent" },
+      { "region": "AncientWoods_WestDescent_Lower" },
       { "region": "StrongholdDungeon_East4" }
     ],
     "chests": [
@@ -3954,7 +3969,7 @@
   {
     "region": "AncientWoods_WestDescent3",
     "connections": [
-      { "region": "AncientWoods_WestDescent" },
+      { "region": "AncientWoods_WestDescent_Lower" },
       { "region": "AncientWoods_DarkRoom2" },
       { "region": "AncientWoods_DungeonEntrance", "requirements": [ "double_jump" ] }
     ],
@@ -4158,7 +4173,8 @@
       { "id": 9, "monsters": ["Goblin Hood", "Goblin King", "Goblin Warlock"]}
     ],
     "flags": [
-      {"id": "ostanes", "name": "Ostanes"}
+      {"id": "ostanes", "name": "Ostanes"},
+      {"id": "goblin_king_defeated", "name": "Goblin King Defeated"}
     ]
   },
   {
@@ -4495,7 +4511,7 @@
     "region": "HorizonBeach_West1",
     "connections": [
       { "region": "HorizonBeach_Farm" },
-      { "region": "HorizonBeach_West2", "requirements": ["swimming"] }
+      { "region": "HorizonBeach_West2_Entrance", "requirements": ["swimming"] }
     ],
     "chests": [
       {"id": 0, "item": "Level Badge", "requirements": [
@@ -4503,11 +4519,18 @@
       ]}
     ]
   },
+   {
+    "region": "HorizonBeach_West2_Entrance",
+    "connections": [
+      { "region": "HorizonBeach_West1" },
+      { "region": "HorizonBeach_West2", "requirements": ["goblin_king_defeated"] }
+    ]
+  },
   {
     "region": "HorizonBeach_West2",
     "connections": [
-      { "region": "HorizonBeach_West1" },
-      { "region": "HorizonBeach_West3" }
+      { "region": "HorizonBeach_West2_Entrance" },
+      { "region": "HorizonBeach_West3"}
     ],
     "encounters": [
       { "id": 0, "monsters": [ "Ucan", "Vaero", "Ucan" ]},
@@ -4949,7 +4972,10 @@
     "region": "HorizonBeach_TreasureCaveEntrance",
     "connections": [
       {"region": "HorizonBeach_South2"},
-      {"region": "HorizonBeach_TreasureCave1", "requirements": ["horizon_beach_rescue_leonard"]}
+      {
+        "region": "HorizonBeach_TreasureCave1",
+        "requirements": ["horizon_beach_rescue_leonard"]
+      }
     ]
   },
   {
@@ -5816,7 +5842,7 @@
       ]}
     ],
     "gifts": [
-      {"id": 27700082, "item": "Reward Box lvl 2"}
+      {"id": 27700082, "item": "Reward Box Lvl 2"}
     ]
   },
   {
@@ -6126,6 +6152,9 @@
         ]
       ]}
     ],
+    "encounters": [
+      {"id": 4, "monsters": ["Moccus", "Promethean", "Arachlich"]}
+    ],
     "flags": [
       {"id": "underworld_east_catacomb_8_shortcut", "name": "Underworld East Catacomb 8 Shortcut"},
       {"id": "underworld_east_catacomb_pillar_control", "name": "Underworld East Catacomb Pillar Control"}
@@ -6393,7 +6422,7 @@
       ]}
     ],
     "encounters": [
-      {"id": 1, "monsters": ["Promethean", "Arachlich", "Promethean"]}
+      {"id": 2, "monsters": ["Promethean", "Arachlich", "Promethean"]}
     ]
   },
   {
@@ -6440,6 +6469,9 @@
     "connections": [
       {"region": "Underworld_WestCatacomb6"},
       {"region": "Underworld_WestCatacomb9_Roof", "requirements": ["underworld_west_catacomb_roof_access"]}
+    ],
+    "chests": [
+      {"id": 7, "item": "Clear Stone"}
     ]
   },
   {

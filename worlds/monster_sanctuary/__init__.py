@@ -9,6 +9,7 @@ from . import data_importer
 from . import regions as REGIONS
 from . import items as ITEMS
 from . import locations as LOCATIONS
+from . import rules as RULES
 
 from .items import ItemData, MonsterSanctuaryItem, MonsterSanctuaryItemCategory
 from .items import MonsterSanctuaryItemCategory as ItemCategory
@@ -34,6 +35,7 @@ def load_data():
     # Load the item data from the json file so that we have access to it anywhere else
     data_importer.load_world()
     data_importer.load_items()
+    data_importer.load_plotless()
 
 
 class MonsterSanctuaryWorld(World):
@@ -105,8 +107,32 @@ class MonsterSanctuaryWorld(World):
             region = MonsterSanctuaryRegion(self.multiworld, self.player, region_name)
             self.multiworld.regions += [region]
 
+        self.handle_plotless()
         self.create_locations()
         self.connect_regions()
+
+    def handle_plotless(self):
+        if self.get_option("skip_plot") == 0:
+            return
+
+        # Iterate over every plotless entry and replace the world graph data
+        # with the plotless access condition
+        for region_name in RULES.plotless_data:
+            data = RULES.plotless_data[region_name]
+
+            if data.type == "connection":
+                region = REGIONS.regions_data[region_name]
+                conn = region.get_connection(data.connection)
+                conn.access_rules = data.access_rules
+
+            elif data.type == "location":
+                location_name = f"{region_name}_{data.object_id}"
+                location = LOCATIONS.locations_data[location_name]
+                location.access_condition = data.access_rules
+
+            elif data.type == "flag":
+                location = LOCATIONS.locations_data[data.id]
+                location.access_condition = data.access_rules
 
     def connect_regions(self) -> None:
         for region_name in REGIONS.regions_data:
@@ -134,6 +160,7 @@ class MonsterSanctuaryWorld(World):
         for location_name in LOCATIONS.locations_data:
             location_data = LOCATIONS.locations_data[location_name]
             region = self.multiworld.get_region(location_data.region, self.player)
+
             location = MonsterSanctuaryLocation(
                 self.player,
                 location_data.name,
@@ -160,6 +187,10 @@ class MonsterSanctuaryWorld(World):
                 # Item locations can be filled with any item from another player, as well as items from this game
                 location.item_rule = lambda item, loc = location: ITEMS.can_item_be_placed(item, loc)
                 self.number_of_item_locations += 1
+
+            # only items and gifts go in the spoiler log.
+            else:
+                location.show_in_spoiler = False
 
             region.locations.append(location)
 
@@ -352,7 +383,9 @@ class MonsterSanctuaryWorld(World):
             "exp_multiplier": self.get_option("exp_multiplier"),
             "monsters_always_drop_egg": self.get_option("monsters_always_drop_egg"),
             "monster_shift_rule": self.get_option("monster_shift_rule"),
-            "skip_intro": self.get_option("skip_intro")
+            "skip_intro": self.get_option("skip_intro"),
+            "skip_plot": self.get_option("skip_plot"),
+            "skip_battles": self.get_option("skip_battles")
         }
 
     # Have to do this until the new options system is actually released for real

@@ -1,5 +1,5 @@
 from BaseClasses import CollectionState
-from typing import List, Optional
+from typing import List, Optional, Dict
 from enum import Enum
 
 
@@ -96,6 +96,23 @@ class AccessCondition:
             return all([condition.has_access(state, player) for condition in self.operands])
         else:
             return any([condition.has_access(state, player) for condition in self.operands])
+
+
+class Plotless:
+    def __init__(self,
+                 type: str,
+                 requirements: AccessCondition,
+                 connection: Optional[str],
+                 object_id: Optional[int],
+                 id: Optional[str]):
+        self.type = type
+        self.access_rules = requirements
+        self.connection = connection
+        self.object_id = object_id
+        self.id = id
+
+
+plotless_data: Dict[str, Plotless] = {}
 
 
 # region Navigation Flags
@@ -201,6 +218,10 @@ def ancient_woods_beach_access(state: CollectionState, player: int) -> bool:
 
 def ancient_woods_magma_chamber_shortcut(state: CollectionState, player: int) -> bool:
     return state.has("Ancient Woods to Magma Chamber Shortcut", player, 2)
+
+
+def goblin_king_defeated(state: CollectionState, player: int) -> bool:
+    return state.has("Goblin King Defeated", player)
 
 
 def horizon_beach_center_shortcut(state: CollectionState, player: int) -> bool:

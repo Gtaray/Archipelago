@@ -17,12 +17,8 @@ class SunPalaceTests(TestArea):
 
             ["sun_palace_raise_center_3", False, []],
             ["sun_palace_raise_center_3", True, ["Krakaturtle"]],
-            ["sun_palace_raise_center_3", True, ["Koi", "Vaero"]],
-            ["sun_palace_raise_center_3", True, ["Koi", "Double Jump Boots"]],
             ["sun_palace_raise_center_3", True, ["Sun Palace Lower Water", "Sun Palace Lower Water",
-                                                 "Double Jump Boots"]],
-            ["sun_palace_raise_center_3", True, ["Sun Palace Lower Water", "Sun Palace Lower Water",
-                                                 "Kongamato"]]
+                                                 "Double Jump Boots"]]
         ])
 
     def test_lowering_water(self):

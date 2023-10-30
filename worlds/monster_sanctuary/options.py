@@ -158,6 +158,19 @@ class SkipIntro(Toggle):
     default = 0
 
 
+class SkipPlot(Toggle):
+    """Skip plot related events and open up all areas gated by story progression."""
+    display_name = "Skip Plot Requirements"
+    default = 0
+
+
+class SkipKeeperBattles(Toggle):
+    """Disable and skip all keeper battles.
+    Some item checks are acquired by defeating keepers, and this will disable those checks."""
+    display_name = "Skip Keeper Battles"
+    default = 0
+
+
 class Goal(Choice):
     """Goal to complete.
 
@@ -190,6 +203,8 @@ monster_sanctuary_options = {
     "include_chaos_relics": IncludeChaosRelics,
     "exp_multiplier": ExpMultiplier,
     "skip_intro": SkipIntro,
+    "skip_plot": SkipPlot,
+    "skip_battles": SkipKeeperBattles,
     "goal": Goal,
     "death_link": DeathLink
 }
