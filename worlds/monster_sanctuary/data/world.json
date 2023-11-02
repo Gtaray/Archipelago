@@ -793,7 +793,10 @@
         "OR", [ "double_jump", "improved_flying", "dual_mobility" ]
       ] },
       { "id": 9, "item": "Shell+2", "requirements": [
-        "OR", [ "double_jump", "distant_ledges" ]
+        "AND", [
+          "impassible_vines",
+          "OR", [ "double_jump", "distant_ledges" ]
+        ]
       ] }
     ]
   },

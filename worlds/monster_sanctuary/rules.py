@@ -479,7 +479,7 @@ def keeper_rank_8(state: CollectionState, player: int) -> bool:
 
 
 def keeper_rank_9(state: CollectionState, player: int) -> bool:
-    return state.has("Champion Defeated", player, 1)
+    return state.has("Champion Defeated", player, 27)
 # endregion
 
 
