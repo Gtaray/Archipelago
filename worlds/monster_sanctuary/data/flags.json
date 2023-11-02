@@ -1,0 +1,440 @@
+[
+  {
+    "type": "Flag",
+    "items": [
+      {
+        "name": "Ability - Claws",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Tackle",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Slash",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Heavy Punch",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Toxic Slam",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Light Crush",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Crush",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Corrosive Jabs",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Charging Mount",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Ignite",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Fiery Shots",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Minnesang",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Bubble Burst",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Lightning Bolt",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Shock Freeze",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Slime Shot",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Jewel Blast",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Toxic Freeze",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Freeze",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Snowball Toss",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Flying",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Improved Flying",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Lofty Mount",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Dual Mobility",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Swimming",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Improved Swimming",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Mount",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Sonar Mount",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Tar Mount",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Summon Rock",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Summon Mushroom",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Summon Big Rock",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Light",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Ghost Form",
+        "classification": "useful"
+      },
+      {
+        "name": "Ability - Spore Shroud",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Grapple",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Blob Form",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Morph Ball",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Levitate",
+        "classification": "progression"
+      },
+      {
+        "name": "Ability - Secret Vision",
+        "classification": "progression"
+      },
+      {
+        "name": "Blue Caves Switches Unlocked",
+        "classification": "progression"
+      },
+      {
+        "name": "Blue Caves South Unlocked",
+        "classification": "progression"
+      },
+      {
+        "name": "Blue Caves Champion Unlocked",
+        "classification": "progression"
+      },
+      {
+        "name": "Blue Caves Switches Access",
+        "classification": "progression"
+      },
+      {
+        "name": "Blue Caves to Mountain Path Shortcut",
+        "classification": "useful"
+      },
+      {
+        "name": "Blue Caves Story Complete",
+        "classification": "progression"
+      },
+      {
+        "name": "Stronghold Dungeon South 3 Shortcut",
+        "classification": "useful"
+      },
+      {
+        "name": "Stronghold Dungeon South Unlocked",
+        "classification": "progression"
+      },
+      {
+        "name": "Stronghold Dungeon East Unlocked",
+        "classification": "progression"
+      },
+      {
+        "name": "Stronghold Dungeon to Blue Caves Shortcut",
+        "classification": "useful"
+      },
+      {
+        "name": "Stronghold Dungeon East 1 Shortcut",
+        "classification": "useful"
+      },
+      {
+        "name": "Stronghold Dungeon Library Access",
+        "classification": "progression"
+      },
+      {
+        "name": "Snowy Peaks East 4 Upper Shortcut",
+        "classification": "useful"
+      },
+      {
+        "name": "Snowy Peaks East Mountain 3 Shortcut",
+        "classification": "useful"
+      },
+      {
+        "name": "Snowy Peaks to Sun Palace Shortcut",
+        "classification": "useful"
+      },
+      {
+        "name": "Sun Palace Raise Center",
+        "classification": "progression"
+      },
+      {
+        "name": "Sun Palace Lower Water",
+        "classification": "progression"
+      },
+      {
+        "name": "Sun Palace East Shortcut",
+        "classification": "progression"
+      },
+      {
+        "name": "Sun Palace West Shortcut",
+        "classification": "progression"
+      },
+      {
+        "name": "Ancient Woods Center Unlocked",
+        "classification": "progression"
+      },
+      {
+        "name": "Ancient Woods North Unlocked",
+        "classification": "progression"
+      },
+      {
+        "name": "Ancient Woods East Shortcut",
+        "classification": "progression"
+      },
+      {
+        "name": "Ancient Woods to Magma Chamber Shortcut",
+        "classification": "progression"
+      },
+      {
+        "name": "Ostanes",
+        "classification": "progression"
+      },
+      {
+        "name": "Ancient Woods Beach Access",
+        "classification": "progression"
+      },
+      {
+        "name": "Tree of Evolution Access",
+        "classification": "progression"
+      },
+      {
+        "name": "Goblin King Defeated",
+        "classification": "progression"
+      },
+      {
+        "name": "Horizon Beach Center Shortcut",
+        "classification": "useful"
+      },
+      {
+        "name": "Forgotten World to Horizon Beach Shortcut",
+        "classification": "useful"
+      },
+      {
+        "name": "Horizon Beach To Magma Chamber Shortcut",
+        "classification": "progression"
+      },
+      {
+        "name": "Rescued Leonard",
+        "classification": "progression"
+      },
+      {
+        "name": "Magma Chamber Lowered Lava",
+        "classification": "progression"
+      },
+      {
+        "name": "Magma Chamber North Shortcut",
+        "classification": "useful"
+      },
+      {
+        "name": "Magma Chamber Center Shortcut",
+        "classification": "useful"
+      },
+      {
+        "name": "Magma Chamber East Shortcut",
+        "classification": "useful"
+      },
+      {
+        "name": "Magma Chamber South Shortcut",
+        "classification": "useful"
+      },
+      {
+        "name": "Magma Chamber Alchemist Lab Unlocked",
+        "classification": "progression"
+      },
+      {
+        "name": "Magma Chamber Mozzie Room Unlocked",
+        "classification": "progression"
+      },
+      {
+        "name": "Forgotten World to Magma Chamber Shortcut",
+        "classification": "useful"
+      },
+      {
+        "name": "Underworld East Catacomb 7 Access",
+        "classification": "progression"
+      },
+      {
+        "name": "Underworld East Catacomb 8 Shortcut",
+        "classification": "progression"
+      },
+      {
+        "name": "Underworld East Catacomb 6 Shortcut",
+        "classification": "progression"
+      },
+      {
+        "name": "Underworld East Catacomb Unlocked",
+        "classification": "progression"
+      },
+      {
+        "name": "Underworld East Catacomb Pillar Control",
+        "classification": "progression"
+      },
+      {
+        "name": "Underworld West Catacomb Center Entrance",
+        "classification": "progression"
+      },
+      {
+        "name": "Underworld West Catacomb Roof Access",
+        "classification": "progression"
+      },
+      {
+        "name": "Underworld West Catacomb 4 Access",
+        "classification": "progression"
+      },
+      {
+        "name": "Underworld West Catacomb 4 Shortcut",
+        "classification": "progression"
+      },
+      {
+        "name": "Underworld West Catacomb 7 Shortcut",
+        "classification": "progression"
+      },
+      {
+        "name": "Underworld West Catacomb 9 Interior Access",
+        "classification": "progression"
+      },
+      {
+        "name": "Underworld to Sun Palace Shortcut",
+        "classification": "progression"
+      },
+      {
+        "name": "Mystical Workshop North Shortcut",
+        "classification": "progression"
+      },
+      {
+        "name": "Mystical Workshop North Unlocked",
+        "classification": "progression"
+      },
+      {
+        "name": "Blob Key Accessible",
+        "classification": "progression"
+      },
+      {
+        "name": "Blob Key Used",
+        "classification": "progression"
+      },
+      {
+        "name": "Blob Burg Access",
+        "classification": "progression"
+      },
+      {
+        "name": "Ostanes Battle",
+        "classification": "progression"
+      },
+      {
+        "name": "Forgotten World Jungle Shortcut",
+        "classification": "progression"
+      },
+      {
+        "name": "Forgotten World Caves Shortcut",
+        "classification": "progression"
+      },
+      {
+        "name": "Forgotten World Waters Shortcut",
+        "classification": "useful"
+      },
+      {
+        "name": "Forgotten World Dracomer Defeated",
+        "classification": "progression"
+      },
+      {
+        "name": "Abandoned Tower Access",
+        "classification": "progression"
+      },
+      {
+        "name": "Abandoned Tower South Shortcut",
+        "classification": "useful"
+      },
+      {
+        "name": "Abandoned Tower Center Shortcut",
+        "classification": "useful"
+      },
+      {
+        "name": "Mad Lord Defeated",
+        "classification": "progression"
+      },
+      {
+        "name": "Victory",
+        "classification": "progression"
+      }
+    ]
+  },
+  {
+    "type": "Rank",
+    "items": [
+      {
+        "name": "Champion Defeated",
+        "classification": "progression"
+      }
+    ]
+  }
+]

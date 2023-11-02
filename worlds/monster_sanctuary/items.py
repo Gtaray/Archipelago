@@ -16,10 +16,8 @@ class MonsterSanctuaryItemCategory(IntEnum):
     ACCESSORY = 6
     CURRENCY = 7
     EGG = 8
-    MONSTER = 9,
+    COSTUME = 9
     RANK = 10,
-    FLAG = 11,
-    COSTUME = 12
 
 
 class ItemData:
@@ -59,43 +57,8 @@ items_data: Dict[str, ItemData] = {}
 item_drop_probabilities: List[MonsterSanctuaryItemCategory] = []
 
 
-# region Monster Accessor functions
-def get_monsters() -> Dict[str, ItemData]:
-    return {item_name: items_data[item_name] for item_name in items_data
-            if items_data[item_name].category is MonsterSanctuaryItemCategory.MONSTER
-            and item_name not in ["Empty Slot",
-                                  "Spectral Wolf",
-                                  "Spectral Toad",
-                                  "Spectral Eagle",
-                                  "Spectral Lion",
-                                  "Bard"]}
-
-
-def get_random_monster_name(multiworld: MultiWorld) -> str:
-    valid_items = [item for item in get_monsters()]
-    return multiworld.random.choice(valid_items)
-
-
-def can_monster_be_placed(item, location) -> bool:
-    flag = (item.player == location.player and
-            is_item_type(item.name, MonsterSanctuaryItemCategory.MONSTER))
-    return flag
-# endregion
-
-
 def can_item_be_placed(item, location) -> bool:
-    return (item.player != location.player or
-            is_item_type(item.name,
-                         MonsterSanctuaryItemCategory.KEYITEM,
-                         MonsterSanctuaryItemCategory.CRAFTINGMATERIAL,
-                         MonsterSanctuaryItemCategory.CONSUMABLE,
-                         MonsterSanctuaryItemCategory.FOOD,
-                         MonsterSanctuaryItemCategory.CATALYST,
-                         MonsterSanctuaryItemCategory.WEAPON,
-                         MonsterSanctuaryItemCategory.ACCESSORY,
-                         MonsterSanctuaryItemCategory.EGG,
-                         MonsterSanctuaryItemCategory.CURRENCY,
-                         MonsterSanctuaryItemCategory.COSTUME))
+    return True
 
 
 def build_item_groups() -> Dict:

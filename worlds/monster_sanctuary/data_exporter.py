@@ -56,16 +56,16 @@ if __name__ == '__main__':
 
     # Serializing and write subsections
     json_object = json.dumps(region_map, indent=4)
-    with open("data/subsections.json", "w") as outfile:
+    with open("export/subsections.json", "w") as outfile:
         outfile.write(json_object)
 
     # Serializing and write monster/champion locations
     json_object = json.dumps(monsters, indent=4)
-    with open("data/monster_locations.json", "w") as outfile:
+    with open("export/monster_locations.json", "w") as outfile:
         outfile.write(json_object)
 
     # Serializing the total number of checks for regions
     json_object = json.dumps(number_of_checks, indent=4)
-    with open("data/number_of_checks.json", "w") as outfile:
+    with open("export/number_of_checks.json", "w") as outfile:
         outfile.write(json_object)
 
