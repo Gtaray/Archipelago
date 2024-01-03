@@ -2202,7 +2202,7 @@
       }
     ],
     "chests": [
-      { "id": 7, "item": "Strawberry", "requirements": ["breakable_walls"] }
+      { "id": 4, "item": "Strawberry", "requirements": ["breakable_walls"] }
     ],
     "encounters": [
       { "id": 0, "monsters": [ "Ice Blob", "Yowie", "Ice Blob" ]}
@@ -2216,7 +2216,7 @@
     ],
     "chests": [
       { "id": 3, "item": "2x Wool", "requirements": ["AND", [ "double_jump", "distant_ledges" ]] },
-      { "id": 4, "item": "Hide+3", "requirements": ["AND", [ "double_jump", "distant_ledges" ]] }
+      { "id": 7, "item": "Hide+3", "requirements": ["AND", [ "double_jump", "distant_ledges" ]] }
     ]
   },
   {
@@ -2444,20 +2444,6 @@
           ]
         ]
       }
-    ],
-    "chests": [
-      {
-        "id": 5, "item": "Verdant Gem", "requirements": [
-        "AND", [
-          "breakable_walls",
-          "OR", [
-            "double_jump",
-            "improved_flying",
-            "dual_mobility",
-            "lofty_mount"
-          ]
-        ]
-      ]}
     ],
     "flags": [
       { "id":  "snowy_peaks_sun_palace_entrance_shortcut", "name": "Snowy Peaks to Sun Palace Shortcut" }
@@ -3059,7 +3045,7 @@
       { "region": "SnowyPeaks_EastDark",  "requirements": [ "warm_underwear" ] }
     ],
     "chests": [
-      { "id": 18, "item": "Orb+3", "requirements": [ "warm_underwear" ]}
+      { "id": 16, "item": "Orb+3", "requirements": [ "warm_underwear" ]}
     ]
   },
   {
