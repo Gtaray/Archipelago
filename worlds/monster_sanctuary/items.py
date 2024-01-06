@@ -48,12 +48,12 @@ class MonsterSanctuaryItem(Item):
     game: str = "Monster Sanctuary"
     quantity: int = 1
 
-    def __init__(self, player: int, name: str, data: ItemData):
-        super(MonsterSanctuaryItem, self).__init__(name, data.classification, data.id, player)
+    def __init__(self, player: int, id: int, name: str, classification: ItemClassification):
+        super(MonsterSanctuaryItem, self).__init__(name, classification, id, player)
 
 
 # This holds all the item data that is parsed from items.json file
-items_data: Dict[str, ItemData] = {}
+item_data: Dict[str, ItemData] = {}
 item_drop_probabilities: List[MonsterSanctuaryItemCategory] = []
 
 
@@ -63,7 +63,7 @@ def can_item_be_placed(item, location) -> bool:
 
 def build_item_groups() -> Dict:
     item_groups = {}
-    for item, data in items_data.items():
+    for item, data in item_data.items():
         for group in data.groups:
             item_groups[group] = item_groups.get(group, []) + [item]
 
@@ -80,11 +80,11 @@ def is_item_in_group(item: str, *groups: str) -> bool:
     # If there's on groups to check, then we return true
     if len(groups) == 0:
         return True
-    return not set(items_data[item].groups).isdisjoint(groups)
+    return not set(item_data[item].groups).isdisjoint(groups)
 
 
 def get_item_type(item_name: str) -> Optional[MonsterSanctuaryItemCategory]:
-    item = items_data.get(item_name)
+    item = item_data.get(item_name)
     if item is None:
         return None
 
@@ -94,13 +94,13 @@ def get_item_type(item_name: str) -> Optional[MonsterSanctuaryItemCategory]:
 def is_item_type(item_name: str, *item_types: MonsterSanctuaryItemCategory) -> bool:
     # For any item not in the item data dictionary, return false
     # This solves the problem with items from other worlds not having a type
-    if items_data.get(item_name) is None:
+    if item_data.get(item_name) is None:
         return False
     return get_item_type(item_name) in item_types
 
 
 def get_item_tier(item_name: str) -> Optional[int]:
-    item = items_data.get(item_name)
+    item = item_data.get(item_name)
     if item is None:
         return None
 
@@ -114,8 +114,8 @@ def is_item_tier(item: str, tier: int) -> bool:
 def get_filtered_unique_item_data(itempool: List[MonsterSanctuaryItem]) -> Dict[str, ItemData]:
     """Given a list of items, this returns a subset of that list with unique items removed
     if the unique item is already in the item pool"""
-    return {item: items_data[item] for item in items_data
-            if not items_data[item].unique
+    return {item: item_data[item] for item in item_data
+            if not item_data[item].unique
             or not is_in_item_pool(item, itempool)}
 
 
@@ -165,7 +165,7 @@ def get_random_item_name(world: World,
         return None
 
     base_item_name = world.multiworld.random.choice(valid_items)
-    base_item = items_data.get(base_item_name)
+    base_item = item_data.get(base_item_name)
 
     # weapons and accessories can gen at a higher tier, so we determine that here
     if (item_type == MonsterSanctuaryItemCategory.WEAPON
@@ -193,8 +193,8 @@ def roll_random_equipment_level(world: World, base_item: ItemData) -> str:
 
     if name_append is not None:
         new_item_name = f"{base_item.name} {name_append}"
-        if new_item_name is not None and items_data.get(new_item_name) is not None:
-            base_item = items_data[new_item_name]
+        if new_item_name is not None and item_data.get(new_item_name) is not None:
+            base_item = item_data[new_item_name]
 
     return base_item.name
 
@@ -221,7 +221,7 @@ def roll_random_item_quantity(world: World, base_item: ItemData) -> str:
 
     if name_prepend is not None:
         new_item_name = f"{name_prepend} {base_item.name}"
-        if new_item_name is not None and items_data.get(new_item_name) is not None:
-            base_item = items_data[new_item_name]
+        if new_item_name is not None and item_data.get(new_item_name) is not None:
+            base_item = item_data[new_item_name]
 
     return base_item.name

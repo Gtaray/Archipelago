@@ -60,7 +60,7 @@ class MonsterSanctuaryLocation(Location):
 
 		self.access_rule = lambda state: access_condition.has_access(state, player)
 
-		data = locations_data.get(name)
+		data = location_data.get(name)
 		if data is None:
 			return
 		if data.hint is not None:
@@ -68,28 +68,42 @@ class MonsterSanctuaryLocation(Location):
 
 
 # This holds all the location data that is parsed from world.json file
-locations_data: Dict[str, LocationData] = {}
+location_data: Dict[str, LocationData] = {}
+
+
+def add_location(location: LocationData) -> None:
+	if location_data.get(location.name) is not None:
+		raise KeyError(f"{location.name} already exists in locations_data")
+
+	location_data[location.name] = location
 
 
 def clear_data():
-	locations_data.clear()
+	location_data.clear()
+
+
+def set_postgame_location(location_name: str, is_postgame: bool = True):
+	if location_data.get(location_name) is None:
+		raise KeyError("f{location_name} does not exist")
+
+	location_data[location_name].postgame = is_postgame
 
 
 def is_location_type(location: str, *types: MonsterSanctuaryLocationCategory) -> bool:
-	data = locations_data[location]
+	data = location_data[location]
 	return data.category in types
 
 
 def get_locations_of_type(*categories: MonsterSanctuaryLocationCategory):
-	return [locations_data[name] for name in locations_data if locations_data[name].category in categories]
+	return [location_data[name] for name in location_data if location_data[name].category in categories]
 
 
 def get_champions() -> Dict[str, List[str]]:
 	# Key is the region name, value is a list of monster names for that champion encounter
 	result: Dict[str, List[Optional[str]]] = {}
 
-	for location_name in locations_data:
-		location = locations_data[location_name]
+	for location_name in location_data:
+		location = location_data[location_name]
 		if location.category != MonsterSanctuaryLocationCategory.CHAMPION:
 			continue
 
@@ -99,48 +113,3 @@ def get_champions() -> Dict[str, List[str]]:
 		result[location.region][location.monster_id] = location.default_item
 
 	return result
-
-
-def add_chest_data(location_id, chest_data, region_name) -> LocationData:
-	chest_name = f"{region_name}_{chest_data['id']}"
-
-	if chest_data.get("item") is None:
-		breakpoint()
-
-	location = LocationData(
-		location_id=location_id,
-		name=chest_name,
-		region=region_name,
-		category=MonsterSanctuaryLocationCategory.CHEST,
-		default_item=chest_data["item"],
-		access_condition=AccessCondition(chest_data.get("requirements")),
-		object_id=chest_data["id"],
-		hint=chest_data.get("hint")
-	)
-
-	if locations_data.get(location.name) is not None:
-		raise KeyError(f"{location.name} already exists in locations_data")
-
-	locations_data[location.name] = location
-	return location
-
-
-def add_gift_data(location_id, gift_data, region_name) -> LocationData:
-	gift_name = f"{region_name}_{gift_data['id']}"
-
-	location = LocationData(
-		location_id=location_id,
-		name=gift_name,
-		region=region_name,
-		category=MonsterSanctuaryLocationCategory.GIFT,
-		default_item=gift_data["item"],
-		access_condition=AccessCondition(gift_data.get("requirements")),
-		object_id=gift_data["id"],
-	)
-
-	if locations_data.get(location.name) is not None:
-		raise KeyError(f"{location.name} already exists in locations_data")
-
-	locations_data[location.name] = location
-	return location
-

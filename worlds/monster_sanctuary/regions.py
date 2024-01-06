@@ -65,4 +65,4 @@ class MonsterSanctuaryRegion(Region):
 
 
 # This holds all the region data that is parsed from world.json file
-regions_data: Dict[str, RegionData] = {}
+region_data: Dict[str, RegionData] = {}

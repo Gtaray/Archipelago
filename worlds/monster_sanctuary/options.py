@@ -1,4 +1,7 @@
-from Options import Toggle, Choice, Range, DeathLink
+from dataclasses import dataclass
+
+from Options import Toggle, Choice, Range, DeathLink, PerGameCommonOptions
+
 
 # TODO: Other potential options
 # Randomize starting monster (because right not logic doesn't care about starting monster's ability)
@@ -7,15 +10,30 @@ from Options import Toggle, Choice, Range, DeathLink
 # Randomize keeper's monsters
 # Remove locked doors
 # Randomize shops
-# I would like to bring back all of the monster randomization options, but AP is making it really difficult
+
+
+class RandomizeMonsters(Choice):
+    """Randomize monsters
+
+    No: Monsters are not randomized. Koi and Bard Egg locations are also not randomized
+    Yes: All monsters are randomized independently
+    By Specie: Monsters of the same specie are all randomized to another monster specie
+    By Encounter: Within an encounter, all monsters of the same specie are randomized to another specie. Each encounter is randomized separately"""
+    display_name = "Randomize Monsters"
+    option_no = 0
+    option_yes = 1
+    option_by_specie = 2
+    option_by_encounter = 3
+    default = 1
 
 
 class RandomizeChampions(Choice):
     """Randomize champions
 
     No: Champions will not be randomized
+    Default: Champions will be randomized according to the Randomize Monsters game option
     Shuffle: Champions will be shuffled around
-    Any: Champions will be completely randomized ignoring restrictions on the rest of the monster pool"""
+    Random: Champions will be completely randomized separate from the rest of the monster pool"""
     display_name = "Randomize Champions"
     option_no = 0
     option_shuffle = 1
@@ -187,24 +205,25 @@ class Goal(Choice):
         }[self.value]
 
 
-monster_sanctuary_options = {
-    "randomize_champions": RandomizeChampions,
-    "monster_shift_rule": RandomizeMonsterShifts,
-    "champions_in_wild": CanChampionMonstersAppearInWild,
-    "evolutions_in_wild": CanEncounterEvolvedMonsters,
-    "monsters_always_drop_egg": MonstersAlwaysDropEggs,
-    "drop_chance_craftingmaterial": CraftingMaterialDropChance,
-    "drop_chance_consumable": ConsumableDropChance,
-    "drop_chance_food": FoodDropChance,
-    "drop_chance_catalyst": CatalystDropChance,
-    "drop_chance_weapon": WeaponDropChance,
-    "drop_chance_accessory": AccessoryDropChance,
-    "drop_chance_currency": GoldDropChance,
-    "include_chaos_relics": IncludeChaosRelics,
-    "exp_multiplier": ExpMultiplier,
-    "skip_intro": SkipIntro,
-    "skip_plot": SkipPlot,
-    "skip_battles": SkipKeeperBattles,
-    "goal": Goal,
-    "death_link": DeathLink
-}
+@dataclass
+class MonsterSanctuaryOptions(PerGameCommonOptions):
+    randomize_monsters: RandomizeMonsters
+    randomize_champions: RandomizeChampions
+    monster_shift_rule: RandomizeMonsterShifts
+    champions_in_wild: CanChampionMonstersAppearInWild
+    evolutions_in_wild: CanEncounterEvolvedMonsters
+    monsters_always_drop_egg: MonstersAlwaysDropEggs
+    drop_chance_craftingmaterial: CraftingMaterialDropChance
+    drop_chance_consumable: ConsumableDropChance
+    drop_chance_food: FoodDropChance
+    drop_chance_catalyst: CatalystDropChance
+    drop_chance_weapon: WeaponDropChance
+    drop_chance_accessory: AccessoryDropChance
+    drop_chance_currency: GoldDropChance
+    include_chaos_relics: IncludeChaosRelics
+    exp_multiplier: ExpMultiplier
+    skip_intro: SkipIntro
+    skip_plot: SkipPlot
+    skip_battles: SkipKeeperBattles
+    goal: Goal
+    death_link: DeathLink

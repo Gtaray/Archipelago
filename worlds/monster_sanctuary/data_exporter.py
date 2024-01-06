@@ -13,8 +13,8 @@ if __name__ == '__main__':
     number_of_checks = {}
     data_importer.load_world()
 
-    for location_name in locations.locations_data:
-        data = locations.locations_data[location_name]
+    for location_name in locations.location_data:
+        data = locations.location_data[location_name]
 
         # Start by adding all monsters to the monster list.
         if (data.category == MonsterSanctuaryLocationCategory.MONSTER

@@ -127,12 +127,6 @@
         "groups": [
           "Area Key"
         ]
-      },
-      {
-        "name": "Bard Egg",
-        "tier": 1,
-        "classification": "progression",
-        "groups": [ "Minnesang", "Magic Walls" ]
       }
     ]
   },
@@ -7019,6 +7013,21 @@
         "tier": 1,
         "classification": "progression",
         "groups": [ "Secret Vision", "Invisible Platforms" ]
+      },
+      {
+        "name": "Bard Egg",
+        "tier": 1,
+        "classification": "progression",
+        "groups": [ "Minnesang", "Magic Walls" ]
+      }
+    ]
+  },
+  {
+    "type": "Rank",
+    "items": [
+      {
+        "name": "Champion Defeated",
+        "classification": "progression"
       }
     ]
   }

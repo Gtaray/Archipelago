@@ -7,9 +7,9 @@ from worlds.monster_sanctuary.tests import MonsterSanctuaryTestBase
 
 class TestItems(MonsterSanctuaryTestBase):
     def test_all_default_items_exist(self):
-        for location_name in locations.locations_data:
-            data = locations.locations_data[location_name]
-            item = items.items_data.get(data.default_item)
+        for location_name in locations.location_data:
+            data = locations.location_data[location_name]
+            item = items.item_data.get(data.default_item)
             if item is None:
                 print(f"{data.default_item} was not found")
             self.assertIsNot(item, None)
@@ -22,8 +22,8 @@ class TestItems(MonsterSanctuaryTestBase):
                                             MonsterSanctuaryItemCategory.FLAG))
 
     def test_key_items_appear_correct_number_of_times(self):
-        key_items = [items.items_data[item_name] for item_name in items.items_data
-                     if items.items_data[item_name].category == MonsterSanctuaryItemCategory.KEYITEM]
+        key_items = [items.item_data[item_name] for item_name in items.item_data
+                     if items.item_data[item_name].category == MonsterSanctuaryItemCategory.KEYITEM]
         for key_item in key_items:
             item_pool_items = [item for item in self.multiworld.itempool
                                if item.name == key_item.name]
@@ -39,14 +39,14 @@ class TestDefaultItemProbability(MonsterSanctuaryTestBase):
         item_exclusions = ["Multiple"]
         for i in range(1000):
             item_name = items.get_random_item_name(self.multiworld.worlds[1], itempool, group_exclude=item_exclusions)
-            item = items.MonsterSanctuaryItem(self.player, item_name, items.items_data[item_name])
+            item = items.MonsterSanctuaryItem(self.player, item_name, items.item_data[item_name])
             itempool.append(item)
 
-        key_items = [item for item in itempool if items.items_data[item.name] == MonsterSanctuaryItemCategory.KEYITEM]
+        key_items = [item for item in itempool if items.item_data[item.name] == MonsterSanctuaryItemCategory.KEYITEM]
         self.assertEqual(0, len(key_items))
-        rank_items = [item for item in itempool if items.items_data[item.name] == MonsterSanctuaryItemCategory.RANK]
+        rank_items = [item for item in itempool if items.item_data[item.name] == MonsterSanctuaryItemCategory.RANK]
         self.assertEqual(0, len(rank_items))
-        flag_items = [item for item in itempool if items.items_data[item.name] == MonsterSanctuaryItemCategory.FLAG]
+        flag_items = [item for item in itempool if items.item_data[item.name] == MonsterSanctuaryItemCategory.FLAG]
         self.assertEqual(0, len(flag_items))
 
 

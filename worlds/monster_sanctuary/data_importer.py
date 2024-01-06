@@ -2,13 +2,21 @@ import json
 import os
 from typing import Optional, Dict
 
-from BaseClasses import ItemClassification
-from .items import ItemData, MonsterSanctuaryItemCategory, items_data
-from .locations import (LocationData, locations_data,
-                        add_chest_data, add_champion_data, add_gift_data, add_flag_data, add_encounter_data)
-from .regions import RegionData, MonsterSanctuaryConnection, regions_data
-from .rules import AccessCondition, plotless_data, Plotless
 from . import data
+from . import regions as REGIONS
+from . import items as ITEMS
+from . import locations as LOCATIONS
+from . import rules as RULES
+from . import flags as FLAGS
+from . import encounters as ENCOUNTERS
+
+from .regions import RegionData, MonsterSanctuaryConnection
+from .items import ItemData, MonsterSanctuaryItemCategory
+from .locations import LocationData, MonsterSanctuaryLocationCategory
+from .rules import AccessCondition, Plotless
+from .flags import FlagData
+from .encounters import EncounterData, MonsterData
+from BaseClasses import ItemClassification
 
 try:
     from importlib.resources import files
@@ -17,7 +25,7 @@ except ImportError:
 
 
 def load_world() -> None:
-    locations_data.clear()
+    LOCATIONS.location_data.clear()
     locations_by_id: Dict[int, LocationData] = {}
     location_id: int = 970500
 
@@ -39,7 +47,7 @@ def load_world() -> None:
                 # Hack because we store comments as strings
                 if isinstance(chest_data, str):
                     continue
-                location = add_chest_data(location_id, chest_data, region_name)
+                location = add_chest_location(location_id, chest_data, region_name)
                 locations_by_id[location_id] = location
                 location_id += 1
 
@@ -47,7 +55,7 @@ def load_world() -> None:
                 # Hack because we store comments as strings
                 if isinstance(gift_data, str):
                     continue
-                location = add_gift_data(location_id, gift_data, region_name)
+                location = add_gift_location(location_id, gift_data, region_name)
                 locations_by_id[location_id] = location
                 location_id += 1
 
@@ -55,34 +63,35 @@ def load_world() -> None:
                 # Hack because we store comments as strings
                 if isinstance(encounter_data, str):
                     continue
-                result = add_encounter_data(location_id, encounter_data, region_name)
-                locations_by_id.update(result[0])
-                location_id = result[1]
+
+                add_encounter_data(encounter_data, region_name)
 
             for champion_data in region_data.get("champion") or []:
                 # Hack because we store comments as strings
                 if isinstance(champion_data, str):
                     continue
-                result = add_champion_data(location_id, champion_data, region_name)
-                locations_by_id.update(result[0])
-                location_id = result[1]
+
+                # First add the rank up item
+                location = add_rank_location(location_id, champion_data, region_name)
+                locations_by_id[location_id] = location
+                location_id += 1
+
+                add_champion_data(champion_data, region_name)
 
             for flag_data in region_data.get("flags") or []:
                 # Hack because we store comments as strings
                 if isinstance(flag_data, str):
                     continue
-                location = add_flag_data(location_id, flag_data, region_name)
-                locations_by_id[location_id] = location
-                location_id += 1
+                add_flag_data(flag_data, region_name)
 
-            regions_data[region.name] = region
+            REGIONS.region_data[region.name] = region
 
     # Go through the postgame.json file and mark every location name in that file
     # as a post-game location
     with files(data).joinpath("postgame.json").open() as file:
         json_data = json.load(file)
         for location_name in json_data:
-            locations_data[location_name].postgame = True
+            LOCATIONS.set_postgame_location(location_name)
 
 
 def load_plotless() -> None:
@@ -96,7 +105,7 @@ def load_plotless() -> None:
             object_id = item.get("object_id")
             id = item.get("id")
 
-            plotless_data[region] = Plotless(
+            RULES.plotless_data[region] = Plotless(
                 type,
                 requirements,
                 connection,
@@ -104,8 +113,7 @@ def load_plotless() -> None:
                 id)
 
 
-def load_items() -> None:
-    item_id: int = 970500
+def load_items(item_id: int) -> int:
 
     with files(data).joinpath("items.json").open() as file:
         items_file = json.load(file)
@@ -138,27 +146,42 @@ def load_items() -> None:
                 if item_category == MonsterSanctuaryItemCategory.KEYITEM:
                     item.count = item_data.get("count") or 1
 
-                items_data[item.name] = item
+                ITEMS.item_data[item.name] = item
                 item_id += 1
 
+    return item_id
+
+
+def load_monsters(item_id) -> int:
     with files(data).joinpath("monsters.json").open() as file:
         monster_file = json.load(file)
 
         for monster_data in monster_file:
+            name = monster_data["Name"]
             groups = monster_data.get("Groups")
             if groups is None:
-                groups = []
-            groups.append("Monster")
-            monster = ItemData(
-                item_id,
-                monster_data["Name"],
-                ItemClassification.progression,
-                MonsterSanctuaryItemCategory.MONSTER,
-                groups=groups
-            )
+                raise ValueError(f"{name} has no groups assigned to it")
 
-            items_data[monster.name] = monster
+            ENCOUNTERS.monster_data[name] = MonsterData(
+                item_id,
+                name,
+                groups)
             item_id += 1
+
+    return item_id
+
+
+def load_flags(item_id) -> int:
+    with files(data).joinpath("flags.json").open() as file:
+        flags_file = json.load(file)
+
+        for flag_item in flags_file:
+            name = flag_item["name"]
+            classification = parse_item_classification(flag_item["classification"])
+            FLAGS.set_flag_item_id(name, item_id, classification)
+            item_id += 1
+
+    return item_id
 
 
 def parse_item_type(text) -> Optional[MonsterSanctuaryItemCategory]:
@@ -182,10 +205,6 @@ def parse_item_type(text) -> Optional[MonsterSanctuaryItemCategory]:
         return MonsterSanctuaryItemCategory.CURRENCY
     elif text == "Egg":
         return MonsterSanctuaryItemCategory.EGG
-    elif text == "Monster":
-        return MonsterSanctuaryItemCategory.MONSTER
-    elif text == "Flag":
-        return MonsterSanctuaryItemCategory.FLAG
     elif text == "Costume":
         return MonsterSanctuaryItemCategory.COSTUME
 
@@ -207,3 +226,85 @@ def parse_item_classification(text: Optional[str]) -> Optional[ItemClassificatio
         return ItemClassification.progression_skip_balancing
 
     return None
+
+
+# region Data Adders
+def add_location(location_id, json_data, region_name, category: MonsterSanctuaryLocationCategory):
+    location = LocationData(
+        location_id=location_id,
+        name=f"{region_name}_{json_data['id']}",
+        region=region_name,
+        category=category,
+        default_item=json_data["item"],
+        access_condition=AccessCondition(json_data.get("requirements")),
+        object_id=json_data["id"],
+        hint=json_data.get("hint")
+    )
+
+    LOCATIONS.add_location(location)
+    return location
+
+
+def add_chest_location(location_id, chest_data, region_name) -> LocationData:
+    return add_location(location_id, chest_data, region_name, MonsterSanctuaryLocationCategory.CHEST)
+
+
+def add_gift_location(location_id, gift_data, region_name) -> LocationData:
+    return add_location(location_id, gift_data, region_name, MonsterSanctuaryLocationCategory.GIFT)
+
+
+def add_rank_location(location_id, champion_data, region_name) -> LocationData:
+    rank_location = LocationData(
+        location_id=location_id,
+        name=f"{region_name}_Champion",
+        region=region_name,
+        category=MonsterSanctuaryLocationCategory.RANK,
+        default_item="Champion Defeated",
+        access_condition=AccessCondition(champion_data.get("requirements"))
+    )
+
+    LOCATIONS.add_location(rank_location)
+    return rank_location
+
+
+def add_encounter_data(encounter_data, region_name) -> EncounterData:
+    encounter_id = encounter_data.get('id')
+    encounter = EncounterData(
+        encounter_id=encounter_id,
+        encounter_name=f"{region_name}_{encounter_id}",
+        is_champion=False,
+        region=region_name,
+        access_condition=AccessCondition(encounter_data.get("requirements"))
+    )
+
+    ENCOUNTERS.add_encounter(encounter, encounter_data.get("monsters"))
+
+    return encounter
+
+
+def add_champion_data(champion_data, region_name) -> EncounterData:
+    encounter_id = champion_data.get('id')
+    encounter = EncounterData(
+        encounter_id=encounter_id,
+        encounter_name=f"{region_name}_{encounter_id}",
+        is_champion=True,
+        region=region_name,
+        access_condition=AccessCondition(champion_data.get("requirements"))
+    )
+
+    ENCOUNTERS.add_encounter(encounter, champion_data.get("monsters"))
+
+    return encounter
+
+
+def add_flag_data(flag_data, region_name) -> FlagData:
+    event_flag = FlagData(
+        location_name=flag_data["id"],
+        item_name=flag_data["name"],
+        region=region_name,
+        access_condition=AccessCondition(flag_data.get("requirements"))
+    )
+
+    FLAGS.add_flag(event_flag)
+    return event_flag
+# endregion

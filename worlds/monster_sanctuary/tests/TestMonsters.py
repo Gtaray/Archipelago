@@ -16,10 +16,10 @@ class TestMonsters(MonsterSanctuaryTestBase):
         number_of_locations = 0
         for region in self.multiworld.regions:
             for location in region.locations:
-                if locations.locations_data[location.name].category == MonsterSanctuaryLocationCategory.MONSTER:
+                if locations.location_data[location.name].category == MonsterSanctuaryLocationCategory.MONSTER:
                     number_of_locations += 1
 
-        number_of_monsters = sum(items.items_data[item.name].category == MonsterSanctuaryItemCategory.MONSTER
+        number_of_monsters = sum(items.item_data[item.name].category == MonsterSanctuaryItemCategory.MONSTER
                                  for item in self.multiworld.itempool)
 
         self.assertEqual(number_of_monsters, number_of_monsters)
