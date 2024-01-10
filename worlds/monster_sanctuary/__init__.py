@@ -65,8 +65,7 @@ class MonsterSanctuaryWorld(World):
             item_name_groups[ability].extend(monsters)
         else:
             item_name_groups[ability] = [monsters]
-        
-    
+
     item_name_to_id = {item.name: item.id for item in ITEMS.item_data.values()}
     location_name_to_id = {location.name: location.location_id
                            for location in LOCATIONS.location_data.values()}
@@ -220,7 +219,7 @@ class MonsterSanctuaryWorld(World):
             koi_location = self.multiworld.get_location("SunPalace_North2_20800117", self.player)
             koi_location.place_locked_item(self.create_item("Koi Egg"))
 
-            bard_location = self.multiworld.get_location("ForgottenWorld_WandererRoom_45100110")
+            bard_location = self.multiworld.get_location("ForgottenWorld_WandererRoom_45100110", self.player)
             bard_location.place_locked_item(self.create_item("Bard Egg"))
 
     def place_monsters(self) -> None:

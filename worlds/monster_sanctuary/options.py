@@ -36,9 +36,10 @@ class RandomizeChampions(Choice):
     Random: Champions will be completely randomized separate from the rest of the monster pool"""
     display_name = "Randomize Champions"
     option_no = 0
-    option_shuffle = 1
-    option_any = 2
-    default = 2
+    option_default = 1
+    option_shuffle = 2
+    option_any = 3
+    default = 1
 
 
 class RandomizeMonsterShifts(Choice):
@@ -54,16 +55,23 @@ class RandomizeMonsterShifts(Choice):
     default = 1
 
 
-class CanEncounterEvolvedMonsters(Toggle):
-    """Determines whether evolved monsters be encountered in the wild."""
-    display_name = "Evolved Monsters in the Wild"
-    default = 1
-
-
 class CanChampionMonstersAppearInWild(Toggle):
     """Determines whether champion monsters appear in the wild."""
     display_name = "Champions appear in wild"
     default = 1
+
+
+class ImprovedMobilityLimitation(Choice):
+    """Limit monsters with improved mobility abilities from showing up too early.
+    Abilities include: improved flying, lofty mount, improved swimming, and dual mobility
+
+    No: Do not limit monster placement based on their ability
+    Mid-Game: Monsters with improved mobility abilities will not show up in the Mountain Path, Blue Caves, Stronghold Dungeon, or Snowy Peaks.
+    Late-Game: Monsters with improved mobility abilities will only show up in the Underworld, Mystical Workshop, Forgotten World, and Abandoned Tower."""
+    display_name = "Limit Improved Mobility Abilities"
+    option_no = 0
+    option_midgame = 1
+    option_lategame = 2
 
 
 class MonstersAlwaysDropEggs(Toggle):
@@ -208,10 +216,11 @@ class Goal(Choice):
 @dataclass
 class MonsterSanctuaryOptions(PerGameCommonOptions):
     randomize_monsters: RandomizeMonsters
-    randomize_champions: RandomizeChampions
+    # randomize_champions: RandomizeChampions
     monster_shift_rule: RandomizeMonsterShifts
-    champions_in_wild: CanChampionMonstersAppearInWild
-    evolutions_in_wild: CanEncounterEvolvedMonsters
+    # champions_in_wild: CanChampionMonstersAppearInWild
+    # evolutions_in_wild: CanEncounterEvolvedMonsters
+    improved_mobility_limit: ImprovedMobilityLimitation
     monsters_always_drop_egg: MonstersAlwaysDropEggs
     drop_chance_craftingmaterial: CraftingMaterialDropChance
     drop_chance_consumable: ConsumableDropChance
