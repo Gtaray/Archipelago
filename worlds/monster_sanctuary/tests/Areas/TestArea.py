@@ -1,71 +1,73 @@
 import unittest
 from argparse import Namespace
+from typing import List
 
 from BaseClasses import MultiWorld, CollectionState, ItemClassification
-from test.TestBase import WorldTestBase, TestBase
-from worlds import AutoWorld
+from worlds import AutoWorldRegister
 
 
 class TestArea(unittest.TestCase):
-    def setUp(self):
-        # Originally copied from ALttP tests
+    options = {}
+
+    # Test structure originally copied from ALttP dungeon tests
+    def world_setup(self):
         self.multiworld = MultiWorld(1)
         self.multiworld.game = {1: "Monster Sanctuary"}
+        self.multiworld.state = CollectionState(self.multiworld)
         self.multiworld.set_seed(None)
 
         args = Namespace()
-        self.multiworld.options = {}
-        for name, option in AutoWorld.AutoWorldRegister.world_types["Monster Sanctuary"].options_dataclass.type_hints.items():
-            setattr(args, name, {
-                1: option.from_any(self.multiworld.options.get(name, getattr(option, "default")))
-            })
+        for name, option in AutoWorldRegister.world_types["Monster Sanctuary"].options_dataclass.type_hints.items():
+            value = option.from_any(getattr(option, "default"))
+            if name in self.options:
+                value = self.options[name]
+
+            setattr(args, name, {1: value})
         self.multiworld.set_options(args)
 
+    def setUp(self):
+        self.world_setup()
         self.starting_regions = []  # Where to start exploring
-        self.remove_exits = []
 
         self.multiworld.worlds[1].generate_early()
         self.multiworld.worlds[1].create_regions()
+        self.multiworld.worlds[1].generate_basic()
 
         self.multiworld.get_region('Menu', 1).exits = []
+
+        self.multiworld.worlds[1].set_rules()
         self.multiworld.worlds[1].create_items()
 
-    def run_tests(self, access_pool):
-        for region_exit in self.remove_exits:
-            self.multiworld.get_entrance(region_exit, 1).connected_region = self.multiworld.get_region('Menu', 1)
+    def set_option(self, option: str, value):
+        opt = self.multiworld.worlds[1].options
+        setattr(opt, option, value)
 
-        for location, access, *item_pool in access_pool:
-            items = item_pool[0]
-            all_except = item_pool[1] if len(item_pool) > 1 else None
+    def can_access(self, start: str, end: str, items: List[str]) -> bool:
+        for i in range(len(items)):
+            items[i] = self.multiworld.create_item(items[i], 1)
 
-            with self.subTest(location=location, access=access, items=items, all_except=all_except):
-                if all_except and len(all_except) > 0:
-                    pass
-                    # Probably won't need this function
-                    # items = self.multiworld.itempool[:]
-                    # items = [item for item in items if item.name not in all_except]
-                    # items.extend(ItemFactory(item_pool[0], 1))
-                else:
-                    for i in range(len(items)):
-                        items[i] = self.multiworld.create_item(items[i], 1)
+        state = CollectionState(self.multiworld)
+        state.reachable_regions[1].add(
+            self.multiworld.get_region('Menu', 1)
+        )
 
-                state = CollectionState(self.multiworld)
-                state.reachable_regions[1].add(
-                    self.multiworld.get_region('Menu', 1)
-                )
+        region = self.multiworld.get_region(start, 1)
+        state.reachable_regions[1].add(region)
+        for region_exit in region.exits:
+            if region_exit.connected_region is not None:
+                state.blocked_connections[1].add(region_exit)
 
-                for region_name in self.starting_regions:
-                    region = self.multiworld.get_region(region_name, 1)
-                    state.reachable_regions[1].add(region)
-                    for region_exit in region.exits:
-                        if region_exit.connected_region is not None:
-                            state.blocked_connections[1].add(region_exit)
+        for item in items:
+            item.classification = ItemClassification.progression
+            # Don't want to use state.collect() because that sweeps for all other checks
+            # that follows, and we don't want to do that. We only want to use the items we
+            # define the test to use
+            state.prog_items[1][item.name] += 1
 
-                for item in items:
-                    item.classification = ItemClassification.progression
-                    # Don't want to use state.collect() because that sweeps for all other checks
-                    # that follows, and we don't want to do that. We only want to use the items we
-                    # define the test to use
-                    state.prog_items[item.name, 1] += 1
+        return self.multiworld.get_location(end, 1).can_reach(state)
 
-                self.assertEqual(self.multiworld.get_location(location, 1).can_reach(state), access)
+    def assertAccessible(self, start: str, end: str, items: List[str]):
+        self.assertEqual(self.can_access(start, end, items), True)
+
+    def assertNotAccessible(self, start: str, end: str, items: List[str]):
+        self.assertEqual(self.can_access(start, end, items), False)

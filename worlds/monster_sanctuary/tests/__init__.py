@@ -1,8 +1,6 @@
 import unittest
 
-from test.TestBase import WorldTestBase
-from test.general.TestImplemented import TestImplemented
-from worlds.monster_sanctuary import data_importer
+from test.bases import WorldTestBase
 
 
 class MonsterSanctuaryTestBase(WorldTestBase):

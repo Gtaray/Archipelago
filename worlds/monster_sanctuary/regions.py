@@ -49,6 +49,9 @@ class RegionData:
         self.name = name
         self.connections: List[MonsterSanctuaryConnection] = []
 
+    def __str__(self):
+        return self.name
+
     def get_connection(self, region: str) -> Optional[MonsterSanctuaryConnection]:
         for connection in self.connections:
             if connection.region == region:

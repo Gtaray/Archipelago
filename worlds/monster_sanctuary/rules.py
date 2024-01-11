@@ -73,6 +73,23 @@ class AccessCondition:
 
             i += 1
 
+    def __str__(self) -> str:
+        if len(self.operands) > 0:
+            joiner = " "
+            if self.operation == Operation.AND:
+                joiner = "&&"
+            elif self.operation == Operation.OR:
+                joiner = "||"
+            return joiner.join([op.__str__() for op in self.operands])
+
+        if self.function_name is None:
+            return "No Conditions"
+
+        if self.invert:
+            return f"NOT {self.function_name}"
+
+        return self.function_name
+
     def is_leaf(self) -> bool:
         return self.operation is Operation.NONE and len(self.operands) == 0
 

@@ -122,15 +122,12 @@ def randomize_monsters(world: World) -> None:
     else:
         # Start by hard-placing some monsters to ensure that certain abilities show
         def place_ability_in_area(abilities: List[str], areas: List[str]):
-            new_monsters = []
-            encounter = random.choice(get_encounters_in_area(*areas))
+            encounter = random.choice([encounter for encounter in encounters_to_randomize
+                                       if encounter.area in areas])
             new_monster = random.choice([mon for mon in available_monsters if set(abilities) & set(mon.groups)])
 
             replace_monsters_in_encounter(world, encounter, available_monsters, new_monster)
-
-            encounter.replace_monsters(*new_monsters)
             encounters_to_randomize.remove(encounter)
-            available_monsters.remove(new_monster)
 
         place_ability_in_area(["Breakable Walls"], ["MountainPath", "BlueCave"])
         place_ability_in_area(["Flying"], ["MountainPath", "BlueCave"])
@@ -261,8 +258,14 @@ def replace_monsters_in_encounter(world: World, encounter: EncounterData, availa
             available_monsters.remove(forced_monster)
 
         while len(new_monsters) < len(encounter.monsters):
-            mon = random.choice([monster for monster in available_monsters
-                           if monster.name not in encounter.monster_exclusions])
+            picks = [monster for monster in available_monsters if monster.name not in encounter.monster_exclusions]
+
+            # If we're out of monsters to pick from, then reset the list
+            if len(picks) == 0:
+                available_monsters = get_monsters()
+                picks = [monster for monster in available_monsters if monster.name not in encounter.monster_exclusions]
+
+            mon = random.choice(picks)
             new_monsters.append(mon)
             available_monsters.remove(mon)
 
@@ -289,8 +292,14 @@ def replace_monsters_in_encounter(world: World, encounter: EncounterData, availa
                 available_monsters.remove(forced_monster)
                 forced_monster = None
 
-            mon = random.choice([monster for monster in available_monsters
-                           if monster.name not in encounter.monster_exclusions])
+            picks = [monster for monster in available_monsters if monster.name not in encounter.monster_exclusions]
+
+            # If we're out of monsters to pick from, then reset the list
+            if len(picks) == 0:
+                available_monsters = get_monsters()
+                picks = [monster for monster in available_monsters if monster.name not in encounter.monster_exclusions]
+
+            mon = random.choice(picks)
             old_monsters[name] = mon
             available_monsters.remove(mon)
 
@@ -349,12 +358,3 @@ def get_monsters_in_area(*areas: str) -> List[MonsterData]:
 def get_random_monster_name(multiworld: MultiWorld) -> str:
     valid_items = [item for item in get_monsters()]
     return multiworld.random.choice(valid_items).name
-
-
-def get_encounters_in_area(*areas: str) -> List[EncounterData]:
-    return [encounter for (name, encounter) in encounter_data.items()
-            if encounter.area in areas]
-
-
-def get_random_encounter_in_area(random: Random, *areas: str) -> EncounterData:
-    return random.choice(get_encounters_in_area(*areas))

@@ -102,7 +102,7 @@ class MonsterSanctuaryWorld(World):
 
     def handle_plotless(self):
         """Modifies connection, location, and flag rules if the skip_plot option is enabled"""
-        if self.options.skip_plot:
+        if not self.options.skip_plot:
             return
 
         # Iterate over every plotless entry and replace the world graph data
