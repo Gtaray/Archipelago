@@ -2,34 +2,35 @@ from worlds.monster_sanctuary.tests.Areas.TestArea import TestArea
 
 
 class SnowyPeaksTests(TestArea):
-    def test_shortcuts(self):
-        self.starting_regions = ["SnowyPeaks_East4_Middle"]
-        self.run_tests([
-            ["snowy_peaks_east4_upper_shortcut", False, []],
-            ["snowy_peaks_east4_upper_shortcut", False, ["Kongamato"]],
-            ["snowy_peaks_east4_upper_shortcut", True, ["Double Jump Boots"]],
-            ["snowy_peaks_east4_upper_shortcut", True, ["Snowy Peaks East 4 Upper Shortcut", "Kongamato"]]
-        ])
+    def test_east_upper_shortcut(self):
+        self.assertNotAccessible("SnowyPeaks_East4_Middle", "snowy_peaks_east4_upper_shortcut", [])
+        self.assertNotAccessible("SnowyPeaks_East4_Middle", "snowy_peaks_east4_upper_shortcut",
+                                 ["Kongamato"])
+        self.assertAccessible("SnowyPeaks_East4_Middle", "snowy_peaks_east4_upper_shortcut",
+                              ["Double Jump Boots"])
+        self.assertAccessible("SnowyPeaks_East4_Middle", "snowy_peaks_east4_upper_shortcut",
+                              ["Snowy Peaks East 4 Upper Shortcut", "Kongamato"])
 
-        self.starting_regions = ["SnowyPeaks_EastMountain3_Middle"]
-        self.run_tests([
-            ["snowy_peaks_east_mountain_3_shortcut", False, []],
-            ["snowy_peaks_east_mountain_3_shortcut", False, ["Kongamato"]],
-            ["snowy_peaks_east_mountain_3_shortcut", False, ["Double Jump Boots"]],
-            ["snowy_peaks_east_mountain_3_shortcut", True, ["Snowy Peaks East Mountain 3 Shortcut",
-                                                            "Double Jump Boots"]],
-            ["snowy_peaks_east_mountain_3_shortcut", True, ["Snowy Peaks East Mountain 3 Shortcut", "Kongamato"]]
-        ])
+    def test_east_mountain_shortcut(self):
+        self.assertNotAccessible("SnowyPeaks_EastMountain3_Middle", "snowy_peaks_east_mountain_3_shortcut",
+                                 [])
+        self.assertNotAccessible("SnowyPeaks_EastMountain3_Middle", "snowy_peaks_east_mountain_3_shortcut",
+                                 ["Kongamato"])
+        self.assertNotAccessible("SnowyPeaks_EastMountain3_Middle", "snowy_peaks_east_mountain_3_shortcut",
+                                 ["Double Jump Boots"])
+        self.assertAccessible("SnowyPeaks_EastMountain3_Middle", "snowy_peaks_east_mountain_3_shortcut",
+                              ["Snowy Peaks East Mountain 3 Shortcut", "Double Jump Boots"])
+        self.assertAccessible("SnowyPeaks_EastMountain3_Middle", "snowy_peaks_east_mountain_3_shortcut",
+                              ["Snowy Peaks East Mountain 3 Shortcut", "Kongamato"])
 
-        self.starting_regions = ["SnowyPeaks_SunPalaceEntrance"]
-        self.run_tests([
-            ["snowy_peaks_sun_palace_entrance_shortcut", False, []],
-            ["snowy_peaks_sun_palace_entrance_shortcut", True, ["Warm Underwear"]]
-        ])
+    def test_sun_palace_entrance_shortcut(self):
+        self.assertNotAccessible("SnowyPeaks_SunPalaceEntrance", "snowy_peaks_sun_palace_entrance_shortcut",
+                                 [])
+        self.assertAccessible("SnowyPeaks_SunPalaceEntrance", "snowy_peaks_sun_palace_entrance_shortcut",
+                              ["Warm Underwear"])
 
-    def test_progression(self):
-        self.starting_regions = ["SnowyPeaks_ClothesmakerHouse"]
-        self.run_tests([
-            ["SnowyPeaks_ClothesmakerHouse_17700033", False, []],
-            ["SnowyPeaks_ClothesmakerHouse_17700033", True, ["Raw Hide"]]
-        ])
+    def test_clothesmaker(self):
+        self.assertNotAccessible("SnowyPeaks_ClothesmakerHouse", "SnowyPeaks_ClothesmakerHouse_17700033",
+                                 [])
+        self.assertAccessible("SnowyPeaks_ClothesmakerHouse", "SnowyPeaks_ClothesmakerHouse_17700033",
+                              ["Raw Hide"])

@@ -32,6 +32,14 @@ class FlagData:
 flag_data: Dict[str, FlagData] = {}
 
 
+def get_flag_by_item_name(item_name: str) -> Optional[FlagData]:
+    for flag_name, flag in flag_data.items():
+        if flag.item_name == item_name:
+            return flag
+
+    return None
+
+
 def add_flag(flag: FlagData):
     if flag_data.get(flag.location_name) is not None:
         raise KeyError(f"{flag.location_name} already exists in flag_data")

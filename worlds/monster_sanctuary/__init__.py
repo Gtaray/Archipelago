@@ -303,9 +303,18 @@ class MonsterSanctuaryWorld(World):
 
     def create_item(self, item_name: str) -> MonsterSanctuaryItem:
         data = ITEMS.item_data.get(item_name)
-        if data is None:
-            raise KeyError(f"Item '{item_name}' has no data")
-        return MonsterSanctuaryItem(self.player, data.id, item_name, data.classification)
+        if data is not None:
+            return MonsterSanctuaryItem(self.player, data.id, item_name, data.classification)
+
+        data = ENCOUNTERS.monster_data.get(item_name)
+        if data is not None:
+            return MonsterSanctuaryItem(self.player, data.id, data.name, ItemClassification.progression)
+
+        data = FLAGS.get_flag_by_item_name(item_name)
+        if data is not None:
+            return MonsterSanctuaryItem(self.player, data.item_id, data.item_name, data.item_classification)
+
+        raise KeyError(f"Item '{item_name}' has no data")
 
     # called to set access and item rules on locations and entrances. Locations have to be defined before this,
     # or rule application can miss them.

@@ -9,11 +9,10 @@ class MountainPathTests(TestArea):
         self.assertNotAccessible("MountainPath_North1", "KeeperStronghold_WestStairwell_5", [])
         self.assertAccessible("MountainPath_North1", "KeeperStronghold_WestStairwell_5", ["Champion Defeated"])
 
+    def test_buran_blob_key(self):
+        self.assertNotAccessible("MountainPath_West6", "MountainPath_West6_2100040", [])
+        self.assertAccessible("MountainPath_West6", "MountainPath_West6_2100040", ["Blob Key Accessible"])
 
-class MountainPathPlotlessTests(TestArea):
-    options = {
-        "skip_plot": 1
-    }
-
-    def test_east1_accessible(self):
-        self.assertAccessible("MountainPath_North1", "KeeperStronghold_WestStairwell_5", [])
+    def test_keys_to_get_to_champion(self):
+        self.assertNotAccessible("MountainPath_Center3", "MountainPath_Center7_Champion", [])
+        self.assertAccessible("MountainPath_Center3", "MountainPath_Center7_Champion", ["Mountain Path key"])
