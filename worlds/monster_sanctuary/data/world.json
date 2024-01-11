@@ -7721,7 +7721,7 @@
     "region": "ForgottenWorld_DracomerLair",
     "connections": [
       {"region": "ForgottenWorld_Waters4"},
-      {"region": "ForgottenWorld_Waters1", "requirements": ["forgotten_world_waters_shortcut"]}
+      {"region": "ForgottenWorld_Waters1_Middle", "requirements": ["forgotten_world_waters_shortcut"]}
     ],
     "chests": [
       {"id": 2, "item": "4000 G", "requirements": ["swimming"]}
