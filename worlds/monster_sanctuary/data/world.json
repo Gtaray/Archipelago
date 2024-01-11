@@ -4578,7 +4578,7 @@
     "region": "HorizonBeach_Center1",
     "connections": [
       { "region": "HorizonBeach_West5", "requirements": ["OR", ["double_jump", "swimming"]] },
-      { "region": "HorizonBeach_Center2", "requirements": ["AND", ["swimming", "horizon_beach_center_shortcut"]] },
+      { "region": "HorizonBeach_Center2_Shortcut", "requirements": ["AND", ["swimming", "horizon_beach_center_shortcut"]] },
       { "region": "HorizonBeach_Labyrinth" }
     ],
     "chests": [

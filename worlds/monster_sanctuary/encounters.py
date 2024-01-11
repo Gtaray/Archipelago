@@ -94,8 +94,6 @@ def add_encounter(encounter: EncounterData, monsters: List[str]) -> None:
         encounter.add_monster(get_monster(monster_name))
 
     encounter_data[encounter.name] = encounter
-
-
 # endregion
 
 
