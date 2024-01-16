@@ -67,8 +67,14 @@ item_data: Dict[str, ItemData] = {}
 item_drop_probabilities: List[MonsterSanctuaryItemCategory] = []
 
 
-def can_item_be_placed(item: MonsterSanctuaryItem, location) -> bool:
+def can_item_be_placed(world: World, item: MonsterSanctuaryItem, location) -> bool:
     data = get_item_by_name(item.name)
+
+    # If this item is an area key and keys must be local, then we check to see if
+    # the item name starts with the area name (ignoring spaces)
+    if is_item_in_group(item.name, "Area Key") and world.options.local_area_keys:
+        area = location.name.split('_')[0]
+        return item.name.replace(" ", "").startswith(area)
 
     # Go through every illegal location for this item and if the location name starts
     # with an illegal location, then return false

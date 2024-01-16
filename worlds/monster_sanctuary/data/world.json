@@ -765,7 +765,11 @@
       {
         "region": "BlueCave_South1_Upper",
         "requirements": [
-          "OR", ["three_blue_cave_keys", "no_locked_doors"]
+          "OR", [
+            "no_locked_doors",
+            "three_blue_cave_keys",
+            "AND", ["minimal_locked_doors", "one_blue_cave_key"]
+          ]
         ]
       },
       {
@@ -868,7 +872,8 @@
           "OR", [
             "no_locked_doors",
             "three_blue_cave_keys",
-            "AND", ["one_blue_cave_key", "minimal_locked_doors"]]
+            "AND", ["minimal_locked_doors", "one_blue_cave_key"]
+          ]
         ]
       },
       { "region": "BlueCave_South1_Middle" }

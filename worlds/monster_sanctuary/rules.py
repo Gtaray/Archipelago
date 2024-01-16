@@ -79,7 +79,7 @@ class AccessCondition:
                 joiner = "&&"
             elif self.operation == Operation.OR:
                 joiner = "||"
-            return joiner.join([op.__str__() for op in self.operands])
+            return f"({joiner.join([op.__str__() for op in self.operands])})"
 
         if self.function_name is None:
             return "No Conditions"

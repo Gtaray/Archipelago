@@ -7,82 +7,42 @@ class BlueCavesTests(TestArea):
     }
 
     def test_switches_locked_door(self):
-        self.assertNotAccessible("BlueCave_North1", "blue_cave_switches_unlocked", [])
-        self.assertAccessible("BlueCave_North1", "blue_cave_switches_unlocked",
+        self.assertNotAccessible("BlueCave_North1", "blue_cave_switches_access", [])
+        self.assertAccessible("BlueCave_North1", "blue_cave_switches_access",
                               ["Blue Cave key"])
-        self.assertAccessible("BlueCave_North1", "blue_cave_switches_unlocked",
-                              ["Blue Caves Switches Unlocked"])
-
-        # Check that used keys allow or disallow access
-        # In this scenario, we have 1 key, and it was used to open the champion door.
-        self.assertNotAccessible("BlueCave_North1", "blue_cave_switches_unlocked",
-                                 ["Blue Caves Champion Unlocked", "Blue Cave key"])
-        # In this scenario, we have 2 keys, and one was used to open the champion door
-        self.assertAccessible("BlueCave_North1", "blue_cave_switches_unlocked",
-                              ["Blue Caves Champion Unlocked", "Blue Cave key", "Blue Cave key"])
-        # In this scenario, we have 3 keys, and two were used to open other doors
-        self.assertAccessible("BlueCave_North1", "blue_cave_switches_unlocked",
-                              ["Blue Caves Champion Unlocked", "Blue Caves South Unlocked",
-                               "Blue Cave key", "Blue Cave key", "Blue Cave key"])
-
-    def test_south_locked_door(self):
-        self.assertNotAccessible("BlueCave_CentralPart", "blue_cave_south_unlocked", [])
-        self.assertNotAccessible("BlueCave_CentralPart", "blue_cave_south_unlocked",
-                                 ["Blue Caves Champion Unlocked"])
-        self.assertAccessible("BlueCave_CentralPart", "blue_cave_south_unlocked",
-                              ["Blue Cave key"])
-        self.assertAccessible("BlueCave_CentralPart", "blue_cave_south_unlocked",
-                              ["Blue Caves South Unlocked"])
-
-        # Check that used keys allow or disallow access
-        self.assertNotAccessible("BlueCave_CentralPart", "blue_cave_south_unlocked",
-                                 ["Blue Caves Switches Unlocked", "Blue Cave key"])
-        self.assertAccessible("BlueCave_CentralPart", "blue_cave_south_unlocked",
-                              ["Blue Caves Switches Unlocked", "Blue Cave key", "Blue Cave key"])
-
-        self.assertNotAccessible("BlueCave_CentralPart", "blue_cave_south_unlocked",
-                                 ["Blue Caves Champion Unlocked", "Blue Cave key"])
-        self.assertAccessible("BlueCave_CentralPart", "blue_cave_south_unlocked",
-                              ["Blue Caves Champion Unlocked", "Blue Cave key", "Blue Cave key"])
-
-        self.assertNotAccessible("BlueCave_CentralPart", "blue_cave_south_unlocked",
-                                 ["Blue Caves Switches Unlocked", "Blue Caves Champion Unlocked",
-                                  "Blue Cave key", "Blue Cave key"])
-        self.assertAccessible("BlueCave_CentralPart", "blue_cave_south_unlocked",
-                              ["Blue Caves Switches Unlocked", "Blue Caves Champion Unlocked",
-                               "Blue Cave key", "Blue Cave key", "Blue Cave key"])
 
     def test_champion_door_requires_double_jump(self):
-        self.assertNotAccessible("BlueCave_CentralPart", "blue_cave_champion_unlocked",
+        self.assertNotAccessible("BlueCave_CentralPart", "blue_caves_story_complete",
                                  ["Blue Cave key"])
-        self.assertAccessible("BlueCave_CentralPart", "blue_cave_champion_unlocked",
+        self.assertNotAccessible("BlueCave_CentralPart", "blue_caves_story_complete",
                               ["Blue Cave key", "Double Jump Boots"])
+        self.assertAccessible("BlueCave_CentralPart", "blue_caves_story_complete",
+                                 ["Blue Cave key", "Blue Cave key", "Double Jump Boots"])
 
     def test_champion_locked_door(self):
-        self.assertNotAccessible("BlueCave_CentralPart", "blue_cave_champion_unlocked",
+        self.assertNotAccessible("BlueCave_CentralPart", "blue_caves_story_complete",
                                  ["Double Jump Boots"])
-        self.assertAccessible("BlueCave_CentralPart", "blue_cave_champion_unlocked",
+        self.assertNotAccessible("BlueCave_CentralPart", "blue_caves_story_complete",
                               ["Blue Cave key", "Double Jump Boots"])
-        self.assertAccessible("BlueCave_CentralPart", "blue_cave_champion_unlocked",
-                              ["Blue Caves Champion Unlocked", "Double Jump Boots"])
+        self.assertAccessible("BlueCave_CentralPart", "blue_caves_story_complete",
+                              ["Blue Cave key", "Blue Cave key", "Double Jump Boots"])
 
-        # Check that used keys allow or disallow access
-        self.assertNotAccessible("BlueCave_CentralPart", "blue_cave_champion_unlocked",
-                                 ["Blue Caves Switches Unlocked", "Blue Cave key", "Double Jump Boots"])
-        self.assertAccessible("BlueCave_CentralPart", "blue_cave_champion_unlocked",
-                              ["Blue Caves Switches Unlocked", "Blue Cave key", "Blue Cave key", "Double Jump Boots"])
+    def test_south_locked_door(self):
+        self.assertNotAccessible("BlueCave_CentralPart", "BlueCave_South1_Upper_1_0", [])
+        self.assertNotAccessible("BlueCave_CentralPart", "BlueCave_South1_Upper_1_0",
+                              ["Blue Cave key"])
+        self.assertNotAccessible("BlueCave_CentralPart", "BlueCave_South1_Upper_1_0",
+                                 ["Blue Cave key", "Blue Cave key"])
+        self.assertAccessible("BlueCave_CentralPart", "BlueCave_South1_Upper_1_0",
+                                 ["Blue Cave key", "Blue Cave key", "Blue Cave key"])
 
-        self.assertNotAccessible("BlueCave_CentralPart", "blue_cave_champion_unlocked",
-                                 ["Blue Caves South Unlocked", "Blue Cave key", "Double Jump Boots"])
-        self.assertAccessible("BlueCave_CentralPart", "blue_cave_champion_unlocked",
-                              ["Blue Caves South Unlocked", "Blue Cave key", "Blue Cave key", "Double Jump Boots"])
-
-        self.assertNotAccessible("BlueCave_CentralPart", "blue_cave_champion_unlocked",
-                                 ["Blue Caves Switches Unlocked", "Blue Caves South Unlocked",
-                                  "Blue Cave key", "Blue Cave key", "Double Jump Boots"])
-        self.assertAccessible("BlueCave_CentralPart", "blue_cave_champion_unlocked",
-                              ["Blue Caves Switches Unlocked", "Blue Caves South Unlocked",
-                               "Blue Cave key", "Blue Cave key", "Blue Cave key", "Double Jump Boots"])
+        self.assertNotAccessible("BlueCave_South1_Upper", "BlueCave_CentralPart_6", ["Double Jump Boots"])
+        self.assertNotAccessible("BlueCave_South1_Upper", "BlueCave_CentralPart_6",
+                                 ["Blue Cave key", "Double Jump Boots"])
+        self.assertNotAccessible("BlueCave_South1_Upper", "BlueCave_CentralPart_6",
+                                 ["Blue Cave key", "Blue Cave key", "Double Jump Boots"])
+        self.assertAccessible("BlueCave_South1_Upper", "BlueCave_CentralPart_6",
+                              ["Blue Cave key", "Blue Cave key", "Blue Cave key", "Double Jump Boots"])
 
     def test_mountain_path_shortcut(self):
         # Test that the shortcut can be accessed from the blue caves side
@@ -103,19 +63,21 @@ class BlueCavesMinimalLockedDoorsTests(TestArea):
         "remove_locked_doors": 1
     }
 
+    def test_switches_accessible_with_no_keys(self):
+        self.assertAccessible("BlueCave_North1", "blue_cave_switches_access", [])
+
     def test_champion_accessible_with_no_keys(self):
-        self.assertNotAccessible("BlueCave_CentralPart", "blue_cave_champion_unlocked", [])
-        self.assertAccessible("BlueCave_CentralPart", "blue_cave_champion_unlocked", ["Double Jump Boots"])
+        self.assertNotAccessible("BlueCave_CentralPart", "blue_caves_story_complete", [])
+        self.assertAccessible("BlueCave_CentralPart", "blue_caves_story_complete", ["Double Jump Boots"])
 
     def test_south_locked_door(self):
-        self.assertNotAccessible("BlueCave_CentralPart", "blue_cave_south_unlocked", [])
-        self.assertAccessible("BlueCave_CentralPart", "blue_cave_south_unlocked",
+        self.assertNotAccessible("BlueCave_CentralPart", "BlueCave_South1_Upper_1_0", [])
+        self.assertAccessible("BlueCave_CentralPart", "BlueCave_South1_Upper_1_0",
                               ["Blue Cave key"])
-        self.assertAccessible("BlueCave_CentralPart", "blue_cave_south_unlocked",
-                              ["Blue Caves South Unlocked"])
 
-    def test_switches_accessible_with_no_keys(self):
-        self.assertAccessible("BlueCave_North1", "blue_cave_switches_unlocked", [])
+        self.assertNotAccessible("BlueCave_South1_Upper", "BlueCave_CentralPart_6", [])
+        self.assertAccessible("BlueCave_South1_Upper", "BlueCave_CentralPart_6",
+                              ["Blue Cave key", "Double Jump Boots"])
 
 
 class BlueCavesNoLockedDoorsTests(TestArea):
@@ -123,15 +85,17 @@ class BlueCavesNoLockedDoorsTests(TestArea):
         "remove_locked_doors": 2
     }
 
+    def test_switches_accessible_with_no_keys(self):
+        self.assertAccessible("BlueCave_North1", "blue_cave_switches_access", [])
+
     def test_champion_accessible_with_no_keys(self):
-        self.assertNotAccessible("BlueCave_CentralPart", "blue_cave_champion_unlocked", [])
-        self.assertAccessible("BlueCave_CentralPart", "blue_cave_champion_unlocked", ["Double Jump Boots"])
+        self.assertNotAccessible("BlueCave_CentralPart", "blue_caves_story_complete", [])
+        self.assertAccessible("BlueCave_CentralPart", "blue_caves_story_complete", ["Double Jump Boots"])
 
     def test_south_accessible_with_no_keys(self):
-        self.assertAccessible("BlueCave_CentralPart", "blue_cave_south_unlocked", [])
-
-    def test_switches_accessible_with_no_keys(self):
-        self.assertAccessible("BlueCave_North1", "blue_cave_switches_unlocked", [])
+        self.assertAccessible("BlueCave_CentralPart", "BlueCave_South1_Upper_1_0", [])
+        self.assertAccessible("BlueCave_South1_Upper", "BlueCave_CentralPart_6",
+                                 ["Double Jump Boots"])
 
 
 class BlueCavesPlotlessTests(TestArea):

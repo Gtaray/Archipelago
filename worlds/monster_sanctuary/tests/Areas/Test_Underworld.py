@@ -27,11 +27,14 @@ class UnderworldTests(TestArea):
                               ["Underworld West Catacomb 7 Shortcut"])
 
     def test_east_catacomb_locked_door(self):
-        self.assertNotAccessible("Underworld_EastCatacomb3", "underworld_east_catacomb_7_access", [])
-        self.assertAccessible("Underworld_EastCatacomb3", "underworld_east_catacomb_unlocked",
+        self.assertNotAccessible("Underworld_EastCatacomb3", "Underworld_EastCatacomb4_3", [])
+        self.assertAccessible("Underworld_EastCatacomb3", "Underworld_EastCatacomb4_3",
                               ["Underworld key"])
-        self.assertAccessible("Underworld_EastCatacomb3", "underworld_east_catacomb_7_access",
-                              ["Underworld East Catacomb Unlocked"])
+
+        self.assertNotAccessible("Underworld_EastCatacomb4", "Underworld_EastCatacomb3_13",
+                                 ["Underworld East Catacomb Pillar Control"])
+        self.assertAccessible("Underworld_EastCatacomb4", "Underworld_EastCatacomb3_13",
+                              ["Underworld East Catacomb Pillar Control", "Underworld key"])
 
     def test_east_catacomb_progression(self):
         # First check that we can't access the end right away
@@ -39,14 +42,12 @@ class UnderworldTests(TestArea):
         self.assertNotAccessible("Underworld_Entrance", "Underworld_Center1_29000021", [])
 
         # Then check if we can get the key, which is the first logical part of this
-        self.assertNotAccessible("Underworld_Entrance", "underworld_east_catacomb_unlocked", [])
+        self.assertNotAccessible("Underworld_Entrance", "underworld_east_catacomb_7_access", [])
         self.assertAccessible("Underworld_Entrance", "Underworld_EastCatacomb6_East_4", [])
 
         # After getting the key, check that we have access to this room
-        self.assertAccessible("Underworld_Entrance", "underworld_east_catacomb_unlocked",
-                              ["Underworld key"])
         self.assertAccessible("Underworld_Entrance", "underworld_east_catacomb_7_access",
-                              ["Underworld East Catacomb Unlocked"])
+                              ["Underworld key"])
 
         # Once catacomb 7 is accessible, test that we can go to the controls, and then progress on
         self.assertAccessible("Underworld_Entrance", "underworld_east_catacomb_pillar_control",
@@ -103,11 +104,14 @@ class UnderworldMinimumLockedDoorsTests(TestArea):
     }
 
     def test_east_catacomb_locked_door(self):
-        self.assertNotAccessible("Underworld_EastCatacomb3", "underworld_east_catacomb_7_access", [])
-        self.assertAccessible("Underworld_EastCatacomb3", "underworld_east_catacomb_unlocked",
+        self.assertNotAccessible("Underworld_EastCatacomb3", "Underworld_EastCatacomb4_3", [])
+        self.assertAccessible("Underworld_EastCatacomb3", "Underworld_EastCatacomb4_3",
                               ["Underworld key"])
-        self.assertAccessible("Underworld_EastCatacomb3", "underworld_east_catacomb_7_access",
-                              ["Underworld East Catacomb Unlocked"])
+
+        self.assertNotAccessible("Underworld_EastCatacomb4", "Underworld_EastCatacomb3_13",
+                                 ["Underworld East Catacomb Pillar Control"])
+        self.assertAccessible("Underworld_EastCatacomb4", "Underworld_EastCatacomb3_13",
+                              ["Underworld East Catacomb Pillar Control", "Underworld key"])
 
 
 class UnderworldNoLockedDoorsTests(TestArea):
@@ -116,4 +120,6 @@ class UnderworldNoLockedDoorsTests(TestArea):
     }
 
     def test_east_accessible_with_no_keys(self):
-        self.assertAccessible("Underworld_EastCatacomb3", "underworld_east_catacomb_unlocked", [])
+        self.assertAccessible("Underworld_EastCatacomb3", "Underworld_EastCatacomb4_3", [])
+        self.assertAccessible("Underworld_EastCatacomb4", "Underworld_EastCatacomb3_13",
+                              ["Underworld East Catacomb Pillar Control"])

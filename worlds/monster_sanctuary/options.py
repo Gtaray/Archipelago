@@ -75,8 +75,18 @@ class ImprovedMobilityLimitation(Choice):
     default = 1
 
 
+class LocalAreaKeys(Toggle):
+    """Localized Area Keys
+
+    If enabled, area keys will only appear in the Monster Sanctuary player's world, and they will only appear in their own area.
+    If disabled, keys can appear in any world, and may be found outside their area in which they are used."""
+    display_name = "Local Area Keys"
+    default = 0
+
+
 class RemoveLockedDoors(Choice):
     """Remove Locked Doors
+
     No: Locked doors are not removed
     Minimal: Superfluous locked doors are removed, while ones that gate large numbers of checks remain
     All: All locked doors are removed"""
@@ -89,6 +99,7 @@ class RemoveLockedDoors(Choice):
 
 class AddGiftEggsToPool(Toggle):
     """If enabled, any monsters you receive through gifts will have their eggs added to the item pool and their location will be randomized.
+
     If disabled then gift monsters are received in their normal locations.
     If monster randomization is set to shuffle, then the eggs you receive will be included in the shuffle.
     Gift monsters are: Koi, Skorch, Shockhopper, and Bard"""
@@ -244,6 +255,7 @@ class MonsterSanctuaryOptions(PerGameCommonOptions):
     # evolutions_in_wild: CanEncounterEvolvedMonsters
     improved_mobility_limit: ImprovedMobilityLimitation
     remove_locked_doors: RemoveLockedDoors
+    local_area_keys: LocalAreaKeys
     add_gift_eggs_to_pool: AddGiftEggsToPool
     monsters_always_drop_egg: MonstersAlwaysDropEggs
     drop_chance_craftingmaterial: CraftingMaterialDropChance

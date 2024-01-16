@@ -141,7 +141,7 @@ class MonsterSanctuaryWorld(World):
             # Chest and Gift locations go here
             else:
                 # Item locations can be filled with any item from another player, as well as items from this game
-                location.item_rule = lambda item, loc = location: ITEMS.can_item_be_placed(item, loc)
+                location.item_rule = lambda item, world = self, loc = location: ITEMS.can_item_be_placed(world, item, loc)
                 self.number_of_item_locations += 1
 
             region.locations.append(location)
@@ -377,7 +377,8 @@ class MonsterSanctuaryWorld(World):
     # or rule application can miss them.
     # Rules are handled as AccessCondition objects within locations and connections
     def set_rules(self) -> None:
-        self.multiworld.local_items[self.player].value |= self.item_name_groups["Area Key"]
+        if self.options.local_area_keys:
+            self.options.local_items.value |= self.item_name_groups["Area Key"]
 
     # called after the previous steps. Some placement and player specific randomizations can be done here.
     def generate_basic(self) -> None:
