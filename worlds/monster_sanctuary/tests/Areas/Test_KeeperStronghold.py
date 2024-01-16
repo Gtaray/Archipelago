@@ -10,3 +10,12 @@ class KeeperStrongholdTests(TestArea):
                                  ["Blue Caves Story Complete"])
         self.assertAccessible("KeeperStronghold_EastStairwell", "StrongholdDungeon_Jail_5",
                               ["Champion Defeated", "Champion Defeated", "Champion Defeated", "Blue Caves Story Complete"])
+
+
+class KeeperStrongholdPlotlessTests(TestArea):
+    options = {
+        "skip_plot": 1
+    }
+
+    def test_dungeon_is_accessible(self):
+        self.assertAccessible("KeeperStronghold_EastStairwell", "StrongholdDungeon_Jail_5", [])

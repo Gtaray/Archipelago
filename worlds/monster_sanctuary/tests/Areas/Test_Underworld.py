@@ -2,6 +2,10 @@ from worlds.monster_sanctuary.tests.Areas.TestArea import TestArea
 
 
 class UnderworldTests(TestArea):
+    options = {
+        "remove_locked_doors": 0
+    }
+
     def test_east_catacomb_shortcut(self):
         self.assertNotAccessible("Underworld_EastCatacomb6_East", "underworld_east_catacomb_6_shortcut", [])
         self.assertAccessible("Underworld_EastCatacomb6_East", "underworld_east_catacomb_6_shortcut",
@@ -91,3 +95,25 @@ class UnderworldTests(TestArea):
                                "Underworld West Catacomb 4 Access",
                                "Underworld West Catacomb 7 Shortcut",
                                "Underworld West Catacomb Roof Access"])
+
+
+class UnderworldMinimumLockedDoorsTests(TestArea):
+    options = {
+        "remove_locked_doors": 1
+    }
+
+    def test_east_catacomb_locked_door(self):
+        self.assertNotAccessible("Underworld_EastCatacomb3", "underworld_east_catacomb_7_access", [])
+        self.assertAccessible("Underworld_EastCatacomb3", "underworld_east_catacomb_unlocked",
+                              ["Underworld key"])
+        self.assertAccessible("Underworld_EastCatacomb3", "underworld_east_catacomb_7_access",
+                              ["Underworld East Catacomb Unlocked"])
+
+
+class UnderworldNoLockedDoorsTests(TestArea):
+    options = {
+        "remove_locked_doors": 2
+    }
+
+    def test_east_accessible_with_no_keys(self):
+        self.assertAccessible("Underworld_EastCatacomb3", "underworld_east_catacomb_unlocked", [])

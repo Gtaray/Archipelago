@@ -7030,5 +7030,170 @@
         "classification": "progression"
       }
     ]
+  },
+  {
+    "type": "Ability",
+    "items": [
+      {
+        "name": "Ability - Claws",
+        "classification": "useful"
+      },
+      {
+        "name": "Ability - Tackle",
+        "classification": "useful"
+      },
+      {
+        "name": "Ability - Slash",
+        "classification": "useful"
+      },
+      {
+        "name": "Ability - Heavy Punch",
+        "classification": "useful"
+      },
+      {
+        "name": "Ability - Toxic Slam",
+        "classification": "useful"
+      },
+      {
+        "name": "Ability - Light Crush",
+        "classification": "useful"
+      },
+      {
+        "name": "Ability - Crush",
+        "classification": "useful"
+      },
+      {
+        "name": "Ability - Corrosive Jabs",
+        "classification": "useful"
+      },
+      {
+        "name": "Ability - Charging Mount",
+        "classification": "useful"
+      },
+      {
+        "name": "Ability - Ignite",
+        "classification": "useful"
+      },
+      {
+        "name": "Ability - Fiery Shots",
+        "classification": "useful"
+      },
+      {
+        "name": "Ability - Minnesang",
+        "classification": "useful"
+      },
+      {
+        "name": "Ability - Bubble Burst",
+        "classification": "useful"
+      },
+      {
+        "name": "Ability - Lightning Bolt",
+        "classification": "useful"
+      },
+      {
+        "name": "Ability - Shock Freeze",
+        "classification": "useful"
+      },
+      {
+        "name": "Ability - Slime Shot",
+        "classification": "useful"
+      },
+      {
+        "name": "Ability - Jewel Blast",
+        "classification": "useful"
+      },
+      {
+        "name": "Ability - Toxic Freeze",
+        "classification": "useful"
+      },
+      {
+        "name": "Ability - Freeze",
+        "classification": "useful"
+      },
+      {
+        "name": "Ability - Snowball Toss",
+        "classification": "useful"
+      },
+      {
+        "name": "Ability - Flying",
+        "classification": "useful"
+      },
+      {
+        "name": "Ability - Improved Flying",
+        "classification": "useful"
+      },
+      {
+        "name": "Ability - Lofty Mount",
+        "classification": "useful"
+      },
+      {
+        "name": "Ability - Dual Mobility",
+        "classification": "useful"
+      },
+      {
+        "name": "Ability - Swimming",
+        "classification": "useful"
+      },
+      {
+        "name": "Ability - Improved Swimming",
+        "classification": "useful"
+      },
+      {
+        "name": "Ability - Mount",
+        "classification": "useful"
+      },
+      {
+        "name": "Ability - Sonar Mount",
+        "classification": "useful"
+      },
+      {
+        "name": "Ability - Tar Mount",
+        "classification": "useful"
+      },
+      {
+        "name": "Ability - Summon Rock",
+        "classification": "useful"
+      },
+      {
+        "name": "Ability - Summon Mushroom",
+        "classification": "useful"
+      },
+      {
+        "name": "Ability - Summon Big Rock",
+        "classification": "useful"
+      },
+      {
+        "name": "Ability - Light",
+        "classification": "useful"
+      },
+      {
+        "name": "Ability - Ghost Form",
+        "classification": "useful"
+      },
+      {
+        "name": "Ability - Spore Shroud",
+        "classification": "useful"
+      },
+      {
+        "name": "Ability - Grapple",
+        "classification": "useful"
+      },
+      {
+        "name": "Ability - Blob Form",
+        "classification": "useful"
+      },
+      {
+        "name": "Ability - Morph Ball",
+        "classification": "useful"
+      },
+      {
+        "name": "Ability - Levitate",
+        "classification": "useful"
+      },
+      {
+        "name": "Ability - Secret Vision",
+        "classification": "useful"
+      }
+    ]
   }
 ]

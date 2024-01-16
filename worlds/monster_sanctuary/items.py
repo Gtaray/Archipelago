@@ -1,4 +1,5 @@
 import math
+import re
 from enum import IntEnum
 from typing import List, Dict, Optional
 from BaseClasses import ItemClassification
@@ -18,6 +19,7 @@ class MonsterSanctuaryItemCategory(IntEnum):
     EGG = 8
     COSTUME = 9
     RANK = 10,
+    ABILITY = 11,
 
 
 class ItemData:
@@ -29,6 +31,7 @@ class ItemData:
     unique: bool
     groups: List[str]
     count: int = 1  # how many of this item should be added to the game
+    illegal_locations: List[str]
 
     def __init__(self, item_id, name, classification, category, tier=None, unique=False, groups=None):
         self.id = item_id
@@ -37,11 +40,15 @@ class ItemData:
         self.category = category
         self.tier = tier
         self.unique = unique
+        self.illegal_locations = []
 
         if groups is not None:
             self.groups = groups
         else:
             self.groups = []
+
+    def __str__(self):
+        return self.name
 
 
 class MonsterSanctuaryItem(Item):
@@ -51,13 +58,24 @@ class MonsterSanctuaryItem(Item):
     def __init__(self, player: int, id: int, name: str, classification: ItemClassification):
         super(MonsterSanctuaryItem, self).__init__(name, classification, id, player)
 
+    def __str__(self):
+        return self.name
+
 
 # This holds all the item data that is parsed from items.json file
 item_data: Dict[str, ItemData] = {}
 item_drop_probabilities: List[MonsterSanctuaryItemCategory] = []
 
 
-def can_item_be_placed(item, location) -> bool:
+def can_item_be_placed(item: MonsterSanctuaryItem, location) -> bool:
+    data = get_item_by_name(item.name)
+
+    # Go through every illegal location for this item and if the location name starts
+    # with an illegal location, then return false
+    for illegal_location in data.illegal_locations:
+        if location.name.startswith(illegal_location):
+            return False
+
     return True
 
 
@@ -81,6 +99,12 @@ def is_item_in_group(item: str, *groups: str) -> bool:
     if len(groups) == 0:
         return True
     return not set(item_data[item].groups).isdisjoint(groups)
+
+
+def get_item_by_name(item: str) -> Optional[ItemData]:
+    if item in item_data:
+        return item_data[item]
+    return None
 
 
 def get_item_type(item_name: str) -> Optional[MonsterSanctuaryItemCategory]:

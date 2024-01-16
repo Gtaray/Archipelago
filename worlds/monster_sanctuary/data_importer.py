@@ -105,12 +105,15 @@ def load_plotless() -> None:
             object_id = item.get("object_id")
             id = item.get("id")
 
-            RULES.plotless_data[region] = Plotless(
+            if region not in RULES.plotless_data:
+                RULES.plotless_data[region] = []
+
+            RULES.plotless_data[region].append(Plotless(
                 type,
                 requirements,
                 connection,
                 object_id,
-                id)
+                id))
 
 
 def load_items(item_id: int) -> int:
@@ -148,6 +151,16 @@ def load_items(item_id: int) -> int:
 
                 ITEMS.item_data[item.name] = item
                 item_id += 1
+
+    # This json file has a list of places where items are not allowed to be placed
+    with files(data).joinpath("item_rules.json").open() as file:
+        item_rules = json.load(file)
+        for item_data in item_rules:
+            item_name = item_data["item"]
+            locations = item_data["locations"]
+
+            item = ITEMS.get_item_by_name(item_name)
+            item.illegal_locations = locations
 
     return item_id
 
@@ -207,6 +220,8 @@ def parse_item_type(text) -> Optional[MonsterSanctuaryItemCategory]:
         return MonsterSanctuaryItemCategory.EGG
     elif text == "Costume":
         return MonsterSanctuaryItemCategory.COSTUME
+    elif text == "Ability":
+        return MonsterSanctuaryItemCategory.ABILITY
 
     return None
 

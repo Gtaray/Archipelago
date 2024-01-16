@@ -312,6 +312,15 @@ class WorldTestBase(unittest.TestCase):
             return
         from Fill import distribute_items_restrictive
 
+        # TODO: REMEMBER TO REMOVE THIS
+        def print_key_locations():
+            keys = ["Mountain Path key", "Blue Cave key", "Stronghold Dungeon key", "Ancient Woods key", "Magma Chamber key", "Underworld key", "Mystical Workshop key"]
+            for location in self.multiworld.get_filled_locations(1):
+                if location.item.name not in keys:
+                    continue
+                print(f"{location.item.name} at {location.name}")
+        # TODO: END SECTION
+
         # basically a shortened reimplementation of this method from core, in order to force the check is done
         def fulfills_accessibility() -> bool:
             locations = list(self.multiworld.get_locations(1))
@@ -321,6 +330,7 @@ class WorldTestBase(unittest.TestCase):
                 for n in range(len(locations) - 1, -1, -1):
                     if locations[n].can_reach(state):
                         sphere.append(locations.pop(n))
+
                 self.assertTrue(sphere or self.multiworld.accessibility[1] == "minimal",
                                 f"Unreachable locations: {locations}")
                 if not sphere:
@@ -333,6 +343,7 @@ class WorldTestBase(unittest.TestCase):
         with self.subTest("Game", game=self.game, seed=self.multiworld.seed):
             distribute_items_restrictive(self.multiworld)
             call_all(self.multiworld, "post_fill")
+            print_key_locations()
             self.assertTrue(fulfills_accessibility(), "Collected all locations, but can't beat the game.")
             placed_items = [loc.item for loc in self.multiworld.get_locations() if loc.item and loc.item.code]
             self.assertLessEqual(len(self.multiworld.itempool), len(placed_items),

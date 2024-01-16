@@ -18,7 +18,7 @@ class LocationData:
 	region: str
 	default_item: Optional[str]
 	access_condition = Optional[AccessCondition]
-	object_id: Optional[str]
+	object_id: Optional[int]
 	monster_id: Optional[int]  # 0, 1, or 2. Index of a monster in an encounter
 	event: bool
 	postgame: bool = False
@@ -32,7 +32,7 @@ class LocationData:
 			category: MonsterSanctuaryLocationCategory,
 			default_item: Optional[str] = None,
 			access_condition: Optional[AccessCondition] = None,
-			object_id: Optional[str] = None,
+			object_id: Optional[int] = None,
 			event: bool = False,
 			hint: Optional[str]=None):
 		self.location_id = location_id

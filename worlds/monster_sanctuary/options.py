@@ -72,6 +72,28 @@ class ImprovedMobilityLimitation(Choice):
     option_no = 0
     option_midgame = 1
     option_lategame = 2
+    default = 1
+
+
+class RemoveLockedDoors(Choice):
+    """Remove Locked Doors
+    No: Locked doors are not removed
+    Minimal: Superfluous locked doors are removed, while ones that gate large numbers of checks remain
+    All: All locked doors are removed"""
+    display_name = "Remove Locked Doors"
+    option_no = 0
+    option_minimal = 1
+    option_all = 2
+    default = 1
+
+
+class AddGiftEggsToPool(Toggle):
+    """If enabled, any monsters you receive through gifts will have their eggs added to the item pool and their location will be randomized.
+    If disabled then gift monsters are received in their normal locations.
+    If monster randomization is set to shuffle, then the eggs you receive will be included in the shuffle.
+    Gift monsters are: Koi, Skorch, Shockhopper, and Bard"""
+    display_name = "Add Gift Monster Eggs to Item Pool"
+    default = 1
 
 
 class MonstersAlwaysDropEggs(Toggle):
@@ -221,6 +243,8 @@ class MonsterSanctuaryOptions(PerGameCommonOptions):
     # champions_in_wild: CanChampionMonstersAppearInWild
     # evolutions_in_wild: CanEncounterEvolvedMonsters
     improved_mobility_limit: ImprovedMobilityLimitation
+    remove_locked_doors: RemoveLockedDoors
+    add_gift_eggs_to_pool: AddGiftEggsToPool
     monsters_always_drop_egg: MonstersAlwaysDropEggs
     drop_chance_craftingmaterial: CraftingMaterialDropChance
     drop_chance_consumable: ConsumableDropChance

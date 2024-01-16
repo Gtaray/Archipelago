@@ -64,10 +64,15 @@ class TestArea(unittest.TestCase):
             # define the test to use
             state.prog_items[1][item.name] += 1
 
-        return self.multiworld.get_location(end, 1).can_reach(state)
+        location = self.multiworld.get_location(end, 1)
+        return location.can_reach(state)
 
     def assertAccessible(self, start: str, end: str, items: List[str]):
-        self.assertEqual(self.can_access(start, end, items), True)
+        with self.subTest("Can access location from region",
+                          starting_region=start, end_location=end, items=', '.join(items)):
+            self.assertEqual(self.can_access(start, end, items), True)
 
     def assertNotAccessible(self, start: str, end: str, items: List[str]):
-        self.assertEqual(self.can_access(start, end, items), False)
+        with self.subTest("Can't access location from region",
+                          starting_region=start, end_location=end, items=', '.join(items)):
+            self.assertEqual(self.can_access(start, end, items), False)

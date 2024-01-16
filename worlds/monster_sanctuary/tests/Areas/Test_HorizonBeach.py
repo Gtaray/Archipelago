@@ -2,6 +2,12 @@ from worlds.monster_sanctuary.tests.Areas.TestArea import TestArea
 
 
 class HorizonBeachTests(TestArea):
+    def test_horizon_beach_accessible(self):
+        self.assertNotAccessible("HorizonBeach_West2_Entrance", "HorizonBeach_West2_0_0",
+                                 ["Koi"])
+        self.assertAccessible("HorizonBeach_West2_Entrance", "HorizonBeach_West1_0",
+                              ["Goblin King Defeated", "Koi"])
+
     def test_center_shortcut(self):
         self.assertNotAccessible("HorizonBeach_Center1", "horizon_beach_center_shortcut", [])
         self.assertNotAccessible("HorizonBeach_Center1", "horizon_beach_center_shortcut",
@@ -45,3 +51,14 @@ class HorizonBeachTests(TestArea):
 
         self.assertAccessible("HorizonBeach_West1", "HorizonBeach_Champion_Champion",
                               ["Koi", "Rescued Leonard", "Goblin King Defeated"])
+
+class HorizonBeachPlotlessTests(TestArea):
+    options = {
+        "skip_plot": 1
+    }
+
+    def test_horizon_beach_accessible(self):
+        self.assertAccessible("HorizonBeach_West2_Entrance", "HorizonBeach_West1_0", ["Koi"])
+
+    def test_rescued_leonard_not_required(self):
+        self.assertAccessible("HorizonBeach_TreasureCave1", "HorizonBeach_Champion_Champion", ["Koi"])

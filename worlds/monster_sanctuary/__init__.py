@@ -12,6 +12,7 @@ from . import locations as LOCATIONS
 from . import rules as RULES
 from . import flags as FLAGS
 from . import encounters as ENCOUNTERS
+from .encounters import MonsterData
 
 from .items import ItemData, MonsterSanctuaryItem, MonsterSanctuaryItemCategory
 from .items import MonsterSanctuaryItemCategory as ItemCategory
@@ -85,7 +86,7 @@ class MonsterSanctuaryWorld(World):
     # called per player before any items or locations are created. You can set properties on your world here.
     # Already has access to player options and RNG.
     def generate_early(self) -> None:
-        pass
+        ENCOUNTERS.randomize_monsters(self)
 
     # called to place player's regions and their locations into the MultiWorld's regions list. If it's hard to separate,
     # this can be done during generate_early or create_items as well.
@@ -96,46 +97,37 @@ class MonsterSanctuaryWorld(World):
             for region_name in REGIONS.region_data
         ]
 
-        self.handle_plotless()
         self.create_item_locations()
         self.connect_regions()
-
-    def handle_plotless(self):
-        """Modifies connection, location, and flag rules if the skip_plot option is enabled"""
-        if not self.options.skip_plot:
-            return
-
-        # Iterate over every plotless entry and replace the world graph data
-        # with the plotless access condition
-        for region_name in RULES.plotless_data:
-            data = RULES.plotless_data[region_name]
-
-            if data.type == "connection":
-                region = REGIONS.region_data[region_name]
-                conn = region.get_connection(data.connection)
-                conn.access_rules = data.access_rules
-
-            elif data.type == "location":
-                location_name = f"{region_name}_{data.object_id}"
-                location = LOCATIONS.location_data[location_name]
-                location.access_condition = data.access_rules
-
-            elif data.type == "flag":
-                location = FLAGS.flag_data[data.id]
-                location.access_condition = data.access_rules
 
     def create_item_locations(self) -> None:
         """Creates all locations for items, gifts, and rank ups"""
         for location_name in LOCATIONS.location_data:
             location_data = LOCATIONS.location_data[location_name]
+
+            # First we check if we should be ignoring these locations based on rando options
+            # If we're never allowing shifting, then these locations should not be included, as they
+            # require a shifted monster to get.
+            if self.options.monster_shift_rule == "never" and location_name in [
+                "SnowyPeaks_Cryomancer_17900065",
+                "SnowyPeaks_Cryomancer_17900066"
+                "SnowyPeaks_Cryomancer_17900077"
+            ]:
+                continue
+
             region = self.multiworld.get_region(location_data.region, self.player)
+
+            plotless_rules = RULES.get_plotless_location(region.name, location_data.object_id)
+            access_condition = location_data.access_condition or None
+            if self.options.skip_plot and plotless_rules is not None:
+                access_condition = plotless_rules.access_rules
 
             location = MonsterSanctuaryLocation(
                 self.player,
                 location_data.name,
                 location_data.location_id,
                 region,
-                location_data.access_condition or None)
+                access_condition)
 
             # if the goal is to defeat the mad lord, then
             # we do not add any post-game locations
@@ -167,11 +159,15 @@ class MonsterSanctuaryWorld(World):
                 if target_region_data is None:
                     continue
 
+                plotless_rules = RULES.get_plotless_connection(region.name, target_region_data.name)
+                access_condition = connection.access_rules or None
+                if self.options.skip_plot and plotless_rules is not None:
+                    access_condition = plotless_rules.access_rules
+
                 # Build the Entrance data
                 connection_name = f"{region_data.name} to {connection.region}"
                 entrance = Entrance(self.player, connection_name, region)
-                # entrance.access_rule = connection.get_access_func(self.player)
-                entrance.access_rule = lambda state, conn=connection: conn.access_rules.has_access(state, self.player)
+                entrance.access_rule = lambda state, rules=access_condition: rules.has_access(state, self.player)
 
                 # Add it to the region's exits, and connect to the other region's entrance
                 region.exits.append(entrance)
@@ -199,32 +195,78 @@ class MonsterSanctuaryWorld(World):
         """Creates locations for all flags, and places flag items at those locations"""
         for location_name, data in FLAGS.flag_data.items():
             region = self.multiworld.get_region(data.region, self.player)
+
+            plotless_rules = RULES.get_plotless_flag(region.name, data.location_name)
+            access_condition = data.access_condition or None
+            if self.options.skip_plot and plotless_rules is not None:
+                access_condition = plotless_rules.access_rules
+
             location = MonsterSanctuaryLocation(
                 player=self.player,
                 name=data.location_name,
                 parent=region,
-                access_condition=data.access_condition or None)
+                access_condition=access_condition)
 
             if not hasattr(data, "item_id"):
                 breakpoint()
 
-            event_item = MonsterSanctuaryItem(self.player, data.item_id, data.item_name, data.item_classification)
+            event_item = MonsterSanctuaryItem(
+                self.player,
+                data.item_id,
+                data.item_name,
+                data.item_classification)
 
             location.place_locked_item(event_item)
             region.locations.append(location)
 
-    def place_locked_items(self):
-        """Places items that need to be locked to a specific spot based on game options"""
-        if self.options.randomize_monsters == "no":
-            koi_location = self.multiworld.get_location("SunPalace_North2_20800117", self.player)
-            koi_location.place_locked_item(self.create_item("Koi Egg"))
+    def handle_monster_eggs(self):
+        eggs = {}
 
-            bard_location = self.multiworld.get_location("ForgottenWorld_WandererRoom_45100110", self.player)
-            bard_location.place_locked_item(self.create_item("Bard Egg"))
+        if self.options.randomize_monsters == "by_specie":
+            # These eggs either get added to the item pool or they are placed in their respective gift location
+            eggs["SunPalace_North2_20800117"] = self.create_item(self.species_swap["Koi"].egg_name())
+            eggs["ForgottenWorld_WandererRoom_45100110"] = self.create_item(self.species_swap["Bard"].egg_name())
+            eggs["MagmaChamber_North8_East_27900026"] = self.create_item(self.species_swap["Skorch"].egg_name())
+            eggs["SnowyPeaks_Cryomancer_17900065"] = self.create_item(self.species_swap["Shockhopper"].egg_name())
+            eggs["SnowyPeaks_Cryomancer_17900066"] = self.create_item(self.species_swap["Shockhopper"].egg_name())
+            eggs["SnowyPeaks_Cryomancer_17900077"] = self.create_item(self.species_swap["Shockhopper"].egg_name())
+            # eggs["AlchemistShop_5"] = self.create_item(self.species_swap["Plague Egg"].egg_name()),
+
+            # These are straight up added because they don't come from a specific location
+            # they just need to be available in the pool somewhere to make sure all locations
+            # are reachable.
+            self.multiworld.itempool += [
+                self.create_item(self.species_swap["Mad Lord"].egg_name()),
+                self.create_item(self.species_swap["Plague Egg"].egg_name()),
+                self.create_item(self.species_swap["Ninki"].egg_name()),
+                self.create_item(self.species_swap["Sizzle Knight"].egg_name()),
+                self.create_item(self.species_swap["Tanuki"].egg_name()),
+            ]
+            self.number_of_item_locations -= 5
+
+        else:
+            # These are monsters that are normally given through gifts, and are either added to the pool
+            # or are locked at their original location
+            eggs["SunPalace_North2_20800117"] = self.create_item("Koi Egg")
+            eggs["ForgottenWorld_WandererRoom_45100110"] = self.create_item("Bard Egg")
+            eggs["MagmaChamber_North8_East_27900026"] = self.create_item("Skorch Egg")
+            eggs["SnowyPeaks_Cryomancer_17900065"] = self.create_item("Shockhopper Egg")
+            eggs["SnowyPeaks_Cryomancer_17900066"] = self.create_item("Shockhopper Egg")
+            eggs["SnowyPeaks_Cryomancer_17900077"] = self.create_item("Shockhopper Egg")
+
+        # Depending on the options, these eggs are either added to the pool, or locked
+        # into their default location
+        if self.options.add_gift_eggs_to_pool:
+            self.multiworld.itempool += list(item for location, item in eggs.items())
+        else:
+            for location, item in eggs.items():
+                self.multiworld.get_location(location, self.player).place_locked_item(item)
+
+        self.number_of_item_locations -= len(eggs)
 
     def place_monsters(self) -> None:
         """Creates event locations for all monsters, and places monster items at those locations"""
-        for encounter_name, encounter in ENCOUNTERS.encounter_data.items():
+        for encounter_name, encounter in self.encounters.items():
             region = self.multiworld.get_region(encounter.region, self.player)
 
             monster_index = 0
@@ -249,6 +291,11 @@ class MonsterSanctuaryWorld(World):
     # called to place player's items into the MultiWorld's itempool. After this step all regions and items have to
     # be in the MultiWorld's regions and itempool, and these lists should not be modified afterward.
     def create_items(self) -> None:
+        # Do this first since it interacts with the item pool.
+        # We have to do it in here because it needs to be done after locations are created
+        # but before items are placed.
+        self.handle_monster_eggs()
+
         ITEMS.build_item_probability_table({
             MonsterSanctuaryItemCategory.CRAFTINGMATERIAL: self.options.drop_chance_craftingmaterial.value,
             MonsterSanctuaryItemCategory.CONSUMABLE: self.options.drop_chance_consumable.value,
@@ -284,14 +331,24 @@ class MonsterSanctuaryWorld(World):
         key_items.append("Primordial Branch")
         key_items.append("Druid Soul")
 
-        # If monsters are not randomized, then we do not want to add Koi and Bard eggs to the pool
-        # They will be locked to their original spot
-        if self.options.randomize_monsters != "no":
-            key_items.append("Koi Egg")
-            key_items.append("Bard Egg")
-
         for key_item in key_items:
-            for i in range(ITEMS.item_data[key_item].count):
+            item_count = ITEMS.item_data[key_item].count
+            is_key = ITEMS.is_item_in_group(key_item, "Area Key")
+
+            if is_key:
+                if self.options.remove_locked_doors == "all":
+                    # If we're opening all doors, then we never place area keys in the pool
+                    continue
+                elif self.options.remove_locked_doors == "minimal":
+                    # If we're opening some doors, then we modify the number of keys placed
+                    if key_item == "Ancient Woods key":
+                        item_count = 2
+                    elif key_item == "Mystical Workshop key":
+                        item_count = 3
+                    else:
+                        item_count = 1
+
+            for i in range(item_count):
                 pool.append(self.create_item(key_item))
 
         while len(pool) < self.number_of_item_locations:
@@ -320,16 +377,13 @@ class MonsterSanctuaryWorld(World):
     # or rule application can miss them.
     # Rules are handled as AccessCondition objects within locations and connections
     def set_rules(self) -> None:
-        pass
+        self.multiworld.local_items[self.player].value |= self.item_name_groups["Area Key"]
 
     # called after the previous steps. Some placement and player specific randomizations can be done here.
     def generate_basic(self) -> None:
         self.set_victory_condition()
         self.place_ranks()
         self.place_events()
-        self.place_locked_items()
-
-        ENCOUNTERS.randomize_monsters(self)
         self.place_monsters()
 
     # called to modify item placement before, during and after the regular fill process, before generate_output.
@@ -367,5 +421,6 @@ class MonsterSanctuaryWorld(World):
             "monster_shift_rule": self.options.monster_shift_rule.value,
             "skip_intro": self.options.skip_intro.value,
             "skip_plot": self.options.skip_plot.value,
-            "skip_battles": self.options.skip_battles.value
+            "skip_battles": self.options.skip_battles.value,
+            "remove_locked_doors": self.options.remove_locked_doors
         }
