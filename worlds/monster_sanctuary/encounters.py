@@ -113,8 +113,8 @@ evolved_monsters = {
     "Fumagus": "Fungi",
     "Dracomer": "Draconov"
 }
-early_game_areas: List[str] = ["MountainPath", "BlueCave", "KeepersStronghold", "KeepersTower", "StrongholdDungeon",
-                               "SnowyPeaks"]
+early_game_areas: List[str] = ["Menu", "MountainPath", "BlueCave", "KeepersStronghold", "KeepersTower",
+                               "StrongholdDungeon", "SnowyPeaks"]
 mid_game_areas: List[str] = ["SunPalace", "AncientWoods", "HorizonBeach", "MagmaChamber", "BlobBurg"]
 late_game_areas: List[str] = ["ForgottenWorld", "MysticalWorkshop", "Underworld", "AbandonedTower", "EternitysEnd"]
 
@@ -132,6 +132,17 @@ def add_encounter(encounter: EncounterData, monsters: List[str]) -> None:
 
 
 # region Monster and Champion Randomization
+def assign_familiar(world: World) -> None:
+    if world.options.spectral_familiar == "wolf":
+        world.encounters["Menu_0"].add_monster(get_monster("Spectral Wolf"))
+    elif world.options.spectral_familiar == "eagle":
+        world.encounters["Menu_0"].add_monster(get_monster("Spectral Eagle"))
+    elif world.options.spectral_familiar == "toad":
+        world.encounters["Menu_0"].add_monster(get_monster("Spectral Toad"))
+    elif world.options.spectral_familiar == "lion":
+        world.encounters["Menu_0"].add_monster(get_monster("Spectral Lion"))
+
+
 def randomize_monsters(world: World) -> None:
     assign_game_stage_to_monsters()
     set_encounter_monster_exclusions(world)
@@ -188,6 +199,9 @@ def randomize_monsters(world: World) -> None:
     # Now we just go through each encounter left and randomize them.
     for encounter in encounters_to_randomize:
         replace_monsters_in_encounter(world, encounter, available_monsters)
+
+    # Lastly, assign familiars. Do this at the end so it doesn't get randomized.
+    assign_familiar(world)
 
 
 def assign_game_stage_to_monsters():

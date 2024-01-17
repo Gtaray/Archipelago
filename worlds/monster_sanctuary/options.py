@@ -12,6 +12,17 @@ from Options import Toggle, Choice, Range, DeathLink, PerGameCommonOptions
 # Randomize shops
 
 
+class Familiar(Choice):
+    """Select which familiar you start with."""
+    display_name = "Spectral Familiar"
+    option_select = -1
+    option_wolf = 0
+    option_eagle = 1
+    option_toad = 2
+    option_lion = 3
+    default = -1
+
+
 class RandomizeMonsters(Choice):
     """Randomize monsters
 
@@ -248,6 +259,7 @@ class Goal(Choice):
 
 @dataclass
 class MonsterSanctuaryOptions(PerGameCommonOptions):
+    spectral_familiar: Familiar
     randomize_monsters: RandomizeMonsters
     # randomize_champions: RandomizeChampions
     monster_shift_rule: RandomizeMonsterShifts

@@ -4,6 +4,9 @@
     "connections": [
       { "region": "MountainPath_North1" }
     ],
+    "encounters": [
+      { "id": 0, "monsters": [ ] }
+    ],
     "flags": [
       {"id": "ability_claws", "name": "Ability - Claws"},
       {"id": "ability_tackle", "name": "Ability - Tackle"},
