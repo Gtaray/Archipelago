@@ -9,22 +9,10 @@ from worlds.monster_sanctuary import data_importer, locations, MonsterSanctuaryL
 
 if __name__ == '__main__':
     region_map = {}
-    monsters = []
     number_of_checks = {}
-    data_importer.load_world()
 
-    for location_name in locations.locations_data:
-        data = locations.locations_data[location_name]
-
-        # Start by adding all monsters to the monster list.
-        if (data.category == MonsterSanctuaryLocationCategory.MONSTER
-                or data.category == MonsterSanctuaryLocationCategory.CHAMPION):
-            monsters.append(data.name)
-
-        # The client doesn't care about flags
-        if data.category == MonsterSanctuaryLocationCategory.FLAG:
-            continue
-
+    for location_name in locations.location_data:
+        data = locations.location_data[location_name]
         parts = data.region.split('_')
 
         if (data.category == MonsterSanctuaryLocationCategory.CHEST
@@ -46,26 +34,18 @@ if __name__ == '__main__':
         if data.object_id is not None:
             location_name += f"_{data.object_id}"
 
-        if (data.category == MonsterSanctuaryLocationCategory.MONSTER
-                or data.category == MonsterSanctuaryLocationCategory.CHAMPION):
-            location_name = f"{location_name}_{data.monster_id}"
-        elif data.category == MonsterSanctuaryLocationCategory.RANK:
+        if data.category == MonsterSanctuaryLocationCategory.RANK:
             location_name += "_Champion"
 
         region_map[location_name] = data.name
 
     # Serializing and write subsections
     json_object = json.dumps(region_map, indent=4)
-    with open("data/subsections.json", "w") as outfile:
-        outfile.write(json_object)
-
-    # Serializing and write monster/champion locations
-    json_object = json.dumps(monsters, indent=4)
-    with open("data/monster_locations.json", "w") as outfile:
+    with open("export/subsections.json", "w") as outfile:
         outfile.write(json_object)
 
     # Serializing the total number of checks for regions
     json_object = json.dumps(number_of_checks, indent=4)
-    with open("data/number_of_checks.json", "w") as outfile:
+    with open("export/number_of_checks.json", "w") as outfile:
         outfile.write(json_object)
 

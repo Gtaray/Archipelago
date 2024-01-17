@@ -35,7 +35,6 @@ class AccessCondition:
         if self.function_name is not None:
             func = globals().get(self.function_name)
             if func is None:
-                breakpoint()
                 raise KeyError(f"Access function '{self.function_name}' is not defined")
             else:
                 self.access_rule = func
@@ -73,6 +72,23 @@ class AccessCondition:
 
             i += 1
 
+    def __str__(self) -> str:
+        if len(self.operands) > 0:
+            joiner = " "
+            if self.operation == Operation.AND:
+                joiner = "&&"
+            elif self.operation == Operation.OR:
+                joiner = "||"
+            return f"({joiner.join([op.__str__() for op in self.operands])})"
+
+        if self.function_name is None:
+            return "No Conditions"
+
+        if self.invert:
+            return f"NOT {self.function_name}"
+
+        return self.function_name
+
     def is_leaf(self) -> bool:
         return self.operation is Operation.NONE and len(self.operands) == 0
 
@@ -107,27 +123,48 @@ class Plotless:
                  id: Optional[str]):
         self.type = type
         self.access_rules = requirements
-        self.connection = connection
-        self.object_id = object_id
-        self.id = id
+        self.connection = connection  # For connections
+        self.object_id = object_id  # For locations
+        self.id = id  # For flags
 
 
-plotless_data: Dict[str, Plotless] = {}
+plotless_data: Dict[str, List[Plotless]] = {}
+
+
+def get_plotless_connection(region_name: str, connection: str) -> Optional[Plotless]:
+    if region_name not in plotless_data:
+        return None
+
+    for entry in plotless_data[region_name]:
+        if entry.connection == connection:
+            return entry
+
+    return None
+
+
+def get_plotless_location(region_name: str, object_id: int) -> Optional[Plotless]:
+    if region_name not in plotless_data:
+        return None
+
+    for entry in plotless_data[region_name]:
+        if entry.object_id == object_id:
+            return entry
+
+    return None
+
+
+def get_plotless_flag(region_name: str, flag_id: str) -> Optional[Plotless]:
+    if region_name not in plotless_data:
+        return None
+
+    for entry in plotless_data[region_name]:
+        if entry.id == flag_id:
+            return entry
+
+    return None
 
 
 # region Navigation Flags
-def blue_cave_switches_unlocked(state: CollectionState, player: int) -> bool:
-    return state.has("Blue Caves Switches Unlocked", player)
-
-
-def blue_cave_south_unlocked(state: CollectionState, player: int) -> bool:
-    return state.has("Blue Caves South Unlocked", player)
-
-
-def blue_cave_champion_unlocked(state: CollectionState, player: int) -> bool:
-    return state.has("Blue Caves Champion Unlocked", player)
-
-
 def blue_cave_switches_access(state: CollectionState, player: int) -> bool:
     return state.has("Blue Caves Switches Access", player)
 
@@ -160,12 +197,8 @@ def snowy_peaks_sun_palace_entrance_shortcut(state: CollectionState, player: int
     return state.has("Snowy Peaks to Sun Palace Shortcut", player)
 
 
-def stronghold_dungeon_south_unlocked(state: CollectionState, player: int) -> bool:
-    return state.has("Stronghold Dungeon South Unlocked", player)
-
-
-def stronghold_dungeon_east_unlocked(state: CollectionState, player: int) -> bool:
-    return state.has("Stronghold Dungeon East Unlocked", player)
+def has_dodo(state: CollectionState, player: int) -> bool:
+    return state.has("Dodo", player) or state.has("Dodo Egg", player)
 
 
 def stronghold_dungeon_library_access(state: CollectionState, player: int) -> bool:
@@ -200,12 +233,12 @@ def sun_palace_west_shortcut(state: CollectionState, player: int) -> bool:
     return state.has("Sun Palace West Shortcut", player, 1)
 
 
-def ancient_woods_center_unlocked(state: CollectionState, player: int) -> bool:
-    return state.has("Ancient Woods Center Unlocked", player, 1)
-
-
-def ancient_woods_north_unlocked(state: CollectionState, player: int) -> bool:
-    return state.has("Ancient Woods North Unlocked", player, 1)
+def shifting_avialable(state: CollectionState, player: int) -> bool:
+    # Either shifting is allowed any time, or we have raised the center 3 times
+    return (state.multiworld.worlds[player].options.monster_shift_rule == "any_time" or (
+                state.multiworld.worlds[player].options.monster_shift_rule == "after_sun_palace" and
+                state.has("Sun Palace Raise Center", player, 3)
+            ))
 
 
 def ancient_woods_east_shortcut(state: CollectionState, player: int) -> bool:
@@ -256,12 +289,20 @@ def magma_chamber_lower_lava(state: CollectionState, player: int) -> bool:
     return state.has("Magma Chamber Lowered Lava", player)
 
 
-def magma_chamber_alchemist_lab_unlocked(state: CollectionState, player: int) -> bool:
-    return state.has("Magma Chamber Alchemist Lab Unlocked", player)
+def first_bex_encounter(state: CollectionState, player: int) -> bool:
+    return state.has("Bex", player)
 
 
-def magma_chamber_mozzie_room_unlocked(state: CollectionState, player: int) -> bool:
-    return state.has("Magma Chamber Mozzie Room Unlocked", player)
+def second_bex_encounter(state: CollectionState, player: int) -> bool:
+    return state.has("Bex", player, 2)
+
+
+def third_bex_encounter(state: CollectionState, player: int) -> bool:
+    return state.has("Bex", player, 3)
+
+
+def fourth_bex_encounter(state: CollectionState, player: int) -> bool:
+    return state.has("Bex", player, 4)
 
 
 def forgotten_world_to_horizon_beach_shortcut(state: CollectionState, player: int) -> bool:
@@ -286,10 +327,6 @@ def underworld_east_catacomb_6_shortcut(state: CollectionState, player: int) -> 
 
 def underworld_east_catacomb_pillar_control(state: CollectionState, player: int) -> bool:
     return state.has("Underworld East Catacomb Pillar Control", player)
-
-
-def underworld_east_catacomb_unlocked(state: CollectionState, player: int) -> bool:
-    return state.has("Underworld East Catacomb Unlocked", player)
 
 
 def underworld_west_catacomb_center_entrance(state: CollectionState, player: int) -> bool:
@@ -318,10 +355,6 @@ def underworld_west_catacomb_roof_access(state: CollectionState, player: int) ->
 
 def underworld_to_sun_palace_shortcut(state: CollectionState, player: int) -> bool:
     return state.has("Underworld to Sun Palace Shortcut", player)
-
-
-def mystical_workshop_north_unlocked(state: CollectionState, player: int) -> bool:
-    return state.has("Mystical Workshop North Unlocked", player)
 
 
 def mystical_workshop_north_shortcut(state: CollectionState, player: int) -> bool:
@@ -390,6 +423,16 @@ def abandoned_tower_center_shortcut(state: CollectionState, player: int) -> bool
 
 def post_game(state: CollectionState, player: int) -> bool:
     return state.has("Mad Lord Defeated", player)
+# endregion
+
+
+# region game options
+def no_locked_doors(state: CollectionState, player: int) -> bool:
+    return state.multiworld.worlds[player].options.remove_locked_doors == 2
+
+
+def minimal_locked_doors(state: CollectionState, player: int) -> bool:
+    return state.multiworld.worlds[player].options.remove_locked_doors == 1
 # endregion
 
 
@@ -488,64 +531,44 @@ def mountain_path_key(state: CollectionState, player: int, count: int = 1) -> bo
     return state.has("Mountain Path key", player, count)
 
 
-def blue_cave_key(state: CollectionState, player: int) -> bool:
-    number_used = 0
-    if state.has("Blue Caves Switches Unlocked", player):
-        number_used += 1
-    if state.has("Blue Caves Champion Unlocked", player):
-        number_used += 1
-    if state.has("Blue Caves South Unlocked", player):
-        number_used += 1
-    key_count = state.count("Blue Cave key", player)
-    return key_count > number_used
+def one_blue_cave_key(state: CollectionState, player: int) -> bool:
+    return state.has("Blue Cave key", player)
 
 
-def dungeon_key(state: CollectionState, player: int) -> bool:
-    number_used = 0
-    if state.has("Stronghold Dungeon South Unlocked", player):
-        number_used += 1
-    if state.has("Stronghold Dungeon East Unlocked", player):
-        number_used += 1
-    key_count = state.count("Stronghold Dungeon key", player)
-    return key_count > number_used
+def two_blue_cave_keys(state: CollectionState, player: int) -> bool:
+    return state.count("Blue Cave key", player) >= 2
 
 
-def ancient_woods_key(state: CollectionState, player: int) -> bool:
-    number_used = 0
-    if state.has("Ancient Woods Center Unlocked", player):
-        number_used += 2
-    if state.has("Ancient Woods North Unlocked", player):
-        number_used += 1
-    key_count = state.count("Ancient Woods key", player)
-    return key_count > number_used
+def three_blue_cave_keys(state: CollectionState, player: int) -> bool:
+    return state.count("Blue Cave key", player) >= 3
+
+
+def one_dungeon_key(state: CollectionState, player: int) -> bool:
+    return state.has("Stronghold Dungeon key", player)
+
+
+def two_dungeon_keys(state: CollectionState, player: int) -> bool:
+    return state.count("Stronghold Dungeon key", player) >= 2
 
 
 def two_ancient_woods_keys(state: CollectionState, player: int) -> bool:
-    number_used = 0
-    if state.has("Ancient Woods Center Unlocked", player):
-        number_used += 2
-    if state.has("Ancient Woods North Unlocked", player):
-        number_used += 1
-    key_count = state.count("Ancient Woods key", player)
-    return (key_count - number_used) >= 2
+    return state.count("Ancient Woods key", player) >= 2
 
 
-def magma_chamber_key(state: CollectionState, player: int) -> bool:
-    number_used = 0
-    if state.has("Magma Chamber Alchemist Lab Unlocked", player):
-        number_used += 1
-    if state.has("Magma Chamber Mozzie Room Unlocked", player):
-        number_used += 1
-    key_count = state.count("Magma Chamber key", player)
-    return key_count > number_used
+def three_ancient_woods_keys(state: CollectionState, player: int) -> bool:
+    return state.count("Ancient Woods key", player) >= 3
 
 
-def workshop_key(state: CollectionState, player: int) -> bool:
-    number_used = 0
-    if state.has("Mystical Workshop North Unlocked", player):
-        number_used = 3
-    key_count = state.count("Mystical Workshop key", player)
-    return (key_count - number_used) >= 3
+def one_magma_chamber_key(state: CollectionState, player: int) -> bool:
+    return state.has("Magma Chamber key", player)
+
+
+def two_magma_chamber_keys(state: CollectionState, player: int) -> bool:
+    return state.count("Magma Chamber key", player) >= 2
+
+
+def three_workshop_keys(state: CollectionState, player: int) -> bool:
+    return state.count("Mystical Workshop key", player) >= 3
 
 
 def underworld_key(state: CollectionState, player: int) -> bool:

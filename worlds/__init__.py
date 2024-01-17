@@ -68,7 +68,7 @@ class WorldSource(NamedTuple):
                     if hasattr(importer, "exec_module"):
                         importer.exec_module(mod)
             else:
-                importlib.import_module(f".{self.path}", "worlds")
+               importlib.import_module(f".{self.path}", "worlds")
             return True
 
         except Exception:

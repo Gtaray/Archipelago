@@ -2,32 +2,63 @@ from worlds.monster_sanctuary.tests.Areas.TestArea import TestArea
 
 
 class HorizonBeachTests(TestArea):
-    def test_shortcuts(self):
-        self.starting_regions = ["HorizonBeach_Center1"]
-        self.run_tests([
-            ["horizon_beach_center_shortcut", False, []],
-            ["horizon_beach_center_shortcut", False, ["Horizon Beach Center Shortcut"]],
-            ["horizon_beach_center_shortcut", True, ["Koi"]],
-            ["horizon_beach_center_shortcut", True, ["Horizon Beach Center Shortcut", "Koi"]]
-        ])
+    def test_horizon_beach_accessible(self):
+        self.assertNotAccessible("HorizonBeach_West2_Entrance", "HorizonBeach_West2_0_0",
+                                 ["Koi"])
+        self.assertAccessible("HorizonBeach_West2_Entrance", "HorizonBeach_West1_0",
+                              ["Goblin King Defeated", "Koi"])
 
-        self.starting_regions = ["HorizonBeach_Center5"]
-        self.run_tests([
-            ["forgotten_world_to_horizon_beach_shortcut", False, []],
-            ["forgotten_world_to_horizon_beach_shortcut", True, ["Forgotten World to Horizon Beach Shortcut", "Brutus"]]
-        ])
+    def test_center_shortcut(self):
+        self.assertNotAccessible("HorizonBeach_Center1", "horizon_beach_center_shortcut", [])
+        self.assertNotAccessible("HorizonBeach_Center1", "horizon_beach_center_shortcut",
+                                 ["Horizon Beach Center Shortcut"])
 
-    def test_progression(self):
-        self.starting_regions = ["HorizonBeach_West1"]
-        self.run_tests([
-            ["horizon_beach_rescue_leonard", False, []],
-            ["horizon_beach_rescue_leonard", False, ["Kongamato"]],
-            ["horizon_beach_rescue_leonard", False, ["Koi"]],
-            ["horizon_beach_rescue_leonard", True, ["Goblin King Defeated", "Koi", "Kongamato"]],
-            ["horizon_beach_rescue_leonard", True, ["Goblin King Defeated", "Koi", "Vaero", "Silver Feather", "Tree of Evolution Access"]],
+        self.assertAccessible("HorizonBeach_Center1", "horizon_beach_center_shortcut",
+                              ["Koi"])
 
-            ["HorizonBeach_Champion_Champion", False, []],
-            ["HorizonBeach_Champion_Champion", False, ["Koi"]],
-            ["HorizonBeach_Champion_Champion", False, ["Rescued Leonard"]],
-            ["HorizonBeach_Champion_Champion", True, ["Goblin King Defeated", "Koi", "Rescued Leonard"]],
-        ])
+    def test_forgotten_world_shortcut(self):
+        self.assertNotAccessible("HorizonBeach_Center5", "forgotten_world_to_horizon_beach_shortcut", [])
+        self.assertNotAccessible("HorizonBeach_Center5", "forgotten_world_to_horizon_beach_shortcut",
+                                 ["Forgotten World to Horizon Beach Shortcut"])
+        self.assertNotAccessible("HorizonBeach_Center5", "forgotten_world_to_horizon_beach_shortcut",
+                                 ["Brutus"])
+
+        self.assertAccessible("HorizonBeach_Center5", "forgotten_world_to_horizon_beach_shortcut",
+                              ["Forgotten World to Horizon Beach Shortcut", "Brutus"])
+
+    def test_rescue_leonard(self):
+        self.assertNotAccessible("HorizonBeach_West1", "horizon_beach_rescue_leonard", [])
+        self.assertNotAccessible("HorizonBeach_West1", "horizon_beach_rescue_leonard",
+                                 ["Kongamato"])
+        self.assertNotAccessible("HorizonBeach_West1", "horizon_beach_rescue_leonard",
+                                 ["Koi"])
+        self.assertNotAccessible("HorizonBeach_West1", "horizon_beach_rescue_leonard",
+                                 ["Goblin King Defeated"])
+
+        self.assertAccessible("HorizonBeach_West1", "horizon_beach_rescue_leonard",
+                              ["Koi", "Kongamato", "Goblin King Defeated"])
+        self.assertAccessible("HorizonBeach_West1", "horizon_beach_rescue_leonard",
+                              ["Koi", "Vaero", "Tree of Evolution Access", "Silver Feather", "Goblin King Defeated"])
+
+    def test_can_reach_champion(self):
+        self.assertNotAccessible("HorizonBeach_West1", "HorizonBeach_Champion_Champion", [])
+        self.assertNotAccessible("HorizonBeach_West1", "HorizonBeach_Champion_Champion",
+                                 ["Koi"])
+        self.assertNotAccessible("HorizonBeach_West1", "HorizonBeach_Champion_Champion",
+                                 ["Rescued Leonard"])
+        self.assertNotAccessible("HorizonBeach_West1", "HorizonBeach_Champion_Champion",
+                                 ["Goblin King Defeated"])
+
+        self.assertAccessible("HorizonBeach_West1", "HorizonBeach_Champion_Champion",
+                              ["Koi", "Rescued Leonard", "Goblin King Defeated"])
+
+class HorizonBeachPlotlessTests(TestArea):
+    options = {
+        "skip_plot": 1
+    }
+
+    def test_horizon_beach_accessible(self):
+        self.assertAccessible("HorizonBeach_West2_Entrance", "HorizonBeach_West1_0", ["Koi"])
+
+    def test_rescued_leonard_not_required(self):
+        self.assertAccessible("HorizonBeach_TreasureCave1", "HorizonBeach_Champion_Champion", ["Koi"])

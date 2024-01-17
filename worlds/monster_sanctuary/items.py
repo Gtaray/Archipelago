@@ -1,4 +1,5 @@
 import math
+import re
 from enum import IntEnum
 from typing import List, Dict, Optional
 from BaseClasses import ItemClassification
@@ -16,10 +17,9 @@ class MonsterSanctuaryItemCategory(IntEnum):
     ACCESSORY = 6
     CURRENCY = 7
     EGG = 8
-    MONSTER = 9,
+    COSTUME = 9
     RANK = 10,
-    FLAG = 11,
-    COSTUME = 12
+    ABILITY = 11,
 
 
 class ItemData:
@@ -31,6 +31,7 @@ class ItemData:
     unique: bool
     groups: List[str]
     count: int = 1  # how many of this item should be added to the game
+    illegal_locations: List[str]
 
     def __init__(self, item_id, name, classification, category, tier=None, unique=False, groups=None):
         self.id = item_id
@@ -39,68 +40,54 @@ class ItemData:
         self.category = category
         self.tier = tier
         self.unique = unique
+        self.illegal_locations = []
 
         if groups is not None:
             self.groups = groups
         else:
             self.groups = []
 
+    def __str__(self):
+        return self.name
+
 
 class MonsterSanctuaryItem(Item):
     game: str = "Monster Sanctuary"
     quantity: int = 1
 
-    def __init__(self, player: int, name: str, data: ItemData):
-        super(MonsterSanctuaryItem, self).__init__(name, data.classification, data.id, player)
+    def __init__(self, player: int, id: int, name: str, classification: ItemClassification):
+        super(MonsterSanctuaryItem, self).__init__(name, classification, id, player)
+
+    def __str__(self):
+        return self.name
 
 
 # This holds all the item data that is parsed from items.json file
-items_data: Dict[str, ItemData] = {}
+item_data: Dict[str, ItemData] = {}
 item_drop_probabilities: List[MonsterSanctuaryItemCategory] = []
 
 
-# region Monster Accessor functions
-def get_monsters() -> Dict[str, ItemData]:
-    return {item_name: items_data[item_name] for item_name in items_data
-            if items_data[item_name].category is MonsterSanctuaryItemCategory.MONSTER
-            and item_name not in ["Empty Slot",
-                                  "Spectral Wolf",
-                                  "Spectral Toad",
-                                  "Spectral Eagle",
-                                  "Spectral Lion",
-                                  "Bard"]}
+def can_item_be_placed(world: World, item: MonsterSanctuaryItem, location) -> bool:
+    data = get_item_by_name(item.name)
 
+    # If this item is an area key and keys must be local, then we check to see if
+    # the item name starts with the area name (ignoring spaces)
+    if is_item_in_group(item.name, "Area Key") and world.options.local_area_keys:
+        area = location.name.split('_')[0]
+        return item.name.replace(" ", "").startswith(area)
 
-def get_random_monster_name(multiworld: MultiWorld) -> str:
-    valid_items = [item for item in get_monsters()]
-    return multiworld.random.choice(valid_items)
+    # Go through every illegal location for this item and if the location name starts
+    # with an illegal location, then return false
+    for illegal_location in data.illegal_locations:
+        if location.name.startswith(illegal_location):
+            return False
 
-
-def can_monster_be_placed(item, location) -> bool:
-    flag = (item.player == location.player and
-            is_item_type(item.name, MonsterSanctuaryItemCategory.MONSTER))
-    return flag
-# endregion
-
-
-def can_item_be_placed(item, location) -> bool:
-    return (item.player != location.player or
-            is_item_type(item.name,
-                         MonsterSanctuaryItemCategory.KEYITEM,
-                         MonsterSanctuaryItemCategory.CRAFTINGMATERIAL,
-                         MonsterSanctuaryItemCategory.CONSUMABLE,
-                         MonsterSanctuaryItemCategory.FOOD,
-                         MonsterSanctuaryItemCategory.CATALYST,
-                         MonsterSanctuaryItemCategory.WEAPON,
-                         MonsterSanctuaryItemCategory.ACCESSORY,
-                         MonsterSanctuaryItemCategory.EGG,
-                         MonsterSanctuaryItemCategory.CURRENCY,
-                         MonsterSanctuaryItemCategory.COSTUME))
+    return True
 
 
 def build_item_groups() -> Dict:
     item_groups = {}
-    for item, data in items_data.items():
+    for item, data in item_data.items():
         for group in data.groups:
             item_groups[group] = item_groups.get(group, []) + [item]
 
@@ -117,11 +104,17 @@ def is_item_in_group(item: str, *groups: str) -> bool:
     # If there's on groups to check, then we return true
     if len(groups) == 0:
         return True
-    return not set(items_data[item].groups).isdisjoint(groups)
+    return not set(item_data[item].groups).isdisjoint(groups)
+
+
+def get_item_by_name(item: str) -> Optional[ItemData]:
+    if item in item_data:
+        return item_data[item]
+    return None
 
 
 def get_item_type(item_name: str) -> Optional[MonsterSanctuaryItemCategory]:
-    item = items_data.get(item_name)
+    item = item_data.get(item_name)
     if item is None:
         return None
 
@@ -131,13 +124,13 @@ def get_item_type(item_name: str) -> Optional[MonsterSanctuaryItemCategory]:
 def is_item_type(item_name: str, *item_types: MonsterSanctuaryItemCategory) -> bool:
     # For any item not in the item data dictionary, return false
     # This solves the problem with items from other worlds not having a type
-    if items_data.get(item_name) is None:
+    if item_data.get(item_name) is None:
         return False
     return get_item_type(item_name) in item_types
 
 
 def get_item_tier(item_name: str) -> Optional[int]:
-    item = items_data.get(item_name)
+    item = item_data.get(item_name)
     if item is None:
         return None
 
@@ -151,8 +144,8 @@ def is_item_tier(item: str, tier: int) -> bool:
 def get_filtered_unique_item_data(itempool: List[MonsterSanctuaryItem]) -> Dict[str, ItemData]:
     """Given a list of items, this returns a subset of that list with unique items removed
     if the unique item is already in the item pool"""
-    return {item: items_data[item] for item in items_data
-            if not items_data[item].unique
+    return {item: item_data[item] for item in item_data
+            if not item_data[item].unique
             or not is_in_item_pool(item, itempool)}
 
 
@@ -202,7 +195,7 @@ def get_random_item_name(world: World,
         return None
 
     base_item_name = world.multiworld.random.choice(valid_items)
-    base_item = items_data.get(base_item_name)
+    base_item = item_data.get(base_item_name)
 
     # weapons and accessories can gen at a higher tier, so we determine that here
     if (item_type == MonsterSanctuaryItemCategory.WEAPON
@@ -230,8 +223,8 @@ def roll_random_equipment_level(world: World, base_item: ItemData) -> str:
 
     if name_append is not None:
         new_item_name = f"{base_item.name} {name_append}"
-        if new_item_name is not None and items_data.get(new_item_name) is not None:
-            base_item = items_data[new_item_name]
+        if new_item_name is not None and item_data.get(new_item_name) is not None:
+            base_item = item_data[new_item_name]
 
     return base_item.name
 
@@ -258,7 +251,7 @@ def roll_random_item_quantity(world: World, base_item: ItemData) -> str:
 
     if name_prepend is not None:
         new_item_name = f"{name_prepend} {base_item.name}"
-        if new_item_name is not None and items_data.get(new_item_name) is not None:
-            base_item = items_data[new_item_name]
+        if new_item_name is not None and item_data.get(new_item_name) is not None:
+            base_item = item_data[new_item_name]
 
     return base_item.name

@@ -1,4 +1,7 @@
-from Options import Toggle, Choice, Range, DeathLink
+from dataclasses import dataclass
+
+from Options import Toggle, Choice, Range, DeathLink, PerGameCommonOptions
+
 
 # TODO: Other potential options
 # Randomize starting monster (because right not logic doesn't care about starting monster's ability)
@@ -7,20 +10,47 @@ from Options import Toggle, Choice, Range, DeathLink
 # Randomize keeper's monsters
 # Remove locked doors
 # Randomize shops
-# I would like to bring back all of the monster randomization options, but AP is making it really difficult
+
+
+class Familiar(Choice):
+    """Select which familiar you start with."""
+    display_name = "Spectral Familiar"
+    option_select = -1
+    option_wolf = 0
+    option_eagle = 1
+    option_toad = 2
+    option_lion = 3
+    default = -1
+
+
+class RandomizeMonsters(Choice):
+    """Randomize monsters
+
+    No: Monsters are not randomized. Koi and Bard Egg locations are also not randomized
+    Yes: All monsters are randomized independently
+    By Specie: Monsters of the same specie are all randomized to another monster specie
+    By Encounter: Within an encounter, all monsters of the same specie are randomized to another specie. Each encounter is randomized separately"""
+    display_name = "Randomize Monsters"
+    option_no = 0
+    option_yes = 1
+    option_by_specie = 2
+    option_by_encounter = 3
+    default = 1
 
 
 class RandomizeChampions(Choice):
     """Randomize champions
 
     No: Champions will not be randomized
+    Default: Champions will be randomized according to the Randomize Monsters game option
     Shuffle: Champions will be shuffled around
-    Any: Champions will be completely randomized ignoring restrictions on the rest of the monster pool"""
+    Random: Champions will be completely randomized separate from the rest of the monster pool"""
     display_name = "Randomize Champions"
     option_no = 0
-    option_shuffle = 1
-    option_any = 2
-    default = 2
+    option_default = 1
+    option_shuffle = 2
+    option_any = 3
+    default = 1
 
 
 class RandomizeMonsterShifts(Choice):
@@ -36,15 +66,55 @@ class RandomizeMonsterShifts(Choice):
     default = 1
 
 
-class CanEncounterEvolvedMonsters(Toggle):
-    """Determines whether evolved monsters be encountered in the wild."""
-    display_name = "Evolved Monsters in the Wild"
-    default = 1
-
-
 class CanChampionMonstersAppearInWild(Toggle):
     """Determines whether champion monsters appear in the wild."""
     display_name = "Champions appear in wild"
+    default = 1
+
+
+class ImprovedMobilityLimitation(Choice):
+    """Limit monsters with improved mobility abilities from showing up too early.
+    Abilities include: improved flying, lofty mount, improved swimming, and dual mobility
+
+    No: Do not limit monster placement based on their ability
+    Mid-Game: Monsters with improved mobility abilities will not show up in the Mountain Path, Blue Caves, Stronghold Dungeon, or Snowy Peaks.
+    Late-Game: Monsters with improved mobility abilities will only show up in the Underworld, Mystical Workshop, Forgotten World, and Abandoned Tower."""
+    display_name = "Limit Improved Mobility Abilities"
+    option_no = 0
+    option_midgame = 1
+    option_lategame = 2
+    default = 1
+
+
+class LocalAreaKeys(Toggle):
+    """Localized Area Keys
+
+    If enabled, area keys will only appear in the Monster Sanctuary player's world, and they will only appear in their own area.
+    If disabled, keys can appear in any world, and may be found outside their area in which they are used."""
+    display_name = "Local Area Keys"
+    default = 0
+
+
+class RemoveLockedDoors(Choice):
+    """Remove Locked Doors
+
+    No: Locked doors are not removed
+    Minimal: Superfluous locked doors are removed, while ones that gate large numbers of checks remain
+    All: All locked doors are removed"""
+    display_name = "Remove Locked Doors"
+    option_no = 0
+    option_minimal = 1
+    option_all = 2
+    default = 1
+
+
+class AddGiftEggsToPool(Toggle):
+    """If enabled, any monsters you receive through gifts will have their eggs added to the item pool and their location will be randomized.
+
+    If disabled then gift monsters are received in their normal locations.
+    If monster randomization is set to shuffle, then the eggs you receive will be included in the shuffle.
+    Gift monsters are: Koi, Skorch, Shockhopper, and Bard"""
+    display_name = "Add Gift Monster Eggs to Item Pool"
     default = 1
 
 
@@ -187,24 +257,30 @@ class Goal(Choice):
         }[self.value]
 
 
-monster_sanctuary_options = {
-    "randomize_champions": RandomizeChampions,
-    "monster_shift_rule": RandomizeMonsterShifts,
-    "champions_in_wild": CanChampionMonstersAppearInWild,
-    "evolutions_in_wild": CanEncounterEvolvedMonsters,
-    "monsters_always_drop_egg": MonstersAlwaysDropEggs,
-    "drop_chance_craftingmaterial": CraftingMaterialDropChance,
-    "drop_chance_consumable": ConsumableDropChance,
-    "drop_chance_food": FoodDropChance,
-    "drop_chance_catalyst": CatalystDropChance,
-    "drop_chance_weapon": WeaponDropChance,
-    "drop_chance_accessory": AccessoryDropChance,
-    "drop_chance_currency": GoldDropChance,
-    "include_chaos_relics": IncludeChaosRelics,
-    "exp_multiplier": ExpMultiplier,
-    "skip_intro": SkipIntro,
-    "skip_plot": SkipPlot,
-    "skip_battles": SkipKeeperBattles,
-    "goal": Goal,
-    "death_link": DeathLink
-}
+@dataclass
+class MonsterSanctuaryOptions(PerGameCommonOptions):
+    spectral_familiar: Familiar
+    randomize_monsters: RandomizeMonsters
+    # randomize_champions: RandomizeChampions
+    monster_shift_rule: RandomizeMonsterShifts
+    # champions_in_wild: CanChampionMonstersAppearInWild
+    # evolutions_in_wild: CanEncounterEvolvedMonsters
+    improved_mobility_limit: ImprovedMobilityLimitation
+    remove_locked_doors: RemoveLockedDoors
+    local_area_keys: LocalAreaKeys
+    add_gift_eggs_to_pool: AddGiftEggsToPool
+    monsters_always_drop_egg: MonstersAlwaysDropEggs
+    drop_chance_craftingmaterial: CraftingMaterialDropChance
+    drop_chance_consumable: ConsumableDropChance
+    drop_chance_food: FoodDropChance
+    drop_chance_catalyst: CatalystDropChance
+    drop_chance_weapon: WeaponDropChance
+    drop_chance_accessory: AccessoryDropChance
+    drop_chance_currency: GoldDropChance
+    include_chaos_relics: IncludeChaosRelics
+    exp_multiplier: ExpMultiplier
+    skip_intro: SkipIntro
+    skip_plot: SkipPlot
+    skip_battles: SkipKeeperBattles
+    goal: Goal
+    death_link: DeathLink

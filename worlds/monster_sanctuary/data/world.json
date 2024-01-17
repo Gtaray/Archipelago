@@ -4,6 +4,9 @@
     "connections": [
       { "region": "MountainPath_North1" }
     ],
+    "encounters": [
+      { "id": 0, "monsters": [ ] }
+    ],
     "flags": [
       {"id": "ability_claws", "name": "Ability - Claws"},
       {"id": "ability_tackle", "name": "Ability - Tackle"},
@@ -212,7 +215,9 @@
       { "region":  "MountainPath_Center5" },
       {
         "region":  "MountainPath_Center7",
-        "requirements": [ "mountain_path_key" ]
+        "requirements": [
+          "OR", [ "mountain_path_key", "no_locked_doors" ]
+        ]
       }
     ],
     "chests": [
@@ -601,30 +606,21 @@
       { "region": "BlueCave_StrongholdEntrance" },
       { "region": "BlueCave_Platforms" },
       {
-        "region": "BlueCave_Switches_KeyDoor",
+        "region": "BlueCave_Switches",
         "requirements": [
           "OR", [
-            "blue_cave_key",
-            "blue_cave_switches_unlocked"
+            "one_blue_cave_key",
+            "minimal_locked_doors",
+            "no_locked_doors"
           ]
         ]
       }
     ]
   },
   {
-    "region": "BlueCave_Switches_KeyDoor",
-    "connections": [
-      { "region": "BlueCave_North1", "requirements": [ "blue_cave_switches_unlocked" ] },
-      { "region": "BlueCave_Switches", "requirements": [ "blue_cave_switches_unlocked" ] }
-    ],
-    "flags": [
-      { "id":  "blue_cave_switches_unlocked", "name": "Blue Caves Switches Unlocked" }
-    ]
-  },
-  {
     "region": "BlueCave_Switches",
     "connections": [
-      { "region":  "BlueCave_Switches_KeyDoor" }
+      { "region":  "BlueCave_North1" }
     ],
     "encounters": [
       { "id": 6, "monsters": [ "Grummy", "Grummy", "Tengu" ]}
@@ -770,16 +766,20 @@
       { "region": "BlueCave_West1" },
       { "region": "BlueCave_East1" },
       {
-        "region": "BlueCave_South1_Upper_KeyDoor",
+        "region": "BlueCave_South1_Upper",
         "requirements": [
-          "OR", ["blue_cave_key", "blue_cave_south_unlocked"]
+          "OR", [
+            "no_locked_doors",
+            "three_blue_cave_keys",
+            "AND", ["minimal_locked_doors", "one_blue_cave_key"]
+          ]
         ]
       },
       {
-        "region": "BlueCave_ChampionRoom_KeyDoor",
+        "region": "BlueCave_ChampionRoom",
         "requirements": [
           "AND",[
-            "OR", ["blue_cave_key", "blue_cave_champion_unlocked"],
+            "OR", ["two_blue_cave_keys", "minimal_locked_doors", "no_locked_doors"],
             "OR", [ "double_jump", "improved_flying", "dual_mobility" ]
           ]
         ]
@@ -801,29 +801,9 @@
     ]
   },
   {
-    "region": "BlueCave_South1_Upper_KeyDoor",
-    "connections": [
-      { "region": "BlueCave_CentralPart", "requirements": [ "blue_cave_south_unlocked" ] },
-      { "region": "BlueCave_South1_Upper", "requirements": [ "blue_cave_south_unlocked" ] }
-    ],
-    "flags": [
-      { "id":  "blue_cave_south_unlocked", "name": "Blue Caves South Unlocked" }
-    ]
-  },
-  {
-    "region": "BlueCave_ChampionRoom_KeyDoor",
-    "connections": [
-      { "region": "BlueCave_CentralPart", "requirements": [ "blue_cave_champion_unlocked" ] },
-      { "region": "BlueCave_ChampionRoom", "requirements": [ "blue_cave_champion_unlocked" ] }
-    ],
-    "flags": [
-      { "id":  "blue_cave_champion_unlocked", "name": "Blue Caves Champion Unlocked" }
-    ]
-  },
-  {
     "region": "BlueCave_ChampionRoom",
     "connections": [
-      { "region":  "BlueCave_ChampionRoom_KeyDoor" },
+      { "region":  "BlueCave_CentralPart" },
       { "region":  "BlueCave_WestStairwell" }
     ],
     "champion": [
@@ -890,9 +870,13 @@
     "region": "BlueCave_South1_Upper",
     "connections": [
       {
-        "region": "BlueCave_South1_Upper_KeyDoor",
+        "region": "BlueCave_CentralPart",
         "requirements": [
-          "OR", ["blue_cave_key", "blue_cave_south_unlocked"]
+          "OR", [
+            "no_locked_doors",
+            "three_blue_cave_keys",
+            "AND", ["minimal_locked_doors", "one_blue_cave_key"]
+          ]
         ]
       },
       { "region": "BlueCave_South1_Middle" }
@@ -1268,6 +1252,9 @@
     ],
     "gifts": [
       { "id": 10500008, "item": "3x Crystal Shard" }
+    ],
+    "flags": [
+      { "id":  "blue_cave_bex", "name": "Bex" }
     ]
   },
   {
@@ -1740,31 +1727,29 @@
         ]
       },
       {
-        "region": "StrongholdDungeon_South3_KeyDoor",
+        "region": "StrongholdDungeon_South4",
         "requirements": [
-          "OR", [ "dungeon_key", "stronghold_dungeon_south_unlocked" ]
+          "OR", [
+            "no_locked_doors",
+            "two_dungeon_keys",
+            "AND", ["one_dungeon_key", "minimal_locked_doors"]
+          ]
         ]
       }
-    ]
-  },
-  {
-    "region": "StrongholdDungeon_South3_KeyDoor",
-    "connections": [
-      { "region": "StrongholdDungeon_South3", "requirements": [ "stronghold_dungeon_south_unlocked" ] },
-      { "region": "StrongholdDungeon_South4" }
-    ],
-    "flags": [
-      { "id":  "stronghold_dungeon_south_unlocked", "name": "Stronghold Dungeon South Unlocked" }
     ]
   },
   {
     "region": "StrongholdDungeon_South4",
     "connections": [
       {
-        "region": "StrongholdDungeon_South3_KeyDoor",
+        "region": "StrongholdDungeon_South3",
         "requirements": [
-          "AND",[
-            "OR", [ "dungeon_key", "stronghold_dungeon_south_unlocked" ],
+            "AND",[
+              "OR", [
+              "no_locked_doors",
+              "two_dungeon_keys",
+              "AND", ["one_dungeon_key", "minimal_locked_doors"]
+            ],
             "double_jump"
           ]
         ]
@@ -1928,22 +1913,12 @@
         ]
       },
       {
-        "region": "StrongholdDungeon_East1_KeyDoor",
+        "region": "StrongholdDungeon_East1_NE",
         "requirements": [
-          "OR", [ "dungeon_key", "stronghold_dungeon_east_unlocked" ]
+          "OR", [ "one_dungeon_key", "minimal_locked_doors", "no_locked_doors" ]
         ]
       },
       { "region": "StrongholdDungeon_East1_SW" }
-    ]
-  },
-  {
-    "region": "StrongholdDungeon_East1_KeyDoor",
-    "connections": [
-      { "region": "StrongholdDungeon_East1_NW", "requirements": [ "stronghold_dungeon_east_unlocked" ] },
-      { "region": "StrongholdDungeon_East1_NE", "requirements": [ "stronghold_dungeon_east_unlocked" ] }
-    ],
-    "flags": [
-      { "id":  "stronghold_dungeon_east_unlocked", "name": "Stronghold Dungeon East Unlocked" }
     ]
   },
   {
@@ -1961,9 +1936,9 @@
         ]
       },
       {
-        "region": "StrongholdDungeon_East1_KeyDoor",
+        "region": "StrongholdDungeon_East1_NW",
         "requirements": [
-          "OR", [ "dungeon_key", "stronghold_dungeon_east_unlocked" ]
+          "OR", [ "one_dungeon_key", "minimal_locked_doors", "no_locked_doors" ]
         ]
       },
       { "region": "StrongholdDungeon_East1_SE" }
@@ -2694,7 +2669,25 @@
       { "region": "SnowyPeaks_WestMountain1" }
     ],
     "gifts": [
-      "TODO: The shockhopper and reward box lvl 2 gifts here will remain un-randomized for now"
+      { "id": 17900062, "item": "Shockhopper Egg", "requirements": [ "has_dodo" ]},
+      { "id": 17900065, "item": "Shockhopper Egg", "requirements": [
+        "AND", [
+            "has_dodo",
+            "shifting_avialable"
+          ]
+      ]},
+      { "id": 17900066, "item": "Shockhopper Egg", "requirements": [
+        "AND", [
+            "has_dodo",
+            "shifting_avialable"
+          ]
+      ]},
+      { "id": 17900077, "item": "Reward Box Lvl 2", "requirements": [
+        "AND", [
+          "has_dodo",
+          "shifting_avialable"
+        ]
+      ]}
     ]
   },
   {
@@ -3319,8 +3312,10 @@
       { "id": 2, "item": "Coat+4", "requirements": [ "mount" ] }
     ],
     "gifts": [
-      { "id": 19700006, "item": "3x Monster Bell" },
-      "TODO: Figure out what the requirements for this are"
+      { "id": 19700006, "item": "3x Monster Bell", "requirements":  [ "first_bex_encounter" ]}
+    ],
+    "flags": [
+      { "id":  "sun_palace_bex", "name": "Bex" }
     ]
   },
   {
@@ -4023,9 +4018,9 @@
     "connections": [
       { "region": "AncientWoods_Center1" },
       {
-        "region": "AncientWoods_Center_KeyDoor",
+        "region": "AncientWoods_Center5",
         "requirements": [
-          "OR", ["two_ancient_woods_keys", "ancient_woods_center_unlocked"]
+          "OR", ["two_ancient_woods_keys", "no_locked_doors"]
         ]
       }
     ],
@@ -4056,22 +4051,12 @@
     ]
   },
   {
-    "region": "AncientWoods_Center_KeyDoor",
-    "connections": [
-      { "region": "AncientWoods_Center2", "requirements": ["ancient_woods_center_unlocked"] },
-      { "region": "AncientWoods_Center5", "requirements": ["ancient_woods_center_unlocked"] }
-    ],
-    "flags": [
-      { "id":  "ancient_woods_center_unlocked", "name": "Ancient Woods Center Unlocked" }
-    ]
-  },
-  {
     "region": "AncientWoods_Center5",
     "connections": [
       {
-        "region": "AncientWoods_Center_KeyDoor",
+        "region": "AncientWoods_Center2",
         "requirements": [
-          "OR", ["two_ancient_woods_keys", "ancient_woods_center_unlocked"]
+          "OR", ["two_ancient_woods_keys", "no_locked_doors"]
         ]
       },
       { "region": "AncientWoods_Center6" }
@@ -4128,9 +4113,9 @@
     "connections": [
       { "region": "AncientWoods_North1" },
       {
-        "region": "AncientWoods_North_KeyDoor",
+        "region": "AncientWoods_North3",
         "requirements": [
-          "OR", ["ancient_woods_key", "ancient_woods_north_unlocked"]
+          "OR", ["three_ancient_woods_keys", "minimal_locked_doors", "no_locked_doors"]
         ]
       }
     ],
@@ -4139,19 +4124,9 @@
     ]
   },
   {
-    "region": "AncientWoods_North_KeyDoor",
-    "connections": [
-      { "region": "AncientWoods_North2", "requirements": ["ancient_woods_north_unlocked"] },
-      { "region": "AncientWoods_North3", "requirements": ["ancient_woods_north_unlocked"] }
-    ],
-    "flags": [
-      { "id":  "ancient_woods_north_unlocked", "name": "Ancient Woods North Unlocked" }
-    ]
-  },
-  {
     "region": "AncientWoods_North3",
     "connections": [
-      { "region": "AncientWoods_North_KeyDoor" },
+      { "region": "AncientWoods_North2" },
       { "region": "AncientWoods_East1_Shortcut" }
     ],
     "chests": [
@@ -4578,7 +4553,7 @@
     "region": "HorizonBeach_Center1",
     "connections": [
       { "region": "HorizonBeach_West5", "requirements": ["OR", ["double_jump", "swimming"]] },
-      { "region": "HorizonBeach_Center2", "requirements": ["AND", ["swimming", "horizon_beach_center_shortcut"]] },
+      { "region": "HorizonBeach_Center2_Shortcut", "requirements": ["AND", ["swimming", "horizon_beach_center_shortcut"]] },
       { "region": "HorizonBeach_Labyrinth" }
     ],
     "chests": [
@@ -4819,8 +4794,10 @@
       {"id": 2, "monsters": ["Silvaero", "Kongamato", "Silvaero"]}
     ],
     "gifts": [
-      "TODO: Figure out when the NPC shows up",
-      {"id": 24500009, "item": "Switch Stone"}
+      {"id": 24500009, "item": "Switch Stone", "requirements": [ "second_bex_encounter" ]}
+    ],
+    "flags": [
+      { "id":  "horizon_beach_bex", "name": "Bex" }
     ]
   },
   {
@@ -5052,7 +5029,7 @@
       {"region": "HorizonBeach_FWEntrance2"}
     ],
     "chests": [
-      {"id": 7, "item": "2000 G", "requirements": ["swimming"]}
+      {"id": 2, "item": "2000 G", "requirements": ["swimming"]}
     ]
   },
   {
@@ -5317,6 +5294,12 @@
     "connections": [
       {"region": "MagmaChamber_North3" },
       {"region": "MagmaChamber_North8_West", "requirements": ["magma_chamber_north_shortcut"] }
+    ],
+    "gifts": [
+      { "id": 27900026, "item": "Skorch Egg", "requirements": [ "third_bex_encounter" ] }
+    ],
+    "flags": [
+      { "id":  "magma_chamber_bex", "name": "Bex" }
     ]
   },
   {
@@ -5565,8 +5548,8 @@
       {"region": "MagmaChamber_Center9_Upper", "requirements": [
         "OR", ["double_jump", "improved_flying", "dual_mobility"]
       ]},
-      {"region": "MagmaChamber_PuppyRoom_KeyDoor", "requirements": [
-        "OR", ["magma_chamber_key", "magma_chamber_mozzie_room_unlocked"]
+      {"region": "MagmaChamber_PuppyRoom", "requirements": [
+        "OR", ["two_magma_chamber_keys", "minimal_locked_doors", "no_locked_doors"]
       ]}
     ],
     "chests": [
@@ -5804,20 +5787,10 @@
     "connections": [
       {"region": "MagmaChamber_Center6_Upper"},
       {
-        "region": "MagmaChamber_AlchemistLab_KeyDoor",
+        "region": "MagmaChamber_AlchemistLab_East",
         "requirements": [
-          "OR", ["magma_chamber_key", "magma_chamber_alchemist_lab_unlocked"]
+          "OR", ["one_magma_chamber_key", "no_locked_doors"]
       ]}
-    ]
-  },
-  {
-    "region": "MagmaChamber_AlchemistLab_KeyDoor",
-    "connections": [
-      {"region": "MagmaChamber_AlchemistLab_West", "requirements": ["magma_chamber_alchemist_lab_unlocked"]},
-      {"region": "MagmaChamber_AlchemistLab_East", "requirements": ["magma_chamber_alchemist_lab_unlocked"]}
-    ],
-    "flags": [
-      {"id": "magma_chamber_alchemist_lab_unlocked", "name": "Magma Chamber Alchemist Lab Unlocked"}
     ]
   },
   {
@@ -5825,29 +5798,22 @@
     "connections": [
       {"region": "MagmaChamber_Center8"},
       {
-        "region": "MagmaChamber_AlchemistLab_KeyDoor",
+        "region": "MagmaChamber_AlchemistLab_West",
         "requirements": [
-          "OR", ["magma_chamber_key", "magma_chamber_alchemist_lab_unlocked"]
+          "OR", ["one_magma_chamber_key", "no_locked_doors"]
       ]}
     ],
     "gifts": [
       {"id": 27700082, "item": "Reward Box Lvl 2"}
-    ]
-  },
-  {
-    "region": "MagmaChamber_PuppyRoom_KeyDoor",
-    "connections": [
-      {"region": "MagmaChamber_PuppyRoom", "requirements": ["magma_chamber_mozzie_room_unlocked"]},
-      {"region": "MagmaChamber_Center9_Middle", "requirements": ["magma_chamber_mozzie_room_unlocked"]}
     ],
-    "flags": [
-      {"id": "magma_chamber_mozzie_room_unlocked", "name": "Magma Chamber Mozzie Room Unlocked"}
+    "shop": [
+      { "name": "AlchemistShop", "id": 5, "item": "??? Egg"}
     ]
   },
   {
     "region": "MagmaChamber_PuppyRoom",
     "connections": [
-      {"region": "MagmaChamber_PuppyRoom_KeyDoor", "requirements": ["magma_chamber_mozzie_room_unlocked"]}
+      {"region": "MagmaChamber_Center9_Middle"}
     ],
     "gifts": [
       {"id": 44200172, "item": "Mozzie"}
@@ -6053,8 +6019,8 @@
     "region": "Underworld_EastCatacomb3",
     "connections": [
       {"region": "Underworld_EastCatacomb1"},
-      {"region": "Underworld_EastCatacomb3_KeyDoor", "requirements": [
-        "OR", ["underworld_east_catacomb_unlocked", "underworld_key"]]},
+      {"region": "Underworld_EastCatacomb4", "requirements": [
+        "OR", ["underworld_key", "no_locked_doors"]]},
       {"region": "Underworld_EastCatacomb8", "requirements": ["underworld_east_catacomb_8_shortcut"]},
       {"region": "Underworld_Center1", "requirements": ["underworld_east_catacomb_pillar_control"]}
     ],
@@ -6063,20 +6029,10 @@
     ]
   },
   {
-    "region": "Underworld_EastCatacomb3_KeyDoor",
-    "connections": [
-      {"region": "Underworld_EastCatacomb3", "requirements": ["underworld_east_catacomb_unlocked"]},
-      {"region": "Underworld_EastCatacomb4", "requirements": ["underworld_east_catacomb_unlocked"]}
-    ],
-    "flags": [
-      {"id": "underworld_east_catacomb_unlocked", "name": "Underworld East Catacomb Unlocked"}
-    ]
-  },
-  {
     "region": "Underworld_EastCatacomb4",
     "connections": [
-      {"region": "Underworld_EastCatacomb3_KeyDoor", "requirements": [
-        "OR", "underworld_east_catacomb_unlocked", "underworld_key"]}
+      {"region": "Underworld_EastCatacomb3", "requirements": [
+        "OR", ["underworld_key", "no_locked_doors"]]}
     ],
     "chests": [
       {"id": 3, "item": "1000 G"}
@@ -6661,13 +6617,19 @@
     ],
     "encounters": [
       {"id": 5, "monsters": ["Salahammer", "Polterofen", "Salahammer"]}
+    ],
+    "gifts": [
+      { "id": 33200006, "item": "Shift Stone", "requirements": [ "fourth_bex_encounter" ] }
+    ],
+    "flags": [
+      { "id": "mystical_workshop_bex", "name": "Bex" }
     ]
   },
   {
     "region": "MysticalWorkshop_Center2",
     "connections": [
       {"region": "MysticalWorkshop_Center1_Lower"},
-      {"region": "MysticalWorkshop_Center3_Upper"}
+      {"region": "MysticalWorkshop_South3_Upper"}
     ],
     "encounters": [
       {"id": 0, "monsters": ["Polterofen", "Steam Golem", "Polterofen"]}
@@ -6956,21 +6918,10 @@
     ]
   },
   {
-    "region": "MysticalWorkshop_North4_KeyDoor",
-    "connections": [
-      {"region": "MysticalWorkshop_North6"},
-      {"region": "MysticalWorkshop_North4_Lower", "requirements": [
-        "OR", ["mystical_workshop_north_unlocked", "workshop_key"]]}
-    ],
-    "flags": [
-      {"id": "mystical_workshop_north_unlocked", "name": "Mystical Workshop North Unlocked"}
-    ]
-  },
-  {
     "region": "MysticalWorkshop_North4_Lower",
     "connections": [
       {"region": "MysticalWorkshop_North4_Shortcut", "requirements": ["mystical_workshop_north_shortcut"]},
-      {"region": "MysticalWorkshop_North4_KeyDoor"},
+      {"region": "MysticalWorkshop_North6"},
       {"region": "MysticalWorkshop_North4_Upper", "requirements": [
         "OR", ["double_jump", "improved_flying", "dual_mobility"]
       ]}
@@ -7016,10 +6967,10 @@
     "region": "MysticalWorkshop_North6",
     "connections": [
       {"region": "MysticalWorkshop_North1"},
-      {"region": "MysticalWorkshop_North4_KeyDoor", "requirements": [
+      {"region": "MysticalWorkshop_North4_Lower", "requirements": [
         "AND", [
           "double_jump",
-          "OR", ["mystical_workshop_north_unlocked", "workshop_key"]
+          "OR", ["three_workshop_keys", "no_locked_doors"]
         ]
       ]}
     ],
@@ -7721,7 +7672,7 @@
     "region": "ForgottenWorld_DracomerLair",
     "connections": [
       {"region": "ForgottenWorld_Waters4"},
-      {"region": "ForgottenWorld_Waters1", "requirements": ["forgotten_world_waters_shortcut"]}
+      {"region": "ForgottenWorld_Waters1_Middle", "requirements": ["forgotten_world_waters_shortcut"]}
     ],
     "chests": [
       {"id": 2, "item": "4000 G", "requirements": ["swimming"]}
