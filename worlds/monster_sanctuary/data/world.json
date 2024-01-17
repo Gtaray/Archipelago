@@ -5026,7 +5026,7 @@
       {"region": "HorizonBeach_FWEntrance2"}
     ],
     "chests": [
-      {"id": 7, "item": "2000 G", "requirements": ["swimming"]}
+      {"id": 2, "item": "2000 G", "requirements": ["swimming"]}
     ]
   },
   {

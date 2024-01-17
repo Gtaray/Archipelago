@@ -416,12 +416,20 @@ class MonsterSanctuaryWorld(World):
     # fill_slot_data and modify_multidata can be used to modify the data that will be used by
     # the server to host the MultiWorld.
     def fill_slot_data(self) -> dict:
-        return {
+        data = {
             "exp_multiplier": self.options.exp_multiplier.value,
             "monsters_always_drop_egg": self.options.monsters_always_drop_egg.value,
             "monster_shift_rule": self.options.monster_shift_rule.value,
             "skip_intro": self.options.skip_intro.value,
             "skip_plot": self.options.skip_plot.value,
             "skip_battles": self.options.skip_battles.value,
-            "remove_locked_doors": self.options.remove_locked_doors
+            "remove_locked_doors": self.options.remove_locked_doors.value,
+            "monster_locations": {}
         }
+
+        for encounter_name, encounter in self.encounters.items():
+            for i in range(len(encounter.monsters)):
+                location_name = f"{encounter_name}_{i}"
+                data["monster_locations"][location_name] = encounter.monsters[i].name
+
+        return data
