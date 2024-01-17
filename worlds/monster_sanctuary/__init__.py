@@ -410,8 +410,9 @@ class MonsterSanctuaryWorld(World):
     # self.multiworld.get_locations(self.player) has all locations for the player, with attribute
     # item pointing to the item. location.item.player can be used to see if it's a local item.
     def generate_output(self, output_directory: str) -> None:
-        from Utils import visualize_regions
-        visualize_regions(self.multiworld.get_region("Menu", self.player), "D:\\Visual Studio Projects\\Archipelago\\worlds\\monster_sanctuary\\world.puml")
+        pass
+        # from Utils import visualize_regions
+        # visualize_regions(self.multiworld.get_region("Menu", self.player), "D:\\Visual Studio Projects\\Archipelago\\worlds\\monster_sanctuary\\world.puml")
 
     # fill_slot_data and modify_multidata can be used to modify the data that will be used by
     # the server to host the MultiWorld.
