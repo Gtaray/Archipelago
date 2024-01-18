@@ -200,7 +200,7 @@ def randomize_monsters(world: World) -> None:
         replace_monsters_in_encounter(world, encounter, available_monsters)
 
     # Lastly, assign familiars. Do this at the end so it doesn't get randomized.
-    assign_familiar(world)
+    # assign_familiar(world)
 
 
 def assign_game_stage_to_monsters():

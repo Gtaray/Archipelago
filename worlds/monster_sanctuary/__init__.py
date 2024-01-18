@@ -423,7 +423,6 @@ class MonsterSanctuaryWorld(World):
             "monster_shift_rule": self.options.monster_shift_rule.value,
             "skip_intro": self.options.skip_intro.value,
             "skip_plot": self.options.skip_plot.value,
-            "skip_battles": self.options.skip_battles.value,
             "remove_locked_doors": self.options.remove_locked_doors.value,
             "monster_locations": {}
         }

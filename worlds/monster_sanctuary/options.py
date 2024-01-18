@@ -12,17 +12,6 @@ from Options import Toggle, Choice, Range, DeathLink, PerGameCommonOptions
 # Randomize shops
 
 
-class Familiar(Choice):
-    """Select which familiar you start with."""
-    display_name = "Spectral Familiar"
-    option_select = -1
-    option_wolf = 0
-    option_eagle = 1
-    option_toad = 2
-    option_lion = 3
-    default = -1
-
-
 class RandomizeMonsters(Choice):
     """Randomize monsters
 
@@ -35,21 +24,6 @@ class RandomizeMonsters(Choice):
     option_yes = 1
     option_by_specie = 2
     option_by_encounter = 3
-    default = 1
-
-
-class RandomizeChampions(Choice):
-    """Randomize champions
-
-    No: Champions will not be randomized
-    Default: Champions will be randomized according to the Randomize Monsters game option
-    Shuffle: Champions will be shuffled around
-    Random: Champions will be completely randomized separate from the rest of the monster pool"""
-    display_name = "Randomize Champions"
-    option_no = 0
-    option_default = 1
-    option_shuffle = 2
-    option_any = 3
     default = 1
 
 
@@ -66,12 +40,6 @@ class RandomizeMonsterShifts(Choice):
     default = 1
 
 
-class CanChampionMonstersAppearInWild(Toggle):
-    """Determines whether champion monsters appear in the wild."""
-    display_name = "Champions appear in wild"
-    default = 1
-
-
 class ImprovedMobilityLimitation(Toggle):
     """Limit monsters with improved mobility abilities from showing up too early.
     Abilities include: improved flying, lofty mount, improved swimming, and dual mobility
@@ -79,7 +47,7 @@ class ImprovedMobilityLimitation(Toggle):
     If enabled, monsters with improved mobility abilities will not show up in the Mountain Path, Blue Caves, Stronghold Dungeon, Snowy Peaks, Sun Palace, or Ancient Woods.
     if disabled, monsters with improved mobility abilities can appear anywhere."""
     display_name = "Limit Improved Mobility Abilities"
-    default = 1
+    default = True
 
 
 class LocalAreaKeys(Toggle):
@@ -88,7 +56,7 @@ class LocalAreaKeys(Toggle):
     If enabled, area keys will only appear in the Monster Sanctuary player's world, and they will only appear in their own area.
     If disabled, keys can appear in any world, and may be found outside their area in which they are used."""
     display_name = "Local Area Keys"
-    default = 0
+    default = False
 
 
 class RemoveLockedDoors(Choice):
@@ -111,13 +79,13 @@ class AddGiftEggsToPool(Toggle):
     If monster randomization is set to shuffle, then the eggs you receive will be included in the shuffle.
     Gift monsters are: Koi, Skorch, Shockhopper, and Bard"""
     display_name = "Add Gift Monster Eggs to Item Pool"
-    default = 1
+    default = True
 
 
 class MonstersAlwaysDropEggs(Toggle):
     """If enabled, monsters will always drop an egg."""
     display_name = "Monsters always drop eggs"
-    default = 1
+    default = True
 
 
 class CraftingMaterialDropChance(Range):
@@ -207,7 +175,7 @@ class GoldDropChance(Range):
 class IncludeChaosRelics(Toggle):
     """Include Relics of Chaos in the random item pool"""
     display_name = "Include Relics of Chaos"
-    default = 1
+    default = True
 
 
 class ExpMultiplier(Range):
@@ -221,20 +189,13 @@ class ExpMultiplier(Range):
 class SkipIntro(Toggle):
     """Skip the intro cut scenes and tutorial dialog when starting a new file."""
     display_name = "Skip Intro Cutscenes"
-    default = 0
+    default = False
 
 
 class SkipPlot(Toggle):
     """Skip plot related events and open up all areas gated by story progression."""
     display_name = "Skip Plot Requirements"
-    default = 0
-
-
-class SkipKeeperBattles(Toggle):
-    """Disable and skip all keeper battles.
-    Some item checks are acquired by defeating keepers, and this will disable those checks."""
-    display_name = "Skip Keeper Battles"
-    default = 0
+    default = False
 
 
 class Goal(Choice):
@@ -247,20 +208,11 @@ class Goal(Choice):
     option_defeat_all_champions = 1
     default = 0
 
-    def get_event_name(self) -> str:
-        return {
-            self.option_defeat_mad_lord: "Defeat Mad Lord",
-        }[self.value]
-
 
 @dataclass
 class MonsterSanctuaryOptions(PerGameCommonOptions):
-    spectral_familiar: Familiar
     randomize_monsters: RandomizeMonsters
-    # randomize_champions: RandomizeChampions
     monster_shift_rule: RandomizeMonsterShifts
-    # champions_in_wild: CanChampionMonstersAppearInWild
-    # evolutions_in_wild: CanEncounterEvolvedMonsters
     improved_mobility_limit: ImprovedMobilityLimitation
     remove_locked_doors: RemoveLockedDoors
     local_area_keys: LocalAreaKeys
@@ -277,6 +229,5 @@ class MonsterSanctuaryOptions(PerGameCommonOptions):
     exp_multiplier: ExpMultiplier
     skip_intro: SkipIntro
     skip_plot: SkipPlot
-    # skip_battles: SkipKeeperBattles
     goal: Goal
     death_link: DeathLink
