@@ -59,14 +59,7 @@ class MonsterSanctuaryWorld(World):
     data_version = 0
     topology_present = True
 
-    # Merge the monster ability groups and item groups
     item_name_groups = ITEMS.build_item_groups()
-    for ability, monsters in ENCOUNTERS.build_explore_ability_groups().items():
-        if item_name_groups[ability]:
-            item_name_groups[ability].extend(monsters)
-        else:
-            item_name_groups[ability] = [monsters]
-
     item_name_to_id = {item.name: item.id for item in ITEMS.item_data.values()}
     location_name_to_id = {location.name: location.location_id
                            for location in LOCATIONS.location_data.values()}
@@ -99,6 +92,12 @@ class MonsterSanctuaryWorld(World):
 
         self.create_item_locations()
         self.connect_regions()
+
+        # These create locations and place items at those locations.
+        # Needs to be done after location creation but before item placement
+        self.place_events()
+        self.handle_monster_eggs()
+        self.place_monsters()
 
     def create_item_locations(self) -> None:
         """Creates all locations for items, gifts, and rank ups"""
@@ -291,11 +290,6 @@ class MonsterSanctuaryWorld(World):
     # called to place player's items into the MultiWorld's itempool. After this step all regions and items have to
     # be in the MultiWorld's regions and itempool, and these lists should not be modified afterward.
     def create_items(self) -> None:
-        # Do this first since it interacts with the item pool.
-        # We have to do it in here because it needs to be done after locations are created
-        # but before items are placed.
-        self.handle_monster_eggs()
-
         ITEMS.build_item_probability_table({
             MonsterSanctuaryItemCategory.CRAFTINGMATERIAL: self.options.drop_chance_craftingmaterial.value,
             MonsterSanctuaryItemCategory.CONSUMABLE: self.options.drop_chance_consumable.value,
@@ -384,8 +378,6 @@ class MonsterSanctuaryWorld(World):
     def generate_basic(self) -> None:
         self.set_victory_condition()
         self.place_ranks()
-        self.place_events()
-        self.place_monsters()
 
     # called to modify item placement before, during and after the regular fill process, before generate_output.
     # If items need to be placed during pre_fill, these items can be determined and created using get_prefill_items

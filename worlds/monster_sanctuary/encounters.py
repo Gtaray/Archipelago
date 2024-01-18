@@ -374,15 +374,6 @@ def replace_monsters_in_encounter(world: World, encounter: EncounterData, availa
 # endregion
 
 
-def build_explore_ability_groups() -> Dict:
-    item_groups = {}
-    for item, data in monster_data.items():
-        for group in data.groups:
-            item_groups[group] = item_groups.get(group, []) + [item]
-
-    return item_groups
-
-
 def get_monsters(*monster_exclusions: str) -> List[MonsterData]:
     exclude = list(monster_exclusions) + ["Spectral Wolf", "Spectral Toad", "Spectral Eagle", "Spectral Lion", "Bard"]
     return [monster for monster in monster_data.values() if monster.name not in exclude]
@@ -399,11 +390,6 @@ def get_monsters_with_abilities(*abilities) -> List[MonsterData]:
     return [monster for monster in get_monsters() if set(abilities) & set(monster.groups)]
 
 
-def get_random_monster_with_ability(random: Random, *abilities) -> MonsterData:
-    monsters = get_monsters_with_abilities(*abilities)
-    return random.choice(monsters)
-
-
 def get_monsters_in_area(world: World, *areas: str) -> List[MonsterData]:
     monsters: Dict[str, MonsterData] = {}
 
@@ -416,8 +402,3 @@ def get_monsters_in_area(world: World, *areas: str) -> List[MonsterData]:
                 monsters[monster.name] = monster
 
     return list(monsters.values())
-
-
-def get_random_monster_name(multiworld: MultiWorld) -> str:
-    valid_items = [item for item in get_monsters()]
-    return multiworld.random.choice(valid_items).name
