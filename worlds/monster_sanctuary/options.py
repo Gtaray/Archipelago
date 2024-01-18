@@ -72,17 +72,13 @@ class CanChampionMonstersAppearInWild(Toggle):
     default = 1
 
 
-class ImprovedMobilityLimitation(Choice):
+class ImprovedMobilityLimitation(Toggle):
     """Limit monsters with improved mobility abilities from showing up too early.
     Abilities include: improved flying, lofty mount, improved swimming, and dual mobility
 
-    No: Do not limit monster placement based on their ability
-    Mid-Game: Monsters with improved mobility abilities will not show up in the Mountain Path, Blue Caves, Stronghold Dungeon, or Snowy Peaks.
-    Late-Game: Monsters with improved mobility abilities will only show up in the Underworld, Mystical Workshop, Forgotten World, and Abandoned Tower."""
+    If enabled, monsters with improved mobility abilities will not show up in the Mountain Path, Blue Caves, Stronghold Dungeon, Snowy Peaks, Sun Palace, or Ancient Woods.
+    if disabled, monsters with improved mobility abilities can appear anywhere."""
     display_name = "Limit Improved Mobility Abilities"
-    option_no = 0
-    option_midgame = 1
-    option_lategame = 2
     default = 1
 
 
@@ -281,6 +277,6 @@ class MonsterSanctuaryOptions(PerGameCommonOptions):
     exp_multiplier: ExpMultiplier
     skip_intro: SkipIntro
     skip_plot: SkipPlot
-    skip_battles: SkipKeeperBattles
+    # skip_battles: SkipKeeperBattles
     goal: Goal
     death_link: DeathLink

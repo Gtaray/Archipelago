@@ -28,43 +28,22 @@ class ImprovedMobilityLimitationTestBase(TestMonsterRandomizerBase):
                     self.assertNotIn(monster_name, illegal_monsters)
 
 
-class TestImprovedMobilityLimitation_Midgame_Any(ImprovedMobilityLimitationTestBase, TestMonsterRandomizerOn):
+class TestImprovedMobilityLimitation_Disabled_Any(ImprovedMobilityLimitationTestBase, TestMonsterRandomizerOn):
     options = {
         "randomize_monsters": 1,
-        "improved_mobility_limit": 1
+        "improved_mobility_limit": 0
     }
 
 
-class ImprovedMobilityLimitationTests_Midgame_Shuffle(ImprovedMobilityLimitationTestBase, TestMonsterRandomizerShuffle):
+class ImprovedMobilityLimitationTests_Disabled_Shuffle(ImprovedMobilityLimitationTestBase, TestMonsterRandomizerShuffle):
     options = {
         "randomize_monsters": 2,
-        "improved_mobility_limit": 1
+        "improved_mobility_limit": 0
     }
 
 
-class ImprovedMobilityLimitationTests_Midgame_Encounter(ImprovedMobilityLimitationTestBase, TestMonsterRandomizerEncounter):
+class ImprovedMobilityLimitationTests_Disabled_Encounter(ImprovedMobilityLimitationTestBase, TestMonsterRandomizerEncounter):
     options = {
         "randomize_monsters": 3,
-        "improved_mobility_limit": 1
-    }
-
-
-class ImprovedMobilityLimitationTests_Lategame_Any(ImprovedMobilityLimitationTestBase, TestMonsterRandomizerOn):
-    options = {
-        "randomize_monsters": 1,
-        "improved_mobility_limit": 2
-    }
-
-
-class ImprovedMobilityLimitationTests_Lategame_Shuffle(ImprovedMobilityLimitationTestBase, TestMonsterRandomizerShuffle):
-    options = {
-        "randomize_monsters": 2,
-        "improved_mobility_limit": 2
-    }
-
-
-class ImprovedMobilityLimitationTests_Lategame_Encounter(ImprovedMobilityLimitationTestBase, TestMonsterRandomizerEncounter):
-    options = {
-        "randomize_monsters": 3,
-        "improved_mobility_limit": 2
+        "improved_mobility_limit": 0
     }

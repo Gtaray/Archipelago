@@ -10,8 +10,7 @@ from ..AutoWorld import World
 
 class GameStage(IntEnum):
     EARLY = 0
-    MIDDLE = 1
-    LATE = 2
+    LATE = 1
 
 
 class MonsterData:
@@ -114,9 +113,9 @@ evolved_monsters = {
     "Dracomer": "Draconov"
 }
 early_game_areas: List[str] = ["Menu", "MountainPath", "BlueCave", "KeepersStronghold", "KeepersTower",
-                               "StrongholdDungeon", "SnowyPeaks"]
-mid_game_areas: List[str] = ["SunPalace", "AncientWoods", "HorizonBeach", "MagmaChamber", "BlobBurg"]
-late_game_areas: List[str] = ["ForgottenWorld", "MysticalWorkshop", "Underworld", "AbandonedTower", "EternitysEnd"]
+                               "StrongholdDungeon", "SnowyPeaks", "SunPalace", "AncientWoods"]
+late_game_areas: List[str] = ["HorizonBeach", "MagmaChamber", "BlobBurg", "ForgottenWorld", "MysticalWorkshop",
+                              "Underworld", "AbandonedTower", "EternitysEnd"]
 
 
 # region Data Loading
@@ -210,8 +209,6 @@ def assign_game_stage_to_monsters():
 
         if encounter.area in early_game_areas:
             stage = GameStage.EARLY
-        elif encounter.area in mid_game_areas:
-            stage = GameStage.MIDDLE
         elif encounter.area in late_game_areas:
             stage = GameStage.LATE
 
@@ -230,17 +227,10 @@ def set_encounter_monster_exclusions(world: World):
         mad_lord.add_exclusion("Bard")
         mad_lord.add_exclusion("Tar Blob")
 
-    # Get a list of regions where improved mobility abilities must be limited
-    improved_mobility_area_limit = []
-    if world.options.improved_mobility_limit == "midgame":
-        improved_mobility_area_limit = early_game_areas
-    elif world.options.improved_mobility_limit == "lategame":
-        improved_mobility_area_limit = early_game_areas + mid_game_areas
-
     # if there's regions where improved mobility are illegal, set it up.
-    if len(improved_mobility_area_limit) > 0:
+    if world.options.improved_mobility_limit:
         encounters = [encounter for encounter in encounter_data.values()
-                      if encounter.area in improved_mobility_area_limit]
+                      if encounter.area in early_game_areas]
         monsters = [monster.name for monster in get_monsters_with_abilities(
             "Improved Flying", "Lofty Mount", "Improved Swimming", "Dual Mobility")]
         for encounter in encounters:
