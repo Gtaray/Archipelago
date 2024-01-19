@@ -24,15 +24,25 @@ class TestItems(MonsterSanctuaryTestBase):
     def test_key_items_appear_correct_number_of_times(self):
         key_items = [items.item_data[item_name] for item_name in items.item_data
                      if items.item_data[item_name].category == MonsterSanctuaryItemCategory.KEYITEM]
+
         for key_item in key_items:
+            exptected_count = key_item.count
             # if we're removing key doors, then ignore area key items
-            if key_item.name.endswith("key") and self.multiworld.worlds[1].options.remove_locked_doors:
-                continue
+            if "Area Key" in key_item.groups:
+                if self.multiworld.worlds[1].options.remove_locked_doors == "minimal":
+                    if key_item.name == "Ancient Woods key":
+                        exptected_count = 2
+                    elif key_item.name == "Mystical Workshop key":
+                        exptected_count = 3
+                    else:
+                        exptected_count = 1
+                elif self.multiworld.worlds[1].options.remove_locked_doors == "all":
+                    continue
 
             item_pool_items = [item for item in self.multiworld.itempool
                                if item.name == key_item.name]
-            with self.subTest(f"{key_item.name} appears {key_item.count} time(s)"):
-                self.assertEqual(key_item.count, len(item_pool_items), key_item.name)
+            with self.subTest(f"{key_item.name} appears {exptected_count} time(s)"):
+                self.assertEqual(exptected_count, len(item_pool_items), key_item.name)
 
     def test_no_items_placed_where_they_should_not_be(self):
         from Fill import distribute_items_restrictive
@@ -54,6 +64,18 @@ class TestItems(MonsterSanctuaryTestBase):
             with self.subTest("This item is allowed to be at this location", item=item_data.name, location=location.name):
                 for illegal_location in item_data.illegal_locations:
                     self.assertFalse(location.name.startswith(illegal_location))
+
+
+class TestremoveLockedDoors_Minimal(TestItems):
+    options = {
+        "remove_locked_doors": 1
+    }
+
+
+class TestremoveLockedDoors_All(TestItems):
+    options = {
+        "remove_locked_doors": 2
+    }
 
 
 class TestDefaultItemProbability(MonsterSanctuaryTestBase):

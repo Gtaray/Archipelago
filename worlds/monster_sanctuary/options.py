@@ -20,8 +20,8 @@ class RandomizeMonsters(Choice):
     By Specie: Monsters of the same specie are all randomized to another monster specie
     By Encounter: Within an encounter, all monsters of the same specie are randomized to another specie. Each encounter is randomized separately"""
     display_name = "Randomize Monsters"
-    option_no = 0
-    option_yes = 1
+    option_off = 0
+    option_any = 1
     option_by_specie = 2
     option_by_encounter = 3
     default = 1
@@ -66,10 +66,10 @@ class RemoveLockedDoors(Choice):
     Minimal: Superfluous locked doors are removed, while ones that gate large numbers of checks remain
     All: All locked doors are removed"""
     display_name = "Remove Locked Doors"
-    option_no = 0
+    option_off = 0
     option_minimal = 1
     option_all = 2
-    default = 1
+    default = 0
 
 
 class AddGiftEggsToPool(Toggle):

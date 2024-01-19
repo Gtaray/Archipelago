@@ -151,7 +151,7 @@ def randomize_monsters(world: World) -> None:
     world.encounters = copy.deepcopy(encounter_data)
 
     # If we're not randomizing, we can bail out here.
-    if world.options.randomize_monsters == "no":
+    if world.options.randomize_monsters == "off":
         return
 
     random = world.multiworld.random
@@ -314,7 +314,7 @@ def replace_monsters_in_encounter(world: World, encounter: EncounterData, availa
     random = world.multiworld.random
     new_monsters = []
 
-    if world.options.randomize_monsters == "yes":
+    if world.options.randomize_monsters == "any":
         # Fill out the rest of the monster slots with random monsters
         if forced_monster is not None:
             new_monsters.append(forced_monster)
