@@ -183,9 +183,9 @@ class MonsterSanctuaryWorld(World):
 
     def place_ranks(self) -> None:
         """Creates the locations for rank ups, and locks Champion Defeated items to those locations"""
-        for location_name in [location_name
-                              for location_name in LOCATIONS.location_data
-                              if LOCATIONS.location_data[location_name].category == MonsterSanctuaryLocationCategory.RANK]:
+        for location_name in [loc.name
+                              for name, loc in LOCATIONS.location_data.items()
+                              if LOCATIONS.location_data[name].category == MonsterSanctuaryLocationCategory.RANK]:
 
             location = self.multiworld.get_location(location_name, self.player)
             location.place_locked_item(self.create_item("Champion Defeated"))

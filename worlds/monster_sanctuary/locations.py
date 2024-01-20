@@ -44,6 +44,7 @@ class LocationData:
 		self.object_id = object_id
 		self.event = event
 		self.hint = hint
+		self.logical_name = ""
 
 
 class MonsterSanctuaryLocation(Location):
@@ -71,11 +72,11 @@ class MonsterSanctuaryLocation(Location):
 location_data: Dict[str, LocationData] = {}
 
 
-def add_location(location: LocationData) -> None:
+def add_location(key: str, location: LocationData) -> None:
 	if location_data.get(location.name) is not None:
 		raise KeyError(f"{location.name} already exists in locations_data")
 
-	location_data[location.name] = location
+	location_data[key] = location
 
 
 def clear_data():

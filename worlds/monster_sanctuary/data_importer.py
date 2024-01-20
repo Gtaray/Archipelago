@@ -26,8 +26,12 @@ except ImportError:
 
 def load_world() -> None:
     LOCATIONS.location_data.clear()
+    location_names: Dict[str, str] = {}
     locations_by_id: Dict[int, LocationData] = {}
     location_id: int = 970500
+
+    with files(data).joinpath("location_names.json").open() as file:
+        location_names = json.load(file)
 
     with files(data).joinpath("world.json").open() as file:
         json_data = json.load(file)
@@ -47,7 +51,8 @@ def load_world() -> None:
                 # Hack because we store comments as strings
                 if isinstance(chest_data, str):
                     continue
-                location = add_chest_location(location_id, chest_data, region_name)
+                display_name = location_names[f"{region_name}_{chest_data['id']}"]
+                location = add_chest_location(location_id, display_name, chest_data, region_name)
                 locations_by_id[location_id] = location
                 location_id += 1
 
@@ -55,7 +60,8 @@ def load_world() -> None:
                 # Hack because we store comments as strings
                 if isinstance(gift_data, str):
                     continue
-                location = add_gift_location(location_id, gift_data, region_name)
+                display_name = location_names[f"{region_name}_{gift_data['id']}"]
+                location = add_gift_location(location_id, display_name, gift_data, region_name)
                 locations_by_id[location_id] = location
                 location_id += 1
 
@@ -72,7 +78,8 @@ def load_world() -> None:
                     continue
 
                 # First add the rank up item
-                location = add_rank_location(location_id, champion_data, region_name)
+                display_name = location_names[f"{region_name}_Champion"]
+                location = add_rank_location(location_id, display_name, champion_data, region_name)
                 locations_by_id[location_id] = location
                 location_id += 1
 
@@ -244,10 +251,10 @@ def parse_item_classification(text: Optional[str]) -> Optional[ItemClassificatio
 
 
 # region Data Adders
-def add_location(location_id, json_data, region_name, category: MonsterSanctuaryLocationCategory):
+def add_location(location_id, location_name, json_data, region_name, category: MonsterSanctuaryLocationCategory):
     location = LocationData(
         location_id=location_id,
-        name=f"{region_name}_{json_data['id']}",
+        name=location_name,
         region=region_name,
         category=category,
         default_item=json_data["item"],
@@ -256,29 +263,29 @@ def add_location(location_id, json_data, region_name, category: MonsterSanctuary
         hint=json_data.get("hint")
     )
 
-    LOCATIONS.add_location(location)
+    LOCATIONS.add_location(f"{region_name}_{json_data['id']}", location)
     return location
 
 
-def add_chest_location(location_id, chest_data, region_name) -> LocationData:
-    return add_location(location_id, chest_data, region_name, MonsterSanctuaryLocationCategory.CHEST)
+def add_chest_location(location_id, location_name, chest_data, region_name) -> LocationData:
+    return add_location(location_id, location_name, chest_data, region_name, MonsterSanctuaryLocationCategory.CHEST)
 
 
-def add_gift_location(location_id, gift_data, region_name) -> LocationData:
-    return add_location(location_id, gift_data, region_name, MonsterSanctuaryLocationCategory.GIFT)
+def add_gift_location(location_id, location_name, gift_data, region_name) -> LocationData:
+    return add_location(location_id, location_name, gift_data, region_name, MonsterSanctuaryLocationCategory.GIFT)
 
 
-def add_rank_location(location_id, champion_data, region_name) -> LocationData:
+def add_rank_location(location_id, display_name, champion_data, region_name) -> LocationData:
     rank_location = LocationData(
         location_id=location_id,
-        name=f"{region_name}_Champion",
+        name=display_name,
         region=region_name,
         category=MonsterSanctuaryLocationCategory.RANK,
         default_item="Champion Defeated",
         access_condition=AccessCondition(champion_data.get("requirements"))
     )
 
-    LOCATIONS.add_location(rank_location)
+    LOCATIONS.add_location(f"{region_name}_Champion", rank_location)
     return rank_location
 
 

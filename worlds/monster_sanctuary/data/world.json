@@ -1489,7 +1489,12 @@
       { "region": "StrongholdDungeon_Central4" }
     ],
     "chests": [
-      { "id": 0, "item": "Morning Star+2" },
+      { "id": 0, "item": "Morning Star+2", "requirements": [
+        "OR", [
+          "double_jump",
+          "distant_ledges"]
+        ]
+      },
       { "id": 15, "item": "Mass Potion", "requirements": [
         "OR", [
           "double_jump",
@@ -3330,8 +3335,7 @@
       { "region": "SunPalace_WestSewers2" }
     ],
     "chests": [
-      { "id": 0, "item": "Switch Stone" },
-      { "id": 2, "item": "Skill Resetter", "requirements": [
+      { "id": 0, "item": "Switch Stone", "requirements": [
         "OR", [
           "swimming",
           "AND", [
@@ -3344,6 +3348,7 @@
           ]
         ]
       ] },
+      { "id": 2, "item": "Skill Resetter" },
       { "id": 4, "item": "Monster Bell" }
     ]
   },
@@ -4045,9 +4050,6 @@
       { "region": "AncientWoods_West6" },
       { "region": "AncientWoods_Center1" },
       { "region": "AncientWoods_DoorPuzzle" }
-    ],
-    "chests": [
-      { "id": 1, "item": "Corn", "requirements": ["breakable_walls"] }
     ]
   },
   {
@@ -4914,6 +4916,16 @@
     ],
     "encounters": [
       {"id": 2, "monsters": ["Ucan", "Brawlish", "Ucan"]}
+    ]
+  },
+  {
+    "region": "HorizonBeach_South6",
+    "connections": [
+      {"region": "HorizonBeach_South5", "requirements": ["swimming"]}
+    ],
+    "chests": [
+      {"id": 6, "item": "Azure Gem", "requirements": ["swimming"]},
+      {"id": 10, "item": "Diadem+4", "requirements": ["swimming"]}
     ]
   },
   {

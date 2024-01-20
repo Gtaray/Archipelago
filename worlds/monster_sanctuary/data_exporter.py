@@ -4,6 +4,7 @@
 # Since location names are structured based on room name and object id, the client
 # would otherwise have no idea about the logical divisions we make in a single room
 import json
+from typing import Dict
 
 from worlds.monster_sanctuary import data_importer, locations, MonsterSanctuaryLocationCategory
 
@@ -49,3 +50,7 @@ if __name__ == '__main__':
     with open("export/number_of_checks.json", "w") as outfile:
         outfile.write(json_object)
 
+    export: Dict[str, str] = {logical_name: loc.name for logical_name, loc in locations.location_data.items()}
+    json_object = json.dumps(export, indent=4)
+    with open("data/location_names.json", "w") as outfile:
+        outfile.write(json_object)
