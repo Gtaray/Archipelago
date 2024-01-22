@@ -7672,6 +7672,29 @@
     ]
   },
   {
+    "region": "ForgottenWorld_Waters5",
+    "connections": [
+      {"region": "ForgottenWorld_Waters1_Middle", "requirements": ["magic_walls"]},
+      {"region": "ForgottenWorld_TarPits5_Lower", "requirements": [
+        "AND", [
+          "magic_walls",
+          "OR", ["summon_big_rock", "double_jump", "improved_flying", "dual_mobility", "lofty_mount"]
+        ]
+      ]}
+    ],
+    "chests": [
+      {"id": 3, "item": "Switch Stone", "requirements": [
+        "AND", [
+          "magic_walls",
+          "OR", ["summon_big_rock", "double_jump", "improved_flying", "dual_mobility", "lofty_mount"]
+        ]
+      ]},
+      {"id": 4, "item": "3x Reward Box Lvl 4", "requirements": [
+        "AND", ["magic_walls", "dual_mobility"]
+      ]}
+    ]
+  },
+  {
     "region": "ForgottenWorld_WatersHidden",
     "connections": [
       {"region": "ForgottenWorld_Waters4"}
@@ -8389,6 +8412,9 @@
       {"region": "AbandonedTower_Center3_Lower"},
       {"region": "AbandonedTower_Center1_Upper"},
       {"region": "AbandonedTower_Center4"}
+    ],
+    "chests": [
+      {"id": 1, "item": "2x Gold", "requirements": ["diamond_blocks"]}
     ]
   },
   {

@@ -25,7 +25,11 @@ except ImportError:
 
 
 def load_world() -> None:
+    # Clear out old data
     LOCATIONS.location_data.clear()
+    ENCOUNTERS.encounter_data.clear()
+    FLAGS.flag_data.clear()
+
     location_names: Dict[str, str] = {}
     locations_by_id: Dict[int, LocationData] = {}
     location_id: int = 970500
