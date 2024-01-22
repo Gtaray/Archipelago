@@ -5,7 +5,7 @@
       { "region": "MountainPath_North1" }
     ],
     "encounters": [
-      { "id": 0, "monsters": [ ] }
+      { "id": 0, "monsters": [ "Tanuki" ] }
     ],
     "flags": [
       {"id": "ability_claws", "name": "Ability - Claws"},
@@ -3950,7 +3950,7 @@
       { "id": 4, "item": "2x Combo Potion", "requirements": [
         "OR", ["double_jump", "improved_flying", "dual_mobility"]
       ]},
-      { "id": 105, "item": "2x Combo Potion", "requirements": [
+      { "id": 105, "item": "2x Level Badge", "requirements": [
         "OR", ["double_jump", "improved_flying", "dual_mobility"]
       ]}
     ]

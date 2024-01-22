@@ -4,6 +4,7 @@ from typing import List
 
 from BaseClasses import MultiWorld, CollectionState, ItemClassification
 from worlds import AutoWorldRegister
+from worlds.monster_sanctuary import locations as LOCATIONS
 
 
 class TestArea(unittest.TestCase):
@@ -64,7 +65,11 @@ class TestArea(unittest.TestCase):
             # define the test to use
             state.prog_items[1][item.name] += 1
 
-        location = self.multiworld.get_location(end, 1)
+        location_name = end
+        if location_name in LOCATIONS.location_data:
+            location_name = LOCATIONS.location_data[end].name
+
+        location = self.multiworld.get_location(location_name, 1)
         return location.can_reach(state)
 
     def assertAccessible(self, start: str, end: str, items: List[str]):

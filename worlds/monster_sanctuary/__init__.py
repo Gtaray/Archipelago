@@ -259,7 +259,8 @@ class MonsterSanctuaryWorld(World):
             self.multiworld.itempool += list(item for location, item in eggs.items())
         else:
             for location, item in eggs.items():
-                self.multiworld.get_location(location, self.player).place_locked_item(item)
+                data = LOCATIONS.location_data[location]
+                self.multiworld.get_location(data.name, self.player).place_locked_item(item)
 
         self.number_of_item_locations -= len(eggs)
 

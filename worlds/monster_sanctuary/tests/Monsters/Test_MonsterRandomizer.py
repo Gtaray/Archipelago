@@ -151,6 +151,11 @@ class TestMonsterRandomizerShuffle(TestMonsterRandomizerBase):
         test_egg_is_in_item_pool("Sizzle Knight")
         test_egg_is_in_item_pool("Ninki")
 
+    def test_shuffled_tanuki_is_available(self):
+        monster = self.multiworld.worlds[1].species_swap["Tanuki"]
+        location = self.multiworld.get_location("Menu_0_0", self.player)
+        self.assertEqual(location.item.name, monster.name)
+
 
 class TestMonsterRandomizerEncounter(TestMonsterRandomizerBase):
     options = {

@@ -1,4 +1,5 @@
 from test.bases import WorldTestBase
+from worlds.monster_sanctuary import locations as LOCATIONS
 from worlds.monster_sanctuary.tests.Monsters.Test_MonsterRandomizer import TestMonsterRandomizerOn, \
     TestMonsterRandomizerOff, TestMonsterRandomizerShuffle, TestMonsterRandomizerEncounter
 
@@ -64,7 +65,8 @@ class TestEggRandomizerOff(TestEggRandomizer):
 
     def assert_location_contains_item(self, location_name, item_name):
         with self.subTest(f"{item_name} is placed at {location_name}"):
-            location = self.multiworld.get_location(location_name, 1)
+            data = LOCATIONS.location_data[location_name]
+            location = self.multiworld.get_location(data.name, 1)
             self.assertEqual(location.item.name, item_name)
 
     def test_required_eggs_are_placed(self):
