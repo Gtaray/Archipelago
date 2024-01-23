@@ -421,8 +421,13 @@ class MonsterSanctuaryWorld(World):
         }
 
         for encounter_name, encounter in self.encounters.items():
+            parts = encounter_name.split('_')
+
+            # location names for monsters need to be without the subsection, so we only
+            # take the first two parts of the name, then append the monster id
+            location_name_base = f"{parts[0]}_{parts[1]}"
             for i in range(len(encounter.monsters)):
-                location_name = f"{encounter_name}_{i}"
+                location_name = f"{location_name_base}_{i}"
                 data["monster_locations"][location_name] = encounter.monsters[i].name
 
         return data

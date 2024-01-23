@@ -9,25 +9,18 @@ from typing import Dict
 from worlds.monster_sanctuary import data_importer, locations, MonsterSanctuaryLocationCategory
 
 if __name__ == '__main__':
-    region_map = {}
+    location_map = {}
     number_of_checks = {}
 
     for location_name in locations.location_data:
         data = locations.location_data[location_name]
-        parts = data.region.split('_')
+        parts = location_name.split('_')
 
         if (data.category == MonsterSanctuaryLocationCategory.CHEST
                 or data.category == MonsterSanctuaryLocationCategory.GIFT):
             if parts[0] not in number_of_checks.keys():
                 number_of_checks[parts[0]] = 0
             number_of_checks[parts[0]] += 1
-
-        # Because regions normally are structured like
-        # "{area name}_{room name}"
-        # Any region that has more than 1 underscore has been subdivided
-        # Ignore regions that only have 1 underscore
-        if len(parts) <= 2:
-            continue
 
         # We reconstruct the location name without the subdivision,
         # which is what the game client will use
@@ -40,11 +33,11 @@ if __name__ == '__main__':
 
         # We don't use data.name here because that's a human-readable name
         # We want the logical name with subsection included
-        region_map[trimmed_name] = location_name
+        location_map[trimmed_name] = data.name
 
     # Serializing and write subsections
-    json_object = json.dumps(region_map, indent=4)
-    with open("export/subsections.json", "w") as outfile:
+    json_object = json.dumps(location_map, indent=4)
+    with open("export/locations.json", "w") as outfile:
         outfile.write(json_object)
 
     # Serializing the total number of checks for regions
