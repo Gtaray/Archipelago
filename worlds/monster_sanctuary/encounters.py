@@ -131,6 +131,7 @@ def add_encounter(encounter: EncounterData, monsters: List[str]) -> None:
 
 
 # region Monster and Champion Randomization
+# UNUSED
 def assign_familiar(world: World) -> None:
     if world.options.spectral_familiar == "wolf":
         world.encounters["Menu_0"].add_monster(get_monster("Spectral Wolf"))

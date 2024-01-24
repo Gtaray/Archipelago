@@ -1,0 +1,134 @@
+{
+  "preset": [
+    {
+      "name": "Mountain Path Lore Stone",
+      "id": 516,
+      "text": "It is said that {item} will disguise themselves as other monsters, only to reveal themselves when battled.",
+      "item_location": "Menu_0_0",
+      "ignore_other_text": false
+    },
+    {
+      "name": "Fisherman",
+      "id": 24300019,
+      "text": "Bring me {five} of those {rare seashells} and I'll give you a {category} item.",
+      "item_location": "Horizon Beach - Fisherman",
+      "ignore_other_text": false
+    },
+    {
+      "name": "Old Man by the Sea 1",
+      "id": 21900050,
+      "text": "Hello again! Don't forget to come back here once you've found my memorial ring, alright? I'll give you a {category} reward for it, too.",
+      "item_location": "Horizon Beach - Old Man by the Sea",
+      "ignore_other_text": false
+    },
+    {
+      "name": "Old Man by the Sea 2",
+      "id": 21900051,
+      "text": "I think I might have dropped it {area}",
+      "item_name": "Memorial Ring",
+      "ignore_other_text": true
+    },
+    {
+      "name": "Blob Statue Guy",
+      "id": 39900009,
+      "text": "I heard that there's a key for those statues {area}. You should check that out!",
+      "item_name": "Blob Key",
+      "ignore_other_text": true
+    },
+    {
+      "name": "Caretaker",
+      "id": 18500041,
+      "text": "I tamed this Koi {area}. You might be able to find another Koi Egg there.",
+      "item_name": "Koi Egg",
+      "ignore_other_text": true
+    },
+    {
+      "name": "Lake Guy",
+      "id": 15200019,
+      "text": "She's guarded by a rare monster. I hear you can tame one for yourself {area}",
+      "item_name": "Akhlut",
+      "ignore_other_text": true
+    },
+    {
+      "name": "World Tree Lore Stone",
+      "id": 46100125,
+      "text": "Legend tells that if one collects all three Celestial Feathers, they will be rewarded with a {category} reward.",
+      "item_location": "Forgotten World - Wanderer Room",
+      "ignore_other_text": true
+    },
+    {
+      "name": "Forgotten World Jungle Lore Stone",
+      "id": 46300001,
+      "text": "Legend tells that Krakaturtle can be found {area}",
+      "item_name": "Krakaturtle",
+      "ignore_other_text": true
+    },
+    {
+      "name": "Forgotten World Caves Lore Stone",
+      "id": 48900003,
+      "text": "Legend tells that Amberlgna can be found {area}",
+      "item_name": "Amberlgna",
+      "ignore_other_text": true
+    },
+    {
+      "name": "Forgotten World Climb Lore Stone",
+      "id": 47200001,
+      "text": "Legend tells that Gryphonix can be found {area}",
+      "item_name": "Gryphonix",
+      "ignore_other_text": true
+    },
+    {
+      "name": "Wanderer Journal",
+      "id": 54000009,
+      "text": "Bards are elusive monsters whose eggs can only be found {area}",
+      "item_name": "Bard Egg",
+      "ignore_other_text": true
+    },
+    {
+      "name": "Runestone",
+      "id": 26500006,
+      "text": "We could probably find the missing fragment {area}",
+      "item_name": "Runestone Shard",
+      "ignore_other_text": false
+    },
+    {
+      "name": "Clothesmaker 1",
+      "id": 17700004,
+      "text": "I know better than to argue with some young know-it-all. I'll make a {category} item for you, yes?",
+      "item_location": "Snowy Peaks - Clothesmaker",
+      "ignore_other_text": false
+    },
+    {
+      "name": "Clothesmaker 2",
+      "id": 17700005,
+      "text": "Though if you want some {Warm Underwear}, you'll need to find it {area}",
+      "item_name": "Warm Underwear",
+      "ignore_other_text": false
+    },
+    {
+      "name": "Cryomancer",
+      "id": 17900018,
+      "text": "The {CryoMonster1} can be found {area}",
+      "item_name": "Dodo",
+      "ignore_other_text": false
+    }
+  ],
+  "hint_locations": [
+    {
+      "name": "Stronghold Library Little Girl",
+      "id": 308
+    },
+    {
+      "name": "Stronghold Bedroom NPC",
+      "id": 313
+    },
+    {
+      "name": "Stronghold Towers NPC",
+      "id": 395
+    },
+    {
+      "name": "Stronghold Entrance NPC",
+      "id": 315
+    }
+  ]
+}

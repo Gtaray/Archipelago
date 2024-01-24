@@ -198,6 +198,12 @@ class SkipPlot(Toggle):
     default = False
 
 
+class AddHints(Toggle):
+    """Adds hints for common checks, items, and monsters"""
+    display_name = "Add Hints"
+    default = True
+
+
 class Goal(Choice):
     """Goal to complete.
 
@@ -229,5 +235,6 @@ class MonsterSanctuaryOptions(PerGameCommonOptions):
     exp_multiplier: ExpMultiplier
     skip_intro: SkipIntro
     skip_plot: SkipPlot
+    hints: AddHints
     goal: Goal
     death_link: DeathLink

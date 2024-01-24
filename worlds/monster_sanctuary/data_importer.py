@@ -9,6 +9,7 @@ from . import locations as LOCATIONS
 from . import rules as RULES
 from . import flags as FLAGS
 from . import encounters as ENCOUNTERS
+from . import hints as HINTS
 
 from .regions import RegionData, MonsterSanctuaryConnection
 from .items import ItemData, MonsterSanctuaryItemCategory
@@ -206,6 +207,14 @@ def load_flags(item_id) -> int:
             item_id += 1
 
     return item_id
+
+
+def load_hints():
+    with files(data).joinpath("hints.json").open() as file:
+        hints_file = json.load(file)
+
+        for hint in hints_file["preset"]:
+            HINTS.hint_data[hint["id"]] = HINTS.HintData(hint)
 
 
 def parse_item_type(text) -> Optional[MonsterSanctuaryItemCategory]:
