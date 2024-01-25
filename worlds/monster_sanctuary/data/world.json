@@ -5840,7 +5840,7 @@
       {"id": 1, "item": "2x Reward Box Lvl 4", "requirements": [
         "AND", ["secret_vision", "double_jump"]
       ]},
-      {"id": 6, "item": "Omni Ring", "requirements": [
+      {"id": 6, "item": "2x Mega Potion", "requirements": [
         "AND", ["secret_vision", "double_jump"]
       ]}
     ]
@@ -6463,7 +6463,7 @@
     ],
     "chests": [
       {"id": 0, "item": "Scythe"},
-      {"id": 3, "item": "1000 G"}
+      {"id": 3, "item": "Phoenix Serum"}
     ]
   },
   {
@@ -6751,7 +6751,7 @@
     ],
     "chests": [
       {"id": 0, "item": "2x Gold", "requirements": ["grapple"]},
-      {"id": 1, "item": "2x Silver"}
+      {"id": 1, "item": "2x Steel"}
     ],
     "encounters": [
       {"id": 2, "monsters": ["Mimic", "Mimic", "Mimic"]}
@@ -6816,7 +6816,7 @@
       {"region": "MysticalWorkshop_West3", "requirements": ["abandoned_tower_access"]}
     ],
     "chests": [
-      {"id": 0, "item": "Smoke bomb"}
+      {"id": 0, "item": "3x Smoke bomb"}
     ]
   },
   {

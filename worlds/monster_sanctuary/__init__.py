@@ -1,4 +1,5 @@
 import threading
+import types
 from typing import List, Dict
 
 from BaseClasses import MultiWorld, Tutorial, ItemClassification, Entrance
@@ -428,6 +429,16 @@ class MonsterSanctuaryWorld(World):
                 data["monster_locations"][location_name] = encounter.monsters[i].name
 
         if self.options.hints:
-            data["hints"] = self.hints
+            # There's probably a much better way of doing this.
+            # I just want an anonymous object that will serialize, but correctly
+            # but using the actual Hint data type here will cause Multiesrver to crash
+            data["hints"] = []
+            i = 0
+            for hint in self.hints:
+                data["hints"].append({})
+                data["hints"][i]["id"] = hint.id
+                data["hints"][i]["text"] = hint.text
+                data["hints"][i]["ignore_other_text"] = hint.ignore_other_text
+                i += 1
 
         return data
