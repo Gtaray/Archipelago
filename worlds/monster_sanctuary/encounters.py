@@ -228,6 +228,11 @@ def set_encounter_monster_exclusions(world: World):
         mad_lord.add_exclusion("Bard")
         mad_lord.add_exclusion("Tar Blob")
 
+        # if the cryomancer locations are in the pool,
+        # Dodo can't be on the mad lord slot
+        if world.options.monster_shift_rule != "never":
+            mad_lord.add_exclusion("Dodo")
+
     # if there's regions where improved mobility are illegal, set it up.
     if world.options.improved_mobility_limit:
         encounters = [encounter for encounter in encounter_data.values()

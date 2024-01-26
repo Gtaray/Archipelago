@@ -93,16 +93,56 @@
     },
     {
       "name": "Clothesmaker 1",
-      "id": 17700004,
-      "text": "I know better than to argue with some young know-it-all. I'll make a {category} item for you, yes?",
-      "item_location": "Snowy Peaks - Clothesmaker",
+      "id": 17700003,
+      "text": "For that, you'll need some {Warm Underwear}, which you should be able to find {area}",
+      "item_name": "Warm Underwear",
       "ignore_other_text": false
     },
     {
       "name": "Clothesmaker 2",
+      "id": 17700004,
+      "text": "Trust me! That will keep you warm even when you're at the bottom of the frozen lake.",
+      "ignore_other_text": false
+    },
+    {
+      "name": "Clothesmaker 3",
       "id": 17700005,
-      "text": "Though if you want some {Warm Underwear}, you'll need to find it {area}",
-      "item_name": "Warm Underwear",
+      "text": "Though what I can do is make you a {category} item, if you want it.",
+      "item_location": "Snowy Peaks - Clothesmaker",
+      "ignore_other_text": false
+    },
+    {
+      "name": "Clothesmaker 4",
+      "id": 17700006,
+      "text": "But I can make a {category} item even when there isn't a full moon.",
+      "item_location": "Snowy Peaks - Clothesmaker",
+      "ignore_other_text": false
+    },
+    {
+      "name": "Clothesmaker 5",
+      "id": 17700018,
+      "text": "You already have some Raw Hide? Well, why are we still talking then? Let me make that item for you!",
+      "ignore_other_text": false
+    },
+    {
+      "name": "Clothesmaker 6",
+      "id": 17700026,
+      "text": "If you want me to make that {category} item for you, you just need to bring me some {Raw Hide}!",
+      "item_location": "Snowy Peaks - Clothesmaker",
+      "ignore_other_text": false
+    },
+    {
+      "name": "Clothesmaker 7",
+      "id": 17700028,
+      "text": "You found some {Raw Hide}? And now you want me to make that {category} item for you, yes? Alright, just wait a moment!",
+      "item_location": "Snowy Peaks - Clothesmaker",
+      "ignore_other_text": false
+    },
+    {
+      "name": "Clothesmaker 8",
+      "id": 17700035,
+      "text": "Stay as long as you like. Or you can go and test out your new {category} item",
+      "item_location": "Snowy Peaks - Clothesmaker",
       "ignore_other_text": false
     },
     {
