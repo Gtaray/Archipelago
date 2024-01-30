@@ -496,6 +496,9 @@
       { "region":  "KeeperStronghold_Storage" },
       { "region":  "KeeperStronghold_Library" },
       { "region":  "KeeperStronghold_KeepersTowers" }
+    ],
+    "gifts": [
+      {"id": 2300075, "item": "Alchemist", "requirements": ["post_game"]}
     ]
   },
   {
@@ -789,10 +792,10 @@
       { "id": 6, "item": "3x Cotton", "requirements": [
         "OR", [ "double_jump", "improved_flying", "dual_mobility" ]
       ] },
-      { "id": 7, "item": "4x Copper", "requirements": [
+      { "id": 9, "item": "4x Copper", "requirements": [
         "OR", [ "double_jump", "improved_flying", "dual_mobility" ]
       ] },
-      { "id": 9, "item": "Shell+2", "requirements": [
+      { "id": 7, "item": "Shell+2", "requirements": [
         "AND", [
           "impassible_vines",
           "OR", [ "double_jump", "distant_ledges" ]
@@ -1254,7 +1257,7 @@
       { "id": 10500008, "item": "3x Crystal Shard" }
     ],
     "flags": [
-      { "id":  "blue_cave_bex", "name": "Bex" }
+      { "id":  "first_bex_encounter", "name": "Bex" }
     ]
   },
   {
@@ -2687,12 +2690,7 @@
             "shifting_avialable"
           ]
       ]},
-      { "id": 17900077, "item": "Reward Box Lvl 2", "requirements": [
-        "AND", [
-          "has_dodo",
-          "shifting_avialable"
-        ]
-      ]}
+      { "id": 17900077, "item": "Reward Box Lvl 2", "requirements": [ "has_dodo" ]}
     ]
   },
   {
@@ -3320,7 +3318,7 @@
       { "id": 19700006, "item": "3x Monster Bell", "requirements":  [ "first_bex_encounter" ]}
     ],
     "flags": [
-      { "id":  "sun_palace_bex", "name": "Bex" }
+      { "id":  "second_bex_encounter", "name": "Bex" }
     ]
   },
   {
@@ -4799,7 +4797,7 @@
       {"id": 24500009, "item": "Switch Stone", "requirements": [ "second_bex_encounter" ]}
     ],
     "flags": [
-      { "id":  "horizon_beach_bex", "name": "Bex" }
+      { "id":  "third_beach_bex", "name": "Bex" }
     ]
   },
   {
@@ -5311,7 +5309,7 @@
       { "id": 27900026, "item": "Skorch Egg", "requirements": [ "third_bex_encounter" ] }
     ],
     "flags": [
-      { "id":  "magma_chamber_bex", "name": "Bex" }
+      { "id":  "fourth_bex_encounter", "name": "Bex" }
     ]
   },
   {
@@ -6632,9 +6630,6 @@
     ],
     "gifts": [
       { "id": 33200006, "item": "Shift Stone", "requirements": [ "fourth_bex_encounter" ] }
-    ],
-    "flags": [
-      { "id": "mystical_workshop_bex", "name": "Bex" }
     ]
   },
   {
@@ -8292,7 +8287,7 @@
       {"region": "AbandonedTower_South5"},
       {"region": "AbandonedTower_South6"},
       {"region": "AbandonedTower_South8"},
-      {"region": "AbandonedTower_SouthHidden", "requirements": ["breakable_walls"]},
+      {"region": "AbandonedTower_SouthHidden1", "requirements": ["breakable_walls"]},
       {"region": "AbandonedTower_SouthHidden2", "requirements": ["narrow_corridors"]}
     ],
     "chests": [
@@ -8334,7 +8329,7 @@
     ]
   },
   {
-    "region": "AbandonedTower_SouthHidden",
+    "region": "AbandonedTower_SouthHidden1",
     "connections": [
       {"region": "AbandonedTower_South7"}
     ],

@@ -117,9 +117,8 @@ class MonsterSanctuaryWorld(World):
             # If we're never allowing shifting, then these locations should not be included, as they
             # require a shifted monster to get.
             if self.options.monster_shift_rule == "never" and location_data.name in [
-                "Snowy Peaks - Cryomancer 2",
-                "Snowy Peaks - Cryomancer 3",
-                "Snowy Peaks - Cryomancer 4"
+                "Snowy Peaks - Cryomancer - Light Egg Reward",
+                "Snowy Peaks - Cryomancer - Dark Egg Reward"
             ]:
                 continue
 
@@ -234,9 +233,9 @@ class MonsterSanctuaryWorld(World):
             # clear that it should be handled here even if we did swap it
             eggs["Forgotten World - Wanderer Room"] = self.create_item(self.species_swap["Bard"].egg_name())
             eggs["Magma Chamber - Bex"] = self.create_item(self.species_swap["Skorch"].egg_name())
-            eggs["Snowy Peaks - Cryomancer 1"] = self.create_item(self.species_swap["Shockhopper"].egg_name())
-            eggs["Snowy Peaks - Cryomancer 2"] = self.create_item(self.species_swap["Shockhopper"].egg_name())
-            eggs["Snowy Peaks - Cryomancer 3"] = self.create_item(self.species_swap["Shockhopper"].egg_name())
+            eggs["Snowy Peaks - Cryomancer - Egg Reward 1"] = self.create_item(self.species_swap["Shockhopper"].egg_name())
+            eggs["Snowy Peaks - Cryomancer - Light Egg Reward"] = self.create_item(self.species_swap["Shockhopper"].egg_name())
+            eggs["Snowy Peaks - Cryomancer - Dark Egg Reward"] = self.create_item(self.species_swap["Shockhopper"].egg_name())
             # eggs["AlchemistShop_5"] = self.create_item(self.species_swap["Plague Egg"].egg_name()),
 
             # These are straight up added because they don't come from a specific location
@@ -257,9 +256,9 @@ class MonsterSanctuaryWorld(World):
             eggs["Sun Palace - Caretaker 1"] = self.create_item("Koi Egg")
             eggs["Forgotten World - Wanderer Room"] = self.create_item("Bard Egg")
             eggs["Magma Chamber - Bex"] = self.create_item("Skorch Egg")
-            eggs["Snowy Peaks - Cryomancer 1"] = self.create_item("Shockhopper Egg")
-            eggs["Snowy Peaks - Cryomancer 2"] = self.create_item("Shockhopper Egg")
-            eggs["Snowy Peaks - Cryomancer 3"] = self.create_item("Shockhopper Egg")
+            eggs["Snowy Peaks - Cryomancer - Egg Reward 1"] = self.create_item("Shockhopper Egg")
+            eggs["Snowy Peaks - Cryomancer - Light Egg Reward"] = self.create_item("Shockhopper Egg")
+            eggs["Snowy Peaks - Cryomancer - Dark Egg Reward"] = self.create_item("Shockhopper Egg")
 
         # Depending on the options, these eggs are either added to the pool, or locked
         # into their default location
@@ -407,6 +406,7 @@ class MonsterSanctuaryWorld(World):
 
         # Rando options
         slot_data["options"] = {
+            "goal": self.options.goal.value,
             "exp_multiplier": self.options.exp_multiplier.value,
             "monsters_always_drop_egg": self.options.monsters_always_drop_egg.value,
             "monster_shift_rule": self.options.monster_shift_rule.value,
@@ -450,6 +450,7 @@ class MonsterSanctuaryWorld(World):
                 slot_data["monsters"]["champions"][f"{parts[0]}_{parts[1]}"] = monster.name
 
         slot_data["locations"] = {}
+        slot_data["locations"]["ranks"] = {}
         for location in self.multiworld.get_locations(self.player):
             region = location.parent_region
             if region.name.startswith("Menu"):  # Ignore menu locations
@@ -466,7 +467,12 @@ class MonsterSanctuaryWorld(World):
             area = region.name.split("_")[0]
             if area not in slot_data["locations"]:
                 slot_data["locations"][area] = {}
+
             slot_data["locations"][area][name] = location.address
+
+            # If this is a champion defeated item, then add it to the ranks dictionary
+            if location.logical_name.endswith("_Champion"):
+                slot_data["locations"]["ranks"][name] = location.address
 
         if self.options.hints:
             # There's probably a much better way of doing this.
