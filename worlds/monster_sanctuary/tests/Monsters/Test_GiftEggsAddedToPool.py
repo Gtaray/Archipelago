@@ -78,18 +78,18 @@ class TestEggRandomizerOff(TestEggRandomizer):
                                                world.species_swap["Bard"].egg_name())
             self.assert_location_contains_item("Magma Chamber - Bex",
                                                world.species_swap["Skorch"].egg_name())
-            self.assert_location_contains_item("Snowy Peaks - Cryomancer 1",
+            self.assert_location_contains_item("Snowy Peaks - Cryomancer - Egg Reward 1",
                                                world.species_swap["Shockhopper"].egg_name())
-            self.assert_location_contains_item("Snowy Peaks - Cryomancer 2",
+            self.assert_location_contains_item("Snowy Peaks - Cryomancer - Light Egg Reward",
                                                world.species_swap["Shockhopper"].egg_name())
-            self.assert_location_contains_item("Snowy Peaks - Cryomancer 3",
+            self.assert_location_contains_item("Snowy Peaks - Cryomancer - Dark Egg Reward",
                                                world.species_swap["Shockhopper"].egg_name())
 
         else:
             self.assert_location_contains_item("Sun Palace - Caretaker 1", "Koi Egg")
             self.assert_location_contains_item("Forgotten World - Wanderer Room", "Bard Egg")
             self.assert_location_contains_item("Magma Chamber - Bex","Skorch Egg")
-            self.assert_location_contains_item("Snowy Peaks - Cryomancer 1", "Shockhopper Egg")
-            self.assert_location_contains_item("Snowy Peaks - Cryomancer 2", "Shockhopper Egg")
-            self.assert_location_contains_item("Snowy Peaks - Cryomancer 3", "Shockhopper Egg")
+            self.assert_location_contains_item("Snowy Peaks - Cryomancer - Egg Reward 1", "Shockhopper Egg")
+            self.assert_location_contains_item("Snowy Peaks - Cryomancer - Light Egg Reward", "Shockhopper Egg")
+            self.assert_location_contains_item("Snowy Peaks - Cryomancer - Dark Egg Reward", "Shockhopper Egg")
 

@@ -22,12 +22,10 @@ class TestCryomancer_WithShifts(MonsterSanctuaryTestBase):
     }
 
     def test_cryomancer_locations_exist(self):
-        with self.subTest("Cryomancer 2 exists"):
-            self.assertIn("Snowy Peaks - Cryomancer 2", self.multiworld.regions.location_cache[self.player])
-        with self.subTest("Cryomancer 3 exists"):
-            self.assertIn("Snowy Peaks - Cryomancer 3", self.multiworld.regions.location_cache[self.player])
-        with self.subTest("Cryomancer 4 exists"):
-            self.assertIn("Snowy Peaks - Cryomancer 4", self.multiworld.regions.location_cache[self.player])
+        with self.subTest("Snowy Peaks - Cryomancer - Light Egg Reward"):
+            self.assertIn("Snowy Peaks - Cryomancer - Light Egg Reward", self.multiworld.regions.location_cache[self.player])
+        with self.subTest("Snowy Peaks - Cryomancer - Dark Egg Reward"):
+            self.assertIn("Snowy Peaks - Cryomancer - Dark Egg Reward", self.multiworld.regions.location_cache[self.player])
 
 
 class TestPostGame_Off(MonsterSanctuaryTestBase):

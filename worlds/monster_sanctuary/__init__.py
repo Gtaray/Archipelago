@@ -474,7 +474,7 @@ class MonsterSanctuaryWorld(World):
             if location.logical_name.endswith("_Champion"):
                 slot_data["locations"]["ranks"][name] = location.address
 
-        if self.options.hints:
+        if self.options.hints and hasattr(self, "hints"):
             # There's probably a much better way of doing this.
             # I just want an anonymous object that will serialize, but correctly
             # but using the actual Hint data type here will cause Multiesrver to crash
