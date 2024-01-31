@@ -395,9 +395,9 @@ class MonsterSanctuaryWorld(World):
             self.hint_rng = self.multiworld.per_slot_randoms[self.player]
             HINTS.generate_hints(self)
 
-        from Utils import visualize_regions
-        visualize_regions(self.multiworld.get_region("Menu", self.player),
-                          "D:\\Visual Studio Projects\\Archipelago\\worlds\\monster_sanctuary\\world.puml")
+        # from Utils import visualize_regions
+        # visualize_regions(self.multiworld.get_region("Menu", self.player),
+        #                   "D:\\Visual Studio Projects\\Archipelago\\worlds\\monster_sanctuary\\world.puml")
 
     # fill_slot_data and modify_multidata can be used to modify the data that will be used by
     # the server to host the MultiWorld.
