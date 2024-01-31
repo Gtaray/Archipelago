@@ -1,4 +1,5 @@
 from test.bases import WorldTestBase
+from worlds.monster_sanctuary import locations as LOCATIONS
 from worlds.monster_sanctuary.tests.Monsters.Test_MonsterRandomizer import TestMonsterRandomizerOn, \
     TestMonsterRandomizerOff, TestMonsterRandomizerShuffle, TestMonsterRandomizerEncounter
 
@@ -71,24 +72,24 @@ class TestEggRandomizerOff(TestEggRandomizer):
         world = self.multiworld.worlds[1]
 
         if world.options.randomize_monsters == "by_specie":
-            self.assert_location_contains_item("SunPalace_North2_20800117",
+            self.assert_location_contains_item("Sun Palace - Caretaker 1",
                                                world.species_swap["Koi"].egg_name())
-            self.assert_location_contains_item("ForgottenWorld_WandererRoom_45100110",
+            self.assert_location_contains_item("Forgotten World - Wanderer Room",
                                                world.species_swap["Bard"].egg_name())
-            self.assert_location_contains_item("MagmaChamber_North8_East_27900026",
+            self.assert_location_contains_item("Magma Chamber - Bex",
                                                world.species_swap["Skorch"].egg_name())
-            self.assert_location_contains_item("SnowyPeaks_Cryomancer_17900065",
+            self.assert_location_contains_item("Snowy Peaks - Cryomancer 1",
                                                world.species_swap["Shockhopper"].egg_name())
-            self.assert_location_contains_item("SnowyPeaks_Cryomancer_17900066",
+            self.assert_location_contains_item("Snowy Peaks - Cryomancer 2",
                                                world.species_swap["Shockhopper"].egg_name())
-            self.assert_location_contains_item("SnowyPeaks_Cryomancer_17900077",
+            self.assert_location_contains_item("Snowy Peaks - Cryomancer 3",
                                                world.species_swap["Shockhopper"].egg_name())
 
         else:
-            self.assert_location_contains_item("SunPalace_North2_20800117", "Koi Egg")
-            self.assert_location_contains_item("ForgottenWorld_WandererRoom_45100110", "Bard Egg")
-            self.assert_location_contains_item("MagmaChamber_North8_East_27900026","Skorch Egg")
-            self.assert_location_contains_item("SnowyPeaks_Cryomancer_17900065", "Shockhopper Egg")
-            self.assert_location_contains_item("SnowyPeaks_Cryomancer_17900066", "Shockhopper Egg")
-            self.assert_location_contains_item("SnowyPeaks_Cryomancer_17900077", "Shockhopper Egg")
+            self.assert_location_contains_item("Sun Palace - Caretaker 1", "Koi Egg")
+            self.assert_location_contains_item("Forgotten World - Wanderer Room", "Bard Egg")
+            self.assert_location_contains_item("Magma Chamber - Bex","Skorch Egg")
+            self.assert_location_contains_item("Snowy Peaks - Cryomancer 1", "Shockhopper Egg")
+            self.assert_location_contains_item("Snowy Peaks - Cryomancer 2", "Shockhopper Egg")
+            self.assert_location_contains_item("Snowy Peaks - Cryomancer 3", "Shockhopper Egg")
 

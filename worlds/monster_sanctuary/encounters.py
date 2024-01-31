@@ -131,6 +131,7 @@ def add_encounter(encounter: EncounterData, monsters: List[str]) -> None:
 
 
 # region Monster and Champion Randomization
+# UNUSED
 def assign_familiar(world: World) -> None:
     if world.options.spectral_familiar == "wolf":
         world.encounters["Menu_0"].add_monster(get_monster("Spectral Wolf"))
@@ -226,6 +227,11 @@ def set_encounter_monster_exclusions(world: World):
         mad_lord.add_exclusion("Gryphonix")
         mad_lord.add_exclusion("Bard")
         mad_lord.add_exclusion("Tar Blob")
+
+        # if the cryomancer locations are in the pool,
+        # Dodo can't be on the mad lord slot
+        if world.options.monster_shift_rule != "never":
+            mad_lord.add_exclusion("Dodo")
 
     # if there's regions where improved mobility are illegal, set it up.
     if world.options.improved_mobility_limit:

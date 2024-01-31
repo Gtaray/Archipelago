@@ -5,7 +5,7 @@
       { "region": "MountainPath_North1" }
     ],
     "encounters": [
-      { "id": 0, "monsters": [ ] }
+      { "id": 0, "monsters": [ "Tanuki" ] }
     ],
     "flags": [
       {"id": "ability_claws", "name": "Ability - Claws"},
@@ -496,6 +496,9 @@
       { "region":  "KeeperStronghold_Storage" },
       { "region":  "KeeperStronghold_Library" },
       { "region":  "KeeperStronghold_KeepersTowers" }
+    ],
+    "gifts": [
+      {"id": 2300075, "item": "Alchemist", "requirements": ["post_game"]}
     ]
   },
   {
@@ -789,10 +792,10 @@
       { "id": 6, "item": "3x Cotton", "requirements": [
         "OR", [ "double_jump", "improved_flying", "dual_mobility" ]
       ] },
-      { "id": 7, "item": "4x Copper", "requirements": [
+      { "id": 9, "item": "4x Copper", "requirements": [
         "OR", [ "double_jump", "improved_flying", "dual_mobility" ]
       ] },
-      { "id": 9, "item": "Shell+2", "requirements": [
+      { "id": 7, "item": "Shell+2", "requirements": [
         "AND", [
           "impassible_vines",
           "OR", [ "double_jump", "distant_ledges" ]
@@ -1254,7 +1257,7 @@
       { "id": 10500008, "item": "3x Crystal Shard" }
     ],
     "flags": [
-      { "id":  "blue_cave_bex", "name": "Bex" }
+      { "id":  "first_bex_encounter", "name": "Bex" }
     ]
   },
   {
@@ -1489,7 +1492,12 @@
       { "region": "StrongholdDungeon_Central4" }
     ],
     "chests": [
-      { "id": 0, "item": "Morning Star+2" },
+      { "id": 0, "item": "Morning Star+2", "requirements": [
+        "OR", [
+          "double_jump",
+          "distant_ledges"]
+        ]
+      },
       { "id": 15, "item": "Mass Potion", "requirements": [
         "OR", [
           "double_jump",
@@ -2682,12 +2690,7 @@
             "shifting_avialable"
           ]
       ]},
-      { "id": 17900077, "item": "Reward Box Lvl 2", "requirements": [
-        "AND", [
-          "has_dodo",
-          "shifting_avialable"
-        ]
-      ]}
+      { "id": 17900077, "item": "Reward Box Lvl 2", "requirements": [ "has_dodo" ]}
     ]
   },
   {
@@ -3315,7 +3318,7 @@
       { "id": 19700006, "item": "3x Monster Bell", "requirements":  [ "first_bex_encounter" ]}
     ],
     "flags": [
-      { "id":  "sun_palace_bex", "name": "Bex" }
+      { "id":  "second_bex_encounter", "name": "Bex" }
     ]
   },
   {
@@ -3330,8 +3333,7 @@
       { "region": "SunPalace_WestSewers2" }
     ],
     "chests": [
-      { "id": 0, "item": "Switch Stone" },
-      { "id": 2, "item": "Skill Resetter", "requirements": [
+      { "id": 0, "item": "Switch Stone", "requirements": [
         "OR", [
           "swimming",
           "AND", [
@@ -3344,6 +3346,7 @@
           ]
         ]
       ] },
+      { "id": 2, "item": "Skill Resetter" },
       { "id": 4, "item": "Monster Bell" }
     ]
   },
@@ -3945,7 +3948,7 @@
       { "id": 4, "item": "2x Combo Potion", "requirements": [
         "OR", ["double_jump", "improved_flying", "dual_mobility"]
       ]},
-      { "id": 105, "item": "2x Combo Potion", "requirements": [
+      { "id": 105, "item": "2x Level Badge", "requirements": [
         "OR", ["double_jump", "improved_flying", "dual_mobility"]
       ]}
     ]
@@ -4045,9 +4048,6 @@
       { "region": "AncientWoods_West6" },
       { "region": "AncientWoods_Center1" },
       { "region": "AncientWoods_DoorPuzzle" }
-    ],
-    "chests": [
-      { "id": 1, "item": "Corn", "requirements": ["breakable_walls"] }
     ]
   },
   {
@@ -4797,7 +4797,7 @@
       {"id": 24500009, "item": "Switch Stone", "requirements": [ "second_bex_encounter" ]}
     ],
     "flags": [
-      { "id":  "horizon_beach_bex", "name": "Bex" }
+      { "id":  "third_beach_bex", "name": "Bex" }
     ]
   },
   {
@@ -4914,6 +4914,16 @@
     ],
     "encounters": [
       {"id": 2, "monsters": ["Ucan", "Brawlish", "Ucan"]}
+    ]
+  },
+  {
+    "region": "HorizonBeach_South6",
+    "connections": [
+      {"region": "HorizonBeach_South5", "requirements": ["swimming"]}
+    ],
+    "chests": [
+      {"id": 6, "item": "Azure Gem", "requirements": ["swimming"]},
+      {"id": 10, "item": "Diadem+4", "requirements": ["swimming"]}
     ]
   },
   {
@@ -5299,7 +5309,7 @@
       { "id": 27900026, "item": "Skorch Egg", "requirements": [ "third_bex_encounter" ] }
     ],
     "flags": [
-      { "id":  "magma_chamber_bex", "name": "Bex" }
+      { "id":  "fourth_bex_encounter", "name": "Bex" }
     ]
   },
   {
@@ -5828,7 +5838,7 @@
       {"id": 1, "item": "2x Reward Box Lvl 4", "requirements": [
         "AND", ["secret_vision", "double_jump"]
       ]},
-      {"id": 6, "item": "Omni Ring", "requirements": [
+      {"id": 6, "item": "2x Mega Potion", "requirements": [
         "AND", ["secret_vision", "double_jump"]
       ]}
     ]
@@ -6451,7 +6461,7 @@
     ],
     "chests": [
       {"id": 0, "item": "Scythe"},
-      {"id": 3, "item": "1000 G"}
+      {"id": 3, "item": "Phoenix Serum"}
     ]
   },
   {
@@ -6620,9 +6630,6 @@
     ],
     "gifts": [
       { "id": 33200006, "item": "Shift Stone", "requirements": [ "fourth_bex_encounter" ] }
-    ],
-    "flags": [
-      { "id": "mystical_workshop_bex", "name": "Bex" }
     ]
   },
   {
@@ -6739,7 +6746,7 @@
     ],
     "chests": [
       {"id": 0, "item": "2x Gold", "requirements": ["grapple"]},
-      {"id": 1, "item": "2x Silver"}
+      {"id": 1, "item": "2x Steel"}
     ],
     "encounters": [
       {"id": 2, "monsters": ["Mimic", "Mimic", "Mimic"]}
@@ -6804,7 +6811,7 @@
       {"region": "MysticalWorkshop_West3", "requirements": ["abandoned_tower_access"]}
     ],
     "chests": [
-      {"id": 0, "item": "Smoke bomb"}
+      {"id": 0, "item": "3x Smoke bomb"}
     ]
   },
   {
@@ -7660,6 +7667,29 @@
     ]
   },
   {
+    "region": "ForgottenWorld_Waters5",
+    "connections": [
+      {"region": "ForgottenWorld_Waters1_Middle", "requirements": ["magic_walls"]},
+      {"region": "ForgottenWorld_TarPits5_Lower", "requirements": [
+        "AND", [
+          "magic_walls",
+          "OR", ["summon_big_rock", "double_jump", "improved_flying", "dual_mobility", "lofty_mount"]
+        ]
+      ]}
+    ],
+    "chests": [
+      {"id": 3, "item": "Switch Stone", "requirements": [
+        "AND", [
+          "magic_walls",
+          "OR", ["summon_big_rock", "double_jump", "improved_flying", "dual_mobility", "lofty_mount"]
+        ]
+      ]},
+      {"id": 4, "item": "3x Reward Box Lvl 4", "requirements": [
+        "AND", ["magic_walls", "dual_mobility"]
+      ]}
+    ]
+  },
+  {
     "region": "ForgottenWorld_WatersHidden",
     "connections": [
       {"region": "ForgottenWorld_Waters4"}
@@ -8257,7 +8287,7 @@
       {"region": "AbandonedTower_South5"},
       {"region": "AbandonedTower_South6"},
       {"region": "AbandonedTower_South8"},
-      {"region": "AbandonedTower_SouthHidden", "requirements": ["breakable_walls"]},
+      {"region": "AbandonedTower_SouthHidden1", "requirements": ["breakable_walls"]},
       {"region": "AbandonedTower_SouthHidden2", "requirements": ["narrow_corridors"]}
     ],
     "chests": [
@@ -8299,7 +8329,7 @@
     ]
   },
   {
-    "region": "AbandonedTower_SouthHidden",
+    "region": "AbandonedTower_SouthHidden1",
     "connections": [
       {"region": "AbandonedTower_South7"}
     ],
@@ -8377,6 +8407,9 @@
       {"region": "AbandonedTower_Center3_Lower"},
       {"region": "AbandonedTower_Center1_Upper"},
       {"region": "AbandonedTower_Center4"}
+    ],
+    "chests": [
+      {"id": 1, "item": "2x Gold", "requirements": ["diamond_blocks"]}
     ]
   },
   {

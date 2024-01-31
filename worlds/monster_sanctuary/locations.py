@@ -44,6 +44,7 @@ class LocationData:
 		self.object_id = object_id
 		self.event = event
 		self.hint = hint
+		self.logical_name = ""
 
 
 class MonsterSanctuaryLocation(Location):
@@ -53,11 +54,13 @@ class MonsterSanctuaryLocation(Location):
 			self,
 			player: int,
 			name: str,
+			logical_name: str,
 			address: Optional[int] = None,
 			parent: Optional[Region] = None,
-			access_condition: Optional[AccessCondition] = None):
+			access_condition: Optional[AccessCondition] = None,):
 		super().__init__(player, name, address, parent)
 
+		self.logical_name = logical_name
 		self.access_rule = lambda state: access_condition.has_access(state, player)
 
 		data = location_data.get(name)
@@ -71,11 +74,11 @@ class MonsterSanctuaryLocation(Location):
 location_data: Dict[str, LocationData] = {}
 
 
-def add_location(location: LocationData) -> None:
+def add_location(key: str, location: LocationData) -> None:
 	if location_data.get(location.name) is not None:
 		raise KeyError(f"{location.name} already exists in locations_data")
 
-	location_data[location.name] = location
+	location_data[key] = location
 
 
 def clear_data():
@@ -113,3 +116,22 @@ def get_champions() -> Dict[str, List[str]]:
 		result[location.region][location.monster_id] = location.default_item
 
 	return result
+
+
+def get_location_name_for_client(name: str) -> Optional[str]:
+	if name not in location_data:
+		return None
+
+	data = location_data[name]
+	parts = name.split('_')
+
+	# We reconstruct the location name without the subdivision,
+	# which is what the game client will use
+	trimmed_name = f"{parts[0]}_{parts[1]}"
+	if data.object_id is not None:
+		trimmed_name += f"_{data.object_id}"
+
+	if data.category == MonsterSanctuaryLocationCategory.RANK:
+		trimmed_name += "_Champion"
+
+	return trimmed_name

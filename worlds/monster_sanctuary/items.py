@@ -77,8 +77,8 @@ def can_item_be_placed(world: World, item: Item, location) -> bool:
     # If this item is an area key and keys must be local, then we check to see if
     # the item name starts with the area name (ignoring spaces)
     if is_item_in_group(item.name, "Area Key") and world.options.local_area_keys:
-        area = location.name.split('_')[0]
-        return item.name.replace(" ", "").startswith(area)
+        area = location.name.split(' ')[0]
+        return item.name.startswith(area)
 
     # Go through every illegal location for this item and if the location name starts
     # with an illegal location, then return false

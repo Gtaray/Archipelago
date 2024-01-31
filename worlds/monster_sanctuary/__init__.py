@@ -1,3 +1,5 @@
+import threading
+import types
 from typing import List, Dict
 
 from BaseClasses import MultiWorld, Tutorial, ItemClassification, Entrance
@@ -12,6 +14,7 @@ from . import locations as LOCATIONS
 from . import rules as RULES
 from . import flags as FLAGS
 from . import encounters as ENCOUNTERS
+from . import hints as HINTS
 from .encounters import MonsterData
 
 from .items import ItemData, MonsterSanctuaryItem, MonsterSanctuaryItemCategory
@@ -43,6 +46,7 @@ def load_data():
     # Load the world second, since this will require having ItemData and MonsterData
     data_importer.load_world()
     data_importer.load_plotless()
+    data_importer.load_hints()
 
     # We have to load flags last, as their location data is in world.json, but the item data exists in flags.json
     item_id = data_importer.load_flags(item_id)
@@ -104,13 +108,17 @@ class MonsterSanctuaryWorld(World):
         for location_name in LOCATIONS.location_data:
             location_data = LOCATIONS.location_data[location_name]
 
+            # if the goal is to defeat the mad lord, then
+            # we do not add any post-game locations
+            if self.options.goal == "defeat_mad_lord" and location_data.postgame:
+                continue
+
             # First we check if we should be ignoring these locations based on rando options
             # If we're never allowing shifting, then these locations should not be included, as they
             # require a shifted monster to get.
-            if self.options.monster_shift_rule == "never" and location_name in [
-                "SnowyPeaks_Cryomancer_17900065",
-                "SnowyPeaks_Cryomancer_17900066"
-                "SnowyPeaks_Cryomancer_17900077"
+            if self.options.monster_shift_rule == "never" and location_data.name in [
+                "Snowy Peaks - Cryomancer - Light Egg Reward",
+                "Snowy Peaks - Cryomancer - Dark Egg Reward"
             ]:
                 continue
 
@@ -124,14 +132,10 @@ class MonsterSanctuaryWorld(World):
             location = MonsterSanctuaryLocation(
                 self.player,
                 location_data.name,
+                location_name,
                 location_data.location_id,
                 region,
                 access_condition)
-
-            # if the goal is to defeat the mad lord, then
-            # we do not add any post-game locations
-            if self.options.goal == "defeat_mad_lord" and location_data.postgame:
-                continue
 
             if location_data.category == MonsterSanctuaryLocationCategory.RANK:
                 # Champion Defeated items are not shown in the spoiler log
@@ -183,9 +187,9 @@ class MonsterSanctuaryWorld(World):
 
     def place_ranks(self) -> None:
         """Creates the locations for rank ups, and locks Champion Defeated items to those locations"""
-        for location_name in [location_name
-                              for location_name in LOCATIONS.location_data
-                              if LOCATIONS.location_data[location_name].category == MonsterSanctuaryLocationCategory.RANK]:
+        for location_name in [loc.name
+                              for name, loc in LOCATIONS.location_data.items()
+                              if LOCATIONS.location_data[name].category == MonsterSanctuaryLocationCategory.RANK]:
 
             location = self.multiworld.get_location(location_name, self.player)
             location.place_locked_item(self.create_item("Champion Defeated"))
@@ -203,6 +207,7 @@ class MonsterSanctuaryWorld(World):
             location = MonsterSanctuaryLocation(
                 player=self.player,
                 name=data.location_name,
+                logical_name=location_name,
                 parent=region,
                 access_condition=access_condition)
 
@@ -223,12 +228,14 @@ class MonsterSanctuaryWorld(World):
 
         if self.options.randomize_monsters == "by_specie":
             # These eggs either get added to the item pool or they are placed in their respective gift location
-            eggs["SunPalace_North2_20800117"] = self.create_item(self.species_swap["Koi"].egg_name())
-            eggs["ForgottenWorld_WandererRoom_45100110"] = self.create_item(self.species_swap["Bard"].egg_name())
-            eggs["MagmaChamber_North8_East_27900026"] = self.create_item(self.species_swap["Skorch"].egg_name())
-            eggs["SnowyPeaks_Cryomancer_17900065"] = self.create_item(self.species_swap["Shockhopper"].egg_name())
-            eggs["SnowyPeaks_Cryomancer_17900066"] = self.create_item(self.species_swap["Shockhopper"].egg_name())
-            eggs["SnowyPeaks_Cryomancer_17900077"] = self.create_item(self.species_swap["Shockhopper"].egg_name())
+            eggs["Sun Palace - Caretaker 1"] = self.create_item(self.species_swap["Koi"].egg_name())
+            # We never actually species swap Bard, so this is a bit redundant, but having it here makes it
+            # clear that it should be handled here even if we did swap it
+            eggs["Forgotten World - Wanderer Room"] = self.create_item(self.species_swap["Bard"].egg_name())
+            eggs["Magma Chamber - Bex"] = self.create_item(self.species_swap["Skorch"].egg_name())
+            eggs["Snowy Peaks - Cryomancer - Egg Reward 1"] = self.create_item(self.species_swap["Shockhopper"].egg_name())
+            eggs["Snowy Peaks - Cryomancer - Light Egg Reward"] = self.create_item(self.species_swap["Shockhopper"].egg_name())
+            eggs["Snowy Peaks - Cryomancer - Dark Egg Reward"] = self.create_item(self.species_swap["Shockhopper"].egg_name())
             # eggs["AlchemistShop_5"] = self.create_item(self.species_swap["Plague Egg"].egg_name()),
 
             # These are straight up added because they don't come from a specific location
@@ -246,12 +253,12 @@ class MonsterSanctuaryWorld(World):
         else:
             # These are monsters that are normally given through gifts, and are either added to the pool
             # or are locked at their original location
-            eggs["SunPalace_North2_20800117"] = self.create_item("Koi Egg")
-            eggs["ForgottenWorld_WandererRoom_45100110"] = self.create_item("Bard Egg")
-            eggs["MagmaChamber_North8_East_27900026"] = self.create_item("Skorch Egg")
-            eggs["SnowyPeaks_Cryomancer_17900065"] = self.create_item("Shockhopper Egg")
-            eggs["SnowyPeaks_Cryomancer_17900066"] = self.create_item("Shockhopper Egg")
-            eggs["SnowyPeaks_Cryomancer_17900077"] = self.create_item("Shockhopper Egg")
+            eggs["Sun Palace - Caretaker 1"] = self.create_item("Koi Egg")
+            eggs["Forgotten World - Wanderer Room"] = self.create_item("Bard Egg")
+            eggs["Magma Chamber - Bex"] = self.create_item("Skorch Egg")
+            eggs["Snowy Peaks - Cryomancer - Egg Reward 1"] = self.create_item("Shockhopper Egg")
+            eggs["Snowy Peaks - Cryomancer - Light Egg Reward"] = self.create_item("Shockhopper Egg")
+            eggs["Snowy Peaks - Cryomancer - Dark Egg Reward"] = self.create_item("Shockhopper Egg")
 
         # Depending on the options, these eggs are either added to the pool, or locked
         # into their default location
@@ -273,6 +280,7 @@ class MonsterSanctuaryWorld(World):
                 location = MonsterSanctuaryLocation(
                     player=self.player,
                     name=f"{encounter.name}_{monster_index}",
+                    logical_name=f"{encounter.name}_{monster_index}",
                     parent=region,
                     access_condition=encounter.access_condition or None)
                 location.show_in_spoiler = False
@@ -379,49 +387,104 @@ class MonsterSanctuaryWorld(World):
         self.set_victory_condition()
         self.place_ranks()
 
-    # called to modify item placement before, during and after the regular fill process, before generate_output.
-    # If items need to be placed during pre_fill, these items can be determined and created using get_prefill_items
-    # def pre_fill(self):
-    #     pass
-
-    # called to modify item placement before, during and after the regular fill process, before generate_output.
-    # If items need to be placed during pre_fill, these items can be determined and created using get_prefill_items
-    # def fill_hook(self,
-    #               progitempool: List["Item"],
-    #               usefulitempool: List["Item"],
-    #               filleritempool: List["Item"],
-    #               fill_locations: List["Location"]) -> None:
-    #     pass
-
-    # called to modify item placement before, during and after the regular fill process, before generate_output.
-    # If items need to be placed during pre_fill, these items can be determined and created using get_prefill_items
-    # def post_fill(self):
-    #     pass
-
     # creates the output files if there is output to be generated. When this is called,
     # self.multiworld.get_locations(self.player) has all locations for the player, with attribute
     # item pointing to the item. location.item.player can be used to see if it's a local item.
     def generate_output(self, output_directory: str) -> None:
-        pass
-        # from Utils import visualize_regions
-        # visualize_regions(self.multiworld.get_region("Menu", self.player), "D:\\Visual Studio Projects\\Archipelago\\worlds\\monster_sanctuary\\world.puml")
+        if self.options.hints:
+            self.hint_rng = self.multiworld.per_slot_randoms[self.player]
+            HINTS.generate_hints(self)
+
+        from Utils import visualize_regions
+        visualize_regions(self.multiworld.get_region("Menu", self.player),
+                          "D:\\Visual Studio Projects\\Archipelago\\worlds\\monster_sanctuary\\world.puml")
 
     # fill_slot_data and modify_multidata can be used to modify the data that will be used by
     # the server to host the MultiWorld.
     def fill_slot_data(self) -> dict:
-        data = {
+        slot_data = {}
+
+        # Rando options
+        slot_data["options"] = {
+            "goal": self.options.goal.value,
             "exp_multiplier": self.options.exp_multiplier.value,
             "monsters_always_drop_egg": self.options.monsters_always_drop_egg.value,
             "monster_shift_rule": self.options.monster_shift_rule.value,
             "skip_intro": self.options.skip_intro.value,
             "skip_plot": self.options.skip_plot.value,
             "remove_locked_doors": self.options.remove_locked_doors.value,
-            "monster_locations": {}
+            "death_link": self.options.death_link.value
         }
 
-        for encounter_name, encounter in self.encounters.items():
-            for i in range(len(encounter.monsters)):
-                location_name = f"{encounter_name}_{i}"
-                data["monster_locations"][location_name] = encounter.monsters[i].name
+        # Monster reandos
+        tanuki_location = self.multiworld.get_location("Menu_0_0", self.player)
+        slot_data["monsters"] = {
+            "tanuki": tanuki_location.item.name,
+        }
 
-        return data
+        # If we're shuffling monsters, then we want to show what Bex and the Caretaker's monsters are
+        # so the player knows if they are needed for progression
+        if self.options.randomize_monsters == "by_specie":
+            slot_data["monsters"]["bex_monster"] = self.species_swap["Skorch"].name
+
+        slot_data["monsters"]["monster_locations"] = {}
+        slot_data["monsters"]["champions"] = {}
+        for encounter_name, encounter in self.encounters.items():
+            parts = encounter_name.split('_')
+
+            # location names for monsters need to be without the subsection, so we only
+            # take the first two parts of the name, then append the monster id
+            location_name_base = f"{parts[0]}_{parts[1]}_{encounter.encounter_id}"
+            for i in range(len(encounter.monsters)):
+                location_name = f"{location_name_base}_{i}"
+                slot_data["monsters"]["monster_locations"][location_name] = encounter.monsters[i].name
+
+            if encounter.champion:
+                # Monster is either the first and only mon, or the second mon
+                monster = encounter.monsters[0]
+                i = 0
+                if len(encounter.monsters) > 1:
+                    monster = encounter.monsters[1]
+                    i = 1
+                # We only need the scene name to be able to map champions
+                slot_data["monsters"]["champions"][f"{parts[0]}_{parts[1]}"] = monster.name
+
+        slot_data["locations"] = {}
+        slot_data["locations"]["ranks"] = {}
+        for location in self.multiworld.get_locations(self.player):
+            region = location.parent_region
+            if region.name.startswith("Menu"):  # Ignore menu locations
+                continue
+            if '_' in location.name:  # Ignore monster locations and flags
+                continue
+            if location.item.code is None:  # Ignore events
+                continue
+
+            name = LOCATIONS.get_location_name_for_client(location.logical_name)
+            if name is None:
+                continue
+
+            area = region.name.split("_")[0]
+            if area not in slot_data["locations"]:
+                slot_data["locations"][area] = {}
+
+            slot_data["locations"][area][name] = location.address
+
+            # If this is a champion defeated item, then add it to the ranks dictionary
+            if location.logical_name.endswith("_Champion"):
+                slot_data["locations"]["ranks"][name] = location.address
+
+        if self.options.hints:
+            # There's probably a much better way of doing this.
+            # I just want an anonymous object that will serialize, but correctly
+            # but using the actual Hint data type here will cause Multiesrver to crash
+            slot_data["hints"] = []
+            i = 0
+            for hint in self.hints:
+                slot_data["hints"].append({})
+                slot_data["hints"][i]["id"] = hint.id
+                slot_data["hints"][i]["text"] = hint.text
+                slot_data["hints"][i]["ignore_other_text"] = hint.ignore_other_text
+                i += 1
+
+        return slot_data
