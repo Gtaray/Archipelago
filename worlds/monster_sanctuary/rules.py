@@ -455,6 +455,10 @@ def raw_hide(state: CollectionState, player: int) -> bool:
     return state.has("Raw Hide", player)
 
 
+def four_sanctuary_tokens(state: CollectionState, player: int) -> bool:
+    return state.has("Sanctuary Token", player, 4)
+
+
 def all_sanctuary_tokens(state: CollectionState, player: int) -> bool:
     return state.has("Sanctuary Token", player, 5)
 

@@ -55,7 +55,20 @@ class BlueCavesTests(TestArea):
 
     def test_sanctuary_token_check(self):
         self.assertNotAccessible("BlueCave_South5", "BlueCave_South5_29300061", [])
-        self.assertAccessible("BlueCave_South5", "BlueCave_South5_29300061", ["Ostanes"])
+        self.assertNotAccessible("BlueCave_South5", "BlueCave_South5_29300061",
+                                 ["Ostanes"])
+        self.assertNotAccessible("BlueCave_South5", "BlueCave_South5_29300061",
+                                 ["Stronghold Dungeon Library Access"])
+        self.assertNotAccessible("BlueCave_South5", "BlueCave_South5_29300061",
+                                 ["Sanctuary Token", "Sanctuary Token", "Sanctuary Token", "Sanctuary Token", "Sanctuary Token"])
+        self.assertNotAccessible("BlueCave_South5", "BlueCave_South5_29300061",
+                                 ["Ostanes", "Stronghold Dungeon Library Access"])
+        self.assertNotAccessible("BlueCave_South5", "BlueCave_South5_29300061",
+                                 ["Ostanes", "Sanctuary Token", "Sanctuary Token", "Sanctuary Token", "Sanctuary Token", "Sanctuary Token"])
+        self.assertAccessible("BlueCave_South5", "BlueCave_South5_29300061",
+                              ["Ostanes",
+                               "Stronghold Dungeon Library Access",
+                               "Sanctuary Token", "Sanctuary Token", "Sanctuary Token", "Sanctuary Token", "Sanctuary Token"])
 
 
 class BlueCavesMinimalLockedDoorsTests(TestArea):
@@ -104,4 +117,6 @@ class BlueCavesPlotlessTests(TestArea):
     }
 
     def test_sanctuary_token_check(self):
-        self.assertAccessible("BlueCave_South5", "BlueCave_South5_29300061", [])
+        self.assertNotAccessible("BlueCave_South5", "BlueCave_South5_29300061", [])
+        self.assertAccessible("BlueCave_South5", "BlueCave_South5_29300061",
+                              ["Sanctuary Token", "Sanctuary Token", "Sanctuary Token", "Sanctuary Token", "Sanctuary Token"])

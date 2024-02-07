@@ -963,12 +963,18 @@
       { "region": "BlueCave_South4" },
       {
         "region": "Underworld_Entrance",
-        "requirements": [ "all_sanctuary_tokens" ]
+        "requirements": [
+          "AND",["all_sanctuary_tokens", "ostanes", "stronghold_dungeon_library_access"]
+        ]
       }
     ],
     "gifts": [
-      { "id": 29300061, "item": "Reward Box Lvl 3", "requirements": ["ostanes"]},
-      { "id": 29300065, "item": "Sanctuary Token", "requirements": ["ostanes"]}
+      { "id": 29300061, "item": "Reward Box Lvl 3", "requirements": [
+          "AND",["all_sanctuary_tokens", "ostanes", "stronghold_dungeon_library_access"]
+        ]},
+      { "id": 29300065, "item": "Sanctuary Token", "requirements": [
+          "AND",["all_sanctuary_tokens", "ostanes", "stronghold_dungeon_library_access"]
+        ]}
     ]
   },
   {
@@ -3152,11 +3158,8 @@
       { "id": 6, "item": "Crimson Gem", "requirements": [
         "AND", [
           "ground_switches",
-          "OR", [
-            "AND", [ "double_jump", "distant_ledges" ],
-            "improved_flying",
-            "dual_mobility"
-          ]
+          "double_jump",
+          "distant_ledges"
         ]
       ] }
     ],

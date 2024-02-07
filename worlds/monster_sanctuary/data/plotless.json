@@ -13,15 +13,21 @@
   },
   {
     "region": "BlueCave_South5",
+    "type": "connection",
+    "connection": "Underworld_Entrance",
+    "requirements": ["all_sanctuary_tokens"]
+  },
+  {
+    "region": "BlueCave_South5",
     "type": "location",
     "object_id": 29300061,
-    "requirements": []
+    "requirements": ["all_sanctuary_tokens"]
   },
   {
     "region": "BlueCave_South5",
     "type": "location",
     "object_id": 29300065,
-    "requirements": []
+    "requirements": ["all_sanctuary_tokens"]
   },
   {
     "region": "HorizonBeach_West2_Entrance",
