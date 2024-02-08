@@ -74,6 +74,15 @@ def can_item_be_placed(world: World, item: Item, location) -> bool:
 
     data = get_item_by_name(item.name)
 
+    # If the item is an egg with an improved movement ability
+    # And the settings are to limit placement of those abilities
+    # Then we make sure the item can't be placed in the first half of the game
+    if is_item_in_group(item.name, "Improved Flying", "Lofty Mount", "Improved Swimming", "Dual Mobility")\
+            and world.options.improved_mobility_limit:
+        area = location.name.split(' - ')[0]
+        return area not in ["Menu", "Mountain Path", "Blue Cave", "Keepers Stronghold", "Keepers Tower",
+                            "Stronghold Dungeon", "Snowy Peaks", "Sun Palace", "Ancient Woods"]
+
     # If this item is an area key and keys must be local, then we check to see if
     # the item name starts with the area name (ignoring spaces)
     if is_item_in_group(item.name, "Area Key") and world.options.local_area_keys:
