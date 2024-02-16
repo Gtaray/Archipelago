@@ -6,7 +6,7 @@ class TestLocationNames(MonsterSanctuaryTestBase):
     def test_all_locations_have_names(self):
         for logical_name, location in LOCATIONS.location_data.items():
             with self.subTest(f"{logical_name} has readable name"):
-                self.assertNotEquals(logical_name, location.name)
+                self.assertNotIn("_", location.name)
 
     def test_locations_have_unique_names(self):
         checks = [location.name for id, location in LOCATIONS.location_data.items()]
