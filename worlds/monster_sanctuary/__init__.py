@@ -99,6 +99,7 @@ class MonsterSanctuaryWorld(World):
 
         # These create locations and place items at those locations.
         # Needs to be done after location creation but before item placement
+        self.place_explore_abilities()
         self.place_events()
         self.handle_monster_eggs()
         self.place_monsters()
@@ -184,6 +185,16 @@ class MonsterSanctuaryWorld(World):
         elif self.options.goal == "defeat_all_champions":
             self.multiworld.completion_condition[self.player] = lambda state: (
                 state.has("Champion Defeated", self.player, 27))
+
+    def place_explore_abilities(self) -> None:
+        explore_abilities = ITEMS.get_explore_abilities()
+
+        for ability in explore_abilities:
+            location = self.multiworld.get_location(ability.name, self.player)
+            # These aren't used by the rando itself; they're here purely as a
+            # way to track which abilities have been accessed (mostly so PopTracker has a way to know what's in-logic)
+            location.place_locked_item(self.create_item(ability.name))
+            self.number_of_item_locations -= 1
 
     def place_ranks(self) -> None:
         """Creates the locations for rank ups, and locks Champion Defeated items to those locations"""
@@ -473,6 +484,13 @@ class MonsterSanctuaryWorld(World):
             # If this is a champion defeated item, then add it to the ranks dictionary
             if location.logical_name.endswith("_Champion"):
                 slot_data["locations"]["ranks"][name] = location.address
+
+        # TODO: Add abilities and their locations here
+        slot_data["abilities"] = {}
+        for ability in ITEMS.get_explore_abilities():
+            location = self.multiworld.get_location(ability.name, self.player)
+            name = ability.name.replace("Ability - ", "")
+            slot_data["abilities"][name] = location.address
 
         if self.options.hints and hasattr(self, "hints"):
             # There's probably a much better way of doing this.

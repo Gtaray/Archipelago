@@ -268,3 +268,7 @@ def roll_random_item_quantity(world: World, base_item: ItemData) -> str:
             base_item = item_data[new_item_name]
 
     return base_item.name
+
+
+def get_explore_abilities() -> List[ItemData]:
+    return [value for key, value in item_data.items() if value.category == MonsterSanctuaryItemCategory.ABILITY]

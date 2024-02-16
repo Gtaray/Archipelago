@@ -8,6 +8,7 @@ from worlds.monster_sanctuary.rules import AccessCondition
 class MonsterSanctuaryLocationCategory(IntEnum):
 	CHEST = 0  # Items in chests
 	GIFT = 1  # Gifts from NPCs
+	ABILITY = 2 # Used for explore ability flags
 	RANK = 5  # Used to track keeper rank gained from battling champions
 
 
@@ -57,11 +58,11 @@ class MonsterSanctuaryLocation(Location):
 			logical_name: str,
 			address: Optional[int] = None,
 			parent: Optional[Region] = None,
-			access_condition: Optional[AccessCondition] = None,):
+			access_condition: Optional[AccessCondition] = None):
 		super().__init__(player, name, address, parent)
 
 		self.logical_name = logical_name
-		self.access_rule = lambda state: access_condition.has_access(state, player)
+		self.access_rule = lambda state: access_condition is None or access_condition.has_access(state, player)
 
 		data = location_data.get(name)
 		if data is None:
@@ -99,23 +100,6 @@ def is_location_type(location: str, *types: MonsterSanctuaryLocationCategory) ->
 
 def get_locations_of_type(*categories: MonsterSanctuaryLocationCategory):
 	return [location_data[name] for name in location_data if location_data[name].category in categories]
-
-
-def get_champions() -> Dict[str, List[str]]:
-	# Key is the region name, value is a list of monster names for that champion encounter
-	result: Dict[str, List[Optional[str]]] = {}
-
-	for location_name in location_data:
-		location = location_data[location_name]
-		if location.category != MonsterSanctuaryLocationCategory.CHAMPION:
-			continue
-
-		if not result.get(location.region):
-			result[location.region] = [None, None, None]
-
-		result[location.region][location.monster_id] = location.default_item
-
-	return result
 
 
 def get_location_name_for_client(name: str) -> Optional[str]:
