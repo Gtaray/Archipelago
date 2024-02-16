@@ -485,7 +485,6 @@ class MonsterSanctuaryWorld(World):
             if location.logical_name.endswith("_Champion"):
                 slot_data["locations"]["ranks"][name] = location.address
 
-        # TODO: Add abilities and their locations here
         slot_data["abilities"] = {}
         for ability in ITEMS.get_explore_abilities():
             location = self.multiworld.get_location(ability.name, self.player)
