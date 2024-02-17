@@ -70,14 +70,6 @@ def load_world() -> None:
                 locations_by_id[location_id] = location
                 location_id += 1
 
-            for ability_data in region_data.get("abilities") or []:
-                # Hack because we store comments as strings
-                if isinstance(ability_data, str):
-                    continue
-                location = add_ability_data(location_id, ability_data, region_name)
-                locations_by_id[location_id] = location
-                location_id += 1
-
             for encounter_data in region_data.get("encounters") or []:
                 # Hack because we store comments as strings
                 if isinstance(encounter_data, str):
@@ -350,19 +342,5 @@ def add_flag_data(flag_data, region_name) -> FlagData:
 
     FLAGS.add_flag(event_flag)
     return event_flag
-
-
-def add_ability_data(location_id, ability_data, region_name) -> LocationData:
-    name = ability_data.get("name")
-    location = LocationData(
-        location_id=location_id,
-        name=name,
-        region=region_name,
-        category=MonsterSanctuaryLocationCategory.ABILITY,
-        default_item=name
-    )
-
-    LOCATIONS.add_location(location.name, location)
-    return location
 
 # endregion

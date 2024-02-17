@@ -8,7 +8,6 @@ from worlds.monster_sanctuary.rules import AccessCondition
 class MonsterSanctuaryLocationCategory(IntEnum):
 	CHEST = 0  # Items in chests
 	GIFT = 1  # Gifts from NPCs
-	ABILITY = 2 # Used for explore ability flags
 	RANK = 5  # Used to track keeper rank gained from battling champions
 
 
