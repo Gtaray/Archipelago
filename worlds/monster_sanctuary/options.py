@@ -15,8 +15,8 @@ from Options import Toggle, Choice, Range, DeathLink, PerGameCommonOptions
 class RandomizeMonsters(Choice):
     """Randomize monsters
 
-    No: Monsters are not randomized. Koi and Bard Egg locations are also not randomized
-    Yes: All monsters are randomized independently
+    Off: Monsters are not randomized. Koi and Bard Egg locations are also not randomized
+    Any: All monsters are randomized independently
     By Specie: Monsters of the same specie are all randomized to another monster specie
     By Encounter: Within an encounter, all monsters of the same specie are randomized to another specie. Each encounter is randomized separately"""
     display_name = "Randomize Monsters"
@@ -62,7 +62,7 @@ class LocalAreaKeys(Toggle):
 class RemoveLockedDoors(Choice):
     """Remove Locked Doors
 
-    No: Locked doors are not removed
+    Off: Locked doors are not removed
     Minimal: Superfluous locked doors are removed, while ones that gate large numbers of checks remain
     All: All locked doors are removed"""
     display_name = "Remove Locked Doors"
@@ -172,10 +172,19 @@ class GoldDropChance(Range):
     default = 50
 
 
-class IncludeChaosRelics(Toggle):
-    """Include Relics of Chaos in the random item pool"""
+class IncludeChaosRelics(Choice):
+    """Include Relics of Chaos in the random item pool
+
+    Off: Relics of Chaos will not show up
+    On: Relics of Chaos can be added to the item pool, but are not guaranteed
+    Some: At least 5 Relics of Chaos will be included in the item pool
+    All: All Relics of Chaos will be added to the item pool"""
     display_name = "Include Relics of Chaos"
-    default = True
+    option_off = 0
+    option_on = 1
+    option_some = 2
+    option_all = 3
+    default = 1
 
 
 class ExpMultiplier(Range):

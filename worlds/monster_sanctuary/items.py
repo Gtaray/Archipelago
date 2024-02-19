@@ -133,6 +133,12 @@ def get_item_type(item_name: str) -> Optional[MonsterSanctuaryItemCategory]:
     return item.category
 
 
+def get_items_in_group(group: str, include_plus_items: bool = False) -> List[ItemData]:
+    return [item for name, item in item_data.items()
+            if group in item.groups
+            and (include_plus_items or "+" not in name)]
+
+
 def is_item_type(item_name: str, *item_types: MonsterSanctuaryItemCategory) -> bool:
     # For any item not in the item data dictionary, return false
     # This solves the problem with items from other worlds not having a type
@@ -234,7 +240,7 @@ def roll_random_equipment_level(world: World, base_item: ItemData) -> str:
         name_append = "+1"
 
     if name_append is not None:
-        new_item_name = f"{base_item.name} {name_append}"
+        new_item_name = f"{base_item.name}{name_append}"
         if new_item_name is not None and item_data.get(new_item_name) is not None:
             base_item = item_data[new_item_name]
 

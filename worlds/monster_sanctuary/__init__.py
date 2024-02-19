@@ -314,8 +314,19 @@ class MonsterSanctuaryWorld(World):
         item_exclusions = ["Multiple"]
 
         # Exclude relics of chaos if the option isn't enabled
-        if self.options.include_chaos_relics:
+        relics: List[ItemData] = []
+        if self.options.include_chaos_relics == "off":
             item_exclusions.append("Relic")
+        elif self.options.include_chaos_relics == "on":
+            pass  # Relics can be randomly put in the item pool, nothing to do here.
+        elif self.options.include_chaos_relics == "some":
+            relics = self.random.sample(ITEMS.get_items_in_group("Relic"), 5)
+        elif self.options.include_chaos_relics == "all":
+            relics = ITEMS.get_items_in_group("Relic")
+
+        for relic in relics:
+            relic_name = ITEMS.roll_random_equipment_level(self, relic)
+            pool.append(self.create_item(relic_name))
 
         # Add all key items to the pool
         key_items = [item_name for item_name in ITEMS.item_data
