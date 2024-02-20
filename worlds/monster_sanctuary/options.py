@@ -88,6 +88,20 @@ class MonstersAlwaysDropEggs(Toggle):
     default = True
 
 
+class StartWithSmokeBombs(Toggle):
+    """If enabled, the player will start with 50 Smoke Bombs."""
+    display_name = "Start with 50 Smoke Bombs"
+    default = True
+
+
+class StartingGold(Range):
+    """Override the player's starting gold, counted in increments of 100"""
+    display_name = "Starting Gold (counted in increments of 100)"
+    range_start = 0
+    range_end = 1000
+    default = 1
+
+
 class CraftingMaterialDropChance(Range):
     """Frequency that a random non-progression item is a crafting material
 
@@ -232,6 +246,8 @@ class MonsterSanctuaryOptions(PerGameCommonOptions):
     remove_locked_doors: RemoveLockedDoors
     local_area_keys: LocalAreaKeys
     add_gift_eggs_to_pool: AddGiftEggsToPool
+    add_smoke_bombs: StartWithSmokeBombs
+    starting_gold: StartingGold
     monsters_always_drop_egg: MonstersAlwaysDropEggs
     drop_chance_craftingmaterial: CraftingMaterialDropChance
     drop_chance_consumable: ConsumableDropChance

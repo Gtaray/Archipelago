@@ -424,6 +424,8 @@ class MonsterSanctuaryWorld(World):
             "skip_intro": self.options.skip_intro.value,
             "skip_plot": self.options.skip_plot.value,
             "remove_locked_doors": self.options.remove_locked_doors.value,
+            "add_smoke_bombs": self.options.add_smoke_bombs.value,
+            "starting_gold": self.options.starting_gold.value,
             "death_link": self.options.death_link.value
         }
 
