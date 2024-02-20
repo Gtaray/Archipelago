@@ -135,35 +135,35 @@
     "items": [
       {
         "name": "Dungeon Explorer",
-        "classification": "filler"
+        "classification": "useful"
       },
       {
         "name": "Dragon Lord",
-        "classification": "filler"
+        "classification": "useful"
       },
       {
         "name": "Dragon Lord (alt)",
-        "classification": "filler"
+        "classification": "useful"
       },
       {
         "name": "Old World Tycoon",
-        "classification": "filler"
+        "classification": "useful"
       },
       {
         "name": "Winter Explorer",
-        "classification": "filler"
+        "classification": "useful"
       },
       {
         "name": "Keeper Master",
-        "classification": "filler"
+        "classification": "useful"
       },
       {
         "name": "Monster Tamer",
-        "classification": "filler"
+        "classification": "useful"
       },
       {
         "name": "Alchemist",
-        "classification": "filler"
+        "classification": "useful"
       }
     ]
   },
@@ -1561,12 +1561,12 @@
     "items": [
       {
         "name": "Stardust",
-        "classification": "filler",
+        "classification": "useful",
         "tier": 2
       },
       {
         "name": "Cocoon",
-        "classification": "filler",
+        "classification": "useful",
         "tier": 2
       },
       {
@@ -1576,22 +1576,22 @@
       },
       {
         "name": "Sun Stone",
-        "classification": "filler",
+        "classification": "useful",
         "tier": 2
       },
       {
         "name": "Magical Clay",
-        "classification": "filler",
+        "classification": "useful",
         "tier": 2
       },
       {
         "name": "Silver Feather",
-        "classification": "filler",
+        "classification": "progression",
         "tier": 2
       },
       {
         "name": "Volcanic Ash",
-        "classification": "filler",
+        "classification": "useful",
         "tier": 2
       },
       {

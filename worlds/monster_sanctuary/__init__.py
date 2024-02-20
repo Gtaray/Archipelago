@@ -313,6 +313,17 @@ class MonsterSanctuaryWorld(World):
         # These items are not naturally put in the general item pool, and are handled separately
         item_exclusions = ["Multiple"]
 
+        self.handle_relics(pool, item_exclusions)
+        self.handle_key_items(pool)
+
+        while len(pool) < self.number_of_item_locations:
+            item_name = ITEMS.get_random_item_name(self, pool, group_exclude=item_exclusions)
+            if item_name is not None:
+                pool.append(self.create_item(item_name))
+
+        self.multiworld.itempool += pool
+
+    def handle_relics(self, pool: List[MonsterSanctuaryItem], item_exclusions: List[str]):
         # Exclude relics of chaos if the option isn't enabled
         relics: List[ItemData] = []
         if self.options.include_chaos_relics == "off":
@@ -328,7 +339,7 @@ class MonsterSanctuaryWorld(World):
             relic_name = ITEMS.roll_random_equipment_level(self, relic)
             pool.append(self.create_item(relic_name))
 
-        # Add all key items to the pool
+    def handle_key_items(self, pool: List[MonsterSanctuaryItem]):
         key_items = [item_name for item_name in ITEMS.item_data
                      if ITEMS.item_data[item_name].category == MonsterSanctuaryItemCategory.KEYITEM]
         # Add items that are not technically key items, but are progressions items and should be added
@@ -363,13 +374,6 @@ class MonsterSanctuaryWorld(World):
 
             for i in range(item_count):
                 pool.append(self.create_item(key_item))
-
-        while len(pool) < self.number_of_item_locations:
-            item_name = ITEMS.get_random_item_name(self, pool, group_exclude=item_exclusions)
-            if item_name is not None:
-                pool.append(self.create_item(item_name))
-
-        self.multiworld.itempool += pool
 
     def create_item(self, item_name: str) -> MonsterSanctuaryItem:
         data = ITEMS.item_data.get(item_name)

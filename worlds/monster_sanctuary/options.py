@@ -186,6 +186,15 @@ class GoldDropChance(Range):
     default = 50
 
 
+class ReplaceFillerWithLevelBadges(Range):
+    """Replaces a percentage of filler items with Level 42 Badges, to reduce the grind required to reach endgame.
+    The value is a percentage range from 0 (no filler items are replaced with level 42 badges) to 100 (all filler items are replaced with level 42 badges)"""
+    display_name = "Replace Filler with Level Badges"
+    range_start = 0
+    range_end = 100
+    default = 0
+
+
 class IncludeChaosRelics(Choice):
     """Include Relics of Chaos in the random item pool
 
@@ -256,6 +265,7 @@ class MonsterSanctuaryOptions(PerGameCommonOptions):
     drop_chance_weapon: WeaponDropChance
     drop_chance_accessory: AccessoryDropChance
     drop_chance_currency: GoldDropChance
+    replace_filler_with_level_badges: ReplaceFillerWithLevelBadges
     include_chaos_relics: IncludeChaosRelics
     exp_multiplier: ExpMultiplier
     skip_intro: SkipIntro

@@ -215,6 +215,10 @@ def get_random_item_name(world: World,
     base_item_name = world.multiworld.random.choice(valid_items)
     base_item = item_data.get(base_item_name)
 
+    if (world.multiworld.random.randint(1, 100) <= world.options.replace_filler_with_level_badges
+            and base_item.classification == ItemClassification.filler):
+        base_item = item_data.get("Level Badge 42")
+
     # weapons and accessories can gen at a higher tier, so we determine that here
     if (item_type == MonsterSanctuaryItemCategory.WEAPON
             or item_type == MonsterSanctuaryItemCategory.ACCESSORY):
