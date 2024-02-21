@@ -183,6 +183,18 @@
       { "id": 7, "item":  "Impact Ring" },
       { "id": 8, "item":  "Red Gem", "requirements":  [ "impassible_vines" ] },
       { "id": 9, "item":  "150 G", "requirements": [ "impassible_vines" ] }
+    ],
+    "shops": [
+      {
+        "id": "TreasureHunter",
+        "name": "Treasure Hunter",
+        "inventory": [
+          { "item": "Small Potion", "requirements": ["keeper_rank_1"] },
+          { "item": "Phoenix Tear", "requirements": ["keeper_rank_1"] },
+          { "item": "Shell", "requirements": ["keeper_rank_1"] },
+          { "item": "Sustain Ring", "requirements": ["keeper_rank_1"] }
+        ]
+      }
     ]
   },
   {
@@ -457,6 +469,83 @@
     ],
     "gifts": [
       {"id": 2300075, "item": "Alchemist", "requirements": ["post_game"]}
+    ],
+    "shops": [
+      {
+        "id": "MerchantEquipment",
+        "name": "Equipment Merchant",
+        "inventory": [
+          { "item": "Wand", "requirements": [ "keeper_rank_1" ] },
+          { "item": "Claws", "requirements": [ "keeper_rank_1" ] },
+          { "item": "Shuriken", "requirements": [ "keeper_rank_1" ] },
+          { "item": "Shell+1", "requirements": [ "keeper_rank_1" ] },
+          { "item": "Vital Ring+1", "requirements": [ "keeper_rank_1" ] },
+          { "item": "Belt", "requirements": [ "keeper_rank_1" ] },
+          { "item": "Feather", "requirements": [ "keeper_rank_1" ] },
+          { "item": "Hide+2", "requirements": [ "keeper_rank_2" ] },
+          { "item": "Bandana+2", "requirements": [ "keeper_rank_2" ] },
+          { "item": "Crit Ring+2", "requirements": [ "keeper_rank_2" ] },
+          { "item": "Staff+2", "requirements": [ "keeper_rank_3" ] },
+          { "item": "Morning Star+2", "requirements": [ "keeper_rank_3" ] },
+          { "item": "Bracer+2", "requirements": [ "keeper_rank_3" ] },
+          { "item": "Needle+3", "requirements": [ "keeper_rank_4" ] },
+          { "item": "Wizard Hat+3", "requirements": [ "keeper_rank_4" ] },
+          { "item": "Helmet+3", "requirements": [ "keeper_rank_4" ] },
+          { "item": "Cestus+3", "requirements": [ "keeper_rank_5" ] },
+          { "item": "Ribbon+3", "requirements": [ "keeper_rank_5" ] },
+          { "item": "Cape+3", "requirements": [ "keeper_rank_5" ] },
+          { "item": "Orb+4", "requirements": [ "keeper_rank_6" ] },
+          { "item": "Katar+4", "requirements": [ "keeper_rank_6" ] },
+          { "item": "Impact Ring+5", "requirements": [ "keeper_rank_7" ] },
+          { "item": "Diadem+5", "requirements": [ "keeper_rank_7" ] },
+          { "item": "Coat+5", "requirements": [ "keeper_rank_7" ] },
+          { "item": "Kunai+5", "requirements": [ "keeper_rank_8" ] },
+          { "item": "Claws+5", "requirements": [ "keeper_rank_8" ] },
+          { "item": "Wand+5", "requirements": [ "keeper_rank_8" ] }
+        ]
+      },
+      {
+        "id": "MerchantItems",
+        "name": "Consumable Merchant",
+        "inventory": [
+          { "item": "Small Potion", "requirements": [ "keeper_rank_1" ] },
+          { "item": "Small Antidote", "requirements": [ "keeper_rank_1" ] },
+          { "item": "Phoenix Tear", "requirements": [ "keeper_rank_1" ] },
+          { "item": "Skill Resetter", "requirements": [ "keeper_rank_1" ] },
+          { "item": "Potion", "requirements": [ "keeper_rank_2" ] },
+          { "item": "Smoke Bomb", "requirements": [ "keeper_rank_3" ] },
+          { "item": "Monster Bell", "requirements": [ "keeper_rank_3" ] },
+          { "item": "Crystal Shard", "requirements": [ "keeper_rank_4" ] },
+          { "item": "Antidote", "requirements": [ "keeper_rank_4" ] },
+          { "item": "Mass Potion", "requirements": [ "keeper_rank_6" ] },
+          { "item": "Mass Antidote", "requirements": [ "keeper_rank_6" ] },
+          { "item": "Combo Potion", "requirements": [ "keeper_rank_7" ] },
+          { "item": "Big Potion", "requirements": [ "keeper_rank_8" ] },
+          { "item": "Mega Potion", "requirements": [ "keeper_rank_9" ] },
+          { "item": "Phoenix Serum", "requirements": [ "keeper_rank_9" ] }
+        ]
+      },
+      {
+        "id": "MerchantFood",
+        "name": "Food Merchant",
+        "inventory": [
+          { "item": "Apple", "requirements": [ "keeper_rank_1" ] },
+          { "item": "Berry", "requirements": [ "keeper_rank_1" ] },
+          { "item": "Potato", "requirements": [ "keeper_rank_1" ] },
+          { "item": "Walnut", "requirements": [ "keeper_rank_1" ] },
+          { "item": "Pear", "requirements": [ "keeper_rank_3" ] },
+          { "item": "Grape", "requirements": [ "keeper_rank_3" ] },
+          { "item": "Corn", "requirements": [ "keeper_rank_4" ] },
+          { "item": "Hazelnut", "requirements": [ "keeper_rank_4" ] },
+          { "item": "Mango", "requirements": [ "keeper_rank_5" ] },
+          { "item": "Carrot", "requirements": [ "keeper_rank_5" ] },
+          { "item": "Almond", "requirements": [ "keeper_rank_6" ] },
+          { "item": "Strawberry", "requirements": [ "keeper_rank_6" ] },
+          { "item": "Raspberry", "requirements": [ "keeper_rank_7" ] },
+          { "item": "Orange", "requirements": [ "keeper_rank_7" ] },
+          { "item": "Cookie Mushroom", "requirements": [ "keeper_rank_9" ] }
+        ]
+      }
     ]
   },
   {
@@ -4411,6 +4500,20 @@
     ],
     "flags": [
       {"id": "tree_of_evolution_access", "name": "Tree of Evolution Access"}
+    ],
+    "shops": [
+      {
+        "id": "KeeperNPC (1)",
+        "name": "Traveling Merchant",
+        "inventory": [
+          { "item": "Orb+2", "requirements": ["keeper_rank_1"] },
+          { "item": "Tomb+2", "requirements": ["keeper_rank_1"] },
+          { "item": "Level Badge", "requirements": ["keeper_rank_1"] },
+          { "item": "Bow", "requirements": ["keeper_rank_1"], "limited": true },
+          { "item": "Heavy Mace", "requirements": ["keeper_rank_1"], "limited": true },
+          { "item": "Poisoned Dart", "requirements": ["keeper_rank_1"], "limited": true }
+        ]
+      }
     ]
   },
   {
@@ -5777,8 +5880,27 @@
     "gifts": [
       {"id": 27700082, "item": "Reward Box Lvl 2"}
     ],
-    "shop": [
-      { "name": "AlchemistShop", "id": 5, "item": "??? Egg"}
+    "shops": [
+      {
+        "id": "FireAlchemist",
+        "name": "Rhazes",
+        "inventory": [
+          { "item": "Mass Potion", "requirements": ["keeper_rank_1"], "limited": true },
+          { "item": "Combo Potion", "requirements": ["keeper_rank_1"], "limited": true },
+          { "item": "Big Potion", "requirements": ["keeper_rank_1"], "limited": true },
+          { "item": "Skill Potion", "requirements": ["keeper_rank_1"], "limited": true },
+          { "item": "Cauldron", "requirements": ["keeper_rank_1"], "limited": true },
+          { "item": "??? Egg", "requirements": ["keeper_rank_1"], "limited": true },
+          "available after restock with story flag 'AlchemistShopRestocked'",
+          { "item": "Mega Potion", "requirements": ["keeper_rank_1"], "limited": true },
+          { "item": "Phoenix Serum", "requirements": ["keeper_rank_1"], "limited": true },
+          { "item": "Skill Potion", "requirements": ["keeper_rank_1"], "limited": true },
+          { "item": "Reward Box Lvl 1", "requirements": ["keeper_rank_1"], "limited": true },
+          { "item": "Reward Box Lvl 2", "requirements": ["keeper_rank_1"], "limited": true },
+          { "item": "Reward Box Lvl 3", "requirements": ["keeper_rank_1"], "limited": true },
+          { "item": "Reward Box Lvl 4", "requirements": ["keeper_rank_1"], "limited": true }
+        ]
+      }
     ]
   },
   {
@@ -5817,6 +5939,17 @@
     "region": "MagmaChamber_GoblinTrader",
     "connections": [
       {"region": "MagmaChamber_East3"}
+    ],
+    "shops": [
+      {
+        "id": "KeeperNPC (1)",
+        "name": "Goblin Trader",
+        "inventory": [
+          { "item": "Skill Potion", "requirements": ["keeper_rank_1"], "limited": true },
+          { "item": "Switch Stone", "requirements": ["keeper_rank_1"], "limited": true },
+          { "item": "Shift Stone", "requirements": ["keeper_rank_1"], "limited": true }
+        ]
+      }
     ]
   },
   {
@@ -6964,6 +7097,22 @@
     "region": "MysticalWorkshop_GolemMerchant",
     "connections": [
       {"region": "MysticalWorkshop_Center6"}
+    ],
+    "shops": [
+      {
+        "id": "KeeperNPC (1)",
+        "name": "Golem Merchant",
+        "inventory": [
+          { "item": "Vital Ring+4", "requirements": ["keeper_rank_1"] },
+          { "item": "Mana Ring+4", "requirements": ["keeper_rank_1"] },
+          { "item": "Sustain Ring+4", "requirements": ["keeper_rank_1"] },
+          { "item": "Level Badge", "requirements": ["keeper_rank_1"] },
+          { "item": "Craft Box", "requirements": ["keeper_rank_1"], "limited": true },
+          { "item": "Thermal Reactor", "requirements": ["keeper_rank_1"], "limited": true },
+          { "item": "Charging Sphere", "requirements": ["keeper_rank_1"], "limited": true },
+          { "item": "Shield Generator", "requirements": ["keeper_rank_1"], "limited": true }
+        ]
+      }
     ]
   },
   {
