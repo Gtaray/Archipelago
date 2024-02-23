@@ -24,5 +24,26 @@
     "locations": [
       "SnowyPeaks_Cryomancer"
     ]
+  },
+  {
+    "item": "Sanctuary Token",
+    "locations": [
+      "Rhazes - Skill Potion",
+      "Goblin Trader - "
+    ]
+  },
+  {
+    "item": "Celestial Feather",
+    "locations": [
+      "Rhazes - Skill Potion",
+      "Goblin Trader - "
+    ]
+  },
+  {
+    "item": "Rare Seashell",
+    "locations": [
+      "Rhazes - Skill Potion",
+      "Goblin Trader - "
+    ]
   }
 ]

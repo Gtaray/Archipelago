@@ -50,6 +50,20 @@ class ImprovedMobilityLimitation(Toggle):
     default = True
 
 
+class Shopsanity(Toggle):
+    """If enabled, shop inventories are randomized"""
+    display_name = "Shopsanity"
+    default = False
+
+
+class ShopsanityPrices(Toggle):
+    """ONLY WORKS IF SHOPSANITY IS ENABLED.
+
+    If enabled with Shopsanity, the prices of items in shops is randomized."""
+    display_name = "Shopsanity Prices"
+    default = False
+
+
 class LocalAreaKeys(Toggle):
     """Localized Area Keys
 
@@ -252,6 +266,8 @@ class MonsterSanctuaryOptions(PerGameCommonOptions):
     randomize_monsters: RandomizeMonsters
     monster_shift_rule: RandomizeMonsterShifts
     improved_mobility_limit: ImprovedMobilityLimitation
+    shopsanity: Shopsanity
+    shopsanity_prices: ShopsanityPrices
     remove_locked_doors: RemoveLockedDoors
     local_area_keys: LocalAreaKeys
     add_gift_eggs_to_pool: AddGiftEggsToPool

@@ -122,6 +122,10 @@ class MonsterSanctuaryWorld(World):
             ]:
                 continue
 
+            # Unless shopsanity is enabled, do not add shop locations
+            if not self.options.shopsanity and location_data.category == MonsterSanctuaryLocationCategory.SHOP:
+                continue
+
             region = self.multiworld.get_region(location_data.region, self.player)
 
             plotless_rules = RULES.get_plotless_location(region.name, location_data.object_id)
@@ -475,6 +479,14 @@ class MonsterSanctuaryWorld(World):
             if '_' in location.name:  # Ignore monster locations and flags
                 continue
             if location.item.code is None:  # Ignore events
+                continue
+
+            # With shopsanity enabled, shop locations go in their own special bucket
+            # and aren't counted as the normal amount of checks for a region
+            if self.options.shopsanity and LOCATIONS.is_location_shop(location.logical_name):
+                if "shops" not in slot_data["locations"]:
+                    slot_data["locations"]["shops"] = {}
+                slot_data["locations"]["shops"][location.name] = location.address
                 continue
 
             name = LOCATIONS.get_location_name_for_client(location.logical_name)

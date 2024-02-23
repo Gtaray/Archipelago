@@ -96,6 +96,12 @@ def load_world() -> None:
                     continue
                 add_flag_data(flag_data, region_name)
 
+            for shop_data in region_data.get("shops") or []:
+                # Hack because we store comments as strings
+                if isinstance(shop_data, str):
+                    continue
+                location_id = add_shop_locations(shop_data, locations_by_id, location_id, region_name)
+
             REGIONS.region_data[region.name] = region
 
     # Go through the postgame.json file and mark every location name in that file
@@ -286,6 +292,37 @@ def add_chest_location(location_id, location_name, chest_data, region_name) -> L
 
 def add_gift_location(location_id, location_name, gift_data, region_name) -> LocationData:
     return add_location(location_id, location_name, gift_data, region_name, MonsterSanctuaryLocationCategory.GIFT)
+
+
+def add_shop_locations(shop_data, locations_by_id, location_id, region_name):
+    shop_name = shop_data["name"]
+    inventory = shop_data["inventory"]
+
+    for item in inventory:
+        # Hack 'cause comments are strings
+        if isinstance(item, str):
+            continue
+
+        item_name = item["item"]
+        inventory_id = item["id"]
+        logical_name = f"{region_name}_{shop_name.replace(' ', '')}_{inventory_id}"
+        location = LocationData(
+            location_id=location_id,
+            name=f"{shop_name} - {item_name}",
+            region=region_name,
+            category=MonsterSanctuaryLocationCategory.SHOP,
+            default_item=item_name,
+            access_condition=AccessCondition(item.get("requirements"))
+        )
+        location.logical_name = logical_name
+
+        if item.get("limited") is not None:
+            location.shop_is_limited = item["limited"]
+
+        LOCATIONS.add_location(logical_name, location)
+        location_id += 1
+
+    return location_id
 
 
 def add_rank_location(location_id, display_name, champion_data, region_name) -> LocationData:

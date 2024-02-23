@@ -5,6 +5,7 @@ from typing import List, Dict, Optional
 from BaseClasses import ItemClassification
 from BaseClasses import MultiWorld, Item
 from worlds.AutoWorld import World
+from . import locations as LOCATIONS
 
 
 class MonsterSanctuaryItemCategory(IntEnum):
@@ -66,12 +67,27 @@ item_data: Dict[str, ItemData] = {}
 item_drop_probabilities: List[MonsterSanctuaryItemCategory] = []
 
 
-def can_item_be_placed(world: World, item: Item, location) -> bool:
+def can_item_be_placed(world: World, item: Item, location: LOCATIONS.MonsterSanctuaryLocation) -> bool:
     # For any item that's not a monster sanctuary item, it can go here
     if item.player != world.player:
         return True
 
     data = get_item_by_name(item.name)
+
+    # This goes up here otherwise eggs improved movement abilities will get caught in
+    # the if-statement below this one
+    if LOCATIONS.is_location_shop(location.logical_name):
+        # Currency and multiple items can never be in shops
+        if (is_item_type(item.name, MonsterSanctuaryItemCategory.CURRENCY)
+                or is_item_in_group(item.name, "Multiple")):
+            return False
+
+        # These items can only be placed in shops that have limited quantity
+        if (is_item_in_group(item.name, "Area Key")
+                or is_item_type(item.name, MonsterSanctuaryItemCategory.EGG)
+                or is_item_type(item.name, MonsterSanctuaryItemCategory.COSTUME)
+                or item.name in ["Sanctuary Token", "Rare Seashell", "Celestial Feather"]):
+            return LOCATIONS.is_shop_limited(location.logical_name)
 
     # If the item is an egg with an improved movement ability
     # And the settings are to limit placement of those abilities

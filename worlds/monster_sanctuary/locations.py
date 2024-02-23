@@ -8,6 +8,7 @@ from worlds.monster_sanctuary.rules import AccessCondition
 class MonsterSanctuaryLocationCategory(IntEnum):
 	CHEST = 0  # Items in chests
 	GIFT = 1  # Gifts from NPCs
+	SHOP = 2  # Items in an NPC shop
 	RANK = 5  # Used to track keeper rank gained from battling champions
 
 
@@ -23,6 +24,8 @@ class LocationData:
 	event: bool
 	postgame: bool = False
 	hint: Optional[str]
+	shop_is_limited: bool = False
+	logical_name: str = ""
 
 	def __init__(
 			self,
@@ -34,7 +37,7 @@ class LocationData:
 			access_condition: Optional[AccessCondition] = None,
 			object_id: Optional[int] = None,
 			event: bool = False,
-			hint: Optional[str]=None):
+			hint: Optional[str] = None):
 		self.location_id = location_id
 		self.name = name
 		self.region = region
@@ -99,6 +102,14 @@ def is_location_type(location: str, *types: MonsterSanctuaryLocationCategory) ->
 
 def get_locations_of_type(*categories: MonsterSanctuaryLocationCategory):
 	return [location_data[name] for name in location_data if location_data[name].category in categories]
+
+
+def is_location_shop(location: str) -> bool:
+	return location in location_data and location_data[location].category == MonsterSanctuaryLocationCategory.SHOP
+
+
+def is_shop_limited(location: str) -> bool:
+	return location_data[location].shop_is_limited
 
 
 def get_location_name_for_client(name: str) -> Optional[str]:
