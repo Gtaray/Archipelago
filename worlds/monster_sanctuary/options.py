@@ -56,11 +56,23 @@ class Shopsanity(Toggle):
     default = False
 
 
-class ShopsanityPrices(Toggle):
+class ShopsanityPrices(Choice):
     """ONLY WORKS IF SHOPSANITY IS ENABLED.
 
-    If enabled with Shopsanity, the prices of items in shops is randomized."""
+    Modifies the prices that shops sell items for
+    Normal: Shop prices are unchanged
+    Weighted: Shop prices are randomized, with the cost of progression items weighted towards the upper end of the range
+    Any: Shop prices are entirely randomized"""
     display_name = "Shopsanity Prices"
+    option_normal = 0
+    option_weighted = 1
+    option_any = 2
+    default = 1
+
+
+class ShopsIgnoreRank(Toggle):
+    """If enabled, all shops will offer their entire stock regardless of keeper rank."""
+    display_name = "Shop Ignores Rank Requirements"
     default = False
 
 
@@ -268,6 +280,7 @@ class MonsterSanctuaryOptions(PerGameCommonOptions):
     improved_mobility_limit: ImprovedMobilityLimitation
     shopsanity: Shopsanity
     shopsanity_prices: ShopsanityPrices
+    shops_ignore_rank: ShopsIgnoreRank
     remove_locked_doors: RemoveLockedDoors
     local_area_keys: LocalAreaKeys
     add_gift_eggs_to_pool: AddGiftEggsToPool

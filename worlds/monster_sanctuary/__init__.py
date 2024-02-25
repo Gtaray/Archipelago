@@ -414,9 +414,31 @@ class MonsterSanctuaryWorld(World):
             self.hint_rng = self.multiworld.per_slot_randoms[self.player]
             HINTS.generate_hints(self)
 
+            if self.options.shopsanity and self.options.shopsanity_prices != "normal":
+                self.generate_shopsanity_prices()
+
         # from Utils import visualize_regions
         # visualize_regions(self.multiworld.get_region("Menu", self.player),
         #                   "D:\\Visual Studio Projects\\Archipelago\\worlds\\monster_sanctuary\\world.puml")
+
+    def generate_shopsanity_prices(self):
+        min_price = 10
+        max_price = 5000
+
+        self.shopsanity_prices: Dict[int, int] = {}
+        shop_locations = LOCATIONS.get_locations_of_type(MonsterSanctuaryLocationCategory.SHOP)
+
+        for location_data in shop_locations:
+            location = self.multiworld.get_location(location_data.name, self.player)
+
+            weight = (min_price + max_price) / 2
+            if self.options.shopsanity_prices == "weighted":
+                if location.item.classification == ItemClassification.progression:
+                    weight = weight + (weight/2)
+                elif location.item.classification == ItemClassification.filler:
+                    weight = weight / 4
+
+            self.shopsanity_prices[location.address] = round(self.random.triangular(min_price, max_price, weight))
 
     # fill_slot_data and modify_multidata can be used to modify the data that will be used by
     # the server to host the MultiWorld.
@@ -434,6 +456,7 @@ class MonsterSanctuaryWorld(World):
             "remove_locked_doors": self.options.remove_locked_doors.value,
             "add_smoke_bombs": self.options.add_smoke_bombs.value,
             "starting_gold": self.options.starting_gold.value,
+            "shops_ignore_rank": self.options.shops_ignore_rank.value,
             "death_link": self.options.death_link.value
         }
 
@@ -487,6 +510,11 @@ class MonsterSanctuaryWorld(World):
                 if "shops" not in slot_data["locations"]:
                     slot_data["locations"]["shops"] = {}
                 slot_data["locations"]["shops"][location.name] = location.address
+
+                if self.options.shopsanity_prices != "normal":
+                    if "prices" not in slot_data:
+                        slot_data["prices"] = {}
+                    slot_data["prices"][location.name] = self.shopsanity_prices[location.address]
                 continue
 
             name = LOCATIONS.get_location_name_for_client(location.logical_name)
