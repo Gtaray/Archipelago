@@ -21,6 +21,15 @@ class TestItems(MonsterSanctuaryTestBase):
         self.assertFalse(items.is_item_type("Feather",
                                             MonsterSanctuaryItemCategory.RANK))
 
+    def test_multi_items_are_tagged_properly(self):
+        for key, item_data in items.item_data.items():
+            multiplier = item_data.name.split(' ')[0]
+            if multiplier in ["2x", "3x", "4x", "5x"]:
+                with self.subTest(f"{item_data.name} has the Multiple tag"):
+                    self.assertIn("Multiple", item_data.groups)
+
+
+class TestLockedDoors(MonsterSanctuaryTestBase):
     def test_key_items_appear_correct_number_of_times(self):
         key_items = [items.item_data[item_name] for item_name in items.item_data
                      if items.item_data[item_name].category == MonsterSanctuaryItemCategory.KEYITEM]
@@ -66,13 +75,13 @@ class TestItems(MonsterSanctuaryTestBase):
                     self.assertFalse(location.name.startswith(illegal_location))
 
 
-class TestremoveLockedDoors_Minimal(TestItems):
+class TestRemoveLockedDoors_Minimal(TestItems):
     options = {
         "remove_locked_doors": 1
     }
 
 
-class TestremoveLockedDoors_All(TestItems):
+class TestRemoveLockedDoors_All(TestItems):
     options = {
         "remove_locked_doors": 2
     }
