@@ -70,7 +70,7 @@ def generate_hints(world: World):
         world.hints.append(hint)
 
     sanctuary_hints = build_sanctuary_token_hints(world, world.player)
-    world.hints.extend(sanctuary_hints)  # Waiting to do this until I figure out where these hints should go
+    world.hints.extend(sanctuary_hints)
 
 
 def build_sanctuary_token_hints(world: World, player: int) -> List[Hint]:
@@ -78,7 +78,7 @@ def build_sanctuary_token_hints(world: World, player: int) -> List[Hint]:
     counts: Dict[str, int] = {}
 
     for location in locations:
-        area: str = get_trimmed_area_name(location)
+        area = get_area_name_for_location(world, location, player)
         if area not in counts:
             counts[area] = 0
         counts[area] += 1
@@ -89,7 +89,7 @@ def build_sanctuary_token_hints(world: World, player: int) -> List[Hint]:
     ]
     for area, count in counts.items():
         verb = "is" if count == 1 else "are"
-        hints.append(f"{count} {verb} {get_readable_area_name(area)}")
+        hints.append(f"{count} {verb} {area}")
 
     # Now we merge hint texts down so that we get 2 at a time in a single dialog box
     merged_hints = []
@@ -141,14 +141,17 @@ def get_area_name_for_location(world: World, location: Location, player: int) ->
     if location.player != player:
         return get_another_world_text(world, location.player)
 
-    return get_readable_area_name(get_trimmed_area_name(location))
+    return get_readable_area_name(get_trimmed_area_name(location, player))
 
 
 def get_another_world_text(world: World, player: int):
     return f"in {world.multiworld.player_name[player]}'s world"
 
 
-def get_trimmed_area_name(location: Location) -> str:
+def get_trimmed_area_name(location: Location, player: int) -> str:
+    if player != location.player:
+        return location.name
+
     # converge item and monster location naming structures by getting rid of
     # spaces and converting hyphens to underscores
     return location.name.replace(' ', '').replace('-', '_').split('_')[0]
