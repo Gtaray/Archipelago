@@ -155,11 +155,14 @@ def get_trimmed_area_name(location: Location) -> str:
 
 
 def get_readable_area_name(area: str) -> str:
-    if area == "MountainPath":
+    if area == "MountainPath" or area == "TreasureHunter":
         return "on the {Mountain Path}"
     elif area == "BlueCave":
         return "in the {Blue Caves}"
-    elif area == "KeeperStronghold":
+    elif (area == "KeeperStronghold"
+          or area == "EquipmentMerchant"
+          or area == "ConsumableMerchant"
+          or area == "FoodMerchant"):
         return "in the {Keeper Stronghold}"
     elif area == "StrongholdDungeon":
         return "in the {Stronghold Dungeon}"
@@ -167,17 +170,17 @@ def get_readable_area_name(area: str) -> str:
         return "on {Snowy Peaks}"
     elif area == "SunPalace":
         return "in {Sun Palace}"
-    elif area == "AncientWoods":
+    elif area == "AncientWoods" or area == "TravelingMerchant":
         return "in the {Ancient Woods}"
     elif area == "HorizonBeach":
         return "at {Horizon Beach}"
-    elif area == "MagmaChamber":
+    elif area == "MagmaChamber" or area == "Rhazes" or area == "GoblinTrader":
         return "in {Magma Chamber}"
     elif area == "BlobBurg":
         return "in {Blob Burg}"
     elif area == "Underworld":
         return "in the {Underworld}"
-    elif area == "MysticalWorkshop":
+    elif area == "MysticalWorkshop" or area == "GolemMerchant":
         return "in the {Mystical Workshop}"
     elif area == "ForgottenWorld":
         return "in the {Forgotten World}"
