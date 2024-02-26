@@ -58,8 +58,8 @@ class SunPalaceTests(TestArea):
     # because the above tests for the raise_center flags are in the same spots
     # as the shortcuts. So if we can get to one, we can get to the other
     def test_east_shortcut(self):
-        self.assertNotAccessible("SunPalace_Center", "sun_palace_east_shortcut", [])
-        self.assertAccessible("SunPalace_Center", "sun_palace_east_shortcut", ["Sun Palace East Shortcut"])
+        self.assertNotAccessible("SunPalace_Center", "sun_palace_east_shortcut", ["Double Jump Boots"])
+        self.assertAccessible("SunPalace_Center", "sun_palace_east_shortcut", ["Sun Palace East Shortcut", "Double Jump Boots"])
 
     def test_west_shortcut(self):
         self.assertNotAccessible("SunPalace_Center", "sun_palace_west_shortcut", [])

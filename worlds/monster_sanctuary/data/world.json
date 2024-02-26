@@ -1508,11 +1508,11 @@
     ],
     "chests": [
       { "id": 19, "item": "2x Iron", "requirements": [
-        "AND", [
-          "double_jump",
-          "distant_ledges"
+        "OR", [
+          "OR", ["improved_flying", "dual_mobility"],
+          "AND", ["double_jump", "distant_ledges"]
         ]
-      ] }
+      ]}
     ],
     "encounters": [
       { "id": 0, "monsters": [ "Mad Eye", "Crackle Knight", "Mad Eye" ] }
@@ -1734,30 +1734,15 @@
     "connections": [
       {
         "region": "StrongholdDungeon_Central6",
-        "requirements": [
-          "OR", [
-            "double_jump",
-            "improved_flying",
-            "dual_mobility"]
-        ]
+        "requirements": [ "double_jump" ]
       },
       {
         "region": "StrongholdDungeon_South2",
-        "requirements": [
-          "OR", [
-            "double_jump",
-            "improved_flying",
-            "dual_mobility"]
-        ]
+        "requirements": [ "double_jump" ]
       }
     ],
     "chests": [
-      { "id": 5, "item": "Hazelnut", "requirements": [
-        "OR", [
-          "double_jump",
-          "improved_flying",
-          "dual_mobility"]
-      ]}
+      { "id": 5, "item": "Hazelnut", "requirements": [ "double_jump" ] }
     ]
   },
   {
@@ -2250,7 +2235,7 @@
       { "region": "SnowyPeaks_East3", "requirements": ["breakable_walls"]}
     ],
     "chests": [
-      { "id": 3, "item": "2x Wool", "requirements": ["AND", [ "double_jump", "distant_ledges" ]] },
+      { "id": 3, "item": "2x Wool" },
       { "id": 7, "item": "Hide+3", "requirements": ["AND", [ "double_jump", "distant_ledges" ]] }
     ]
   },
@@ -2498,7 +2483,12 @@
       ]}
     ],
     "chests": [
-      { "id":  1, "item": "Almond", "requirements": [ "AND", [ "double_jump", "distant_ledges" ]]}
+      { "id":  1, "item": "Almond", "requirements": [
+        "OR", [
+          "OR", [ "improved_flying", "dual_mobility" ],
+          "AND", [ "double_jump", "distant_ledges" ]
+        ]
+      ]}
     ],
     "encounters": [
       { "id": 0, "monsters": [ "Ice Blob", "Caraglow", "Ice Blob" ]}
@@ -3173,9 +3163,9 @@
       {
         "region": "SunPalace_EastChampion",
         "requirements": [
-          "OR", [
-            "secret_vision",
-            "AND", ["double_jump", "lofty_mount"]
+          "AND", [
+            "double_jump",
+            "OR", [ "secret_vision", "lofty_mount" ]
           ]
         ]
       }
@@ -3217,11 +3207,16 @@
   {
     "region": "SunPalace_East4",
     "connections": [
-      { "region": "SunPalace_East3" },
-      { "region": "SunPalace_Center" }
+      { "region": "SunPalace_East3", "requirements": [
+        "OR", [ "double_jump", "distant_ledges" ]
+      ] },
+      { "region": "SunPalace_Center", "requirements": [
+        "OR", [ "double_jump", "distant_ledges" ]
+      ] }
     ],
     "chests": [
-      { "id": 4, "item": "Cestus+3", "requirements": [ "water_orbs" ] }
+      { "id": 4, "item": "Cestus+3", "requirements": [
+        "AND", [ "water_orbs", "double_jump" ]] }
     ],
     "encounters": [
       { "id": 5, "monsters": [ "Vasuki","Ninki Nanka", "Vasuki" ]}
@@ -3616,7 +3611,13 @@
       { "region": "SunPalace_EastSewers6" }
     ],
     "chests": [
-      { "id": 6, "item": "Level Badge", "requirements": ["double_jump"] }
+      { "id": 6, "item": "Level Badge", "requirements": [
+        "OR", [
+          "sun_palace_lower_water_2",
+          "double_jump",
+          "swimming"
+          ]
+      ] }
     ],
     "encounters": [
       { "id": 2, "monsters": [ "Kame", "Sycophantom", "Kame" ]}
@@ -3995,10 +3996,10 @@
     ],
     "chests": [
       { "id": 4, "item": "2x Combo Potion", "requirements": [
-        "OR", ["double_jump", "improved_flying", "dual_mobility"]
+        "OR", ["double_jump", "flying", "improved_flying", "dual_mobility"]
       ]},
       { "id": 105, "item": "2x Level Badge", "requirements": [
-        "OR", ["double_jump", "improved_flying", "dual_mobility"]
+        "OR", ["double_jump", "flying", "improved_flying", "dual_mobility"]
       ]}
     ]
   },
@@ -4639,16 +4640,16 @@
     ],
     "chests": [
       { "id": 3, "item": "2x Monster Bell", "requirements": [
-        "OR", [ "double_jump", "improved_flying", "dual_mobility", "lofty_mount"]
+        "OR", [ "double_jump", "improved_flying", "dual_mobility"]
       ]},
       { "id": 5, "item": "Crit Ring+4", "requirements": [
-        "OR", [ "double_jump", "improved_flying", "dual_mobility", "lofty_mount"]
+        "OR", [ "double_jump", "improved_flying", "dual_mobility"]
       ]}
     ],
     "encounters": [
       {"id": 1, "monsters": ["Ucan", "Ucan", "Dodo"]},
       {"id": 4, "monsters": ["Silvaero", "Vaero", "Silvaero"], "requirements": [
-        "OR", ["double_jump", "improved_flying", "lofty_mount", "dual_mobility"]
+        "OR", ["double_jump", "improved_flying", "dual_mobility"]
       ]}
     ]
   },
@@ -4688,8 +4689,8 @@
       { "region": "HorizonBeach_Center6", "requirements": ["swimming"]}
     ],
     "chests": [
-      { "id": 4, "item": "Skill Potion", "requirements": ["improved swimming"]},
-      { "id": 9, "item": "Crimson Gem", "requirements": ["improved swimming"]}
+      { "id": 4, "item": "Skill Potion", "requirements": ["improved_swimming"]},
+      { "id": 9, "item": "Crimson Gem", "requirements": ["improved_swimming"]}
     ],
     "encounters": [
       { "id": 1, "monsters": [ "Thornish", "Brawlish", "Thornish" ], "requirements": ["swimming"] }
@@ -4850,7 +4851,12 @@
     ],
     "chests": [
       {"id": 3, "item": "Silver Feather"},
-      {"id": 4, "item": "Skill Potion"}
+      {"id": 4, "item": "Skill Potion", "requirements": [
+        "AND", [
+          "double_jump",
+          "OR", ["improved_flying", "dual_mobility", "lofty_mount"]
+        ]
+      ]}
     ],
     "encounters": [
       {"id": 2, "monsters": ["Silvaero", "Kongamato", "Silvaero"]}
@@ -4896,7 +4902,9 @@
       { "region": "HorizonBeach_East2_Lower", "requirements": [
         "AND", ["narrow_corridors", "double_jump"]
       ]},
-      { "region": "HorizonBeach_EastChampion", "requirements": ["narrow_corridors"]}
+      { "region": "HorizonBeach_EastChampion", "requirements": [
+        "AND", ["narrow_corridors", "double_jump"]
+      ]}
     ],
     "chests": [
       {"id": 1, "item": "Mega Potion", "requirements": [
@@ -4907,7 +4915,7 @@
   {
     "region": "HorizonBeach_EastChampion",
     "connections": [
-      { "region": "HorizonBeach_EastHidden" }
+      { "region": "HorizonBeach_EastHidden", "requirements": [ "narrow_corridors" ] }
     ],
     "chests": [
       { "id": 1, "item": "Sapphire" },
@@ -5356,9 +5364,7 @@
       {"region": "MagmaChamber_North5_Lower"}
     ],
     "chests": [
-      {"id": 4, "item": "Silver", "requirements": [
-        "AND", ["dark_rooms", "double_jump"]
-      ]}
+      {"id": 4, "item": "Silver", "requirements": [ "dark_rooms" ]}
     ]
   },
   {
