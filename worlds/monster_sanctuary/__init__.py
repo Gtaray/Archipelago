@@ -448,6 +448,7 @@ class MonsterSanctuaryWorld(World):
         # Rando options
         slot_data["options"] = {
             "goal": self.options.goal.value,
+            "include_chaos_relics": self.options.include_chaos_relics.value,
             "exp_multiplier": self.options.exp_multiplier.value,
             "monsters_always_drop_egg": self.options.monsters_always_drop_egg.value,
             "monster_shift_rule": self.options.monster_shift_rule.value,
