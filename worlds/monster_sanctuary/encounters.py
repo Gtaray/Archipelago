@@ -19,6 +19,7 @@ class MonsterData:
     groups: List[str]
     stage: Optional[GameStage] = None
     pre_evolution: Optional[str] = None
+    catalyst: Optional[str] = None
 
     def __init__(self, id: int, name: str, groups: List[str]):
         # This needs to exist alongside normal item ids, because monsters will ultimately be classified as items
@@ -29,6 +30,7 @@ class MonsterData:
 
         if self.name in evolved_monsters:
             self.pre_evolution = evolved_monsters[self.name]
+            self.catalyst = catalysts[self.name]
 
     def __str__(self):
         return self.name
@@ -112,6 +114,25 @@ evolved_monsters = {
     "Fumagus": "Fungi",
     "Dracomer": "Draconov"
 }
+catalysts = {
+    "G'rulu": "Stardust",
+    "Magmamoth": "Cocoon",
+    "Megataur": "Shard of Winter",
+    "Ninki Nanka": "Magical Clay",
+    "Sizzle Knight": "Sun Stone",
+    "Silvaero": "Silver Feather",
+    "Glowdra": "Volcanic Ash",
+    "Dracogran": "Fire Stone",
+    "Dracozul": "Ice Stone",
+    "Mega Rock": "Giant Seed",
+    "Draconoir": "Dark Stone",
+    "King Blob": "Majestic Crown",
+    "Mad Lord": "Demonic Pact",
+    "Ascendant": "Primordial Branch",
+    "Fumagus": "Druid Soul",
+    "Dracomer": "Deep Stone"
+}
+
 early_game_areas: List[str] = ["Menu", "MountainPath", "BlueCave", "KeepersStronghold", "KeepersTower",
                                "StrongholdDungeon", "SnowyPeaks", "SunPalace", "AncientWoods"]
 late_game_areas: List[str] = ["HorizonBeach", "MagmaChamber", "BlobBurg", "ForgottenWorld", "MysticalWorkshop",

@@ -275,8 +275,8 @@ class MonsterSanctuaryWorld(World):
             eggs["Snowy Peaks - Cryomancer - Dark Egg Reward"] = self.create_item(self.species_swap["Shockhopper"].egg_name())
 
             # These are straight up added because they don't come from a specific location
-            # they just need to be available in the pool somewhere to make sure all locations
-            # are reachable.
+            # they just need to be available in the pool somewhere to make sure all monsters
+            # are available.
             self.multiworld.itempool += [
                 self.create_item(self.species_swap["Mad Lord"].egg_name()),
                 self.create_item(self.species_swap["Plague Egg"].egg_name()),
@@ -378,9 +378,16 @@ class MonsterSanctuaryWorld(World):
     def handle_key_items(self, pool: List[MonsterSanctuaryItem]):
         key_items = [item_name for item_name in ITEMS.item_data
                      if ITEMS.item_data[item_name].category == MonsterSanctuaryItemCategory.KEYITEM]
+
         # Add items that are not technically key items, but are progressions items and should be added
         key_items.append("Raw Hide")
+        key_items.append("Stardust")
+        key_items.append("Cocoon")
         key_items.append("Shard of Winter")
+        key_items.append("Sun Stone")
+        key_items.append("Magical Clay")
+        key_items.append("Silver Feather")
+        key_items.append("Volcanic Ash")
         key_items.append("Fire Stone")
         key_items.append("Ice Stone")
         key_items.append("Giant Seed")

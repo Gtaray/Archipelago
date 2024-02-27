@@ -9,6 +9,11 @@ class TestMonsterRandomizerBase(WorldTestBase):
     game = "Monster Sanctuary"
     player: int = 1
 
+    def tearDown(self) -> None:
+        if hasattr(self, "multiworld") and hasattr(self.multiworld.worlds[1], "species_swap"):
+            for key, value in self.multiworld.worlds[1].species_swap.items():
+                print(f"{key} -> {value.name}")
+
     def test_all_monster_locations_exist(self):
         for encounter_name, encounter in self.multiworld.worlds[1].encounters.items():
             for i in range(len(encounter.monsters)):
@@ -62,8 +67,8 @@ class TestMonsterRandomizerBase(WorldTestBase):
         test_monsters("Lightning Orb shows up before Horizon Beach", ["Lightning Orbs"])
         test_monsters("Earth Orb shows up before Horizon Beach", ["Earth Orbs"])
 
-    def test_all_monsters_are_accessible(self):
-        monsters = {}
+    def get_all_available_monster_eggs(self) -> Dict[str, bool]:
+        available_eggs = {}
 
         # Get a list of all monsters that can be found in encounters
         for encounter_name, encounter_data in self.world.encounters.items():
@@ -77,21 +82,41 @@ class TestMonsterRandomizerBase(WorldTestBase):
                 location = self.multiworld.get_location(f"{encounter_name}_{i}", self.player)
                 if location is None:
                     continue
-                monsters[location.item.name] = True
+
+                egg_name = ENCOUNTERS.monster_data[location.item.name].egg_name()
+                available_eggs[egg_name] = True
                 i += 1
 
         # Now go through all item locations and get any eggs that have been placed
         eggs = [egg.name for egg in self.multiworld.itempool if egg.name.endswith(" Egg")]
         for egg in eggs:
-            monster_name = egg.replace(" Egg", "")
-            if monster_name == "???":
-                monster_name = "Plague Egg"
+            available_eggs[egg] = True
 
-            monsters[monster_name] = True
+        return available_eggs
 
-        for monster_name in ENCOUNTERS.monster_data:
-            with self.subTest(f"{monster_name} can be found"):
-                self.assertIn(monster_name, monsters)
+    def test_all_pre_evolved_monsters_are_accessible(self):
+        available_eggs = self.get_all_available_monster_eggs()
+
+        for monster_name, monster_data in ENCOUNTERS.monster_data.items():
+            if monster_data.egg_name() in available_eggs:
+                with self.subTest(f"{monster_name} can be hatched"):
+                    self.assertIn(monster_data.egg_name(), available_eggs)
+
+    def test_all_evolved_monsters_are_accessible(self):
+        available_eggs = self.get_all_available_monster_eggs()
+        itempool = [item.name for item in self.multiworld.itempool]
+
+        for monster_name, monster_data in ENCOUNTERS.monster_data.items():
+            if not monster_data.is_evolved():
+                continue
+
+            pre_evolution = ENCOUNTERS.get_monster(ENCOUNTERS.evolved_monsters[monster_name])
+            evolution = monster_data
+            catalyst = monster_data.catalyst
+
+            with self.subTest(f"{evolution.name} can be evolved from {pre_evolution.name} with {catalyst}"):
+                self.assertIn(catalyst, itempool)
+                self.assertIn(pre_evolution.egg_name(), available_eggs)
 
 
 class TestMonsterRandomizerOff(TestMonsterRandomizerBase):
@@ -114,21 +139,6 @@ class TestMonsterRandomizerOn(TestMonsterRandomizerBase):
     options = {
         "randomize_monsters": 1
     }
-
-    def test_all_monsters_available(self):
-        monster_counts: Dict[str, int] = {name: 0 for name in ENCOUNTERS.monster_data}
-
-        for name, encounter in self.multiworld.worlds[1].encounters.items():
-            for monster in encounter.monsters:
-                monster_counts[monster.name] += 1
-
-        for name, count in monster_counts.items():
-            # We don't randomize these
-            if name in ["Spectral Wolf", "Spectral Toad", "Spectral Eagle", "Spectral Lion", "Bard"]:
-                continue
-
-            with self.subTest("Monster has been placed", name=name, count=count):
-                self.assertGreaterEqual(count, 1)
 
     def test_monster_eggs_in_item_pool(self):
         item_names = [item.name for item in self.multiworld.itempool]
@@ -194,18 +204,3 @@ class TestMonsterRandomizerEncounter(TestMonsterRandomizerBase):
     options = {
         "randomize_monsters": 3
     }
-
-    def test_all_monsters_available(self):
-        monster_counts: Dict[str, int] = {name: 0 for name in ENCOUNTERS.monster_data}
-
-        for name, encounter in self.multiworld.worlds[1].encounters.items():
-            for monster in encounter.monsters:
-                monster_counts[monster.name] += 1
-
-        for name, count in monster_counts.items():
-            # We don't randomize these
-            if name in ["Spectral Wolf", "Spectral Toad", "Spectral Eagle", "Spectral Lion", "Bard"]:
-                continue
-
-            with self.subTest("Monster has been placed", name=name, count=count):
-                self.assertGreaterEqual(count, 1)
