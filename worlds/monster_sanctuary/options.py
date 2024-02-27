@@ -12,6 +12,17 @@ from Options import Toggle, Choice, Range, DeathLink, PerGameCommonOptions
 # Randomize shops
 
 
+class StartingFamiliar(Choice):
+    """Choose your starting familiar. An invalid choice will default to Wolf"""
+
+    display_name = "Starting Familiar"
+    option_wolf = 0
+    option_eagle = 1
+    option_toad = 2
+    option_lion = 3
+    default = "random"
+
+
 class RandomizeMonsters(Choice):
     """Randomize monsters
 
@@ -244,12 +255,6 @@ class ExpMultiplier(Range):
     default = 1
 
 
-class SkipIntro(Toggle):
-    """Skip the intro cut scenes and tutorial dialog when starting a new file."""
-    display_name = "Skip Intro Cutscenes"
-    default = False
-
-
 class SkipPlot(Toggle):
     """Skip plot related events and open up all areas gated by story progression."""
     display_name = "Skip Plot Requirements"
@@ -275,6 +280,7 @@ class Goal(Choice):
 
 @dataclass
 class MonsterSanctuaryOptions(PerGameCommonOptions):
+    starting_familiar: StartingFamiliar
     randomize_monsters: RandomizeMonsters
     monster_shift_rule: RandomizeMonsterShifts
     improved_mobility_limit: ImprovedMobilityLimitation
@@ -297,7 +303,6 @@ class MonsterSanctuaryOptions(PerGameCommonOptions):
     replace_filler_with_level_badges: ReplaceFillerWithLevelBadges
     include_chaos_relics: IncludeChaosRelics
     exp_multiplier: ExpMultiplier
-    skip_intro: SkipIntro
     skip_plot: SkipPlot
     hints: AddHints
     goal: Goal

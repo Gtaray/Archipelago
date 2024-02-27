@@ -76,6 +76,32 @@ class MonsterSanctuaryLocation(Location):
 # This holds all the location data that is parsed from world.json file
 location_data: Dict[str, LocationData] = {}
 
+eternitys_end_locations = {
+	"wolf": [
+		"Eternity's End - Spectral Wolf Egg",
+		"Eternity's End - Infinity Flame (Eagle)",
+		"Eternity's End - Infinity Flame (Toad)",
+		"Eternity's End - Infinity Flame (Lion)"
+	],
+	"eagle": [
+		"Eternity's End - Spectral Eagle Egg",
+		"Eternity's End - Infinity Flame (Wolf)",
+		"Eternity's End - Infinity Flame (Toad)",
+		"Eternity's End - Infinity Flame (Lion)"
+	],
+	"toad": [
+		"Eternity's End - Spectral Toad Egg",
+		"Eternity's End - Infinity Flame (Wolf)",
+		"Eternity's End - Infinity Flame (Eagle)",
+		"Eternity's End - Infinity Flame (Lion)"
+	],
+	"lion": [
+		"Eternity's End - Spectral Lion Egg",
+		"Eternity's End - Infinity Flame (Wolf)",
+		"Eternity's End - Infinity Flame (Eagle)",
+		"Eternity's End - Infinity Flame (Toad)"
+	]
+}
 
 def add_location(key: str, location: LocationData) -> None:
 	if location_data.get(location.name) is not None:

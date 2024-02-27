@@ -2,6 +2,7 @@ from typing import List, Dict
 
 from test.bases import WorldTestBase
 from worlds.monster_sanctuary import encounters as ENCOUNTERS
+from worlds.monster_sanctuary import locations as LOCATIONS
 
 
 class TestMonsterRandomizerBase(WorldTestBase):
@@ -54,11 +55,43 @@ class TestMonsterRandomizerBase(WorldTestBase):
 
         monsters = [monster for monster in ENCOUNTERS.get_monsters_in_area(
             self.multiworld.worlds[1],
+
             "MountainPath", "BlueCave", "StrongholdDungeon", "SnowyPeaks", "SunPalace", "AncientWoods")]
         test_monsters("Water Orb shows up before Horizon Beach", ["Water Orbs"])
         test_monsters("Fire Orb shows up before Horizon Beach", ["Fire Orbs"])
         test_monsters("Lightning Orb shows up before Horizon Beach", ["Lightning Orbs"])
         test_monsters("Earth Orb shows up before Horizon Beach", ["Earth Orbs"])
+
+    def test_all_monsters_are_accessible(self):
+        monsters = {}
+
+        # Get a list of all monsters that can be found in encounters
+        for encounter_name, encounter_data in self.world.encounters.items():
+            # if the goal is to defeat the mad lord, then we don't include that location
+            if (self.multiworld.worlds[1].options.goal == "defeat_mad_lord"
+                    and encounter_name == "AbandonedTower_Final_1"):
+                continue
+
+            i = 0
+            for monster in encounter_data.monsters:
+                location = self.multiworld.get_location(f"{encounter_name}_{i}", self.player)
+                if location is None:
+                    continue
+                monsters[location.item.name] = True
+                i += 1
+
+        # Now go through all item locations and get any eggs that have been placed
+        eggs = [egg.name for egg in self.multiworld.itempool if egg.name.endswith(" Egg")]
+        for egg in eggs:
+            monster_name = egg.replace(" Egg", "")
+            if monster_name == "???":
+                monster_name = "Plague Egg"
+
+            monsters[monster_name] = True
+
+        for monster_name in ENCOUNTERS.monster_data:
+            with self.subTest(f"{monster_name} can be found"):
+                self.assertIn(monster_name, monsters)
 
 
 class TestMonsterRandomizerOff(TestMonsterRandomizerBase):

@@ -133,13 +133,13 @@ def add_encounter(encounter: EncounterData, monsters: List[str]) -> None:
 # region Monster and Champion Randomization
 # UNUSED
 def assign_familiar(world: World) -> None:
-    if world.options.spectral_familiar == "wolf":
+    if world.options.starting_familiar == "wolf":
         world.encounters["Menu_0"].add_monster(get_monster("Spectral Wolf"))
-    elif world.options.spectral_familiar == "eagle":
+    elif world.options.starting_familiar == "eagle":
         world.encounters["Menu_0"].add_monster(get_monster("Spectral Eagle"))
-    elif world.options.spectral_familiar == "toad":
+    elif world.options.starting_familiar == "toad":
         world.encounters["Menu_0"].add_monster(get_monster("Spectral Toad"))
-    elif world.options.spectral_familiar == "lion":
+    elif world.options.starting_familiar == "lion":
         world.encounters["Menu_0"].add_monster(get_monster("Spectral Lion"))
 
 
@@ -153,6 +153,8 @@ def randomize_monsters(world: World) -> None:
 
     # If we're not randomizing, we can bail out here.
     if world.options.randomize_monsters == "off":
+        # We need to assign the familiar before we exit early
+        assign_familiar(world)
         return
 
     random = world.multiworld.random
@@ -201,7 +203,7 @@ def randomize_monsters(world: World) -> None:
         replace_monsters_in_encounter(world, encounter, available_monsters)
 
     # Lastly, assign familiars. Do this at the end so it doesn't get randomized.
-    # assign_familiar(world)
+    assign_familiar(world)
 
 
 def assign_game_stage_to_monsters():

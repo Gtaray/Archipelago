@@ -625,7 +625,8 @@
     "connections": [
       { "region": "KeeperStronghold_CenterStairwell" },
       { "region": "KeeperStronghold_ChampionChallenge" },
-      { "region": "KeeperStronghold_DuelCircle", "requirements": [ "keeper_rank_2" ] }
+      { "region": "KeeperStronghold_DuelCircle", "requirements": [ "keeper_rank_2" ] },
+      { "region": "KeeperStronghold_EndOfTime"}
     ]
   },
   {
@@ -635,6 +636,30 @@
     ],
     "gifts": [
       { "id": 701, "item": "Reward Box Lvl 1" }
+    ]
+  },
+  {
+    "region": "KeeperStronghold_EndOfTime",
+    "connections": [
+      { "region": "KeeperStronghold_KeepersTowers" }
+    ],
+    "chests": [
+      { "id": 20, "item": "Shift Stone", "requirements": [ "double_jump", "secret_vision" ]},
+      { "id": 21, "item": "Mega Potion", "requirements": [ "double_jump", "secret_vision" ]}
+    ],
+    "gifts": [
+      { "id": 42700002, "item": "Spectral Wolf Egg", "requirements": [ "keeper_rank_5" ] },
+      { "id": 42700036, "item": "Infinity Flame", "requirements": [ "keeper_rank_5" ] },
+
+      { "id": 42700027, "item": "Spectral Eagle Egg", "requirements": [ "keeper_rank_5" ] },
+      { "id": 42700032, "item": "Infinity Flame", "requirements": [ "keeper_rank_5" ] },
+
+      { "id": 42700013, "item": "Spectral Toad Egg", "requirements": [ "keeper_rank_5" ] },
+      { "id": 42700030, "item": "Infinity Flame", "requirements": [ "keeper_rank_5" ] },
+
+      { "id": 42700020, "item": "Spectral Lion Egg", "requirements": [ "keeper_rank_5" ] },
+      { "id": 42700034, "item": "Infinity Flame", "requirements": [ "keeper_rank_5" ] }
+
     ]
   },
 

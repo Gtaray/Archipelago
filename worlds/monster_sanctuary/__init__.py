@@ -126,6 +126,20 @@ class MonsterSanctuaryWorld(World):
             if not self.options.shopsanity and location_data.category == MonsterSanctuaryLocationCategory.SHOP:
                 continue
 
+            # Do not add a location for the player's own familiar in eternity's end
+            if (self.options.starting_familiar == "wolf"
+                    and location_data.name in LOCATIONS.eternitys_end_locations["wolf"]):
+                continue
+            if (self.options.starting_familiar == "eagle"
+                    and location_data.name in LOCATIONS.eternitys_end_locations["eagle"]):
+                continue
+            if (self.options.starting_familiar == "toad"
+                    and location_data.name in LOCATIONS.eternitys_end_locations["toad"]):
+                continue
+            if (self.options.starting_familiar == "lion"
+                    and location_data.name in LOCATIONS.eternitys_end_locations["lion"]):
+                continue
+
             region = self.multiworld.get_region(location_data.region, self.player)
 
             plotless_rules = RULES.get_plotless_location(region.name, location_data.object_id)
@@ -230,6 +244,25 @@ class MonsterSanctuaryWorld(World):
     def handle_monster_eggs(self):
         eggs = {}
 
+        # Start with spectral familiars,
+        # these aren't currently shuffled at all, so they don't need to go in the conditional blocks
+        if self.options.starting_familiar == "wolf":
+            eggs["Eternity's End - Spectral Eagle Egg"] = self.create_item("Spectral Eagle Egg")
+            eggs["Eternity's End - Spectral Toad Egg"] = self.create_item("Spectral Toad Egg")
+            eggs["Eternity's End - Spectral Lion Egg"] = self.create_item("Spectral Lion Egg")
+        elif self.options.starting_familiar == "eagle":
+            eggs["Eternity's End - Spectral Wolf Egg"] = self.create_item("Spectral Wolf Egg")
+            eggs["Eternity's End - Spectral Toad Egg"] = self.create_item("Spectral Toad Egg")
+            eggs["Eternity's End - Spectral Lion Egg"] = self.create_item("Spectral Lion Egg")
+        elif self.options.starting_familiar == "toad":
+            eggs["Eternity's End - Spectral Wolf Egg"] = self.create_item("Spectral Wolf Egg")
+            eggs["Eternity's End - Spectral Eagle Egg"] = self.create_item("Spectral Eagle Egg")
+            eggs["Eternity's End - Spectral Lion Egg"] = self.create_item("Spectral Lion Egg")
+        elif self.options.starting_familiar == "lion":
+            eggs["Eternity's End - Spectral Wolf Egg"] = self.create_item("Spectral Wolf Egg")
+            eggs["Eternity's End - Spectral Eagle Egg"] = self.create_item("Spectral Eagle Egg")
+            eggs["Eternity's End - Spectral Toad Egg"] = self.create_item("Spectral Toad Egg")
+
         if self.options.randomize_monsters == "by_specie":
             # These eggs either get added to the item pool or they are placed in their respective gift location
             eggs["Sun Palace - Caretaker 1"] = self.create_item(self.species_swap["Koi"].egg_name())
@@ -240,7 +273,6 @@ class MonsterSanctuaryWorld(World):
             eggs["Snowy Peaks - Cryomancer - Egg Reward 1"] = self.create_item(self.species_swap["Shockhopper"].egg_name())
             eggs["Snowy Peaks - Cryomancer - Light Egg Reward"] = self.create_item(self.species_swap["Shockhopper"].egg_name())
             eggs["Snowy Peaks - Cryomancer - Dark Egg Reward"] = self.create_item(self.species_swap["Shockhopper"].egg_name())
-            # eggs["AlchemistShop_5"] = self.create_item(self.species_swap["Plague Egg"].egg_name()),
 
             # These are straight up added because they don't come from a specific location
             # they just need to be available in the pool somewhere to make sure all locations
@@ -414,8 +446,8 @@ class MonsterSanctuaryWorld(World):
             self.hint_rng = self.multiworld.per_slot_randoms[self.player]
             HINTS.generate_hints(self)
 
-            if self.options.shopsanity and self.options.shopsanity_prices != "normal":
-                self.generate_shopsanity_prices()
+        if self.options.shopsanity and self.options.shopsanity_prices != "normal":
+            self.generate_shopsanity_prices()
 
         # from Utils import visualize_regions
         # visualize_regions(self.multiworld.get_region("Menu", self.player),
@@ -447,12 +479,12 @@ class MonsterSanctuaryWorld(World):
 
         # Rando options
         slot_data["options"] = {
+            "starting_familiar": self.options.starting_familiar.value,
             "goal": self.options.goal.value,
             "include_chaos_relics": self.options.include_chaos_relics.value,
             "exp_multiplier": self.options.exp_multiplier.value,
             "monsters_always_drop_egg": self.options.monsters_always_drop_egg.value,
             "monster_shift_rule": self.options.monster_shift_rule.value,
-            "skip_intro": self.options.skip_intro.value,
             "skip_plot": self.options.skip_plot.value,
             "remove_locked_doors": self.options.remove_locked_doors.value,
             "add_smoke_bombs": self.options.add_smoke_bombs.value,

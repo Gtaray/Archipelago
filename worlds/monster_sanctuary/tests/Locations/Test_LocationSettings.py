@@ -172,3 +172,53 @@ class TestShopsanityLocationsEnabled(MonsterSanctuaryTestBase):
         for shop in shops:
             self.assert_location_exists(shop)
 
+
+class TestEternitysEndLocations_Wolf(MonsterSanctuaryTestBase):
+    options = {
+        "starting_familiar": 0
+    }
+
+    locations = [
+        "Eternity's End - Spectral Wolf Egg",
+        "Eternity's End - Spectral Eagle Egg",
+        "Eternity's End - Spectral Toad Egg",
+        "Eternity's End - Spectral Lion Egg",
+        "Eternity's End - Infinity Flame (Wolf)",
+        "Eternity's End - Infinity Flame (Eagle)",
+        "Eternity's End - Infinity Flame (Toad)",
+        "Eternity's End - Infinity Flame (Lion)",
+    ]
+
+    def test_locations_are_correct(self):
+        familiar = "wolf"
+        if self.world.options.starting_familiar == 1:
+            familiar = "eagle"
+        elif self.world.options.starting_familiar == 2:
+            familiar = "toad"
+        elif self.world.options.starting_familiar == 3:
+            familiar = "lion"
+
+        for location in self.locations:
+            if location in LOCATIONS.eternitys_end_locations[familiar]:
+                self.assert_location_does_not_exist(location)
+            else:
+                self.assert_location_exists(location)
+
+
+class TestEternitysEndLocations_Eagle(TestEternitysEndLocations_Wolf):
+    options = {
+        "starting_familiar": 1
+    }
+
+
+class TestEternitysEndLocations_Toad(TestEternitysEndLocations_Wolf):
+    options = {
+        "starting_familiar": 2
+    }
+
+
+class TestEternitysEndLocations_Lion(TestEternitysEndLocations_Wolf):
+    options = {
+        "starting_familiar": 3
+    }
+
