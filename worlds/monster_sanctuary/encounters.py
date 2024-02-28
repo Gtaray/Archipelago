@@ -48,10 +48,10 @@ class MonsterData:
     def is_pre_evolved(self):
         return self.name in list(evolved_monsters.values())
 
-    def egg_name(self):
+    def egg_name(self, ignore_evolution: bool = False):
         if self.name == "Plague Egg":
             return "??? Egg"
-        if self.pre_evolution is not None:
+        if self.pre_evolution is not None and not ignore_evolution:
             return f"{self.pre_evolution} Egg"
         return f"{self.name} Egg"
 
