@@ -8,8 +8,6 @@ from Options import Toggle, Choice, Range, DeathLink, PerGameCommonOptions
 #   Randomize from the original starting 4
 #   Randomize to any monster
 # Randomize keeper's monsters
-# Remove locked doors
-# Randomize shops
 
 
 class StartingFamiliar(Choice):
@@ -59,6 +57,22 @@ class ImprovedMobilityLimitation(Toggle):
     if disabled, monsters with improved mobility abilities can appear anywhere."""
     display_name = "Limit Improved Mobility Abilities"
     default = True
+
+
+class ExploreAbilitiesMustBeUnlocked(Choice):
+    """If enabled, explore abilities cannot be used until a corresponding item has been collected.
+    The items required to use explore abilities depend on the selected option:
+
+    Off: Explore Abilities are always available.
+    Type: Monsters are grouped into 16 different categories based on monster type. There are 16 unique items to unlock abilities for all monsters of a given type
+    Ability: Each explore ability must be unlocked separately. For example, unlocking Flying will allow that ability to be used on any monster with the Flying ability
+    Species: Each monster species will require a unique item to unlock its explore ability (excepting evolutions where the ability doesn't change)"""
+    display_name = "Explore Abilities Must be Unlocked"
+    option_off = 0
+    option_type = 1
+    option_ability = 2
+    option_species = 3
+    default = 0
 
 
 class Shopsanity(Toggle):
@@ -284,6 +298,7 @@ class MonsterSanctuaryOptions(PerGameCommonOptions):
     randomize_monsters: RandomizeMonsters
     monster_shift_rule: RandomizeMonsterShifts
     improved_mobility_limit: ImprovedMobilityLimitation
+    lock_explore_abilities: ExploreAbilitiesMustBeUnlocked
     shopsanity: Shopsanity
     shopsanity_prices: ShopsanityPrices
     shops_ignore_rank: ShopsIgnoreRank

@@ -809,3 +809,52 @@ def check_evolution(base_form: str, evo_form: str, evo_item: str, state: Collect
             # we need to check if the player has access to the evolved monster as well as the pre-evolved one
             and (state.has(base_form, player) or state.has(evo_form, player))
             and state.has(evo_item, player))
+
+
+# region Explore Abilities
+def spectral_wolf(state: CollectionState, player: int) -> bool:
+    return (has_monster("Spectral Wolf", state, player)
+            and is_explore_ability_available("Spectral Wolf", state, player))
+
+
+def has_monster(monster_name: str, state: CollectionState, player: int, check_egg: bool = True):
+    # First, if we've got the monster, then we return straight away
+    if state.has(monster_name, player):
+        return True
+
+    # Next we check if we have the monster's egg
+    from encounters import get_monster
+    monster = get_monster(monster_name)
+    if check_egg and state.has(monster.egg_name(), player):
+        return True
+
+    # TODO: Got an infinite loop between these two checks, need a way to handle it
+    # if we're evolved, see if we have access to the base form monster
+    if monster.is_evolved():
+        return has_monster(monster.pre_evolution, state, player)
+
+    # Lastly, if we're unevolved, see if we have access to the evolved monster
+    if monster.is_pre_evolved():
+        # Go through each evolution and see if we have it.
+        for evo in monster.evolution:
+            if has_monster(evo, state, player, False):
+                return True
+
+    return False
+
+
+def is_explore_ability_available(monster_name: str, state: CollectionState, player: int) -> bool:
+    from encounters import get_monster
+
+    opt = state.multiworld.worlds[player].options.lock_explore_abilities
+    monster = get_monster(monster_name)
+
+    if opt == "type":
+        return state.has(monster.explore_type_item, player)
+    if opt == "ability":
+        return state.has(monster.explore_ability_item, player)
+    if opt == "species":
+        return state.has(monster.explore_species_item, player)
+
+    return True
+# endregion

@@ -19,7 +19,8 @@ class MonsterSanctuaryItemCategory(IntEnum):
     CURRENCY = 7
     EGG = 8
     COSTUME = 9
-    RANK = 10
+    RANK = 10,
+    ABILITY = 11
 
 
 class ItemData:

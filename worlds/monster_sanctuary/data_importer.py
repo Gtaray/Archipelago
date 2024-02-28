@@ -192,11 +192,23 @@ def load_monsters(item_id) -> int:
             groups = monster_data.get("Groups")
             if groups is None:
                 raise ValueError(f"{name} has no groups assigned to it")
+            if monster_data["SpeciesItem"] not in ITEMS.item_data:
+                raise KeyError(f"SpeciesItem '{monster_data['SpeciesItem']}' is not a valid item")
+            if monster_data["AbilityItem"] not in ITEMS.item_data:
+                raise KeyError(f"AbilityItem '{monster_data['AbilityItem']}' is not a valid item")
+            if monster_data["TypeItem"] not in ITEMS.item_data:
+                raise KeyError(f"TypeItem '{monster_data['TypeItem']}' is not a valid item")
 
-            ENCOUNTERS.monster_data[name] = MonsterData(
+            monster = MonsterData(
                 item_id,
                 name,
                 groups)
+
+            monster.explore_species_item = monster_data["SpeciesItem"]
+            monster.explore_ability_item = monster_data["AbilityItem"]
+            monster.explore_type_item = monster_data["TypeItem"]
+
+            ENCOUNTERS.monster_data[name] = monster
             item_id += 1
 
     return item_id
@@ -246,7 +258,7 @@ def parse_item_type(text) -> Optional[MonsterSanctuaryItemCategory]:
         return MonsterSanctuaryItemCategory.EGG
     elif text == "Costume":
         return MonsterSanctuaryItemCategory.COSTUME
-    elif text == "Ability":
+    elif text == "Explore Ability":
         return MonsterSanctuaryItemCategory.ABILITY
 
     return None

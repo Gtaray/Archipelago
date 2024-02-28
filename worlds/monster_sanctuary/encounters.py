@@ -19,7 +19,11 @@ class MonsterData:
     groups: List[str]
     stage: Optional[GameStage] = None
     pre_evolution: Optional[str] = None
+    evolution: Optional[List[str]] = []
     catalyst: Optional[str] = None
+    explore_type_item: str
+    explore_ability_item: str
+    explore_species_item: str
 
     def __init__(self, id: int, name: str, groups: List[str]):
         # This needs to exist alongside normal item ids, because monsters will ultimately be classified as items
@@ -31,6 +35,9 @@ class MonsterData:
         if self.name in evolved_monsters:
             self.pre_evolution = evolved_monsters[self.name]
             self.catalyst = catalysts[self.name]
+
+        if self.name in unevolved_monsters:
+            self.evolution = unevolved_monsters[self.name]
 
     def __str__(self):
         return self.name
@@ -113,6 +120,25 @@ evolved_monsters = {
     "Ascendant": "Monk",
     "Fumagus": "Fungi",
     "Dracomer": "Draconov"
+}
+unevolved_monsters = {
+    "Grummy": ["G'rulu"],
+    "Magmapillar": ["Magmamoth"],
+    "Minitaur": ["Megataur"],
+    "Ninki": ["Ninki Nanka"],
+    "Crackle Knight": ["Sizzle Knight"],
+    "Vaero": ["Silvaero"],
+    "Glowfly": ["Glowdra"],
+    "Draconov": ["Draconov", "Dracozul", "Draconoir", "Dracomer"],
+    "Rocky": ["Mega Rock"],
+    "Blob": ["King Blob"],
+    "Ice Blob": ["King Blob"],
+    "Lava Blob": ["King Blob"],
+    "Rainbow Blob": ["King Blob"],
+    "Tar Blob": ["King Blob"],
+    "Mad Eye": ["Mad Lord"],
+    "Monk": ["Ascendant"],
+    "Fungi": ["Fumagus"],
 }
 catalysts = {
     "G'rulu": "Stardust",

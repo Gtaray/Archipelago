@@ -7037,5 +7037,498 @@
         "classification": "progression"
       }
     ]
+  },
+  {
+    "type": "Explore Ability",
+    "classification": "progression",
+    "items": [
+      {
+        "name": "Ability - Blob Form"
+      },
+      {
+        "name": "Ability - Bubble Burst"
+      },
+      {
+        "name": "Ability - Charging Mount"
+      },
+      {
+        "name": "Ability - Claws"
+      },
+      {
+        "name": "Ability - Corrosive Jabs"
+      },
+      {
+        "name": "Ability - Crush"
+      },
+      {
+        "name": "Ability - Dual Mobility"
+      },
+      {
+        "name": "Ability - Fiery Shots"
+      },
+      {
+        "name": "Ability - Flying"
+      },
+      {
+        "name": "Ability - Freeze"
+      },
+      {
+        "name": "Ability - Ghost Form",
+        "classification": "useful"
+      },
+      {
+        "name": "Ability - Grapple"
+      },
+      {
+        "name": "Ability - Heavy Punch"
+      },
+      {
+        "name": "Ability - Ignite"
+      },
+      {
+        "name": "Ability - Improved Flying"
+      },
+      {
+        "name": "Ability - Improved Swimming"
+      },
+      {
+        "name": "Ability - Jewel Blast"
+      },
+      {
+        "name": "Ability - Levitate"
+      },
+      {
+        "name": "Ability - Light"
+      },
+      {
+        "name": "Ability - Light Crush"
+      },
+      {
+        "name": "Ability - Lightning Bolt"
+      },
+      {
+        "name": "Ability - Lofty Mount"
+      },
+      {
+        "name": "Ability - Minnesang"
+      },
+      {
+        "name": "Ability - Morph Ball"
+      },
+      {
+        "name": "Ability - Mount"
+      },
+      {
+        "name": "Ability - Secret Vision"
+      },
+      {
+        "name": "Ability - Shock Freeze"
+      },
+      {
+        "name": "Ability - Slash"
+      },
+      {
+        "name": "Ability - Slime Shot"
+      },
+      {
+        "name": "Ability - Snowball Toss"
+      },
+      {
+        "name": "Ability - Sonar"
+      },
+      {
+        "name": "Ability - Sonar Mount"
+      },
+      {
+        "name": "Ability - Spore Shroud"
+      },
+      {
+        "name": "Ability - Summon Big Rock"
+      },
+      {
+        "name": "Ability - Summon Mushroom"
+      },
+      {
+        "name": "Ability - Summon Rock"
+      },
+      {
+        "name": "Ability - Swimming"
+      },
+      {
+        "name": "Ability - Tackle"
+      },
+      {
+        "name": "Ability - Tar Mount"
+      },
+      {
+        "name": "Ability - Toxic Freeze"
+      },
+      {
+        "name": "Ability - Toxic Slam"
+      },
+      {
+        "name": "Spectral Flame"
+      },
+      {
+        "name": "Slime Snack"
+      },
+      {
+        "name": "Insect Pheromones"
+      },
+      {
+        "name": "Monster Treat"
+      },
+      {
+        "name": "Repair Kit"
+      },
+      {
+        "name": "Ancient Encyclopedia"
+      },
+      {
+        "name": "Training Dummy"
+      },
+      {
+        "name": "Spellbook"
+      },
+      {
+        "name": "Goblin Charm"
+      },
+      {
+        "name": "Fishing Lure"
+      },
+      {
+        "name": "Dragon Orb"
+      },
+      {
+        "name": "Morph Ball"
+      },
+      {
+        "name": "Spirit Charm"
+      },
+      {
+        "name": "Green Thumb"
+      },
+      {
+        "name": "Bird Seed"
+      },
+      {
+        "name": "Spectral Flame (Wolf)"
+      },
+      {
+        "name": "Spectral Flame (Toad)"
+      },
+      {
+        "name": "Spectral Flame (Eagle)"
+      },
+      {
+        "name": "Spectral Flame (Lion)"
+      },
+      {
+        "name": "Slime Snack"
+      },
+      {
+        "name": "Magmamoth Pheromones"
+      },
+      {
+        "name": "Pet Rock"
+      },
+      {
+        "name": "Vaero Harness"
+      },
+      {
+        "name": "Catzerker's Blade"
+      },
+      {
+        "name": "Yowie Treat"
+      },
+      {
+        "name": "Pneumatic Piston"
+      },
+      {
+        "name": "Small Reliquary"
+      },
+      {
+        "name": "Alien Shard"
+      },
+      {
+        "name": "Tengu Mask"
+      },
+      {
+        "name": "Odd Mushroom"
+      },
+      {
+        "name": "Frigid Wisp"
+      },
+      {
+        "name": "Double-Headed Axe"
+      },
+      {
+        "name": "Black Flame"
+      },
+      {
+        "name": "Knightly Shield"
+      },
+      {
+        "name": "Aqueous Humor"
+      },
+      {
+        "name": "Sonar Detector"
+      },
+      {
+        "name": "Toxic Sludge"
+      },
+      {
+        "name": "Lightning Rod"
+      },
+      {
+        "name": "Oaken Mask"
+      },
+      {
+        "name": "Digging Claws"
+      },
+      {
+        "name": "Glowfly Lantern"
+      },
+      {
+        "name": "Goblin Club"
+      },
+      {
+        "name": "Goblin Bow"
+      },
+      {
+        "name": "Goblin Staff"
+      },
+      {
+        "name": "Goblin Crown"
+      },
+      {
+        "name": "Prismatic Shard"
+      },
+      {
+        "name": "Insulated Gloves"
+      },
+      {
+        "name": "Caraglow Collar"
+      },
+      {
+        "name": "Aurumtail Saddle"
+      },
+      {
+        "name": "Giant Snowball"
+      },
+      {
+        "name": "Mogwai Rulebook"
+      },
+      {
+        "name": "Sign Language"
+      },
+      {
+        "name": "Akhlut Saddle"
+      },
+      {
+        "name": "Blade Widow Pheromones"
+      },
+      {
+        "name": "River Clay"
+      },
+      {
+        "name": "Snake Stick"
+      },
+      {
+        "name": "Kame Chi"
+      },
+      {
+        "name": "Quick Wits",
+        "classification": "useful"
+      },
+      {
+        "name": "Flaming Spear"
+      },
+      {
+        "name": "Qilin Saddle"
+      },
+      {
+        "name": "Koi Lure"
+      },
+      {
+        "name": "Magic Bell"
+      },
+      {
+        "name": "Smoke Pipe",
+        "classification": "useful"
+      },
+      {
+        "name": "Dodo Saddle"
+      },
+      {
+        "name": "Kongamato Harness"
+      },
+      {
+        "name": "Ucan Lure"
+      },
+      {
+        "name": "Brawlish Lure"
+      },
+      {
+        "name": "Thornish Lure"
+      },
+      {
+        "name": "Nautilid Lure"
+      },
+      {
+        "name": "Silvaero Harness"
+      },
+      {
+        "name": "Elderjel Lure"
+      },
+      {
+        "name": "Mana Crystal"
+      },
+      {
+        "name": "Mining Helmet"
+      },
+      {
+        "name": "Sledgehammer"
+      },
+      {
+        "name": "Heat-Proof Gloves"
+      },
+      {
+        "name": "Draconov Harness"
+      },
+      {
+        "name": "Dracogran Harness"
+      },
+      {
+        "name": "Asura's Girdle"
+      },
+      {
+        "name": "Candle Wax"
+      },
+      {
+        "name": "Stolby's Spellbook",
+        "classification": "useful"
+      },
+      {
+        "name": "Ornithopter Harness"
+      },
+      {
+        "name": "Lump of Coal"
+      },
+      {
+        "name": "Mechanical Lens"
+      },
+      {
+        "name": "Lockpicks"
+      },
+      {
+        "name": "Pilot's License"
+      },
+      {
+        "name": "Shiny Pebble"
+      },
+      {
+        "name": "Targoat Horn"
+      },
+      {
+        "name": "Dracozul Harness"
+      },
+      {
+        "name": "Troll Toll"
+      },
+      {
+        "name": "Brutus Treat"
+      },
+      {
+        "name": "Pet Boulder"
+      },
+      {
+        "name": "Argiope Pheromones"
+      },
+      {
+        "name": "Phylactery"
+      },
+      {
+        "name": "Moccus Saddle"
+      },
+      {
+        "name": "Promethean Battery"
+      },
+      {
+        "name": "Draconoir Harness"
+      },
+      {
+        "name": "Spare Outfit"
+      },
+      {
+        "name": "Plague Mask"
+      },
+      {
+        "name": "Sutsune's True Name"
+      },
+      {
+        "name": "Darnation Pheromones"
+      },
+      {
+        "name": "Thanatos' Scythe"
+      },
+      {
+        "name": "Rainbow Slime Snack"
+      },
+      {
+        "name": "Morph Ball"
+      },
+      {
+        "name": "Blob Crown"
+      },
+      {
+        "name": "Grapnel Launcher"
+      },
+      {
+        "name": "Vodinoy's Trident"
+      },
+      {
+        "name": "Big Plant Pot"
+      },
+      {
+        "name": "Gryphonix Saddle"
+      },
+      {
+        "name": "Divine Hourglass"
+      },
+      {
+        "name": "Mad Lord Contract"
+      },
+      {
+        "name": "Nimbus Cloud"
+      },
+      {
+        "name": "Strange Spores"
+      },
+      {
+        "name": "Rampede Saddle"
+      },
+      {
+        "name": "Rathops Saddle"
+      },
+      {
+        "name": "Krakaturtle Harness"
+      },
+      {
+        "name": "Tar Blob Saddle"
+      },
+      {
+        "name": "Amberlgna Pheromones"
+      },
+      {
+        "name": "Dracomer Harness"
+      },
+      {
+        "name": "Terradrile's Lodestone"
+      },
+      {
+        "name": "Bard's Lute"
+      }
+    ]
   }
 ]
