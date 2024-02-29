@@ -34,6 +34,8 @@ class MonsterData:
 
         if self.name in evolved_monsters:
             self.pre_evolution = evolved_monsters[self.name]
+
+        if self.name in catalysts:
             self.catalyst = catalysts[self.name]
 
         if self.name in unevolved_monsters:
@@ -115,7 +117,6 @@ evolved_monsters = {
     "Dracozul": "Draconov",
     "Mega Rock": "Rocky",
     "Draconoir": "Draconov",
-    "King Blob": "Blob",
     "Mad Lord": "Mad Eye",
     "Ascendant": "Monk",
     "Fumagus": "Fungi",

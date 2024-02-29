@@ -113,6 +113,10 @@ class MonsterSanctuaryWorld(World):
             if self.options.goal == "defeat_mad_lord" and location_data.postgame:
                 continue
 
+            # Unless eggsanity is enabled, don't add eggsanity locations
+            if not self.options.eggsanity and location_data.category == MonsterSanctuaryLocationCategory.EGGSANITY:
+                continue
+
             # First we check if we should be ignoring these locations based on rando options
             # If we're never allowing shifting, then these locations should not be included, as they
             # require a shifted monster to get.
@@ -202,6 +206,11 @@ class MonsterSanctuaryWorld(World):
         elif self.options.goal == "defeat_all_champions":
             self.multiworld.completion_condition[self.player] = lambda state: (
                 state.has("Champion Defeated", self.player, 27))
+
+        elif self.options.goal == "complete_monster_journal":
+            self.multiworld.completion_condition[self.player] = lambda state: (
+                RULES.has_all_monsters(state, self.player)
+            )
 
     def place_ranks(self) -> None:
         """Creates the locations for rank ups, and locks Champion Defeated items to those locations"""
@@ -351,6 +360,7 @@ class MonsterSanctuaryWorld(World):
 
         self.handle_relics(pool, item_exclusions)
         self.handle_key_items(pool)
+        self.handle_explore_ability_items(pool)
 
         while len(pool) < self.number_of_item_locations:
             item_name = ITEMS.get_random_item_name(self, pool, group_exclude=item_exclusions)
@@ -417,6 +427,12 @@ class MonsterSanctuaryWorld(World):
 
             for i in range(item_count):
                 pool.append(self.create_item(key_item))
+
+    def handle_explore_ability_items(self, pool: List[MonsterSanctuaryItem]):
+        explore_items = ITEMS.get_explore_ability_items(self.options.lock_explore_abilities.value)
+
+        for item in explore_items:
+            pool.append(self.create_item(item.name))
 
     def create_item(self, item_name: str) -> MonsterSanctuaryItem:
         data = ITEMS.item_data.get(item_name)
@@ -501,7 +517,7 @@ class MonsterSanctuaryWorld(World):
         }
 
         # Monster reandos
-        tanuki_location = self.multiworld.get_location("Menu_0_0", self.player)
+        tanuki_location = self.multiworld.get_location("Menu_1_0", self.player)
         slot_data["monsters"] = {
             "tanuki": tanuki_location.item.name,
         }

@@ -70,6 +70,16 @@ def load_world() -> None:
                 locations_by_id[location_id] = location
                 location_id += 1
 
+            for eggsanity_data in region_data.get("eggsanity") or []:
+                # Hack because we store comments as strings
+                if isinstance(eggsanity_data, str):
+                    continue
+                logical_name = f"eggsanity_{eggsanity_data['id']}"
+                display_name = location_names[logical_name]
+                location = add_eggsanity_location(location_id, logical_name, display_name, region_name, eggsanity_data)
+                locations_by_id[location_id] = location
+                location_id += 1
+
             for encounter_data in region_data.get("encounters") or []:
                 # Hack because we store comments as strings
                 if isinstance(encounter_data, str):
@@ -304,6 +314,19 @@ def add_chest_location(location_id, location_name, chest_data, region_name) -> L
 
 def add_gift_location(location_id, location_name, gift_data, region_name) -> LocationData:
     return add_location(location_id, location_name, gift_data, region_name, MonsterSanctuaryLocationCategory.GIFT)
+
+
+def add_eggsanity_location(location_id, logical_name, location_name, region_name, json_data):
+    location = LocationData(
+        location_id=location_id,
+        name=location_name,
+        region=region_name,
+        category=MonsterSanctuaryLocationCategory.EGGSANITY,
+        access_condition=AccessCondition(json_data.get("requirements")),
+    )
+
+    LOCATIONS.add_location(logical_name, location)
+    return location
 
 
 def add_shop_locations(shop_data, locations_by_id, location_id, region_name):

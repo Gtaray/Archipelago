@@ -7,7 +7,7 @@ class TestFamiliarWolf(TestMonsterRandomizerBase):
     }
 
     def test_starting_familiar(self):
-        location = self.multiworld.get_location("Menu_0_1", self.player)
+        location = self.multiworld.get_location("Menu_0_0", self.player)
         if self.world.options.starting_familiar == "wolf":
             self.assertEqual(location.item.name, "Spectral Wolf")
         elif self.world.options.starting_familiar == "eagle":

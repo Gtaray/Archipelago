@@ -67,6 +67,24 @@ class MonsterSanctuaryItem(Item):
 item_data: Dict[str, ItemData] = {}
 item_drop_probabilities: List[MonsterSanctuaryItemCategory] = []
 
+explore_ability_types = [
+    "Spectral Flame",
+    "Slime Snack",
+    "Insect Pheromones",
+    "Monster Treat",
+    "Repair Kit",
+    "Ancient Encyclopedia",
+    "Training Dummy",
+    "Spellbook",
+    "Goblin Charm",
+    "Fishing Lure",
+    "Dragon Orb",
+    "Morph Ball",
+    "Spirit Charm",
+    "Green Thumb",
+    "Bird Seed"
+]
+
 
 def can_item_be_placed(world: World, item: Item, location: LOCATIONS.MonsterSanctuaryLocation) -> bool:
     # For any item that's not a monster sanctuary item, it can go here
@@ -294,3 +312,16 @@ def roll_random_item_quantity(world: World, base_item: ItemData) -> str:
             base_item = item_data[new_item_name]
 
     return base_item.name
+
+
+def get_explore_ability_items(explore_ability_option: int) -> List[ItemData]:
+    # If explore abilities items are turned off, then return no items
+    if explore_ability_option == 0:
+        return []
+
+    # This whole thing is kinda janky, but I don't want to have to define separate lists for all of these items
+    return [data for name, data in item_data.items()
+            if data.category == MonsterSanctuaryItemCategory.ABILITY and
+            ((explore_ability_option == 1 and name in explore_ability_types) or
+             (explore_ability_option == 2 and "Ability - " in name) or
+             (explore_ability_option == 3 and "Ability - " not in name and name not in explore_ability_types))]

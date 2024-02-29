@@ -1,7 +1,8 @@
 from typing import List
 
 from worlds.AutoWorld import call_all
-from worlds.monster_sanctuary import items, locations, MonsterSanctuaryItem, MonsterSanctuaryItemCategory
+from worlds.monster_sanctuary import items, locations, MonsterSanctuaryItem, MonsterSanctuaryItemCategory, \
+    MonsterSanctuaryLocationCategory
 from worlds.monster_sanctuary.tests import MonsterSanctuaryTestBase
 
 
@@ -10,6 +11,11 @@ class TestItems(MonsterSanctuaryTestBase):
         for location_name in locations.location_data:
             data = locations.location_data[location_name]
             item = items.item_data.get(data.default_item)
+
+            # Ignore eggsanity items, they have no default items
+            if data.category == MonsterSanctuaryLocationCategory.EGGSANITY:
+                continue
+
             if item is None:
                 print(f"{data.default_item} was not found")
 

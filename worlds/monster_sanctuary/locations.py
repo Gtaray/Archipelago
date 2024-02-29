@@ -9,6 +9,7 @@ class MonsterSanctuaryLocationCategory(IntEnum):
 	CHEST = 0  # Items in chests
 	GIFT = 1  # Gifts from NPCs
 	SHOP = 2  # Items in an NPC shop
+	EGGSANITY = 3  # Eggsanity locations
 	RANK = 5  # Used to track keeper rank gained from battling champions
 
 
@@ -102,6 +103,7 @@ eternitys_end_locations = {
 		"Eternity's End - Infinity Flame (Toad)"
 	]
 }
+
 
 def add_location(key: str, location: LocationData) -> None:
 	if location_data.get(location.name) is not None:

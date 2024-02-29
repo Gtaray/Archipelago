@@ -196,7 +196,7 @@ class TestMonsterRandomizerShuffle(TestMonsterRandomizerBase):
 
     def test_shuffled_tanuki_is_available(self):
         monster = self.multiworld.worlds[1].species_swap["Tanuki"]
-        location = self.multiworld.get_location("Menu_0_0", self.player)
+        location = self.multiworld.get_location("Menu_1_0", self.player)
         self.assertEqual(location.item.name, monster.name)
 
 

@@ -75,6 +75,12 @@ class ExploreAbilitiesMustBeUnlocked(Choice):
     default = 0
 
 
+class Eggsanity(Toggle):
+    """Add a location for all 111 monsters that are checked when you hatch or evolve that monster."""
+    display_name = "Eggsanity"
+    default = False
+
+
 class Shopsanity(Toggle):
     """If enabled, shop inventories are randomized"""
     display_name = "Shopsanity"
@@ -289,6 +295,7 @@ class Goal(Choice):
     display_name = "Goal"
     option_defeat_mad_lord = 0
     option_defeat_all_champions = 1
+    option_complete_monster_journal = 2
     default = 0
 
 
@@ -299,6 +306,7 @@ class MonsterSanctuaryOptions(PerGameCommonOptions):
     monster_shift_rule: RandomizeMonsterShifts
     improved_mobility_limit: ImprovedMobilityLimitation
     lock_explore_abilities: ExploreAbilitiesMustBeUnlocked
+    eggsanity: Eggsanity
     shopsanity: Shopsanity
     shopsanity_prices: ShopsanityPrices
     shops_ignore_rank: ShopsIgnoreRank

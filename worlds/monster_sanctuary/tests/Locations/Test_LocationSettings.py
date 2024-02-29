@@ -222,3 +222,29 @@ class TestEternitysEndLocations_Lion(TestEternitysEndLocations_Wolf):
         "starting_familiar": 3
     }
 
+
+class TestEggsanityLocationsDoNotExist(MonsterSanctuaryTestBase):
+    options = {
+        "eggsanity": 0
+    }
+
+    def test_eggsanity_locations_do_not_exist(self):
+        for location_name, location_data in LOCATIONS.location_data.items():
+            if location_data.category != LOCATIONS.MonsterSanctuaryLocationCategory.EGGSANITY:
+                continue
+
+            self.assert_location_does_not_exist(location_data.name)
+
+
+class TestEggsanityLocationsExist(MonsterSanctuaryTestBase):
+    options = {
+        "eggsanity": 1
+    }
+
+    def test_eggsanity_locations_exist(self):
+        for location_name, location_data in LOCATIONS.location_data.items():
+            if location_data.category != LOCATIONS.MonsterSanctuaryLocationCategory.EGGSANITY:
+                continue
+
+            self.assert_location_exists(location_data.name)
+

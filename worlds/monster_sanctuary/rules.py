@@ -233,7 +233,7 @@ def sun_palace_west_shortcut(state: CollectionState, player: int) -> bool:
     return state.has("Sun Palace West Shortcut", player, 1)
 
 
-def shifting_avialable(state: CollectionState, player: int) -> bool:
+def shifting_available(state: CollectionState, player: int) -> bool:
     # Either shifting is allowed any time, or we have raised the center 3 times
     return (state.multiworld.worlds[player].options.monster_shift_rule == "any_time" or (
                 state.multiworld.worlds[player].options.monster_shift_rule == "after_sun_palace" and
@@ -584,7 +584,7 @@ def ahrimaaya(state: CollectionState, player: int, count: int = 1) -> bool:
 # endregion
 
 
-# region Explore Abilities
+# region Exploration Obstacles
 def distant_ledges(state: CollectionState, player: int) -> bool:
     return (flying(state, player)
             or improved_flying(state, player)
@@ -617,748 +617,93 @@ def tar(state: CollectionState, player: int) -> bool:
 
 
 def breakable_walls(state: CollectionState, player: int) -> bool:
-    return has_any_monster(state, player, spectral_wolf, spectral_toad, spectral_lion, catzerker, yowie,
-                           steam_golem, monk, minitaur, molebear, goblin_brute, blade_widow, vasuki, ucan, brawlish,
-                           goblin_miner, salahammer, asura, goblin_pilot, targoat, troll, darnation, rampede, rathops)
+    return (claws(state, player)
+            or tackle(state, player)
+            or slash(state, player)
+            or heavy_punch(state, player)
+            or toxic_slam(state, player)
+            or light_crush(state, player)
+            or crush(state, player)
+            or corrosive_jabs(state, player)
+            or charging_mount(state, player))
 
 
 def impassible_vines(state: CollectionState, player: int) -> bool:
-    return has_any_monster(state, player, spectral_wolf, spectral_lion, magmapillar, catzerker, tengu,
-                           minitaur, specter, magmamoth, molebear, goblin_hood, blade_widow, imori, ucan, lava_blob,
-                           skorch, polterofen, mimic, plague_egg)
+    return (claws(state, player)
+            or ignite(state, player)
+            or slash(state, player)
+            or fiery_shots(state, player))
 
 
 def diamond_blocks(state: CollectionState, player: int) -> bool:
-    return has_any_monster(state, player, goblin_miner, salahammer, asura, goblin_pilot, darnation)
+    return light_crush(state, player) or crush(state, player) or charging_mount(state, player)
 
 
 def fire_orbs(state: CollectionState, player: int) -> bool:
-    return has_any_monster(state, player, magmapillar, tengu, specter, magmamoth, goblin_hood, imori,
-                           lava_blob, skorch, polterofen, mimic, plague_egg)
+    return ignite(state, player) or fiery_shots(state, player)
 
 
 def water_orbs(state: CollectionState, player: int) -> bool:
-    return has_any_monster(state, player, blob, grummy, grulu, troll)
+    return bubble_burst(state, player) or corrosive_jabs(state, player)
 
 
 def lightning_orbs(state: CollectionState, player: int) -> bool:
-    return has_any_monster(state, player, crackle_knight, beetloid, goblin_warlock, sizzle_knight, shockhopper)
+    return lightning_bolt(state, player) or shock_freeze(state, player)
 
 
 def earth_orbs(state: CollectionState, player: int) -> bool:
-    return has_any_monster(state, player, toxiquus, goblin_brute, crystal_snail, ninki, ninki_nanka, spinner)
+    return (slime_shot(state, player)
+            or toxic_slam(state, player)
+            or jewel_blast(state, player)
+            or toxic_freeze(state, player))
 
 
 def ice_orbs(state: CollectionState, player: int) -> bool:
-    return has_any_monster(state, player, ice_blob, mogwai, shockhopper, spinner, megataur)
+    return (freeze(state, player)
+            or snowball_toss(state, player)
+            or shock_freeze(state, player)
+            or toxic_freeze(state, player))
 
 
 def distant_ice_orbs(state: CollectionState, player: int) -> bool:
-    return has_any_monster(state, player, mogwai, shockhopper, spinner)
-
-
-def summon_rock(state: CollectionState, player: int) -> bool:
-    return has_any_monster(state, player, rocky, druid_oak, kame)
-
-
-def summon_mushroom(state: CollectionState, player: int) -> bool:
-    return has_any_monster(state, player, fungi, tanuki, fumagus)
-
-
-def summon_big_rock(state: CollectionState, player: int) -> bool:
-    return has_any_monster(state, player, brutus, promethean, mega_rock)
-
-
-def flying(state: CollectionState, player: int) -> bool:
-    return has_any_monster(state, player, spectral_eagle, vaero, frosty, mad_eye, raduga, draconov)
-
-
-def improved_flying(state: CollectionState, player: int) -> bool:
-    return has_any_monster(state, player, silvaero, kongamato, ornithopter, dracogran, draconov, draconoir)
-
-
-def lofty_mount(state: CollectionState, player: int) -> bool:
-    return gryphonix(state, player)
-
-
-def basic_swimming(state: CollectionState, player: int) -> bool:
-    return koi(state, player)
-
-
-def improved_swimming(state: CollectionState, player: int) -> bool:
-    return has_any_monster(state, player, thornish, nautilid, elderjel, dracomer)
-
-
-def dual_mobility(state: CollectionState, player: int) -> bool:
-    return krakaturtle(state, player)
+    return (snowball_toss(state, player)
+            or shock_freeze(state, player)
+            or toxic_freeze(state, player))
 
 
 def narrow_corridors(state: CollectionState, player: int) -> bool:
-    return has_any_monster(state, player, rainbow_blob, changeling, king_blob)
+    return blob_form(state, player) or morph_ball(state, player)
 
 
 def magic_walls(state: CollectionState, player: int) -> bool:
-    return bard(state, player)
+    return minnesang(state, player)
 
 
 def magic_vines(state: CollectionState, player: int) -> bool:
-    return has_any_monster(state, player, amberlgna, fumagus)
-
-
-def fiery_shots(state: CollectionState, player: int) -> bool:
-    return has_any_monster(state, player, goblin_hood, polterofen, mimic)
+    return spore_shroud(state, player)
 
 
 def heavy_blocks(state: CollectionState, player: int) -> bool:
-    return has_any_monster(state, player, spectral_toad, yowie, steam_golem, monk, vasuki, brawlish, targoat)
+    return tackle(state, player)
 
 
 def torches(state: CollectionState, player: int) -> bool:
-    return fire_orbs(state, player) or lightning_orbs(state, player)
+    return ignite(state, player) or lightning_bolt(state, player) or fiery_shots(state, player)
 
 
 def dark_rooms(state: CollectionState, player: int) -> bool:
-    return has_any_monster(state, player, nightwing, glowfly, caraglow, akhlut, goblin_miner, glowdra)
-
-
-def grapple(state: CollectionState, player: int) -> bool:
-    return has_any_monster(state, player, oculus, argiope, arachlich, worm)
-
-
-def levitate(state: CollectionState, player: int) -> bool:
-    return has_any_monster(state, player, vodinoy, diavola, vertraag, terradrile)
-
-
-def secret_vision(state: CollectionState, player: int) -> bool:
-    return has_any_monster(state, player, sutsune, thanatos, aazerach, mad_lord, ascendant)
-
-
-def spore_shroud(state: CollectionState, player: int) -> bool:
-    return has_any_monster(state, player, amberlgna, fumagus)
-
-
-def basic_mount(state: CollectionState, player: int) -> bool:
-    return has_any_monster(state, player, aurumtail, qilin, dodo, moccus)
-
-
-def sonar_mount(state: CollectionState, player: int) -> bool:
-    return akhlut(state, player)
-
-
-def tar_mount(state: CollectionState, player: int) -> bool:
-    return tar_blob(state, player)
-
-
-def charging_mount(state: CollectionState, player: int) -> bool:
-    return has_any_monster(state, player, rampede, rathops)
+    return (sonar(state, player)
+            or light(state, player)
+            or sonar_mount(state, player)
+            or light_crush(state, player))
 # endregion
 
 
 # region Explore Abilities
-def has_any_monster(state: CollectionState, player: int, *creatures: Callable) -> bool:
-    for creature in creatures:
-        if creature(state, player):
-            return True
-
-    return False
-
-
-def spectral_wolf(state: CollectionState, player: int) -> bool:
-    return (has_monster("Spectral Wolf", state, player)
-            and is_explore_ability_available("Spectral Wolf", state, player))
-
-
-def spectral_toad(state: CollectionState, player: int) -> bool:
-    return (has_monster("Spectral Toad", state, player)
-            and is_explore_ability_available("Spectral Toad", state, player))
-
-
-def spectral_eagle(state: CollectionState, player: int) -> bool:
-    return (has_monster("Spectral Eagle", state, player)
-            and is_explore_ability_available("Spectral Eagle", state, player))
-
-
-def spectral_lion(state: CollectionState, player: int) -> bool:
-    return (has_monster("Spectral Lion", state, player)
-            and is_explore_ability_available("Spectral Lion", state, player))
-
-
-def blob(state: CollectionState, player: int) -> bool:
-    return (has_monster("Blob", state, player)
-            and is_explore_ability_available("Blob", state, player))
-
-
-def magmapillar(state: CollectionState, player: int) -> bool:
-    return ((has_monster("Magmapillar", state, player)
-             or state.has("Magmamoth", player))
-            and is_explore_ability_available("Magmapillar", state, player))
-
-
-def rocky(state: CollectionState, player: int) -> bool:
-    return ((has_monster("Rocky", state, player)
-             or state.has("Mega Rock", player))
-            and is_explore_ability_available("Rocky", state, player))
-
-
-def vaero(state: CollectionState, player: int) -> bool:
-    return ((has_monster("Vaero", state, player)
-             or state.has("Silvaero", player))
-            and is_explore_ability_available("Vaero", state, player))
-
-
-def catzerker(state: CollectionState, player: int) -> bool:
-    return (has_monster("Catzerker", state, player)
-            and is_explore_ability_available("Catzerker", state, player))
-
-
-def yowie(state: CollectionState, player: int) -> bool:
-    return (has_monster("Yowie", state, player)
-            and is_explore_ability_available("Yowie", state, player))
-
-
-def steam_golem(state: CollectionState, player: int) -> bool:
-    return (has_monster("Steam Golem", state, player)
-            and is_explore_ability_available("Steam Golem", state, player))
-
-
-def monk(state: CollectionState, player: int) -> bool:
-    return (has_monster("Monk", state, player)
-            and is_explore_ability_available("Monk", state, player))
-
-
-def grummy(state: CollectionState, player: int) -> bool:
-    return ((has_monster("Grummy", state, player)
-             or state.has("G'rulu", player))
-            and is_explore_ability_available("Grummy", state, player))
-
-
-def tengu(state: CollectionState, player: int) -> bool:
-    return (has_monster("Tengu", state, player)
-            and is_explore_ability_available("Tengu", state, player))
-
-
-def fungi(state: CollectionState, player: int) -> bool:
-    return ((has_monster("Fungi", state, player)
-             or state.has("Fumagus", player))
-            and is_explore_ability_available("Fungi", state, player))
-
-
-def frosty(state: CollectionState, player: int) -> bool:
-    return (has_monster("Frosty", state, player)
-            and is_explore_ability_available("Frosty", state, player))
-
-
-def minitaur(state: CollectionState, player: int) -> bool:
-    return ((has_monster("Minitaur", state, player)
-             or state.has("Megataur", player))
-            and is_explore_ability_available("Minitaur", state, player))
-
-
-def specter(state: CollectionState, player: int) -> bool:
-    return (has_monster("Specter", state, player)
-            and is_explore_ability_available("Specter", state, player))
-
-
-def crackle_knight(state: CollectionState, player: int) -> bool:
-    return ((has_monster("Crackle Knight", state, player)
-             or state.has("Sizzle Knight", player))
-            and is_explore_ability_available("Crackle Knight", state, player))
-
-
-def grulu(state: CollectionState, player: int) -> bool:
-    return ((has_monster("G'rulu", state, player)
-             or check_evolution("Grummy", "G'rulu", state, player))
-            and is_explore_ability_available("G'rulu", state, player))
-
-
-def mad_eye(state: CollectionState, player: int) -> bool:
-    return ((has_monster("Mad Eye", state, player)
-             or state.has("Mad Lord", player))
-            and is_explore_ability_available("Mad Eye", state, player))
-
-
-def nightwing(state: CollectionState, player: int) -> bool:
-    return (has_monster("Nightwing", state, player)
-            and is_explore_ability_available("Nightwing", state, player))
-
-
-def toxiquus(state: CollectionState, player: int) -> bool:
-    return (has_monster("Toxiquus", state, player)
-            and is_explore_ability_available("Toxiquus", state, player))
-
-
-def beetloid(state: CollectionState, player: int) -> bool:
-    return (has_monster("Beetloid", state, player)
-            and is_explore_ability_available("Beetloid", state, player))
-
-
-def druid_oak(state: CollectionState, player: int) -> bool:
-    return (has_monster("Druid Oak", state, player)
-            and is_explore_ability_available("Druid Oak", state, player))
-
-
-def magmamoth(state: CollectionState, player: int) -> bool:
-    return ((has_monster("Magmamoth", state, player)
-             or check_evolution("Magmapillar", "Magmamoth", state, player))
-            and is_explore_ability_available("Magmamoth", state, player))
-
-
-def molebear(state: CollectionState, player: int) -> bool:
-    return (has_monster("Molebear", state, player)
-            and is_explore_ability_available("Molebear", state, player))
-
-
-def glowfly(state: CollectionState, player: int) -> bool:
-    return ((has_monster("Glowfly", state, player)
-             or state.has("Glowdra", player))
-            and is_explore_ability_available("Glowfly", state, player))
-
-
-def goblin_brute(state: CollectionState, player: int) -> bool:
-    return (has_monster("Goblin Brute", state, player)
-            and is_explore_ability_available("Goblin Brute", state, player))
-
-
-def goblin_hood(state: CollectionState, player: int) -> bool:
-    return (has_monster("Goblin Hood", state, player)
-            and is_explore_ability_available("Goblin Hood", state, player))
-
-
-def goblin_warlock(state: CollectionState, player: int) -> bool:
-    return (has_monster("Goblin Warlock", state, player)
-            and is_explore_ability_available("Goblin Warlock", state, player))
-
-
-def goblin_king(state: CollectionState, player: int) -> bool:
-    return (has_monster("Goblin King", state, player)
-            and is_explore_ability_available("Goblin King", state, player))
-
-
-def raduga(state: CollectionState, player: int) -> bool:
-    return (has_monster("Raduga", state, player)
-            and is_explore_ability_available("Raduga", state, player))
-
-
-def ice_blob(state: CollectionState, player: int) -> bool:
-    return (has_monster("Ice Blob", state, player)
-            and is_explore_ability_available("Ice Blob", state, player))
-
-
-def caraglow(state: CollectionState, player: int) -> bool:
-    return (has_monster("Caraglow", state, player)
-            and is_explore_ability_available("Caraglow", state, player))
-
-
-def aurumtail(state: CollectionState, player: int) -> bool:
-    return (has_monster("Aurumtail", state, player)
-            and is_explore_ability_available("Aurumtail", state, player))
-
-
-def megataur(state: CollectionState, player: int) -> bool:
-    return ((has_monster("Megataur", state, player)
-             or check_evolution("Minitaur", "Megataur", state, player))
-            and is_explore_ability_available("Megataur", state, player))
-
-
-def mogwai(state: CollectionState, player: int) -> bool:
-    return (has_monster("Mogwai", state, player)
-            and is_explore_ability_available("Mogwai", state, player))
-
-
-def crystal_snail(state: CollectionState, player: int) -> bool:
-    return (has_monster("Crystal Snail", state, player)
-            and is_explore_ability_available("Crystal Snail", state, player))
-
-
-def akhlut(state: CollectionState, player: int) -> bool:
-    return (has_monster("Akhlut", state, player)
-            and is_explore_ability_available("Akhlut", state, player))
-
-
-def blade_widow(state: CollectionState, player: int) -> bool:
-    return (has_monster("Blade Widow", state, player)
-            and is_explore_ability_available("Blade Widow", state, player))
-
-
-def ninki(state: CollectionState, player: int) -> bool:
-    return ((has_monster("Ninki", state, player)
-             or state.has("Ninki Nanka", player))
-            and is_explore_ability_available("Ninki", state, player))
-
-
-def ninki_nanka(state: CollectionState, player: int) -> bool:
-    return ((has_monster("Ninki Nanka", state, player)
-             or check_evolution("Ninki", "Ninki Nanka", state, player))
-            and is_explore_ability_available("Ninki Nanka", state, player))
-
-
-def vasuki(state: CollectionState, player: int) -> bool:
-    return (has_monster("Vasuki", state, player)
-            and is_explore_ability_available("Vasuki", state, player))
-
-
-def kame(state: CollectionState, player: int) -> bool:
-    return (has_monster("Kame", state, player)
-            and is_explore_ability_available("Kame", state, player))
-
-
-def sycophantom(state: CollectionState, player: int) -> bool:
-    return (has_monster("Sycophantom", state, player)
-            and is_explore_ability_available("Sycophantom", state, player))
-
-
-def imori(state: CollectionState, player: int) -> bool:
-    return (has_monster("Imori", state, player)
-            and is_explore_ability_available("Imori", state, player))
-
-
-def qilin(state: CollectionState, player: int) -> bool:
-    return (has_monster("Qilin", state, player)
-            and is_explore_ability_available("Qilin", state, player))
-
-
-def sizzle_knight(state: CollectionState, player: int) -> bool:
-    return ((has_monster("Sizzle Knight", state, player)
-             or check_evolution("Crackle Knight", "Sizzle Knight", state, player))
-            and is_explore_ability_available("Crackle Knight", state, player))
-
-
-def koi(state: CollectionState, player: int) -> bool:
-    return (has_monster("Koi", state, player)
-            and is_explore_ability_available("Koi", state, player))
-
-
-def tanuki(state: CollectionState, player: int) -> bool:
-    return (has_monster("Tanuki", state, player)
-            and is_explore_ability_available("Tanuki", state, player))
-
-
-def dodo(state: CollectionState, player: int) -> bool:
-    return (has_monster("Dodo", state, player)
-            and is_explore_ability_available("Dodo", state, player))
-
-
-def kongamato(state: CollectionState, player: int) -> bool:
-    return (has_monster("Kongamato", state, player)
-            and is_explore_ability_available("Kongamato", state, player))
-
-
-def ucan(state: CollectionState, player: int) -> bool:
-    return (has_monster("Ucan", state, player)
-            and is_explore_ability_available("Ucan", state, player))
-
-
-def brawlish(state: CollectionState, player: int) -> bool:
-    return (has_monster("Brawlish", state, player)
-            and is_explore_ability_available("Brawlish", state, player))
-
-
-def thornish(state: CollectionState, player: int) -> bool:
-    return (has_monster("Thornish", state, player)
-            and is_explore_ability_available("Thornish", state, player))
-
-
-def nautilid(state: CollectionState, player: int) -> bool:
-    return (has_monster("Nautilid", state, player)
-            and is_explore_ability_available("Nautilid", state, player))
-
-
-def silvaero(state: CollectionState, player: int) -> bool:
-    return ((has_monster("Silvaero", state, player)
-             or check_evolution("Vaero", "Silvaero", state, player))
-            and is_explore_ability_available("Silvaero", state, player))
-
-
-def elderjel(state: CollectionState, player: int) -> bool:
-    return (has_monster("Elderjel", state, player)
-            and is_explore_ability_available("Elderjel", state, player))
-
-
-def manticorb(state: CollectionState, player: int) -> bool:
-    return (has_monster("Manticorb", state, player)
-            and is_explore_ability_available("Manticorb", state, player))
-
-
-def goblin_miner(state: CollectionState, player: int) -> bool:
-    return (has_monster("Goblin Miner", state, player)
-            and is_explore_ability_available("Goblin Miner", state, player))
-
-
-def salahammer(state: CollectionState, player: int) -> bool:
-    return (has_monster("Salahammer", state, player)
-            and is_explore_ability_available("Salahammer", state, player))
-
-
-def lava_blob(state: CollectionState, player: int) -> bool:
-    return (has_monster("Lava Blob", state, player)
-            and is_explore_ability_available("Lava Blob", state, player))
-
-
-def glowdra(state: CollectionState, player: int) -> bool:
-    return ((has_monster("Glowdra", state, player)
-             or check_evolution("Glowfly", "Glowdra", state, player))
-            and is_explore_ability_available("Glowdra", state, player))
-
-
-def draconov(state: CollectionState, player: int) -> bool:
-    return ((has_monster("Draconov", state, player)
-             or state.has("Dracogran", player)
-             or state.has("Dracozul", player)
-             or state.has("Draconoir", player)
-             or state.has("Dracomer", player))
-            and is_explore_ability_available("Draconov", state, player))
-
-
-def dracogran(state: CollectionState, player: int) -> bool:
-    return ((has_monster("Dracogran", state, player)
-             or check_evolution("Draconov", "Dracogran", state, player))
-            and is_explore_ability_available("Dracogran", state, player))
-
-
-def asura(state: CollectionState, player: int) -> bool:
-    return (has_monster("Asura", state, player)
-            and is_explore_ability_available("Asura", state, player))
-
-
-def skorch(state: CollectionState, player: int) -> bool:
-    return (has_monster("Skorch", state, player)
-            and is_explore_ability_available("Skorch", state, player))
-
-
-def stolby(state: CollectionState, player: int) -> bool:
-    return (has_monster("Stolby", state, player)
-            and is_explore_ability_available("Stolby", state, player))
-
-
-def ornithopter(state: CollectionState, player: int) -> bool:
-    return (has_monster("Ornithopter", state, player)
-            and is_explore_ability_available("Ornithopter", state, player))
-
-
-def polterofen(state: CollectionState, player: int) -> bool:
-    return (has_monster("Polterofen", state, player)
-            and is_explore_ability_available("Polterofen", state, player))
-
-
-def oculus(state: CollectionState, player: int) -> bool:
-    return (has_monster("Oculus", state, player)
-            and is_explore_ability_available("Oculus", state, player))
-
-
-def mimic(state: CollectionState, player: int) -> bool:
-    return (has_monster("Mimic", state, player)
-            and is_explore_ability_available("Mimic", state, player))
-
-
-def goblin_pilot(state: CollectionState, player: int) -> bool:
-    return (has_monster("Goblin Pilot", state, player)
-            and is_explore_ability_available("Goblin Pilot", state, player))
-
-
-def shockhopper(state: CollectionState, player: int) -> bool:
-    return (has_monster("Shockhopper", state, player)
-            and is_explore_ability_available("Shockhopper", state, player))
-
-
-def targoat(state: CollectionState, player: int) -> bool:
-    return (has_monster("Targoat", state, player)
-            and is_explore_ability_available("Targoat", state, player))
-
-
-def dracozul(state: CollectionState, player: int) -> bool:
-    return ((has_monster("Dracozul", state, player)
-             or check_evolution("Draconov", "Dracozul", state, player))
-            and is_explore_ability_available("Dracozul", state, player))
-
-
-def troll(state: CollectionState, player: int) -> bool:
-    return (has_monster("Troll", state, player)
-            and is_explore_ability_available("Troll", state, player))
-
-
-def brutus(state: CollectionState, player: int) -> bool:
-    return (has_monster("Brutus", state, player)
-            and is_explore_ability_available("Brutus", state, player))
-
-
-def mega_rock(state: CollectionState, player: int) -> bool:
-    return ((has_monster("Mega Rock", state, player)
-             or check_evolution("Rocky", "Mega Rock", state, player))
-            and is_explore_ability_available("Mega Rock", state, player))
-
-
-def argiope(state: CollectionState, player: int) -> bool:
-    return (has_monster("Argiope", state, player)
-            and is_explore_ability_available("Argiope", state, player))
-
-
-def arachlich(state: CollectionState, player: int) -> bool:
-    return (has_monster("Arachlich", state, player)
-            and is_explore_ability_available("Arachlich", state, player))
-
-
-def moccus(state: CollectionState, player: int) -> bool:
-    return (has_monster("Moccus", state, player)
-            and is_explore_ability_available("Moccus", state, player))
-
-
-def promethean(state: CollectionState, player: int) -> bool:
-    return (has_monster("Promethean", state, player)
-            and is_explore_ability_available("Promethean", state, player))
-
-
-def draconoir(state: CollectionState, player: int) -> bool:
-    return ((has_monster("Draconoir", state, player)
-             or check_evolution("Draconov", "Draconoir", state, player))
-            and is_explore_ability_available("Draconoir", state, player))
-
-
-def spinner(state: CollectionState, player: int) -> bool:
-    return (has_monster("Spinner", state, player)
-            and is_explore_ability_available("Spinner", state, player))
-
-
-def plague_egg(state: CollectionState, player: int) -> bool:
-    return (has_monster("Plague Egg", state, player)
-            and is_explore_ability_available("Plague Egg", state, player))
-
-
-def sutsune(state: CollectionState, player: int) -> bool:
-    return (has_monster("Sutsune", state, player)
-            and is_explore_ability_available("Sutsune", state, player))
-
-
-def darnation(state: CollectionState, player: int) -> bool:
-    return (has_monster("Darnation", state, player)
-            and is_explore_ability_available("Darnation", state, player))
-
-
-def thanatos(state: CollectionState, player: int) -> bool:
-    return (has_monster("Thanatos", state, player)
-            and is_explore_ability_available("Thanatos", state, player))
-
-
-def rainbow_blob(state: CollectionState, player: int) -> bool:
-    return (has_monster("Rainbow Blob", state, player)
-            and is_explore_ability_available("Rainbow Blob", state, player))
-
-
-def changeling(state: CollectionState, player: int) -> bool:
-    return (has_monster("Changeling", state, player)
-            and is_explore_ability_available("Changeling", state, player))
-
-
-def king_blob(state: CollectionState, player: int) -> bool:
-    return ((has_monster("King Blob", state, player)
-             or check_evolution("Blob", "King Blob", state, player)
-             or check_evolution("Ice Blob", "King Blob", state, player)
-             or check_evolution("Lava Blob", "King Blob", state, player)
-             or check_evolution("Rainbow Blob", "King Blob", state, player)
-             or check_evolution("Tar Blob", "King Blob", state, player))
-            and is_explore_ability_available("King Blob", state, player))
-
-
-def worm(state: CollectionState, player: int) -> bool:
-    return (has_monster("Worm", state, player)
-            and is_explore_ability_available("Worm", state, player))
-
-
-def vodinoy(state: CollectionState, player: int) -> bool:
-    return (has_monster("Vodinoy", state, player)
-            and is_explore_ability_available("Vodinoy", state, player))
-
-
-def aazerach(state: CollectionState, player: int) -> bool:
-    return (has_monster("Aazerach", state, player)
-            and is_explore_ability_available("Aazerach", state, player))
-
-
-def diavola(state: CollectionState, player: int) -> bool:
-    return (has_monster("Diavola", state, player)
-            and is_explore_ability_available("Diavola", state, player))
-
-
-def gryphonix(state: CollectionState, player: int) -> bool:
-    return (has_monster("Gryphonix", state, player)
-            and is_explore_ability_available("Gryphonix", state, player))
-
-
-def vertraag(state: CollectionState, player: int) -> bool:
-    return (has_monster("Vertraag", state, player)
-            and is_explore_ability_available("Vertraag", state, player))
-
-
-def mad_lord(state: CollectionState, player: int) -> bool:
-    return ((has_monster("Mad Lord", state, player)
-             or check_evolution("Mad Eye", "Mad Lord", state, player))
-            and is_explore_ability_available("Mad Lord", state, player))
-
-
-def ascendant(state: CollectionState, player: int) -> bool:
-    return ((has_monster("Ascendant", state, player)
-             or check_evolution("Monk", "Ascendant", state, player))
-            and is_explore_ability_available("Ascendant", state, player))
-
-
-def fumagus(state: CollectionState, player: int) -> bool:
-    return ((has_monster("Fumagus", state, player)
-             or check_evolution("Fungi", "Fumagus", state, player))
-            and is_explore_ability_available("Fumagus", state, player))
-
-
-def rampede(state: CollectionState, player: int) -> bool:
-    return (has_monster("Rampede", state, player)
-            and is_explore_ability_available("Rampede", state, player))
-
-
-def rathops(state: CollectionState, player: int) -> bool:
-    return (has_monster("Rathops", state, player)
-            and is_explore_ability_available("Rathops", state, player))
-
-
-def krakaturtle(state: CollectionState, player: int) -> bool:
-    return (has_monster("Krakaturtle", state, player)
-            and is_explore_ability_available("Krakaturtle", state, player))
-
-
-def tar_blob(state: CollectionState, player: int) -> bool:
-    return (has_monster("Tar Blob", state, player)
-            and is_explore_ability_available("Tar Blob", state, player))
-
-
-def amberlgna(state: CollectionState, player: int) -> bool:
-    return (has_monster("Amberlgna", state, player)
-            and is_explore_ability_available("Amberlgna", state, player))
-
-
-def dracomer(state: CollectionState, player: int) -> bool:
-    return ((has_monster("Dracomer", state, player)
-             or check_evolution("Draconov", "Dracomer", state, player))
-            and is_explore_ability_available("Dracomer", state, player))
-
-
-def terradrile(state: CollectionState, player: int) -> bool:
-    return (has_monster("Terradrile", state, player)
-            and is_explore_ability_available("Terradrile", state, player))
-
-
-def bard(state: CollectionState, player: int) -> bool:
-    return (has_monster("Bard", state, player)
-            and is_explore_ability_available("Bard", state, player))
-
-
-def has_monster(monster_name: str, state: CollectionState, player: int):
-    # First, if we've got the monster, then we return straight away
-    if state.has(monster_name, player):
-        return True
-
-    # Next we check if we have the monster's egg
-    from worlds.monster_sanctuary.encounters import get_monster
-    monster = get_monster(monster_name)
-    if state.has(monster.egg_name(True), player):
-        return True
-
-    return False
+def can_use_ability(monster_name: str, state: CollectionState, player: int):
+    function_name = monster_name.replace(" ", "_").replace("'", "").lower()
+    monster_method = globals()[function_name]
+    return monster_method(state, player) and is_explore_ability_available(monster_name, state, player)
 
 
 def is_explore_ability_available(monster_name: str, state: CollectionState, player: int) -> bool:
@@ -1379,6 +724,742 @@ def is_explore_ability_available(monster_name: str, state: CollectionState, play
     return False
 
 
+def claws(state: CollectionState, player: int) -> bool:
+    return (can_use_ability("Spectral Wolf", state, player) or
+            can_use_ability("Spectral Lion", state, player) or
+            can_use_ability("Molebear", state, player))
+
+
+def tackle(state: CollectionState, player: int) -> bool:
+    return (can_use_ability("Spectral Toad", state, player) or
+            can_use_ability("Yowie", state, player) or
+            can_use_ability("Steam Golem", state, player) or
+            can_use_ability("Vasuki", state, player) or
+            can_use_ability("Brawlish", state, player) or
+            can_use_ability("Targoat", state, player))
+
+
+def slash(state: CollectionState, player: int) -> bool:
+    return (can_use_ability("Catzerker", state, player) or
+            can_use_ability("Minitaur", state, player) or
+            can_use_ability("Blade Widow", state, player) or
+            can_use_ability("Ucan", state, player))
+
+
+def heavy_punch(state: CollectionState, player: int) -> bool:
+    return can_use_ability("Monk", state, player)
+
+
+def toxic_slam(state: CollectionState, player: int) -> bool:
+    return can_use_ability("Goblin Brute", state, player)
+
+
+def light_crush(state: CollectionState, player: int) -> bool:
+    return can_use_ability("Goblin Miner", state, player)
+
+
+def crush(state: CollectionState, player: int) -> bool:
+    return (can_use_ability("Salahammer", state, player) or
+            can_use_ability("Asura", state, player) or
+            can_use_ability("Goblin Pilot", state, player) or
+            can_use_ability("Darnation", state, player))
+
+
+def corrosive_jabs(state: CollectionState, player: int) -> bool:
+    return can_use_ability("Troll", state, player)
+
+
+def charging_mount(state: CollectionState, player: int) -> bool:
+    return (can_use_ability("Rampede", state, player) or
+            can_use_ability("Rathops", state, player))
+
+
+def ignite(state: CollectionState, player: int) -> bool:
+    return (can_use_ability("Magmapillar", state, player) or
+            can_use_ability("Tengu", state, player) or
+            can_use_ability("Specter", state, player) or
+            can_use_ability("Magmamoth", state, player) or
+            can_use_ability("Imori", state, player) or
+            can_use_ability("Lava Blob", state, player) or
+            can_use_ability("Skorch", state, player) or
+            can_use_ability("Plague Egg", state, player))
+
+
+def fiery_shots(state: CollectionState, player: int) -> bool:
+    return (can_use_ability("Goblin Hood", state, player) or
+            can_use_ability("Polterofen", state, player) or
+            can_use_ability("Mimic", state, player))
+
+
+def bubble_burst(state: CollectionState, player: int) -> bool:
+    return (can_use_ability("Blob", state, player) or
+            can_use_ability("Grummy", state, player) or
+            can_use_ability("G'rulu", state, player))
+
+
+def lightning_bolt(state: CollectionState, player: int) -> bool:
+    return (can_use_ability("Crackle Knight", state, player) or
+            can_use_ability("Beetloid", state, player) or
+            can_use_ability("Goblin Warlock", state, player) or
+            can_use_ability("Sizzle Knight", state, player))
+
+
+def shock_freeze(state: CollectionState, player: int) -> bool:
+    return can_use_ability("Shockhopper", state, player)
+
+
+def slime_shot(state: CollectionState, player: int) -> bool:
+    return (can_use_ability("Toxiquus", state, player) or
+            can_use_ability("Ninki", state, player) or
+            can_use_ability("Ninki Nanka", state, player))
+
+
+def jewel_blast(state: CollectionState, player: int) -> bool:
+    return (can_use_ability("Goblin King", state, player) or
+            can_use_ability("Crystal Snail", state, player))
+
+
+def toxic_freeze(state: CollectionState, player: int) -> bool:
+    return can_use_ability("Spinner", state, player)
+
+
+def freeze(state: CollectionState, player: int) -> bool:
+    return (can_use_ability("Ice Blob", state, player) or
+            can_use_ability("Megataur", state, player))
+
+
+def snowball_toss(state: CollectionState, player: int) -> bool:
+    return can_use_ability("Mogwai", state, player)
+
+
+def flying(state: CollectionState, player: int) -> bool:
+    return (can_use_ability("Spectral Eagle", state, player) or
+            can_use_ability("Vaero", state, player) or
+            can_use_ability("Frosty", state, player) or
+            can_use_ability("Mad Eye", state, player) or
+            can_use_ability("Raduga", state, player) or
+            can_use_ability("Draconov", state, player))
+
+
+def improved_flying(state: CollectionState, player: int) -> bool:
+    return (can_use_ability("Silvaero", state, player) or
+            can_use_ability("Kongamato", state, player) or
+            can_use_ability("Dracogran", state, player) or
+            can_use_ability("Dracozul", state, player) or
+            can_use_ability("Draconoir", state, player) or
+            can_use_ability("Ornithopter", state, player))
+
+
+def lofty_mount(state: CollectionState, player: int) -> bool:
+    return can_use_ability("Gryphonix", state, player)
+
+
+def basic_swimming(state: CollectionState, player: int) -> bool:
+    return can_use_ability("Koi", state, player)
+
+
+def improved_swimming(state: CollectionState, player: int) -> bool:
+    return (can_use_ability("Thornish", state, player) or
+            can_use_ability("Nautilid", state, player) or
+            can_use_ability("Elderjel", state, player) or
+            can_use_ability("Dracomer", state, player))
+
+
+def dual_mobility(state: CollectionState, player: int) -> bool:
+    return can_use_ability("Krakaturtle", state, player)
+
+
+def basic_mount(state: CollectionState, player: int) -> bool:
+    return (can_use_ability("Aurumtail", state, player) or
+            can_use_ability("Qilin", state, player) or
+            can_use_ability("Dodo", state, player) or
+            can_use_ability("Moccus", state, player))
+
+
+def sonar_mount(state: CollectionState, player: int) -> bool:
+    return can_use_ability("Akhlut", state, player)
+
+
+def tar_mount(state: CollectionState, player: int) -> bool:
+    return can_use_ability("Tar Blob", state, player)
+
+
+def summon_rock(state: CollectionState, player: int) -> bool:
+    return (can_use_ability("Rocky", state, player) or
+            can_use_ability("Druid Oak", state, player) or
+            can_use_ability("Kame", state, player))
+
+
+def summon_mushroom(state: CollectionState, player: int) -> bool:
+    return (can_use_ability("Fungi", state, player) or
+            can_use_ability("Tanuki", state, player))
+
+
+def summon_big_rock(state: CollectionState, player: int) -> bool:
+    return (can_use_ability("Brutus", state, player) or
+            can_use_ability("Mega Rock", state, player) or
+            can_use_ability("Promethean", state, player))
+
+
+def sonar(state: CollectionState, player: int) -> bool:
+    return can_use_ability("Nightwing", state, player)
+
+
+def light(state: CollectionState, player: int) -> bool:
+    return (can_use_ability("Glowfly", state, player) or
+            can_use_ability("Caraglow", state, player) or
+            can_use_ability("Manticorb", state, player) or
+            can_use_ability("Glowdra", state, player))
+
+
+def ghost_form(state: CollectionState, player: int) -> bool:
+    return (can_use_ability("Sycophantom", state, player) or
+            can_use_ability("Kanko", state, player) or
+            can_use_ability("Stolby", state, player))
+
+
+def spore_shroud(state: CollectionState, player: int) -> bool:
+    return (can_use_ability("Fumagus", state, player) or
+            can_use_ability("Amberlgna", state, player))
+
+
+def grapple(state: CollectionState, player: int) -> bool:
+    return (can_use_ability("Oculus", state, player) or
+            can_use_ability("Argiope", state, player) or
+            can_use_ability("Arachlich", state, player) or
+            can_use_ability("Worm", state, player))
+
+
+def blob_form(state: CollectionState, player: int) -> bool:
+    return (can_use_ability("Rainbow Blob", state, player) or
+            can_use_ability("King Blob", state, player))
+
+
+def morph_ball(state: CollectionState, player: int) -> bool:
+    return can_use_ability("Changeling", state, player)
+
+
+def levitate(state: CollectionState, player: int) -> bool:
+    return (can_use_ability("Vodinoy", state, player) or
+            can_use_ability("Diavola", state, player) or
+            can_use_ability("Vertraag", state, player) or
+            can_use_ability("Terradrile", state, player))
+
+
+def secret_vision(state: CollectionState, player: int) -> bool:
+    return (can_use_ability("Sutsune", state, player) or
+            can_use_ability("Thanatos", state, player) or
+            can_use_ability("Aazerach", state, player) or
+            can_use_ability("Mad Lord", state, player) or
+            can_use_ability("Ascendant", state, player))
+
+
+def minnesang(state: CollectionState, player: int) -> bool:
+    return can_use_ability("Bard", state, player)
+# endregion
+
+
+# region Monsters
+def has_any_monster(state: CollectionState, player: int, *creatures: Callable) -> bool:
+    for creature in creatures:
+        if creature(state, player):
+            return True
+
+    return False
+
+
+def spectral_wolf(state: CollectionState, player: int) -> bool:
+    return has_monster("Spectral Wolf", state, player)
+
+
+def spectral_toad(state: CollectionState, player: int) -> bool:
+    return has_monster("Spectral Toad", state, player)
+
+
+def spectral_eagle(state: CollectionState, player: int) -> bool:
+    return has_monster("Spectral Eagle", state, player)
+
+
+def spectral_lion(state: CollectionState, player: int) -> bool:
+    return has_monster("Spectral Lion", state, player)
+
+
+def blob(state: CollectionState, player: int) -> bool:
+    return has_monster("Blob", state, player)
+
+
+def magmapillar(state: CollectionState, player: int) -> bool:
+    return (has_monster("Magmapillar", state, player)
+            or state.has("Magmamoth", player))
+
+
+def rocky(state: CollectionState, player: int) -> bool:
+    return (has_monster("Rocky", state, player)
+            or state.has("Mega Rock", player))
+
+
+def vaero(state: CollectionState, player: int) -> bool:
+    return (has_monster("Vaero", state, player)
+            or state.has("Silvaero", player))
+
+
+def catzerker(state: CollectionState, player: int) -> bool:
+    return has_monster("Catzerker", state, player)
+
+
+def yowie(state: CollectionState, player: int) -> bool:
+    return has_monster("Yowie", state, player)
+
+
+def steam_golem(state: CollectionState, player: int) -> bool:
+    return has_monster("Steam Golem", state, player)
+
+
+def monk(state: CollectionState, player: int) -> bool:
+    return (has_monster("Monk", state, player)
+            or state.has("Ascendant", player))
+
+
+def grummy(state: CollectionState, player: int) -> bool:
+    return (has_monster("Grummy", state, player)
+            or state.has("G'rulu", player))
+
+
+def tengu(state: CollectionState, player: int) -> bool:
+    return has_monster("Tengu", state, player)
+
+
+def fungi(state: CollectionState, player: int) -> bool:
+    return (has_monster("Fungi", state, player)
+            or state.has("Fumagus", player))
+
+
+def frosty(state: CollectionState, player: int) -> bool:
+    return has_monster("Frosty", state, player)
+
+
+def minitaur(state: CollectionState, player: int) -> bool:
+    return (has_monster("Minitaur", state, player)
+             or state.has("Megataur", player))
+
+
+def specter(state: CollectionState, player: int) -> bool:
+    return has_monster("Specter", state, player)
+
+
+def crackle_knight(state: CollectionState, player: int) -> bool:
+    return (has_monster("Crackle Knight", state, player)
+            or state.has("Sizzle Knight", player))
+
+
+def grulu(state: CollectionState, player: int) -> bool:
+    return (has_monster("G'rulu", state, player)
+            or check_evolution("Grummy", "G'rulu", state, player))
+
+
+def mad_eye(state: CollectionState, player: int) -> bool:
+    return (has_monster("Mad Eye", state, player)
+            or state.has("Mad Lord", player))
+
+
+def nightwing(state: CollectionState, player: int) -> bool:
+    return has_monster("Nightwing", state, player)
+
+
+def toxiquus(state: CollectionState, player: int) -> bool:
+    return has_monster("Toxiquus", state, player)
+
+
+def beetloid(state: CollectionState, player: int) -> bool:
+    return has_monster("Beetloid", state, player)
+
+
+def druid_oak(state: CollectionState, player: int) -> bool:
+    return has_monster("Druid Oak", state, player)
+
+
+def magmamoth(state: CollectionState, player: int) -> bool:
+    return (has_monster("Magmamoth", state, player)
+            or check_evolution("Magmapillar", "Magmamoth", state, player))
+
+
+def molebear(state: CollectionState, player: int) -> bool:
+    return has_monster("Molebear", state, player)
+
+
+def glowfly(state: CollectionState, player: int) -> bool:
+    return (has_monster("Glowfly", state, player)
+            or state.has("Glowdra", player))
+
+
+def goblin_brute(state: CollectionState, player: int) -> bool:
+    return has_monster("Goblin Brute", state, player)
+
+
+def goblin_hood(state: CollectionState, player: int) -> bool:
+    return has_monster("Goblin Hood", state, player)
+
+
+def goblin_warlock(state: CollectionState, player: int) -> bool:
+    return has_monster("Goblin Warlock", state, player)
+
+
+def goblin_king(state: CollectionState, player: int) -> bool:
+    return has_monster("Goblin King", state, player)
+
+
+def raduga(state: CollectionState, player: int) -> bool:
+    return has_monster("Raduga", state, player)
+
+
+def ice_blob(state: CollectionState, player: int) -> bool:
+    return has_monster("Ice Blob", state, player)
+
+
+def caraglow(state: CollectionState, player: int) -> bool:
+    return has_monster("Caraglow", state, player)
+
+
+def aurumtail(state: CollectionState, player: int) -> bool:
+    return has_monster("Aurumtail", state, player)
+
+
+def megataur(state: CollectionState, player: int) -> bool:
+    return (has_monster("Megataur", state, player)
+            or check_evolution("Minitaur", "Megataur", state, player))
+
+
+def mogwai(state: CollectionState, player: int) -> bool:
+    return has_monster("Mogwai", state, player)
+
+
+def crystal_snail(state: CollectionState, player: int) -> bool:
+    return has_monster("Crystal Snail", state, player)
+
+
+def akhlut(state: CollectionState, player: int) -> bool:
+    return has_monster("Akhlut", state, player)
+
+
+def blade_widow(state: CollectionState, player: int) -> bool:
+    return has_monster("Blade Widow", state, player)
+
+
+def ninki(state: CollectionState, player: int) -> bool:
+    return (has_monster("Ninki", state, player)
+            or state.has("Ninki Nanka", player))
+
+
+def ninki_nanka(state: CollectionState, player: int) -> bool:
+    return (has_monster("Ninki Nanka", state, player)
+            or check_evolution("Ninki", "Ninki Nanka", state, player))
+
+
+def vasuki(state: CollectionState, player: int) -> bool:
+    return has_monster("Vasuki", state, player)
+
+
+def kame(state: CollectionState, player: int) -> bool:
+    return has_monster("Kame", state, player)
+
+
+def sycophantom(state: CollectionState, player: int) -> bool:
+    return has_monster("Sycophantom", state, player)
+
+
+def imori(state: CollectionState, player: int) -> bool:
+    return has_monster("Imori", state, player)
+
+
+def qilin(state: CollectionState, player: int) -> bool:
+    return has_monster("Qilin", state, player)
+
+
+def sizzle_knight(state: CollectionState, player: int) -> bool:
+    return (has_monster("Sizzle Knight", state, player)
+            or check_evolution("Crackle Knight", "Sizzle Knight", state, player))
+
+
+def koi(state: CollectionState, player: int) -> bool:
+    return has_monster("Koi", state, player)
+
+
+def tanuki(state: CollectionState, player: int) -> bool:
+    return has_monster("Tanuki", state, player)
+
+
+def kanko(state: CollectionState, player: int) -> bool:
+    return has_monster("Kanko", state, player)
+
+
+def dodo(state: CollectionState, player: int) -> bool:
+    return has_monster("Dodo", state, player)
+
+
+def kongamato(state: CollectionState, player: int) -> bool:
+    return has_monster("Kongamato", state, player)
+
+
+def ucan(state: CollectionState, player: int) -> bool:
+    return has_monster("Ucan", state, player)
+
+
+def brawlish(state: CollectionState, player: int) -> bool:
+    return has_monster("Brawlish", state, player)
+
+
+def thornish(state: CollectionState, player: int) -> bool:
+    return has_monster("Thornish", state, player)
+
+
+def nautilid(state: CollectionState, player: int) -> bool:
+    return has_monster("Nautilid", state, player)
+
+
+def silvaero(state: CollectionState, player: int) -> bool:
+    return (has_monster("Silvaero", state, player)
+            or check_evolution("Vaero", "Silvaero", state, player))
+
+
+def elderjel(state: CollectionState, player: int) -> bool:
+    return has_monster("Elderjel", state, player)
+
+
+def manticorb(state: CollectionState, player: int) -> bool:
+    return has_monster("Manticorb", state, player)
+
+
+def goblin_miner(state: CollectionState, player: int) -> bool:
+    return has_monster("Goblin Miner", state, player)
+
+
+def salahammer(state: CollectionState, player: int) -> bool:
+    return has_monster("Salahammer", state, player)
+
+
+def lava_blob(state: CollectionState, player: int) -> bool:
+    return has_monster("Lava Blob", state, player)
+
+
+def glowdra(state: CollectionState, player: int) -> bool:
+    return (has_monster("Glowdra", state, player)
+            or check_evolution("Glowfly", "Glowdra", state, player))
+
+
+def draconov(state: CollectionState, player: int) -> bool:
+    return (has_monster("Draconov", state, player)
+            or state.has("Dracogran", player)
+            or state.has("Dracozul", player)
+            or state.has("Draconoir", player)
+            or state.has("Dracomer", player))
+
+
+def dracogran(state: CollectionState, player: int) -> bool:
+    return (has_monster("Dracogran", state, player)
+            or check_evolution("Draconov", "Dracogran", state, player))
+
+
+def asura(state: CollectionState, player: int) -> bool:
+    return has_monster("Asura", state, player)
+
+
+def skorch(state: CollectionState, player: int) -> bool:
+    return has_monster("Skorch", state, player)
+
+
+def stolby(state: CollectionState, player: int) -> bool:
+    return has_monster("Stolby", state, player)
+
+
+def ornithopter(state: CollectionState, player: int) -> bool:
+    return has_monster("Ornithopter", state, player)
+
+
+def polterofen(state: CollectionState, player: int) -> bool:
+    return has_monster("Polterofen", state, player)
+
+
+def oculus(state: CollectionState, player: int) -> bool:
+    return has_monster("Oculus", state, player)
+
+
+def mimic(state: CollectionState, player: int) -> bool:
+    return has_monster("Mimic", state, player)
+
+
+def goblin_pilot(state: CollectionState, player: int) -> bool:
+    return has_monster("Goblin Pilot", state, player)
+
+
+def shockhopper(state: CollectionState, player: int) -> bool:
+    return has_monster("Shockhopper", state, player)
+
+
+def targoat(state: CollectionState, player: int) -> bool:
+    return has_monster("Targoat", state, player)
+
+
+def dracozul(state: CollectionState, player: int) -> bool:
+    return (has_monster("Dracozul", state, player)
+            or check_evolution("Draconov", "Dracozul", state, player))
+
+
+def troll(state: CollectionState, player: int) -> bool:
+    return has_monster("Troll", state, player)
+
+def brutus(state: CollectionState, player: int) -> bool:
+    return has_monster("Brutus", state, player)
+
+
+def mega_rock(state: CollectionState, player: int) -> bool:
+    return (has_monster("Mega Rock", state, player)
+            or check_evolution("Rocky", "Mega Rock", state, player))
+
+
+def argiope(state: CollectionState, player: int) -> bool:
+    return has_monster("Argiope", state, player)
+
+
+def arachlich(state: CollectionState, player: int) -> bool:
+    return has_monster("Arachlich", state, player)
+
+
+def moccus(state: CollectionState, player: int) -> bool:
+    return has_monster("Moccus", state, player)
+
+
+def promethean(state: CollectionState, player: int) -> bool:
+    return has_monster("Promethean", state, player)
+
+
+def draconoir(state: CollectionState, player: int) -> bool:
+    return (has_monster("Draconoir", state, player)
+            or check_evolution("Draconov", "Draconoir", state, player))
+
+
+def spinner(state: CollectionState, player: int) -> bool:
+    return has_monster("Spinner", state, player)
+
+
+def plague_egg(state: CollectionState, player: int) -> bool:
+    return has_monster("Plague Egg", state, player)
+
+
+def sutsune(state: CollectionState, player: int) -> bool:
+    return has_monster("Sutsune", state, player)
+
+
+def darnation(state: CollectionState, player: int) -> bool:
+    return has_monster("Darnation", state, player)
+
+
+def thanatos(state: CollectionState, player: int) -> bool:
+    return has_monster("Thanatos", state, player)
+
+
+def rainbow_blob(state: CollectionState, player: int) -> bool:
+    return has_monster("Rainbow Blob", state, player)
+
+
+def changeling(state: CollectionState, player: int) -> bool:
+    return has_monster("Changeling", state, player)
+
+
+def king_blob(state: CollectionState, player: int) -> bool:
+    return (has_monster("King Blob", state, player)
+            or check_evolution("Blob", "King Blob", state, player)
+            or check_evolution("Ice Blob", "King Blob", state, player)
+            or check_evolution("Lava Blob", "King Blob", state, player)
+            or check_evolution("Rainbow Blob", "King Blob", state, player)
+            or check_evolution("Tar Blob", "King Blob", state, player))
+
+
+def worm(state: CollectionState, player: int) -> bool:
+    return has_monster("Worm", state, player)
+
+
+def vodinoy(state: CollectionState, player: int) -> bool:
+    return has_monster("Vodinoy", state, player)
+
+
+def aazerach(state: CollectionState, player: int) -> bool:
+    return has_monster("Aazerach", state, player)
+
+
+def diavola(state: CollectionState, player: int) -> bool:
+    return has_monster("Diavola", state, player)
+
+
+def gryphonix(state: CollectionState, player: int) -> bool:
+    return has_monster("Gryphonix", state, player)
+
+
+def vertraag(state: CollectionState, player: int) -> bool:
+    return has_monster("Vertraag", state, player)
+
+
+def mad_lord(state: CollectionState, player: int) -> bool:
+    return (has_monster("Mad Lord", state, player)
+            or check_evolution("Mad Eye", "Mad Lord", state, player))
+
+
+def ascendant(state: CollectionState, player: int) -> bool:
+    return (has_monster("Ascendant", state, player)
+            or check_evolution("Monk", "Ascendant", state, player))
+
+
+def fumagus(state: CollectionState, player: int) -> bool:
+    return (has_monster("Fumagus", state, player)
+            or check_evolution("Fungi", "Fumagus", state, player))
+
+
+def rampede(state: CollectionState, player: int) -> bool:
+    return has_monster("Rampede", state, player)
+
+
+def rathops(state: CollectionState, player: int) -> bool:
+    return has_monster("Rathops", state, player)
+
+
+def krakaturtle(state: CollectionState, player: int) -> bool:
+    return has_monster("Krakaturtle", state, player)
+
+
+def tar_blob(state: CollectionState, player: int) -> bool:
+    return has_monster("Tar Blob", state, player)
+
+
+def amberlgna(state: CollectionState, player: int) -> bool:
+    return has_monster("Amberlgna", state, player)
+
+
+def dracomer(state: CollectionState, player: int) -> bool:
+    return (has_monster("Dracomer", state, player)
+            or check_evolution("Draconov", "Dracomer", state, player))
+
+
+def terradrile(state: CollectionState, player: int) -> bool:
+    return has_monster("Terradrile", state, player)
+
+
+def bard(state: CollectionState, player: int) -> bool:
+    return has_monster("Bard", state, player)
+
+
+def has_monster(monster_name: str, state: CollectionState, player: int):
+    # First, if we've got the monster, then we return straight away
+    if state.has(monster_name, player):
+        return True
+
+    # Next we check if we have the monster's egg
+    from worlds.monster_sanctuary.encounters import get_monster
+    monster = get_monster(monster_name)
+    if state.has(monster.egg_name(True), player):
+        return True
+
+    return False
+
+
 def check_evolution(base_form: str, evo_form: str, state: CollectionState, player: int) -> bool:
     # First we check if the evolution is already available to the player
     if has_monster(evo_form, state, player):
@@ -1390,4 +1471,19 @@ def check_evolution(base_form: str, evo_form: str, state: CollectionState, playe
             # Only need to check if we have the base form and its evo item
             and (has_monster(base_form, state, player))
             and state.has(get_monster(evo_form).catalyst, player))
+
+
+def has_all_monsters(state: CollectionState, player: int) -> bool:
+    from worlds.monster_sanctuary.encounters import monster_data
+
+    # Go through every monster in the game, and if we don't have it, return false
+    # if we get through all monsters it means we have everything, and can return true
+    for name, data in monster_data.items():
+        method_name = name.replace(" ", "_").replace("'", "").lower()
+
+        # check if we have the monster
+        if not globals()[method_name](state, player):
+            return False
+
+    return True
 # endregion
