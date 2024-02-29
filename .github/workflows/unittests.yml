@@ -7,6 +7,7 @@ on:
   push:
     branches:
       - monster-sanctuary
+      - monster-sanctuary-dev
     paths:
       - '**'
       - '!docs/**'
