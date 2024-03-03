@@ -197,10 +197,6 @@ def snowy_peaks_sun_palace_entrance_shortcut(state: CollectionState, player: int
     return state.has("Snowy Peaks to Sun Palace Shortcut", player)
 
 
-def has_dodo(state: CollectionState, player: int) -> bool:
-    return state.has("Dodo", player) or state.has("Dodo Egg", player)
-
-
 def stronghold_dungeon_library_access(state: CollectionState, player: int) -> bool:
     return state.has("Stronghold Dungeon Library Access", player)
 
@@ -1306,6 +1302,7 @@ def dracozul(state: CollectionState, player: int) -> bool:
 
 def troll(state: CollectionState, player: int) -> bool:
     return has_monster("Troll", state, player)
+
 
 def brutus(state: CollectionState, player: int) -> bool:
     return has_monster("Brutus", state, player)

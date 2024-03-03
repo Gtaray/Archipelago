@@ -4,7 +4,7 @@
       "name": "Mountain Path Lore Stone",
       "id": 516,
       "text": "It is said that {item} will disguise themselves as other monsters, only to reveal themselves when battled.",
-      "item_location": "Menu_0_0",
+      "item_location": "Menu_1_0",
       "ignore_other_text": false
     },
     {

@@ -26,15 +26,19 @@ class TestMonsterRandomizerBase(WorldTestBase):
     def test_special_monsters_are_not_placed(self):
         special_monsters = ["Spectral Wolf", "Spectral Toad", "Spectral Eagle", "Spectral Lion", "Bard"]
         for encounter_name, encounter in self.multiworld.worlds[1].encounters.items():
+            # This slot is specifically used for starting familiar, so ignore it for this test
+            if encounter_name.startswith("Menu_0"):
+                continue
+
             for monster in encounter.monsters:
                 with self.subTest("Monster is not a special monster", monster=monster.name):
-                    self.assertTrue(monster not in special_monsters)
+                    self.assertTrue(monster.name not in special_monsters)
 
     def test_no_monsters_placed_where_they_should_not_be(self):
         for encounter_name, encounter in self.multiworld.worlds[1].encounters.items():
             for monster in encounter.monsters:
                 with self.subTest("Monster is not placed where it shouldn't be", monster=monster.name):
-                    self.assertTrue(monster not in encounter.monster_exclusions)
+                    self.assertTrue(monster.name not in encounter.monster_exclusions)
 
     def test_required_monsters_are_placed(self):
         def test_monsters(msg: str, abilities: List[str]):

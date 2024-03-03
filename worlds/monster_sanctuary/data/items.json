@@ -1561,6 +1561,7 @@
   },
   {
     "type": "Catalyst",
+    "classification": "progression",
     "items": [
       {
         "name": "Stardust",
@@ -1569,77 +1570,62 @@
       },
       {
         "name": "Cocoon",
-        "classification": "useful",
         "tier": 2
       },
       {
         "name": "Shard of Winter",
-        "classification": "progression",
         "tier": 2
       },
       {
         "name": "Sun Stone",
-        "classification": "useful",
         "tier": 2
       },
       {
         "name": "Magical Clay",
-        "classification": "useful",
         "tier": 2
       },
       {
         "name": "Silver Feather",
-        "classification": "progression",
         "tier": 2
       },
       {
         "name": "Volcanic Ash",
-        "classification": "useful",
         "tier": 2
       },
       {
         "name": "Fire Stone",
-        "classification": "progression",
         "tier": 2
       },
       {
         "name": "Ice Stone",
-        "classification": "progression",
         "tier": 2
       },
       {
         "name": "Giant Seed",
-        "classification": "progression",
         "tier": 2
       },
       {
         "name": "Dark Stone",
-        "classification": "progression",
         "tier": 2
       },
       {
         "name": "Majestic Crown",
-        "classification": "progression",
         "tier": 2
       },
       {
         "name": "Demonic Pact",
-        "classification": "progression",
         "tier": 2
       },
       {
         "name": "Deep Stone",
-        "classification": "progression",
         "tier": 2
       },
       {
         "name": "Primordial Branch",
-        "classification": "progression",
         "tier": 2
       },
       {
         "name": "Druid Soul",
-        "classification": "progression",
         "tier": 2
       }
     ]
@@ -6574,7 +6560,7 @@
       {
         "name": "Sycophantom Egg",
         "tier": 1,
-        "classification": "useful",
+        "classification": "progression",
         "groups": [ "Ghost Form", "Intangibility" ]
       },
       {
@@ -6622,7 +6608,7 @@
       {
         "name": "Kanko Egg",
         "tier": 1,
-        "classification": "useful",
+        "classification": "progression",
         "groups": [ "Ghost Form", "Intangibility" ]
       },
       {
@@ -6748,7 +6734,7 @@
       {
         "name": "Stolby Egg",
         "tier": 1,
-        "classification": "useful",
+        "classification": "progression",
         "groups": [ "Ghost Form", "Intangibility" ]
       },
       {
@@ -7199,7 +7185,7 @@
         "name": "Dragon Orb"
       },
       {
-        "name": "Morph Ball"
+        "name": "Power Suit"
       },
       {
         "name": "Spirit Charm"
@@ -7472,7 +7458,7 @@
         "name": "Rainbow Slime Snack"
       },
       {
-        "name": "Morph Ball"
+        "name": "Power Suit"
       },
       {
         "name": "Blob Crown"

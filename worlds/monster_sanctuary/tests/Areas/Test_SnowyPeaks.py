@@ -34,3 +34,21 @@ class SnowyPeaksTests(TestArea):
                                  [])
         self.assertAccessible("SnowyPeaks_ClothesmakerHouse", "SnowyPeaks_ClothesmakerHouse_17700033",
                               ["Raw Hide"])
+
+    def test_cryomancer(self):
+        self.assertNotAccessible("SnowyPeaks_Cryomancer", "SnowyPeaks_Cryomancer_17900062", [])
+        self.assertAccessible("SnowyPeaks_Cryomancer", "SnowyPeaks_Cryomancer_17900062", ["Dodo"])
+        self.assertAccessible("SnowyPeaks_Cryomancer", "SnowyPeaks_Cryomancer_17900062", ["Dodo Egg"])
+
+        self.assertNotAccessible("SnowyPeaks_Cryomancer", "SnowyPeaks_Cryomancer_17900065", [])
+        self.assertNotAccessible("SnowyPeaks_Cryomancer", "SnowyPeaks_Cryomancer_17900065", ["Dodo"])
+        self.assertNotAccessible("SnowyPeaks_Cryomancer", "SnowyPeaks_Cryomancer_17900065", ["Dodo Egg"])
+        self.assertNotAccessible("SnowyPeaks_Cryomancer", "SnowyPeaks_Cryomancer_17900065",
+                                 ["Sun Palace Raise Center", "Sun Palace Raise Center", "Sun Palace Raise Center"])
+        self.assertAccessible("SnowyPeaks_Cryomancer", "SnowyPeaks_Cryomancer_17900065",
+                              ["Dodo", "Sun Palace Raise Center", "Sun Palace Raise Center",
+                               "Sun Palace Raise Center"])
+
+        self.assertAccessible("SnowyPeaks_Cryomancer", "SnowyPeaks_Cryomancer_17900065",
+                              ["Dodo Egg", "Sun Palace Raise Center", "Sun Palace Raise Center",
+                               "Sun Palace Raise Center"])

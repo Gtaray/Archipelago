@@ -2858,20 +2858,20 @@
       { "region": "SnowyPeaks_WestMountain1" }
     ],
     "gifts": [
-      { "id": 17900062, "item": "Shockhopper Egg", "requirements": [ "has_dodo" ]},
+      { "id": 17900062, "item": "Shockhopper Egg", "requirements": [ "dodo" ]},
       { "id": 17900065, "item": "Shockhopper Egg", "requirements": [
         "AND", [
-            "has_dodo",
+            "dodo",
             "shifting_available"
           ]
       ]},
       { "id": 17900066, "item": "Shockhopper Egg", "requirements": [
         "AND", [
-            "has_dodo",
+            "dodo",
             "shifting_available"
           ]
       ]},
-      { "id": 17900077, "item": "Reward Box Lvl 2", "requirements": [ "has_dodo" ]}
+      { "id": 17900077, "item": "Reward Box Lvl 2", "requirements": [ "dodo" ]}
     ]
   },
   {

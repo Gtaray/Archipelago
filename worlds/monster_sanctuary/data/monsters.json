@@ -924,9 +924,9 @@
     "RareRewards": "Ruby,Sapphire,Changeling Egg,",
     "EggReward": "Changeling Egg",
     "Groups": [ "Morph Ball", "Narrow Corridors" ],
-    "SpeciesItem": "Morph Ball",
+    "SpeciesItem": "Power Suit",
     "AbilityItem": "Ability - Morph Ball",
-    "TypeItem": "Morph Ball"
+    "TypeItem": "Power Suit"
   },
   {
     "Name": "King Blob",

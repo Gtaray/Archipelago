@@ -391,22 +391,8 @@ class MonsterSanctuaryWorld(World):
 
         # Add items that are not technically key items, but are progressions items and should be added
         key_items.append("Raw Hide")
-        key_items.append("Stardust")
-        key_items.append("Cocoon")
-        key_items.append("Shard of Winter")
-        key_items.append("Sun Stone")
-        key_items.append("Magical Clay")
-        key_items.append("Silver Feather")
-        key_items.append("Volcanic Ash")
-        key_items.append("Fire Stone")
-        key_items.append("Ice Stone")
-        key_items.append("Giant Seed")
-        key_items.append("Dark Stone")
-        key_items.append("Majestic Crown")
-        key_items.append("Demonic Pact")
-        key_items.append("Deep Stone")
-        key_items.append("Primordial Branch")
-        key_items.append("Druid Soul")
+        key_items.extend([name for name, item in ITEMS.item_data.items()
+                          if item.category == MonsterSanctuaryItemCategory.CATALYST])
 
         for key_item in key_items:
             item_count = ITEMS.item_data[key_item].count
@@ -508,11 +494,13 @@ class MonsterSanctuaryWorld(World):
             "exp_multiplier": self.options.exp_multiplier.value,
             "monsters_always_drop_egg": self.options.monsters_always_drop_egg.value,
             "monster_shift_rule": self.options.monster_shift_rule.value,
+            "eggsanity": self.options.eggsanity.value,
             "skip_plot": self.options.skip_plot.value,
             "remove_locked_doors": self.options.remove_locked_doors.value,
             "add_smoke_bombs": self.options.add_smoke_bombs.value,
             "starting_gold": self.options.starting_gold.value,
             "shops_ignore_rank": self.options.shops_ignore_rank.value,
+            "lock_explore_abilities": self.options.lock_explore_abilities.value,
             "death_link": self.options.death_link.value
         }
 
@@ -553,8 +541,6 @@ class MonsterSanctuaryWorld(World):
         slot_data["locations"]["ranks"] = {}
         for location in self.multiworld.get_locations(self.player):
             region = location.parent_region
-            if region.name.startswith("Menu"):  # Ignore menu locations
-                continue
             if '_' in location.name:  # Ignore monster locations and flags
                 continue
             if location.item.code is None:  # Ignore events

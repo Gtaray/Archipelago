@@ -73,6 +73,11 @@ class MonsterSanctuaryLocation(Location):
 		if data.hint is not None:
 			self._hint_text = data.hint
 
+	def __str__(self):
+		if self.item:
+			return f"{super(MonsterSanctuaryLocation, self).__str__()} [{self.item.name}]"
+		return super(MonsterSanctuaryLocation, self).__str__()
+
 
 # This holds all the location data that is parsed from world.json file
 location_data: Dict[str, LocationData] = {}
@@ -145,6 +150,11 @@ def get_location_name_for_client(name: str) -> Optional[str]:
 		return None
 
 	data = location_data[name]
+
+	# For eggsanity locations, we don't need to do any processing
+	if data.category == MonsterSanctuaryLocationCategory.EGGSANITY:
+		return name
+
 	parts = name.split('_')
 
 	# We reconstruct the location name without the subdivision,
