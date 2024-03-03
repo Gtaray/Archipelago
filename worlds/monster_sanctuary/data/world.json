@@ -740,7 +740,9 @@
       { "region": "KeeperStronghold_CenterStairwell" },
       { "region": "KeeperStronghold_ChampionChallenge" },
       { "region": "KeeperStronghold_DuelCircle", "requirements": [ "keeper_rank_2" ] },
-      { "region": "KeeperStronghold_EndOfTime"}
+      { "region": "KeeperStronghold_EndOfTime", "requirements": [
+        "OR", ["double_jump", "improved_flying", "lofty_mount", "dual_mobility"]
+      ]}
     ]
   },
   {
