@@ -7512,5 +7512,42 @@
         "name": "Bard's Lute"
       }
     ]
+  },
+  {
+    "type": "Trap",
+    "classification": "trap",
+    "items": [
+      {
+        "name": "Monster Stable Fees"
+      },
+      {
+        "name": "Faulty Equipment"
+      },
+      {
+        "name": "Monster Army Conscription"
+      }
+    ]
+  },
+  {
+    "type": "Combat Trap",
+    "classification": "trap",
+    "items": [
+      {
+        "name": "Poison Trap",
+        "groups": ["Combat Trap"]
+      },
+      {
+        "name": "Shock Trap",
+        "groups": ["Combat Trap"]
+      },
+      {
+        "name": "Freeze Trap",
+        "groups": ["Combat Trap"]
+      },
+      {
+        "name": "Ambush!",
+        "groups": ["Combat Trap"]
+      }
+    ]
   }
 ]

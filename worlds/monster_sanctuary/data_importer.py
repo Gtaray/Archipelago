@@ -270,6 +270,10 @@ def parse_item_type(text) -> Optional[MonsterSanctuaryItemCategory]:
         return MonsterSanctuaryItemCategory.COSTUME
     elif text == "Explore Ability":
         return MonsterSanctuaryItemCategory.ABILITY
+    elif text == "Trap":
+        return MonsterSanctuaryItemCategory.TRAP
+    elif text == "Combat Trap":
+        return MonsterSanctuaryItemCategory.COMBATTRAP
 
     return None
 

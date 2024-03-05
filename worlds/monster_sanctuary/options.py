@@ -243,6 +243,18 @@ class GoldDropChance(Range):
     default = 50
 
 
+class TrapDropChance(Range):
+    """Frequency that a random non-progression item is a trap
+
+    The higher this value is compared to the other drop chances, the more frequently it will occur.
+    For example, if this value is twice the value of all other drop chances,
+    then this type of item will occur twice as often as the others. If left at 0, this item type will never drop."""
+    display_name = "Trap Drop Chance"
+    range_start = 0
+    range_end = 100
+    default = 5
+
+
 class ReplaceFillerWithLevelBadges(Range):
     """Replaces a percentage of filler items with Level 42 Badges, to reduce the grind required to reach endgame.
     The value is a percentage range from 0 (no filler items are replaced with level 42 badges) to 100 (all filler items are replaced with level 42 badges)"""
@@ -323,6 +335,7 @@ class MonsterSanctuaryOptions(PerGameCommonOptions):
     drop_chance_weapon: WeaponDropChance
     drop_chance_accessory: AccessoryDropChance
     drop_chance_currency: GoldDropChance
+    drop_chance_trap: TrapDropChance
     replace_filler_with_level_badges: ReplaceFillerWithLevelBadges
     include_chaos_relics: IncludeChaosRelics
     exp_multiplier: ExpMultiplier

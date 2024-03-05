@@ -442,6 +442,9 @@ class MonsterSanctuaryWorld(World):
         if self.options.local_area_keys:
             self.options.local_items.value |= self.item_name_groups["Area Key"]
 
+        # Combat traps should only be placed in other players' worlds.
+        self.options.non_local_items.value |= self.item_name_groups["Combat Trap"]
+
     # called after the previous steps. Some placement and player specific randomizations can be done here.
     def generate_basic(self) -> None:
         self.set_victory_condition()
