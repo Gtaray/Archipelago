@@ -2,7 +2,10 @@ from worlds.monster_sanctuary.tests import MonsterSanctuaryTestBase
 
 
 class TestShopsanityItemPlacement(MonsterSanctuaryTestBase):
+    # Goal is set to 3 because the Mozzie item relies on that check.
+    # There is no other rule in can_item_be_placed that relies on the goal
     options = {
+        "goal": 3,
         "shopsanity": 1
     }
 
@@ -53,6 +56,11 @@ class TestShopsanityItemPlacement(MonsterSanctuaryTestBase):
             "MountainPath_Center3_TreasureHunter_1")
 
         self.assert_item_can_not_be_placed(
+            "Mozzie",
+            "MountainPath_Center3_TreasureHunter_1"
+        )
+
+        self.assert_item_can_not_be_placed(
             "Celestial Feather",
             "MountainPath_Center3_TreasureHunter_1")
 
@@ -67,3 +75,8 @@ class TestShopsanityItemPlacement(MonsterSanctuaryTestBase):
         self.assert_item_can_be_placed(
             "Celestial Feather",
             "MagmaChamber_GoblinTrader_GoblinTrader_1")
+
+        self.assert_item_can_be_placed(
+            "Mozzie",
+            "MagmaChamber_GoblinTrader_GoblinTrader_1"
+        )

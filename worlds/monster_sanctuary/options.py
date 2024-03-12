@@ -3,13 +3,7 @@ from dataclasses import dataclass
 from Options import Toggle, Choice, Range, DeathLink, PerGameCommonOptions
 
 
-# TODO: Other potential options
-# Randomize starting monster (because right not logic doesn't care about starting monster's ability)
-#   Randomize from the original starting 4
-#   Randomize to any monster
-# Randomize keeper's monsters
-
-
+# region Monster Randomization
 class StartingFamiliar(Choice):
     """Choose your starting familiar. An invalid choice will default to Wolf"""
 
@@ -57,8 +51,10 @@ class ImprovedMobilityLimitation(Toggle):
     if disabled, monsters with improved mobility abilities can appear anywhere."""
     display_name = "Limit Improved Mobility Abilities"
     default = True
+# endregion
 
 
+# region Item and Location Pool Modifiers
 class ExploreAbilitiesMustBeUnlocked(Choice):
     """If enabled, explore abilities cannot be used until a corresponding item has been collected.
     The items required to use explore abilities depend on the selected option:
@@ -88,7 +84,7 @@ class Shopsanity(Toggle):
 
 
 class ShopsanityPrices(Choice):
-    """ONLY WORKS IF SHOPSANITY IS ENABLED.
+    """APPLIES ONLY IF SHOPSANITY IS ENABLED.
 
     Modifies the prices that shops sell items for
     Normal: Shop prices are unchanged
@@ -105,6 +101,7 @@ class ShopsIgnoreRank(Toggle):
     """If enabled, all shops will offer their entire stock regardless of keeper rank."""
     display_name = "Shop Ignores Rank Requirements"
     default = False
+
 
 
 class LocalAreaKeys(Toggle):
@@ -131,14 +128,26 @@ class RemoveLockedDoors(Choice):
 
 class AddGiftEggsToPool(Toggle):
     """If enabled, any monsters you receive through gifts will have their eggs added to the item pool and their location will be randomized.
-
     If disabled then gift monsters are received in their normal locations.
+
     If monster randomization is set to shuffle, then the eggs you receive will be included in the shuffle.
     Gift monsters are: Koi, Skorch, Shockhopper, and Bard"""
     display_name = "Add Gift Monster Eggs to Item Pool"
     default = True
 
 
+class IncludeMonsterArmyLocations(Toggle):
+    """If enabled, then all monster army rewards are added checks with the items randomized.
+
+    The final monster army reward is only available with the rank of Keeper Master, and as such is unavailable for the following goals:
+    Defeat Mad Lord
+    Defeat All Champions"""
+    display_name = "Include Monster Army Locations"
+    default = False
+# endregion
+
+
+# region Item Accessibility Options
 class MonstersAlwaysDropEggs(Toggle):
     """If enabled, monsters will always drop an egg."""
     display_name = "Monsters always drop eggs"
@@ -277,6 +286,7 @@ class IncludeChaosRelics(Choice):
     option_some = 2
     option_all = 3
     default = 1
+# endregion
 
 
 class ExpMultiplier(Range):
@@ -303,12 +313,25 @@ class Goal(Choice):
     """Goal to complete.
 
     Defeat Mad Lord: Defeat the Mad Lord
-    Defeat All Champions: Defeat all 27 Champions"""
+    Defeat All Champions: Defeat all 27 Champions
+    Complete Monster Journal: Hatch or evolve all 111 monsters
+    Reunite Mozzie: Collect all pieces of Mozzie's soul and return them to Velvet Melody"""
     display_name = "Goal"
     option_defeat_mad_lord = 0
     option_defeat_all_champions = 1
     option_complete_monster_journal = 2
+    option_reunite_mozzie = 3
     default = 0
+
+
+class MozzieSoulFragments(Range):
+    """Only applies if the goal is to Reunite Mozzie.
+
+    How many pieces of Mozzie's Soul are required to reunite Mozzie and Velvet Melody"""
+    display_name = "Mozzie Soul Fragments"
+    range_start = 3
+    range_end = 15
+    default = 7
 
 
 @dataclass
@@ -318,13 +341,17 @@ class MonsterSanctuaryOptions(PerGameCommonOptions):
     monster_shift_rule: RandomizeMonsterShifts
     improved_mobility_limit: ImprovedMobilityLimitation
     lock_explore_abilities: ExploreAbilitiesMustBeUnlocked
+
     eggsanity: Eggsanity
     shopsanity: Shopsanity
     shopsanity_prices: ShopsanityPrices
     shops_ignore_rank: ShopsIgnoreRank
+    monster_army: IncludeMonsterArmyLocations
+
     remove_locked_doors: RemoveLockedDoors
     local_area_keys: LocalAreaKeys
     add_gift_eggs_to_pool: AddGiftEggsToPool
+
     add_smoke_bombs: StartWithSmokeBombs
     starting_gold: StartingGold
     monsters_always_drop_egg: MonstersAlwaysDropEggs
@@ -338,8 +365,10 @@ class MonsterSanctuaryOptions(PerGameCommonOptions):
     drop_chance_trap: TrapDropChance
     replace_filler_with_level_badges: ReplaceFillerWithLevelBadges
     include_chaos_relics: IncludeChaosRelics
+
     exp_multiplier: ExpMultiplier
     skip_plot: SkipPlot
     hints: AddHints
     goal: Goal
+    mozzie_soul_fragments: MozzieSoulFragments
     death_link: DeathLink

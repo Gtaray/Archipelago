@@ -437,7 +437,18 @@
       {
         "name": "Raw Hide",
         "classification": "progression",
-        "tier": 3
+        "tier": 3,
+        "groups": [
+          "Up to 2"
+        ]
+      },
+      {
+        "name": "2x Raw Hide",
+        "classification": "progression",
+        "tier": 3,
+        "groups": [
+          "Multiple"
+        ]
       },
       {
         "name": "Silk",
@@ -759,18 +770,53 @@
       {
         "name": "Skill Potion",
         "classification": "filler",
-        "tier": 2
-      },
-      {
-        "name": "Level Badge",
-        "classification": "filler",
         "tier": 2,
         "groups": [
           "Up to 2"
         ]
       },
       {
+        "name": "2x Skill Potion",
+        "classification": "filler",
+        "tier": 2,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "name": "Level Badge",
+        "classification": "filler",
+        "tier": 2,
+        "groups": [
+          "Up to 5"
+        ]
+      },
+      {
         "name": "2x Level Badge",
+        "classification": "filler",
+        "tier": 2,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "name": "3x Level Badge",
+        "classification": "filler",
+        "tier": 2,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "name": "4x Level Badge",
+        "classification": "filler",
+        "tier": 2,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "name": "5x Level Badge",
         "classification": "filler",
         "tier": 2,
         "groups": [
@@ -1032,11 +1078,19 @@
         "classification": "filler",
         "tier": 3,
         "groups": [
-          "Up to 2"
+          "Up to 3"
         ]
       },
       {
         "name": "2x Combo Potion",
+        "classification": "filler",
+        "tier": 3,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "name": "3x Combo Potion",
         "classification": "filler",
         "tier": 3,
         "groups": [
@@ -1064,11 +1118,19 @@
         "classification": "filler",
         "tier": 4,
         "groups": [
-          "Up to 2"
+          "Up to 3"
         ]
       },
       {
         "name": "2x Big Potion",
+        "classification": "filler",
+        "tier": 4,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "name": "3x Big Potion",
         "classification": "filler",
         "tier": 4,
         "groups": [
@@ -1184,11 +1246,19 @@
         "classification": "filler",
         "tier": 3,
         "groups": [
-          "Up to 2"
+          "Up to 3"
         ]
       },
       {
         "name": "2x Phoenix Serum",
+        "classification": "filler",
+        "tier": 3,
+        "groups": [
+          "Multiple"
+        ]
+      },
+      {
+        "name": "3x Phoenix Serum",
         "classification": "filler",
         "tier": 3,
         "groups": [

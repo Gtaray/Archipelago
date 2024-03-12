@@ -659,6 +659,76 @@
     ],
     "gifts": [
       {"id": 2300075, "item": "Alchemist", "requirements": ["post_game"]}
+    ],
+    "army": [
+      { "id": 0, "items": [ "3x Phoenix Tear" ],
+        "requirements": [] },
+      { "id": 1, "items": [ "Green Gem", "Red Gem", "Blue Gem" ],
+        "requirements": [] },
+      { "id": 2, "items": [ "2x Level Badge" ],
+        "requirements": [] },
+      { "id": 3, "items": [ "3x Reward Box Lvl 1" ],
+        "requirements": ["keeper_rank_1"] },
+      { "id": 4, "items": [ "Corn", "Pear", "Hazelnut", "Grapes" ],
+        "requirements": ["keeper_rank_1"] },
+      { "id": 5, "items": [ "Fang+2" ],
+        "requirements": [ "keeper_rank_1" ] },
+      { "id": 6, "items": [ "2x Level Badge" ],
+        "requirements": [ "keeper_rank_1" ] },
+      { "id": 7, "items": [ "2x Bronze" ],
+        "requirements": [ "keeper_rank_2" ] },
+      { "id": 8, "items": [ "Skill Potion" ],
+        "requirements": [ "keeper_rank_2" ] },
+      { "id": 9, "items": [ "3x Combo Potion" ],
+        "requirements": [ "keeper_rank_2" ] },
+      { "id": 10, "items": [ "2x Mass Potion" ],
+        "requirements": [ "keeper_rank_2" ] },
+      { "id": 11, "items": [ "Crimson Gem", "Azure Gem", "Verdant Gem" ],
+        "requirements": [ "keeper_rank_3" ] },
+      { "id": 12, "items": [ "Skill Potion" ],
+        "requirements": [ "keeper_rank_3" ] },
+      { "id": 13, "items": [ "2x Monster Bell", "2x Crystal Shard", "2x Smoke Bomb" ],
+        "requirements": [ "keeper_rank_3" ] },
+      { "id": 14, "items": [ "Switch Stone" ],
+        "requirements": [ "keeper_rank_3" ] },
+      { "id": 15, "items": [ "Shift Stone" ],
+        "requirements": [  "keeper_rank_4" ] },
+      { "id": 16, "items": [ "3x Big Potion" ],
+        "requirements": [  "keeper_rank_4" ] },
+      { "id": 17, "items": [ "Hide+4" ],
+        "requirements": [  "keeper_rank_4" ] },
+      { "id": 18, "items": [ "2x Skill Potion" ],
+        "requirements": [ "keeper_rank_4" ] },
+      { "id": 19, "items": [ "3x Reward Box Lvl 2" ],
+        "requirements": [ "keeper_rank_5" ] },
+      { "id": 20, "items": [ "2x Silver", "2x Raw Hide", "2x Steel", "2x Silk" ],
+        "requirements": [ "keeper_rank_5" ] },
+      { "id": 21, "items": [ "Switch Stone", "Shift Stone" ],
+        "requirements": [ "keeper_rank_5" ] },
+      { "id": 22, "items": [ "3x Phoenix Serum" ],
+        "requirements": [ "keeper_rank_5" ] },
+      { "id": 23, "items": [ "2x Skill Resetter", "2x Monster Bell", "2x Smoke Bomb", "2x Crystal Shard" ],
+        "requirements": [ "keeper_rank_6" ] },
+      { "id": 24, "items": [ "3x Reward Box Lvl 3" ],
+        "requirements": [ "keeper_rank_6" ] },
+      { "id": 25, "items": [ "3x Craft Box" ],
+        "requirements": [ "keeper_rank_6" ] },
+      { "id": 26, "items": [ "Raspberry", "Peanut", "Orange", "Banana" ],
+        "requirements": [ "keeper_rank_6" ] },
+      { "id": 27, "items": [ "2x Mega Potion", "2x Mass Antidote" ],
+        "requirements": [ "keeper_rank_7" ] },
+      { "id": 28, "items": [ "2x Skill Potion" ],
+        "requirements": [ "keeper_rank_7" ] },
+      { "id": 29, "items": [ "5x Level Badge" ],
+        "requirements": [ "keeper_rank_7" ] },
+      { "id": 30, "items": [ "Shift Stone", "Switch Stone", "Clear Stone" ],
+        "requirements": [ "keeper_rank_7" ] },
+      { "id": 31, "items": [ "Craft Box", "Reward Box Lvl 1", "Reward Box Lvl 2" ],
+        "requirements": [ "keeper_rank_8" ] },
+      { "id": 32, "items": [ "Craft Box", "Reward Box Lvl 1", "Reward Box Lvl 2" ],
+        "requirements": [ "keeper_rank_8" ] },
+      { "id": 33, "items": [ "Reward Box Lvl 3", "Reward Box Lvl 4", "Reward Box Lvl 5" ],
+        "requirements": [ "keeper_rank_9" ] }
     ]
   },
   {
@@ -6126,38 +6196,26 @@
       {"region": "MagmaChamber_Champion2"}
     ],
     "gifts": [
-      {"id": 43900165, "item": "Magma Chamber key", "requirements": [
-        "OR", ["double_jump", "improved_flying", "dual_mobility"]
-      ]},
+      {"id": 43900165, "item": "Magma Chamber key", "requirements": [ "velvet_melody_access" ]},
       {"id": 43900176, "item": "Gold", "requirements": [
-        "AND", [
-          "mozzie",
-          "OR", ["double_jump", "improved_flying", "dual_mobility"]
-        ]
+        "AND", [ "mozzie", "velvet_melody_access" ]
       ]},
       {"id": 43900178, "item": "Linen", "requirements": [
-        "AND", [
-          "mozzie",
-          "OR", ["double_jump", "improved_flying", "dual_mobility"]
-        ]
+        "AND", [ "mozzie", "velvet_melody_access" ]
       ]},
       {"id": 43900179, "item": "Emerald", "requirements": [
-        "AND", [
-          "mozzie",
-          "OR", ["double_jump", "improved_flying", "dual_mobility"]
-        ]
+        "AND", [ "mozzie", "velvet_melody_access" ]
       ]},
       {"id": 43900180, "item": "Ruby", "requirements": [
-        "AND", [
-          "mozzie",
-          "OR", ["double_jump", "improved_flying", "dual_mobility"]
-        ]
+        "AND", [ "mozzie", "velvet_melody_access" ]
       ]},
       {"id": 43900181, "item": "Sapphire", "requirements": [
-        "AND", [
-          "mozzie",
-          "OR", ["double_jump", "improved_flying", "dual_mobility"]
-        ]
+        "AND", [ "mozzie", "velvet_melody_access" ]
+      ]}
+    ],
+    "flags": [
+      { "id": "velvet_melody_access", "name": "Velvet Melody Access", "requirements": [
+        "OR", ["double_jump", "improved_flying", "dual_mobility"]
       ]}
     ]
   },
@@ -6284,7 +6342,7 @@
       {"id": 3, "item": "1000 G"}
     ],
     "flags": [
-      {"id": "underworld_east_catacomb_7_access", "name": "Underworld East Catacomb 7 Access"}
+      { "id": "underworld_east_catacomb_7_access", "name": "Underworld East Catacomb 7 Access" }
     ]
   },
   {

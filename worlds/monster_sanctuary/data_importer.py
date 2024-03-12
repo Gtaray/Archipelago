@@ -80,6 +80,20 @@ def load_world() -> None:
                 locations_by_id[location_id] = location
                 location_id += 1
 
+            for army_data in region_data.get("army") or []:
+                # Hack because we store comments as strings
+                if isinstance(eggsanity_data, str):
+                    continue
+
+                reward_index = 0
+                for reward in army_data.get("items"):
+                    logical_name = f"army_{army_data['id']}_{reward_index}"
+                    display_name = location_names[logical_name]
+                    location = add_army_reward_location(location_id, logical_name, display_name, region_name, army_data, reward)
+                    locations_by_id[location_id] = location
+                    location_id += 1
+                    reward_index += 1
+
             for encounter_data in region_data.get("encounters") or []:
                 # Hack because we store comments as strings
                 if isinstance(encounter_data, str):
@@ -113,13 +127,6 @@ def load_world() -> None:
                 location_id = add_shop_locations(shop_data, locations_by_id, location_id, region_name)
 
             REGIONS.region_data[region.name] = region
-
-    # Go through the postgame.json file and mark every location name in that file
-    # as a post-game location
-    with files(data).joinpath("postgame.json").open() as file:
-        json_data = json.load(file)
-        for location_name in json_data:
-            LOCATIONS.set_postgame_location(location_name)
 
 
 def load_plotless() -> None:
@@ -362,6 +369,20 @@ def add_shop_locations(shop_data, locations_by_id, location_id, region_name):
         location_id += 1
 
     return location_id
+
+
+def add_army_reward_location(location_id, logical_name, display_name, region_name, army_data, reward):
+    location = LocationData(
+        location_id=location_id,
+        name=display_name,
+        region=region_name,
+        category=MonsterSanctuaryLocationCategory.ARMY,
+        default_item=reward,
+        access_condition=AccessCondition(army_data.get("requirements"))
+    )
+
+    LOCATIONS.add_location(logical_name, location)
+    return location
 
 
 def add_rank_location(location_id, display_name, champion_data, region_name) -> LocationData:

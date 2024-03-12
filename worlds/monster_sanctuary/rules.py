@@ -51,7 +51,7 @@ class AccessCondition:
             requirements = requirements[1]
 
         # go through the list of requirements
-        # We use a while loop here because the for loop will ignore the manually adjustments
+        # We use a while loop here because the for loop will ignore the manual adjustments
         # that are made to i inside the loop, which will result in excessive operands when
         # reqs are nested
         i = 0
@@ -283,6 +283,10 @@ def magma_chamber_south_shortcut(state: CollectionState, player: int) -> bool:
 
 def magma_chamber_lower_lava(state: CollectionState, player: int) -> bool:
     return state.has("Magma Chamber Lowered Lava", player)
+
+
+def velvet_melody_access(state: CollectionState, player: int) -> bool:
+    return state.has("Velvet Melody Access", player)
 
 
 def first_bex_encounter(state: CollectionState, player: int) -> bool:

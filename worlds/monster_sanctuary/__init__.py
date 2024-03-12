@@ -108,13 +108,38 @@ class MonsterSanctuaryWorld(World):
         for location_name in LOCATIONS.location_data:
             location_data = LOCATIONS.location_data[location_name]
 
-            # if the goal is to defeat the mad lord, then
-            # we do not add any post-game locations
-            if self.options.goal == "defeat_mad_lord" and location_data.postgame:
+            # if the goal is to defeat the mad lord, then we do not add any post-game locations
+            if self.options.goal == "defeat_mad_lord" and location_data.name in LOCATIONS.postgame_locations:
+                continue
+
+            # if the goal is to defeat the mad lord or defeat all champions, then we do not add any
+            # locations that require a rank of keeper master
+            if ((self.options.goal == "defeat_mad_lord" or self.options.goal == "defeat_all_champions")
+                    and location_data.name in LOCATIONS.keeper_master_locations):
+                continue
+
+            # If the goal is to reunite mozzie, then we don't include velvet melody locations in the pool
+            if self.options.goal == "reunite_mozzie" and location_data.name in LOCATIONS.velvet_melody_locations:
                 continue
 
             # Unless eggsanity is enabled, don't add eggsanity locations
             if not self.options.eggsanity and location_data.category == MonsterSanctuaryLocationCategory.EGGSANITY:
+                continue
+
+            # Unless monster army is enabled, do not add monster army locations
+            if not self.options.monster_army and location_data.category == MonsterSanctuaryLocationCategory.ARMY:
+                continue
+
+            # Unless shopsanity is enabled, do not add shop locations
+            if not self.options.shopsanity and location_data.category == MonsterSanctuaryLocationCategory.SHOP:
+                continue
+
+            # If the shop check requires keeper rank 9, and shops_ignore_rank is not enabled,
+            # and the goal doesn't allow for keeper rank 9, then we skip this location
+            if (self.options.shopsanity
+                    and not self.options.shops_ignore_rank
+                    and location_data.name in LOCATIONS.shopsanity_keeper_master_locations
+                    and (self.options.goal == "defeat_mad_lord" or self.options.goal == "defeat_all_champions")):
                 continue
 
             # First we check if we should be ignoring these locations based on rando options
@@ -124,10 +149,6 @@ class MonsterSanctuaryWorld(World):
                 "Snowy Peaks - Cryomancer - Light Egg Reward",
                 "Snowy Peaks - Cryomancer - Dark Egg Reward"
             ]:
-                continue
-
-            # Unless shopsanity is enabled, do not add shop locations
-            if not self.options.shopsanity and location_data.category == MonsterSanctuaryLocationCategory.SHOP:
                 continue
 
             # Do not add a location for the player's own familiar in eternity's end
@@ -150,6 +171,11 @@ class MonsterSanctuaryWorld(World):
             access_condition = location_data.access_condition or None
             if self.options.skip_plot and plotless_rules is not None:
                 access_condition = plotless_rules.access_rules
+
+            # Here we check if shops should ignore rank requirements
+            # We have to call out this specifically in order to null out the access_condition
+            if location_data.category == MonsterSanctuaryLocationCategory.SHOP and self.options.shops_ignore_rank:
+                access_condition = None
 
             location = MonsterSanctuaryLocation(
                 self.player,
@@ -210,6 +236,15 @@ class MonsterSanctuaryWorld(World):
         elif self.options.goal == "complete_monster_journal":
             self.multiworld.completion_condition[self.player] = lambda state: (
                 RULES.has_all_monsters(state, self.player)
+            )
+
+        elif self.options.goal == "reunite_mozzie":
+            self.multiworld.completion_condition[self.player] = lambda state: (
+                state.has("Mozzie", self.player, self.options.mozzie_soul_fragments)
+                and RULES.velvet_melody_access(state, self.player)
+                # This requirement is only here as an artificial gate for having a
+                # high enough level team to defeat Velvet Melody
+                and RULES.keeper_rank_6(state, self.player)
             )
 
     def place_ranks(self) -> None:
@@ -394,6 +429,11 @@ class MonsterSanctuaryWorld(World):
         key_items.extend([name for name, item in ITEMS.item_data.items()
                           if item.category == MonsterSanctuaryItemCategory.CATALYST])
 
+        if self.options.goal == "reunite_mozzie":
+            # -1 because one mozzie is added from key items list
+            for i in range(self.options.mozzie_soul_fragments.value - 1):
+                key_items.append("Mozzie")
+
         for key_item in key_items:
             item_count = ITEMS.item_data[key_item].count
             is_key = ITEMS.is_item_in_group(key_item, "Area Key")
@@ -507,6 +547,9 @@ class MonsterSanctuaryWorld(World):
             "death_link": self.options.death_link.value
         }
 
+        if self.options.goal == "reunite_mozzie":
+            slot_data["options"]["mozzie_soul_fragments"] = self.options.mozzie_soul_fragments.value
+
         # Monster reandos
         tanuki_location = self.multiworld.get_location("Menu_1_0", self.player)
         slot_data["monsters"] = {
@@ -533,10 +576,9 @@ class MonsterSanctuaryWorld(World):
             if encounter.champion:
                 # Monster is either the first and only mon, or the second mon
                 monster = encounter.monsters[0]
-                i = 0
                 if len(encounter.monsters) > 1:
                     monster = encounter.monsters[1]
-                    i = 1
+
                 # We only need the scene name to be able to map champions
                 slot_data["monsters"]["champions"][f"{parts[0]}_{parts[1]}"] = monster.name
 

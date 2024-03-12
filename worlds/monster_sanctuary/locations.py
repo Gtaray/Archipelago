@@ -10,6 +10,7 @@ class MonsterSanctuaryLocationCategory(IntEnum):
 	GIFT = 1  # Gifts from NPCs
 	SHOP = 2  # Items in an NPC shop
 	EGGSANITY = 3  # Eggsanity locations
+	ARMY = 4  # Monster Army reward locations
 	RANK = 5  # Used to track keeper rank gained from battling champions
 
 
@@ -23,7 +24,6 @@ class LocationData:
 	object_id: Optional[int]
 	monster_id: Optional[int]  # 0, 1, or 2. Index of a monster in an encounter
 	event: bool
-	postgame: bool = False
 	hint: Optional[str]
 	shop_is_limited: bool = False
 	logical_name: str = ""
@@ -109,6 +109,32 @@ eternitys_end_locations = {
 	]
 }
 
+shopsanity_keeper_master_locations = [
+	"Consumable Merchant - Mega Potion",
+	"Consumable Merchant - Phoenix Serum",
+	"Food Merchant - Cookie Mushroom"
+]
+keeper_master_locations = [
+	"Keeper Stronghold - Parents - Keeper Master Gift 1",
+	"Keeper Stronghold - Parents - Keeper Master Gift 2",
+	"Monster Army - 100000 Strength - Keeper Master (1)",
+	"Monster Army - 100000 Strength - Keeper Master (2)",
+	"Monster Army - 100000 Strength - Keeper Master (3)"
+]
+postgame_locations = [
+	"Keeper Stronghold - Post Game - Alchemist Costume Gift",
+	"Stronghold Dungeon - Trevisan 1",
+	"Stronghold Dungeon - Trevisan 2",
+]
+velvet_melody_locations = [
+	"Magma Chamber - Legendary Keeper Room",
+	"Magma Chamber - Legendary Keeper Room - Mozzie Reward 1",
+	"Magma Chamber - Legendary Keeper Room - Mozzie Reward 2",
+	"Magma Chamber - Legendary Keeper Room - Mozzie Reward 3",
+	"Magma Chamber - Legendary Keeper Room - Mozzie Reward 4",
+	"Magma Chamber - Legendary Keeper Room - Mozzie Reward 5",
+]
+
 
 def add_location(key: str, location: LocationData) -> None:
 	if location_data.get(location.name) is not None:
@@ -119,13 +145,6 @@ def add_location(key: str, location: LocationData) -> None:
 
 def clear_data():
 	location_data.clear()
-
-
-def set_postgame_location(location_name: str, is_postgame: bool = True):
-	if location_data.get(location_name) is None:
-		raise KeyError("f{location_name} does not exist")
-
-	location_data[location_name].postgame = is_postgame
 
 
 def is_location_type(location: str, *types: MonsterSanctuaryLocationCategory) -> bool:

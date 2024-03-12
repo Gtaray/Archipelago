@@ -26,24 +26,84 @@
     ]
   },
   {
+    "item": "Blue Cave key",
+    "locations": [
+      "Rhazes - Skill Potion",
+      "Goblin Trader - ",
+      "Monster Army - 90000 Strength",
+      "Monster Army - 100000 Strength"
+    ]
+  },
+  {
+    "item": "Stronghold Dungeon key",
+    "locations": [
+      "Rhazes - Skill Potion",
+      "Goblin Trader - ",
+      "Monster Army - 90000 Strength",
+      "Monster Army - 100000 Strength"
+    ]
+  },
+  {
+    "item": "Ancient Woods key",
+    "locations": [
+      "Rhazes - Skill Potion",
+      "Goblin Trader - ",
+      "Monster Army - 90000 Strength",
+      "Monster Army - 100000 Strength"
+    ]
+  },
+  {
+    "item": "Magma Chamber key",
+    "locations": [
+      "Rhazes - Skill Potion",
+      "Goblin Trader - ",
+      "Monster Army - 90000 Strength",
+      "Monster Army - 100000 Strength"
+    ]
+  },
+  {
+    "item": "Mystical Workshop key",
+    "locations": [
+      "Rhazes - Skill Potion",
+      "Goblin Trader - ",
+      "Monster Army - 90000 Strength",
+      "Monster Army - 100000 Strength"
+    ]
+  },
+  {
     "item": "Sanctuary Token",
     "locations": [
       "Rhazes - Skill Potion",
-      "Goblin Trader - "
+      "Goblin Trader - ",
+      "Monster Army - 90000 Strength",
+      "Monster Army - 100000 Strength"
     ]
   },
   {
     "item": "Celestial Feather",
     "locations": [
       "Rhazes - Skill Potion",
-      "Goblin Trader - "
+      "Goblin Trader - ",
+      "Monster Army - 90000 Strength",
+      "Monster Army - 100000 Strength"
     ]
   },
   {
     "item": "Rare Seashell",
     "locations": [
       "Rhazes - Skill Potion",
-      "Goblin Trader - "
+      "Goblin Trader - ",
+      "Monster Army - 90000 Strength",
+      "Monster Army - 100000 Strength"
+    ]
+  },
+  {
+    "item": "Mozzie",
+    "locations": [
+      "Rhazes - Skill Potion",
+      "Goblin Trader - ",
+      "Monster Army - 90000 Strength",
+      "Monster Army - 100000 Strength"
     ]
   }
 ]

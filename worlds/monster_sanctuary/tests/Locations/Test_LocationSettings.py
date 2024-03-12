@@ -28,38 +28,6 @@ class TestCryomancer_WithShifts(MonsterSanctuaryTestBase):
             self.assertIn("Snowy Peaks - Cryomancer - Dark Egg Reward", self.multiworld.regions.location_cache[self.player])
 
 
-class TestPostGame_Off(MonsterSanctuaryTestBase):
-    options = {
-        "goal": 0
-    }
-
-    def test_post_game_locations_do_not_exist(self):
-        with self.subTest("Parents penultimate reward doesn't exist"):
-            self.assertNotIn("Keeper Stronghold - Parents - Keeper Master Gift 1", self.multiworld.regions.location_cache[self.player])
-        with self.subTest("Parents final reward doesn't exist"):
-            self.assertNotIn("Keeper Stronghold - Parents - Keeper Master Gift 2", self.multiworld.regions.location_cache[self.player])
-        with self.subTest("Trevisan 1 doesn't doesn't exist"):
-            self.assertNotIn("Stronghold Dungeon - Trevisan 1", self.multiworld.regions.location_cache[self.player])
-        with self.subTest("Trevisan 2 doesn't doesn't exist"):
-            self.assertNotIn("Stronghold Dungeon - Trevisan 2", self.multiworld.regions.location_cache[self.player])
-
-
-class TestPostGame_On(MonsterSanctuaryTestBase):
-    options = {
-        "goal": 1
-    }
-
-    def test_post_game_locations_exist(self):
-        with self.subTest("Parents penultimate reward exists"):
-            self.assertIn("Keeper Stronghold - Parents - Keeper Master Gift 1", self.multiworld.regions.location_cache[self.player])
-        with self.subTest("Parents final reward exists"):
-            self.assertIn("Keeper Stronghold - Parents - Keeper Master Gift 2", self.multiworld.regions.location_cache[self.player])
-        with self.subTest("Trevisan 1 doesn't exist"):
-            self.assertIn("Stronghold Dungeon - Trevisan 1", self.multiworld.regions.location_cache[self.player])
-        with self.subTest("Trevisan 2 doesn't exist"):
-            self.assertIn("Stronghold Dungeon - Trevisan 2", self.multiworld.regions.location_cache[self.player])
-
-
 shops = [
     "Treasure Hunter - Small Potion",
     "Treasure Hunter - Phoenix Tear",
@@ -165,7 +133,8 @@ class TestShopsanityLocationsDisabled(MonsterSanctuaryTestBase):
 
 class TestShopsanityLocationsEnabled(MonsterSanctuaryTestBase):
     options = {
-        "shopsanity": 1
+        "shopsanity": 1,
+        "shops_ignore_rank": 1
     }
 
     def test_shopsanity_locations_are_added(self):

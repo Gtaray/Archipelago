@@ -105,6 +105,7 @@ def can_item_be_placed(world: World, item: Item, location: LOCATIONS.MonsterSanc
 
         # These items can only be placed in shops that have limited quantity
         if (is_item_in_group(item.name, "Area Key")
+                or (item.name == "Mozzie" and world.options.goal == "reunite_mozzie")
                 or is_item_type(item.name, MonsterSanctuaryItemCategory.EGG)
                 or is_item_type(item.name, MonsterSanctuaryItemCategory.COSTUME)
                 or item.name in ["Sanctuary Token", "Rare Seashell", "Celestial Feather"]):
@@ -304,8 +305,17 @@ def roll_random_item_quantity(world: World, base_item: ItemData) -> str:
         if roll >= 10:
             name_prepend = "4x"
         elif roll >= 8:
-            name_prepend = "2x"
+            name_prepend = "3x"
         elif roll >= 5:
+            name_prepend = "2x"
+    elif "Up to 5" in base_item.groups:
+        if roll >= 10:
+            name_prepend = "5x"
+        elif roll >= 9:
+            name_prepend = "4x"
+        elif roll >= 8:
+            name_prepend = "3x"
+        elif roll >= 6:
             name_prepend = "2x"
 
     if name_prepend is not None:
