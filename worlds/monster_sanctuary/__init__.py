@@ -531,35 +531,37 @@ class MonsterSanctuaryWorld(World):
 
         # Rando options
         slot_data["options"] = {
-            "starting_familiar": self.options.starting_familiar.value,
             "goal": self.options.goal.value,
-            "include_chaos_relics": self.options.include_chaos_relics.value,
+            "death_link": self.options.death_link.value,
+            "skip_plot": self.options.skip_plot.value,
+            "eggsanity": self.options.eggsanity.value,
+            "monster_army": self.options.monster_army.value,
+            "starting_familiar": self.options.starting_familiar.value,
             "exp_multiplier": self.options.exp_multiplier.value,
             "monsters_always_drop_egg": self.options.monsters_always_drop_egg.value,
             "monster_shift_rule": self.options.monster_shift_rule.value,
-            "eggsanity": self.options.eggsanity.value,
-            "skip_plot": self.options.skip_plot.value,
             "remove_locked_doors": self.options.remove_locked_doors.value,
             "add_smoke_bombs": self.options.add_smoke_bombs.value,
             "starting_gold": self.options.starting_gold.value,
             "shops_ignore_rank": self.options.shops_ignore_rank.value,
             "lock_explore_abilities": self.options.lock_explore_abilities.value,
-            "death_link": self.options.death_link.value
+            "include_chaos_relics": self.options.include_chaos_relics.value,
         }
 
         if self.options.goal == "reunite_mozzie":
             slot_data["options"]["mozzie_soul_fragments"] = self.options.mozzie_soul_fragments.value
 
-        # Monster reandos
         tanuki_location = self.multiworld.get_location("Menu_1_0", self.player)
         slot_data["monsters"] = {
             "tanuki": tanuki_location.item.name,
         }
 
-        # If we're shuffling monsters, then we want to show what Bex and the Caretaker's monsters are
-        # so the player knows if they are needed for progression
+        # If we're shuffling monsters, we want the client to know what we shuffled to
         if self.options.randomize_monsters == "by_specie":
             slot_data["monsters"]["bex_monster"] = self.species_swap["Skorch"].name
+            # slot_data["monsters"]["species_swap"] = {}
+            # for original_monster, new_monster in self.species_swap.items():
+            #     slot_data["monsters"]["species_swap"][original_monster] = new_monster.name
 
         slot_data["monsters"]["monster_locations"] = {}
         slot_data["monsters"]["champions"] = {}

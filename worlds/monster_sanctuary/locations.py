@@ -117,9 +117,9 @@ shopsanity_keeper_master_locations = [
 keeper_master_locations = [
 	"Keeper Stronghold - Parents - Keeper Master Gift 1",
 	"Keeper Stronghold - Parents - Keeper Master Gift 2",
-	"Monster Army - 100000 Strength - Keeper Master (1)",
-	"Monster Army - 100000 Strength - Keeper Master (2)",
-	"Monster Army - 100000 Strength - Keeper Master (3)"
+	"Monster Army - 100000 Strength (1)",
+	"Monster Army - 100000 Strength (2)",
+	"Monster Army - 100000 Strength (3)"
 ]
 postgame_locations = [
 	"Keeper Stronghold - Post Game - Alchemist Costume Gift",
@@ -172,6 +172,10 @@ def get_location_name_for_client(name: str) -> Optional[str]:
 
 	# For eggsanity locations, we don't need to do any processing
 	if data.category == MonsterSanctuaryLocationCategory.EGGSANITY:
+		return name
+
+	# For monster army locations, we don't need to do any processing
+	if data.category == MonsterSanctuaryLocationCategory.ARMY:
 		return name
 
 	parts = name.split('_')

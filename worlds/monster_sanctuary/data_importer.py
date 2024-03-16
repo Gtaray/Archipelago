@@ -87,7 +87,7 @@ def load_world() -> None:
 
                 reward_index = 0
                 for reward in army_data.get("items"):
-                    logical_name = f"army_{army_data['id']}_{reward_index}"
+                    logical_name = f"KeeperStronghold_MonsterArmy_{army_data['id']}_{reward_index}"
                     display_name = location_names[logical_name]
                     location = add_army_reward_location(location_id, logical_name, display_name, region_name, army_data, reward)
                     locations_by_id[location_id] = location
