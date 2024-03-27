@@ -12,6 +12,18 @@
     "requirements": []
   },
   {
+    "region": "KeeperStronghold_EastStairwell",
+    "type": "connection",
+    "connection": "StrongholdDungeon_Entrance",
+    "requirements": []
+  },
+  {
+    "region": "KeeperStronghold_KeepersTowers",
+    "type": "connection",
+    "connection": "KeeperStronghold_DuelCircle",
+    "requirements": []
+  },
+  {
     "region": "BlueCave_South5",
     "type": "connection",
     "connection": "Underworld_Entrance",

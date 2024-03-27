@@ -155,7 +155,7 @@ def randomize_monsters(world: World) -> None:
     if world.options.randomize_monsters == "off":
         return
 
-    random = world.multiworld.random
+    random = world.random
     encounters_to_randomize = [encounter for name, encounter in world.encounters.items()]
     available_monsters = get_monsters()
 
@@ -249,7 +249,7 @@ def shuffle_species(world: World):
         return
 
     world.species_swap = {}
-    random = world.multiworld.random
+    random = world.random
     available_monsters = get_monsters()
 
     # These monsters should never be shuffled
@@ -317,7 +317,7 @@ def shuffle_species(world: World):
 
 def replace_monsters_in_encounter(world: World, encounter: EncounterData, available_monsters: List[MonsterData],
                                   forced_monster: Optional[MonsterData] = None):
-    random = world.multiworld.random
+    random = world.random
     new_monsters = []
 
     if world.options.randomize_monsters == "any":
@@ -339,7 +339,7 @@ def replace_monsters_in_encounter(world: World, encounter: EncounterData, availa
             available_monsters.remove(mon)
 
         # Finally, shuffle the monsters for good measure
-        world.multiworld.random.shuffle(new_monsters)
+        world.random.shuffle(new_monsters)
 
     elif world.options.randomize_monsters == "by_specie":
         # We've already shuffled species around, so all we do is build the list of new monsters based on that.

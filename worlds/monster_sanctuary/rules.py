@@ -240,7 +240,6 @@ def shifting_avialable(state: CollectionState, player: int) -> bool:
                 state.has("Sun Palace Raise Center", player, 3)
             ))
 
-
 def ancient_woods_east_shortcut(state: CollectionState, player: int) -> bool:
     return state.has("Ancient Woods East Shortcut", player, 1)
 
@@ -251,6 +250,10 @@ def ancient_woods_beach_access(state: CollectionState, player: int) -> bool:
 
 def ancient_woods_magma_chamber_shortcut(state: CollectionState, player: int) -> bool:
     return state.has("Ancient Woods to Magma Chamber Shortcut", player, 2)
+
+
+def ancient_woods_brutus_access(state: CollectionState, player: int) -> bool:
+    return state.has("Ancient Woods Brutus Access", player)
 
 
 def goblin_king_defeated(state: CollectionState, player: int) -> bool:
@@ -289,6 +292,10 @@ def magma_chamber_lower_lava(state: CollectionState, player: int) -> bool:
     return state.has("Magma Chamber Lowered Lava", player)
 
 
+def magma_chamber_forgotten_world_access(state: CollectionState, player: int) -> bool:
+    return state.has("Magma Chamber Forgotten World Access", player)
+
+
 def first_bex_encounter(state: CollectionState, player: int) -> bool:
     return state.has("Bex", player)
 
@@ -303,6 +310,10 @@ def third_bex_encounter(state: CollectionState, player: int) -> bool:
 
 def fourth_bex_encounter(state: CollectionState, player: int) -> bool:
     return state.has("Bex", player, 4)
+
+
+def forgotten_world_wanderer_freed(state: CollectionState, player: int) -> bool:
+    return state.has("Forgotten World Wanderer Freed", player)
 
 
 def forgotten_world_to_horizon_beach_shortcut(state: CollectionState, player: int) -> bool:

@@ -31,14 +31,22 @@ class ForgottenWorldTests(TestArea):
 
     def test_world_tree_progression(self):
         self.assertNotAccessible("ForgottenWorld_WorldTree", "ForgottenWorld_WorldTree_46100009", [])
-        self.assertAccessible("ForgottenWorld_WorldTree", "ForgottenWorld_WorldTree_46100009",
+        self.assertNotAccessible("ForgottenWorld_WorldTree", "ForgottenWorld_WorldTree_46100009",
+                                 ["Forgotten World Wanderer Freed"])
+        self.assertNotAccessible("ForgottenWorld_WorldTree", "ForgottenWorld_WorldTree_46100009",
                               ["Forgotten World Dracomer Defeated"])
+        self.assertAccessible("ForgottenWorld_WorldTree", "ForgottenWorld_WorldTree_46100009",
+                                 ["Forgotten World Wanderer Freed", "Forgotten World Dracomer Defeated"])
 
     def test_wanderer_progression(self):
-        self.assertNotAccessible("ForgottenWorld_WandererRoom", "ForgottenWorld_WandererRoom_45100110", [])
-        self.assertNotAccessible("ForgottenWorld_WandererRoom", "ForgottenWorld_WandererRoom_45100110",
+        self.assertNotAccessible("ForgottenWorld_WandererRoom", "forgotten_world_wanderer_freed",[])
+        self.assertNotAccessible("ForgottenWorld_WandererRoom", "forgotten_world_wanderer_freed",
                                  ["Celestial Feather"])
-        self.assertNotAccessible("ForgottenWorld_WandererRoom", "ForgottenWorld_WandererRoom_45100110",
+        self.assertNotAccessible("ForgottenWorld_WandererRoom", "forgotten_world_wanderer_freed",
                                  ["Celestial Feather", "Celestial Feather"])
-        self.assertAccessible("ForgottenWorld_WandererRoom", "ForgottenWorld_WandererRoom_45100110",
+        self.assertAccessible("ForgottenWorld_WandererRoom", "forgotten_world_wanderer_freed",
                               ["Celestial Feather", "Celestial Feather", "Celestial Feather"])
+
+        self.assertNotAccessible("ForgottenWorld_WandererRoom", "ForgottenWorld_WandererRoom_45100110", [])
+        self.assertAccessible("ForgottenWorld_WandererRoom", "ForgottenWorld_WandererRoom_45100110",
+                              ["Forgotten World Wanderer Freed"])

@@ -35,6 +35,29 @@ class AncientWoodsTests(TestArea):
         self.assertNotAccessible("AncientWoods_East1", "ancient_woods_east_shortcut", [])
         self.assertAccessible("AncientWoods_East1", "ancient_woods_east_shortcut", ["Ancient Woods East Shortcut"])
 
+    def test_dark_rooms(self):
+        self.assertNotAccessible("AncientWoods_WestDescent_Middle", "AncientWoods_SouthHidden1_West_3",
+                                 [])
+        self.assertNotAccessible("AncientWoods_WestDescent_Middle", "AncientWoods_SouthHidden1_West_3",
+                                 ["Yowie"])
+        self.assertAccessible("AncientWoods_WestDescent_Middle", "AncientWoods_SouthHidden1_West_3",
+                              ["Yowie", "Glowfly", "Double Jump Boots", "Silvaero"])
+
+    def test_backwards_brutus_access(self):
+        self.assertNotAccessible("AncientWoods_SouthHidden4", "AncientWoods_South4_1", [])
+        self.assertNotAccessible("AncientWoods_SouthHidden4", "AncientWoods_South4_1", ["Yowie"])
+        self.assertNotAccessible("AncientWoods_SouthHidden4", "AncientWoods_South4_1",
+                              ["Ancient Woods Brutus Access"])
+        self.assertAccessible("AncientWoods_SouthHidden4", "AncientWoods_South4_1",
+                              ["Double Jump Boots", "Nightwing", "Ancient Woods Brutus Access"])
+
+        self.assertNotAccessible("AncientWoods_South4", "ancient_woods_brutus_access", [])
+        self.assertAccessible("AncientWoods_South4", "ancient_woods_brutus_access", ["Yowie"])
+
+        self.assertNotAccessible("AncientWoods_South4", "AncientWoods_SouthHidden4_1_0", [])
+        self.assertAccessible("AncientWoods_South4", "AncientWoods_SouthHidden4_1_0",
+                              ["Ancient Woods Brutus Access"])
+
     def test_magma_chamber_shortcut(self):
         self.assertNotAccessible("AncientWoods_South1_Lower", "ancient_woods_magma_chamber_2", [])
         self.assertNotAccessible("AncientWoods_South1_Lower", "ancient_woods_magma_chamber_2", ["Ancient Woods to Magma Chamber Shortcut"])
