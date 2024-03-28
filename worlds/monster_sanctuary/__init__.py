@@ -411,6 +411,10 @@ class MonsterSanctuaryWorld(World):
         key_items = [item_name for item_name in ITEMS.item_data
                      if ITEMS.item_data[item_name].category == MonsterSanctuaryItemCategory.KEYITEM]
 
+        # If blob burg is unlocked via options, then remove the blob key from the item pool
+        if self.options.unlock_blob_burg:
+            key_items.remove("Blob Key")
+
         # Add items that are not technically key items, but are progressions items and should be added
         key_items.append("Raw Hide")
         key_items.extend([name for name, item in ITEMS.item_data.items()
@@ -520,14 +524,20 @@ class MonsterSanctuaryWorld(World):
         slot_data["options"] = {
             "goal": self.options.goal.value,
             "death_link": self.options.death_link.value,
+            "remove_locked_doors": self.options.remove_locked_doors.value,
             "skip_plot": self.options.skip_plot.value,
+            "unlock_blob_burg": self.options.unlock_blob_burg.value,
+            "open_shortcuts": self.options.open_shortcuts.value,
+            "open_sun_palace": self.options.open_sun_palace.value,
+            "open_horizon_beach": self.options.open_horizon_beach.value,
+            "open_forgotten_world": self.options.open_forgotten_world.value,
+            "open_blob_burg": self.options.open_blob_burg.value,
             "eggsanity": self.options.eggsanity.value,
             "monster_army": self.options.monster_army.value,
             "starting_familiar": self.options.starting_familiar.value,
             "exp_multiplier": self.options.exp_multiplier.value,
             "monsters_always_drop_egg": self.options.monsters_always_drop_egg.value,
             "monster_shift_rule": self.options.monster_shift_rule.value,
-            "remove_locked_doors": self.options.remove_locked_doors.value,
             "add_smoke_bombs": self.options.add_smoke_bombs.value,
             "starting_gold": self.options.starting_gold.value,
             "shops_ignore_rank": self.options.shops_ignore_rank.value,

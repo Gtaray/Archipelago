@@ -35,6 +35,17 @@ class TestItems(MonsterSanctuaryTestBase):
                     self.assertIn("Multiple", item_data.groups)
 
 
+class TestBlobKey(MonsterSanctuaryTestBase):
+    options = {
+        "unlock_blob_burg": 1
+    }
+    run_default_tests = False
+
+    def test_blob_key_not_in_itempool(self):
+        item_names = [item.name for item in self.multiworld.itempool]
+        self.assertNotIn("Blob Key", item_names)
+
+
 class TestLockedDoors(MonsterSanctuaryTestBase):
     def test_key_items_appear_correct_number_of_times(self):
         key_items = [items.item_data[item_name] for item_name in items.item_data

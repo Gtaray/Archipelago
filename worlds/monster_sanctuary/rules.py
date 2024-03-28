@@ -120,7 +120,7 @@ def blue_cave_switches_access(state: CollectionState, player: int) -> bool:
 
 
 def blue_cave_champion_room_2_west_shortcut(state: CollectionState, player: int) -> bool:
-    return state.has("Blue Caves to Mountain Path Shortcut", player)
+    return state.has("Blue Caves to Mountain Path Shortcut", player) or open_shortcuts(state, player)
 
 
 def blue_caves_story_complete(state: CollectionState, player: int) -> bool:
@@ -128,23 +128,23 @@ def blue_caves_story_complete(state: CollectionState, player: int) -> bool:
 
 
 def stronghold_dungeon_south_3_shortcut(state: CollectionState, player: int) -> bool:
-    return state.has("Stronghold Dungeon South 3 Shortcut", player)
+    return state.has("Stronghold Dungeon South 3 Shortcut", player) or open_shortcuts(state, player)
 
 
 def stronghold_dungeon_west_4_shortcut(state: CollectionState, player: int) -> bool:
-    return state.has("Stronghold Dungeon to Blue Caves Shortcut", player)
+    return state.has("Stronghold Dungeon to Blue Caves Shortcut", player) or open_shortcuts(state, player)
 
 
 def snowy_peaks_east4_upper_shortcut(state: CollectionState, player: int) -> bool:
-    return state.has("Snowy Peaks East 4 Upper Shortcut", player)
+    return state.has("Snowy Peaks East 4 Upper Shortcut", player) or open_shortcuts(state, player)
 
 
 def snowy_peaks_east_mountain_3_shortcut(state: CollectionState, player: int) -> bool:
-    return state.has("Snowy Peaks East Mountain 3 Shortcut", player)
+    return state.has("Snowy Peaks East Mountain 3 Shortcut", player) or open_shortcuts(state, player)
 
 
 def snowy_peaks_sun_palace_entrance_shortcut(state: CollectionState, player: int) -> bool:
-    return state.has("Snowy Peaks to Sun Palace Shortcut", player)
+    return state.has("Snowy Peaks to Sun Palace Shortcut", player) or open_shortcuts(state, player)
 
 
 def stronghold_dungeon_library_access(state: CollectionState, player: int) -> bool:
@@ -152,31 +152,31 @@ def stronghold_dungeon_library_access(state: CollectionState, player: int) -> bo
 
 
 def sun_palace_raise_center_1(state: CollectionState, player: int) -> bool:
-    return state.has("Sun Palace Raise Center", player, 1)
+    return state.has("Sun Palace Raise Center", player, 1) or open_sun_palace(state, player)
 
 
 def sun_palace_raise_center_2(state: CollectionState, player: int) -> bool:
-    return state.has("Sun Palace Raise Center", player, 2)
+    return state.has("Sun Palace Raise Center", player, 2) or open_sun_palace(state, player)
 
 
 def sun_palace_raise_center_3(state: CollectionState, player: int) -> bool:
-    return state.has("Sun Palace Raise Center", player, 3)
+    return state.has("Sun Palace Raise Center", player, 3) or open_sun_palace(state, player)
 
 
 def sun_palace_lower_water_1(state: CollectionState, player: int) -> bool:
-    return state.has("Sun Palace Lower Water", player, 1)
+    return state.has("Sun Palace Lower Water", player, 1) or open_sun_palace(state, player)
 
 
 def sun_palace_lower_water_2(state: CollectionState, player: int) -> bool:
-    return state.has("Sun Palace Lower Water", player, 2)
+    return state.has("Sun Palace Lower Water", player, 2) or open_sun_palace(state, player)
 
 
 def sun_palace_east_shortcut(state: CollectionState, player: int) -> bool:
-    return state.has("Sun Palace East Shortcut", player, 1)
+    return state.has("Sun Palace East Shortcut", player, 1) or open_sun_palace(state, player)
 
 
 def sun_palace_west_shortcut(state: CollectionState, player: int) -> bool:
-    return state.has("Sun Palace West Shortcut", player, 1)
+    return state.has("Sun Palace West Shortcut", player, 1) or open_sun_palace(state, player)
 
 
 def shifting_available(state: CollectionState, player: int) -> bool:
@@ -188,19 +188,19 @@ def shifting_available(state: CollectionState, player: int) -> bool:
 
 
 def ancient_woods_east_shortcut(state: CollectionState, player: int) -> bool:
-    return state.has("Ancient Woods East Shortcut", player, 1)
+    return state.has("Ancient Woods East Shortcut", player, 1) or open_shortcuts(state, player)
 
 
 def ancient_woods_beach_access(state: CollectionState, player: int) -> bool:
-    return state.has("Ancient Woods Beach Access", player, 1)
+    return state.has("Ancient Woods Beach Access", player, 1) or open_horizon_beach(state, player)
 
 
 def ancient_woods_magma_chamber_shortcut(state: CollectionState, player: int) -> bool:
-    return state.has("Ancient Woods to Magma Chamber Shortcut", player, 2)
+    return state.has("Ancient Woods to Magma Chamber Shortcut", player, 2) or open_shortcuts(state, player)
 
 
 def ancient_woods_brutus_access(state: CollectionState, player: int) -> bool:
-    return state.has("Ancient Woods Brutus Access", player)
+    return state.has("Ancient Woods Brutus Access", player) or open_shortcuts(state, player)
 
 
 def goblin_king_defeated(state: CollectionState, player: int) -> bool:
@@ -208,7 +208,7 @@ def goblin_king_defeated(state: CollectionState, player: int) -> bool:
 
 
 def horizon_beach_center_shortcut(state: CollectionState, player: int) -> bool:
-    return state.has("Horizon Beach Center Shortcut", player)
+    return state.has("Horizon Beach Center Shortcut", player) or open_shortcuts(state, player)
 
 
 def horizon_beach_rescue_leonard(state: CollectionState, player: int) -> bool:
@@ -216,7 +216,7 @@ def horizon_beach_rescue_leonard(state: CollectionState, player: int) -> bool:
 
 
 def horizon_beach_to_magma_chamber_shortcut(state: CollectionState, player: int) -> bool:
-    return state.has("Horizon Beach To Magma Chamber Shortcut", player)
+    return state.has("Horizon Beach To Magma Chamber Shortcut", player) or open_horizon_beach(state, player)
 
 
 def magma_chamber_north_shortcut(state: CollectionState, player: int) -> bool:
@@ -240,7 +240,7 @@ def magma_chamber_lower_lava(state: CollectionState, player: int) -> bool:
 
 
 def magma_chamber_forgotten_world_access(state: CollectionState, player: int) -> bool:
-    return state.has("Magma Chamber Forgotten World Access", player)
+    return state.has("Magma Chamber Forgotten World Access", player) or open_forgotten_world(state, player)
 
 
 def velvet_melody_access(state: CollectionState, player: int) -> bool:
@@ -268,11 +268,11 @@ def forgotten_world_wanderer_freed(state: CollectionState, player: int) -> bool:
 
 
 def forgotten_world_to_horizon_beach_shortcut(state: CollectionState, player: int) -> bool:
-    return state.has("Forgotten World to Horizon Beach Shortcut", player)
+    return state.has("Forgotten World to Horizon Beach Shortcut", player) or open_forgotten_world(state, player)
 
 
 def forgotten_world_to_magma_chamber_shortcut(state: CollectionState, player: int) -> bool:
-    return state.has("Forgotten World to Magma Chamber Shortcut", player)
+    return state.has("Forgotten World to Magma Chamber Shortcut", player) or open_forgotten_world(state, player)
 
 
 def underworld_east_catacomb_7_access(state: CollectionState, player: int) -> bool:
@@ -332,31 +332,31 @@ def blob_key_accessible(state: CollectionState, player: int) -> bool:
 
 
 def all_blob_keys_used(state: CollectionState, player: int) -> bool:
-    return state.has("Blob Key Used", player, 3)
+    return state.has("Blob Key Used", player, 3) or unlock_blob_burg(state, player)
 
 
 def blob_burg_access_1(state: CollectionState, player: int) -> bool:
-    return state.has("Blob Burg Access", player, 1)
+    return state.has("Blob Burg Access", player, 1) or open_blob_burg(state, player)
 
 
 def blob_burg_access_2(state: CollectionState, player: int) -> bool:
-    return state.has("Blob Burg Access", player, 2)
+    return state.has("Blob Burg Access", player, 2) or open_blob_burg(state, player)
 
 
 def blob_burg_access_3(state: CollectionState, player: int) -> bool:
-    return state.has("Blob Burg Access", player, 3)
+    return state.has("Blob Burg Access", player, 3) or open_blob_burg(state, player)
 
 
 def blob_burg_access_4(state: CollectionState, player: int) -> bool:
-    return state.has("Blob Burg Access", player, 4)
+    return state.has("Blob Burg Access", player, 4) or open_blob_burg(state, player)
 
 
 def blob_burg_access_5(state: CollectionState, player: int) -> bool:
-    return state.has("Blob Burg Access", player, 5)
+    return state.has("Blob Burg Access", player, 5) or open_blob_burg(state, player)
 
 
 def blob_burg_access_6(state: CollectionState, player: int) -> bool:
-    return state.has("Blob Burg Access", player, 6)
+    return state.has("Blob Burg Access", player, 6) or open_blob_burg(state, player)
 
 
 def forgotten_world_jungle_shortcut(state: CollectionState, player: int) -> bool:
@@ -376,11 +376,11 @@ def forgotten_world_dracomer_defeated(state: CollectionState, player: int) -> bo
 
 
 def abandoned_tower_south_shortcut(state: CollectionState, player: int) -> bool:
-    return state.has("Abandoned Tower South Shortcut", player)
+    return state.has("Abandoned Tower South Shortcut", player) or open_shortcuts(state, player)
 
 
 def abandoned_tower_center_shortcut(state: CollectionState, player: int) -> bool:
-    return state.has("Abandoned Tower Center Shortcut", player)
+    return state.has("Abandoned Tower Center Shortcut", player) or open_shortcuts(state, player)
 
 
 def post_game(state: CollectionState, player: int) -> bool:
@@ -415,6 +415,10 @@ def open_horizon_beach(state: CollectionState, player: int) -> bool:
 
 def open_magma_chamber(state: CollectionState, player: int) -> bool:
     return state.multiworld.worlds[player].options.open_magma_chamber
+
+
+def open_forgotten_world(state: CollectionState, player: int) -> bool:
+    return state.multiworld.worlds[player].options.open_forgotten_world
 
 
 def open_blob_burg(state: CollectionState, player: int) -> bool:

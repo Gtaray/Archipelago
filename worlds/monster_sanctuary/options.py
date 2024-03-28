@@ -324,9 +324,9 @@ class OpenHorizonBeach(Toggle):
     default = False
 
 
-class OpenMagmaChamber(Toggle):
-    """Opens up the one-way magma chamber shortcuts that normally require the lowering the lava to access"""
-    display_name = "Open Magma Chamber"
+class OpenForgottenWorld(Toggle):
+    """If enabled, opens up the alternative entrances to the forgotten world from horizon beach and magma chamber"""
+    display_name = "Open Forgotten World"
     default = False
 
 
@@ -412,7 +412,7 @@ class MonsterSanctuaryOptions(PerGameCommonOptions):
     open_shortcuts: OpenShortcuts
     open_sun_palace: OpenSunPalace
     open_horizon_beach: OpenHorizonBeach
-    open_magma_chamber: OpenMagmaChamber
+    open_forgotten_world: OpenForgottenWorld
     open_blob_burg: OpenBlobBurg
 
     exp_multiplier: ExpMultiplier

@@ -29,12 +29,13 @@ class MagmaChamberTests(TestArea):
     def test_forgotten_world_shortcut(self):
         self.assertNotAccessible("MagmaChamber_South9_East", "forgotten_world_to_magma_chamber_shortcut", [])
         self.assertAccessible("MagmaChamber_South9_East", "forgotten_world_to_magma_chamber_shortcut",
-                              ["Forgotten World to Magma Chamber Shortcut"])
+                              ["Forgotten World to Magma Chamber Shortcut", "Brutus"])
 
     def test_forgotten_world_access(self):
         self.assertNotAccessible("MagmaChamber_South8", "MagmaChamber_South7_East_4", [])
         self.assertNotAccessible("MagmaChamber_South8", "MagmaChamber_South7_East_4", ["Yowie"])
-        self.assertAccessible("MagmaChamber_South8", "MagmaChamber_South7_East_4", ["Magma Chamber Forgotten World Access"])
+        self.assertAccessible("MagmaChamber_South8", "MagmaChamber_South7_East_4",
+                              ["Magma Chamber Forgotten World Access", "Dodo"])
 
         self.assertNotAccessible("MagmaChamber_South7_East", "magma_chamber_forgotten_world_access", [])
         self.assertAccessible("MagmaChamber_South7_East", "magma_chamber_forgotten_world_access", ["Yowie"])

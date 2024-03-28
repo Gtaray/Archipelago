@@ -74,10 +74,13 @@ class OpenedHorizonBeachTests(TestArea):
         self.assertAccessible("MagmaChamber_East2", "horizon_beach_to_magma_chamber_shortcut", [])
         self.assertAccessible("MagmaChamber_East3_Upper", "MagmaChamber_East2_3", [])
 
-    def test_forgotten_world_shortcut_is_open(self):
-        self.assertAccessible("HorizonBeach_Center5",
-                              "forgotten_world_to_horizon_beach_shortcut",
-                              ["Brutus"])
-        self.assertAccessible("HorizonBeach_FWExit",
-                              "HorizonBeach_Center5_3",
+
+class HorizonBeachWithOpenShortcuts(TestArea):
+    options = {
+        "open_shortcuts": 1
+    }
+
+    def test_center_shortcut(self):
+        self.assertAccessible("HorizonBeach_Center1", "horizon_beach_center_shortcut",
                               ["Koi"])
+

@@ -120,3 +120,20 @@ class BlueCavesPlotlessTests(TestArea):
         self.assertNotAccessible("BlueCave_South5", "BlueCave_South5_29300061", [])
         self.assertAccessible("BlueCave_South5", "BlueCave_South5_29300061",
                               ["Sanctuary Token", "Sanctuary Token", "Sanctuary Token", "Sanctuary Token", "Sanctuary Token"])
+
+
+class BlueCavesWithOpenShortcuts(TestArea):
+    options = {
+        "open_shortcuts": 1
+    }
+
+    def test_mountain_path_shortcut(self):
+        self.assertAccessible(
+            "MountainPath_Center6_Lower",
+            "blue_cave_champion_room_2_west_shortcut",
+            [])
+        self.assertAccessible(
+            "BlueCave_ChampionRoom2_WestAccess",
+            "MountainPath_Center6_Lower_5",
+            [])
+

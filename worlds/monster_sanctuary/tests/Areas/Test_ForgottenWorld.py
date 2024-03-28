@@ -50,3 +50,27 @@ class ForgottenWorldTests(TestArea):
         self.assertNotAccessible("ForgottenWorld_WandererRoom", "ForgottenWorld_WandererRoom_45100110", [])
         self.assertAccessible("ForgottenWorld_WandererRoom", "ForgottenWorld_WandererRoom_45100110",
                               ["Forgotten World Wanderer Freed"])
+
+
+class OpenForgottenWorldTests(TestArea):
+    options = {
+        "open_forgotten_world": 1
+    }
+
+    def test_horizon_beach_access(self):
+        self.assertAccessible("HorizonBeach_Center5",
+                              "forgotten_world_to_horizon_beach_shortcut",
+                              ["Brutus"])
+        self.assertAccessible("HorizonBeach_FWExit",
+                              "HorizonBeach_Center5_3",
+                              ["Koi"])
+
+    def test_magma_chamber_access(self):
+        self.assertAccessible(
+            "MagmaChamber_South7_East",
+            "forgotten_world_to_magma_chamber_shortcut",
+            ["Double Jump Boots", "Dodo", "Brutus"])
+        self.assertAccessible(
+            "MagmaChamber_South9_Shortcut",
+            "MagmaChamber_South7_East_4",
+            ["Double Jump Boots", "Dodo"])

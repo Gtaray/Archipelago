@@ -108,3 +108,22 @@ class AncientWoodsWithOpenedHorizonBeach(TestArea):
 
     def test_horizon_beach_accessible(self):
         self.assertAccessible("AncientWoods_East2_West", "AncientWoods_East3_1_0", [])
+
+
+class AncientWoodsWithOpenedShortcuts(TestArea):
+    options = {
+        "open_shortcuts": 1
+    }
+
+    def test_east_shortcut(self):
+        self.assertAccessible("AncientWoods_East1", "ancient_woods_east_shortcut", [])
+
+    def test_backwards_brutus_access(self):
+        self.assertAccessible("AncientWoods_SouthChampion", "AncientWoods_South4_1",
+                              ["Double Jump Boots", "Nightwing"])
+
+        self.assertAccessible("AncientWoods_South4", "AncientWoods_SouthChampion_1_0",
+                              ["Double Jump Boots", "Nightwing"])
+
+    def test_magma_chamber_shortcut(self):
+        self.assertAccessible("AncientWoods_South1_Lower", "MagmaChamber_North5_Upper_3", [])
