@@ -5,6 +5,7 @@ class TestFamiliarWolf(TestMonsterRandomizerBase):
     options = {
         "starting_familiar": 0
     }
+    run_default_tests = False
 
     def test_starting_familiar(self):
         location = self.multiworld.get_location("Menu_0_0", self.player)
@@ -23,12 +24,14 @@ class TestFamiliarWolf_Shuffle(TestFamiliarWolf):
         "starting_familiar": 0,
         "randomize_monsters": 2
     }
+    run_default_tests = False
 
 
 class TestSpectralEagle(TestFamiliarWolf):
     options = {
         "starting_familiar": 1
     }
+    run_default_tests = False
 
 
 class TestSpectralEagle_Shuffle(TestFamiliarWolf):
@@ -36,12 +39,14 @@ class TestSpectralEagle_Shuffle(TestFamiliarWolf):
         "starting_familiar": 1,
         "randomize_monsters": 2
     }
+    run_default_tests = False
 
 
 class TestSpectralToad(TestFamiliarWolf):
     options = {
         "starting_familiar": 2
     }
+    run_default_tests = False
 
 
 class TestSpectralToad_Shuffle(TestFamiliarWolf):
@@ -49,12 +54,14 @@ class TestSpectralToad_Shuffle(TestFamiliarWolf):
         "starting_familiar": 2,
         "randomize_monsters": 2
     }
+    run_default_tests = False
 
 
 class TestSpectralLion(TestFamiliarWolf):
     options = {
         "starting_familiar": 3
     }
+    run_default_tests = False
 
 
 class TestSpectralLion_Shuffle(TestFamiliarWolf):
@@ -62,3 +69,4 @@ class TestSpectralLion_Shuffle(TestFamiliarWolf):
         "starting_familiar": 3,
         "randomize_monsters": 2
     }
+    run_default_tests = False

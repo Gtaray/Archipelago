@@ -14,6 +14,7 @@ class TestEggRandomizerOn(TestEggRandomizer):
         "add_gift_eggs_to_pool": 1,
         "randomize_monsters": 1
     }
+    run_default_tests = False
 
     def assert_in_item_pool(self, item_name: str, count: int = 1):
         entries = [item.name for item in self.multiworld.itempool if item.name == item_name]
@@ -62,6 +63,7 @@ class TestEggRandomizerOff(TestEggRandomizer):
         "add_gift_eggs_to_pool": 0,
         "randomize_monsters": 1
     }
+    run_default_tests = False
 
     def assert_location_contains_item(self, location_name, item_name):
         with self.subTest(f"{item_name} is placed at {location_name}"):

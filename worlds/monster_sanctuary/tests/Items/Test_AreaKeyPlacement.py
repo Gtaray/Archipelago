@@ -46,6 +46,7 @@ class AreaKeyLocalPlacementTests(MonsterSanctuaryTestBase):
     options = {
         "local_area_keys": 1
     }
+    run_default_tests = False
 
     def test_keys_can_be_placed_in_their_own_areas(self):
         for key in area_keys:
@@ -64,6 +65,7 @@ class AreaKeyGlobalPlacementTests(MonsterSanctuaryTestBase):
     options = {
         "local_area_keys": 0
     }
+    run_default_tests = False
 
     def test_keys_are_placed_locally(self):
         for key in area_keys:

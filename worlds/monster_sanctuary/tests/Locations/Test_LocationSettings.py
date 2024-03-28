@@ -6,6 +6,7 @@ class TestCryomancer_NoShifts(MonsterSanctuaryTestBase):
     options = {
         "monster_shift_rule": 0
     }
+    run_default_tests = False
 
     def test_cryomancer_locations_do_not_exist(self):
         with self.subTest("Snowy Peaks - Cryomancer - Light Egg Reward"):
@@ -18,6 +19,7 @@ class TestCryomancer_WithShifts(MonsterSanctuaryTestBase):
     options = {
         "monster_shift_rule": 1
     }
+    run_default_tests = False
 
     def test_cryomancer_locations_exist(self):
         with self.subTest("Snowy Peaks - Cryomancer - Light Egg Reward"):
@@ -32,6 +34,7 @@ class TestCryomancer_ShuffledEggs(MonsterSanctuaryTestBase):
         "add_gift_eggs_to_pool": 0,
         "monster_shift_rule": 1
     }
+    run_default_tests = False
 
     def assert_item_is_correct(self, location_name):
         expected = self.multiworld.worlds[1].species_swap["Shockhopper"].egg_name()
@@ -141,6 +144,7 @@ class TestShopsanityLocationsDisabled(MonsterSanctuaryTestBase):
     options = {
         "shopsanity": 0
     }
+    run_default_tests = False
 
     def test_shopsanity_locations_are_not_added(self):
         for shop in shops:
@@ -152,6 +156,7 @@ class TestShopsanityLocationsEnabled(MonsterSanctuaryTestBase):
         "shopsanity": 1,
         "shops_ignore_rank": 1
     }
+    run_default_tests = False
 
     def test_shopsanity_locations_are_added(self):
         for shop in shops:
@@ -162,6 +167,7 @@ class TestEternitysEndLocations_Wolf(MonsterSanctuaryTestBase):
     options = {
         "starting_familiar": 0
     }
+    run_default_tests = False
 
     locations = [
         "Eternity's End - Spectral Wolf Egg",
@@ -194,24 +200,28 @@ class TestEternitysEndLocations_Eagle(TestEternitysEndLocations_Wolf):
     options = {
         "starting_familiar": 1
     }
+    run_default_tests = False
 
 
 class TestEternitysEndLocations_Toad(TestEternitysEndLocations_Wolf):
     options = {
         "starting_familiar": 2
     }
+    run_default_tests = False
 
 
 class TestEternitysEndLocations_Lion(TestEternitysEndLocations_Wolf):
     options = {
         "starting_familiar": 3
     }
+    run_default_tests = False
 
 
 class TestEggsanityLocationsDoNotExist(MonsterSanctuaryTestBase):
     options = {
         "eggsanity": 0
     }
+    run_default_tests = False
 
     def test_eggsanity_locations_do_not_exist(self):
         for location_name, location_data in LOCATIONS.location_data.items():

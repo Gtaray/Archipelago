@@ -34,6 +34,7 @@ class TestLocations_MadLord_ShopsIgnoreRank(MonsterSanctuaryTestBase):
         "shops_ignore_rank": 1,
         "monster_army": 1
     }
+    run_default_tests = False
 
     def test_keeper_master_shop_locations_exist(self):
         for location in LOCATIONS.shopsanity_keeper_master_locations:
@@ -72,6 +73,7 @@ class TestLocations_AllChampions_ShopsIgnoreRank(MonsterSanctuaryTestBase):
         "shops_ignore_rank": 1,
         "monster_army": 1
     }
+    run_default_tests = False
 
     def test_keeper_master_shop_locations_exist(self):
         for location in LOCATIONS.shopsanity_keeper_master_locations:

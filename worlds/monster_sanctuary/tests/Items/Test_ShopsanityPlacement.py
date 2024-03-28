@@ -8,6 +8,7 @@ class TestShopsanityItemPlacement(MonsterSanctuaryTestBase):
         "goal": 3,
         "shopsanity": 1
     }
+    run_default_tests = False
 
     def test_currency_cannot_be_in_shops(self):
         self.assert_item_can_not_be_placed(

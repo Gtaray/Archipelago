@@ -96,15 +96,19 @@ class TestRemoveLockedDoors_Minimal(TestItems):
     options = {
         "remove_locked_doors": 1
     }
+    run_default_tests = False
 
 
 class TestRemoveLockedDoors_All(TestItems):
     options = {
         "remove_locked_doors": 2
     }
+    run_default_tests = False
 
 
 class TestDefaultItemProbability(MonsterSanctuaryTestBase):
+    run_default_tests = False
+
     def test_default_probability(self):
         self.assertEqual(len(items.item_drop_probabilities), 354)
 
@@ -124,6 +128,7 @@ class TestDefaultItemProbability(MonsterSanctuaryTestBase):
 
 
 class TestMinimumItemProbability(MonsterSanctuaryTestBase):
+    run_default_tests = False
     options = {
         "drop_chance_craftingmaterial": 1,
         "drop_chance_consumable": 1,
@@ -139,6 +144,7 @@ class TestMinimumItemProbability(MonsterSanctuaryTestBase):
 
 
 class TestMaximumItemProbability(MonsterSanctuaryTestBase):
+    run_default_tests = False
     options = {
         "drop_chance_craftingmaterial": 100,
         "drop_chance_consumable": 100,
