@@ -185,7 +185,9 @@
       { "region": "MountainPath_Center1" },
       {
         "region": "MountainPath_East1",
-        "requirements": [ "keeper_rank_1" ]
+        "requirements": [
+          "OR", [ "keeper_rank_1", "skip_plot" ]
+        ]
       },
       {
         "region": "BlueCave_NorthFork_Upper",
@@ -777,7 +779,11 @@
       {
         "region":  "StrongholdDungeon_Entrance",
         "requirements": [
-          "AND", ["keeper_rank_2", "blue_caves_story_complete"] ]
+          "OR", [
+            "skip_plot",
+            "AND", ["keeper_rank_2", "blue_caves_story_complete"]
+          ]
+        ]
       }
     ]
   },
@@ -807,7 +813,9 @@
     "connections": [
       { "region": "KeeperStronghold_CenterStairwell" },
       { "region": "KeeperStronghold_ChampionChallenge" },
-      { "region": "KeeperStronghold_DuelCircle", "requirements": [ "keeper_rank_2" ] },
+      { "region": "KeeperStronghold_DuelCircle", "requirements": [
+        "OR", [ "skip_plot", "keeper_rank_2" ]
+      ]},
       { "region": "KeeperStronghold_EndOfTime", "requirements": [
         "OR", ["double_jump", "improved_flying", "lofty_mount", "dual_mobility"]
       ]}
@@ -1217,17 +1225,35 @@
       {
         "region": "Underworld_Entrance",
         "requirements": [
-          "AND",["all_sanctuary_tokens", "ostanes", "stronghold_dungeon_library_access"]
+          "AND", [
+            "all_sanctuary_tokens",
+            "OR", [
+              "skip_plot",
+              "AND", ["ostanes", "stronghold_dungeon_library_access"]
+            ]
+          ]
         ]
       }
     ],
     "gifts": [
       { "id": 29300061, "item": "Reward Box Lvl 3", "requirements": [
-          "AND",["all_sanctuary_tokens", "ostanes", "stronghold_dungeon_library_access"]
-        ]},
+        "AND", [
+          "all_sanctuary_tokens",
+          "OR", [
+            "skip_plot",
+            "AND", ["ostanes", "stronghold_dungeon_library_access"]
+          ]
+        ]
+      ]},
       { "id": 29300065, "item": "Sanctuary Token", "requirements": [
-          "AND",["all_sanctuary_tokens", "ostanes", "stronghold_dungeon_library_access"]
-        ]}
+        "AND", [
+          "all_sanctuary_tokens",
+          "OR", [
+            "skip_plot",
+            "AND", ["ostanes", "stronghold_dungeon_library_access"]
+          ]
+        ]
+      ]}
     ]
   },
   {
@@ -3442,7 +3468,9 @@
     "region": "SunPalace_East6",
     "connections": [
       { "region": "SunPalace_East5" },
-      { "region": "SunPalace_East3" }
+      { "region": "SunPalace_East3", "requirements": [
+        "OR", ["open_sun_palace", "sun_palace_east_shortcut"]
+      ] }
     ],
     "encounters": [
       { "id": 3, "monsters": [ "Ninki Nanka", "Ninki Nanka", "Ninki Nanka" ]}
@@ -3465,7 +3493,7 @@
         "region": "SunPalace_North1",
         "requirements": [
           "AND", [
-            "sun_palace_raise_center_3",
+            "OR",["open_sun_palace", "sun_palace_raise_center_3"],
             "OR", [
               "double_jump",
               "improved_flying",
@@ -3480,7 +3508,10 @@
         "region": "SunPalace_North3",
         "requirements": [
           "AND", [
-            "sun_palace_raise_center_3",
+            "OR", [
+              "open_sun_palace",
+              "sun_palace_raise_center_3"
+            ],
             "OR", [
               "double_jump",
               "improved_flying",
@@ -3494,15 +3525,9 @@
     ],
     "chests": [
       { "id": 13, "item": "Skill Potion", "requirements": [
-        "OR", [
-          "AND", [
-            "NOT sun_palace_raise_center_2",
-            "swimming"
-          ],
-          "AND", [
-            "sun_palace_raise_center_2",
-            "OR", [ "double_jump", "distant_ledges" ]
-          ]
+        "AND", [
+          "OR", ["open_sun_palace", "sun_palace_raise_center_2"],
+          "OR", [ "double_jump", "distant_ledges" ]
         ]
       ]}
     ],
@@ -3510,12 +3535,12 @@
       {
         "id": "sun_palace_lower_water_1",
         "name": "Sun Palace Lower Water",
-        "requirements": [ "sun_palace_raise_center_1" ]
+        "requirements": [ "OR", ["open_sun_palace","sun_palace_raise_center_1"] ]
       },
       {
         "id": "sun_palace_lower_water_2",
         "name": "Sun Palace Lower Water",
-        "requirements": [ "sun_palace_raise_center_2" ]
+        "requirements": [ "OR", ["open_sun_palace","sun_palace_raise_center_2" ]]
       }
     ]
   },
@@ -3524,7 +3549,8 @@
     "connections": [
       { "region": "SunPalace_West1" },
       { "region": "SunPalace_West3" },
-      { "region": "SunPalace_West5", "requirements": ["sun_palace_west_shortcut"] }
+      { "region": "SunPalace_West5", "requirements": [
+        "OR", ["open_sun_palace", "sun_palace_west_shortcut"]] }
     ],
     "chests": [
       { "id": 4, "item": "Sun Stone", "requirements": [
@@ -3604,7 +3630,9 @@
   {
     "region": "SunPalace_West5",
     "connections": [
-      { "region": "SunPalace_West2" },
+      { "region": "SunPalace_West2", "requirements": [
+        "OR", ["open_sun_palace", "sun_palace_west_shortcut"]
+      ] },
       { "region": "SunPalace_West4" }
     ],
     "encounters": [
@@ -3622,8 +3650,10 @@
         "region": "SunPalace_Center",
         "requirements": [
           "OR", [
+            "open_sun_palace",
             "sun_palace_lower_water_1",
             "AND", [
+              "NOT open_sun_palace",
               "NOT sun_palace_lower_water_1",
               "OR", [
                 "swimming",
@@ -3646,10 +3676,14 @@
           "OR", [
             "AND", [
               "swimming",
+              "NOT open_sun_palace",
               "NOT sun_palace_lower_water_1"
             ],
             "AND", [
-              "sun_palace_lower_water_1",
+              "OR",[
+                "open_sun_palace",
+                "sun_palace_lower_water_1"
+              ],
               "OR", [
                 "double_jump",
                 "improved_flying",
@@ -3664,11 +3698,12 @@
       { "id": 13, "item": "2x Iron", "requirements": [
         "OR", [
             "AND", [
+              "NOT open_sun_palace",
               "NOT sun_palace_lower_water_1",
               "swimming"
             ],
             "AND", [
-              "sun_palace_lower_water_1",
+              "OR", ["open_sun_palace", "sun_palace_lower_water_1"],
               "OR", [
                 "double_jump",
                 "improved_flying",
@@ -3689,11 +3724,12 @@
         "requirements": [
           "OR", [
             "AND", [
+              "NOT open_sun_palace",
               "NOT sun_palace_lower_water_1",
               "swimming"
             ],
             "AND", [
-              "sun_palace_lower_water_1",
+              "OR", [ "open_sun_palace", "sun_palace_lower_water_2"],
               "double_jump"
             ]
           ]
@@ -3704,10 +3740,11 @@
         "requirements": [
           "OR", [
             "AND", [
+              "NOT open_sun_palace",
               "NOT sun_palace_lower_water_2",
               "swimming"
             ],
-            "sun_palace_lower_water_2",
+            "OR", [ "open_sun_palace", "sun_palace_lower_water_2"],
             "double_jump"
           ]
         ]
@@ -3717,11 +3754,12 @@
         "requirements": [
           "OR", [
             "AND", [
+              "NOT open_sun_palace",
               "NOT sun_palace_lower_water_2",
               "swimming"
             ],
             "AND", [
-              "sun_palace_lower_water_2",
+              "OR", [ "open_sun_palace", "sun_palace_lower_water_2"],
               "OR", [
                 "double_jump",
                 "improved_flying",
@@ -3738,24 +3776,24 @@
       ]},
       { "id": 6, "item": "Level Badge", "requirements": [
         "OR", [
-          "AND", [ "NOT sun_palace_lower_water_2", "swimming" ],
+          "AND", [ "NOT open_sun_palace", "NOT sun_palace_lower_water_2", "swimming" ],
           "AND", [
-            "sun_palace_lower_water_2",
+            "OR", [ "open_sun_palace", "sun_palace_lower_water_2"],
             "OR", [ "double_jump", "improved_flying", "dual_mobility" ] ]
           ]
       ] },
       { "id": 7, "item": "Phoenix Tear", "requirements": [
         "OR", [
-          "AND", [ "NOT sun_palace_lower_water_2", "swimming" ],
-          "sun_palace_lower_water_2",
+          "AND", [ "NOT open_sun_palace", "NOT sun_palace_lower_water_2", "swimming" ],
+          "OR", [ "open_sun_palace", "sun_palace_lower_water_2" ],
           "double_jump"
         ]
       ] },
       { "id": 8, "item": "Reward Box Lvl 1", "requirements": [
         "OR", [
-          "AND", [ "NOT sun_palace_lower_water_2", "swimming" ],
+          "AND", [ "NOT open_sun_palace", "NOT sun_palace_lower_water_2", "swimming" ],
           "AND", [
-            "sun_palace_lower_water_2",
+            "OR", [ "open_sun_palace", "sun_palace_lower_water_2" ],
             "OR", [ "double_jump", "improved_flying", "dual_mobility", "lofty_mount", "summon_big_rock" ] ]
           ]
       ] }
@@ -3815,11 +3853,14 @@
     "connections": [
       { "region": "SunPalace_EastSewers1" },
       { "region": "SunPalace_EastSewers3" },
-      { "region": "SunPalace_EastSewers6" }
+      { "region": "SunPalace_EastSewers6", "requirements": [
+        "OR", ["open_sun_palace", "sun_palace_lower_water_2"]
+      ] }
     ],
     "chests": [
       { "id": 6, "item": "Level Badge", "requirements": [
         "OR", [
+          "open_sun_palace",
           "sun_palace_lower_water_2",
           "double_jump",
           "swimming"
@@ -4441,7 +4482,8 @@
     "region": "AncientWoods_East2_West",
     "connections": [
       { "region": "AncientWoods_East1" },
-      { "region": "AncientWoods_East2_East", "requirements": ["ancient_woods_beach_access"] }
+      { "region": "AncientWoods_East2_East", "requirements": [
+        "OR", ["open_horizon_beach", "ancient_woods_beach_access"]] }
     ],
     "flags": [
       {
@@ -4454,14 +4496,15 @@
   {
     "region": "AncientWoods_East2_East",
     "connections": [
-      { "region": "AncientWoods_East2_West", "requirements": ["ancient_woods_beach_access"] },
+      { "region": "AncientWoods_East2_West", "requirements": [
+        "OR", ["open_horizon_beach", "ancient_woods_beach_access"]] },
       { "region": "AncientWoods_East3" }
     ]
   },
   {
     "region": "AncientWoods_East3",
     "connections": [
-      { "region": "AncientWoods_East2_East", "requirements": ["ancient_woods_beach_access"] },
+      { "region": "AncientWoods_East2_East" },
       { "region": "AncientWoods_East4", "requirements": [
         "AND", [
           "double_jump",
@@ -4754,7 +4797,9 @@
     "region": "HorizonBeach_West2_Entrance",
     "connections": [
       { "region": "HorizonBeach_West1" },
-      { "region": "HorizonBeach_West2", "requirements": ["goblin_king_defeated"] }
+      { "region": "HorizonBeach_West2", "requirements": [
+        "OR", ["skip_plot", "goblin_king_defeated"]
+      ]}
     ]
   },
   {
@@ -4904,7 +4949,8 @@
     "region": "HorizonBeach_Center5",
     "connections": [
       { "region": "HorizonBeach_Center4", "requirements": ["swimming"]},
-      { "region": "HorizonBeach_FWExit", "requirements": ["forgotten_world_to_horizon_beach_shortcut"]}
+      { "region": "HorizonBeach_FWExit", "requirements": [
+        "OR", ["open_horizon_beach", "forgotten_world_to_horizon_beach_shortcut"]]}
     ],
     "chests": [
       { "id": 3, "item": "Rare Seashell", "requirements": ["swimming"]},
@@ -5224,7 +5270,7 @@
       {"region": "HorizonBeach_South2"},
       {
         "region": "HorizonBeach_TreasureCave1",
-        "requirements": ["horizon_beach_rescue_leonard"]
+        "requirements": ["OR", ["skip_plot", "horizon_beach_rescue_leonard"]]
       }
     ]
   },
@@ -5350,7 +5396,8 @@
   {
     "region": "HorizonBeach_FWExit",
     "connections": [
-      { "region": "HorizonBeach_Center5", "requirements": ["forgotten_world_to_horizon_beach_shortcut"]},
+      { "region": "HorizonBeach_Center5", "requirements": [
+        "OR",["open_horizon_beach", "forgotten_world_to_horizon_beach_shortcut"]]},
       { "region": "ForgottenWorld_Climb5" }
     ],
     "flags": [
@@ -5470,7 +5517,8 @@
     "region": "MagmaChamber_West7",
     "connections": [
       {"region": "MagmaChamber_West6_Lower"},
-      {"region": "BlobBurg_East1", "requirements": ["all_blob_keys_used"]}
+      {"region": "BlobBurg_East1", "requirements": [
+        "OR", ["unlock_blob_burg", "all_blob_keys_used"]]}
     ],
     "flags": [
       {"id": "blob_key_accessible", "name": "Blob Key Accessible"}
@@ -5606,8 +5654,8 @@
         "name": "Magma Chamber Lowered Lava",
         "requirements": [
           "AND", [
-            "stronghold_dungeon_library_access",
-            "runestone_shard"
+            "runestone_shard",
+            "OR", ["skip_plot", "stronghold_dungeon_library_access"]
           ]
         ]
       }
@@ -5628,7 +5676,8 @@
     "region": "MagmaChamber_East2",
     "connections": [
       {"region": "MagmaChamber_East1"},
-      {"region": "MagmaChamber_East3", "requirements": ["horizon_beach_to_magma_chamber_shortcut"]}
+      {"region": "MagmaChamber_East3_Upper", "requirements": [
+        "OR",["open_horizon_beach", "horizon_beach_to_magma_chamber_shortcut"]]}
     ],
     "chests": [
       {"id": 3, "item": "Level Badge"}
@@ -5642,7 +5691,7 @@
     "connections": [
       {
         "region": "MagmaChamber_East2",
-        "requirements": ["horizon_beach_to_magma_chamber_shortcut"]
+        "requirements": ["OR",["open_horizon_beach", "horizon_beach_to_magma_chamber_shortcut"]]
       },
       {"region": "MagmaChamber_East3_Lower"},
       {"region": "MagmaChamber_GoblinTrader"}
@@ -7429,12 +7478,14 @@
       ]},
       {"region": "BlobBurg_Center3", "requirements": [
         "AND", [
-          "blob_burg_access_2",
+          "OR", ["open_blob_burg", "blob_burg_access_2"],
           "OR", ["double_jump", "improved_flying", "dual_mobility"]
         ]
       ]},
       {"region": "BlobBurg_Center2"},
-      {"region": "BlobBurg_East4", "requirements": ["blob_burg_access_1"]}
+      {"region": "BlobBurg_East4", "requirements": [
+        "OR", ["open_blob_burg", "blob_burg_access_1"]
+      ]}
     ],
     "chests": [
       {"id": 8, "item": "2x Steel", "requirements": [
@@ -7446,7 +7497,7 @@
     "region": "BlobBurg_Center2",
     "connections": [
       {"region": "BlobBurg_Center1"},
-      {"region": "BlobBurg_Center4", "requirements": ["blob_burg_access_3"]}
+      {"region": "BlobBurg_Center4", "requirements": ["OR",["open_blob_burg", "blob_burg_access_3"]]}
     ],
     "chests": [
       {"id": 0, "item": "Phoenix Serum"}
@@ -7465,7 +7516,8 @@
     "region": "BlobBurg_Center3",
     "connections": [
       {"region": "BlobBurg_Center1"},
-      {"region": "BlobBurg_Worms", "requirements": ["blob_burg_access_6"]}
+      {"region": "BlobBurg_Worms", "requirements": [
+        "OR", ["open_blob_burg", "blob_burg_access_6"]]}
     ],
     "encounters": [
       {"id": 1, "monsters": ["Changeling", "Blob", "Changeling"]}
@@ -7484,10 +7536,11 @@
         "OR", ["double_jump", "distant_ledges"]
       ]},
       {"region": "BlobBurg_South1"},
-      {"region": "BlobBurg_West1", "requirements": ["blob_burg_access_4"]},
+      {"region": "BlobBurg_West1", "requirements": [
+        "OR",["open_blob_burg", "blob_burg_access_4"]]},
       {"region": "BlobBurg_Center5", "requirements": [
         "AND", [
-          "blob_burg_access_5",
+          "OR",["open_blob_burg", "blob_burg_access_5"],
           "OR", ["double_jump", "improved_flying", "dual_mobility"]
         ]
       ]}

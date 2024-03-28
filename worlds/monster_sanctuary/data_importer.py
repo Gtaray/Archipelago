@@ -14,7 +14,7 @@ from . import hints as HINTS
 from .regions import RegionData, MonsterSanctuaryConnection
 from .items import ItemData, MonsterSanctuaryItemCategory
 from .locations import LocationData, MonsterSanctuaryLocationCategory
-from .rules import AccessCondition, Plotless
+from .rules import AccessCondition
 from .flags import FlagData
 from .encounters import EncounterData, MonsterData
 from BaseClasses import ItemClassification
@@ -128,28 +128,6 @@ def load_world() -> None:
                 location_id = add_shop_locations(shop_data, locations_by_id, location_id, region_name)
 
             REGIONS.region_data[region.name] = region
-
-
-def load_plotless() -> None:
-    with files(data).joinpath("plotless.json").open() as file:
-        plotless_file = json.load(file)
-        for item in plotless_file:
-            region = item.get("region")
-            type = item.get("type")
-            requirements = AccessCondition(item.get("requirements"))
-            connection = item.get("connection")
-            object_id = item.get("object_id")
-            id = item.get("id")
-
-            if region not in RULES.plotless_data:
-                RULES.plotless_data[region] = []
-
-            RULES.plotless_data[region].append(Plotless(
-                type,
-                requirements,
-                connection,
-                object_id,
-                id))
 
 
 def load_items(item_id: int) -> int:

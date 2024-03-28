@@ -303,6 +303,47 @@ class SkipPlot(Toggle):
     default = False
 
 
+class OpenShortcuts(Toggle):
+    """If enabled, opens up most optional shortcuts. This does not open up shortcuts or areas that are handled by other options"""
+    display_name = "Open Shortcuts"
+    default = False
+
+
+class OpenSunPalace(Toggle):
+    """If enabled, the central pillar and water levels in sun palace will be in their final states (fully raised, and fully lowered, respectively), and the two shortcuts on the east and west sides of sun palace will be opened."""
+    display_name = "Open Sun Palace"
+    default = False
+
+
+class OpenHorizonBeach(Toggle):
+    """If enabled, allows access to horizon beach early with the following changes
+    - The four elemental orb doors that separate ancient woods from horizon beach will be open
+    - The one-way shortcut from horizon beach to magma chamber will be opened
+    - The one-way shortcut from the forgotten world to horizon beach will be opened"""
+    display_name = "Open Horizon Beach"
+    default = False
+
+
+class OpenMagmaChamber(Toggle):
+    """Opens up the one-way magma chamber shortcuts that normally require the lowering the lava to access"""
+    display_name = "Open Magma Chamber"
+    default = False
+
+
+class UnlockBlobBurg(Toggle):
+    """If enabled, blob burg will start unlocked, and the Blob Key will not be added to the item pool
+    If disabled, then the blob key must be used at the three blob statues to open up blob burg (vanilla behavior)"""
+    display_name = "Unlock Blob Burg"
+    default = False
+
+
+class OpenBlobBurg(Toggle):
+    """If enabled, all areas of blob burg will be available as soon as blob burg is unlocked.
+    If disabled, regions in blob burg will require opening chests to access those regions (vanilla behavior)"""
+    display_name = "Open Blob Burg"
+    default = False
+
+
 class AddHints(Toggle):
     """Adds hints for common checks, items, and monsters"""
     display_name = "Add Hints"
@@ -366,8 +407,15 @@ class MonsterSanctuaryOptions(PerGameCommonOptions):
     replace_filler_with_level_badges: ReplaceFillerWithLevelBadges
     include_chaos_relics: IncludeChaosRelics
 
-    exp_multiplier: ExpMultiplier
     skip_plot: SkipPlot
+    unlock_blob_burg: UnlockBlobBurg
+    open_shortcuts: OpenShortcuts
+    open_sun_palace: OpenSunPalace
+    open_horizon_beach: OpenHorizonBeach
+    open_magma_chamber: OpenMagmaChamber
+    open_blob_burg: OpenBlobBurg
+
+    exp_multiplier: ExpMultiplier
     hints: AddHints
     goal: Goal
     mozzie_soul_fragments: MozzieSoulFragments

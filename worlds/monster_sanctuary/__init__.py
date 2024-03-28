@@ -45,7 +45,6 @@ def load_data():
 
     # Load the world second, since this will require having ItemData and MonsterData
     data_importer.load_world()
-    data_importer.load_plotless()
     data_importer.load_hints()
 
     # We have to load flags last, as their location data is in world.json, but the item data exists in flags.json
@@ -166,11 +165,7 @@ class MonsterSanctuaryWorld(World):
                 continue
 
             region = self.multiworld.get_region(location_data.region, self.player)
-
-            plotless_rules = RULES.get_plotless_location(region.name, location_data.object_id)
             access_condition = location_data.access_condition or None
-            if self.options.skip_plot and plotless_rules is not None:
-                access_condition = plotless_rules.access_rules
 
             # Here we check if shops should ignore rank requirements
             # We have to call out this specifically in order to null out the access_condition
@@ -210,10 +205,7 @@ class MonsterSanctuaryWorld(World):
                 if target_region_data is None:
                     continue
 
-                plotless_rules = RULES.get_plotless_connection(region.name, target_region_data.name)
                 access_condition = connection.access_rules or None
-                if self.options.skip_plot and plotless_rules is not None:
-                    access_condition = plotless_rules.access_rules
 
                 # Build the Entrance data
                 connection_name = f"{region_data.name} to {connection.region}"
@@ -260,12 +252,7 @@ class MonsterSanctuaryWorld(World):
         """Creates locations for all flags, and places flag items at those locations"""
         for location_name, data in FLAGS.flag_data.items():
             region = self.multiworld.get_region(data.region, self.player)
-
-            plotless_rules = RULES.get_plotless_flag(region.name, data.location_name)
             access_condition = data.access_condition or None
-            if self.options.skip_plot and plotless_rules is not None:
-                access_condition = plotless_rules.access_rules
-
             location = MonsterSanctuaryLocation(
                 player=self.player,
                 name=data.location_name,

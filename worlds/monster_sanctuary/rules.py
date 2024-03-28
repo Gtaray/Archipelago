@@ -114,56 +114,6 @@ class AccessCondition:
             return any([condition.has_access(state, player) for condition in self.operands])
 
 
-class Plotless:
-    def __init__(self,
-                 type: str,
-                 requirements: AccessCondition,
-                 connection: Optional[str],
-                 object_id: Optional[int],
-                 id: Optional[str]):
-        self.type = type
-        self.access_rules = requirements
-        self.connection = connection  # For connections
-        self.object_id = object_id  # For locations
-        self.id = id  # For flags
-
-
-plotless_data: Dict[str, List[Plotless]] = {}
-
-
-def get_plotless_connection(region_name: str, connection: str) -> Optional[Plotless]:
-    if region_name not in plotless_data:
-        return None
-
-    for entry in plotless_data[region_name]:
-        if entry.connection == connection:
-            return entry
-
-    return None
-
-
-def get_plotless_location(region_name: str, object_id: int) -> Optional[Plotless]:
-    if region_name not in plotless_data:
-        return None
-
-    for entry in plotless_data[region_name]:
-        if entry.object_id == object_id:
-            return entry
-
-    return None
-
-
-def get_plotless_flag(region_name: str, flag_id: str) -> Optional[Plotless]:
-    if region_name not in plotless_data:
-        return None
-
-    for entry in plotless_data[region_name]:
-        if entry.id == flag_id:
-            return entry
-
-    return None
-
-
 # region Navigation Flags
 def blue_cave_switches_access(state: CollectionState, player: int) -> bool:
     return state.has("Blue Caves Switches Access", player)
@@ -235,6 +185,7 @@ def shifting_available(state: CollectionState, player: int) -> bool:
                 state.multiworld.worlds[player].options.monster_shift_rule == "after_sun_palace" and
                 state.has("Sun Palace Raise Center", player, 3)
             ))
+
 
 def ancient_woods_east_shortcut(state: CollectionState, player: int) -> bool:
     return state.has("Ancient Woods East Shortcut", player, 1)
@@ -444,6 +395,34 @@ def no_locked_doors(state: CollectionState, player: int) -> bool:
 
 def minimal_locked_doors(state: CollectionState, player: int) -> bool:
     return state.multiworld.worlds[player].options.remove_locked_doors == 1
+
+
+def skip_plot(state: CollectionState, player: int) -> bool:
+    return state.multiworld.worlds[player].options.skip_plot
+
+
+def open_shortcuts(state: CollectionState, player: int) -> bool:
+    return state.multiworld.worlds[player].options.open_shortcuts
+
+
+def open_sun_palace(state: CollectionState, player: int) -> bool:
+    return state.multiworld.worlds[player].options.open_sun_palace
+
+
+def open_horizon_beach(state: CollectionState, player: int) -> bool:
+    return state.multiworld.worlds[player].options.open_horizon_beach
+
+
+def open_magma_chamber(state: CollectionState, player: int) -> bool:
+    return state.multiworld.worlds[player].options.open_magma_chamber
+
+
+def open_blob_burg(state: CollectionState, player: int) -> bool:
+    return state.multiworld.worlds[player].options.open_blob_burg
+
+
+def unlock_blob_burg(state: CollectionState, player: int) -> bool:
+    return state.multiworld.worlds[player].options.unlock_blob_burg
 # endregion
 
 

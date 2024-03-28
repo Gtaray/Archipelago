@@ -52,6 +52,7 @@ class HorizonBeachTests(TestArea):
         self.assertAccessible("HorizonBeach_West1", "HorizonBeach_Champion_Champion",
                               ["Koi", "Rescued Leonard", "Goblin King Defeated"])
 
+
 class HorizonBeachPlotlessTests(TestArea):
     options = {
         "skip_plot": 1
@@ -62,3 +63,21 @@ class HorizonBeachPlotlessTests(TestArea):
 
     def test_rescued_leonard_not_required(self):
         self.assertAccessible("HorizonBeach_TreasureCave1", "HorizonBeach_Champion_Champion", ["Koi"])
+
+
+class OpenedHorizonBeachTests(TestArea):
+    options = {
+        "open_horizon_beach": 1
+    }
+
+    def test_magma_chamber_shortcut_is_open(self):
+        self.assertAccessible("MagmaChamber_East2", "horizon_beach_to_magma_chamber_shortcut", [])
+        self.assertAccessible("MagmaChamber_East3_Upper", "MagmaChamber_East2_3", [])
+
+    def test_forgotten_world_shortcut_is_open(self):
+        self.assertAccessible("HorizonBeach_Center5",
+                              "forgotten_world_to_horizon_beach_shortcut",
+                              ["Brutus"])
+        self.assertAccessible("HorizonBeach_FWExit",
+                              "HorizonBeach_Center5_3",
+                              ["Koi"])

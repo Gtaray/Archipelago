@@ -99,3 +99,12 @@ class AncientWoodsNoLockedDoorsTests(TestArea):
 
     def test_center_accessible_with_no_keys(self):
         self.assertAccessible("AncientWoods_Center2", "AncientWoods_Center5_4", [])
+
+
+class AncientWoodsWithOpenedHorizonBeach(TestArea):
+    options = {
+        "open_horizon_beach": 1
+    }
+
+    def test_horizon_beach_accessible(self):
+        self.assertAccessible("AncientWoods_East2_West", "AncientWoods_East3_1_0", [])
