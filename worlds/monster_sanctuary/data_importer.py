@@ -52,6 +52,7 @@ def load_world() -> None:
                 region.connections += [connection]
 
             region_name: str = region.name
+
             for chest_data in region_data.get("chests") or []:
                 # Hack because we store comments as strings
                 if isinstance(chest_data, str):

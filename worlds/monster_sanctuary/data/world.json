@@ -846,8 +846,6 @@
 
     ]
   },
-
-
   {
     "region": "BlueCave_StrongholdEntrance",
     "connections": [
@@ -1416,7 +1414,7 @@
       { "region": "BlueCave_WestWaters4_Lower" }
     ],
     "chests": [
-      { "id": 0, "item": "Diadem+3", "requirements": [ "dark_rooms" ] }
+      { "id": 0, "item": "Diadem+3", "requirements": [ "AND", ["dark_rooms", "double_jump"] ] }
     ]
   },
   {
@@ -4162,7 +4160,8 @@
   {
     "region": "AncientWoods_WestDescent_Upper",
     "connections": [
-      { "region": "AncientWoods_West7" }
+      { "region": "AncientWoods_West7" },
+      { "region": "AncientWoods_WestDescent_Middle" }
     ],
     "chests": [
       { "id": 12, "item": "3x Reward Box Lvl 4", "requirements": [ "magic_vines"]}
@@ -4178,7 +4177,7 @@
         ]
       },
       { "region": "AncientWoods_WestDescent_Lower" },
-      { "region": "AncientWoods_SouthHidden1", "requirements": ["breakable_walls"] }
+      { "region": "AncientWoods_SouthHidden1_West", "requirements": ["breakable_walls"] }
     ]
   },
   {
@@ -4256,18 +4255,11 @@
     "region": "AncientWoods_Center1",
     "connections": [
       { "region": "AncientWoods_Center2" },
-      {
-        "region": "AncientWoods_Center3",
-        "requirements":  [
-          "OR", ["double_jump", "improved_flying", "dual_mobility", "lofty_mount", "summon_big_rock"]
-        ]
-      },
+      { "region": "AncientWoods_Center3" },
       { "region": "AncientWoods_Center4" }
     ],
     "chests": [
-      { "id": 0, "item": "Red Gem", "requirements": [
-        "OR",["double_jump", "improved_flying", "dual_mobility", "lofty_mount", "summon_big_rock"]]
-      },
+      { "id": 0, "item": "Red Gem" },
       { "id": 1, "item": "2x Iron" }
     ],
     "encounters": [
@@ -4560,10 +4552,13 @@
      "region": "AncientWoods_South4",
     "connections": [
       { "region": "AncientWoods_South3" },
-      { "region": "AncientWoods_SouthHidden2" }
+      { "region": "AncientWoods_SouthHidden4", "requirements": ["ancient_woods_brutus_access"] }
     ],
     "chests": [
       { "id": 1, "item": "Morning Star+4" }
+    ],
+    "flags": [
+      { "id": "ancient_woods_brutus_access", "name": "Ancient Woods Brutus Access", "requirements": ["breakable_walls"] }
     ]
   },
   {
@@ -4590,7 +4585,7 @@
   {
     "region": "AncientWoods_SouthHidden1_West",
     "connections": [
-      { "region": "AncientWoods_WestDescent_Middle" },
+      { "region": "AncientWoods_WestDescent_Middle", "requirements": ["breakable_walls"]  },
       {
         "region": "AncientWoods_SouthHidden1_East",
         "requirements": [
@@ -4672,7 +4667,7 @@
       {
         "region": "AncientWoods_South4",
         "requirements": [
-          "AND", ["dark_rooms", "double_jump"]
+          "AND", ["dark_rooms", "double_jump", "ancient_woods_brutus_access"]
         ]
       },
       {
@@ -6014,10 +6009,14 @@
     "region": "MagmaChamber_South7_East",
     "connections": [
       {"region": "MagmaChamber_South7_West", "requirements": ["mount"]},
-      {"region": "MagmaChamber_South8", "requirements": ["breakable_walls"]}
+      {"region": "MagmaChamber_South8", "requirements": ["magma_chamber_forgotten_world_access"]}
     ],
     "chests": [
       {"id": 4, "item": "2x Leather"}
+    ],
+    "flags": [
+      { "id": "magma_chamber_forgotten_world_access", "name": "Magma Chamber Forgotten World Access",
+        "requirements": ["breakable_walls"] }
     ]
   },
   {
@@ -6030,7 +6029,7 @@
   {
     "region": "MagmaChamber_South8",
     "connections": [
-      {"region": "MagmaChamber_South7_East", "requirements": ["breakable_walls"]},
+      {"region": "MagmaChamber_South7_East", "requirements": ["magma_chamber_forgotten_world_access"]},
       {"region": "MagmaChamber_South9_West"}
     ],
     "chests": [
@@ -8260,7 +8259,14 @@
       {"region": "ForgottenWorld_Caves11_Upper"}
     ],
     "gifts": [
-      {"id": 45100110, "item": "Bard Egg", "requirements": ["all_celestial_feathers"]}
+      {"id": 45100110, "item": "Bard Egg", "requirements": ["forgotten_world_wanderer_freed"]}
+    ],
+    "flags": [
+      {
+        "id": "forgotten_world_wanderer_freed",
+        "name": "Forgotten World Wanderer Freed",
+        "requirements": ["all_celestial_feathers"]
+      }
     ]
   },
   {
@@ -8276,7 +8282,8 @@
       {"id": 1, "item": "2x Phoenix Serum"}
     ],
     "gifts": [
-      {"id": 46100009, "item": "Mandolin", "requirements": ["forgotten_world_dracomer_defeated"]}
+      {"id": 46100009, "item": "Mandolin", "requirements": [
+        "AND", ["forgotten_world_wanderer_freed", "forgotten_world_dracomer_defeated"]]}
     ]
   },
   {

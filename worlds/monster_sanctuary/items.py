@@ -240,7 +240,7 @@ def get_random_item_name(world: World,
     if "Multiple" not in group_exclude:
         group_exclude.append("Multiple")
 
-    item_type = world.multiworld.random.choice(item_drop_probabilities)
+    item_type = world.random.choice(item_drop_probabilities)
     valid_items = [item for item in get_filtered_unique_item_data(itempool)
                    if is_item_type(item, item_type)
                    and "+" not in item  # Filter out any equipment with a higher level. We handle this below
@@ -250,7 +250,7 @@ def get_random_item_name(world: World,
     if len(valid_items) == 0:
         return None
 
-    base_item_name = world.multiworld.random.choice(valid_items)
+    base_item_name = world.random.choice(valid_items)
     base_item = item_data.get(base_item_name)
 
     if (world.multiworld.random.randint(1, 100) <= world.options.replace_filler_with_level_badges
@@ -268,7 +268,7 @@ def get_random_item_name(world: World,
 def roll_random_equipment_level(world: World, base_item: ItemData) -> str:
     """Randomly rolls to determine an equipment's level (+0, +1, +2, +3, +4, or +5)"""
     name_append = None
-    roll = world.multiworld.random.randint(1, 100)
+    roll = world.random.randint(1, 100)
 
     if roll > 95:
         name_append = "+5"
@@ -291,7 +291,7 @@ def roll_random_equipment_level(world: World, base_item: ItemData) -> str:
 
 def roll_random_item_quantity(world: World, base_item: ItemData) -> str:
     name_prepend = None
-    roll = world.multiworld.random.randint(1, 10)
+    roll = world.random.randint(1, 10)
 
     if "Up to 2" in base_item.groups:
         if roll >= 5:

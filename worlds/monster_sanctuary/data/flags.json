@@ -88,6 +88,10 @@
     "classification": "progression"
   },
   {
+    "name": "Ancient Woods Brutus Access",
+    "classification": "progression"
+  },
+  {
     "name": "Ostanes",
     "classification": "progression"
   },
@@ -148,6 +152,10 @@
     "classification": "progression"
   },
   {
+    "name": "Magma Chamber Forgotten World Access",
+    "classification": "progression"
+  },
+  {
     "name": "Bex",
     "classification": "progression"
   },
@@ -157,7 +165,7 @@
   },
   {
     "name": "Forgotten World to Magma Chamber Shortcut",
-    "classification": "useful"
+    "classification": "progression"
   },
   {
     "name": "Underworld East Catacomb 7 Access",
@@ -225,6 +233,10 @@
   },
   {
     "name": "Blob Burg Access",
+    "classification": "progression"
+  },
+  {
+    "name": "Forgotten World Wanderer Freed",
     "classification": "progression"
   },
   {
