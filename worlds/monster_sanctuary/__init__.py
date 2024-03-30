@@ -251,6 +251,11 @@ class MonsterSanctuaryWorld(World):
     def place_events(self) -> None:
         """Creates locations for all flags, and places flag items at those locations"""
         for location_name, data in FLAGS.flag_data.items():
+            # If blob burg is unlocked, we don't need to place the blob key used events
+            if (location_name in ["stronghold_dungeon_blob_key", "mystical_workshop_blob_key", "sun_palace_blob_key"]
+                    and self.options.unlock_blob_burg):
+                continue
+
             region = self.multiworld.get_region(data.region, self.player)
             access_condition = data.access_condition or None
             location = MonsterSanctuaryLocation(

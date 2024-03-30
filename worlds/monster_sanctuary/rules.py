@@ -188,7 +188,8 @@ def shifting_available(state: CollectionState, player: int) -> bool:
 
 
 def ancient_woods_east_shortcut(state: CollectionState, player: int) -> bool:
-    return state.has("Ancient Woods East Shortcut", player, 1) or open_shortcuts(state, player)
+    # Do not apply open shortcuts here, as it would allow access to an area that normally requires a key
+    return state.has("Ancient Woods East Shortcut", player, 1)
 
 
 def ancient_woods_beach_access(state: CollectionState, player: int) -> bool:
@@ -200,7 +201,8 @@ def ancient_woods_magma_chamber_shortcut(state: CollectionState, player: int) ->
 
 
 def ancient_woods_brutus_access(state: CollectionState, player: int) -> bool:
-    return state.has("Ancient Woods Brutus Access", player) or open_shortcuts(state, player)
+    return (state.has("Ancient Woods Brutus Access", player)
+            or (open_shortcuts(state, player) and no_locked_doors(state, player)))
 
 
 def goblin_king_defeated(state: CollectionState, player: int) -> bool:
@@ -320,7 +322,8 @@ def underworld_to_sun_palace_shortcut(state: CollectionState, player: int) -> bo
 
 
 def mystical_workshop_north_shortcut(state: CollectionState, player: int) -> bool:
-    return state.has("Mystical Workshop North Shortcut", player)
+    return (state.has("Mystical Workshop North Shortcut", player)
+            or (open_shortcuts(state, player) and no_locked_doors(state, player)))
 
 
 def abandoned_tower_access(state: CollectionState, player: int) -> bool:
@@ -364,7 +367,7 @@ def forgotten_world_jungle_shortcut(state: CollectionState, player: int) -> bool
 
 
 def forgotten_world_caves_shortcut(state: CollectionState, player: int) -> bool:
-    return state.has("Forgotten World Caves Shortcut", player)
+    return state.has("Forgotten World Caves Shortcut", player) or open_shortcuts(state, player)
 
 
 def forgotten_world_waters_shortcut(state: CollectionState, player: int) -> bool:
