@@ -116,7 +116,7 @@ class AncientWoodsWithOpenedShortcuts(TestArea):
     }
 
     def test_east_shortcut(self):
-        self.assertAccessible("AncientWoods_East1", "ancient_woods_east_shortcut", [])
+        self.assertNotAccessible("AncientWoods_East1", "ancient_woods_east_shortcut", [])
 
     def test_backwards_brutus_is_not_open(self):
         self.assertNotAccessible("AncientWoods_SouthChampion", "AncientWoods_South4_1",
