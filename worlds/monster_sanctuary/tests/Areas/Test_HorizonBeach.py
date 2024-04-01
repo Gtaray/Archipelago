@@ -65,10 +65,13 @@ class HorizonBeachPlotlessTests(TestArea):
         self.assertAccessible("HorizonBeach_TreasureCave1", "HorizonBeach_Champion_Champion", ["Koi"])
 
 
-class OpenedHorizonBeachTests(TestArea):
+class HorizonBeachWithOpenEntrances(TestArea):
     options = {
-        "open_horizon_beach": 1
+        "open_horizon_beach": "entrances"
     }
+
+    def test_horizon_beach_accessible(self):
+        self.assertAccessible("AncientWoods_East2_West", "AncientWoods_East3_1_0", [])
 
     def test_magma_chamber_shortcut_is_open(self):
         self.assertAccessible("MagmaChamber_East2", "horizon_beach_to_magma_chamber_shortcut", [])
@@ -77,7 +80,7 @@ class OpenedHorizonBeachTests(TestArea):
 
 class HorizonBeachWithOpenShortcuts(TestArea):
     options = {
-        "open_shortcuts": 1
+        "open_horizon_beach": "shortcuts"
     }
 
     def test_center_shortcut(self):

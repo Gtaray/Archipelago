@@ -66,9 +66,20 @@ class SunPalaceTests(TestArea):
         self.assertAccessible("SunPalace_Center", "sun_palace_west_shortcut", ["Sun Palace West Shortcut"])
 
 
-class OpenedSunPalaceTests(TestArea):
+class SunPalaceWithOpenEntrances(TestArea):
     options = {
-        "open_sun_palace": 1
+        "open_sun_palace": "entrances"
+    }
+
+    def test_sun_palace_entrance_shortcut(self):
+        self.assertAccessible("SnowyPeaks_SunPalaceEntrance",
+                              "snowy_peaks_sun_palace_entrance_shortcut",
+                              [])
+
+
+class SunPalaceWithRaisedPillars(TestArea):
+    options = {
+        "open_sun_palace": "raise_pillar"
     }
 
     def test_center_is_raised(self):
@@ -88,5 +99,3 @@ class OpenedSunPalaceTests(TestArea):
 
     def test_west_shortcut(self):
         self.assertAccessible("SunPalace_Center", "sun_palace_west_shortcut", [])
-
-

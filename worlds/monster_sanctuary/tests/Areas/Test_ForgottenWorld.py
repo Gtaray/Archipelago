@@ -27,7 +27,7 @@ class ForgottenWorldTests(TestArea):
     def test_caves_shortcut(self):
         self.assertNotAccessible("ForgottenWorld_Caves11_Upper", "forgotten_world_caves_shortcut", [])
         self.assertAccessible("ForgottenWorld_Caves11_Upper", "forgotten_world_caves_shortcut",
-                              ["Forgotten World Caves Shortcut"])
+                              ["Forgotten World Caves Shortcut", "Koi"])
 
     def test_world_tree_progression(self):
         self.assertNotAccessible("ForgottenWorld_WorldTree", "ForgottenWorld_WorldTree_46100009", [])
@@ -52,9 +52,9 @@ class ForgottenWorldTests(TestArea):
                               ["Forgotten World Wanderer Freed"])
 
 
-class OpenForgottenWorldTests(TestArea):
+class ForgottenWorldWithOpenEntrances(TestArea):
     options = {
-        "open_forgotten_world": 1
+        "open_forgotten_world": "entrances"
     }
 
     def test_horizon_beach_access(self):
@@ -74,3 +74,23 @@ class OpenForgottenWorldTests(TestArea):
             "MagmaChamber_South9_Shortcut",
             "MagmaChamber_South7_East_4",
             ["Double Jump Boots", "Dodo"])
+
+
+class ForgottenWorldWithOpenShortcuts(TestArea):
+    options = {
+        "open_forgotten_world": "shortcuts"
+    }
+
+    def test_caves_shortcut(self):
+        self.assertAccessible(
+            "ForgottenWorld_Caves11_Upper",
+            "ForgottenWorld_Caves10_16_0",
+            []
+        )
+
+    def test_waters_shortcut(self):
+        self.assertAccessible(
+            "ForgottenWorld_Waters1_Middle",
+            "ForgottenWorld_DracomerLair_2",
+            ["Koi"]
+        )

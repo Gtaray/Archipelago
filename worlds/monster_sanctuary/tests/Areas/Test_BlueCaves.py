@@ -124,7 +124,7 @@ class BlueCavesPlotlessTests(TestArea):
 
 class BlueCavesWithOpenShortcuts(TestArea):
     options = {
-        "open_shortcuts": 1
+        "open_blue_caves": 1
     }
 
     def test_mountain_path_shortcut(self):

@@ -44,19 +44,17 @@ class SnowyPeaksTests(TestArea):
         self.assertNotAccessible("SnowyPeaks_Cryomancer", "SnowyPeaks_Cryomancer_17900065", ["Dodo"])
         self.assertNotAccessible("SnowyPeaks_Cryomancer", "SnowyPeaks_Cryomancer_17900065", ["Dodo Egg"])
         self.assertNotAccessible("SnowyPeaks_Cryomancer", "SnowyPeaks_Cryomancer_17900065",
-                                 ["Sun Palace Raise Center", "Sun Palace Raise Center", "Sun Palace Raise Center"])
+                                 ["Sun Palace Story Complete"])
         self.assertAccessible("SnowyPeaks_Cryomancer", "SnowyPeaks_Cryomancer_17900065",
-                              ["Dodo", "Sun Palace Raise Center", "Sun Palace Raise Center",
-                               "Sun Palace Raise Center"])
+                              ["Dodo", "Sun Palace Story Complete"])
 
         self.assertAccessible("SnowyPeaks_Cryomancer", "SnowyPeaks_Cryomancer_17900065",
-                              ["Dodo Egg", "Sun Palace Raise Center", "Sun Palace Raise Center",
-                               "Sun Palace Raise Center"])
+                              ["Dodo Egg", "Sun Palace Story Complete"])
 
 
 class SnowyPeaksWithOpenShortcuts(TestArea):
     options = {
-        "open_shortcuts": 1
+        "open_snowy_peaks": 1
     }
 
     def test_east_upper_shortcut(self):
@@ -70,8 +68,3 @@ class SnowyPeaksWithOpenShortcuts(TestArea):
                               ["Double Jump Boots"])
         self.assertAccessible("SnowyPeaks_EastMountain3_Middle", "snowy_peaks_east_mountain_3_shortcut",
                               ["Kongamato"])
-
-    def test_sun_palace_entrance_shortcut(self):
-        self.assertAccessible("SnowyPeaks_SunPalaceEntrance",
-                              "snowy_peaks_sun_palace_entrance_shortcut",
-                              [])

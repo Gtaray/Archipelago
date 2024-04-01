@@ -1228,6 +1228,7 @@
           "AND", [
             "all_sanctuary_tokens",
             "OR", [
+              "open_underworld_entrances",
               "skip_plot",
               "AND", ["ostanes", "stronghold_dungeon_library_access"]
             ]
@@ -3993,6 +3994,9 @@
       {"id": 20800117, "item": "Koi Egg"},
       {"id": 20800135, "item": "Shift Stone"},
       {"id": 20800142, "item": "Sanctuary Token"}
+    ],
+    "flags": [
+      { "id": "sun_palace_story_completed", "name": "Sun Palace Story Complete" }
     ]
   },
   {
@@ -4243,7 +4247,7 @@
     "region": "AncientWoods_DungeonEntrance",
     "connections": [
       { "region": "AncientWoods_WestDescent3" },
-      { "region": "StrongholdDungeon_Central5" }
+      { "region": "StrongholdDungeon_Central5_Lower" }
     ]
   },
   {
@@ -8237,7 +8241,12 @@
       {"region": "ForgottenWorld_Caves10"}
     ],
     "flags": [
-      {"id": "forgotten_world_caves_shortcut", "name": "Forgotten World Caves Shortcut"}
+      {"id": "forgotten_world_caves_shortcut", "name": "Forgotten World Caves Shortcut", "requirements": [
+        "AND", [
+          "breakable_walls",
+          "OR", ["double_jump", "improved_flying", "dual_mobility"]
+        ]
+      ]}
     ]
   },
   {

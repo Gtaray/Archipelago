@@ -118,3 +118,33 @@ class MagmaChamberPlotlessTests(TestArea):
     def test_runestone_accessible(self):
         self.assertNotAccessible("MagmaChamber_Runestone", "magma_chamber_lower_lava", [])
         self.assertAccessible("MagmaChamber_Runestone", "magma_chamber_lower_lava",["Runestone Shard"])
+
+
+class MagmaChamberWithOpenEntrances(TestArea):
+    options = {
+        "open_magma_chamber": "entrances"
+    }
+
+    def test_magma_chamber_shortcut(self):
+        self.assertAccessible("AncientWoods_South1_Lower", "MagmaChamber_North5_Upper_3", [])
+
+
+class MagmaChamberWithLoweredLava(TestArea):
+    options = {
+        "open_magma_chamber": "lower_lava"
+    }
+
+    def test_lava_is_lowered(self):
+        self.assertAccessible("MagmaChamber_Center2_Middle", "MagmaChamber_Center2_Lower_16", [])
+
+    def test_north_shortcut(self):
+        self.assertAccessible("MagmaChamber_North8_East", "magma_chamber_north_shortcut", [])
+
+    def test_center_shortcut(self):
+        self.assertAccessible("MagmaChamber_Center4_West", "magma_chamber_center_shortcut", [])
+
+    def test_east_shortcut(self):
+        self.assertAccessible("MagmaChamber_East1", "magma_chamber_east_shortcut", [])
+
+    def test_south_shortcut(self):
+        self.assertAccessible("MagmaChamber_North8_East", "magma_chamber_north_shortcut", [])

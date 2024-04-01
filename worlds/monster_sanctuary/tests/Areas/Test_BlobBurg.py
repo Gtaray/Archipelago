@@ -49,14 +49,19 @@ class BlobBurgTests(TestArea):
                                "Blob Burg Access", "Blob Burg Access", "Double Jump Boots", "Kongamato"])
 
 
-class UnlockedBlobBurgTests(TestArea):
+class BlobBurgWithOpenEntrances(TestArea):
     options = {
-        "unlock_blob_burg": 1,
-        "open_blob_burg": 1
+        "open_blob_burg": "entrances"
     }
 
     def test_blob_burg_accessible_without_key(self):
         self.assertAccessible("MagmaChamber_West7", "BlobBurg_East1_1_0", [])
+
+
+class BlobBurgWithOpenRooms(TestArea):
+    options = {
+        "open_blob_burg": "open_walls"
+    }
 
     def test_access_1(self):
         self.assertAccessible("BlobBurg_East1", "blob_burg_access_1", [])

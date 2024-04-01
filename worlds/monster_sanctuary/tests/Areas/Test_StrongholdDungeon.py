@@ -41,16 +41,22 @@ class StrongholdDungeonNoLockedDoorsTests(TestArea):
         self.assertAccessible("StrongholdDungeon_South3", "StrongholdDungeon_South4_4_0", [])
 
 
+class StrongholdDungeonWithOpenEntrances(TestArea):
+    options = {
+        "open_stronghold_dungeon": "entrances"
+    }
+
+    def test_west_shortcut(self):
+        self.assertAccessible("StrongholdDungeon_West4", "BlueCave_East4_0", [])
+
+
 class StrongholdDungeonWithOpenShortcuts(TestArea):
     options = {
-        "open_shortcuts": 1
+        "open_stronghold_dungeon": "shortcuts"
     }
 
     def test_south_shortcut(self):
         self.assertAccessible("StrongholdDungeon_West2", "stronghold_dungeon_south_3_shortcut", [])
 
     def test_west_shortcut(self):
-        self.assertAccessible("StrongholdDungeon_West4", "BlueCave_East4_0", [])
-
-    def test_east4_upper_shortcut(self):
-        pass
+        self.assertNotAccessible("StrongholdDungeon_West4", "BlueCave_East4_0", [])

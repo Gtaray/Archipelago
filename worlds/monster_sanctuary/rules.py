@@ -120,7 +120,8 @@ def blue_cave_switches_access(state: CollectionState, player: int) -> bool:
 
 
 def blue_cave_champion_room_2_west_shortcut(state: CollectionState, player: int) -> bool:
-    return state.has("Blue Caves to Mountain Path Shortcut", player) or open_shortcuts(state, player)
+    return (state.has("Blue Caves to Mountain Path Shortcut", player)
+            or get_options(state, player).open_blue_caves)
 
 
 def blue_caves_story_complete(state: CollectionState, player: int) -> bool:
@@ -128,81 +129,107 @@ def blue_caves_story_complete(state: CollectionState, player: int) -> bool:
 
 
 def stronghold_dungeon_south_3_shortcut(state: CollectionState, player: int) -> bool:
-    return state.has("Stronghold Dungeon South 3 Shortcut", player) or open_shortcuts(state, player)
+    option = get_options(state, player).open_stronghold_dungeon
+    return (state.has("Stronghold Dungeon South 3 Shortcut", player)
+            or option == "shortcuts" or option == "full")
 
 
 def stronghold_dungeon_west_4_shortcut(state: CollectionState, player: int) -> bool:
-    return state.has("Stronghold Dungeon to Blue Caves Shortcut", player) or open_shortcuts(state, player)
-
-
-def snowy_peaks_east4_upper_shortcut(state: CollectionState, player: int) -> bool:
-    return state.has("Snowy Peaks East 4 Upper Shortcut", player) or open_shortcuts(state, player)
-
-
-def snowy_peaks_east_mountain_3_shortcut(state: CollectionState, player: int) -> bool:
-    return state.has("Snowy Peaks East Mountain 3 Shortcut", player) or open_shortcuts(state, player)
-
-
-def snowy_peaks_sun_palace_entrance_shortcut(state: CollectionState, player: int) -> bool:
-    return state.has("Snowy Peaks to Sun Palace Shortcut", player) or open_shortcuts(state, player)
+    option = get_options(state, player).open_stronghold_dungeon
+    return (state.has("Stronghold Dungeon to Blue Caves Shortcut", player)
+            or option == "entrances" or option == "full")
 
 
 def stronghold_dungeon_library_access(state: CollectionState, player: int) -> bool:
     return state.has("Stronghold Dungeon Library Access", player)
 
 
+def snowy_peaks_east4_upper_shortcut(state: CollectionState, player: int) -> bool:
+    return (state.has("Snowy Peaks East 4 Upper Shortcut", player)
+            or get_options(state, player).open_snowy_peaks)
+
+
+def snowy_peaks_east_mountain_3_shortcut(state: CollectionState, player: int) -> bool:
+    return (state.has("Snowy Peaks East Mountain 3 Shortcut", player)
+            or get_options(state, player).open_snowy_peaks)
+
+
+def snowy_peaks_sun_palace_entrance_shortcut(state: CollectionState, player: int) -> bool:
+    option = get_options(state, player).open_sun_palace
+    return (state.has("Snowy Peaks to Sun Palace Shortcut", player)
+            or option == "entrances" or option == "full")
+
+
 def sun_palace_raise_center_1(state: CollectionState, player: int) -> bool:
-    return state.has("Sun Palace Raise Center", player, 1) or open_sun_palace(state, player)
+    option = get_options(state, player).open_sun_palace
+    return (state.has("Sun Palace Raise Center", player, 1)
+            or option == "raise_pillar" or option == "full")
 
 
 def sun_palace_raise_center_2(state: CollectionState, player: int) -> bool:
-    return state.has("Sun Palace Raise Center", player, 2) or open_sun_palace(state, player)
+    option = get_options(state, player).open_sun_palace
+    return (state.has("Sun Palace Raise Center", player, 2)
+            or option == "raise_pillar" or option == "full")
 
 
 def sun_palace_raise_center_3(state: CollectionState, player: int) -> bool:
-    return state.has("Sun Palace Raise Center", player, 3) or open_sun_palace(state, player)
+    option = get_options(state, player).open_sun_palace
+    return (state.has("Sun Palace Raise Center", player, 3)
+            or option == "raise_pillar" or option == "full")
 
 
 def sun_palace_lower_water_1(state: CollectionState, player: int) -> bool:
-    return state.has("Sun Palace Lower Water", player, 1) or open_sun_palace(state, player)
+    option = get_options(state, player).open_sun_palace
+    return (state.has("Sun Palace Lower Water", player, 1)
+            or option == "raise_pillar" or option == "full")
 
 
 def sun_palace_lower_water_2(state: CollectionState, player: int) -> bool:
-    return state.has("Sun Palace Lower Water", player, 2) or open_sun_palace(state, player)
+    option = get_options(state, player).open_sun_palace
+    return (state.has("Sun Palace Lower Water", player, 2)
+            or option == "raise_pillar" or option == "full")
 
 
 def sun_palace_east_shortcut(state: CollectionState, player: int) -> bool:
-    return state.has("Sun Palace East Shortcut", player, 1) or open_sun_palace(state, player)
+    option = get_options(state, player).open_sun_palace
+    return (state.has("Sun Palace East Shortcut", player, 1)
+            or option == "raise_pillar" or option == "full")
 
 
 def sun_palace_west_shortcut(state: CollectionState, player: int) -> bool:
-    return state.has("Sun Palace West Shortcut", player, 1) or open_sun_palace(state, player)
+    option = get_options(state, player).open_sun_palace
+    return (state.has("Sun Palace West Shortcut", player, 1)
+            or option == "raise_pillar" or option == "full")
 
 
 def shifting_available(state: CollectionState, player: int) -> bool:
-    # Either shifting is allowed any time, or we have raised the center 3 times
     return (state.multiworld.worlds[player].options.monster_shift_rule == "any_time" or (
                 state.multiworld.worlds[player].options.monster_shift_rule == "after_sun_palace" and
-                state.has("Sun Palace Raise Center", player, 3)
+                state.has("Sun Palace Story Complete", player, 1)
             ))
 
 
 def ancient_woods_east_shortcut(state: CollectionState, player: int) -> bool:
-    # Do not apply open shortcuts here, as it would allow access to an area that normally requires a key
-    return state.has("Ancient Woods East Shortcut", player, 1)
+
+    return (state.has("Ancient Woods East Shortcut", player, 1)
+            or get_options(state, player).open_ancient_woods)
 
 
 def ancient_woods_beach_access(state: CollectionState, player: int) -> bool:
-    return state.has("Ancient Woods Beach Access", player, 1) or open_horizon_beach(state, player)
+    option = get_options(state, player).open_horizon_beach
+    return (state.has("Ancient Woods Beach Access", player, 1)
+            or option == "entrances" or option == "full")
 
 
 def ancient_woods_magma_chamber_shortcut(state: CollectionState, player: int) -> bool:
-    return state.has("Ancient Woods to Magma Chamber Shortcut", player, 2) or open_shortcuts(state, player)
+    option = get_options(state, player).open_magma_chamber
+    return (state.has("Ancient Woods to Magma Chamber Shortcut", player, 2)
+            or option == "entrances" or option == "full")
 
 
 def ancient_woods_brutus_access(state: CollectionState, player: int) -> bool:
     return (state.has("Ancient Woods Brutus Access", player)
-            or (open_shortcuts(state, player) and no_locked_doors(state, player)))
+            or get_options(state, player).open_ancient_woods)
 
 
 def goblin_king_defeated(state: CollectionState, player: int) -> bool:
@@ -210,7 +237,9 @@ def goblin_king_defeated(state: CollectionState, player: int) -> bool:
 
 
 def horizon_beach_center_shortcut(state: CollectionState, player: int) -> bool:
-    return state.has("Horizon Beach Center Shortcut", player) or open_shortcuts(state, player)
+    option = get_options(state, player).open_horizon_beach
+    return (state.has("Horizon Beach Center Shortcut", player)
+            or option == "shortcuts" or option == "full")
 
 
 def horizon_beach_rescue_leonard(state: CollectionState, player: int) -> bool:
@@ -218,31 +247,45 @@ def horizon_beach_rescue_leonard(state: CollectionState, player: int) -> bool:
 
 
 def horizon_beach_to_magma_chamber_shortcut(state: CollectionState, player: int) -> bool:
-    return state.has("Horizon Beach To Magma Chamber Shortcut", player) or open_horizon_beach(state, player)
+    option = get_options(state, player).open_horizon_beach
+    return (state.has("Horizon Beach To Magma Chamber Shortcut", player)
+            or option == "entrances" or option == "full")
 
 
 def magma_chamber_north_shortcut(state: CollectionState, player: int) -> bool:
-    return state.has("Magma Chamber North Shortcut", player)
+    option = get_options(state, player).open_magma_chamber
+    return (state.has("Magma Chamber North Shortcut", player)
+            or option == "lower_lava" or option == "full")
 
 
 def magma_chamber_center_shortcut(state: CollectionState, player: int) -> bool:
-    return state.has("Magma Chamber Center Shortcut", player)
+    option = get_options(state, player).open_magma_chamber
+    return (state.has("Magma Chamber Center Shortcut", player)
+            or option == "lower_lava" or option == "full")
 
 
 def magma_chamber_east_shortcut(state: CollectionState, player: int) -> bool:
-    return state.has("Magma Chamber East Shortcut", player)
+    option = get_options(state, player).open_magma_chamber
+    return (state.has("Magma Chamber East Shortcut", player)
+            or option == "lower_lava" or option == "full")
 
 
 def magma_chamber_south_shortcut(state: CollectionState, player: int) -> bool:
-    return state.has("Magma Chamber South Shortcut", player)
+    option = get_options(state, player).open_magma_chamber
+    return (state.has("Magma Chamber South Shortcut", player)
+            or option == "lower_lava" or option == "full")
 
 
 def magma_chamber_lower_lava(state: CollectionState, player: int) -> bool:
-    return state.has("Magma Chamber Lowered Lava", player)
+    option = get_options(state, player).open_magma_chamber
+    return (state.has("Magma Chamber Lowered Lava", player)
+            or option == "lower_lava" or option == "full")
 
 
 def magma_chamber_forgotten_world_access(state: CollectionState, player: int) -> bool:
-    return state.has("Magma Chamber Forgotten World Access", player) or open_forgotten_world(state, player)
+    option = get_options(state, player).open_forgotten_world
+    return (state.has("Magma Chamber Forgotten World Access", player)
+            or option == "entrances" or option == "full")
 
 
 def velvet_melody_access(state: CollectionState, player: int) -> bool:
@@ -270,11 +313,15 @@ def forgotten_world_wanderer_freed(state: CollectionState, player: int) -> bool:
 
 
 def forgotten_world_to_horizon_beach_shortcut(state: CollectionState, player: int) -> bool:
-    return state.has("Forgotten World to Horizon Beach Shortcut", player) or open_forgotten_world(state, player)
+    option = get_options(state, player).open_forgotten_world
+    return (state.has("Forgotten World to Horizon Beach Shortcut", player)
+            or option == "entrances" or option == "full")
 
 
 def forgotten_world_to_magma_chamber_shortcut(state: CollectionState, player: int) -> bool:
-    return state.has("Forgotten World to Magma Chamber Shortcut", player) or open_forgotten_world(state, player)
+    option = get_options(state, player).open_forgotten_world
+    return (state.has("Forgotten World to Magma Chamber Shortcut", player)
+            or option == "entrances" or option == "full")
 
 
 def underworld_east_catacomb_7_access(state: CollectionState, player: int) -> bool:
@@ -282,11 +329,15 @@ def underworld_east_catacomb_7_access(state: CollectionState, player: int) -> bo
 
 
 def underworld_east_catacomb_8_shortcut(state: CollectionState, player: int) -> bool:
-    return state.has("Underworld East Catacomb 8 Shortcut", player)
+    option = get_options(state, player).open_underworld
+    return (state.has("Underworld East Catacomb 8 Shortcut", player)
+            or option == "shortcuts" or option == "full")
 
 
 def underworld_east_catacomb_6_shortcut(state: CollectionState, player: int) -> bool:
-    return state.has("Underworld East Catacomb 6 Shortcut", player)
+    option = get_options(state, player).open_underworld
+    return (state.has("Underworld East Catacomb 6 Shortcut", player)
+            or option == "shortcuts" or option == "full")
 
 
 def underworld_east_catacomb_pillar_control(state: CollectionState, player: int) -> bool:
@@ -302,11 +353,15 @@ def underworld_west_catacomb_4_access(state: CollectionState, player: int) -> bo
 
 
 def underworld_west_catacomb_4_shortcut(state: CollectionState, player: int) -> bool:
-    return state.has("Underworld West Catacomb 4 Shortcut", player)
+    option = get_options(state, player).open_underworld
+    return (state.has("Underworld West Catacomb 4 Shortcut", player)
+            or option == "shortcuts" or option == "full")
 
 
 def underworld_west_catacomb_7_shortcut(state: CollectionState, player: int) -> bool:
-    return state.has("Underworld West Catacomb 7 Shortcut", player)
+    option = get_options(state, player).open_underworld
+    return (state.has("Underworld West Catacomb 7 Shortcut", player)
+            or option == "shortcuts" or option == "full")
 
 
 def underworld_west_catacomb_9_interior_access(state: CollectionState, player: int) -> bool:
@@ -314,20 +369,26 @@ def underworld_west_catacomb_9_interior_access(state: CollectionState, player: i
 
 
 def underworld_west_catacomb_roof_access(state: CollectionState, player: int) -> bool:
-    return state.has("Underworld West Catacomb Roof Access", player)
+    option = get_options(state, player).open_underworld
+    return (state.has("Underworld West Catacomb Roof Access", player)
+            or option == "shortcuts" or option == "full")
 
 
 def underworld_to_sun_palace_shortcut(state: CollectionState, player: int) -> bool:
-    return state.has("Underworld to Sun Palace Shortcut", player)
+    option = get_options(state, player).open_underworld
+    return (state.has("Underworld to Sun Palace Shortcut", player)
+            or option == "entrances" or option == "full")
 
 
 def mystical_workshop_north_shortcut(state: CollectionState, player: int) -> bool:
     return (state.has("Mystical Workshop North Shortcut", player)
-            or (open_shortcuts(state, player) and no_locked_doors(state, player)))
+            or get_options(state, player).open_mystical_workshop)
 
 
 def abandoned_tower_access(state: CollectionState, player: int) -> bool:
-    return state.has("Abandoned Tower Access", player)
+    option = get_options(state, player).open_abandoned_tower
+    return (state.has("Abandoned Tower Access", player)
+            or option == "entrances" or option == "full")
 
 
 def blob_key_accessible(state: CollectionState, player: int) -> bool:
@@ -335,31 +396,45 @@ def blob_key_accessible(state: CollectionState, player: int) -> bool:
 
 
 def all_blob_keys_used(state: CollectionState, player: int) -> bool:
-    return state.has("Blob Key Used", player, 3) or unlock_blob_burg(state, player)
+    option = get_options(state, player).open_blob_burg
+    return (state.has("Blob Key Used", player, 3)
+            or option == "entrances" or option == "full")
 
 
 def blob_burg_access_1(state: CollectionState, player: int) -> bool:
-    return state.has("Blob Burg Access", player, 1) or open_blob_burg(state, player)
+    option = get_options(state, player).open_blob_burg
+    return (state.has("Blob Burg Access", player, 1)
+            or option == "open_walls" or option == "full")
 
 
 def blob_burg_access_2(state: CollectionState, player: int) -> bool:
-    return state.has("Blob Burg Access", player, 2) or open_blob_burg(state, player)
+    option = get_options(state, player).open_blob_burg
+    return (state.has("Blob Burg Access", player, 2)
+            or option == "open_walls" or option == "full")
 
 
 def blob_burg_access_3(state: CollectionState, player: int) -> bool:
-    return state.has("Blob Burg Access", player, 3) or open_blob_burg(state, player)
+    option = get_options(state, player).open_blob_burg
+    return (state.has("Blob Burg Access", player, 3)
+            or option == "open_walls" or option == "full")
 
 
 def blob_burg_access_4(state: CollectionState, player: int) -> bool:
-    return state.has("Blob Burg Access", player, 4) or open_blob_burg(state, player)
+    option = get_options(state, player).open_blob_burg
+    return (state.has("Blob Burg Access", player, 4)
+            or option == "open_walls" or option == "full")
 
 
 def blob_burg_access_5(state: CollectionState, player: int) -> bool:
-    return state.has("Blob Burg Access", player, 5) or open_blob_burg(state, player)
+    option = get_options(state, player).open_blob_burg
+    return (state.has("Blob Burg Access", player, 5)
+            or option == "open_walls" or option == "full")
 
 
 def blob_burg_access_6(state: CollectionState, player: int) -> bool:
-    return state.has("Blob Burg Access", player, 6) or open_blob_burg(state, player)
+    option = get_options(state, player).open_blob_burg
+    return (state.has("Blob Burg Access", player, 6)
+            or option == "open_walls" or option == "full")
 
 
 def forgotten_world_jungle_shortcut(state: CollectionState, player: int) -> bool:
@@ -367,23 +442,29 @@ def forgotten_world_jungle_shortcut(state: CollectionState, player: int) -> bool
 
 
 def forgotten_world_caves_shortcut(state: CollectionState, player: int) -> bool:
-    return state.has("Forgotten World Caves Shortcut", player) or open_shortcuts(state, player)
+    option = get_options(state, player).open_forgotten_world
+    return (state.has("Forgotten World Caves Shortcut", player)
+            or option == "shortcuts" or option == "full")
 
 
 def forgotten_world_waters_shortcut(state: CollectionState, player: int) -> bool:
-    return state.has("Forgotten World Waters Shortcut", player)
-
+    option = get_options(state, player).open_forgotten_world
+    return (state.has("Forgotten World Waters Shortcut", player)
+            or option == "shortcuts" or option == "full")
 
 def forgotten_world_dracomer_defeated(state: CollectionState, player: int) -> bool:
     return state.has("Forgotten World Dracomer Defeated", player)
 
-
 def abandoned_tower_south_shortcut(state: CollectionState, player: int) -> bool:
-    return state.has("Abandoned Tower South Shortcut", player) or open_shortcuts(state, player)
+    option = get_options(state, player).open_abandoned_tower
+    return (state.has("Abandoned Tower South Shortcut", player)
+            or option == "shortcuts" or option == "full")
 
 
 def abandoned_tower_center_shortcut(state: CollectionState, player: int) -> bool:
-    return state.has("Abandoned Tower Center Shortcut", player) or open_shortcuts(state, player)
+    option = get_options(state, player).open_abandoned_tower
+    return (state.has("Abandoned Tower Center Shortcut", player)
+            or option == "shortcuts" or option == "full")
 
 
 def post_game(state: CollectionState, player: int) -> bool:
@@ -404,32 +485,12 @@ def skip_plot(state: CollectionState, player: int) -> bool:
     return state.multiworld.worlds[player].options.skip_plot
 
 
-def open_shortcuts(state: CollectionState, player: int) -> bool:
-    return state.multiworld.worlds[player].options.open_shortcuts
+def open_underworld_entrances(state: CollectionState, player: int) -> bool:
+    return get_options(state, player).open_underworld == "entrances"
 
 
-def open_sun_palace(state: CollectionState, player: int) -> bool:
-    return state.multiworld.worlds[player].options.open_sun_palace
-
-
-def open_horizon_beach(state: CollectionState, player: int) -> bool:
-    return state.multiworld.worlds[player].options.open_horizon_beach
-
-
-def open_magma_chamber(state: CollectionState, player: int) -> bool:
-    return state.multiworld.worlds[player].options.open_magma_chamber
-
-
-def open_forgotten_world(state: CollectionState, player: int) -> bool:
-    return state.multiworld.worlds[player].options.open_forgotten_world
-
-
-def open_blob_burg(state: CollectionState, player: int) -> bool:
-    return state.multiworld.worlds[player].options.open_blob_burg
-
-
-def unlock_blob_burg(state: CollectionState, player: int) -> bool:
-    return state.multiworld.worlds[player].options.unlock_blob_burg
+def get_options(state: CollectionState, player: int):
+    return state.multiworld.worlds[player].options
 # endregion
 
 
@@ -457,7 +518,9 @@ def four_sanctuary_tokens(state: CollectionState, player: int) -> bool:
 
 
 def all_sanctuary_tokens(state: CollectionState, player: int) -> bool:
-    return state.has("Sanctuary Token", player, 5)
+    option = get_options(state, player).open_underworld
+    return (state.has("Sanctuary Token", player, 5)
+            or option == "entrances" or option == "full")
 
 
 def memorial_ring(state: CollectionState, player: int) -> bool:
@@ -481,7 +544,8 @@ def blob_key(state: CollectionState, player: int) -> bool:
 
 
 def key_of_power(state: CollectionState, player: int) -> bool:
-    return state.has("Key of Power", player)
+    option = get_options(state, player).open_abandoned_tower
+    return state.has("Key of Power", player) or option == "entrances" or option == "full"
 
 
 def all_celestial_feathers(state: CollectionState, player: int) -> bool:

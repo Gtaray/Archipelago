@@ -123,3 +123,61 @@ class UnderworldNoLockedDoorsTests(TestArea):
         self.assertAccessible("Underworld_EastCatacomb3", "Underworld_EastCatacomb4_3", [])
         self.assertAccessible("Underworld_EastCatacomb4", "Underworld_EastCatacomb3_13",
                               ["Underworld East Catacomb Pillar Control"])
+
+
+class UnderworldWithOpenEntrances(TestArea):
+    options = {
+        "open_underworld": "entrances"
+    }
+
+    def test_sanctuary_tokens_are_not_needed(self):
+        self.assertAccessible(
+            "BlueCave_South5",
+            "Underworld_East2_1_0",
+            []
+        )
+
+    def test_sun_palace_shortcut_is_accessible(self):
+        self.assertAccessible(
+            "SunPalace_EastSewers6",
+            "underworld_to_sun_palace_shortcut",
+            []
+        )
+
+
+class UnderworldWithOpenShortcuts(TestArea):
+    options = {
+        "open_underworld": "shortcuts"
+    }
+
+    def test_east_catacomb_shortcuts(self):
+        self.assertAccessible(
+            "Underworld_EastCatacomb6_East",
+            "underworld_east_catacomb_6_shortcut",
+            []
+        )
+
+        self.assertAccessible(
+            "Underworld_EastCatacomb3",
+            "underworld_east_catacomb_8_shortcut",
+            []
+        )
+
+    def test_west_catacomb_shortcuts(self):
+        self.assertAccessible(
+            "Underworld_WestCatacomb4_Upper",
+            "Underworld_WestCatacomb4_Lower_11",
+            []
+        )
+
+        self.assertAccessible(
+            "Underworld_WestCatacomb1",
+            "underworld_west_catacomb_7_shortcut",
+            []
+        )
+
+        self.assertAccessible(
+            "Underworld_WestCatacomb9_ExteriorEast",
+            "Underworld_WestCatacomb9_Roof_12",
+            []
+        )

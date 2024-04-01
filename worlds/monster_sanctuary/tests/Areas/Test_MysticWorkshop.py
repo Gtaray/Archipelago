@@ -69,10 +69,9 @@ class MysticWorkshopOpenShortcutsWithLockedDoors(TestArea):
         self.assertNotAccessible("MysticalWorkshop_North2", "mystical_workshop_north_shortcut", [])
 
 
-class MysticWorkshopWithOpenedShortcuts(TestArea):
+class MysticWorkshopWithOpenedEntrances(TestArea):
     options = {
-        "open_shortcuts": 1,
-        "remove_locked_doors": 2
+        "open_mystical_workshop": 1
     }
 
     def test_north_shortcut_is_open(self):

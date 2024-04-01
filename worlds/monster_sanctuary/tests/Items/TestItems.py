@@ -37,7 +37,7 @@ class TestItems(MonsterSanctuaryTestBase):
 
 class TestBlobKey(MonsterSanctuaryTestBase):
     options = {
-        "unlock_blob_burg": 1
+        "open_blob_burg": "entrances"
     }
     run_default_tests = False
 

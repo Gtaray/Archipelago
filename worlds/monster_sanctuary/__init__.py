@@ -253,7 +253,12 @@ class MonsterSanctuaryWorld(World):
         for location_name, data in FLAGS.flag_data.items():
             # If blob burg is unlocked, we don't need to place the blob key used events
             if (location_name in ["stronghold_dungeon_blob_key", "mystical_workshop_blob_key", "sun_palace_blob_key"]
-                    and self.options.unlock_blob_burg):
+                    and (self.options.open_blob_burg == "entrances" or self.options.open_blob_burg == "full")):
+                continue
+
+            # If magma chamber is open, don't place the flag to lower the lava
+            if (location_name == "magma_chamber_lower_lava" and
+                    (self.options.open_magma_chamber == "lower_lava" or self.options.open_magma_chamber == "full")):
                 continue
 
             region = self.multiworld.get_region(data.region, self.player)
@@ -417,8 +422,16 @@ class MonsterSanctuaryWorld(World):
                      if ITEMS.item_data[item_name].category == MonsterSanctuaryItemCategory.KEYITEM]
 
         # If blob burg is unlocked via options, then remove the blob key from the item pool
-        if self.options.unlock_blob_burg:
+        if self.options.open_blob_burg == "entrances" or self.options.open_blob_burg == "full":
             key_items.remove("Blob Key")
+
+        # If magma chamber has its lava lowered via options, remove runestone shard from the item pool
+        if self.options.open_magma_chamber == "lower_lava" or self.options.open_magma_chamber == "full":
+            key_items.remove("Runestone Shard")
+
+        # If the underworld entrance is opened up, don't add sanctuary tokens to the item pool
+        if self.options.open_underworld == "entrances" or self.options.open_underworld == "full":
+            key_items = [i for i in key_items if i != "Sanctuary Token"]
 
         # Add items that are not technically key items, but are progressions items and should be added
         key_items.append("Raw Hide")
@@ -531,12 +544,18 @@ class MonsterSanctuaryWorld(World):
             "death_link": self.options.death_link.value,
             "remove_locked_doors": self.options.remove_locked_doors.value,
             "skip_plot": self.options.skip_plot.value,
-            "unlock_blob_burg": self.options.unlock_blob_burg.value,
-            "open_shortcuts": self.options.open_shortcuts.value,
+            "open_blue_caves": self.options.open_blue_caves.value,
+            "open_stronghold_dungeon": self.options.open_stronghold_dungeon.value,
+            "open_ancient_woods": self.options.open_ancient_woods.value,
+            "open_snowy_peaks": self.options.open_snowy_peaks.value,
             "open_sun_palace": self.options.open_sun_palace.value,
             "open_horizon_beach": self.options.open_horizon_beach.value,
+            "open_magma_chamber": self.options.open_magma_chamber.value,
             "open_forgotten_world": self.options.open_forgotten_world.value,
             "open_blob_burg": self.options.open_blob_burg.value,
+            "open_underworld": self.options.open_underworld.value,
+            "open_mystical_workshop": self.options.open_mystical_workshop,
+            "open_abandoned_tower": self.options.open_abandoned_tower,
             "eggsanity": self.options.eggsanity.value,
             "monster_army": self.options.monster_army.value,
             "starting_familiar": self.options.starting_familiar.value,

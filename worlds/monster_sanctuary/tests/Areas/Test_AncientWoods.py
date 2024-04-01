@@ -101,41 +101,15 @@ class AncientWoodsNoLockedDoorsTests(TestArea):
         self.assertAccessible("AncientWoods_Center2", "AncientWoods_Center5_4", [])
 
 
-class AncientWoodsWithOpenedHorizonBeach(TestArea):
+class AncientWoodsWithOpenEntrances(TestArea):
     options = {
-        "open_horizon_beach": 1
-    }
-
-    def test_horizon_beach_accessible(self):
-        self.assertAccessible("AncientWoods_East2_West", "AncientWoods_East3_1_0", [])
-
-
-class AncientWoodsWithOpenedShortcuts(TestArea):
-    options = {
-        "open_shortcuts": 1
+        "open_ancient_woods": 1
     }
 
     def test_east_shortcut(self):
-        self.assertNotAccessible("AncientWoods_East1", "ancient_woods_east_shortcut", [])
+        self.assertAccessible("AncientWoods_East1", "ancient_woods_east_shortcut", [])
 
-    def test_backwards_brutus_is_not_open(self):
-        self.assertNotAccessible("AncientWoods_SouthChampion", "AncientWoods_South4_1",
-                              ["Double Jump Boots", "Nightwing"])
-
-        self.assertNotAccessible("AncientWoods_South4", "AncientWoods_SouthChampion_1_0",
-                              ["Double Jump Boots", "Nightwing"])
-
-    def test_magma_chamber_shortcut(self):
-        self.assertAccessible("AncientWoods_South1_Lower", "MagmaChamber_North5_Upper_3", [])
-
-
-class AncientWoodsWithOpenedShortcutsAndNoLockedDoors(TestArea):
-    options = {
-        "open_shortcuts": 1,
-        "remove_locked_doors": 2
-    }
-
-    def test_backwards_brutus_access(self):
+    def test_backwards_brutus_is_open(self):
         self.assertAccessible("AncientWoods_SouthChampion", "AncientWoods_South4_1",
                               ["Double Jump Boots", "Nightwing"])
 
