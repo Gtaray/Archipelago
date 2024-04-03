@@ -121,6 +121,11 @@ class MonsterSanctuaryWorld(World):
             if self.options.goal == "reunite_mozzie" and location_data.name in LOCATIONS.velvet_melody_locations:
                 continue
 
+            # If the underworld starts opened, then don't add the item checks for the Eric fight
+            if (self.options.open_underworld
+                    and location_data.name in ["Blue Cave - Underworld Entrance 1", "Blue Cave - Underworld Entrance 2"]):
+                continue
+
             # Unless eggsanity is enabled, don't add eggsanity locations
             if not self.options.eggsanity and location_data.category == MonsterSanctuaryLocationCategory.EGGSANITY:
                 continue
@@ -428,6 +433,9 @@ class MonsterSanctuaryWorld(World):
         # If magma chamber has its lava lowered via options, remove runestone shard from the item pool
         if self.options.open_magma_chamber == "lower_lava" or self.options.open_magma_chamber == "full":
             key_items.remove("Runestone Shard")
+
+        if self.options.open_abandoned_tower == "entrances" or self.options.open_abandoned_tower == "full":
+            key_items.remove("Key of Power")
 
         # If the underworld entrance is opened up, don't add sanctuary tokens to the item pool
         if self.options.open_underworld == "entrances" or self.options.open_underworld == "full":

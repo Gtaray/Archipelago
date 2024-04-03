@@ -367,7 +367,7 @@ class OpenHorizonBeach(Choice):
 class OpenMagmaChamber(Choice):
     """Opens shortcuts and entrances to Magma Chamber
 
-    Entrances: Opens the rotating gates between Ancient Woods and Magma Chamber
+    Entrances: Opens the rotating gates between Ancient Woods and Magma Chamber, and the breakable wall between Forgotten world and Magma Chamber
     Lower Lava: Removes the runestone shard from the item pool, lowers the lava, and opens all internal shortcuts
     Full: Opens Entrances and Lowers Lava"""
     display_name = "Open World - Magma Chamber"
