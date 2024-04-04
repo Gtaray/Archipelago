@@ -578,7 +578,7 @@ class MonsterSanctuaryWorld(World):
         }
 
         if self.options.goal == "reunite_mozzie":
-            slot_data["options"]["mozzie_soul_fragments"] = self.options.mozzie_soul_fragments.value
+            slot_data["options"]["mozzie_pieces"] = self.options.mozzie_soul_fragments.value
 
         tanuki_location = self.multiworld.get_location("Menu_1_0", self.player)
         slot_data["monsters"] = {
