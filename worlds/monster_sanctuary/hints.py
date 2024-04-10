@@ -1,3 +1,4 @@
+import math
 from typing import Dict, Optional, List
 
 from BaseClasses import ItemClassification, Item, Location
@@ -69,8 +70,70 @@ def generate_hints(world: World):
                      .replace("{item}", f"{{{location.item.name}}}"))
         world.hints.append(hint)
 
-    sanctuary_hints = build_sanctuary_token_hints(world, world.player)
-    world.hints.extend(sanctuary_hints)
+    world.hints.extend(build_sanctuary_token_hints(world, world.player))
+    if world.options.goal == "reunite_mozzie":
+        world.hints.extend(build_mozzie_fragments_hints(world, world.player))
+
+
+def build_mozzie_fragments_hints(world: World, player: int) -> List[Hint]:
+    locations = world.multiworld.find_item_locations("Mozzie", player)
+
+    counts: Dict[str, int] = {}
+    for location in locations:
+        area = get_area_name_for_location(world, location, player)
+        if area not in counts:
+            counts[area] = 0
+        counts[area] += 1
+
+    hints: List[str] = []
+    for area, count in counts.items():
+        verb = "is" if count == 1 else "are"
+        hints.append(f"{count} {verb} {area}. ")
+
+    # we only have 3 dialog entries to say all of this, so we need to split it up as
+    # evently as we can into three batches.
+    hint_lengths = [0, 0, 0]
+    for i in range(3):
+        hint_lengths[i] = math.floor(len(hints) / 3)
+    for i in range(len(hints) % 3):
+        hint_lengths[i] += 1
+
+    cIndex: int = 0
+    merged_hints: List[str] = []
+    for number_of_hints_to_take in hint_lengths:
+        merged_hint: str = ""
+        for i in range(number_of_hints_to_take):
+            merged_hint += hints[cIndex]
+            if i < number_of_hints_to_take:
+                merged_hint += " "
+            cIndex += 1
+        merged_hints.append(merged_hint)
+
+    final_hints: List[Hint] = []
+
+    first_hint: Hint = Hint()
+    first_hint.id = 44200173
+    first_hint.text = "I sense this spirit is fragmented. We must find the pieces before we can reunite them with their master."
+    first_hint.ignore_other_text = False
+
+    final_hints.append(first_hint)
+
+    dialog_ids = {
+        0: 44200175,
+        1: 44200176,
+        2: 44200177
+    }
+
+    for i in range(len(merged_hints)):
+        hint_text = merged_hints[i]
+        id = dialog_ids[i]
+        hint = Hint()
+        hint.id = id
+        hint.text = hint_text
+        hint.ignore_other_text = False
+        final_hints.append(hint)
+
+    return final_hints
 
 
 def build_sanctuary_token_hints(world: World, player: int) -> List[Hint]:
@@ -189,6 +252,8 @@ def get_readable_area_name(area: str) -> str:
         return "in the {Forgotten World}"
     elif area == "AbandonedTower":
         return "in the {Abandoned Tower}"
+    elif area == "Eggsanity":
+        return "held by a monster"
 
     return "in an unknown location"
 

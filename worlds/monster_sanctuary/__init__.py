@@ -544,7 +544,9 @@ class MonsterSanctuaryWorld(World):
     # fill_slot_data and modify_multidata can be used to modify the data that will be used by
     # the server to host the MultiWorld.
     def fill_slot_data(self) -> dict:
-        slot_data = {}
+        slot_data = {
+            "version": "1.1.0"
+        }
 
         # Rando options
         slot_data["options"] = {

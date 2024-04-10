@@ -39,3 +39,13 @@ class TestHints(MonsterSanctuaryTestBase):
         self.assert_hint_region_in_another_world()
 
 
+class TestMozzieGoalHints(MonsterSanctuaryTestBase):
+    options = {
+        "hints": 1,
+        "goal": 3
+    }
+
+    def test_mozzie_hints_are_correct(self):
+        pass
+
+
