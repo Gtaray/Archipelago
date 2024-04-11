@@ -341,7 +341,7 @@ class OpenSunPalace(Choice):
 
     Entrances: Opens the elemental gates between Blue Caves and Sun Palace, and opens the gate between Snowy Peaks and Sun Palace
     Raise Pillar: Raises the pillar, lowers the water, and opens the east and west shortcuts
-    Full: Opens both Entrances and Shortcuts"""
+    Full: Opens both Entrances and Raises the Pillar"""
     display_name = "Open World - Sun Palace"
     option_off = 0
     option_entrances = 1
@@ -408,7 +408,7 @@ class OpenForgottenWorld(Choice):
 
 class OpenMysticalWorkshop(Toggle):
     """If enabled, opens up the northern shortcut within the Mystical Workshop
-    NOTE: This shortcut allow you to bypass the need for Mystical Workshop Keys. It is recommended to only use this setting if locked doors are turned off"""
+    NOTE: This shortcut allows you to bypass the need for Mystical Workshop Keys. It is recommended to only use this setting if locked doors are turned off"""
     display_name = "Open World - Mystical Workshop"
     default = False
 
@@ -416,7 +416,7 @@ class OpenMysticalWorkshop(Toggle):
 class OpenUnderworld(Choice):
     """Opens up the Underworld
 
-    Entrances: Removes sanctuary tokens from the item pool and opens up the Underworld door in Blue Caves, as well as the back entrnace in Sun Palace
+    Entrances: Removes sanctuary tokens from the item pool and opens up the Underworld door in Blue Caves, as well as the back entrance in Sun Palace
     Shortcuts: Opens all shortcuts and enables all grapple points
     Full: Opens Entrances and Shortcuts"""
     display_name = "Open World - Underworld"

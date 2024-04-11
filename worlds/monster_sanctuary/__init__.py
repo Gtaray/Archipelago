@@ -512,7 +512,7 @@ class MonsterSanctuaryWorld(World):
     # item pointing to the item. location.item.player can be used to see if it's a local item.
     def generate_output(self, output_directory: str) -> None:
         if self.options.hints:
-            self.hint_rng = self.multiworld.per_slot_randoms[self.player]
+            self.hint_rng = self.random
             HINTS.generate_hints(self)
 
         if self.options.shopsanity and self.options.shopsanity_prices != "normal":
@@ -653,8 +653,8 @@ class MonsterSanctuaryWorld(World):
 
         if self.options.hints and hasattr(self, "hints"):
             # There's probably a much better way of doing this.
-            # I just want an anonymous object that will serialize, but correctly
-            # but using the actual Hint data type here will cause Multiesrver to crash
+            # I just want an anonymous object that will serialize correctly
+            # but using the actual Hint data type here will cause Multiserver to crash
             slot_data["hints"] = []
             i = 0
             for hint in self.hints:
