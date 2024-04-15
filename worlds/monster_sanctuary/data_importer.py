@@ -83,7 +83,7 @@ def load_world() -> None:
 
             for army_data in region_data.get("army") or []:
                 # Hack because we store comments as strings
-                if isinstance(eggsanity_data, str):
+                if isinstance(army_data, str):
                     continue
 
                 reward_index = 0
