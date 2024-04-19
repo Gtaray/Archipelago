@@ -546,7 +546,7 @@ class MonsterSanctuaryWorld(World):
             self.generate_shopsanity_prices()
 
         slot_data = {
-            "version": "1.1.2"
+            "version": "1.1.3"
         }
 
         # Rando options
