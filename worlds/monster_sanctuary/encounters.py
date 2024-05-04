@@ -13,6 +13,18 @@ class GameStage(IntEnum):
     LATE = 1
 
 
+class ProgressionUnlockData:
+    item: str
+    quantity: int = 1
+
+    def __init__(self, item: str, quantity: int):
+        self.item = item
+        self.quantity = quantity
+
+    def __str__(self):
+        return f"{self.item} {self.quantity}"
+
+
 class MonsterData:
     id: int
     name: str
@@ -24,6 +36,8 @@ class MonsterData:
     explore_type_item: str
     explore_ability_item: str
     explore_species_item: str
+    explore_progression_item: ProgressionUnlockData
+    explore_combo_item: List[ProgressionUnlockData] = []
 
     def __init__(self, id: int, name: str, groups: List[str]):
         # This needs to exist alongside normal item ids, because monsters will ultimately be classified as items
@@ -31,6 +45,7 @@ class MonsterData:
         self.id = id
         self.name = name
         self.groups = groups
+        self.explore_combo_item = []
 
         if self.name in evolved_monsters:
             self.pre_evolution = evolved_monsters[self.name]
@@ -43,6 +58,12 @@ class MonsterData:
 
     def __str__(self):
         return self.name
+
+    def set_progression_item(self, item: str, quantity: int):
+        self.explore_progression_item = ProgressionUnlockData(item, quantity)
+
+    def add_combo_item(self, item: str, quantity: int):
+        self.explore_combo_item.append(ProgressionUnlockData(item, quantity))
 
     def is_evolved(self):
         return self.name in evolved_monsters

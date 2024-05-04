@@ -207,6 +207,8 @@ def load_monsters(item_id) -> int:
             ENCOUNTERS.monster_data[name] = monster
             item_id += 1
 
+    load_progression_explore_item_data()
+
     return item_id
 
 
@@ -229,6 +231,23 @@ def load_hints():
 
         for hint in hints_file["preset"]:
             HINTS.hint_data[hint["id"]] = HINTS.HintData(hint)
+
+
+def load_progression_explore_item_data():
+    """This loads the data that controls the progression of unlocking monster abilities"""
+    with files(data).joinpath("progression_unlocks.json").open() as file:
+        progression = {}
+        combo = {}
+
+        for ability in json.load(file):
+            progression[ability["ability"]] = (ability["progression"]["name"], ability["progression"]["quantity"])
+            combo[ability["ability"]] = [(req["name"], req["quantity"]) for req in ability["combo"]]
+
+        for monster_name, monster in ENCOUNTERS.monster_data.items():
+            ability = monster.explore_ability_item.replace("Ability - ", "")
+            monster.set_progression_item(progression[ability][0], progression[ability][1])
+            for req in combo[ability]:
+                monster.add_combo_item(req[0], req[1])
 
 
 def parse_item_type(text) -> Optional[MonsterSanctuaryItemCategory]:

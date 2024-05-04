@@ -86,6 +86,32 @@ explore_ability_types = [
     "Green Thumb",
     "Bird Seed"
 ]
+# The text is the name of the item, the number is the quantity of that item added to the pool
+explore_ability_progression = [
+    ("Progressive Mobility", 5),
+    ("Progressive Terrain", 3),
+    ("Progressive Mount", 3),
+    ("Progressive Walls", 3),
+    ("Progressive Boulders", 3),
+    ("Progressive Fire Orbs", 2),
+    ("Progressive Water Orbs", 2),
+    ("Progressive Lightning Orbs", 2),
+    ("Progressive Earth Orbs", 3),
+    ("Progressive Ice Orbs", 2),
+    ("Progressive Light", 2),
+    ("Progressive Shroud", 2),
+]
+explore_ability_combo = [
+    ("Progressive Flight", 2),
+    ("Progressive Swimming", 2),
+    ("Progressive Walls", 2),
+    ("Progressive Boulders", 2),
+    ("Progressive Mount", 1),
+    ("Progressive Light", 1),
+    ("Progressive Orbs", 3),
+    ("Progressive Shroud", 2),
+    ("Progressive Magic", 2),
+]
 
 
 def can_item_be_placed(world: World, item: Item, location: LOCATIONS.MonsterSanctuaryLocation) -> bool:
@@ -109,7 +135,10 @@ def can_item_be_placed(world: World, item: Item, location: LOCATIONS.MonsterSanc
                 or is_item_type(item.name, MonsterSanctuaryItemCategory.EGG)
                 or is_item_type(item.name, MonsterSanctuaryItemCategory.COSTUME)
                 or item.name in ["Sanctuary Token", "Rare Seashell", "Celestial Feather"]):
-            return LOCATIONS.is_shop_limited(location.logical_name)
+
+            is_shop_limited = LOCATIONS.is_shop_limited(location.logical_name)
+            is_key_local = is_key_local_to_location(world, item.name, location.logical_name)
+            return is_shop_limited and is_key_local
 
     # If the item is an egg with an improved movement ability
     # And the settings are to limit placement of those abilities
@@ -120,17 +149,25 @@ def can_item_be_placed(world: World, item: Item, location: LOCATIONS.MonsterSanc
         return area not in ["Menu", "Mountain Path", "Blue Cave", "Keepers Stronghold", "Keepers Tower",
                             "Stronghold Dungeon", "Snowy Peaks", "Sun Palace", "Ancient Woods"]
 
-    # If this item is an area key and keys must be local, then we check to see if
-    # the item name starts with the area name (ignoring spaces)
-    if is_item_in_group(item.name, "Area Key") and world.options.local_area_keys:
-        area = location.name.split(' ')[0]
-        return item.name.startswith(area)
-
     # Go through every illegal location for this item and if the location name starts
     # with an illegal location, then return false
     for illegal_location in data.illegal_locations:
         if location.name.startswith(illegal_location):
             return False
+
+    # This returns true for items that aren't area keys, so we can use it here
+    return is_key_local_to_location(world, item.name, location.logical_name)
+
+
+# If this item is an area key and keys must be local, then we check to see if
+# the item name starts with the area name (ignoring spaces)
+def is_key_local_to_location(world, key, location):
+    if not world.options.local_area_keys:
+        return True
+
+    if is_item_in_group(key, "Area Key"):
+        area = location.split('_')[0]
+        return key.replace(" ", "").startswith(area)
 
     return True
 
@@ -327,13 +364,21 @@ def roll_random_item_quantity(world: World, base_item: ItemData) -> str:
 
 
 def get_explore_ability_items(explore_ability_option: int) -> List[ItemData]:
-    # If explore abilities items are turned off, then return no items
-    if explore_ability_option == 0:
-        return []
+    # For options 1, 2, and 3, we simply return a flat list of items
+    if explore_ability_option in [1, 2, 3]:
+        return [data for name, data in item_data.items()
+                if data.category == MonsterSanctuaryItemCategory.ABILITY and
+                ((explore_ability_option == 1 and name in explore_ability_types) or
+                (explore_ability_option == 2 and "Ability - " in name) or
+                (explore_ability_option == 3 and "Ability - " not in name and name not in explore_ability_types))]
 
-    # This whole thing is kinda janky, but I don't want to have to define separate lists for all of these items
-    return [data for name, data in item_data.items()
-            if data.category == MonsterSanctuaryItemCategory.ABILITY and
-            ((explore_ability_option == 1 and name in explore_ability_types) or
-             (explore_ability_option == 2 and "Ability - " in name) or
-             (explore_ability_option == 3 and "Ability - " not in name and name not in explore_ability_types))]
+    # For progression locks, we need to add multiple
+    elif explore_ability_option in [4, 5]:
+        items = []
+        item_names = explore_ability_progression if explore_ability_option == 4 else explore_ability_combo
+        for item in item_names:
+            for i in range(item[1]):
+                items.append(item_data[item[0]])
+        return items
+
+    return []

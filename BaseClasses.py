@@ -750,7 +750,10 @@ class CollectionState():
 
     # item name related
     def has(self, item: str, player: int, count: int = 1) -> bool:
-        return self.prog_items[player][item] >= count
+        try:
+            return self.prog_items[player][item] >= count
+        except KeyError:
+            breakpoint()
 
     def has_all(self, items: Iterable[str], player: int) -> bool:
         """Returns True if each item name of items is in state at least once."""

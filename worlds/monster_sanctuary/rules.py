@@ -781,6 +781,10 @@ def is_explore_ability_available(monster_name: str, state: CollectionState, play
         return state.has(monster.explore_ability_item, player)
     if opt == "species":
         return state.has(monster.explore_species_item, player)
+    if opt == "progression":
+        return state.has(monster.explore_progression_item.item, player, monster.explore_progression_item.quantity)
+    if opt == "combo":
+        return all([state.has(combo.item, player, combo.quantity) for combo in monster.explore_combo_item])
 
     return False
 

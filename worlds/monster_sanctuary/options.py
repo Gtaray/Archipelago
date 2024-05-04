@@ -62,12 +62,16 @@ class ExploreAbilitiesMustBeUnlocked(Choice):
     Off: Explore Abilities are always available.
     Type: Monsters are grouped into 16 different categories based on monster type. There are 16 unique items to unlock abilities for all monsters of a given type
     Ability: Each explore ability must be unlocked separately. For example, unlocking Flying will allow that ability to be used on any monster with the Flying ability
-    Species: Each monster species will require a unique item to unlock its explore ability (excepting evolutions where the ability doesn't change)"""
+    Species: Each monster species will require a unique item to unlock its explore ability (excepting evolutions where the ability doesn't change)
+    Progression: Monster abilities are grouped by function and unlocked progressively. This helps to keep more advanced abilities from being made available early in the game
+    Combo: Similar to Progression, except there are a smaller number of progressive groups, and more advanced abilities require combinations of different progression chains"""
     display_name = "Explore Abilities Must be Unlocked"
     option_off = 0
     option_type = 1
     option_ability = 2
     option_species = 3
+    # option_progression = 4
+    # option_combo = 5
     default = 0
 
 

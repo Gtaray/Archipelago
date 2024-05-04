@@ -98,7 +98,12 @@
     "Groups": [ "Tackle", "Breakable Walls", "Heavy Blocks" ],
     "SpeciesItem": "Yowie Treat",
     "AbilityItem": "Ability - Tackle",
-    "TypeItem": "Monster Treat"
+    "TypeItem": "Monster Treat",
+    "ProgressiveItem": { "Name": "Progressive Walls", "Quantity": 1 },
+    "ComboItem": [
+      { "Name": "Progressive Walls", "Quantity": 1 },
+      { "Name": "Progressive Boulders", "Quantity": 1 }
+    ]
   },
   {
     "Name": "Steam Golem",

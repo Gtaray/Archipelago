@@ -189,9 +189,8 @@ class MonsterSanctuaryWorld(World):
                 # Champion Defeated items are not shown in the spoiler log
                 location.show_in_spoiler = False
 
-            # Chest and Gift locations go here
+            # Chest, Gift, Monster Army, and Shop locations go here
             else:
-                # Item locations can be filled with any item from another player, as well as items from this game
                 location.item_rule = lambda item, world = self, loc = location: ITEMS.can_item_be_placed(world, item, loc)
                 self.number_of_item_locations += 1
 
@@ -525,6 +524,8 @@ class MonsterSanctuaryWorld(World):
 
         for location_data in shop_locations:
             location = self.multiworld.get_location(location_data.name, self.player)
+            if location is None:
+                continue
 
             weight = (min_price + max_price) / 2
             if self.options.shopsanity_prices == "weighted":
@@ -546,7 +547,7 @@ class MonsterSanctuaryWorld(World):
             self.generate_shopsanity_prices()
 
         slot_data = {
-            "version": "1.1.3"
+            "version": "1.1.4"
         }
 
         # Rando options
