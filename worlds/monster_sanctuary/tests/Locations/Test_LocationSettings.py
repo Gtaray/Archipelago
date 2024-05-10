@@ -170,10 +170,10 @@ class TestEternitysEndLocations_Wolf(MonsterSanctuaryTestBase):
     run_default_tests = False
 
     locations = [
-        "Eternity's End - Spectral Wolf Egg",
-        "Eternity's End - Spectral Eagle Egg",
-        "Eternity's End - Spectral Toad Egg",
-        "Eternity's End - Spectral Lion Egg",
+        "Eternity's End - Spectral Familiar Egg (Wolf)",
+        "Eternity's End - Spectral Familiar Egg (Eagle)",
+        "Eternity's End - Spectral Familiar Egg (Toad)",
+        "Eternity's End - Spectral Familiar Egg (Lion)",
         "Eternity's End - Infinity Flame (Wolf)",
         "Eternity's End - Infinity Flame (Eagle)",
         "Eternity's End - Infinity Flame (Toad)",

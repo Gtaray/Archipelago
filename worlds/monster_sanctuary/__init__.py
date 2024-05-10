@@ -292,21 +292,21 @@ class MonsterSanctuaryWorld(World):
         # Start with spectral familiars,
         # these aren't currently shuffled at all, so they don't need to go in the conditional blocks
         if self.options.starting_familiar == "wolf":
-            eggs["Eternity's End - Spectral Eagle Egg"] = self.create_item("Spectral Eagle Egg")
-            eggs["Eternity's End - Spectral Toad Egg"] = self.create_item("Spectral Toad Egg")
-            eggs["Eternity's End - Spectral Lion Egg"] = self.create_item("Spectral Lion Egg")
+            eggs["Eternity's End - Spectral Familiar Egg (Eagle)"] = self.create_item("Spectral Eagle Egg")
+            eggs["Eternity's End - Spectral Familiar Egg (Toad)"] = self.create_item("Spectral Toad Egg")
+            eggs["Eternity's End - Spectral Familiar Egg (Lion)"] = self.create_item("Spectral Lion Egg")
         elif self.options.starting_familiar == "eagle":
-            eggs["Eternity's End - Spectral Wolf Egg"] = self.create_item("Spectral Wolf Egg")
-            eggs["Eternity's End - Spectral Toad Egg"] = self.create_item("Spectral Toad Egg")
-            eggs["Eternity's End - Spectral Lion Egg"] = self.create_item("Spectral Lion Egg")
+            eggs["Eternity's End - Spectral Familiar Egg (Wolf)"] = self.create_item("Spectral Wolf Egg")
+            eggs["Eternity's End - Spectral Familiar Egg (Toad)"] = self.create_item("Spectral Toad Egg")
+            eggs["Eternity's End - Spectral Familiar Egg (Lion)"] = self.create_item("Spectral Lion Egg")
         elif self.options.starting_familiar == "toad":
-            eggs["Eternity's End - Spectral Wolf Egg"] = self.create_item("Spectral Wolf Egg")
-            eggs["Eternity's End - Spectral Eagle Egg"] = self.create_item("Spectral Eagle Egg")
-            eggs["Eternity's End - Spectral Lion Egg"] = self.create_item("Spectral Lion Egg")
+            eggs["Eternity's End - Spectral Familiar Egg (Wolf)"] = self.create_item("Spectral Wolf Egg")
+            eggs["Eternity's End - Spectral Familiar Egg (Eagle)"] = self.create_item("Spectral Eagle Egg")
+            eggs["Eternity's End - Spectral Familiar Egg (Lion)"] = self.create_item("Spectral Lion Egg")
         elif self.options.starting_familiar == "lion":
-            eggs["Eternity's End - Spectral Wolf Egg"] = self.create_item("Spectral Wolf Egg")
-            eggs["Eternity's End - Spectral Eagle Egg"] = self.create_item("Spectral Eagle Egg")
-            eggs["Eternity's End - Spectral Toad Egg"] = self.create_item("Spectral Toad Egg")
+            eggs["Eternity's End - Spectral Familiar Egg (Wolf)"] = self.create_item("Spectral Wolf Egg")
+            eggs["Eternity's End - Spectral Familiar Egg (Eagle)"] = self.create_item("Spectral Eagle Egg")
+            eggs["Eternity's End - Spectral Familiar Egg (Toad)"] = self.create_item("Spectral Toad Egg")
 
         if self.options.randomize_monsters == "by_specie":
             # These eggs either get added to the item pool or they are placed in their respective gift location
