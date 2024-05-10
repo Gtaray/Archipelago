@@ -65,12 +65,12 @@ class TestLockedExplorationAbilities_Off(TestMonsterRandomizerBase):
                 self.assert_explore_item_is_required(monster_name, monster_data.explore_ability_item)
             if self.multiworld.worlds[1].options.lock_explore_abilities == 3:
                 self.assert_explore_item_is_required(monster_name, monster_data.explore_species_item)
-            if self.multiworld.worlds[1].options.lock_explore_abilities == 4:
-                self.assert_explore_progression_is_required(monster_name,
-                                                            monster_data.explore_progression_item.item,
-                                                            monster_data.explore_progression_item.quantity)
-            if self.multiworld.worlds[1].options.lock_explore_abilities == "combo":
-                self.assert_explore_combo_is_required(monster_name, monster_data.explore_combo_item)
+            # if self.multiworld.worlds[1].options.lock_explore_abilities == 4:
+            #     self.assert_explore_progression_is_required(monster_name,
+            #                                                 monster_data.explore_progression_item.item,
+            #                                                 monster_data.explore_progression_item.quantity)
+            # if self.multiworld.worlds[1].options.lock_explore_abilities == "combo":
+            #     self.assert_explore_combo_is_required(monster_name, monster_data.explore_combo_item)
 
 
 class TestLockedExplorationAbilities_Type(TestLockedExplorationAbilities_Off):

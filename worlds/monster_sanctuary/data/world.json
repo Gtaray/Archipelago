@@ -3051,9 +3051,9 @@
       { "region": "SnowyPeaks_WestMountainSecret", "requirements": [ "double_jump" ] }
     ],
     "chests": [
-      { "id": 6, "item": "Leather", "requirement": ["AND", ["double_jump", "distant_ledges"]] },
-      { "id": 7, "item": "Crimson Gem", "requirement": ["AND", ["double_jump", "distant_ledges", "breakable_walls"]] },
-      { "id": 8, "item": "5000 G", "requirement": ["AND", ["double_jump", "distant_ledges", "secret_vision"]] }
+      { "id": 6, "item": "Leather", "requirements": ["AND", ["double_jump", "distant_ledges"]] },
+      { "id": 7, "item": "Crimson Gem", "requirements": ["AND", ["double_jump", "distant_ledges", "breakable_walls"]] },
+      { "id": 8, "item": "5000 G", "requirements": ["AND", ["double_jump", "distant_ledges", "secret_vision"]] }
     ]
   },
   {
@@ -3080,8 +3080,8 @@
       { "region": "SnowyPeaks_ClothesmakerHouse" }
     ],
     "chests": [
-      { "id": 9, "item": "Azure Gem", "requirement": ["AND", ["double_jump", "distant_ledges"]] },
-      { "id": 10, "item": "Skill Resetter", "requirement": [ "distant_ledges" ] }
+      { "id": 9, "item": "Azure Gem", "requirements": ["AND", ["double_jump", "distant_ledges"]] },
+      { "id": 10, "item": "Skill Resetter", "requirements": [ "distant_ledges" ] }
     ],
     "encounters": [
       { "id": 0, "monsters": ["Megataur", "Caraglow", "Crystal Snail"]}
@@ -3115,7 +3115,7 @@
       { "region": "SnowyPeaks_EastMountain5" }
     ],
     "chests": [
-      { "id": 5, "item": "Strawberry", "requirement": ["AND", ["double_jump", "lightning_orbs"]] }
+      { "id": 5, "item": "Strawberry", "requirements": ["AND", ["double_jump", "lightning_orbs"]] }
     ],
     "encounters": [
       { "id": 4, "monsters": ["Megataur", "Crystal Snail", "Megataur"]}
@@ -3150,7 +3150,7 @@
       {
         "id": 21,
         "item": "Level Badge",
-        "requirement": [
+        "requirements": [
           "OR", [
             "double_jump",
             "improved_flying",
@@ -3159,8 +3159,8 @@
           ]
         ]
       },
-      { "id": 22, "item": "Combo Potion", "requirement": ["double_jump"] },
-      { "id": 23, "item": "2x Wool", "requirement": ["double_jump"] }
+      { "id": 22, "item": "Combo Potion", "requirements": ["double_jump"] },
+      { "id": 23, "item": "2x Wool", "requirements": ["double_jump"] }
     ]
   },
   {
@@ -3179,11 +3179,11 @@
       { "region": "SnowyPeaks_EastMountain3_Upper" }
     ],
     "chests": [
-      { "id": 9, "item": "Helmet+3", "requirement": ["double_jump"] },
+      { "id": 9, "item": "Helmet+3", "requirements": ["double_jump"] },
       {
         "id": 10,
         "item": "Level Badge",
-        "requirement": [
+        "requirements": [
           "OR", [
             "double_jump",
             "improved_flying",
@@ -3211,18 +3211,12 @@
       {
         "id": 11,
         "item": "Raw Hide",
-        "requirement": [
-          "OR", [
-            "double_jump",
-            "improved_flying",
-            "dual_mobility"
-          ]
-        ]
+        "requirements": ["double_jump"]
       },
       {
         "id": 12,
         "item": "Wizard Hat+3",
-        "requirement": [
+        "requirements": [
           "AND", [
             "ice_orbs",
             "OR", [
