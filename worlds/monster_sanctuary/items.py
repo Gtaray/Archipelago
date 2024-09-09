@@ -181,11 +181,6 @@ def build_item_groups() -> Dict:
     return item_groups
 
 
-def is_in_item_pool(item: str, itempool: List[MonsterSanctuaryItem]) -> bool:
-    """Checks to see if the item name is already in the item pool"""
-    return item in [pool_item.name for pool_item in itempool]
-
-
 def is_item_in_group(item: str, *groups: str) -> bool:
     """Checks to see fi the item is in any of the given groups"""
     # If there's on groups to check, then we return true
@@ -234,14 +229,6 @@ def is_item_tier(item: str, tier: int) -> bool:
     return get_item_tier(item) == tier
 
 
-def get_filtered_unique_item_data(itempool: List[MonsterSanctuaryItem]) -> Dict[str, ItemData]:
-    """Given a list of items, this returns a subset of that list with unique items removed
-    if the unique item is already in the item pool"""
-    return {item: item_data[item] for item in item_data
-            if not item_data[item].unique
-            or not is_in_item_pool(item, itempool)}
-
-
 def build_item_probability_table(probabilities: Dict[MonsterSanctuaryItemCategory, int]) -> None:
     # If the weights don't sum to 100, then we multiply them all by 10 so that the
     # sum is much higher. This solves the issue where at low totals we can't accurately
@@ -278,11 +265,15 @@ def get_random_item_name(world: World,
         group_exclude.append("Multiple")
 
     item_type = world.random.choice(item_drop_probabilities)
-    valid_items = [item for item in get_filtered_unique_item_data(itempool)
-                   if is_item_type(item, item_type)
-                   and "+" not in item  # Filter out any equipment with a higher level. We handle this below
-                   and is_item_in_group(item, *group_include)
-                   and not is_item_in_group(item, *group_exclude)]
+    item_pool_names = {item.name for item in itempool}
+
+    valid_items = [item_name for item_name, item in item_data.items()
+                   if (not item.unique or not item_name in item_pool_names)
+                   and item.category == item_type
+                   and "+" not in item_name # Filter out any equipment with a higher level. We handle this below
+                   and is_item_in_group(item_name, *group_include)
+                   and not is_item_in_group(item_name, *group_exclude)
+    ]
 
     if len(valid_items) == 0:
         return None
