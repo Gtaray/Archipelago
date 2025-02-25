@@ -191,4 +191,11 @@ def get_readable_area_name(area: str) -> str:
 
 
 def get_category_for_item(item: Item) -> str:
-    return f"{{{item_categories[item.classification]}}}"
+    if ItemClassification.progression in item.classification:
+        return "Progression"
+    elif ItemClassification.useful in item.classification:
+        return "Useful"
+    elif ItemClassification.trap in item.classification:
+        return "Progression"
+    else:
+        return "Filler"
