@@ -34,6 +34,7 @@ class LocationData:
 			access_condition: Optional[AccessCondition] = None,
 			object_id: Optional[int] = None,
 			event: bool = False,
+			postgame: bool = False,
 			hint: Optional[str]=None):
 		self.location_id = location_id
 		self.name = name
@@ -43,6 +44,7 @@ class LocationData:
 		self.access_condition = access_condition
 		self.object_id = object_id
 		self.event = event
+		self.postgame = postgame
 		self.hint = hint
 		self.logical_name = ""
 
@@ -83,13 +85,6 @@ def add_location(key: str, location: LocationData) -> None:
 
 def clear_data():
 	location_data.clear()
-
-
-def set_postgame_location(location_name: str, is_postgame: bool = True):
-	if location_data.get(location_name) is None:
-		raise KeyError("f{location_name} does not exist")
-
-	location_data[location_name].postgame = is_postgame
 
 
 def is_location_type(location: str, *types: MonsterSanctuaryLocationCategory) -> bool:

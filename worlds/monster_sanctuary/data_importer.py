@@ -31,12 +31,8 @@ def load_world() -> None:
     ENCOUNTERS.encounter_data.clear()
     FLAGS.flag_data.clear()
 
-    location_names: Dict[str, str] = {}
     locations_by_id: Dict[int, LocationData] = {}
     location_id: int = 970500
-
-    with files(data).joinpath("location_names.json").open() as file:
-        location_names = json.load(file)
 
     with files(data).joinpath("world.json").open() as file:
         json_data = json.load(file)
@@ -57,8 +53,7 @@ def load_world() -> None:
                 # Hack because we store comments as strings
                 if isinstance(chest_data, str):
                     continue
-                display_name = location_names[f"{region_name}_{chest_data['id']}"]
-                location = add_chest_location(location_id, display_name, chest_data, region_name)
+                location = add_chest_location(location_id, chest_data, region_name)
                 locations_by_id[location_id] = location
                 location_id += 1
 
@@ -66,8 +61,7 @@ def load_world() -> None:
                 # Hack because we store comments as strings
                 if isinstance(gift_data, str):
                     continue
-                display_name = location_names[f"{region_name}_{gift_data['id']}"]
-                location = add_gift_location(location_id, display_name, gift_data, region_name)
+                location = add_gift_location(location_id, gift_data, region_name)
                 locations_by_id[location_id] = location
                 location_id += 1
 
@@ -84,8 +78,7 @@ def load_world() -> None:
                     continue
 
                 # First add the rank up item
-                display_name = location_names[f"{region_name}_Champion"]
-                location = add_rank_location(location_id, display_name, champion_data, region_name)
+                location = add_rank_location(location_id, champion_data, region_name)
                 locations_by_id[location_id] = location
                 location_id += 1
 
@@ -98,35 +91,6 @@ def load_world() -> None:
                 add_flag_data(flag_data, region_name)
 
             REGIONS.region_data[region.name] = region
-
-    # Go through the postgame.json file and mark every location name in that file
-    # as a post-game location
-    with files(data).joinpath("postgame.json").open() as file:
-        json_data = json.load(file)
-        for location_name in json_data:
-            LOCATIONS.set_postgame_location(location_name)
-
-
-def load_plotless() -> None:
-    with files(data).joinpath("plotless.json").open() as file:
-        plotless_file = json.load(file)
-        for item in plotless_file:
-            region = item.get("region")
-            type = item.get("type")
-            requirements = AccessCondition(item.get("requirements"))
-            connection = item.get("connection")
-            object_id = item.get("object_id")
-            id = item.get("id")
-
-            if region not in RULES.plotless_data:
-                RULES.plotless_data[region] = []
-
-            RULES.plotless_data[region].append(Plotless(
-                type,
-                requirements,
-                connection,
-                object_id,
-                id))
 
 
 def load_items(item_id: int) -> int:
@@ -266,6 +230,10 @@ def parse_item_classification(text: Optional[str]) -> Optional[ItemClassificatio
 
 # region Data Adders
 def add_location(location_id, location_name, json_data, region_name, category: MonsterSanctuaryLocationCategory):
+    postgame = False
+    if json_data.get("postgame") is not None:
+        postgame = json_data["postgame"]
+
     location = LocationData(
         location_id=location_id,
         name=location_name,
@@ -274,6 +242,7 @@ def add_location(location_id, location_name, json_data, region_name, category: M
         default_item=json_data["item"],
         access_condition=AccessCondition(json_data.get("requirements")),
         object_id=json_data["id"],
+        postgame=postgame,
         hint=json_data.get("hint")
     )
 
@@ -281,18 +250,35 @@ def add_location(location_id, location_name, json_data, region_name, category: M
     return location
 
 
-def add_chest_location(location_id, location_name, chest_data, region_name) -> LocationData:
-    return add_location(location_id, location_name, chest_data, region_name, MonsterSanctuaryLocationCategory.CHEST)
+def add_chest_location(location_id, chest_data, region_name) -> LocationData:
+    if chest_data.get("name") is None:
+        raise ValueError(f"Chest in region {region_name} with id {chest_data['id']} has no name.")
+
+    return add_location(
+        location_id,
+        chest_data["name"],
+        chest_data,
+        region_name,
+        MonsterSanctuaryLocationCategory.CHEST)
 
 
-def add_gift_location(location_id, location_name, gift_data, region_name) -> LocationData:
-    return add_location(location_id, location_name, gift_data, region_name, MonsterSanctuaryLocationCategory.GIFT)
+def add_gift_location(location_id, gift_data, region_name) -> LocationData:
+    if gift_data.get("name") is None:
+        raise ValueError(f"Gift in region {region_name} with id {gift_data['id']} has no name.")
+    return add_location(
+        location_id,
+        gift_data["name"],
+        gift_data,
+        region_name,
+        MonsterSanctuaryLocationCategory.GIFT)
 
 
-def add_rank_location(location_id, display_name, champion_data, region_name) -> LocationData:
+def add_rank_location(location_id, champion_data, region_name) -> LocationData:
+    if champion_data.get("name") is None:
+        raise ValueError(f"Champion data in region {region_name} with id {champion_data['id']} has no name.")
     rank_location = LocationData(
         location_id=location_id,
-        name=display_name,
+        name=champion_data["name"],
         region=region_name,
         category=MonsterSanctuaryLocationCategory.RANK,
         default_item="Champion Defeated",

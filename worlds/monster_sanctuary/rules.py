@@ -164,6 +164,12 @@ def get_plotless_flag(region_name: str, flag_id: str) -> Optional[Plotless]:
     return None
 
 
+# region Rando Settings
+def plotless(state: CollectionState, player: int) -> bool:
+    return state.multiworld.worlds[player].options.skip_plot;
+# endregion
+
+
 # region Navigation Flags
 def blue_cave_switches_access(state: CollectionState, player: int) -> bool:
     return state.has("Blue Caves Switches Access", player)
@@ -239,6 +245,7 @@ def shifting_avialable(state: CollectionState, player: int) -> bool:
                 state.multiworld.worlds[player].options.monster_shift_rule == "after_sun_palace" and
                 state.has("Sun Palace Raise Center", player, 3)
             ))
+
 
 def ancient_woods_east_shortcut(state: CollectionState, player: int) -> bool:
     return state.has("Ancient Woods East Shortcut", player, 1)

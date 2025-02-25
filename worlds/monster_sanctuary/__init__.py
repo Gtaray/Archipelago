@@ -45,7 +45,6 @@ def load_data():
 
     # Load the world second, since this will require having ItemData and MonsterData
     data_importer.load_world()
-    data_importer.load_plotless()
     data_importer.load_hints()
 
     # We have to load flags last, as their location data is in world.json, but the item data exists in flags.json
@@ -117,6 +116,7 @@ class MonsterSanctuaryWorld(World):
             # If we're never allowing shifting, then these locations should not be included, as they
             # require a shifted monster to get.
             if self.options.monster_shift_rule == "never" and location_data.name in [
+                "Snowy Peaks - Cryomancer - Egg Reward 2",
                 "Snowy Peaks - Cryomancer - Light Egg Reward",
                 "Snowy Peaks - Cryomancer - Dark Egg Reward"
             ]:
@@ -124,10 +124,7 @@ class MonsterSanctuaryWorld(World):
 
             region = self.multiworld.get_region(location_data.region, self.player)
 
-            plotless_rules = RULES.get_plotless_location(region.name, location_data.object_id)
             access_condition = location_data.access_condition or None
-            if self.options.skip_plot and plotless_rules is not None:
-                access_condition = plotless_rules.access_rules
 
             location = MonsterSanctuaryLocation(
                 self.player,
@@ -162,10 +159,7 @@ class MonsterSanctuaryWorld(World):
                 if target_region_data is None:
                     continue
 
-                plotless_rules = RULES.get_plotless_connection(region.name, target_region_data.name)
                 access_condition = connection.access_rules or None
-                if self.options.skip_plot and plotless_rules is not None:
-                    access_condition = plotless_rules.access_rules
 
                 # Build the Entrance data
                 connection_name = f"{region_data.name} to {connection.region}"
@@ -198,12 +192,7 @@ class MonsterSanctuaryWorld(World):
         """Creates locations for all flags, and places flag items at those locations"""
         for location_name, data in FLAGS.flag_data.items():
             region = self.multiworld.get_region(data.region, self.player)
-
-            plotless_rules = RULES.get_plotless_flag(region.name, data.location_name)
             access_condition = data.access_condition or None
-            if self.options.skip_plot and plotless_rules is not None:
-                access_condition = plotless_rules.access_rules
-
             location = MonsterSanctuaryLocation(
                 player=self.player,
                 name=data.location_name,
@@ -402,10 +391,7 @@ class MonsterSanctuaryWorld(World):
     # self.multiworld.get_locations(self.player) has all locations for the player, with attribute
     # item pointing to the item. location.item.player can be used to see if it's a local item.
     def generate_output(self, output_directory: str) -> None:
-        if self.options.hints:
-            self.hint_rng = self.multiworld.per_slot_randoms[self.player]
-            HINTS.generate_hints(self)
-
+        pass
         # from Utils import visualize_regions
         # visualize_regions(self.multiworld.get_region("Menu", self.player),
         #                   "D:\\Visual Studio Projects\\Archipelago\\worlds\\monster_sanctuary\\world.puml")
@@ -413,10 +399,11 @@ class MonsterSanctuaryWorld(World):
     # fill_slot_data and modify_multidata can be used to modify the data that will be used by
     # the server to host the MultiWorld.
     def fill_slot_data(self) -> dict:
-        slot_data = {}
+        if self.options.hints:
+            self.hint_rng = self.random
+            HINTS.generate_hints(self)
 
-        # Rando options
-        slot_data["options"] = {
+        slot_data = {"options": {
             "goal": self.options.goal.value,
             "exp_multiplier": self.options.exp_multiplier.value,
             "monsters_always_drop_egg": self.options.monsters_always_drop_egg.value,
@@ -425,9 +412,11 @@ class MonsterSanctuaryWorld(World):
             "skip_plot": self.options.skip_plot.value,
             "remove_locked_doors": self.options.remove_locked_doors.value,
             "death_link": self.options.death_link.value
-        }
+        }}
 
-        # Monster reandos
+        # Rando options
+
+        # Monster randos
         tanuki_location = self.multiworld.get_location("Menu_0_0", self.player)
         slot_data["monsters"] = {
             "tanuki": tanuki_location.item.name,
