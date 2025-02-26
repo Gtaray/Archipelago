@@ -4966,7 +4966,7 @@
       {
         "id": 17900065,
         "item": "Shockhopper Egg",
-        "name": "Snowy Peaks - Cryomancer - Egg Reward 2",
+        "name": "Snowy Peaks - Cryomancer - Light Egg Reward",
         "requirements": [
           "AND",
           [
@@ -4978,7 +4978,7 @@
       {
         "id": 17900066,
         "item": "Shockhopper Egg",
-        "name": "Snowy Peaks - Cryomancer - Light Egg Reward",
+        "name": "Snowy Peaks - Cryomancer - Dark Egg Reward",
         "requirements": [
           "AND",
           [
@@ -4990,7 +4990,7 @@
       {
         "id": 17900077,
         "item": "Reward Box Lvl 2",
-        "name": "Snowy Peaks - Cryomancer - Dark Egg Reward",
+        "name": "Snowy Peaks - Cryomancer - Egg Reward 2",
         "requirements": [
           "has_dodo"
         ]

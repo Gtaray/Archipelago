@@ -116,7 +116,6 @@ class MonsterSanctuaryWorld(World):
             # If we're never allowing shifting, then these locations should not be included, as they
             # require a shifted monster to get.
             if self.options.monster_shift_rule == "never" and location_data.name in [
-                "Snowy Peaks - Cryomancer - Egg Reward 2",
                 "Snowy Peaks - Cryomancer - Light Egg Reward",
                 "Snowy Peaks - Cryomancer - Dark Egg Reward"
             ]:
