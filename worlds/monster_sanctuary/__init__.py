@@ -404,10 +404,10 @@ class MonsterSanctuaryWorld(World):
 
         slot_data = {"options": {
             "goal": self.options.goal.value,
-            "exp_multiplier": self.options.exp_multiplier.value,
+            "starting_gold": self.options.starting_gold.value,
+            "add_smoke_bombs": self.options.add_smoke_bombs.value,
             "monsters_always_drop_egg": self.options.monsters_always_drop_egg.value,
             "monster_shift_rule": self.options.monster_shift_rule.value,
-            "skip_intro": self.options.skip_intro.value,
             "skip_plot": self.options.skip_plot.value,
             "remove_locked_doors": self.options.remove_locked_doors.value,
             "death_link": self.options.death_link.value

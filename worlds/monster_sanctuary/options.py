@@ -184,18 +184,18 @@ class IncludeChaosRelics(Choice):
     default = 1
 
 
-class ExpMultiplier(Range):
-    """Modifier for experience gained. When specifying a number, XP is multiplied by this amount"""
-    display_name = "Experience Multiplier"
-    range_start = 1
-    range_end = 5
+class StartWithSmokeBombs(Toggle):
+    """If enabled, the player will start with 50 Smoke Bombs."""
+    display_name = "Start with 50 Smoke Bombs"
+    default = True
+
+
+class StartingGold(Range):
+    """Override the player's starting gold, counted in increments of 100 gold"""
+    display_name = "Starting Gold (counted in increments of 100)"
+    range_start = 0
+    range_end = 1000
     default = 1
-
-
-class SkipIntro(Toggle):
-    """Skip the intro cut scenes and tutorial dialog when starting a new file."""
-    display_name = "Skip Intro Cutscenes"
-    default = False
 
 
 class SkipPlot(Toggle):
@@ -238,8 +238,8 @@ class MonsterSanctuaryOptions(PerGameCommonOptions):
     drop_chance_accessory: AccessoryDropChance
     drop_chance_currency: GoldDropChance
     include_chaos_relics: IncludeChaosRelics
-    exp_multiplier: ExpMultiplier
-    skip_intro: SkipIntro
+    add_smoke_bombs: StartWithSmokeBombs
+    starting_gold: StartingGold
     skip_plot: SkipPlot
     hints: AddHints
     goal: Goal
