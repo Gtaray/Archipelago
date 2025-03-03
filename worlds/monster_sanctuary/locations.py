@@ -75,6 +75,28 @@ class MonsterSanctuaryLocation(Location):
 # This holds all the location data that is parsed from world.json file
 location_data: Dict[str, LocationData] = {}
 
+keeper_master_locations = [
+	"Keeper Stronghold - Parents - Keeper Master Gift 1",
+	"Keeper Stronghold - Parents - Keeper Master Gift 2",
+	"Monster Army - 100000 Strength (1)",
+	"Monster Army - 100000 Strength (2)",
+	"Monster Army - 100000 Strength (3)"
+]
+postgame_locations = [
+	"Keeper Stronghold - Post Game - Alchemist Costume Gift",
+	"Stronghold Dungeon - Trevisan 1",
+	"Stronghold Dungeon - Trevisan 2",
+]
+velvet_melody_locations = [
+	"Magma Chamber - Legendary Keeper Room",
+	"Magma Chamber - Legendary Keeper Room - Mozzie Reward 1",
+	"Magma Chamber - Legendary Keeper Room - Mozzie Reward 2",
+	"Magma Chamber - Legendary Keeper Room - Mozzie Reward 3",
+	"Magma Chamber - Legendary Keeper Room - Mozzie Reward 4",
+	"Magma Chamber - Legendary Keeper Room - Mozzie Reward 5",
+]
+
+
 
 def add_location(key: str, location: LocationData) -> None:
 	if location_data.get(location.name) is not None:

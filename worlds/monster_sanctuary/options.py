@@ -169,6 +169,146 @@ class GoldDropChance(Range):
     default = 50
 
 
+# region Open World Options
+class OpenBlueCaves(Toggle):
+    """If enabled, the Blue Cave to Mountain path shortcut will be opened"""
+    display_name = "Open World - Blue Caves"
+    default = False
+
+
+class OpenStrongholdDungeon(Choice):
+    """Opens shortcuts and entrances to Stronghold Dungeon
+
+    Entrances: Opens up entrances to the Dungeon from Blue Caves and Ancient Woods
+    Shortcuts: Opens interior gates within the Dungeon
+    Full: Opens both Entrances and Shortcuts"""
+    display_name = "Open World - Stronghold Dungeon"
+    option_off = 0
+    option_entrances = 1
+    option_shortcuts = 2
+    option_full = 3
+    default = 0
+
+
+class OpenAncientWoods(Toggle):
+    """If enabled, opens up the alternate routes past the Brutus and Goblin King fights
+    NOTE: These shortcuts allow you to bypass the need for Ancient Woods Keys. It is recommended to only use this setting if locked doors are turned off"""
+    display_name = "Open World - Ancient Woods"
+    default = False
+
+
+class OpenSnowyPeaks(Toggle):
+    """If enabled, opens up shortcuts within Snowy Peaks"""
+    display_name = "Open World - Snowy Peaks"
+    default = False
+
+
+class OpenSunPalace(Choice):
+    """Opens shortcuts and entrances to Sun Palace
+
+    Entrances: Opens the elemental gates between Blue Caves and Sun Palace, and opens the gate between Snowy Peaks and Sun Palace
+    Raise Pillar: Raises the pillar, lowers the water, and opens the east and west shortcuts
+    Full: Opens both Entrances and Raises the Pillar"""
+    display_name = "Open World - Sun Palace"
+    option_off = 0
+    option_entrances = 1
+    option_raise_pillar = 2
+    option_full = 3
+    default = 0
+
+
+class OpenHorizonBeach(Choice):
+    """Opens shortcuts and entrances to Horizon Beach
+
+    Entrances: Opens the elemental door locks between Ancient Woods and Horizon Beach, and opens the Magma Chamber to Horizon Beach shortcut
+    Shortcuts: Opens the shortcut in central Horizon Beach
+    Full: Opens both Entrances and Shortcuts"""
+    display_name = "Open World - Horizon Beach"
+    option_off = 0
+    option_entrances = 1
+    option_shortcuts = 2
+    option_full = 3
+    default = 0
+
+
+class OpenMagmaChamber(Choice):
+    """Opens shortcuts and entrances to Magma Chamber
+
+    Entrances: Opens the rotating gates between Ancient Woods and Magma Chamber, and the breakable wall between Forgotten world and Magma Chamber
+    Lower Lava: Removes the runestone shard from the item pool, lowers the lava, and opens all internal shortcuts
+    Full: Opens Entrances and Lowers Lava"""
+    display_name = "Open World - Magma Chamber"
+    option_off = 0
+    option_entrances = 1
+    option_lower_lava = 2
+    option_full = 3
+    default = 0
+
+
+class OpenBlobBurg(Choice):
+    """Opens up Blob Burg
+
+    Entrances: Removes blob key from the item pool and makes Blob Burg accessible with no requirements
+    Open Walls: Opens up all areas within Blob Burg, removing the need to incrementally open it
+    Full: Opens Entrances and all Walls"""
+    display_name = "Open World - Blob Burg"
+    option_off = 0
+    option_entrances = 1
+    option_open_walls = 2
+    option_full = 3
+    default = 0
+
+
+class OpenForgottenWorld(Choice):
+    """Opens shortcuts and entrances to Horizon Beach
+
+    Entrances: Opens alternative entrances to Forgotten World from Horizon Beach and Magma Chamber
+    Shortcuts: Opens one-way shortcuts in the Forgotten World
+    Full: Opens both Entrances and Shortcuts"""
+    display_name = "Open World - Forgotten World"
+    option_off = 0
+    option_entrances = 1
+    option_shortcuts = 2
+    option_full = 3
+    default = 0
+
+
+class OpenMysticalWorkshop(Toggle):
+    """If enabled, opens up the northern shortcut within the Mystical Workshop
+    NOTE: This shortcut allows you to bypass the need for Mystical Workshop Keys. It is recommended to only use this setting if locked doors are turned off"""
+    display_name = "Open World - Mystical Workshop"
+    default = False
+
+
+class OpenUnderworld(Choice):
+    """Opens up the Underworld
+
+    Entrances: Removes sanctuary tokens from the item pool and opens up the Underworld door in Blue Caves, as well as the back entrance in Sun Palace
+    Shortcuts: Opens all shortcuts and enables all grapple points within the Underworld
+    Full: Opens Entrances and Shortcuts"""
+    display_name = "Open World - Underworld"
+    option_off = 0
+    option_entrances = 1
+    option_shortcuts = 2
+    option_full = 3
+    default = 0
+
+
+class OpenAbandonedTower(Choice):
+    """Opens up the Abandoned Tower
+
+    Entrances: Opens the large door between Mystical Workshop and Abandoned Tower, as well as removing the Key of Power door. Removes Key of Power from the item pool
+    Shortcuts: Opens all shortcuts in Abandoned Tower
+    Full: Opens Entrances and Shortcuts"""
+    display_name = "Open World - Abandoned Tower"
+    option_off = 0
+    option_entrances = 1
+    option_shortcuts = 2
+    option_full = 3
+    default = 0
+# endregion
+
+
 class IncludeChaosRelics(Choice):
     """Include Relics of Chaos in the random item pool
 
@@ -240,7 +380,21 @@ class MonsterSanctuaryOptions(PerGameCommonOptions):
     include_chaos_relics: IncludeChaosRelics
     add_smoke_bombs: StartWithSmokeBombs
     starting_gold: StartingGold
+
     skip_plot: SkipPlot
+    open_blue_caves: OpenBlueCaves
+    open_stronghold_dungeon: OpenStrongholdDungeon
+    open_ancient_woods: OpenAncientWoods
+    open_snowy_peaks: OpenSnowyPeaks
+    open_sun_palace: OpenSunPalace
+    open_horizon_beach: OpenHorizonBeach
+    open_magma_chamber: OpenMagmaChamber
+    open_blob_burg: OpenBlobBurg
+    open_forgotten_world: OpenForgottenWorld
+    open_mystical_workshop: OpenMysticalWorkshop
+    open_underworld: OpenUnderworld
+    open_abandoned_tower: OpenAbandonedTower
+
     hints: AddHints
     goal: Goal
     death_link: DeathLink

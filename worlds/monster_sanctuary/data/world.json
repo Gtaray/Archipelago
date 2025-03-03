@@ -158,7 +158,7 @@
           "OR",
           [
             "keeper_rank_1",
-            "plotless"
+            "skip_plot"
           ]
         ]
       },
@@ -1117,7 +1117,7 @@
         "requirements": [
           "OR",
           [
-            "plotless",
+            "skip_plot",
             "AND",
             [
               "keeper_rank_2",
@@ -1213,7 +1213,7 @@
           "OR",
           [
             "keeper_rank_2",
-            "plotless"
+            "skip_plot"
           ]
         ]
       }
@@ -1739,7 +1739,7 @@
         "region": "BlueCave_East4"
       },
       {
-        "region": "StrongholdDungeon_West4_Shortcut",
+        "region": "BlueCave_East2_Upper",
         "requirements": [
           "stronghold_dungeon_west_4_shortcut"
         ]
@@ -1988,16 +1988,14 @@
         "requirements": [
           "OR",
           [
-            "AND",
+            "all_sanctuary_tokens",
+            "OR",
             [
-              "plotless",
-              "all_sanctuary_tokens"
-            ],
-            "AND",
-            [
-              "all_sanctuary_tokens",
-              "ostanes",
-              "stronghold_dungeon_library_access"
+              "skip_plot",
+              "AND", [
+                "ostanes",
+                "stronghold_dungeon_library_access"
+              ]
             ]
           ]
         ]
@@ -2009,18 +2007,17 @@
         "item": "Reward Box Lvl 3",
         "name": "Blue Cave - Underworld Entrance 1",
         "requirements": [
-          "OR",
+          "AND",
           [
-            "AND",
+            "all_sanctuary_tokens",
+            "OR",
             [
-              "plotless",
-              "all_sanctuary_tokens"
-            ],
-            "AND",
-            [
-              "all_sanctuary_tokens",
-              "ostanes",
-              "stronghold_dungeon_library_access"
+              "skip_plot",
+              "AND",
+              [
+                "ostanes",
+                "stronghold_dungeon_library_access"
+              ]
             ]
           ]
         ]
@@ -2030,18 +2027,17 @@
         "item": "Sanctuary Token",
         "name": "Blue Cave - Underworld Entrance 2",
         "requirements": [
-          "OR",
+          "AND",
           [
-            "AND",
+            "all_sanctuary_tokens",
+            "OR",
             [
-              "plotless",
-              "all_sanctuary_tokens"
-            ],
-            "AND",
-            [
-              "all_sanctuary_tokens",
-              "ostanes",
-              "stronghold_dungeon_library_access"
+              "skip_plot",
+              "AND",
+              [
+                "ostanes",
+                "stronghold_dungeon_library_access"
+              ]
             ]
           ]
         ]
@@ -3558,21 +3554,10 @@
         "region": "StrongholdDungeon_West4"
       },
       {
-        "region": "StrongholdDungeon_South3_Shortcut",
+        "region": "StrongholdDungeon_West3",
         "requirements": [
           "stronghold_dungeon_south_3_shortcut"
         ]
-      }
-    ]
-  },
-  {
-    "region": "StrongholdDungeon_West3_Shortcut",
-    "connections": [
-      {
-        "region": "StrongholdDungeon_West3"
-      },
-      {
-        "region": "StrongholdDungeon_West2"
       }
     ]
   },
@@ -3583,7 +3568,10 @@
         "region": "StrongholdDungeon_South3"
       },
       {
-        "region": "StrongholdDungeon_West3_Shortcut"
+        "region": "StrongholdDungeon_West2",
+        "requirements": [
+          "stronghold_dungeon_south_3_shortcut"
+        ]
       },
       {
         "region": "StrongholdDungeon_WestHidden",
@@ -3613,7 +3601,10 @@
         "region": "StrongholdDungeon_West2"
       },
       {
-        "region": "StrongholdDungeon_West4_Shortcut"
+        "region": "BlueCave_East2_Upper",
+        "requirements": [
+          "stronghold_dungeon_west_4_shortcut"
+        ]
       }
     ],
     "encounters": [
@@ -3624,17 +3615,6 @@
           "Grummy",
           "G'rulu"
         ]
-      }
-    ]
-  },
-  {
-    "region": "StrongholdDungeon_West4_Shortcut",
-    "connections": [
-      {
-        "region": "StrongholdDungeon_West4"
-      },
-      {
-        "region": "BlueCave_East2_Upper"
       }
     ],
     "flags": [
@@ -8596,7 +8576,7 @@
         "requirements": [
           "OR",
           [
-            "plotless",
+            "skip_plot",
             "goblin_king_defeated"
           ]
         ]
@@ -9788,7 +9768,7 @@
         "requirements": [
           "OR",
           [
-            "plotless",
+            "skip_plot",
             "horizon_beach_rescue_leonard"
           ]
         ]
@@ -10579,7 +10559,7 @@
           [
             "AND",
             [
-              "plotless",
+              "skip_plot",
               "runestone_shard"
             ],
             "AND",
@@ -10626,7 +10606,7 @@
         "region": "MagmaChamber_East1"
       },
       {
-        "region": "MagmaChamber_East3",
+        "region": "MagmaChamber_East3_Upper",
         "requirements": [
           "horizon_beach_to_magma_chamber_shortcut"
         ]

@@ -34,3 +34,21 @@ class SnowyPeaksTests(TestArea):
                                  [])
         self.assertAccessible("SnowyPeaks_ClothesmakerHouse", "SnowyPeaks_ClothesmakerHouse_17700033",
                               ["Raw Hide"])
+
+
+class SnowyPeaksWithOpenShortcuts(TestArea):
+    options = {
+        "open_snowy_peaks": 1
+    }
+
+    def test_east_upper_shortcut(self):
+        self.assertAccessible("SnowyPeaks_East4_Middle", "snowy_peaks_east4_upper_shortcut",
+                              ["Double Jump Boots"])
+        self.assertAccessible("SnowyPeaks_East4_Middle", "snowy_peaks_east4_upper_shortcut",
+                              ["Kongamato"])
+
+    def test_east_mountain_shortcut(self):
+        self.assertAccessible("SnowyPeaks_EastMountain3_Middle", "snowy_peaks_east_mountain_3_shortcut",
+                              ["Double Jump Boots"])
+        self.assertAccessible("SnowyPeaks_EastMountain3_Middle", "snowy_peaks_east_mountain_3_shortcut",
+                              ["Kongamato"])

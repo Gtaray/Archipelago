@@ -99,3 +99,19 @@ class AncientWoodsNoLockedDoorsTests(TestArea):
 
     def test_center_accessible_with_no_keys(self):
         self.assertAccessible("AncientWoods_Center2", "AncientWoods_Center5_4", [])
+
+
+class AncientWoodsWithOpenEntrances(TestArea):
+    options = {
+        "open_ancient_woods": 1
+    }
+
+    def test_east_shortcut(self):
+        self.assertAccessible("AncientWoods_East1", "ancient_woods_east_shortcut", [])
+
+    def test_backwards_brutus_is_open(self):
+        self.assertAccessible("AncientWoods_SouthChampion", "AncientWoods_South4_1",
+                              ["Double Jump Boots", "Nightwing"])
+
+        self.assertAccessible("AncientWoods_South4", "AncientWoods_SouthChampion_1_0",
+                              ["Double Jump Boots", "Nightwing"])

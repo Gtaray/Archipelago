@@ -43,35 +43,3 @@ class TestCryomancer_ShuffledEggs(MonsterSanctuaryTestBase):
         self.assert_item_is_correct("Snowy Peaks - Cryomancer - Light Egg Reward")
         self.assert_item_is_correct("Snowy Peaks - Cryomancer - Dark Egg Reward")
 
-
-class TestPostGame_Off(MonsterSanctuaryTestBase):
-    options = {
-        "goal": 0
-    }
-
-    def test_post_game_locations_do_not_exist(self):
-        with self.subTest("Parents penultimate reward doesn't exist"):
-            self.assertNotIn("Keeper Stronghold - Parents - Keeper Master Gift 1", self.multiworld.regions.location_cache[self.player])
-        with self.subTest("Parents final reward doesn't exist"):
-            self.assertNotIn("Keeper Stronghold - Parents - Keeper Master Gift 2", self.multiworld.regions.location_cache[self.player])
-        with self.subTest("Trevisan 1 doesn't doesn't exist"):
-            self.assertNotIn("Stronghold Dungeon - Trevisan 1", self.multiworld.regions.location_cache[self.player])
-        with self.subTest("Trevisan 2 doesn't doesn't exist"):
-            self.assertNotIn("Stronghold Dungeon - Trevisan 2", self.multiworld.regions.location_cache[self.player])
-
-
-class TestPostGame_On(MonsterSanctuaryTestBase):
-    options = {
-        "goal": 1
-    }
-
-    def test_post_game_locations_exist(self):
-        with self.subTest("Parents penultimate reward exists"):
-            self.assertIn("Keeper Stronghold - Parents - Keeper Master Gift 1", self.multiworld.regions.location_cache[self.player])
-        with self.subTest("Parents final reward exists"):
-            self.assertIn("Keeper Stronghold - Parents - Keeper Master Gift 2", self.multiworld.regions.location_cache[self.player])
-        with self.subTest("Trevisan 1 doesn't exist"):
-            self.assertIn("Stronghold Dungeon - Trevisan 1", self.multiworld.regions.location_cache[self.player])
-        with self.subTest("Trevisan 2 doesn't exist"):
-            self.assertIn("Stronghold Dungeon - Trevisan 2", self.multiworld.regions.location_cache[self.player])
-

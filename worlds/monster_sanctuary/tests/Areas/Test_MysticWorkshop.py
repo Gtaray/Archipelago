@@ -54,3 +54,22 @@ class MysticWorkshopNoLockedDoorsTests(TestArea):
     def test_north_accessible_with_no_keys(self):
         self.assertNotAccessible("MysticalWorkshop_North6", "mystical_workshop_north_shortcut", [])
         self.assertAccessible("MysticalWorkshop_North6", "mystical_workshop_north_shortcut", ["Double Jump Boots"])
+
+
+class MysticWorkshopOpenShortcutsWithLockedDoors(TestArea):
+    options = {
+        "open_shortcuts": 1,
+        "remove_locked_doors": 0
+    }
+
+    def test_north_shortcut_is_not_open(self):
+        self.assertNotAccessible("MysticalWorkshop_North2", "mystical_workshop_north_shortcut", [])
+
+
+class MysticWorkshopWithOpenedEntrances(TestArea):
+    options = {
+        "open_mystical_workshop": 1
+    }
+
+    def test_north_shortcut_is_open(self):
+        self.assertAccessible("MysticalWorkshop_North2", "mystical_workshop_north_shortcut", [])

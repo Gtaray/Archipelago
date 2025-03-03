@@ -112,6 +112,18 @@ class MonsterSanctuaryWorld(World):
             if self.options.goal == "defeat_mad_lord" and location_data.postgame:
                 continue
 
+            # if the goal is to defeat the mad lord or defeat all champions, then we do not add any
+            # locations that require a rank of keeper master
+            if ((self.options.goal == "defeat_mad_lord" or self.options.goal == "defeat_all_champions")
+                    and location_data.name in LOCATIONS.keeper_master_locations):
+                continue
+
+            # If the underworld starts opened, then don't add the item checks for the Eric fight
+            if (self.options.open_underworld
+                    and location_data.name in ["Blue Cave - Underworld Entrance 1",
+                                               "Blue Cave - Underworld Entrance 2"]):
+                continue
+
             # First we check if we should be ignoring these locations based on rando options
             # If we're never allowing shifting, then these locations should not be included, as they
             # require a shifted monster to get.
@@ -190,6 +202,16 @@ class MonsterSanctuaryWorld(World):
     def place_events(self) -> None:
         """Creates locations for all flags, and places flag items at those locations"""
         for location_name, data in FLAGS.flag_data.items():
+            # If blob burg is unlocked, we don't need to place the blob key used events
+            if (location_name in ["stronghold_dungeon_blob_key", "mystical_workshop_blob_key", "sun_palace_blob_key"]
+                    and (self.options.open_blob_burg == "entrances" or self.options.open_blob_burg == "full")):
+                continue
+
+            # If magma chamber is open, don't place the flag to lower the lava
+            if (location_name == "magma_chamber_lower_lava" and
+                    (self.options.open_magma_chamber == "lower_lava" or self.options.open_magma_chamber == "full")):
+                continue
+
             region = self.multiworld.get_region(data.region, self.player)
             access_condition = data.access_condition or None
             location = MonsterSanctuaryLocation(
@@ -319,6 +341,22 @@ class MonsterSanctuaryWorld(World):
         # Add all key items to the pool
         key_items = [item_name for item_name in ITEMS.item_data
                      if ITEMS.item_data[item_name].category == MonsterSanctuaryItemCategory.KEYITEM]
+
+        # If blob burg is unlocked via options, then remove the blob key from the item pool
+        if self.options.open_blob_burg == "entrances" or self.options.open_blob_burg == "full":
+            key_items.remove("Blob Key")
+
+        # If magma chamber has its lava lowered via options, remove runestone shard from the item pool
+        if self.options.open_magma_chamber == "lower_lava" or self.options.open_magma_chamber == "full":
+            key_items.remove("Runestone Shard")
+
+        if self.options.open_abandoned_tower == "entrances" or self.options.open_abandoned_tower == "full":
+            key_items.remove("Key of Power")
+
+        # If the underworld entrance is opened up, don't add sanctuary tokens to the item pool
+        if self.options.open_underworld == "entrances" or self.options.open_underworld == "full":
+            key_items = [i for i in key_items if i != "Sanctuary Token"]
+
         # Add items that are not technically key items, but are progressions items and should be added
         key_items.append("Raw Hide")
         key_items.append("Shard of Winter")
@@ -391,9 +429,6 @@ class MonsterSanctuaryWorld(World):
     # item pointing to the item. location.item.player can be used to see if it's a local item.
     def generate_output(self, output_directory: str) -> None:
         pass
-        # from Utils import visualize_regions
-        # visualize_regions(self.multiworld.get_region("Menu", self.player),
-        #                   "D:\\Visual Studio Projects\\Archipelago\\worlds\\monster_sanctuary\\world.puml")
 
     # fill_slot_data and modify_multidata can be used to modify the data that will be used by
     # the server to host the MultiWorld.
@@ -404,12 +439,28 @@ class MonsterSanctuaryWorld(World):
 
         slot_data = {"options": {
             "goal": self.options.goal.value,
+
             "starting_gold": self.options.starting_gold.value,
             "add_smoke_bombs": self.options.add_smoke_bombs.value,
+
             "monsters_always_drop_egg": self.options.monsters_always_drop_egg.value,
             "monster_shift_rule": self.options.monster_shift_rule.value,
+
             "skip_plot": self.options.skip_plot.value,
             "remove_locked_doors": self.options.remove_locked_doors.value,
+            "open_blue_caves": self.options.open_blue_caves.value,
+            "open_stronghold_dungeon": self.options.open_stronghold_dungeon.value,
+            "open_ancient_woods": self.options.open_ancient_woods.value,
+            "open_snowy_peaks": self.options.open_snowy_peaks.value,
+            "open_sun_palace": self.options.open_sun_palace.value,
+            "open_horizon_beach": self.options.open_horizon_beach.value,
+            "open_magma_chamber": self.options.open_magma_chamber.value,
+            "open_forgotten_world": self.options.open_forgotten_world.value,
+            "open_blob_burg": self.options.open_blob_burg.value,
+            "open_underworld": self.options.open_underworld.value,
+            "open_mystical_workshop": self.options.open_mystical_workshop.value,
+            "open_abandoned_tower": self.options.open_abandoned_tower.value,
+
             "death_link": self.options.death_link.value
         }}
 

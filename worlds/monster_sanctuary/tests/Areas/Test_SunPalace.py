@@ -64,3 +64,38 @@ class SunPalaceTests(TestArea):
     def test_west_shortcut(self):
         self.assertNotAccessible("SunPalace_Center", "sun_palace_west_shortcut", [])
         self.assertAccessible("SunPalace_Center", "sun_palace_west_shortcut", ["Sun Palace West Shortcut"])
+
+
+class SunPalaceWithOpenEntrances(TestArea):
+    options = {
+        "open_sun_palace": "entrances"
+    }
+
+    def test_sun_palace_entrance_shortcut(self):
+        self.assertAccessible("SnowyPeaks_SunPalaceEntrance",
+                              "snowy_peaks_sun_palace_entrance_shortcut",
+                              [])
+
+
+class SunPalaceWithRaisedPillars(TestArea):
+    options = {
+        "open_sun_palace": "raise_pillar"
+    }
+
+    def test_center_is_raised(self):
+        self.assertAccessible("SunPalace_Center", "SunPalace_North3_3_0",["Kongamato", "Magmapillar"])
+        self.assertAccessible("SunPalace_Center", "SunPalace_Center_13", ["Kongamato"])
+
+    def test_water_is_lowered(self):
+        self.assertAccessible("SunPalace_Center", "SunPalace_South1_Upper_13", ["Double Jump Boots"])
+        self.assertAccessible("SunPalace_Center", "SunPalace_South1_Lower_6", ["Double Jump Boots"])
+        self.assertAccessible("SunPalace_Center", "SunPalace_EastSewers2_6", ["Double Jump Boots"])
+        self.assertAccessible("SunPalace_Center", "SunPalace_EastSewers6_7", ["Double Jump Boots"])
+        self.assertAccessible("SunPalace_Center", "SunPalace_WestSewers3_0_0", ["Double Jump Boots"])
+        self.assertAccessible("SunPalace_Center", "SunPalace_WestSewers4_4", ["Double Jump Boots", "Koi"])
+
+    def test_east_shortcut(self):
+        self.assertAccessible("SunPalace_Center", "sun_palace_east_shortcut", ["Double Jump Boots"])
+
+    def test_west_shortcut(self):
+        self.assertAccessible("SunPalace_Center", "sun_palace_west_shortcut", [])
