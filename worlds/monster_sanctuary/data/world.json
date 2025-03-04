@@ -5152,7 +5152,7 @@
         "id": 6,
         "item": "Leather",
         "name": "Snowy Peaks - West Mountain Peak - Ledge Chest",
-        "requirement": [
+        "requirements": [
           "AND",
           [
             "double_jump",
@@ -5164,7 +5164,7 @@
         "id": 7,
         "item": "Crimson Gem",
         "name": "Snowy Peaks - West Mountain Peak - Breakable Wall Chest",
-        "requirement": [
+        "requirements": [
           "AND",
           [
             "double_jump",
@@ -5177,7 +5177,7 @@
         "id": 8,
         "item": "5000 G",
         "name": "Snowy Peaks - West Mountain Peak - Invisible Platform Chest",
-        "requirement": [
+        "requirements": [
           "AND",
           [
             "double_jump",
@@ -5235,7 +5235,7 @@
         "id": 9,
         "item": "Azure Gem",
         "name": "Snowy Peaks - East Mountain Peak - Floating Ledge Chest",
-        "requirement": [
+        "requirements": [
           "AND",
           [
             "double_jump",
@@ -5247,7 +5247,7 @@
         "id": 10,
         "item": "Skill Resetter",
         "name": "Snowy Peaks - East Mountain Peak - Cave Chest",
-        "requirement": [
+        "requirements": [
           "distant_ledges"
         ]
       }
@@ -5324,7 +5324,7 @@
         "id": 5,
         "item": "Strawberry",
         "name": "Snowy Peaks - East Mountain - Lightning Orb Chest",
-        "requirement": [
+        "requirements": [
           "AND",
           [
             "double_jump",
@@ -5378,7 +5378,7 @@
         "id": 21,
         "item": "Level Badge",
         "name": "Snowy Peaks - East Mountain - West Crumble Ledge Chest",
-        "requirement": [
+        "requirements": [
           "OR",
           [
             "double_jump",
@@ -5392,7 +5392,7 @@
         "id": 22,
         "item": "Combo Potion",
         "name": "Snowy Peaks - East Mountain - Spikes Chest",
-        "requirement": [
+        "requirements": [
           "double_jump"
         ]
       },
@@ -5400,7 +5400,7 @@
         "id": 23,
         "item": "2x Wool",
         "name": "Snowy Peaks - East Mountain - Upper Cave Chest",
-        "requirement": [
+        "requirements": [
           "double_jump"
         ]
       }
@@ -5429,7 +5429,7 @@
         "id": 9,
         "item": "Helmet+3",
         "name": "Snowy Peaks - East Mountain - East Upper Chest",
-        "requirement": [
+        "requirements": [
           "double_jump"
         ]
       },
@@ -5437,7 +5437,7 @@
         "id": 10,
         "item": "Level Badge",
         "name": "Snowy Peaks - East Mountain - East Lower Chest",
-        "requirement": [
+        "requirements": [
           "OR",
           [
             "double_jump",
@@ -5470,7 +5470,7 @@
         "id": 11,
         "item": "Raw Hide",
         "name": "Snowy Peaks - East Mountain - Crumble Platform Challenge Chest",
-        "requirement": [
+        "requirements": [
           "OR",
           [
             "double_jump",
@@ -5483,7 +5483,7 @@
         "id": 12,
         "item": "Wizard Hat+3",
         "name": "Snowy Peaks - East Mountain - Ice Orb Chest",
-        "requirement": [
+        "requirements": [
           "AND",
           [
             "ice_orbs",

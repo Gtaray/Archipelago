@@ -437,32 +437,35 @@ class MonsterSanctuaryWorld(World):
             self.hint_rng = self.random
             HINTS.generate_hints(self)
 
-        slot_data = {"options": {
-            "goal": self.options.goal.value,
+        slot_data = {
+            "version": "1.2.1",
+            "options": {
+                "goal": self.options.goal.value,
 
-            "starting_gold": self.options.starting_gold.value,
-            "add_smoke_bombs": self.options.add_smoke_bombs.value,
+                "starting_gold": self.options.starting_gold.value,
+                "add_smoke_bombs": self.options.add_smoke_bombs.value,
 
-            "monsters_always_drop_egg": self.options.monsters_always_drop_egg.value,
-            "monster_shift_rule": self.options.monster_shift_rule.value,
+                "monsters_always_drop_egg": self.options.monsters_always_drop_egg.value,
+                "monster_shift_rule": self.options.monster_shift_rule.value,
 
-            "skip_plot": self.options.skip_plot.value,
-            "remove_locked_doors": self.options.remove_locked_doors.value,
-            "open_blue_caves": self.options.open_blue_caves.value,
-            "open_stronghold_dungeon": self.options.open_stronghold_dungeon.value,
-            "open_ancient_woods": self.options.open_ancient_woods.value,
-            "open_snowy_peaks": self.options.open_snowy_peaks.value,
-            "open_sun_palace": self.options.open_sun_palace.value,
-            "open_horizon_beach": self.options.open_horizon_beach.value,
-            "open_magma_chamber": self.options.open_magma_chamber.value,
-            "open_forgotten_world": self.options.open_forgotten_world.value,
-            "open_blob_burg": self.options.open_blob_burg.value,
-            "open_underworld": self.options.open_underworld.value,
-            "open_mystical_workshop": self.options.open_mystical_workshop.value,
-            "open_abandoned_tower": self.options.open_abandoned_tower.value,
+                "skip_plot": self.options.skip_plot.value,
+                "remove_locked_doors": self.options.remove_locked_doors.value,
+                "open_blue_caves": self.options.open_blue_caves.value,
+                "open_stronghold_dungeon": self.options.open_stronghold_dungeon.value,
+                "open_ancient_woods": self.options.open_ancient_woods.value,
+                "open_snowy_peaks": self.options.open_snowy_peaks.value,
+                "open_sun_palace": self.options.open_sun_palace.value,
+                "open_horizon_beach": self.options.open_horizon_beach.value,
+                "open_magma_chamber": self.options.open_magma_chamber.value,
+                "open_forgotten_world": self.options.open_forgotten_world.value,
+                "open_blob_burg": self.options.open_blob_burg.value,
+                "open_underworld": self.options.open_underworld.value,
+                "open_mystical_workshop": self.options.open_mystical_workshop.value,
+                "open_abandoned_tower": self.options.open_abandoned_tower.value,
 
-            "death_link": self.options.death_link.value
-        }}
+                "death_link": self.options.death_link.value
+            }
+        }
 
         # Rando options
 
