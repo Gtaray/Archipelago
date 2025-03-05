@@ -444,6 +444,7 @@ class MonsterSanctuaryWorld(World):
 
                 "starting_gold": self.options.starting_gold.value,
                 "add_smoke_bombs": self.options.add_smoke_bombs.value,
+                "include_chaos_relics": self.options.include_chaos_relics.value > 0,
 
                 "monsters_always_drop_egg": self.options.monsters_always_drop_egg.value,
                 "monster_shift_rule": self.options.monster_shift_rule.value,

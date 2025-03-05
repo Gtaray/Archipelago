@@ -127,6 +127,11 @@
         "groups": [
           "Area Key"
         ]
+      },
+      {
+        "name": "Looter's Handbook",
+        "classification": "useful",
+        "tier": 1
       }
     ]
   },
