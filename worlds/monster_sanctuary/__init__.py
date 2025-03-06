@@ -357,6 +357,9 @@ class MonsterSanctuaryWorld(World):
         if self.options.open_underworld == "entrances" or self.options.open_underworld == "full":
             key_items = [i for i in key_items if i != "Sanctuary Token"]
 
+        if not self.options.include_looters_handbook:
+            key_items.remove("Looter's Handbook")
+
         # Add items that are not technically key items, but are progressions items and should be added
         key_items.append("Raw Hide")
         key_items.append("Shard of Winter")
@@ -438,7 +441,7 @@ class MonsterSanctuaryWorld(World):
             HINTS.generate_hints(self)
 
         slot_data = {
-            "version": "1.2.1",
+            "version": "1.2.1.0",
             "options": {
                 "goal": self.options.goal.value,
 

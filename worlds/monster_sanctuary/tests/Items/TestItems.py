@@ -135,3 +135,21 @@ class TestMaximumItemProbability(MonsterSanctuaryTestBase):
     def test_maximum_probability(self):
         self.assertEqual(707, len(items.item_drop_probabilities))
 
+
+class TestLootersHandbook_Enabled(TestItems):
+    options = {
+        "include_looters_handbook": 1
+    }
+
+    def test_handbook_exists(self):
+        self.assertTrue(any(item.name == "Looter's Handbook" for item in self.multiworld.itempool))
+
+
+class TestLootersHandbook_Disabled(TestItems):
+    options = {
+        "include_looters_handbook": 0
+    }
+
+    def test_handbook_exists(self):
+        self.assertFalse(any(item.name == "Looter's Handbook" for item in self.multiworld.itempool))
+
