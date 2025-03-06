@@ -324,6 +324,12 @@ class IncludeChaosRelics(Choice):
     default = 1
 
 
+class IncludeLootersHandbook(Toggle):
+    """If enabled, this adds a new item, the Looter's Handbook, to the item pool. When the player has this item in their inventory, all chests will have their appearance updated to match their contents. Progression items will be in purple chests, and useful items will be in green chests."""
+    display_name = "Include the Looter's Handbook item"
+    default = True
+
+
 class StartWithSmokeBombs(Toggle):
     """If enabled, the player will start with 50 Smoke Bombs."""
     display_name = "Start with 50 Smoke Bombs"
@@ -378,6 +384,7 @@ class MonsterSanctuaryOptions(PerGameCommonOptions):
     drop_chance_accessory: AccessoryDropChance
     drop_chance_currency: GoldDropChance
     include_chaos_relics: IncludeChaosRelics
+    include_looters_handbook: IncludeLootersHandbook
     add_smoke_bombs: StartWithSmokeBombs
     starting_gold: StartingGold
 

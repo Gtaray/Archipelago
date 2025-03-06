@@ -244,8 +244,12 @@ class MonsterSanctuaryWorld(World):
             eggs["Forgotten World - Wanderer Room"] = self.create_item(self.species_swap["Bard"].egg_name())
             eggs["Magma Chamber - Bex"] = self.create_item(self.species_swap["Skorch"].egg_name())
             eggs["Snowy Peaks - Cryomancer - Egg Reward 1"] = self.create_item(self.species_swap["Shockhopper"].egg_name())
-            eggs["Snowy Peaks - Cryomancer - Light Egg Reward"] = self.create_item(self.species_swap["Shockhopper"].egg_name())
-            eggs["Snowy Peaks - Cryomancer - Dark Egg Reward"] = self.create_item(self.species_swap["Shockhopper"].egg_name())
+
+            # We only want to add these eggs if it's possible to shift monsters
+            if self.options.monster_shift_rule != "never":
+                eggs["Snowy Peaks - Cryomancer - Light Egg Reward"] = self.create_item(self.species_swap["Shockhopper"].egg_name())
+                eggs["Snowy Peaks - Cryomancer - Dark Egg Reward"] = self.create_item(self.species_swap["Shockhopper"].egg_name())
+
             # eggs["AlchemistShop_5"] = self.create_item(self.species_swap["Plague Egg"].egg_name()),
 
             # These are straight up added because they don't come from a specific location
@@ -267,8 +271,10 @@ class MonsterSanctuaryWorld(World):
             eggs["Forgotten World - Wanderer Room"] = self.create_item("Bard Egg")
             eggs["Magma Chamber - Bex"] = self.create_item("Skorch Egg")
             eggs["Snowy Peaks - Cryomancer - Egg Reward 1"] = self.create_item("Shockhopper Egg")
-            eggs["Snowy Peaks - Cryomancer - Light Egg Reward"] = self.create_item("Shockhopper Egg")
-            eggs["Snowy Peaks - Cryomancer - Dark Egg Reward"] = self.create_item("Shockhopper Egg")
+
+            if self.options.monster_shift_rule != "never":
+                eggs["Snowy Peaks - Cryomancer - Light Egg Reward"] = self.create_item("Shockhopper Egg")
+                eggs["Snowy Peaks - Cryomancer - Dark Egg Reward"] = self.create_item("Shockhopper Egg")
 
         # Depending on the options, these eggs are either added to the pool, or locked
         # into their default location
@@ -444,6 +450,7 @@ class MonsterSanctuaryWorld(World):
             "version": "1.2.1.0",
             "options": {
                 "goal": self.options.goal.value,
+                "seed": self.multiworld.seed,
 
                 "starting_gold": self.options.starting_gold.value,
                 "add_smoke_bombs": self.options.add_smoke_bombs.value,
