@@ -151,11 +151,46 @@ class MonsterSanctuaryWorld(World):
 
             # Chest and Gift locations go here
             else:
+                # Handle options for making specific checks forced to be junk
+                if self.handle_location_placement_options(location, location_data):
+                    continue
+
                 # Item locations can be filled with any item from another player, as well as items from this game
-                location.item_rule = lambda item, world = self, loc = location: ITEMS.can_item_be_placed(world, item, loc)
+                location.item_rule = lambda item, world=self, loc=location: ITEMS.can_item_be_placed(world, item, loc)
                 self.number_of_item_locations += 1
 
             region.locations.append(location)
+
+    def handle_location_placement_options(self, location: MonsterSanctuaryLocation, location_data: LocationData) -> bool:
+        def handle_option(option) -> bool:
+            if option.value == "vanilla":
+                location.place_locked_item(self.create_item(location_data.default_item))
+                return True
+            elif option.value == "filler":
+                location.item_rule = lambda item, world=self, loc=location: (
+                        ITEMS.can_item_be_placed(world, item, loc) and item.classification == ItemClassification.filler)
+            return False
+
+        if location_data.name in [
+            "Snowy Peaks - Cryomancer - Egg Reward 1",
+            "Snowy Peaks - Cryomancer - Egg Reward 2",
+            "Snowy Peaks - Cryomancer - Light Egg Reward",
+            "Snowy Peaks - Cryomancer - Dark Egg Reward"]:
+            return handle_option(self.options.cryomancer_check_restrictions)
+        if location_data.name == "Sun Palace - Caretaker 1":
+            return handle_option(self.options.koi_egg_placement)
+        if location_data.name == "Magma Chamber - Bex":
+            return handle_option(self.options.skorch_egg_placement)
+        if location_data.name == "Forgotten World - Wanderer Room":
+            return handle_option(self.options.bard_egg_placement)
+        if location_data.name == "Horizon Beach - Old Man by the Sea":
+            return handle_option(self.options.old_man_check_restrictions)
+        if location_data.name == "Horizon Beach - Fisherman":
+            return handle_option(self.options.fisherman_check_restrictions)
+        if location_data.name == "Forgotten World - Crystal Room - Defeat Dracomer Reward":
+            return handle_option(self.options.wanderers_gift_check_restrictions)
+
+        return False
 
     def connect_regions(self) -> None:
         """Connects all regions according to their access conditions"""
@@ -195,7 +230,6 @@ class MonsterSanctuaryWorld(World):
         for location_name in [loc.name
                               for name, loc in LOCATIONS.location_data.items()
                               if LOCATIONS.location_data[name].category == MonsterSanctuaryLocationCategory.RANK]:
-
             location = self.multiworld.get_location(location_name, self.player)
             location.place_locked_item(self.create_item("Champion Defeated"))
 
@@ -234,56 +268,41 @@ class MonsterSanctuaryWorld(World):
             region.locations.append(location)
 
     def handle_monster_eggs(self):
-        eggs = {}
+        eggs = []
 
+        def resolve_egg_item(monster_name: str) -> MonsterSanctuaryItem:
+            if self.options.randomize_monsters == "by_specie":
+                return self.create_item(self.species_swap[monster_name].egg_name())
+            else:
+                return self.create_item(ENCOUNTERS.get_monster(monster_name).egg_name())
+
+        # If these options are not set to vanilla
+        if self.options.cryomancer_check_restrictions != "randomized":
+            eggs.append(resolve_egg_item("Shockhopper"))
+
+        if self.options.koi_egg_placement != "randomized":
+            eggs.append(resolve_egg_item("Koi"))
+
+        if self.options.skorch_egg_placement != "randomized":
+            eggs.append(resolve_egg_item("Skorch"))
+
+        if self.options.bard_egg_placement != "randomized":
+            eggs.append(resolve_egg_item("Bard"))
+
+        # These monsters are never encountered in the wild naturally, so if we're shuffling monsters
+        # we need to make sure that they're available in the item pools so all locations are reachable
         if self.options.randomize_monsters == "by_specie":
-            # These eggs either get added to the item pool or they are placed in their respective gift location
-            eggs["Sun Palace - Caretaker 1"] = self.create_item(self.species_swap["Koi"].egg_name())
-            # We never actually species swap Bard, so this is a bit redundant, but having it here makes it
-            # clear that it should be handled here even if we did swap it
-            eggs["Forgotten World - Wanderer Room"] = self.create_item(self.species_swap["Bard"].egg_name())
-            eggs["Magma Chamber - Bex"] = self.create_item(self.species_swap["Skorch"].egg_name())
-            eggs["Snowy Peaks - Cryomancer - Egg Reward 1"] = self.create_item(self.species_swap["Shockhopper"].egg_name())
-
-            # We only want to add these eggs if it's possible to shift monsters
-            if self.options.monster_shift_rule != "never":
-                eggs["Snowy Peaks - Cryomancer - Light Egg Reward"] = self.create_item(self.species_swap["Shockhopper"].egg_name())
-                eggs["Snowy Peaks - Cryomancer - Dark Egg Reward"] = self.create_item(self.species_swap["Shockhopper"].egg_name())
-
-            # eggs["AlchemistShop_5"] = self.create_item(self.species_swap["Plague Egg"].egg_name()),
-
-            # These are straight up added because they don't come from a specific location
-            # they just need to be available in the pool somewhere to make sure all locations
-            # are reachable.
-            self.multiworld.itempool += [
-                self.create_item(self.species_swap["Mad Lord"].egg_name()),
-                self.create_item(self.species_swap["Plague Egg"].egg_name()),
-                self.create_item(self.species_swap["Ninki"].egg_name()),
-                self.create_item(self.species_swap["Sizzle Knight"].egg_name()),
-                self.create_item(self.species_swap["Tanuki"].egg_name()),
+            eggs += [
+                resolve_egg_item("Mad Lord"),
+                resolve_egg_item("Plague Egg"),
+                resolve_egg_item("Ninki"),
+                resolve_egg_item("Sizzle Knight"),
+                resolve_egg_item("Tanuki")
             ]
-            self.number_of_item_locations -= 5
-
-        else:
-            # These are monsters that are normally given through gifts, and are either added to the pool
-            # or are locked at their original location
-            eggs["Sun Palace - Caretaker 1"] = self.create_item("Koi Egg")
-            eggs["Forgotten World - Wanderer Room"] = self.create_item("Bard Egg")
-            eggs["Magma Chamber - Bex"] = self.create_item("Skorch Egg")
-            eggs["Snowy Peaks - Cryomancer - Egg Reward 1"] = self.create_item("Shockhopper Egg")
-
-            if self.options.monster_shift_rule != "never":
-                eggs["Snowy Peaks - Cryomancer - Light Egg Reward"] = self.create_item("Shockhopper Egg")
-                eggs["Snowy Peaks - Cryomancer - Dark Egg Reward"] = self.create_item("Shockhopper Egg")
 
         # Depending on the options, these eggs are either added to the pool, or locked
         # into their default location
-        if self.options.add_gift_eggs_to_pool:
-            self.multiworld.itempool += list(item for location, item in eggs.items())
-        else:
-            for location, item in eggs.items():
-                self.multiworld.get_location(location, self.player).place_locked_item(item)
-
+        self.multiworld.itempool += list(egg for egg in eggs)
         self.number_of_item_locations -= len(eggs)
 
     def place_monsters(self) -> None:
@@ -329,24 +348,21 @@ class MonsterSanctuaryWorld(World):
         # These items are not naturally put in the general item pool, and are handled separately
         item_exclusions = ["Multiple"]
 
-        # Exclude relics of chaos if the option isn't enabled
-        relics: List[ItemData] = []
-        if self.options.include_chaos_relics == "off":
-            item_exclusions.append("Relic")
-        elif self.options.include_chaos_relics == "on":
-            pass  # Relics can be randomly put in the item pool, nothing to do here.
-        elif self.options.include_chaos_relics == "some":
-            relics = self.random.sample(ITEMS.get_items_in_group("Relic"), 5)
-        elif self.options.include_chaos_relics == "all":
-            relics = ITEMS.get_items_in_group("Relic")
+        self.handle_relics(pool, item_exclusions)
+        self.handle_key_items(pool)
+        self.handle_area_keys(pool)
 
-        for relic in relics:
-            relic_name = ITEMS.roll_random_equipment_level(self, relic)
-            pool.append(self.create_item(relic_name))
+        while len(pool) < self.number_of_item_locations:
+            item_name = ITEMS.get_random_item_name(self, pool, group_exclude=item_exclusions)
+            if item_name is not None:
+                pool.append(self.create_item(item_name))
 
-        # Add all key items to the pool
+        self.multiworld.itempool += pool
+
+    def handle_key_items(self, pool: List[MonsterSanctuaryItem]) -> None:
         key_items = [item_name for item_name in ITEMS.item_data
-                     if ITEMS.item_data[item_name].category == MonsterSanctuaryItemCategory.KEYITEM]
+                     if ITEMS.item_data[item_name].category == MonsterSanctuaryItemCategory.KEYITEM
+                     and not ITEMS.is_item_in_group(item_name, "Area Key")]
 
         # If blob burg is unlocked via options, then remove the blob key from the item pool
         if self.options.open_blob_burg == "entrances" or self.options.open_blob_burg == "full":
@@ -361,50 +377,59 @@ class MonsterSanctuaryWorld(World):
 
         # If the underworld entrance is opened up, don't add sanctuary tokens to the item pool
         if self.options.open_underworld == "entrances" or self.options.open_underworld == "full":
-            key_items = [i for i in key_items if i != "Sanctuary Token"]
+            key_items.remove("Sanctuary Token")
 
         if not self.options.include_looters_handbook:
             key_items.remove("Looter's Handbook")
 
         # Add items that are not technically key items, but are progressions items and should be added
         key_items.append("Raw Hide")
-        key_items.append("Shard of Winter")
-        key_items.append("Fire Stone")
-        key_items.append("Ice Stone")
-        key_items.append("Giant Seed")
-        key_items.append("Dark Stone")
-        key_items.append("Majestic Crown")
-        key_items.append("Demonic Pact")
-        key_items.append("Deep Stone")
-        key_items.append("Primordial Branch")
-        key_items.append("Druid Soul")
+        key_items.extend([name for name, item in ITEMS.item_data.items()
+                          if item.category == MonsterSanctuaryItemCategory.CATALYST])
 
         for key_item in key_items:
-            item_count = ITEMS.item_data[key_item].count
-            is_key = ITEMS.is_item_in_group(key_item, "Area Key")
-
-            if is_key:
-                if self.options.remove_locked_doors == "all":
-                    # If we're opening all doors, then we never place area keys in the pool
-                    continue
-                elif self.options.remove_locked_doors == "minimal":
-                    # If we're opening some doors, then we modify the number of keys placed
-                    if key_item == "Ancient Woods key":
-                        item_count = 2
-                    elif key_item == "Mystical Workshop key":
-                        item_count = 3
-                    else:
-                        item_count = 1
-
-            for i in range(item_count):
+            for i in range(ITEMS.item_data[key_item].count):
                 pool.append(self.create_item(key_item))
 
-        while len(pool) < self.number_of_item_locations:
-            item_name = ITEMS.get_random_item_name(self, pool, group_exclude=item_exclusions)
-            if item_name is not None:
-                pool.append(self.create_item(item_name))
+    def handle_area_keys(self, pool: List[MonsterSanctuaryItem]) -> None:
+        # If all locked doors are being removed, then we don't need to consider adding keys
+        if self.options.remove_locked_doors == "all":
+            return
 
-        self.multiworld.itempool += pool
+        keys = [item_name for item_name in ITEMS.item_data
+                if ITEMS.item_data[item_name].category == MonsterSanctuaryItemCategory.KEYITEM
+                and ITEMS.is_item_in_group(item_name, "Area Key")]
+
+        for key in keys:
+            item_count = ITEMS.item_data[key].count
+
+            if self.options.remove_locked_doors == "minimal":
+                # If we're opening some doors, then we modify the number of keys placed
+                if key == "Ancient Woods key":
+                    item_count = 2
+                elif key == "Mystical Workshop key":
+                    item_count = 3
+                else:
+                    item_count = 1
+
+            for i in range(item_count):
+                pool.append(self.create_item(key))
+
+    def handle_relics(self, pool: List[MonsterSanctuaryItem], item_exclusions: List[str]):
+        # Exclude relics of chaos if the option isn't enabled
+        relics: List[ItemData] = []
+        if self.options.include_chaos_relics == "off":
+            item_exclusions.append("Relic")
+        elif self.options.include_chaos_relics == "on":
+            pass  # Relics can be randomly put in the item pool, nothing to do here.
+        elif self.options.include_chaos_relics == "some":
+            relics = self.random.sample(ITEMS.get_items_in_group("Relic"), 5)
+        elif self.options.include_chaos_relics == "all":
+            relics = ITEMS.get_items_in_group("Relic")
+
+        for relic in relics:
+            relic_name = ITEMS.roll_random_equipment_level(self, relic)
+            pool.append(self.create_item(relic_name))
 
     def create_item(self, item_name: str) -> MonsterSanctuaryItem:
         data = ITEMS.item_data.get(item_name)

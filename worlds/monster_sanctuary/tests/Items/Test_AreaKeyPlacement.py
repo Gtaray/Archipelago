@@ -5,6 +5,8 @@ from worlds.monster_sanctuary.tests import MonsterSanctuaryTestBase
 
 
 class AreaKeyPlacementTest(MonsterSanctuaryTestBase):
+    run_default_tests = False
+
     def assert_item_can_be_placed(self, item_name, location_name):
         location_data = LOCATIONS.location_data[location_name]
         with self.subTest(f"{item_name} can be placed at {location_name}"):

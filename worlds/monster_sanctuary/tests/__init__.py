@@ -35,3 +35,9 @@ class MonsterSanctuaryTestBase(WorldTestBase):
         with self.subTest(f"{location_name} does not exist"):
             self.assertNotIn(location_name, self.multiworld.regions.location_cache[self.player])
 
+    def assert_item_is_at_location(self, location_name: str, item_name: str):
+        loc = self.multiworld.get_location(location_name, 1)
+        print(loc.item)
+        self.assertIsNotNone(loc.item)
+        self.assertEqual(item_name, loc.item.name)
+

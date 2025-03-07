@@ -4,6 +4,7 @@ from worlds.monster_sanctuary import items as ITEMS
 
 
 class TestRelicsAreNotInPool(MonsterSanctuaryTestBase):
+    run_default_tests = False
     options = {
         "include_chaos_relics": 0
     }

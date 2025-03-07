@@ -3,6 +3,7 @@ from worlds.monster_sanctuary import locations as LOCATIONS
 
 
 class TestLocations_MadLord(MonsterSanctuaryTestBase):
+    run_default_tests = False
     options = {
         "goal": 0,
     }

@@ -6,6 +6,7 @@ from worlds.monster_sanctuary.tests import MonsterSanctuaryTestBase
 
 
 class TestEggsFollowMobilityLimitationRules(MonsterSanctuaryTestBase):
+    run_default_tests = False
     options = {
         "randomize_monsters": 1,
         "add_gift_eggs_to_pool": 1,

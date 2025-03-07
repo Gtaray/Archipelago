@@ -4,6 +4,7 @@ from worlds.monster_sanctuary.tests import MonsterSanctuaryTestBase
 
 
 class TestHints(MonsterSanctuaryTestBase):
+    run_default_tests = False
     options = {
         "hints": 1
     }

@@ -9,6 +9,7 @@ from Options import Toggle, Choice, Range, DeathLink, PerGameCommonOptions
 # Randomize keeper's monsters
 
 
+# region Monster Randomization
 class RandomizeMonsters(Choice):
     """Randomize monsters
 
@@ -47,44 +48,109 @@ class ImprovedMobilityLimitation(Toggle):
     default = True
 
 
-class LocalAreaKeys(Toggle):
-    """Localized Area Keys
-
-    If enabled, area keys will only appear in the Monster Sanctuary player's world, and they will only appear in their own area.
-    If disabled, keys can appear in any world, and may be found outside their area in which they are used."""
-    display_name = "Local Area Keys"
-    default = False
-
-
-class RemoveLockedDoors(Choice):
-    """Remove Locked Doors
-
-    Off: Locked doors are not removed
-    Minimal: Superfluous locked doors are removed, while ones that gate large numbers of checks remain
-    All: All locked doors are removed"""
-    display_name = "Remove Locked Doors"
-    option_off = 0
-    option_minimal = 1
-    option_all = 2
-    default = 0
+class MovementAbilityPlacementRestrictions(Choice):
+    """Restricts where monsters with certain abi"""
+    display_name = "Explore Ability Accessibility"
+    option_open = 0
+    option_semi_strict = 1
+    option_strict = 2
+# endregion
 
 
-class AddGiftEggsToPool(Toggle):
-    """If enabled, any monsters you receive through gifts will have their eggs added to the item pool and their location will be randomized.
+# region Check Restrictions
+class CryomancerPlacementRestriction(Choice):
+    """Sets what kind of items can be placed at the four checks given by Lady Stasis in the Snowy Peaks.
 
-    If disabled then gift monsters are received in their normal locations.
-    If monster randomization is set to shuffle, then the eggs you receive will be included in the shuffle.
-    Gift monsters are: Koi, Skorch, Shockhopper, and Bard"""
-    display_name = "Add Gift Monster Eggs to Item Pool"
-    default = True
-
-
-class MonstersAlwaysDropEggs(Toggle):
-    """If enabled, monsters will always drop an egg."""
-    display_name = "Monsters always drop eggs"
-    default = True
+    Vanilla: The checks are unchnaged from the base game.
+    Randomized: The checks are randomized with the rest of the item pool.
+    Filler: The checks are guaranteed to be junk items."""
+    display_name = "Lady Stasis' (Dodo Egg) Checks"
+    option_vanilla = 0
+    option_randomized = 1
+    option_filler = 3
+    default = 1
 
 
+class KoiEggPlacementRestriction(Choice):
+    """Sets what kind of items can be placed at the Caretaker's Koi Egg check in Sun Palace
+
+    Vanilla: The check is unchnaged from the base game.
+    Randomized: The check is randomized with the rest of the item pool.
+    Filler: The check is guaranteed to be a junk item."""
+    display_name = "Skorch Egg Check"
+    option_vanilla = 0
+    option_randomized = 1
+    option_junk = 2
+    default = 1
+
+
+class OldManPlacementRestriction(Choice):
+    """Sets what kind of items can be placed at the Old Man check in Horizon Beach.
+
+    Vanilla: The check is unchnaged from the base game.
+    Randomized: The check is randomized with the rest of the item pool.
+    Filler: The check is guaranteed to be a junk item."""
+    display_name = "Old Man (Memorial Ring) Check"
+    option_vanilla = 0
+    option_randomized = 1
+    option_junk = 2
+    default = 1
+
+
+class FishermanPlacementRestriction(Choice):
+    """Sets what kind of items can be placed at the Fisherman check in Horizon Beach.
+
+    Vanilla: The check is unchnaged from the base game.
+    Randomized: The check is randomized with the rest of the item pool.
+    Filler: The check is guaranteed to be a junk item."""
+    display_name = "Fisherman (Rare Seashells) Check"
+    option_vanilla = 0
+    option_randomized = 1
+    option_junk = 2
+    default = 1
+
+
+class SkorchEggPlacementRestriction(Choice):
+    """Sets what kind of items can be placed at Bex's Skorch Egg check in Magma Caverns
+
+    Vanilla: The check is unchnaged from the base game.
+    Randomized: The check is randomized with the rest of the item pool.
+    Filler: The check is guaranteed to be a junk item."""
+    display_name = "Skorch Egg Check"
+    option_vanilla = 0
+    option_randomized = 1
+    option_junk = 2
+    default = 1
+
+
+class BardEggPlacementRestriction(Choice):
+    """Sets what kind of items can be placed at the 5 Celestial Feathers/Bard Egg check in the Forgotten World
+
+    Vanilla: The check is unchnaged from the base game.
+    Randomized: The check is randomized with the rest of the item pool.
+    Filler: The check is guaranteed to be a junk item."""
+    display_name = "Bard Egg (Celestial Feathers) Check"
+    option_vanilla = 0
+    option_randomized = 1
+    option_junk = 2
+    default = 1
+
+
+class WandererGiftPlacementRestriction(Choice):
+    """Sets what kind of items can be placed at the Wanderer check that requires defeating Dracomer in the Forgotten World
+
+    Vanilla: The check is unchnaged from the base game.
+    Randomized: The check is randomized with the rest of the item pool.
+    Filler: The check is guaranteed to be a junk item."""
+    display_name = "Wanderer World Tree Check"
+    option_vanilla = 0
+    option_randomized = 1
+    option_junk = 2
+    default = 1
+# endregion
+
+
+# region Item Drop Chance
 class CraftingMaterialDropChance(Range):
     """Frequency that a random non-progression item is a crafting material
 
@@ -167,9 +233,38 @@ class GoldDropChance(Range):
     range_start = 0
     range_end = 100
     default = 50
+# endregion
 
 
 # region Open World Options
+class SkipPlot(Toggle):
+    """Skip plot related events and open up all areas gated by story progression."""
+    display_name = "Skip Plot Requirements"
+    default = False
+
+
+class LocalAreaKeys(Toggle):
+    """Localized Area Keys
+
+    If enabled, area keys will only appear in the Monster Sanctuary player's world, and they will only appear in their own area.
+    If disabled, keys can appear in any world, and may be found outside their area in which they are used."""
+    display_name = "Local Area Keys"
+    default = False
+
+
+class RemoveLockedDoors(Choice):
+    """Remove Locked Doors
+
+    Off: Locked doors are not removed
+    Minimal: Superfluous locked doors are removed, while ones that gate large numbers of checks remain
+    All: All locked doors are removed"""
+    display_name = "Remove Locked Doors"
+    option_off = 0
+    option_minimal = 1
+    option_all = 2
+    default = 0
+
+
 class OpenBlueCaves(Toggle):
     """If enabled, the Blue Cave to Mountain path shortcut will be opened"""
     display_name = "Open World - Blue Caves"
@@ -309,6 +404,13 @@ class OpenAbandonedTower(Choice):
 # endregion
 
 
+# region Items and Inventory
+class MonstersAlwaysDropEggs(Toggle):
+    """If enabled, monsters will always drop an egg."""
+    display_name = "Monsters always drop eggs"
+    default = True
+
+
 class IncludeChaosRelics(Choice):
     """Include Relics of Chaos in the random item pool
 
@@ -342,12 +444,7 @@ class StartingGold(Range):
     range_start = 0
     range_end = 1000
     default = 1
-
-
-class SkipPlot(Toggle):
-    """Skip plot related events and open up all areas gated by story progression."""
-    display_name = "Skip Plot Requirements"
-    default = False
+#endregion
 
 
 class AddHints(Toggle):
@@ -372,10 +469,21 @@ class MonsterSanctuaryOptions(PerGameCommonOptions):
     randomize_monsters: RandomizeMonsters
     monster_shift_rule: RandomizeMonsterShifts
     improved_mobility_limit: ImprovedMobilityLimitation
-    remove_locked_doors: RemoveLockedDoors
-    local_area_keys: LocalAreaKeys
-    add_gift_eggs_to_pool: AddGiftEggsToPool
+
+    cryomancer_check_restrictions: CryomancerPlacementRestriction
+    old_man_check_restrictions: OldManPlacementRestriction
+    fisherman_check_restrictions: FishermanPlacementRestriction
+    wanderers_gift_check_restrictions: WandererGiftPlacementRestriction
+    koi_egg_placement: KoiEggPlacementRestriction
+    bard_egg_placement: BardEggPlacementRestriction
+    skorch_egg_placement: SkorchEggPlacementRestriction
+
     monsters_always_drop_egg: MonstersAlwaysDropEggs
+    include_chaos_relics: IncludeChaosRelics
+    include_looters_handbook: IncludeLootersHandbook
+    add_smoke_bombs: StartWithSmokeBombs
+    starting_gold: StartingGold
+
     drop_chance_craftingmaterial: CraftingMaterialDropChance
     drop_chance_consumable: ConsumableDropChance
     drop_chance_food: FoodDropChance
@@ -383,12 +491,10 @@ class MonsterSanctuaryOptions(PerGameCommonOptions):
     drop_chance_weapon: WeaponDropChance
     drop_chance_accessory: AccessoryDropChance
     drop_chance_currency: GoldDropChance
-    include_chaos_relics: IncludeChaosRelics
-    include_looters_handbook: IncludeLootersHandbook
-    add_smoke_bombs: StartWithSmokeBombs
-    starting_gold: StartingGold
 
     skip_plot: SkipPlot
+    remove_locked_doors: RemoveLockedDoors
+    local_area_keys: LocalAreaKeys
     open_blue_caves: OpenBlueCaves
     open_stronghold_dungeon: OpenStrongholdDungeon
     open_ancient_woods: OpenAncientWoods

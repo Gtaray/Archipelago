@@ -66,7 +66,7 @@ item_data: Dict[str, ItemData] = {}
 item_drop_probabilities: List[MonsterSanctuaryItemCategory] = []
 
 
-def can_item_be_placed(world: World, item: Item, location) -> bool:
+def can_item_be_placed(world: World, item: Item, location: str) -> bool:
     # For any item that's not a monster sanctuary item, it can go here
     if item.player != world.player:
         return True

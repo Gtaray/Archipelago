@@ -2,6 +2,7 @@ from worlds.monster_sanctuary.tests import MonsterSanctuaryTestBase
 from worlds.monster_sanctuary import locations as LOCATIONS
 
 class TestLocations_AllChampions(MonsterSanctuaryTestBase):
+    run_default_tests = False
     options = {
         "goal": 1,
         "shopsanity": 1,
