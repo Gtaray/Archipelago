@@ -32,28 +32,40 @@
     "CommonRewards": "Small Potion,Copper,",
     "RareRewards": "Green Gem,Vital Ring,Blob Egg,",
     "EggReward": "Blob Egg",
-    "Groups": [ "Bubble Burst", "Water Orbs" ]
+    "Groups": [ "Bubble Burst", "Water Orbs" ],
+    "Evolutions": [
+      { "Monster": "King Blob", "Catalyst": "Majestic Crown" }
+    ]
   },
   {
     "Name": "Magmapillar",
     "CommonRewards": "Copper,Small Antidote,",
     "RareRewards": "Blue Gem,Mana Ring,Magmapillar Egg,",
     "EggReward": "Magmapillar Egg",
-    "Groups": [ "Ignite", "Fire Orbs", "Impassible Vines", "Torches" ]
+    "Groups": [ "Ignite", "Fire Orbs", "Impassible Vines", "Torches" ],
+    "Evolutions": [
+      { "Monster": "Magmamoth", "Catalyst": "Cocoon" }
+    ]
   },
   {
     "Name": "Rocky",
     "CommonRewards": "Potato,Cotton,",
     "RareRewards": "Green Gem,Helmet,Rocky Egg,",
     "EggReward": "Rocky Egg",
-    "Groups": [ "Summon Rock", "Ground Switches" ]
+    "Groups": [ "Summon Rock", "Ground Switches" ],
+    "Evolutions": [
+      { "Monster": "Mega Rock", "Catalyst": "Giant Seed" }
+    ]
   },
   {
     "Name": "Vaero",
     "CommonRewards": "Small Potion,Walnut,",
     "RareRewards": "Red Gem,Feather,Vaero Egg,",
     "EggReward": "Vaero Egg",
-    "Groups": [ "Flying", "Distant Ledges" ]
+    "Groups": [ "Flying", "Distant Ledges" ],
+    "Evolutions": [
+      { "Monster": "Silvaero", "Catalyst": "Silver Feather" }
+    ]
   },
   {
     "Name": "Catzerker",
@@ -81,14 +93,20 @@
     "CommonRewards": "Cotton,Potion,",
     "RareRewards": "Blue Gem,Bandana+1,Monk Egg,",
     "EggReward": "Monk Egg",
-    "Groups": [ "Heavy Punch", "Breakable Walls", "Heavy Blocks" ]
+    "Groups": [ "Heavy Punch", "Breakable Walls", "Heavy Blocks" ],
+    "Evolutions": [
+      { "Monster": "Ascendant", "Catalyst": "Primordial Branch" }
+    ]
   },
   {
     "Name": "Grummy",
     "CommonRewards": "Copper,Small Antidote,",
     "RareRewards": "Green Gem,Kunai,Grummy Egg,",
     "EggReward": "Grummy Egg",
-    "Groups": [ "Bubble Burst", "Water Orbs" ]
+    "Groups": [ "Bubble Burst", "Water Orbs" ],
+    "Evolutions": [
+      { "Monster": "G'rulu", "Catalyst": "Stardust" }
+    ]
   },
   {
     "Name": "Tengu",
@@ -102,7 +120,10 @@
     "CommonRewards": "Copper,Cotton,",
     "RareRewards": "Red Gem,Tome+1,Fungi Egg,",
     "EggReward": "Fungi Egg",
-    "Groups": [ "Summon Mushroom", "Ground Switches" ]
+    "Groups": [ "Summon Mushroom", "Ground Switches" ],
+    "Evolutions": [
+      { "Monster": "Fumagus", "Catalyst": "Druid Soul" }
+    ]
   },
   {
     "Name": "Frosty",
@@ -116,7 +137,10 @@
     "CommonRewards": "Copper,Phoenix Tear,",
     "RareRewards": "Crit Ring+1,Katar+1,Minitaur Egg,",
     "EggReward": "Minitaur Egg",
-    "Groups": [ "Slash", "Breakable Walls", "Impassible Vines" ]
+    "Groups": [ "Slash", "Breakable Walls", "Impassible Vines" ],
+    "Evolutions": [
+      { "Monster": "Megataur", "Catalyst": "Shard of Winter" }
+    ]
   },
   {
     "Name": "Specter",
@@ -129,21 +153,30 @@
     "CommonRewards": "Hazelnut,Iron,",
     "RareRewards": "Green Gem,Helmet+2,Crackle Knight Egg,",
     "EggReward": "Crackle Knight Egg",
-    "Groups": [ "Lightning Bolt", "Lightning Orbs", "Torches" ]
+    "Groups": [ "Lightning Bolt", "Lightning Orbs", "Torches" ],
+    "Evolutions": [
+      { "Monster": "Sizzle Knight", "Catalyst": "Sun Stone" }
+    ]
   },
   {
     "Name": "G'rulu",
     "CommonRewards": "Corn,Iron,",
     "RareRewards": "Bronze,Stardust,Grummy Egg,",
     "EggReward": "G'rulu Egg",
-    "Groups": [ "Bubble Burst", "Water Orbs" ]
+    "Groups": [ "Bubble Burst", "Water Orbs" ],
+    "PreEvolutions": [
+      { "Monster": "Grummy", "Catalyst": "Stardust" }
+    ]
   },
   {
     "Name": "Mad Eye",
     "CommonRewards": "Wool,Pear,",
     "RareRewards": "Blue Gem,Orb+2,Mad Eye Egg,",
     "EggReward": "Mad Eye Egg",
-    "Groups": [ "Flying", "Distant Ledges" ]
+    "Groups": [ "Flying", "Distant Ledges" ],
+    "Evolutions": [
+      { "Monster": "Mad Lord", "Catalyst": "Demonic Pact" }
+    ]
   },
   {
     "Name": "Nightwing",
@@ -178,7 +211,10 @@
     "CommonRewards": "Wool,Pear,",
     "RareRewards": "Bronze,Cocoon,Magmapillar Egg,",
     "EggReward": "Magmamoth Egg",
-    "Groups": [ "Ignite", "Fire Orbs", "Impassible Vines", "Torches" ]
+    "Groups": [ "Ignite", "Fire Orbs", "Impassible Vines", "Torches" ],
+    "PreEvolutions": [
+      { "Monster": "Magmapillar", "Catalyst": "Cocoon" }
+    ]
   },
   {
     "Name": "Molebear",
@@ -192,7 +228,10 @@
     "CommonRewards": "Crystal Shard,Wool,",
     "RareRewards": "Level Badge,Diadem+2,Glowfly Egg,",
     "EggReward": "Glowfly Egg",
-    "Groups": [ "Light", "Dark Rooms" ]
+    "Groups": [ "Light", "Dark Rooms" ],
+    "Evolutions": [
+      { "Monster": "Glowdra", "Catalyst": "Volcanic Ash" }
+    ]
   },
   {
     "Name": "Goblin Brute",
@@ -235,7 +274,10 @@
     "CommonRewards": "Potion,Iron,",
     "RareRewards": "Blue Gem,Vital Ring+3,Ice Blob Egg,",
     "EggReward": "Ice Blob Egg",
-    "Groups": [ "Freeze", "Ice Orbs" ]
+    "Groups": [ "Freeze", "Ice Orbs" ],
+    "Evolutions": [
+      { "Monster": "King Blob", "Catalyst": "Majestic Crown" }
+    ]
   },
   {
     "Name": "Caraglow",
@@ -256,7 +298,10 @@
     "CommonRewards": "Leather,Iron,",
     "RareRewards": "Verdant Gem,Raw Hide,Minitaur Egg,",
     "EggReward": "Megataur Egg",
-    "Groups": [ "Slash", "Breakable Walls", "Impassible Vines" ]
+    "Groups": [ "Slash", "Breakable Walls", "Impassible Vines" ],
+    "PreEvolutions": [
+      { "Monster": "Minitaur", "Catalyst": "Shard of Winter" }
+    ]
   },
   {
     "Name": "Mogwai",
@@ -291,14 +336,20 @@
     "CommonRewards": "Leather,Phoenix Tear,",
     "RareRewards": "Craft Box,Reward Box lvl 2,Ninki Egg,",
     "EggReward": "Ninki Egg",
-    "Groups": [ "Slime Shot", "Earth Orbs" ]
+    "Groups": [ "Slime Shot", "Earth Orbs" ],
+    "Evolutions": [
+      { "Monster": "Ninki Nanka", "Catalyst": "Magical Clay" }
+    ]
   },
   {
     "Name": "Ninki Nanka",
     "CommonRewards": "Leather,Phoenix Tear,",
     "RareRewards": "Azure Gem,Monster Bell,Ninki Egg,",
     "EggReward": "Ninki Nanka Egg",
-    "Groups": [ "Slime Shot", "Earth Orbs" ]
+    "Groups": [ "Slime Shot", "Earth Orbs" ],
+    "PreEvolutions": [
+      { "Monster": "Ninki", "Catalyst": "Magical Clay" }
+    ]
   },
   {
     "Name": "Vasuki",
@@ -340,7 +391,10 @@
     "CommonRewards": "Reward Box lvl 1,Level Badge,",
     "RareRewards": "Crackle Knight Egg,Coat+3,Sun Stone,",
     "EggReward": "Sizzle Knight Egg",
-    "Groups": [ "Lightning Bolt", "Lightning Orbs", "Torches" ]
+    "Groups": [ "Lightning Bolt", "Lightning Orbs", "Torches" ],
+    "PreEvolutions": [
+      { "Monster": "Crackle Knight", "Catalyst": "Sun Stone" }
+    ]
   },
   {
     "Name": "Koi",
@@ -410,7 +464,10 @@
     "CommonRewards": "Silk,Monster Bell,",
     "RareRewards": "Silver Feather,Feather+4,Vaero Egg,",
     "EggReward": "Silvaero Egg",
-    "Groups": [ "Flying", "Distant Ledges" ]
+    "Groups": [ "Flying", "Distant Ledges" ],
+    "PreEvolutions": [
+      { "Monster": "Vaero", "Catalyst": "Silver Feather" }
+    ]
   },
   {
     "Name": "Elderjel",
@@ -445,27 +502,42 @@
     "CommonRewards": "Monster Bell,Carrot,",
     "RareRewards": "Crimson Gem,Reward Box lvl 2,Lava Blob Egg,",
     "EggReward": "Lava Blob Egg",
-    "Groups": [ "Ignite", "Fire Orbs", "Impassible Vines", "Torches" ]
+    "Groups": [ "Ignite", "Fire Orbs", "Impassible Vines", "Torches" ],
+    "Evolutions": [
+      { "Monster": "King Blob", "Catalyst": "Majestic Crown" }
+    ]
   },
   {
     "Name": "Glowdra",
     "CommonRewards": "Mango,Silk,",
     "RareRewards": "Level Badge,Volcanic Ash,Glowfly Egg,",
-    "Groups": [ "Light", "Dark Rooms" ]
+    "Groups": [ "Light", "Dark Rooms" ],
+    "PreEvolutions": [
+      { "Monster": "Glowfly", "Catalyst": "Volcanic Ash" }
+    ]
   },
   {
     "Name": "Draconov",
     "CommonRewards": "Silk,Smoke Bomb,",
     "RareRewards": "Hide+4,Azure Gem,Draconov Egg,",
     "EggReward": "Draconov Egg",
-    "Groups": [ "Flying", "Distant Ledges" ]
+    "Groups": [ "Flying", "Distant Ledges" ],
+    "Evolutions": [
+      { "Monster": "Dracogran", "Catalyst": "Fire Stone" },
+      { "Monster": "Draconov", "Catalyst": "Ice Stone" },
+      { "Monster": "Draconoir", "Catalyst": "Dark Stone" },
+      { "Monster": "Dracomer", "Catalyst": "Deep Stone" }
+    ]
   },
   {
     "Name": "Dracogran",
     "CommonRewards": "Crystal Shard,Strawberry,",
     "RareRewards": "Shuriken+4,Fire Stone,Draconov Egg,",
     "EggReward": "Dracogran Egg",
-    "Groups": [ "Flying", "Distant Ledges" ]
+    "Groups": [ "Flying", "Distant Ledges" ],
+    "PreEvolutions": [
+      { "Monster": "Draconov", "Catalyst": "Fire Stone" }
+    ]
   },
   {
     "Name": "Asura",
@@ -542,7 +614,10 @@
     "CommonRewards": "Blue Gem,Azure Gem,",
     "RareRewards": "Draconov Egg,Frozen Tear,Ice Stone,",
     "EggReward": "Dracozul Egg",
-    "Groups": [ "Flying", "Distant Ledges" ]
+    "Groups": [ "Flying", "Distant Ledges" ],
+    "PreEvolutions": [
+      { "Monster": "Draconov", "Catalyst": "Ice Stone" }
+    ]
   },
   {
     "Name": "Troll",
@@ -563,7 +638,10 @@
     "CommonRewards": "Peanut,Steel,",
     "RareRewards": "Emerald,Giant Seed,Rocky Egg,",
     "EggReward": "Mega Rock Egg",
-    "Groups": [ "Summon Rock", "Ground Switches" ]
+    "Groups": [ "Summon Rock", "Ground Switches" ],
+    "PreEvolutions": [
+      { "Monster": "Rocky", "Catalyst": "Giant Seed" }
+    ]
   },
   {
     "Name": "Argiope",
@@ -598,7 +676,10 @@
     "CommonRewards": "Silver,Reward Box lvl 3,",
     "RareRewards": "Draconov Egg,Totem,Dark Stone,",
     "EggReward": "Draconoir Egg",
-    "Groups": [ "Flying", "Distant Ledges" ]
+    "Groups": [ "Flying", "Distant Ledges" ],
+    "PreEvolutions": [
+      { "Monster": "Draconov", "Catalyst": "Dark Stone" }
+    ]
   },
   {
     "Name": "Spinner",
@@ -640,7 +721,10 @@
     "CommonRewards": "Linen,Cookie Mushroom,",
     "RareRewards": "Emerald,Gold,Rainbow Blob Egg,",
     "EggReward": "Rainbow Blob Egg",
-    "Groups": [ "Blob Form", "Narrow Corridors" ]
+    "Groups": [ "Blob Form", "Narrow Corridors" ],
+    "Evolutions": [
+      { "Monster": "King Blob", "Catalyst": "Majestic Crow" }
+    ]
   },
   {
     "Name": "Changeling",
@@ -654,7 +738,13 @@
     "CommonRewards": "Cookie Mushroom,Skill Potion,",
     "RareRewards": "Craft Box,Wand+5,Majestic Crown,",
     "EggReward": "King Blob Egg",
-    "Groups": [ ]
+    "Groups": [ ],
+    "PreEvolutions": [
+      { "Monster": "Blob", "Catalyst": "Majestic Crown" },
+      { "Monster": "Ice Blob", "Catalyst": "Majestic Crown" },
+      { "Monster": "Lava Blob", "Catalyst": "Majestic Crown" },
+      { "Monster": "Rainbow Blob", "Catalyst": "Majestic Crown" }
+    ]
   },
   {
     "Name": "Worm",
@@ -703,21 +793,30 @@
     "CommonRewards": "Skill Potion,Shift Stone,",
     "RareRewards": "Mad Eye Egg,Abyssal Sword,Demonic Pact,",
     "EggReward": "Mad Lord Egg",
-    "Groups": [ "Flying", "Distant Ledges" ]
+    "Groups": [ "Flying", "Distant Ledges" ],
+    "PreEvolutions": [
+      { "Monster": "Mad Eye", "Catalyst": "Demonic Pact" }
+    ]
   },
   {
     "Name": "Ascendant",
     "CommonRewards": "Craft Box,Skill Potion,",
     "RareRewards": "Monk Egg,Bead Chain,Primordial Branch,",
     "EggReward": "Ascendant Egg",
-    "Groups": [ "Heavy Punch", "Breakable Walls", "Heavy Blocks" ]
+    "Groups": [ "Heavy Punch", "Breakable Walls", "Heavy Blocks" ],
+    "PreEvolutions": [
+      { "Monster": "Monk", "Catalyst": "Primordial Branch" }
+    ]
   },
   {
     "Name": "Fumagus",
     "CommonRewards": "Cookie Mushroom,Linen,",
     "RareRewards": "Druid Soul,Hood+4,Fungi Egg,",
     "EggReward": "Fumagus Egg",
-    "Groups": [ "Summon Mushroom", "Ground Switches" ]
+    "Groups": [ "Summon Mushroom", "Ground Switches" ],
+    "PreEvolutions": [
+      { "Monster": "Fungi", "Catalyst": "Druid Soul" }
+    ]
   },
   {
     "Name": "Rampede",
@@ -745,7 +844,10 @@
     "CommonRewards": "Linen,Silver,",
     "RareRewards": "Ruby,Gold,Tar Blob Egg,",
     "EggReward": "Tar Blob Egg",
-    "Groups": [ "Tar Mount" ]
+    "Groups": [ "Tar Mount" ],
+    "Evolutions": [
+      { "Monster": "King Blob", "Catalyst": "Majestic Crown" }
+    ]
   },
   {
     "Name": "Amberlgna",
@@ -759,7 +861,10 @@
     "CommonRewards": "Banana,Sapphire,",
     "RareRewards": "Draconov Egg,Swallow,Deep Stone,",
     "EggReward": "Dracomer Egg",
-    "Groups": [ "Improved Swimming" ]
+    "Groups": [ "Improved Swimming" ],
+    "PreEvolutions": [
+      { "Monster": "Draconov", "Catalyst": "Deep Stone" }
+    ]
   },
   {
     "Name": "Terradrile",

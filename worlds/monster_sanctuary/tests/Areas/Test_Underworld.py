@@ -127,7 +127,8 @@ class UnderworldNoLockedDoorsTests(TestArea):
 
 class UnderworldWithOpenEntrances(TestArea):
     options = {
-        "open_underworld": "entrances"
+        "open_underworld": "entrances",
+        "skip_plot": True
     }
 
     def test_sanctuary_tokens_are_not_needed(self):

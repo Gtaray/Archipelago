@@ -14,7 +14,7 @@ from . import hints as HINTS
 from .regions import RegionData, MonsterSanctuaryConnection
 from .items import ItemData, MonsterSanctuaryItemCategory
 from .locations import LocationData, MonsterSanctuaryLocationCategory
-from .rules import AccessCondition, Plotless
+from .rules import AccessCondition
 from .flags import FlagData
 from .encounters import EncounterData, MonsterData
 from BaseClasses import ItemClassification
@@ -152,12 +152,21 @@ def load_monsters(item_id) -> int:
             if groups is None:
                 raise ValueError(f"{name} has no groups assigned to it")
 
-            ENCOUNTERS.monster_data[name] = MonsterData(
+            monster = MonsterData(
                 item_id,
                 name,
                 groups)
+
+            for evo_data in monster_data.get("Evolutions") or []:
+                monster.add_evolution(evo_data.get("Monster"), evo_data.get("Catalyst"))
+
+            for evo_data in monster_data.get("PreEvolutions") or []:
+                monster.add_pre_evolution(evo_data.get("Monster"), evo_data.get("Catalyst"))
+
+            ENCOUNTERS.monster_data[name] = monster
             item_id += 1
 
+        ENCOUNTERS.assign_game_stage_to_monsters()
     return item_id
 
 

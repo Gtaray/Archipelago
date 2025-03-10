@@ -48,12 +48,16 @@ class ImprovedMobilityLimitation(Toggle):
     default = True
 
 
-class MovementAbilityPlacementRestrictions(Choice):
-    """Restricts where monsters with certain abi"""
-    display_name = "Explore Ability Accessibility"
-    option_open = 0
-    option_semi_strict = 1
-    option_strict = 2
+class IncludeSpectralFamiliarsInMonsterPool(Toggle):
+    """If enabled, spectral familiars will be added to the pool of monsters that's randomized"""
+    display_name = "Include Spectral Familiars"
+    default = False
+
+
+class IncludeBardInMonsterPool(Toggle):
+    """If enabled, Bard will be added to the pool of monsters that's randomized"""
+    display_name = "Include Bard"
+    default = False
 # endregion
 
 
@@ -67,7 +71,7 @@ class CryomancerPlacementRestriction(Choice):
     display_name = "Lady Stasis' (Dodo Egg) Checks"
     option_vanilla = 0
     option_randomized = 1
-    option_filler = 3
+    option_filler = 2
     default = 1
 
 
@@ -77,36 +81,10 @@ class KoiEggPlacementRestriction(Choice):
     Vanilla: The check is unchnaged from the base game.
     Randomized: The check is randomized with the rest of the item pool.
     Filler: The check is guaranteed to be a junk item."""
-    display_name = "Skorch Egg Check"
+    display_name = "Koi Egg Check"
     option_vanilla = 0
     option_randomized = 1
-    option_junk = 2
-    default = 1
-
-
-class OldManPlacementRestriction(Choice):
-    """Sets what kind of items can be placed at the Old Man check in Horizon Beach.
-
-    Vanilla: The check is unchnaged from the base game.
-    Randomized: The check is randomized with the rest of the item pool.
-    Filler: The check is guaranteed to be a junk item."""
-    display_name = "Old Man (Memorial Ring) Check"
-    option_vanilla = 0
-    option_randomized = 1
-    option_junk = 2
-    default = 1
-
-
-class FishermanPlacementRestriction(Choice):
-    """Sets what kind of items can be placed at the Fisherman check in Horizon Beach.
-
-    Vanilla: The check is unchnaged from the base game.
-    Randomized: The check is randomized with the rest of the item pool.
-    Filler: The check is guaranteed to be a junk item."""
-    display_name = "Fisherman (Rare Seashells) Check"
-    option_vanilla = 0
-    option_randomized = 1
-    option_junk = 2
+    option_filler = 2
     default = 1
 
 
@@ -119,7 +97,7 @@ class SkorchEggPlacementRestriction(Choice):
     display_name = "Skorch Egg Check"
     option_vanilla = 0
     option_randomized = 1
-    option_junk = 2
+    option_filler = 2
     default = 1
 
 
@@ -132,21 +110,41 @@ class BardEggPlacementRestriction(Choice):
     display_name = "Bard Egg (Celestial Feathers) Check"
     option_vanilla = 0
     option_randomized = 1
-    option_junk = 2
+    option_filler = 2
     default = 1
+
+
+class OldManPlacementRestriction(Choice):
+    """Sets what kind of items can be placed at the Old Man check in Horizon Beach.
+
+    Randomized: The check is randomized with the rest of the item pool.
+    Filler: The check is guaranteed to be a junk item."""
+    display_name = "Old Man (Memorial Ring) Check"
+    option_randomized = 0
+    option_filler = 1
+    default = 0
+
+
+class FishermanPlacementRestriction(Choice):
+    """Sets what kind of items can be placed at the Fisherman check in Horizon Beach.
+
+    Randomized: The check is randomized with the rest of the item pool.
+    Filler: The check is guaranteed to be a junk item."""
+    display_name = "Fisherman (Rare Seashells) Check"
+    option_randomized = 0
+    option_filler = 1
+    default = 0
 
 
 class WandererGiftPlacementRestriction(Choice):
     """Sets what kind of items can be placed at the Wanderer check that requires defeating Dracomer in the Forgotten World
 
-    Vanilla: The check is unchnaged from the base game.
     Randomized: The check is randomized with the rest of the item pool.
     Filler: The check is guaranteed to be a junk item."""
     display_name = "Wanderer World Tree Check"
-    option_vanilla = 0
-    option_randomized = 1
-    option_junk = 2
-    default = 1
+    option_randomized = 0
+    option_filler = 1
+    default = 0
 # endregion
 
 
@@ -411,6 +409,12 @@ class MonstersAlwaysDropEggs(Toggle):
     default = True
 
 
+class MonstersAlwaysDropCatalysts(Toggle):
+    """If enabled, evolved monsters will always drop their own catalyst."""
+    display_name = "Evolved monsters always drop catalysts"
+    default = False
+
+
 class IncludeChaosRelics(Choice):
     """Include Relics of Chaos in the random item pool
 
@@ -469,16 +473,19 @@ class MonsterSanctuaryOptions(PerGameCommonOptions):
     randomize_monsters: RandomizeMonsters
     monster_shift_rule: RandomizeMonsterShifts
     improved_mobility_limit: ImprovedMobilityLimitation
+    include_spectral_familiars_in_pool: IncludeSpectralFamiliarsInMonsterPool
+    include_bard_in_pool: IncludeBardInMonsterPool
 
     cryomancer_check_restrictions: CryomancerPlacementRestriction
-    old_man_check_restrictions: OldManPlacementRestriction
-    fisherman_check_restrictions: FishermanPlacementRestriction
-    wanderers_gift_check_restrictions: WandererGiftPlacementRestriction
     koi_egg_placement: KoiEggPlacementRestriction
     bard_egg_placement: BardEggPlacementRestriction
     skorch_egg_placement: SkorchEggPlacementRestriction
+    old_man_check_restrictions: OldManPlacementRestriction
+    fisherman_check_restrictions: FishermanPlacementRestriction
+    wanderers_gift_check_restrictions: WandererGiftPlacementRestriction
 
     monsters_always_drop_egg: MonstersAlwaysDropEggs
+    monsters_always_drop_catalyst: MonstersAlwaysDropCatalysts
     include_chaos_relics: IncludeChaosRelics
     include_looters_handbook: IncludeLootersHandbook
     add_smoke_bombs: StartWithSmokeBombs

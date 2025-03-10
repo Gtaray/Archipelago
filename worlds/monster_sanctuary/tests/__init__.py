@@ -1,4 +1,6 @@
 import unittest
+
+from BaseClasses import ItemClassification
 from worlds.monster_sanctuary import locations as LOCATIONS
 from worlds.monster_sanctuary import items as ITEMS
 
@@ -37,7 +39,11 @@ class MonsterSanctuaryTestBase(WorldTestBase):
 
     def assert_item_is_at_location(self, location_name: str, item_name: str):
         loc = self.multiworld.get_location(location_name, 1)
-        print(loc.item)
         self.assertIsNotNone(loc.item)
         self.assertEqual(item_name, loc.item.name)
+
+    def assert_item_at_location_is_classification(self, location_name: str, classification: ItemClassification):
+        loc = self.multiworld.get_location(location_name, 1)
+        self.assertIsNotNone(loc.item)
+        self.assertEqual(classification, loc.item.classification)
 

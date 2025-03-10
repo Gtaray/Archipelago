@@ -1,8 +1,9 @@
+import copy
 import threading
 import types
 from typing import List, Dict
 
-from BaseClasses import MultiWorld, Tutorial, ItemClassification, Entrance
+from BaseClasses import MultiWorld, Tutorial, ItemClassification, Entrance, Item
 from Options import Range, Toggle
 from worlds.AutoWorld import World, WebWorld
 from Utils import __version__
@@ -15,7 +16,7 @@ from . import rules as RULES
 from . import flags as FLAGS
 from . import encounters as ENCOUNTERS
 from . import hints as HINTS
-from .encounters import MonsterData
+from .encounters import MonsterData, EncounterData
 
 from .items import ItemData, MonsterSanctuaryItem, MonsterSanctuaryItemCategory
 from .items import MonsterSanctuaryItemCategory as ItemCategory
@@ -67,6 +68,7 @@ class MonsterSanctuaryWorld(World):
     location_name_to_id = {location.name: location.location_id
                            for location in LOCATIONS.location_data.values()}
     location_names = [location.name for location in LOCATIONS.location_data.values()]
+    encounters: Dict[str, EncounterData] = []
 
     def __init__(self, world: MultiWorld, player: int):
         super().__init__(world, player)
@@ -82,7 +84,7 @@ class MonsterSanctuaryWorld(World):
     # called per player before any items or locations are created. You can set properties on your world here.
     # Already has access to player options and RNG.
     def generate_early(self) -> None:
-        ENCOUNTERS.randomize_monsters(self)
+        self.randomize_monsters()
 
     # called to place player's regions and their locations into the MultiWorld's regions list. If it's hard to separate,
     # this can be done during generate_early or create_items as well.
@@ -151,46 +153,50 @@ class MonsterSanctuaryWorld(World):
 
             # Chest and Gift locations go here
             else:
-                # Handle options for making specific checks forced to be junk
-                if self.handle_location_placement_options(location, location_data):
-                    continue
+                # Handle all item rules here
+                self.handle_location_placement_options(location, location_data)
 
-                # Item locations can be filled with any item from another player, as well as items from this game
-                location.item_rule = lambda item, world=self, loc=location: ITEMS.can_item_be_placed(world, item, loc)
-                self.number_of_item_locations += 1
+                # If not item was locked on this location, we tick up the number of locations needing items
+                if location.item is None:
+                    self.number_of_item_locations += 1
 
             region.locations.append(location)
 
     def handle_location_placement_options(self, location: MonsterSanctuaryLocation, location_data: LocationData) -> bool:
-        def handle_option(option) -> bool:
-            if option.value == "vanilla":
+        def only_allow_filler(item: Item):
+            return item.classification == ItemClassification.filler
+
+        def handle_check_option(option) -> bool:
+            if option == "filler":
+                location.item_rule = lambda item: only_allow_filler(item)
+
+        def handle_egg_option(option) -> bool:
+            if option == "vanilla":
                 location.place_locked_item(self.create_item(location_data.default_item))
-                return True
-            elif option.value == "filler":
-                location.item_rule = lambda item, world=self, loc=location: (
-                        ITEMS.can_item_be_placed(world, item, loc) and item.classification == ItemClassification.filler)
-            return False
+            elif option == "filler":
+                location.item_rule = lambda item: item.classification == ItemClassification.filler
 
         if location_data.name in [
             "Snowy Peaks - Cryomancer - Egg Reward 1",
             "Snowy Peaks - Cryomancer - Egg Reward 2",
             "Snowy Peaks - Cryomancer - Light Egg Reward",
             "Snowy Peaks - Cryomancer - Dark Egg Reward"]:
-            return handle_option(self.options.cryomancer_check_restrictions)
-        if location_data.name == "Sun Palace - Caretaker 1":
-            return handle_option(self.options.koi_egg_placement)
-        if location_data.name == "Magma Chamber - Bex":
-            return handle_option(self.options.skorch_egg_placement)
-        if location_data.name == "Forgotten World - Wanderer Room":
-            return handle_option(self.options.bard_egg_placement)
-        if location_data.name == "Horizon Beach - Old Man by the Sea":
-            return handle_option(self.options.old_man_check_restrictions)
-        if location_data.name == "Horizon Beach - Fisherman":
-            return handle_option(self.options.fisherman_check_restrictions)
-        if location_data.name == "Forgotten World - Crystal Room - Defeat Dracomer Reward":
-            return handle_option(self.options.wanderers_gift_check_restrictions)
-
-        return False
+            handle_egg_option(self.options.cryomancer_check_restrictions)
+        elif location_data.name == "Sun Palace - Caretaker 1":
+            handle_egg_option(self.options.koi_egg_placement)
+        elif location_data.name == "Magma Chamber - Bex":
+            handle_egg_option(self.options.skorch_egg_placement)
+        elif location_data.name == "Forgotten World - Wanderer Room":
+            handle_egg_option(self.options.bard_egg_placement)
+        elif location_data.name == "Horizon Beach - Old Man by the Sea":
+            handle_check_option(self.options.old_man_check_restrictions)
+        elif location_data.name == "Horizon Beach - Fisherman":
+            handle_check_option(self.options.fisherman_check_restrictions)
+        elif location_data.name == "Forgotten World - Crystal Room - Defeat Dracomer Reward":
+            handle_check_option(self.options.wanderers_gift_check_restrictions)
+        else:
+            # For every other room, we give it the default rule
+            location.item_rule = lambda item, world=self, loc=location: ITEMS.can_item_be_placed(world, item, loc)
 
     def connect_regions(self) -> None:
         """Connects all regions according to their access conditions"""
@@ -276,17 +282,17 @@ class MonsterSanctuaryWorld(World):
             else:
                 return self.create_item(ENCOUNTERS.get_monster(monster_name).egg_name())
 
-        # If these options are not set to vanilla
-        if self.options.cryomancer_check_restrictions != "randomized":
+        # If eggs are not found in their vanilla spot we add them to the item pool
+        if self.options.cryomancer_check_restrictions != "vanilla":
             eggs.append(resolve_egg_item("Shockhopper"))
 
-        if self.options.koi_egg_placement != "randomized":
+        if self.options.koi_egg_placement != "vanilla":
             eggs.append(resolve_egg_item("Koi"))
 
-        if self.options.skorch_egg_placement != "randomized":
+        if self.options.skorch_egg_placement != "vanilla":
             eggs.append(resolve_egg_item("Skorch"))
 
-        if self.options.bard_egg_placement != "randomized":
+        if self.options.bard_egg_placement != "vanilla":
             eggs.append(resolve_egg_item("Bard"))
 
         # These monsters are never encountered in the wild naturally, so if we're shuffling monsters
@@ -304,6 +310,9 @@ class MonsterSanctuaryWorld(World):
         # into their default location
         self.multiworld.itempool += list(egg for egg in eggs)
         self.number_of_item_locations -= len(eggs)
+
+    def randomize_monsters(self):
+        ENCOUNTERS.randomize(self)
 
     def place_monsters(self) -> None:
         """Creates event locations for all monsters, and places monster items at those locations"""
@@ -473,15 +482,16 @@ class MonsterSanctuaryWorld(World):
 
         slot_data = {
             "version": "1.2.1.0",
+            "seed": self.multiworld.seed,
             "options": {
                 "goal": self.options.goal.value,
-                "seed": self.multiworld.seed,
 
                 "starting_gold": self.options.starting_gold.value,
                 "add_smoke_bombs": self.options.add_smoke_bombs.value,
                 "include_chaos_relics": self.options.include_chaos_relics.value > 0,
 
                 "monsters_always_drop_egg": self.options.monsters_always_drop_egg.value,
+                "monsters_always_drop_catalyst": self.options.monsters_always_drop_catalyst.value,
                 "monster_shift_rule": self.options.monster_shift_rule.value,
 
                 "skip_plot": self.options.skip_plot.value,

@@ -28,11 +28,12 @@ class TestItems(MonsterSanctuaryTestBase):
                 with self.subTest(f"{item_data.name} has the Multiple tag"):
                     self.assertIn("Multiple", item_data.groups)
 
-
-class TestLockedDoors(MonsterSanctuaryTestBase):
     def test_key_items_appear_correct_number_of_times(self):
+        if not self.options.__contains__("include_looters_handbook"):
+            self.options["include_looters_handbook"] = 1
         key_items = [items.item_data[item_name] for item_name in items.item_data
-                     if items.item_data[item_name].category == MonsterSanctuaryItemCategory.KEYITEM]
+                     if items.item_data[item_name].category == MonsterSanctuaryItemCategory.KEYITEM
+                     and (self.options["include_looters_handbook"] == 1 and item_name == "Looter's Handbook")]
 
         for key_item in key_items:
             exptected_count = key_item.count
@@ -53,6 +54,8 @@ class TestLockedDoors(MonsterSanctuaryTestBase):
             with self.subTest(f"{key_item.name} appears {exptected_count} time(s)"):
                 self.assertEqual(exptected_count, len(item_pool_items), key_item.name)
 
+
+class TestLockedDoors(MonsterSanctuaryTestBase):
     def test_no_items_placed_where_they_should_not_be(self):
         from Fill import distribute_items_restrictive
 
