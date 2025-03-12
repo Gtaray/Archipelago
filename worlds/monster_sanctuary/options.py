@@ -58,6 +58,24 @@ class IncludeBardInMonsterPool(Toggle):
     """If enabled, Bard will be added to the pool of monsters that's randomized"""
     display_name = "Include Bard"
     default = False
+
+
+class RandomizeMonsterSkillTrees(Toggle):
+    """If enabled, randomizes the 3 or 4 skill trees that every monster has"""
+    display_name = "Randomize Monster Skill Trees"
+    default = False
+
+
+class RandomizeMonsterUltimates(Toggle):
+    """If enabled, randomizes every monster's three ultimate skills"""
+    display_name = "Randomize Monster Ultimates"
+    default = False
+
+
+class RandomizeMonsterShiftSkills(Toggle):
+    """If enabled, randomizes the light and dark shift traits for all monsters"""
+    display_name = "Randomize Monster Shift Skills"
+    default = False
 # endregion
 
 
@@ -448,6 +466,16 @@ class StartingGold(Range):
     range_start = 0
     range_end = 1000
     default = 1
+
+
+class AutomaticallyScaleEquipment(Choice):
+    """If enabled, equipment that is sent to the player will be automatically leveled according to the player's progress in the game"""
+    display_name = "Automatically Scale Equipment Level"
+    option_disabled = 0
+    option_by_level = 1
+    option_by_rank = 2
+    option_by_map_progress = 3
+    default = 0
 #endregion
 
 
@@ -475,6 +503,9 @@ class MonsterSanctuaryOptions(PerGameCommonOptions):
     improved_mobility_limit: ImprovedMobilityLimitation
     include_spectral_familiars_in_pool: IncludeSpectralFamiliarsInMonsterPool
     include_bard_in_pool: IncludeBardInMonsterPool
+    randomize_monster_skill_trees: RandomizeMonsterSkillTrees
+    randomize_monster_ultimates: RandomizeMonsterUltimates
+    randomize_monster_shift_skills: RandomizeMonsterShiftSkills
 
     cryomancer_check_restrictions: CryomancerPlacementRestriction
     koi_egg_placement: KoiEggPlacementRestriction
@@ -490,6 +521,7 @@ class MonsterSanctuaryOptions(PerGameCommonOptions):
     include_looters_handbook: IncludeLootersHandbook
     add_smoke_bombs: StartWithSmokeBombs
     starting_gold: StartingGold
+    automatically_scale_equipment: AutomaticallyScaleEquipment
 
     drop_chance_craftingmaterial: CraftingMaterialDropChance
     drop_chance_consumable: ConsumableDropChance

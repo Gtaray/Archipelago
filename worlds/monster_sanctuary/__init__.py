@@ -357,6 +357,9 @@ class MonsterSanctuaryWorld(World):
         # These items are not naturally put in the general item pool, and are handled separately
         item_exclusions = ["Multiple"]
 
+        if self.options.automatically_scale_equipment.value != "disabled":
+            item_exclusions += ["Leveled"]
+
         self.handle_relics(pool, item_exclusions)
         self.handle_key_items(pool)
         self.handle_area_keys(pool)
@@ -481,18 +484,21 @@ class MonsterSanctuaryWorld(World):
             HINTS.generate_hints(self)
 
         slot_data = {
-            "version": "1.2.1.0",
-            "seed": self.multiworld.seed,
+            "version": "1.2.2.0",
             "options": {
                 "goal": self.options.goal.value,
 
                 "starting_gold": self.options.starting_gold.value,
                 "add_smoke_bombs": self.options.add_smoke_bombs.value,
-                "include_chaos_relics": self.options.include_chaos_relics.value > 0,
-
+                "include_chaos_relics": self.options.include_chaos_relics.value,
+                "automatically_scale_equipment": self.options.automatically_scale_equipment.value,
+                
                 "monsters_always_drop_egg": self.options.monsters_always_drop_egg.value,
                 "monsters_always_drop_catalyst": self.options.monsters_always_drop_catalyst.value,
                 "monster_shift_rule": self.options.monster_shift_rule.value,
+                "randomize_monster_skill_trees": self.options.randomize_monster_skill_trees.value,
+                "randomize_monster_ultimates": self.options.randomize_monster_ultimates.value,
+                "randomize_monster_shift_skills": self.options.randomize_monster_shift_skills.value,
 
                 "skip_plot": self.options.skip_plot.value,
                 "remove_locked_doors": self.options.remove_locked_doors.value,

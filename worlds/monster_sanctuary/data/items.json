@@ -1660,27 +1660,32 @@
       {
         "name": "Morning Star+1",
         "classification": "filler",
-        "tier": 2
+        "tier": 2,
+        "groups": ["Leveled"]
       },
       {
         "name": "Morning Star+2",
         "classification": "filler",
-        "tier": 3
+        "tier": 3,
+        "groups": ["Leveled"]
       },
       {
         "name": "Morning Star+3",
         "classification": "filler",
-        "tier": 4
+        "tier": 4,
+        "groups": ["Leveled"]
       },
       {
         "name": "Morning Star+4",
         "classification": "filler",
-        "tier": 5
+        "tier": 5,
+        "groups": ["Leveled"]
       },
       {
         "name": "Morning Star+5",
         "classification": "filler",
-        "tier": 5
+        "tier": 5,
+        "groups": ["Leveled"]
       },
       {
         "name": "Claws",
@@ -1690,27 +1695,32 @@
       {
         "name": "Claws+1",
         "classification": "filler",
-        "tier": 2
+        "tier": 2,
+        "groups": ["Leveled"]
       },
       {
         "name": "Claws+2",
         "classification": "filler",
-        "tier": 3
+        "tier": 3,
+        "groups": ["Leveled"]
       },
       {
         "name": "Claws+3",
         "classification": "filler",
-        "tier": 4
+        "tier": 4,
+        "groups": ["Leveled"]
       },
       {
         "name": "Claws+4",
         "classification": "filler",
-        "tier": 5
+        "tier": 5,
+        "groups": ["Leveled"]
       },
       {
         "name": "Claws+5",
         "classification": "filler",
-        "tier": 5
+        "tier": 5,
+        "groups": ["Leveled"]
       },
       {
         "name": "Katar",
@@ -1720,27 +1730,32 @@
       {
         "name": "Katar+1",
         "classification": "filler",
-        "tier": 2
+        "tier": 2,
+        "groups": ["Leveled"]
       },
       {
         "name": "Katar+2",
         "classification": "filler",
-        "tier": 3
+        "tier": 3,
+        "groups": ["Leveled"]
       },
       {
         "name": "Katar+3",
         "classification": "filler",
-        "tier": 4
+        "tier": 4,
+        "groups": ["Leveled"]
       },
       {
         "name": "Katar+4",
         "classification": "filler",
-        "tier": 5
+        "tier": 5,
+        "groups": ["Leveled"]
       },
       {
         "name": "Katar+5",
         "classification": "filler",
-        "tier": 5
+        "tier": 5,
+        "groups": ["Leveled"]
       },
       {
         "name": "Wand",
@@ -1750,27 +1765,32 @@
       {
         "name": "Wand+1",
         "classification": "filler",
-        "tier": 2
+        "tier": 2,
+        "groups": ["Leveled"]
       },
       {
         "name": "Wand+2",
         "classification": "filler",
-        "tier": 3
+        "tier": 3,
+        "groups": ["Leveled"]
       },
       {
         "name": "Wand+3",
         "classification": "filler",
-        "tier": 4
+        "tier": 4,
+        "groups": ["Leveled"]
       },
       {
         "name": "Wand+4",
         "classification": "filler",
-        "tier": 5
+        "tier": 5,
+        "groups": ["Leveled"]
       },
       {
         "name": "Wand+5",
         "classification": "filler",
-        "tier": 5
+        "tier": 5,
+        "groups": ["Leveled"]
       },
       {
         "name": "Orb",
@@ -1780,27 +1800,32 @@
       {
         "name": "Orb+1",
         "classification": "filler",
-        "tier": 2
+        "tier": 2,
+        "groups": ["Leveled"]
       },
       {
         "name": "Orb+2",
         "classification": "filler",
-        "tier": 3
+        "tier": 3,
+        "groups": ["Leveled"]
       },
       {
         "name": "Orb+3",
         "classification": "filler",
-        "tier": 4
+        "tier": 4,
+        "groups": ["Leveled"]
       },
       {
         "name": "Orb+4",
         "classification": "filler",
-        "tier": 5
+        "tier": 5,
+        "groups": ["Leveled"]
       },
       {
         "name": "Orb+5",
         "classification": "filler",
-        "tier": 5
+        "tier": 5,
+        "groups": ["Leveled"]
       },
       {
         "name": "Staff",
@@ -1810,27 +1835,32 @@
       {
         "name": "Staff+1",
         "classification": "filler",
-        "tier": 2
+        "tier": 2,
+        "groups": ["Leveled"]
       },
       {
         "name": "Staff+2",
         "classification": "filler",
-        "tier": 3
+        "tier": 3,
+        "groups": ["Leveled"]
       },
       {
         "name": "Staff+3",
         "classification": "filler",
-        "tier": 4
+        "tier": 4,
+        "groups": ["Leveled"]
       },
       {
         "name": "Staff+4",
         "classification": "filler",
-        "tier": 5
+        "tier": 5,
+        "groups": ["Leveled"]
       },
       {
         "name": "Staff+5",
         "classification": "filler",
-        "tier": 5
+        "tier": 5,
+        "groups": ["Leveled"]
       },
       {
         "name": "Cestus",
@@ -1840,27 +1870,32 @@
       {
         "name": "Cestus+1",
         "classification": "filler",
-        "tier": 2
+        "tier": 2,
+        "groups": ["Leveled"]
       },
       {
         "name": "Cestus+2",
         "classification": "filler",
-        "tier": 3
+        "tier": 3,
+        "groups": ["Leveled"]
       },
       {
         "name": "Cestus+3",
         "classification": "filler",
-        "tier": 4
+        "tier": 4,
+        "groups": ["Leveled"]
       },
       {
         "name": "Cestus+4",
         "classification": "filler",
-        "tier": 5
+        "tier": 5,
+        "groups": ["Leveled"]
       },
       {
         "name": "Cestus+5",
         "classification": "filler",
-        "tier": 5
+        "tier": 5,
+        "groups": ["Leveled"]
       },
       {
         "name": "Kunai",
@@ -1870,27 +1905,32 @@
       {
         "name": "Kunai+1",
         "classification": "filler",
-        "tier": 2
+        "tier": 2,
+        "groups": ["Leveled"]
       },
       {
         "name": "Kunai+2",
         "classification": "filler",
-        "tier": 3
+        "tier": 3,
+        "groups": ["Leveled"]
       },
       {
         "name": "Kunai+3",
         "classification": "filler",
-        "tier": 4
+        "tier": 4,
+        "groups": ["Leveled"]
       },
       {
         "name": "Kunai+4",
         "classification": "filler",
-        "tier": 5
+        "tier": 5,
+        "groups": ["Leveled"]
       },
       {
         "name": "Kunai+5",
         "classification": "filler",
-        "tier": 5
+        "tier": 5,
+        "groups": ["Leveled"]
       },
       {
         "name": "Shuriken",
@@ -1900,27 +1940,32 @@
       {
         "name": "Shuriken+1",
         "classification": "filler",
-        "tier": 2
+        "tier": 2,
+        "groups": ["Leveled"]
       },
       {
         "name": "Shuriken+2",
         "classification": "filler",
-        "tier": 3
+        "tier": 3,
+        "groups": ["Leveled"]
       },
       {
         "name": "Shuriken+3",
         "classification": "filler",
-        "tier": 4
+        "tier": 4,
+        "groups": ["Leveled"]
       },
       {
         "name": "Shuriken+4",
         "classification": "filler",
-        "tier": 5
+        "tier": 5,
+        "groups": ["Leveled"]
       },
       {
         "name": "Shuriken+5",
         "classification": "filler",
-        "tier": 5
+        "tier": 5,
+        "groups": ["Leveled"]
       },
       {
         "name": "Abyssal Sword",
@@ -1932,31 +1977,36 @@
         "name": "Abyssal Sword+1",
         "classification": "filler",
         "tier": 2,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Abyssal Sword+2",
         "classification": "filler",
         "tier": 3,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Abyssal Sword+3",
         "classification": "filler",
         "tier": 4,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Abyssal Sword+4",
         "classification": "filler",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Abyssal Sword+5",
         "classification": "filler",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Bow",
@@ -1968,31 +2018,36 @@
         "name": "Bow+1",
         "classification": "filler",
         "tier": 2,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Bow+2",
         "classification": "filler",
         "tier": 3,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Bow+3",
         "classification": "filler",
         "tier": 4,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Bow+4",
         "classification": "filler",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Bow+5",
         "classification": "filler",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Fan",
@@ -2004,31 +2059,36 @@
         "name": "Fan+1",
         "classification": "filler",
         "tier": 2,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Fan+2",
         "classification": "filler",
         "tier": 3,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Fan+3",
         "classification": "filler",
         "tier": 4,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Fan+4",
         "classification": "filler",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Fan+5",
         "classification": "filler",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Fishing Rod",
@@ -2040,31 +2100,36 @@
         "name": "Fishing Rod+1",
         "classification": "filler",
         "tier": 2,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Fishing Rod+2",
         "classification": "filler",
         "tier": 3,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Fishing Rod+3",
         "classification": "filler",
         "tier": 4,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Fishing Rod+4",
         "classification": "filler",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Fishing Rod+5",
         "classification": "filler",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Hammer",
@@ -2076,31 +2141,36 @@
         "name": "Hammer+1",
         "classification": "filler",
         "tier": 2,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Hammer+2",
         "classification": "filler",
         "tier": 3,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Hammer+3",
         "classification": "filler",
         "tier": 4,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Hammer+4",
         "classification": "filler",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Hammer+5",
         "classification": "filler",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Harp",
@@ -2112,31 +2182,36 @@
         "name": "Harp+1",
         "classification": "filler",
         "tier": 2,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Harp+2",
         "classification": "filler",
         "tier": 3,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Harp+3",
         "classification": "filler",
         "tier": 4,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Harp+4",
         "classification": "filler",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Harp+5",
         "classification": "filler",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Heavy Mace",
@@ -2148,31 +2223,36 @@
         "name": "Heavy Mace+1",
         "classification": "filler",
         "tier": 2,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Heavy Mace+2",
         "classification": "filler",
         "tier": 3,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Heavy Mace+3",
         "classification": "filler",
         "tier": 4,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Heavy Mace+4",
         "classification": "filler",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Heavy Mace+5",
         "classification": "filler",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Hexing Rod",
@@ -2184,31 +2264,36 @@
         "name": "Hexing Rod+1",
         "classification": "filler",
         "tier": 2,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Hexing Rod+2",
         "classification": "filler",
         "tier": 3,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Hexing Rod+3",
         "classification": "filler",
         "tier": 4,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Hexing Rod+4",
         "classification": "filler",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Hexing Rod+5",
         "classification": "filler",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Katana",
@@ -2220,31 +2305,36 @@
         "name": "Katana+1",
         "classification": "filler",
         "tier": 2,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Katana+2",
         "classification": "filler",
         "tier": 3,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Katana+3",
         "classification": "filler",
         "tier": 4,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Katana+4",
         "classification": "filler",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Katana+5",
         "classification": "filler",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Large Shield",
@@ -2256,31 +2346,36 @@
         "name": "Large Shield+1",
         "classification": "filler",
         "tier": 2,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Large Shield+2",
         "classification": "filler",
         "tier": 3,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Large Shield+3",
         "classification": "filler",
         "tier": 4,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Large Shield+4",
         "classification": "filler",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Large Shield+5",
         "classification": "filler",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Mandolin",
@@ -2292,31 +2387,36 @@
         "name": "Mandolin+1",
         "classification": "filler",
         "tier": 2,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Mandolin+2",
         "classification": "filler",
         "tier": 3,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Mandolin+3",
         "classification": "filler",
         "tier": 4,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Mandolin+4",
         "classification": "filler",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Mandolin+5",
         "classification": "filler",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Moon Sword",
@@ -2328,31 +2428,36 @@
         "name": "Moon Sword+1",
         "classification": "filler",
         "tier": 2,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Moon Sword+2",
         "classification": "filler",
         "tier": 3,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Moon Sword+3",
         "classification": "filler",
         "tier": 4,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Moon Sword+4",
         "classification": "filler",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Moon Sword+5",
         "classification": "filler",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Pirate Hook",
@@ -2364,31 +2469,36 @@
         "name": "Pirate Hook+1",
         "classification": "filler",
         "tier": 2,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Pirate Hook+2",
         "classification": "filler",
         "tier": 3,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Pirate Hook+3",
         "classification": "filler",
         "tier": 4,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Pirate Hook+4",
         "classification": "filler",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Pirate Hook+5",
         "classification": "filler",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Purifying Mace",
@@ -2400,31 +2510,36 @@
         "name": "Purifying Mace+1",
         "classification": "filler",
         "tier": 2,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Purifying Mace+2",
         "classification": "filler",
         "tier": 3,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Purifying Mace+3",
         "classification": "filler",
         "tier": 4,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Purifying Mace+4",
         "classification": "filler",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Purifying Mace+5",
         "classification": "filler",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Restoring Wand",
@@ -2436,31 +2551,36 @@
         "name": "Restoring Wand+1",
         "classification": "filler",
         "tier": 2,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Restoring Wand+2",
         "classification": "filler",
         "tier": 3,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Restoring Wand+3",
         "classification": "filler",
         "tier": 4,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Restoring Wand+4",
         "classification": "filler",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Restoring Wand+5",
         "classification": "filler",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Scepter",
@@ -2472,31 +2592,36 @@
         "name": "Scepter+1",
         "classification": "filler",
         "tier": 2,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Scepter+2",
         "classification": "filler",
         "tier": 3,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Scepter+3",
         "classification": "filler",
         "tier": 4,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Scepter+4",
         "classification": "filler",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Scepter+5",
         "classification": "filler",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Scythe",
@@ -2508,31 +2633,36 @@
         "name": "Scythe+1",
         "classification": "filler",
         "tier": 2,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Scythe+2",
         "classification": "filler",
         "tier": 3,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Scythe+3",
         "classification": "filler",
         "tier": 4,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Scythe+4",
         "classification": "filler",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Scythe+5",
         "classification": "filler",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Summoned Sword",
@@ -2544,31 +2674,36 @@
         "name": "Summoned Sword+1",
         "classification": "filler",
         "tier": 2,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Summoned Sword+2",
         "classification": "filler",
         "tier": 3,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Summoned Sword+3",
         "classification": "filler",
         "tier": 4,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Summoned Sword+4",
         "classification": "filler",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Summoned Sword+5",
         "classification": "filler",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Swallow",
@@ -2580,31 +2715,36 @@
         "name": "Swallow+1",
         "classification": "filler",
         "tier": 2,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Swallow+2",
         "classification": "filler",
         "tier": 3,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Swallow+3",
         "classification": "filler",
         "tier": 4,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Swallow+4",
         "classification": "filler",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Swallow+5",
         "classification": "filler",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Thorn Tendril",
@@ -2616,31 +2756,36 @@
         "name": "Thorn Tendril+1",
         "classification": "filler",
         "tier": 2,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Thorn Tendril+2",
         "classification": "filler",
         "tier": 3,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Thorn Tendril+3",
         "classification": "filler",
         "tier": 4,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Thorn Tendril+4",
         "classification": "filler",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Thorn Tendril+5",
         "classification": "filler",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Torch",
@@ -2652,31 +2797,36 @@
         "name": "Torch+1",
         "classification": "filler",
         "tier": 2,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Torch+2",
         "classification": "filler",
         "tier": 3,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Torch+3",
         "classification": "filler",
         "tier": 4,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Torch+4",
         "classification": "filler",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Torch+5",
         "classification": "filler",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Trident",
@@ -2688,61 +2838,71 @@
         "name": "Trident+1",
         "classification": "filler",
         "tier": 2,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Trident+2",
         "classification": "filler",
         "tier": 3,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Trident+3",
         "classification": "filler",
         "tier": 4,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Trident+4",
         "classification": "filler",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Trident+5",
         "classification": "filler",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Warhorn+5",
         "classification": "filler",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Warhorn+4",
         "classification": "filler",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Warhorn+3",
         "classification": "filler",
         "tier": 4,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Warhorn+2",
         "classification": "filler",
         "tier": 3,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Warhorn+1",
         "classification": "filler",
         "tier": 2,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Warhorn",
@@ -2765,7 +2925,8 @@
         "tier": 2,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -2774,7 +2935,8 @@
         "tier": 3,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -2783,7 +2945,8 @@
         "tier": 4,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -2792,7 +2955,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -2801,7 +2965,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -2819,7 +2984,8 @@
         "tier": 2,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -2828,7 +2994,8 @@
         "tier": 3,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -2837,7 +3004,8 @@
         "tier": 4,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -2846,7 +3014,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -2855,7 +3024,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -2873,7 +3043,8 @@
         "tier": 2,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -2882,7 +3053,8 @@
         "tier": 3,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -2891,7 +3063,8 @@
         "tier": 4,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -2900,7 +3073,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -2909,7 +3083,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -2927,7 +3102,8 @@
         "tier": 2,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -2936,7 +3112,8 @@
         "tier": 3,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -2945,7 +3122,8 @@
         "tier": 4,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -2954,7 +3132,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -2963,7 +3142,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -2981,7 +3161,8 @@
         "tier": 2,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -2990,7 +3171,8 @@
         "tier": 3,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -2999,7 +3181,8 @@
         "tier": 4,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -3008,7 +3191,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -3017,7 +3201,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -3035,7 +3220,8 @@
         "tier": 2,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -3044,7 +3230,8 @@
         "tier": 3,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -3053,7 +3240,8 @@
         "tier": 4,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -3062,7 +3250,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -3071,7 +3260,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -3089,7 +3279,8 @@
         "tier": 2,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -3098,7 +3289,8 @@
         "tier": 3,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -3107,7 +3299,8 @@
         "tier": 4,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -3116,7 +3309,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -3125,7 +3319,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -3143,7 +3338,8 @@
         "tier": 2,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -3152,7 +3348,8 @@
         "tier": 3,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -3161,7 +3358,8 @@
         "tier": 4,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -3170,7 +3368,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -3179,7 +3378,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -3197,7 +3397,8 @@
         "tier": 2,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -3206,7 +3407,8 @@
         "tier": 3,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -3215,7 +3417,8 @@
         "tier": 4,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -3224,7 +3427,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -3233,7 +3437,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -3251,7 +3456,8 @@
         "tier": 2,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -3260,7 +3466,8 @@
         "tier": 3,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -3269,7 +3476,8 @@
         "tier": 4,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -3278,7 +3486,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -3287,7 +3496,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       }
     ]
@@ -3302,23 +3512,28 @@
       },
       {
         "name": "Shell+1",
-        "tier": 2
+        "tier": 2,
+        "groups": ["Leveled"]
       },
       {
         "name": "Shell+2",
-        "tier": 3
+        "tier": 3,
+        "groups": ["Leveled"]
       },
       {
         "name": "Shell+3",
-        "tier": 4
+        "tier": 4,
+        "groups": ["Leveled"]
       },
       {
         "name": "Shell+4",
-        "tier": 5
+        "tier": 5,
+        "groups": ["Leveled"]
       },
       {
         "name": "Shell+5",
-        "tier": 5
+        "tier": 5,
+        "groups": ["Leveled"]
       },
       {
         "name": "Vital Ring",
@@ -3326,23 +3541,28 @@
       },
       {
         "name": "Vital Ring+1",
-        "tier": 2
+        "tier": 2,
+        "groups": ["Leveled"]
       },
       {
         "name": "Vital Ring+2",
-        "tier": 3
+        "tier": 3,
+        "groups": ["Leveled"]
       },
       {
         "name": "Vital Ring+3",
-        "tier": 4
+        "tier": 4,
+        "groups": ["Leveled"]
       },
       {
         "name": "Vital Ring+4",
-        "tier": 5
+        "tier": 5,
+        "groups": ["Leveled"]
       },
       {
         "name": "Vital Ring+5",
-        "tier": 5
+        "tier": 5,
+        "groups": ["Leveled"]
       },
       {
         "name": "Mana Ring",
@@ -3350,23 +3570,28 @@
       },
       {
         "name": "Mana Ring+1",
-        "tier": 2
+        "tier": 2,
+        "groups": ["Leveled"]
       },
       {
         "name": "Mana Ring+2",
-        "tier": 3
+        "tier": 3,
+        "groups": ["Leveled"]
       },
       {
         "name": "Mana Ring+3",
-        "tier": 4
+        "tier": 4,
+        "groups": ["Leveled"]
       },
       {
         "name": "Mana Ring+4",
-        "tier": 5
+        "tier": 5,
+        "groups": ["Leveled"]
       },
       {
         "name": "Mana Ring+5",
-        "tier": 5
+        "tier": 5,
+        "groups": ["Leveled"]
       },
       {
         "name": "Sustain Ring",
@@ -3374,23 +3599,28 @@
       },
       {
         "name": "Sustain Ring+1",
-        "tier": 2
+        "tier": 2,
+        "groups": ["Leveled"]
       },
       {
         "name": "Sustain Ring+2",
-        "tier": 3
+        "tier": 3,
+        "groups": ["Leveled"]
       },
       {
         "name": "Sustain Ring+3",
-        "tier": 4
+        "tier": 4,
+        "groups": ["Leveled"]
       },
       {
         "name": "Sustain Ring+4",
-        "tier": 5
+        "tier": 5,
+        "groups": ["Leveled"]
       },
       {
         "name": "Sustain Ring+5",
-        "tier": 5
+        "tier": 5,
+        "groups": ["Leveled"]
       },
       {
         "name": "Crit Ring",
@@ -3398,23 +3628,28 @@
       },
       {
         "name": "Crit Ring+1",
-        "tier": 2
+        "tier": 2,
+        "groups": ["Leveled"]
       },
       {
         "name": "Crit Ring+2",
-        "tier": 3
+        "tier": 3,
+        "groups": ["Leveled"]
       },
       {
         "name": "Crit Ring+3",
-        "tier": 4
+        "tier": 4,
+        "groups": ["Leveled"]
       },
       {
         "name": "Crit Ring+4",
-        "tier": 5
+        "tier": 5,
+        "groups": ["Leveled"]
       },
       {
         "name": "Crit Ring+5",
-        "tier": 5
+        "tier": 5,
+        "groups": ["Leveled"]
       },
       {
         "name": "Impact Ring",
@@ -3422,23 +3657,28 @@
       },
       {
         "name": "Impact Ring+1",
-        "tier": 2
+        "tier": 2,
+        "groups": ["Leveled"]
       },
       {
         "name": "Impact Ring+2",
-        "tier": 3
+        "tier": 3,
+        "groups": ["Leveled"]
       },
       {
         "name": "Impact Ring+3",
-        "tier": 4
+        "tier": 4,
+        "groups": ["Leveled"]
       },
       {
         "name": "Impact Ring+4",
-        "tier": 5
+        "tier": 5,
+        "groups": ["Leveled"]
       },
       {
         "name": "Impact Ring+5",
-        "tier": 5
+        "tier": 5,
+        "groups": ["Leveled"]
       },
       {
         "name": "Bandana",
@@ -3446,23 +3686,28 @@
       },
       {
         "name": "Bandana+1",
-        "tier": 2
+        "tier": 2,
+        "groups": ["Leveled"]
       },
       {
         "name": "Bandana+2",
-        "tier": 3
+        "tier": 3,
+        "groups": ["Leveled"]
       },
       {
         "name": "Bandana+3",
-        "tier": 4
+        "tier": 4,
+        "groups": ["Leveled"]
       },
       {
         "name": "Bandana+4",
-        "tier": 5
+        "tier": 5,
+        "groups": ["Leveled"]
       },
       {
         "name": "Bandana+5",
-        "tier": 5
+        "tier": 5,
+        "groups": ["Leveled"]
       },
       {
         "name": "Belt",
@@ -3470,23 +3715,28 @@
       },
       {
         "name": "Belt+1",
-        "tier": 2
+        "tier": 2,
+        "groups": ["Leveled"]
       },
       {
         "name": "Belt+2",
-        "tier": 3
+        "tier": 3,
+        "groups": ["Leveled"]
       },
       {
         "name": "Belt+3",
-        "tier": 4
+        "tier": 4,
+        "groups": ["Leveled"]
       },
       {
         "name": "Belt+4",
-        "tier": 5
+        "tier": 5,
+        "groups": ["Leveled"]
       },
       {
         "name": "Belt+5",
-        "tier": 5
+        "tier": 5,
+        "groups": ["Leveled"]
       },
       {
         "name": "Bracelet",
@@ -3494,23 +3744,28 @@
       },
       {
         "name": "Bracelet+1",
-        "tier": 2
+        "tier": 2,
+        "groups": ["Leveled"]
       },
       {
         "name": "Bracelet+2",
-        "tier": 3
+        "tier": 3,
+        "groups": ["Leveled"]
       },
       {
         "name": "Bracelet+3",
-        "tier": 4
+        "tier": 4,
+        "groups": ["Leveled"]
       },
       {
         "name": "Bracelet+4",
-        "tier": 5
+        "tier": 5,
+        "groups": ["Leveled"]
       },
       {
         "name": "Bracelet+5",
-        "tier": 5
+        "tier": 5,
+        "groups": ["Leveled"]
       },
       {
         "name": "Bracer",
@@ -3518,23 +3773,28 @@
       },
       {
         "name": "Bracer+1",
-        "tier": 2
+        "tier": 2,
+        "groups": ["Leveled"]
       },
       {
         "name": "Bracer+2",
-        "tier": 3
+        "tier": 3,
+        "groups": ["Leveled"]
       },
       {
         "name": "Bracer+3",
-        "tier": 4
+        "tier": 4,
+        "groups": ["Leveled"]
       },
       {
         "name": "Bracer+4",
-        "tier": 5
+        "tier": 5,
+        "groups": ["Leveled"]
       },
       {
         "name": "Bracer+5",
-        "tier": 5
+        "tier": 5,
+        "groups": ["Leveled"]
       },
       {
         "name": "Cape",
@@ -3542,23 +3802,28 @@
       },
       {
         "name": "Cape+1",
-        "tier": 2
+        "tier": 2,
+        "groups": ["Leveled"]
       },
       {
         "name": "Cape+2",
-        "tier": 3
+        "tier": 3,
+        "groups": ["Leveled"]
       },
       {
         "name": "Cape+3",
-        "tier": 4
+        "tier": 4,
+        "groups": ["Leveled"]
       },
       {
         "name": "Cape+4",
-        "tier": 5
+        "tier": 5,
+        "groups": ["Leveled"]
       },
       {
         "name": "Cape+5",
-        "tier": 5
+        "tier": 5,
+        "groups": ["Leveled"]
       },
       {
         "name": "Coat",
@@ -3566,23 +3831,28 @@
       },
       {
         "name": "Coat+1",
-        "tier": 2
+        "tier": 2,
+        "groups": ["Leveled"]
       },
       {
         "name": "Coat+2",
-        "tier": 3
-      },
-      {
-        "name": "Coat+4",
-        "tier": 4
+        "tier": 3,
+        "groups": ["Leveled"]
       },
       {
         "name": "Coat+3",
-        "tier": 5
+        "tier": 4,
+        "groups": ["Leveled"]
+      },
+      {
+        "name": "Coat+4",
+        "tier": 5,
+        "groups": ["Leveled"]
       },
       {
         "name": "Coat+5",
-        "tier": 5
+        "tier": 5,
+        "groups": ["Leveled"]
       },
       {
         "name": "Diadem",
@@ -3590,23 +3860,28 @@
       },
       {
         "name": "Diadem+1",
-        "tier": 2
+        "tier": 2,
+        "groups": ["Leveled"]
       },
       {
         "name": "Diadem+2",
-        "tier": 3
+        "tier": 3,
+        "groups": ["Leveled"]
       },
       {
         "name": "Diadem+3",
-        "tier": 4
+        "tier": 4,
+        "groups": ["Leveled"]
       },
       {
         "name": "Diadem+4",
-        "tier": 5
+        "tier": 5,
+        "groups": ["Leveled"]
       },
       {
         "name": "Diadem+5",
-        "tier": 5
+        "tier": 5,
+        "groups": ["Leveled"]
       },
       {
         "name": "Fang",
@@ -3614,23 +3889,28 @@
       },
       {
         "name": "Fang+1",
-        "tier": 2
+        "tier": 2,
+        "groups": ["Leveled"]
       },
       {
         "name": "Fang+2",
-        "tier": 3
+        "tier": 3,
+        "groups": ["Leveled"]
       },
       {
         "name": "Fang+3",
-        "tier": 4
+        "tier": 4,
+        "groups": ["Leveled"]
       },
       {
         "name": "Fang+4",
-        "tier": 5
+        "tier": 5,
+        "groups": ["Leveled"]
       },
       {
         "name": "Fang+5",
-        "tier": 5
+        "tier": 5,
+        "groups": ["Leveled"]
       },
       {
         "name": "Feather",
@@ -3638,23 +3918,28 @@
       },
       {
         "name": "Feather+1",
-        "tier": 2
+        "tier": 2,
+        "groups": ["Leveled"]
       },
       {
         "name": "Feather+2",
-        "tier": 3
+        "tier": 3,
+        "groups": ["Leveled"]
       },
       {
         "name": "Feather+3",
-        "tier": 4
+        "tier": 4,
+        "groups": ["Leveled"]
       },
       {
         "name": "Feather+4",
-        "tier": 5
+        "tier": 5,
+        "groups": ["Leveled"]
       },
       {
         "name": "Feather+5",
-        "tier": 5
+        "tier": 5,
+        "groups": ["Leveled"]
       },
       {
         "name": "Gauntlet",
@@ -3662,23 +3947,28 @@
       },
       {
         "name": "Gauntlet+1",
-        "tier": 2
+        "tier": 2,
+        "groups": ["Leveled"]
       },
       {
         "name": "Gauntlet+2",
-        "tier": 3
+        "tier": 3,
+        "groups": ["Leveled"]
       },
       {
         "name": "Gauntlet+3",
-        "tier": 4
+        "tier": 4,
+        "groups": ["Leveled"]
       },
       {
         "name": "Gauntlet+4",
-        "tier": 5
+        "tier": 5,
+        "groups": ["Leveled"]
       },
       {
         "name": "Gauntlet+5",
-        "tier": 5
+        "tier": 5,
+        "groups": ["Leveled"]
       },
       {
         "name": "Helmet",
@@ -3686,23 +3976,28 @@
       },
       {
         "name": "Helmet+1",
-        "tier": 2
+        "tier": 2,
+        "groups": ["Leveled"]
       },
       {
         "name": "Helmet+2",
-        "tier": 3
+        "tier": 3,
+        "groups": ["Leveled"]
       },
       {
         "name": "Helmet+3",
-        "tier": 4
+        "tier": 4,
+        "groups": ["Leveled"]
       },
       {
         "name": "Helmet+4",
-        "tier": 5
+        "tier": 5,
+        "groups": ["Leveled"]
       },
       {
         "name": "Helmet+5",
-        "tier": 5
+        "tier": 5,
+        "groups": ["Leveled"]
       },
       {
         "name": "Hide",
@@ -3710,23 +4005,28 @@
       },
       {
         "name": "Hide+1",
-        "tier": 2
+        "tier": 2,
+        "groups": ["Leveled"]
       },
       {
         "name": "Hide+2",
-        "tier": 3
+        "tier": 3,
+        "groups": ["Leveled"]
       },
       {
         "name": "Hide+3",
-        "tier": 4
+        "tier": 4,
+        "groups": ["Leveled"]
       },
       {
         "name": "Hide+4",
-        "tier": 5
+        "tier": 5,
+        "groups": ["Leveled"]
       },
       {
         "name": "Hide+5",
-        "tier": 5
+        "tier": 5,
+        "groups": ["Leveled"]
       },
       {
         "name": "Hood",
@@ -3734,23 +4034,28 @@
       },
       {
         "name": "Hood+1",
-        "tier": 2
+        "tier": 2,
+        "groups": ["Leveled"]
       },
       {
         "name": "Hood+2",
-        "tier": 3
+        "tier": 3,
+        "groups": ["Leveled"]
       },
       {
         "name": "Hood+3",
-        "tier": 4
+        "tier": 4,
+        "groups": ["Leveled"]
       },
       {
         "name": "Hood+4",
-        "tier": 5
+        "tier": 5,
+        "groups": ["Leveled"]
       },
       {
         "name": "Hood+5",
-        "tier": 5
+        "tier": 5,
+        "groups": ["Leveled"]
       },
       {
         "name": "Needle",
@@ -3758,23 +4063,28 @@
       },
       {
         "name": "Needle+1",
-        "tier": 2
+        "tier": 2,
+        "groups": ["Leveled"]
       },
       {
         "name": "Needle+2",
-        "tier": 3
+        "tier": 3,
+        "groups": ["Leveled"]
       },
       {
         "name": "Needle+3",
-        "tier": 4
+        "tier": 4,
+        "groups": ["Leveled"]
       },
       {
         "name": "Needle+4",
-        "tier": 5
+        "tier": 5,
+        "groups": ["Leveled"]
       },
       {
         "name": "Needle+5",
-        "tier": 5
+        "tier": 5,
+        "groups": ["Leveled"]
       },
       {
         "name": "Ribbon",
@@ -3782,23 +4092,28 @@
       },
       {
         "name": "Ribbon+1",
-        "tier": 2
+        "tier": 2,
+        "groups": ["Leveled"]
       },
       {
         "name": "Ribbon+2",
-        "tier": 3
+        "tier": 3,
+        "groups": ["Leveled"]
       },
       {
         "name": "Ribbon+3",
-        "tier": 4
+        "tier": 4,
+        "groups": ["Leveled"]
       },
       {
         "name": "Ribbon+4",
-        "tier": 5
+        "tier": 5,
+        "groups": ["Leveled"]
       },
       {
         "name": "Ribbon+5",
-        "tier": 5
+        "tier": 5,
+        "groups": ["Leveled"]
       },
       {
         "name": "Scroll",
@@ -3806,23 +4121,28 @@
       },
       {
         "name": "Scroll+1",
-        "tier": 2
+        "tier": 2,
+        "groups": ["Leveled"]
       },
       {
         "name": "Scroll+2",
-        "tier": 3
+        "tier": 3,
+        "groups": ["Leveled"]
       },
       {
         "name": "Scroll+3",
-        "tier": 4
+        "tier": 4,
+        "groups": ["Leveled"]
       },
       {
         "name": "Scroll+4",
-        "tier": 5
+        "tier": 5,
+        "groups": ["Leveled"]
       },
       {
         "name": "Scroll+5",
-        "tier": 5
+        "tier": 5,
+        "groups": ["Leveled"]
       },
       {
         "name": "Tome",
@@ -3830,23 +4150,28 @@
       },
       {
         "name": "Tome+1",
-        "tier": 2
+        "tier": 2,
+        "groups": ["Leveled"]
       },
       {
         "name": "Tome+2",
-        "tier": 3
+        "tier": 3,
+        "groups": ["Leveled"]
       },
       {
         "name": "Tome+3",
-        "tier": 4
+        "tier": 4,
+        "groups": ["Leveled"]
       },
       {
         "name": "Tome+4",
-        "tier": 5
+        "tier": 5,
+        "groups": ["Leveled"]
       },
       {
         "name": "Tome+5",
-        "tier": 5
+        "tier": 5,
+        "groups": ["Leveled"]
       },
       {
         "name": "Wizard Hat",
@@ -3854,23 +4179,28 @@
       },
       {
         "name": "Wizard Hat+1",
-        "tier": 2
+        "tier": 2,
+        "groups": ["Leveled"]
       },
       {
         "name": "Wizard Hat+2",
-        "tier": 3
+        "tier": 3,
+        "groups": ["Leveled"]
       },
       {
         "name": "Wizard Hat+3",
-        "tier": 4
+        "tier": 4,
+        "groups": ["Leveled"]
       },
       {
         "name": "Wizard Hat+4",
-        "tier": 5
+        "tier": 5,
+        "groups": ["Leveled"]
       },
       {
         "name": "Wizard Hat+5",
-        "tier": 5
+        "tier": 5,
+        "groups": ["Leveled"]
       },
       {
         "name": "Ancestral Medal",
@@ -3880,27 +4210,32 @@
       {
         "name": "Ancestral Medal+1",
         "tier": 2,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Ancestral Medal+2",
         "tier": 3,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Ancestral Medal+3",
         "tier": 4,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Ancestral Medal+4",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Ancestral Medal+5",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Bead Chain",
@@ -3910,27 +4245,32 @@
       {
         "name": "Bead Chain+1",
         "tier": 2,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Bead Chain+2",
         "tier": 3,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Bead Chain+3",
         "tier": 4,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Bead Chain+4",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Bead Chain+5",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Blood Vessel",
@@ -3940,27 +4280,32 @@
       {
         "name": "Blood Vessel+1",
         "tier": 2,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Blood Vessel+2",
         "tier": 3,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Blood Vessel+3",
         "tier": 4,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Blood Vessel+4",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Blood Vessel+5",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Brooch",
@@ -3970,27 +4315,32 @@
       {
         "name": "Brooch+1",
         "tier": 2,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Brooch+2",
         "tier": 3,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Brooch+3",
         "tier": 4,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Brooch+4",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Brooch+5",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Buckler",
@@ -4000,27 +4350,32 @@
       {
         "name": "Buckler+1",
         "tier": 2,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Buckler+2",
         "tier": 3,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Buckler+3",
         "tier": 4,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Buckler+4",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Buckler+5",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Cauldron",
@@ -4030,27 +4385,32 @@
       {
         "name": "Cauldron+1",
         "tier": 2,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Cauldron+2",
         "tier": 3,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Cauldron+3",
         "tier": 4,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Cauldron+4",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Cauldron+5",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Charging Sphere",
@@ -4060,27 +4420,32 @@
       {
         "name": "Charging Sphere+1",
         "tier": 2,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Charging Sphere+2",
         "tier": 3,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Charging Sphere+3",
         "tier": 4,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Charging Sphere+4",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Charging Sphere+5",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Crown",
@@ -4090,27 +4455,32 @@
       {
         "name": "Crown+1",
         "tier": 2,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Crown+2",
         "tier": 3,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Crown+3",
         "tier": 4,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Crown+4",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Crown+5",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Drum",
@@ -4120,27 +4490,32 @@
       {
         "name": "Drum+1",
         "tier": 2,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Drum+2",
         "tier": 3,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Drum+3",
         "tier": 4,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Drum+4",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Drum+5",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Dumbbell",
@@ -4150,27 +4525,32 @@
       {
         "name": "Dumbbell+1",
         "tier": 2,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Dumbbell+2",
         "tier": 3,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Dumbbell+3",
         "tier": 4,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Dumbbell+4",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Dumbbell+5",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Fin",
@@ -4180,27 +4560,32 @@
       {
         "name": "Fin+1",
         "tier": 2,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Fin+2",
         "tier": 3,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Fin+3",
         "tier": 4,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Fin+4",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Fin+5",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Flute",
@@ -4210,27 +4595,32 @@
       {
         "name": "Flute+1",
         "tier": 2,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Flute+2",
         "tier": 3,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Flute+3",
         "tier": 4,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Flute+4",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Flute+5",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Frozen Tear",
@@ -4240,27 +4630,32 @@
       {
         "name": "Frozen Tear+1",
         "tier": 2,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Frozen Tear+2",
         "tier": 3,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Frozen Tear+3",
         "tier": 4,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Frozen Tear+4",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Frozen Tear+5",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Gray Pearl",
@@ -4270,27 +4665,32 @@
       {
         "name": "Gray Pearl+1",
         "tier": 2,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Gray Pearl+2",
         "tier": 3,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Gray Pearl+3",
         "tier": 4,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Gray Pearl+4",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Gray Pearl+5",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Hourglass",
@@ -4300,27 +4700,32 @@
       {
         "name": "Hourglass+1",
         "tier": 2,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Hourglass+2",
         "tier": 3,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Hourglass+3",
         "tier": 4,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Hourglass+4",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Hourglass+5",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Infinity Flame",
@@ -4330,27 +4735,32 @@
       {
         "name": "Infinity Flame+1",
         "tier": 2,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Infinity Flame+2",
         "tier": 3,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Infinity Flame+3",
         "tier": 4,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Infinity Flame+4",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Infinity Flame+5",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Lightning Sphere",
@@ -4360,27 +4770,32 @@
       {
         "name": "Lightning Sphere+1",
         "tier": 2,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Lightning Sphere+2",
         "tier": 3,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Lightning Sphere+3",
         "tier": 4,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Lightning Sphere+4",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Lightning Sphere+5",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Lucky Clover",
@@ -4390,27 +4805,32 @@
       {
         "name": "Lucky Clover+1",
         "tier": 2,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Lucky Clover+2",
         "tier": 3,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Lucky Clover+3",
         "tier": 4,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Lucky Clover+4",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Lucky Clover+5",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Mage Flask",
@@ -4420,27 +4840,32 @@
       {
         "name": "Mage Flask+1",
         "tier": 2,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Mage Flask+2",
         "tier": 3,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Mage Flask+3",
         "tier": 4,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Mage Flask+4",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Mage Flask+5",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Medallion",
@@ -4450,27 +4875,32 @@
       {
         "name": "Medallion+1",
         "tier": 2,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Medallion+2",
         "tier": 3,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Medallion+3",
         "tier": 4,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Medallion+4",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Medallion+5",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Ocarina",
@@ -4480,27 +4910,32 @@
       {
         "name": "Ocarina+1",
         "tier": 2,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Ocarina+2",
         "tier": 3,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Ocarina+3",
         "tier": 4,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Ocarina+4",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Ocarina+5",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Omni Ring",
@@ -4510,27 +4945,32 @@
       {
         "name": "Omni Ring+1",
         "tier": 2,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Omni Ring+2",
         "tier": 3,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Omni Ring+3",
         "tier": 4,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Omni Ring+4",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Omni Ring+5",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Ornate Pipe",
@@ -4540,27 +4980,32 @@
       {
         "name": "Ornate Pipe+1",
         "tier": 2,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Ornate Pipe+2",
         "tier": 3,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Ornate Pipe+3",
         "tier": 4,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Ornate Pipe+4",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Ornate Pipe+5",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Pandora's Box",
@@ -4570,27 +5015,32 @@
       {
         "name": "Pandora's Box+1",
         "tier": 2,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Pandora's Box+2",
         "tier": 3,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Pandora's Box+3",
         "tier": 4,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Pandora's Box+4",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Pandora's Box+5",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Poisoned Dart",
@@ -4600,27 +5050,32 @@
       {
         "name": "Poisoned Dart+1",
         "tier": 2,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Poisoned Dart+2",
         "tier": 3,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Poisoned Dart+3",
         "tier": 4,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Poisoned Dart+4",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Poisoned Dart+5",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Shield Generator",
@@ -4630,27 +5085,32 @@
       {
         "name": "Shield Generator+1",
         "tier": 2,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Shield Generator+2",
         "tier": 3,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Shield Generator+3",
         "tier": 4,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Shield Generator+4",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Shield Generator+5",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Slime Skin",
@@ -4660,27 +5120,32 @@
       {
         "name": "Slime Skin+1",
         "tier": 2,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Slime Skin+2",
         "tier": 3,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Slime Skin+3",
         "tier": 4,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Slime Skin+4",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Slime Skin+5",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Spark",
@@ -4690,27 +5155,32 @@
       {
         "name": "Spark+1",
         "tier": 2,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Spark+2",
         "tier": 3,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Spark+3",
         "tier": 4,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Spark+4",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Spark+5",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Sun Pendant",
@@ -4720,27 +5190,32 @@
       {
         "name": "Sun Pendant+1",
         "tier": 2,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Sun Pendant+2",
         "tier": 3,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Sun Pendant+3",
         "tier": 4,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Sun Pendant+4",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Sun Pendant+5",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Tambourine",
@@ -4750,27 +5225,32 @@
       {
         "name": "Tambourine+1",
         "tier": 2,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Tambourine+2",
         "tier": 3,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Tambourine+3",
         "tier": 4,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Tambourine+4",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Tambourine+5",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Tarot Card",
@@ -4780,27 +5260,32 @@
       {
         "name": "Tarot Card+1",
         "tier": 2,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Tarot Card+2",
         "tier": 3,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Tarot Card+3",
         "tier": 4,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Tarot Card+4",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Tarot Card+5",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Thermal Reactor",
@@ -4810,27 +5295,32 @@
       {
         "name": "Thermal Reactor+1",
         "tier": 2,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Thermal Reactor+2",
         "tier": 3,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Thermal Reactor+3",
         "tier": 4,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Thermal Reactor+4",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Thermal Reactor+5",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Totem",
@@ -4840,27 +5330,32 @@
       {
         "name": "Totem+1",
         "tier": 2,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Totem+2",
         "tier": 3,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Totem+3",
         "tier": 4,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Totem+4",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Totem+5",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Warrior Flask",
@@ -4870,27 +5365,32 @@
       {
         "name": "Warrior Flask+1",
         "tier": 2,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Warrior Flask+2",
         "tier": 3,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Warrior Flask+3",
         "tier": 4,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Warrior Flask+4",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Warrior Flask+5",
         "tier": 5,
-        "unique": true
+        "unique": true,
+        "groups": ["Leveled"]
       },
       {
         "name": "Ancient Clock",
@@ -4905,7 +5405,8 @@
         "tier": 2,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -4913,7 +5414,8 @@
         "tier": 3,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -4921,7 +5423,8 @@
         "tier": 4,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -4929,7 +5432,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -4937,7 +5441,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -4953,7 +5458,8 @@
         "tier": 2,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -4961,7 +5467,8 @@
         "tier": 3,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -4969,7 +5476,8 @@
         "tier": 4,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -4977,7 +5485,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -4985,7 +5494,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5001,7 +5511,8 @@
         "tier": 2,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5009,7 +5520,8 @@
         "tier": 3,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5017,7 +5529,8 @@
         "tier": 4,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5025,7 +5538,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5033,7 +5547,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5049,7 +5564,8 @@
         "tier": 2,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5057,7 +5573,8 @@
         "tier": 3,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5065,7 +5582,8 @@
         "tier": 4,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5073,7 +5591,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5081,7 +5600,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5097,7 +5617,8 @@
         "tier": 2,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5105,7 +5626,8 @@
         "tier": 3,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5113,7 +5635,8 @@
         "tier": 4,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5121,7 +5644,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5129,7 +5653,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5145,7 +5670,8 @@
         "tier": 2,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5153,7 +5679,8 @@
         "tier": 3,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5161,7 +5688,8 @@
         "tier": 4,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5169,7 +5697,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5177,7 +5706,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5193,7 +5723,8 @@
         "tier": 2,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5201,7 +5732,8 @@
         "tier": 3,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5209,7 +5741,8 @@
         "tier": 4,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5217,7 +5750,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5225,7 +5759,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5241,7 +5776,8 @@
         "tier": 2,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5249,7 +5785,8 @@
         "tier": 3,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5257,7 +5794,8 @@
         "tier": 4,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5265,7 +5803,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5273,7 +5812,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5289,7 +5829,8 @@
         "tier": 2,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5297,7 +5838,8 @@
         "tier": 3,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5305,7 +5847,8 @@
         "tier": 4,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5313,7 +5856,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5321,7 +5865,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5337,7 +5882,8 @@
         "tier": 2,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5345,7 +5891,8 @@
         "tier": 3,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5353,7 +5900,8 @@
         "tier": 4,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5361,7 +5909,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5369,7 +5918,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5385,7 +5935,8 @@
         "tier": 2,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5393,7 +5944,8 @@
         "tier": 3,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5401,7 +5953,8 @@
         "tier": 4,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5409,7 +5962,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5417,7 +5971,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5433,7 +5988,8 @@
         "tier": 2,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5441,7 +5997,8 @@
         "tier": 3,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5449,7 +6006,8 @@
         "tier": 4,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5457,7 +6015,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5465,7 +6024,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5481,7 +6041,8 @@
         "tier": 2,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5489,7 +6050,8 @@
         "tier": 3,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5497,7 +6059,8 @@
         "tier": 4,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5505,7 +6068,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5513,7 +6077,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5529,7 +6094,8 @@
         "tier": 2,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5537,7 +6103,8 @@
         "tier": 3,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5545,7 +6112,8 @@
         "tier": 4,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5553,7 +6121,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5561,7 +6130,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5577,7 +6147,8 @@
         "tier": 2,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5585,7 +6156,8 @@
         "tier": 3,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5593,7 +6165,8 @@
         "tier": 4,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5601,7 +6174,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5609,7 +6183,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5625,7 +6200,8 @@
         "tier": 2,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5633,7 +6209,8 @@
         "tier": 3,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5641,7 +6218,8 @@
         "tier": 4,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5649,7 +6227,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5657,7 +6236,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5673,7 +6253,8 @@
         "tier": 2,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5681,7 +6262,8 @@
         "tier": 3,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5689,7 +6271,8 @@
         "tier": 4,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5697,7 +6280,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5705,7 +6289,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5721,7 +6306,8 @@
         "tier": 2,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5729,7 +6315,8 @@
         "tier": 3,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5737,7 +6324,8 @@
         "tier": 4,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5745,7 +6333,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5753,7 +6342,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5769,7 +6359,8 @@
         "tier": 2,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5777,7 +6368,8 @@
         "tier": 3,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5785,7 +6377,8 @@
         "tier": 4,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5793,7 +6386,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5801,7 +6395,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5817,7 +6412,8 @@
         "tier": 2,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5825,7 +6421,8 @@
         "tier": 3,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5833,7 +6430,8 @@
         "tier": 4,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5841,7 +6439,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5849,7 +6448,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5865,7 +6465,8 @@
         "tier": 2,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5873,7 +6474,8 @@
         "tier": 3,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5881,7 +6483,8 @@
         "tier": 4,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5889,7 +6492,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5897,7 +6501,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5913,7 +6518,8 @@
         "tier": 2,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5921,7 +6527,8 @@
         "tier": 3,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5929,7 +6536,8 @@
         "tier": 4,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5937,7 +6545,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5945,7 +6554,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5961,7 +6571,8 @@
         "tier": 2,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5969,7 +6580,8 @@
         "tier": 3,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5977,7 +6589,8 @@
         "tier": 4,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5985,7 +6598,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -5993,7 +6607,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -6009,7 +6624,8 @@
         "tier": 2,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -6017,7 +6633,8 @@
         "tier": 3,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -6025,7 +6642,8 @@
         "tier": 4,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -6033,7 +6651,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -6041,7 +6660,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -6057,7 +6677,8 @@
         "tier": 2,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -6065,7 +6686,8 @@
         "tier": 3,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -6073,7 +6695,8 @@
         "tier": 4,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -6081,7 +6704,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -6089,7 +6713,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -6105,7 +6730,8 @@
         "tier": 2,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -6113,7 +6739,8 @@
         "tier": 3,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -6121,7 +6748,8 @@
         "tier": 4,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -6129,7 +6757,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -6137,7 +6766,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -6153,7 +6783,8 @@
         "tier": 2,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -6161,7 +6792,8 @@
         "tier": 3,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -6169,7 +6801,8 @@
         "tier": 4,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -6177,7 +6810,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -6185,7 +6819,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -6201,7 +6836,8 @@
         "tier": 2,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -6209,7 +6845,8 @@
         "tier": 3,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -6217,7 +6854,8 @@
         "tier": 4,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -6225,7 +6863,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       },
       {
@@ -6233,7 +6872,8 @@
         "tier": 5,
         "unique": true,
         "groups": [
-          "Relic"
+          "Relic",
+          "Leveled"
         ]
       }
     ]

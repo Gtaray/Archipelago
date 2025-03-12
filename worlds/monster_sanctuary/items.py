@@ -215,6 +215,10 @@ def get_random_item_name(world: World,
 
 
 def roll_random_equipment_level(world: World, base_item: ItemData) -> str:
+    # If the options say to automatically level equipment, then we never modify the equipment here
+    if world.options.automatically_scale_equipment.value != "disabled":
+        return base_item.name
+
     """Randomly rolls to determine an equipment's level (+0, +1, +2, +3, +4, or +5)"""
     name_append = None
     roll = world.random.randint(1, 100)
