@@ -1,7 +1,7 @@
 import copy
 import threading
 import types
-from typing import List, Dict
+from typing import List, Dict, Optional
 
 from BaseClasses import MultiWorld, Tutorial, ItemClassification, Entrance, Item
 from Options import Range, Toggle
@@ -70,6 +70,8 @@ class MonsterSanctuaryWorld(World):
     location_names = [location.name for location in LOCATIONS.location_data.values()]
     encounters: Dict[str, EncounterData] = []
 
+    key_of_power_location_id: Optional[int] = None
+
     def __init__(self, world: MultiWorld, player: int):
         super().__init__(world, player)
 
@@ -135,6 +137,10 @@ class MonsterSanctuaryWorld(World):
             ]:
                 continue
 
+            if (location_data.name == "Key of Power - Defeat X Champions"
+                and self.options.key_of_power_champion_unlock == 0):
+                continue
+
             region = self.multiworld.get_region(location_data.region, self.player)
 
             access_condition = location_data.access_condition or None
@@ -146,6 +152,13 @@ class MonsterSanctuaryWorld(World):
                 location_data.location_id,
                 region,
                 access_condition)
+
+            # This is a bit redundant, but we want to change the location name, not the location_data name
+            # So we check again down here to update the name specifically.
+            if location.name == "Key of Power - Defeat X Champions":
+                location.name = f"Key of Power - Defeat {self.options.key_of_power_champion_unlock} Champions"
+                location.place_locked_item(self.create_item(location_data.default_item))
+                self.key_of_power_location_id = location.address
 
             if location_data.category == MonsterSanctuaryLocationCategory.RANK:
                 # Champion Defeated items are not shown in the spoiler log
@@ -188,6 +201,13 @@ class MonsterSanctuaryWorld(World):
             handle_egg_option(self.options.skorch_egg_placement)
         elif location_data.name == "Forgotten World - Wanderer Room":
             handle_egg_option(self.options.bard_egg_placement)
+        elif location_data.name in [
+            "Eternity's End - Spectral Wolf",
+            "Eternity's End - Spectral Eagle",
+            "Eternity's End - Spectral Toad",
+            "Eternity's End - Spectral Lion",
+        ]:
+            handle_egg_option(self.options.spectral_familiar_egg_placement)
         elif location_data.name == "Horizon Beach - Old Man by the Sea":
             handle_check_option(self.options.old_man_check_restrictions)
         elif location_data.name == "Horizon Beach - Fisherman":
@@ -295,6 +315,12 @@ class MonsterSanctuaryWorld(World):
         if self.options.bard_egg_placement != "vanilla":
             eggs.append(resolve_egg_item("Bard"))
 
+        if self.options.spectral_familiar_egg_placement != "vanilla":
+            eggs.append(resolve_egg_item("Spectral Wolf"))
+            eggs.append(resolve_egg_item("Spectral Eagle"))
+            eggs.append(resolve_egg_item("Spectral Toad"))
+            eggs.append(resolve_egg_item("Spectral Lion"))
+
         # These monsters are never encountered in the wild naturally, so if we're shuffling monsters
         # we need to make sure that they're available in the item pools so all locations are reachable
         if self.options.randomize_monsters == "by_specie":
@@ -375,6 +401,10 @@ class MonsterSanctuaryWorld(World):
         key_items = [item_name for item_name in ITEMS.item_data
                      if ITEMS.item_data[item_name].category == MonsterSanctuaryItemCategory.KEYITEM
                      and not ITEMS.is_item_in_group(item_name, "Area Key")]
+
+        # If the key of power is supposed to be given when defeating champions, then it doesn't go in the pool
+        if self.options.key_of_power_champion_unlock.value != 0:
+            key_items.remove("Key of Power")
 
         # If blob burg is unlocked via options, then remove the blob key from the item pool
         if self.options.open_blob_burg == "entrances" or self.options.open_blob_burg == "full":
@@ -492,6 +522,7 @@ class MonsterSanctuaryWorld(World):
                 "add_smoke_bombs": self.options.add_smoke_bombs.value,
                 "include_chaos_relics": self.options.include_chaos_relics.value,
                 "automatically_scale_equipment": self.options.automatically_scale_equipment.value,
+                "key_of_power_champion_unlock": self.options.key_of_power_champion_unlock.value,
                 
                 "monsters_always_drop_egg": self.options.monsters_always_drop_egg.value,
                 "monsters_always_drop_catalyst": self.options.monsters_always_drop_catalyst.value,
@@ -519,7 +550,8 @@ class MonsterSanctuaryWorld(World):
             }
         }
 
-        # Rando options
+        if self.key_of_power_location_id is not None:
+            slot_data["key_of_power_champion_unlock"] = self.key_of_power_location_id
 
         # Monster randos
         tanuki_location = self.multiworld.get_location("Menu_0_0", self.player)

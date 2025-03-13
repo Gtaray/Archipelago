@@ -136,6 +136,14 @@ def always_drop_catalyst(state: CollectionState, player: int) -> bool:
     return get_options(state, player).monsters_always_drop_catalyst
 
 
+def defeated_enough_champions_for_key_of_power(state: CollectionState, player: int) -> bool:
+    champions_to_defeat: int = get_options(state, player).key_of_power_champion_unlock.value
+    # If the option is set to 0, then we should never be giving out the key of power
+    if champions_to_defeat == 0:
+        return False
+    return state.has("Champion Defeated", player, champions_to_defeat)
+
+
 def get_options(state: CollectionState, player: int):
     return state.multiworld.worlds[player].options
 # endregion

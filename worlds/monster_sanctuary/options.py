@@ -132,6 +132,19 @@ class BardEggPlacementRestriction(Choice):
     default = 1
 
 
+class SpectralFamiliarEggPlacementRestriction(Choice):
+    """Sets what kind of items can be placed at the four spectral familiar battle checks in Eternity's End.
+
+        Vanilla: The check is unchnaged from the base game (gives Spectral Familiar eggs)
+        Randomized: The check is randomized with the rest of the item pool.
+        Filler: The check is guaranteed to be a junk item."""
+    display_name = "Spectral Familiar Egg (Eternity's End) Checks"
+    option_vanilla = 0
+    option_randomized = 1
+    option_filler = 2
+    default = 1
+
+
 class OldManPlacementRestriction(Choice):
     """Sets what kind of items can be placed at the Old Man check in Horizon Beach.
 
@@ -476,6 +489,14 @@ class AutomaticallyScaleEquipment(Choice):
     option_by_rank = 2
     option_by_map_progress = 3
     default = 0
+
+
+class GiveKeyOfPowerWhenChampionsAreDefeated(Range):
+    """When this is set to a value greater than 0, the Key of Power will be automatically given to the player when they defeat the set number of champions. This is disabled when set to 0"""
+    display_name = "Give Key of Power When Champions Are Defeated"
+    range_start = 0
+    range_end = 27
+    default = 0
 #endregion
 
 
@@ -511,6 +532,7 @@ class MonsterSanctuaryOptions(PerGameCommonOptions):
     koi_egg_placement: KoiEggPlacementRestriction
     bard_egg_placement: BardEggPlacementRestriction
     skorch_egg_placement: SkorchEggPlacementRestriction
+    spectral_familiar_egg_placement: SpectralFamiliarEggPlacementRestriction
     old_man_check_restrictions: OldManPlacementRestriction
     fisherman_check_restrictions: FishermanPlacementRestriction
     wanderers_gift_check_restrictions: WandererGiftPlacementRestriction
@@ -522,6 +544,7 @@ class MonsterSanctuaryOptions(PerGameCommonOptions):
     add_smoke_bombs: StartWithSmokeBombs
     starting_gold: StartingGold
     automatically_scale_equipment: AutomaticallyScaleEquipment
+    key_of_power_champion_unlock: GiveKeyOfPowerWhenChampionsAreDefeated
 
     drop_chance_craftingmaterial: CraftingMaterialDropChance
     drop_chance_consumable: ConsumableDropChance
