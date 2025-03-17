@@ -388,6 +388,7 @@ class MonsterSanctuaryWorld(World):
 
         self.handle_relics(pool, item_exclusions)
         self.handle_key_items(pool)
+        self.handle_explore_ability_items(pool)
         self.handle_area_keys(pool)
 
         while len(pool) < self.number_of_item_locations:
@@ -430,6 +431,12 @@ class MonsterSanctuaryWorld(World):
         for key_item in key_items:
             for i in range(ITEMS.item_data[key_item].count):
                 pool.append(self.create_item(key_item))
+
+    def handle_explore_ability_items(self, pool: List[MonsterSanctuaryItem]):
+        explore_items = ITEMS.get_explore_ability_items(self.options.lock_explore_abilities.value)
+
+        for item in explore_items:
+            pool.append(self.create_item(item.name))
 
     def handle_area_keys(self, pool: List[MonsterSanctuaryItem]) -> None:
         # If all locked doors are being removed, then we don't need to consider adding keys
@@ -512,7 +519,7 @@ class MonsterSanctuaryWorld(World):
             HINTS.generate_hints(self)
 
         slot_data = {
-            "version": "1.2.2.0",
+            "version": "1.3.0.0",
             "options": {
                 "goal": self.options.goal.value,
 
@@ -528,6 +535,7 @@ class MonsterSanctuaryWorld(World):
                 "randomize_monster_skill_trees": self.options.randomize_monster_skill_trees.value,
                 "randomize_monster_ultimates": self.options.randomize_monster_ultimates.value,
                 "randomize_monster_shift_skills": self.options.randomize_monster_shift_skills.value,
+                "lock_explore_abilities": self.options.lock_explore_abilities.value,
 
                 "skip_plot": self.options.skip_plot.value,
                 "remove_locked_doors": self.options.remove_locked_doors.value,

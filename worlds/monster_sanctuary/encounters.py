@@ -1,7 +1,7 @@
 import copy
 from enum import IntEnum
 from random import Random
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Tuple
 
 from .rules import AccessCondition
 from BaseClasses import MultiWorld
@@ -25,6 +25,11 @@ class MonsterData:
     stage: Optional[GameStage] = None
     pre_evolutions: List[EvolutionData]
     evolutions: List[EvolutionData]
+    species_explore_item: str
+    ability_explore_item: str
+    type_explore_item: str
+    progressive_explore_item: Tuple[str, int]
+    combo_explore_item: Dict[str, int]
 
     def __init__(self, id: int, name: str, groups: List[str]):
         # This needs to exist alongside normal item ids, because monsters will ultimately be classified as items
@@ -34,6 +39,7 @@ class MonsterData:
         self.groups = groups
         self.pre_evolutions = []
         self.evolutions = []
+        self.combo_explore_item = {}
 
     def __str__(self):
         return self.name

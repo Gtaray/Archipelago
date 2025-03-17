@@ -76,6 +76,26 @@ class RandomizeMonsterShiftSkills(Toggle):
     """If enabled, randomizes the light and dark shift traits for all monsters"""
     display_name = "Randomize Monster Shift Skills"
     default = False
+
+
+class ExploreAbilitiesMustBeUnlocked(Choice):
+    """If enabled, explore abilities cannot be used until a corresponding item has been collected.
+    The items required to use explore abilities depends on the selected option:
+
+    Off: Explore Abilities are always available.
+    Type: Monsters are grouped into 16 different categories based on monster type. There are 16 unique items to unlock abilities for all monsters of a given type
+    Ability: Each explore ability must be unlocked separately. For example, unlocking Flying will allow that ability to be used on any monster with the Flying ability
+    Species: Each monster species will require a unique item to unlock its explore ability (excepting evolutions where the ability doesn't change)
+    Progression: Monster abilities are grouped by function and unlocked progressively. This helps to keep more advanced abilities from being made available early in the game
+    Combo: Similar to Progression, except there are a smaller number of progressive groups, and more advanced abilities require combinations of different progression chains"""
+    display_name = "Explore Abilities Must be Unlocked"
+    option_off = 0
+    option_type = 1
+    option_ability = 2
+    option_species = 3
+    option_progression = 4
+    option_combo = 5
+    default = 0
 # endregion
 
 
@@ -482,7 +502,12 @@ class StartingGold(Range):
 
 
 class AutomaticallyScaleEquipment(Choice):
-    """If enabled, equipment that is sent to the player will be automatically leveled according to the player's progress in the game"""
+    """If enabled, equipment that is sent to the player will be automatically leveled according to the player's progress in the game
+
+    Disabled: Weapon and accessory levels are randomized when the item pool is generated
+    By Level: Weapons and accessories are scaled with the highest monster level the player has
+    By Rank: Weapons and accessories are scaled with the number of champions the player has defeated
+    By Map Progress: Weapons and accessories are scaled with the percentage of the map the player has uncovered"""
     display_name = "Automatically Scale Equipment Level"
     option_disabled = 0
     option_by_level = 1
@@ -527,6 +552,7 @@ class MonsterSanctuaryOptions(PerGameCommonOptions):
     randomize_monster_skill_trees: RandomizeMonsterSkillTrees
     randomize_monster_ultimates: RandomizeMonsterUltimates
     randomize_monster_shift_skills: RandomizeMonsterShiftSkills
+    lock_explore_abilities: ExploreAbilitiesMustBeUnlocked
 
     cryomancer_check_restrictions: CryomancerPlacementRestriction
     koi_egg_placement: KoiEggPlacementRestriction

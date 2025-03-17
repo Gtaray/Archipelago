@@ -426,9 +426,9 @@ def stronghold_dungeon_library_access(state: CollectionState, player: int) -> bo
 def shifting_avialable(state: CollectionState, player: int) -> bool:
     # Either shifting is allowed any time, or we have raised the center 3 times
     return (state.multiworld.worlds[player].options.monster_shift_rule == "any_time" or (
-                state.multiworld.worlds[player].options.monster_shift_rule == "after_sun_palace" and
-                state.has("Sun Palace Raise Center", player, 3)
-            ))
+            state.multiworld.worlds[player].options.monster_shift_rule == "after_sun_palace" and
+            state.has("Sun Palace Story Complete", player, 1)
+    ))
 
 
 def goblin_king_defeated(state: CollectionState, player: int) -> bool:
@@ -779,26 +779,24 @@ def can_use_ability(monster_name: str, state: CollectionState, player: int):
 
 
 def is_explore_ability_available(monster_name: str, state: CollectionState, player: int) -> bool:
-    # Commented out until locked explore abilities is back in
-    # opt = state.multiworld.worlds[player].options.lock_explore_abilities
-    # if opt == "off":
-    #     return True
-    #
-    # from worlds.monster_sanctuary.encounters import get_monster
-    # monster = get_monster(monster_name)
-    #
-    # if opt == "type":
-    #     return state.has(monster.explore_type_item, player)
-    # if opt == "ability":
-    #     return state.has(monster.explore_ability_item, player)
-    # if opt == "species":
-    #     return state.has(monster.explore_species_item, player)
-    # if opt == "progression":
-    #     return state.has(monster.explore_progression_item.item, player, monster.explore_progression_item.quantity)
-    # if opt == "combo":
-    #     return all([state.has(combo.item, player, combo.quantity) for combo in monster.explore_combo_item])
-    # return False
-    return True
+    opt = state.multiworld.worlds[player].options.lock_explore_abilities
+    if opt == "off":
+        return True
+
+    from worlds.monster_sanctuary.encounters import get_monster
+    monster = get_monster(monster_name)
+
+    if opt == "type":
+        return state.has(monster.type_explore_item, player)
+    if opt == "ability":
+        return state.has(monster.ability_explore_item, player)
+    if opt == "species":
+        return state.has(monster.species_explore_item, player)
+    if opt == "progression":
+        return state.has(monster.progressive_explore_item[0], player, monster.progressive_explore_item[1])
+    if opt == "combo":
+        return all([state.has(item_name, player, item_quant) for item_name, item_quant in monster.combo_explore_item.items()])
+    return False
 
 
 def claws(state: CollectionState, player: int) -> bool:
