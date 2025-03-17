@@ -495,7 +495,7 @@ class GiveKeyOfPowerWhenChampionsAreDefeated(Range):
     """When this is set to a value greater than 0, the Key of Power will be automatically given to the player when they defeat the set number of champions. This is disabled when set to 0"""
     display_name = "Give Key of Power When Champions Are Defeated"
     range_start = 0
-    range_end = 27
+    range_end = 26
     default = 0
 #endregion
 

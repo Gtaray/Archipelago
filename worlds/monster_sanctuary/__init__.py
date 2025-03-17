@@ -403,7 +403,8 @@ class MonsterSanctuaryWorld(World):
                      and not ITEMS.is_item_in_group(item_name, "Area Key")]
 
         # If the key of power is supposed to be given when defeating champions, then it doesn't go in the pool
-        if self.options.key_of_power_champion_unlock.value != 0:
+        if (self.options.key_of_power_champion_unlock.value != 0 or
+            (self.options.open_abandoned_tower == "entrances" or self.options.open_abandoned_tower == "full")):
             key_items.remove("Key of Power")
 
         # If blob burg is unlocked via options, then remove the blob key from the item pool
@@ -413,9 +414,6 @@ class MonsterSanctuaryWorld(World):
         # If magma chamber has its lava lowered via options, remove runestone shard from the item pool
         if self.options.open_magma_chamber == "lower_lava" or self.options.open_magma_chamber == "full":
             key_items.remove("Runestone Shard")
-
-        if self.options.open_abandoned_tower == "entrances" or self.options.open_abandoned_tower == "full":
-            key_items.remove("Key of Power")
 
         # If the underworld entrance is opened up, don't add sanctuary tokens to the item pool
         if self.options.open_underworld == "entrances" or self.options.open_underworld == "full":
