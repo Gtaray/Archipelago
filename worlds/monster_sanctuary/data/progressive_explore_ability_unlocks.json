@@ -8,7 +8,7 @@
   },
   {
     "ability": "Improved Flying",
-    "progression": { "name": "Progressive Mobility", "quantity": 2 },
+    "progression": { "name": "Progressive Mobility", "quantity": 3 },
     "combo": [
       { "name": "Combo Flight", "quantity": 2 }
     ]
@@ -98,14 +98,6 @@
     "progression": { "name": "Progressive Walls", "quantity": 2 },
     "combo": [
       { "name": "Combo Walls", "quantity": 2 }
-    ]
-  },
-  {
-    "ability": "Light Claws",
-    "progression": { "name": "Progressive Walls", "quantity": 2 },
-    "combo": [
-      { "name": "Combo Walls", "quantity": 2 },
-      { "name": "Combo Light", "quantity": 1 }
     ]
   },
   {

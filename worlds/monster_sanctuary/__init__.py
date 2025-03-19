@@ -519,7 +519,7 @@ class MonsterSanctuaryWorld(World):
             HINTS.generate_hints(self)
 
         slot_data = {
-            "version": "1.3.0.0",
+            "version": "2.0.0.0",
             "options": {
                 "goal": self.options.goal.value,
 
