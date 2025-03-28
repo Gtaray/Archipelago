@@ -16644,7 +16644,11 @@
         "item": "Torch",
         "name": "Forgotten World - South Caves - Dual Mobility Chest",
         "requirements": [
-          "dual_mobility"
+          "AND",
+          [
+            "dual_mobility",
+            "double_jump"
+          ]
         ]
       }
     ]

@@ -47,3 +47,8 @@ class MonsterSanctuaryTestBase(WorldTestBase):
         self.assertIsNotNone(loc.item)
         self.assertEqual(classification, loc.item.classification)
 
+    def assert_item_at_location_is_not_classification(self, location_name: str, classification: ItemClassification):
+        loc = self.multiworld.get_location(location_name, 1)
+        self.assertIsNotNone(loc.item)
+        self.assertNotEqual(classification, loc.item.classification)
+

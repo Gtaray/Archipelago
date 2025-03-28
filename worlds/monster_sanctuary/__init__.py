@@ -171,23 +171,16 @@ class MonsterSanctuaryWorld(World):
 
                 # If not item was locked on this location, we tick up the number of locations needing items
                 if location.item is None:
+                    location.item_rule = lambda item, world=self, loc=location.name: ITEMS.can_item_be_placed(
+                        world, item, loc)
                     self.number_of_item_locations += 1
 
             region.locations.append(location)
 
-    def handle_location_placement_options(self, location: MonsterSanctuaryLocation, location_data: LocationData) -> bool:
-        def only_allow_filler(item: Item):
-            return item.classification == ItemClassification.filler
-
-        def handle_check_option(option) -> bool:
-            if option == "filler":
-                location.item_rule = lambda item: only_allow_filler(item)
-
+    def handle_location_placement_options(self, location: MonsterSanctuaryLocation, location_data: LocationData):
         def handle_egg_option(option) -> bool:
             if option == "vanilla":
                 location.place_locked_item(self.create_item(location_data.default_item))
-            elif option == "filler":
-                location.item_rule = lambda item: item.classification == ItemClassification.filler
 
         if location_data.name in [
             "Snowy Peaks - Cryomancer - Egg Reward 1",
@@ -208,15 +201,6 @@ class MonsterSanctuaryWorld(World):
             "Eternity's End - Spectral Lion",
         ]:
             handle_egg_option(self.options.spectral_familiar_egg_placement)
-        elif location_data.name == "Horizon Beach - Old Man by the Sea":
-            handle_check_option(self.options.old_man_check_restrictions)
-        elif location_data.name == "Horizon Beach - Fisherman":
-            handle_check_option(self.options.fisherman_check_restrictions)
-        elif location_data.name == "Forgotten World - Crystal Room - Defeat Dracomer Reward":
-            handle_check_option(self.options.wanderers_gift_check_restrictions)
-        else:
-            # For every other room, we give it the default rule
-            location.item_rule = lambda item, world=self, loc=location: ITEMS.can_item_be_placed(world, item, loc)
 
     def connect_regions(self) -> None:
         """Connects all regions according to their access conditions"""
@@ -500,6 +484,29 @@ class MonsterSanctuaryWorld(World):
         if self.options.local_area_keys:
             self.options.local_items.value |= self.item_name_groups["Area Key"]
 
+        def only_allow_filler_at_location(loc_name: str):
+            location = self.get_location(loc_name)
+            if location is not None:
+                location.item_rule = lambda item: item.classification == ItemClassification.filler
+
+        if self.options.cryomancer_check_restrictions == "filler":
+            only_allow_filler_at_location("Snowy Peaks - Cryomancer - Egg Reward 1")
+            only_allow_filler_at_location("Snowy Peaks - Cryomancer - Egg Reward 2")
+
+            if self.options.monster_shift_rule != "never":
+                only_allow_filler_at_location("Snowy Peaks - Cryomancer - Light Egg Reward")
+                only_allow_filler_at_location("Snowy Peaks - Cryomancer - Dark Egg Reward")
+
+        if self.options.old_man_check_restrictions == "filler":
+            only_allow_filler_at_location("Horizon Beach - Old Man by the Sea")
+
+        if self.options.fisherman_check_restrictions == "filler":
+            only_allow_filler_at_location("Horizon Beach - Fisherman")
+
+        if self.options.wanderers_gift_check_restrictions == "filler":
+            only_allow_filler_at_location("Forgotten World - Crystal Room - Defeat Dracomer Reward")
+
+
     # called after the previous steps. Some placement and player specific randomizations can be done here.
     def generate_basic(self) -> None:
         self.set_victory_condition()
@@ -519,7 +526,7 @@ class MonsterSanctuaryWorld(World):
             HINTS.generate_hints(self)
 
         slot_data = {
-            "version": "2.0.0.0",
+            "version": "1.3.0.0",
             "options": {
                 "goal": self.options.goal.value,
 
@@ -538,6 +545,7 @@ class MonsterSanctuaryWorld(World):
                 "lock_explore_abilities": self.options.lock_explore_abilities.value,
 
                 "skip_plot": self.options.skip_plot.value,
+                "skip_keeper_battles": self.options.skip_keeper_battles.value,
                 "remove_locked_doors": self.options.remove_locked_doors.value,
                 "open_blue_caves": self.options.open_blue_caves.value,
                 "open_stronghold_dungeon": self.options.open_stronghold_dungeon.value,

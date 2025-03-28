@@ -124,7 +124,7 @@ def minimal_locked_doors(state: CollectionState, player: int) -> bool:
 
 
 def skip_plot(state: CollectionState, player: int) -> bool:
-    return state.multiworld.worlds[player].options.skip_plot;
+    return state.multiworld.worlds[player].options.skip_plot
 
 
 def open_underworld_entrances(state: CollectionState, player: int) -> bool:
@@ -1088,7 +1088,7 @@ def has_monster_or_evolutions(monster: str, state: CollectionState, player: int)
 
 
 def has_or_can_evolve_to_monster(monster: str, state: CollectionState, player: int) -> bool:
-    return has_monster_or_egg(monster, state, player) or can_evolve_to(monster, state, player)
+    return has_monster_egg(monster, state, player) or can_evolve_to(monster, state, player)
 
 
 def can_evolve_monster(base_form: str, evolved_form: str, catalyst: str, state: CollectionState, player: int) -> bool:

@@ -117,26 +117,31 @@ def can_item_be_placed(world: World, item: Item, location: str) -> bool:
         return True
 
     data = get_item_by_name(item.name)
+    area_name = location.split(' - ')[0]
 
     # If the item is an egg with an improved movement ability
     # And the settings are to limit placement of those abilities
     # Then we make sure the item can't be placed in the first half of the game
     if is_item_in_group(item.name, "Improved Flying", "Lofty Mount", "Improved Swimming", "Dual Mobility")\
             and world.options.improved_mobility_limit:
-        area = location.name.split(' - ')[0]
-        return area not in ["Menu", "Mountain Path", "Blue Cave", "Keepers Stronghold", "Keepers Tower",
+        return area_name not in ["Menu", "Mountain Path", "Blue Cave", "Keepers Stronghold", "Keepers Tower",
                             "Stronghold Dungeon", "Snowy Peaks", "Sun Palace", "Ancient Woods"]
 
     # If this item is an area key and keys must be local, then we check to see if
     # the item name starts with the area name (ignoring spaces)
     if is_item_in_group(item.name, "Area Key") and world.options.local_area_keys:
-        area = location.name.split(' ')[0]
-        return item.name.startswith(area)
+        return item.name.startswith(area_name)
+
+    if area_name == "Underworld" and world.options.no_progression_in_underworld:
+        return item.classification != ItemClassification.progression
+
+    if area_name == "Forgotten World" and world.options.no_progression_in_forgotten_world:
+        return item.classification != ItemClassification.progression
 
     # Go through every illegal location for this item and if the location name starts
     # with an illegal location, then return false
     for illegal_location in data.illegal_locations:
-        if location.name.startswith(illegal_location):
+        if location.startswith(illegal_location):
             return False
 
     return True
@@ -193,10 +198,6 @@ def get_item_tier(item_name: str) -> Optional[int]:
         return None
 
     return item.tier
-
-
-def is_item_tier(item: str, tier: int) -> bool:
-    return get_item_tier(item) == tier
 
 
 def build_item_probability_table(probabilities: Dict[MonsterSanctuaryItemCategory, int]) -> None:

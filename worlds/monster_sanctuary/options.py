@@ -165,6 +165,18 @@ class SpectralFamiliarEggPlacementRestriction(Choice):
     default = 1
 
 
+class NoProgressionInUnderworld(Toggle):
+    """If enabled, no progression items will be placed in the Underworld"""
+    display_name = "No Progression in Underworld"
+    default = False
+
+
+class NoProgressionInForgottenWorld(Toggle):
+    """If enabled, no progression items will be placed in the Underworld"""
+    display_name = "No Progression in the Forgotten World"
+    default = False
+
+
 class OldManPlacementRestriction(Choice):
     """Sets what kind of items can be placed at the Old Man check in Horizon Beach.
 
@@ -289,6 +301,12 @@ class GoldDropChance(Range):
 class SkipPlot(Toggle):
     """Skip plot related events and open up all areas gated by story progression."""
     display_name = "Skip Plot Requirements"
+    default = False
+
+
+class SkipBattles(Toggle):
+    """Skip all keeper battles."""
+    display_name = "Skip Keeper Battles"
     default = False
 
 
@@ -559,6 +577,8 @@ class MonsterSanctuaryOptions(PerGameCommonOptions):
     bard_egg_placement: BardEggPlacementRestriction
     skorch_egg_placement: SkorchEggPlacementRestriction
     spectral_familiar_egg_placement: SpectralFamiliarEggPlacementRestriction
+    no_progression_in_underworld: NoProgressionInUnderworld
+    no_progression_in_forgotten_world: NoProgressionInForgottenWorld
     old_man_check_restrictions: OldManPlacementRestriction
     fisherman_check_restrictions: FishermanPlacementRestriction
     wanderers_gift_check_restrictions: WandererGiftPlacementRestriction
@@ -581,6 +601,7 @@ class MonsterSanctuaryOptions(PerGameCommonOptions):
     drop_chance_currency: GoldDropChance
 
     skip_plot: SkipPlot
+    skip_keeper_battles: SkipBattles
     remove_locked_doors: RemoveLockedDoors
     local_area_keys: LocalAreaKeys
     open_blue_caves: OpenBlueCaves

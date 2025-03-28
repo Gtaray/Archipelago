@@ -1,9 +1,7 @@
 from typing import Dict
 
-from BaseClasses import CollectionState
 from worlds.monster_sanctuary import encounters as ENCOUNTERS
 from worlds.monster_sanctuary import items as ITEMS
-from worlds.monster_sanctuary.rules import can_use_ability
 from worlds.monster_sanctuary.tests.Monsters.Test_MonsterRandomizerBase import TestMonsterRandomizerBase
 
 
@@ -54,60 +52,6 @@ class TestMonsterExploreItemValidity(TestMonsterRandomizerBase):
 
 class ExploreAbilityTests(TestMonsterRandomizerBase):
     run_default_tests = False
-
-    def assert_ability_is_usable(self, monster_name: str):
-        with self.subTest(f"{monster_name}'s ability is usable"):
-            state = CollectionState(self.multiworld)
-            self.assertFalse(can_use_ability(monster_name, state, self.player))
-
-            state.collect(self.multiworld.worlds[1].create_item(monster_name))
-            self.assertTrue(can_use_ability(monster_name, state, self.player))
-
-    def assert_explore_item_is_required(self, monster_name: str, explore_item: str):
-        with self.subTest(f"{monster_name} requires {explore_item} to use ability"):
-            # Instantiate a new collection state so each run can have its own
-            state = CollectionState(self.multiworld)
-            self.assertFalse(can_use_ability(monster_name, state, self.player))
-
-            state.collect(self.multiworld.worlds[1].create_item(monster_name))
-            self.assertFalse(can_use_ability(monster_name, state, self.player))
-
-            if self.multiworld.worlds[1].options.lock_explore_abilities != 0:
-                state.collect(self.multiworld.worlds[1].create_item(explore_item))
-                self.assertTrue(can_use_ability(monster_name, state, self.player))
-
-    def assert_explore_progression_is_required(self, monster_name: str, explore_item: str, quantity: int):
-        with self.subTest(f"{monster_name} requires {quantity} {explore_item} to use ability"):
-            # Instantiate a new collection state so each run can have its own
-            state = CollectionState(self.multiworld)
-            state.collect(self.multiworld.worlds[1].create_item(monster_name))
-            self.assertFalse(can_use_ability(monster_name, state, self.player))
-
-            # +1 here because we want to loop from 0 to the quantity, including that value
-            # as when i == quantity, we should be asserting that the monster can use its ability
-            for i in range(quantity + 1):
-                can_use = can_use_ability(monster_name, state, self.player)
-                should_be_able_to_use = i == quantity
-                self.assertEqual(can_use, should_be_able_to_use)
-                state.collect(self.multiworld.worlds[1].create_item(explore_item))
-
-    def assert_explore_combo_is_required(self, monster_name: str, combo_items: Dict[str, int]):
-        text = " and ".join([f"{quant} {name}" for name, quant in combo_items.items()])
-        with self.subTest(f"{monster_name} requires {text} to use ability"):
-            state = CollectionState(self.multiworld)
-            state.collect(self.multiworld.worlds[1].create_item(monster_name))
-            self.assertFalse(can_use_ability(monster_name, state, self.player))
-
-            requirements = []
-            for name, quant in combo_items.items():
-                for i in range(quant):
-                    requirements.append(name)
-
-            for i in range(len(requirements)):
-                can_use = can_use_ability(monster_name, state, self.player)
-                should_be_able_to_use = i == len(requirements)
-                self.assertEqual(can_use, should_be_able_to_use)
-                state.collect(self.multiworld.worlds[1].create_item(requirements[i]))
 
     def test_explore_items_are_in_item_pool(self):
         if self.options.get("lock_explore_abilities") is None:
