@@ -7074,6 +7074,12 @@
         "item": "Sanctuary Token",
         "name": "Sun Palace - Caretaker 3"
       }
+    ],
+    "flags": [
+      {
+        "id": "sun_palace_story_completed",
+        "name": "Sun Palace Story Complete"
+      }
     ]
   },
   {
@@ -16638,7 +16644,11 @@
         "item": "Torch",
         "name": "Forgotten World - South Caves - Dual Mobility Chest",
         "requirements": [
-          "dual_mobility"
+          "AND",
+          [
+            "dual_mobility",
+            "double_jump"
+          ]
         ]
       }
     ]

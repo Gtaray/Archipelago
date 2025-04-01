@@ -14,7 +14,7 @@ class AreaKeyPlacementTest(MonsterSanctuaryTestBase):
             item = world.create_item(item_name)
             location = self.multiworld.get_location(location_data.name, 1)
 
-            self.assertTrue(ITEMS.can_item_be_placed(world, item, location))
+            self.assertTrue(ITEMS.can_item_be_placed(world, item, location.name))
 
     def assert_item_can_not_be_placed(self, item_name, location_name):
         location_data = LOCATIONS.location_data[location_name]
@@ -23,7 +23,7 @@ class AreaKeyPlacementTest(MonsterSanctuaryTestBase):
             item = world.create_item(item_name)
             location = self.multiworld.get_location(location_data.name, 1)
 
-            self.assertFalse(ITEMS.can_item_be_placed(world, item, location))
+            self.assertFalse(ITEMS.can_item_be_placed(world, item, location.name))
 
 area_keys = [
     "Mountain Path key",

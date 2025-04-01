@@ -18,7 +18,8 @@ class MonsterSanctuaryItemCategory(IntEnum):
     CURRENCY = 7
     EGG = 8
     COSTUME = 9
-    RANK = 10
+    RANK = 10,
+    ABILITY = 11,
 
 
 class ItemData:
@@ -65,6 +66,50 @@ class MonsterSanctuaryItem(Item):
 item_data: Dict[str, ItemData] = {}
 item_drop_probabilities: List[MonsterSanctuaryItemCategory] = []
 
+# Explore item lists for easy referencing
+explore_ability_types = [
+    "Spectral Flame",
+    "Slime Snack",
+    "Insect Pheromones",
+    "Monster Treat",
+    "Repair Kit",
+    "Ancient Encyclopedia",
+    "Training Dummy",
+    "Spellbook",
+    "Goblin Charm",
+    "Fishing Lure",
+    "Dragon Orb",
+    "Power Suit",
+    "Spirit Charm",
+    "Green Thumb",
+    "Bird Seed"
+]
+explore_ability_progression = [
+    ("Progressive Mobility", 5),
+    ("Progressive Terrain", 3),
+    ("Progressive Mount", 3),
+    ("Progressive Walls", 3),
+    ("Progressive Boulders", 3),
+    ("Progressive Fire Orbs", 2),
+    ("Progressive Water Orbs", 2),
+    ("Progressive Lightning Orbs", 2),
+    ("Progressive Earth Orbs", 3),
+    ("Progressive Ice Orbs", 2),
+    ("Progressive Light", 2),
+    ("Progressive Shroud", 2),
+]
+explore_ability_combo = [
+    ("Combo Flight", 2),
+    ("Combo Swimming", 2),
+    ("Combo Walls", 3),
+    ("Combo Boulders", 2),
+    ("Combo Mount", 1),
+    ("Combo Light", 1),
+    ("Combo Orbs", 3),
+    ("Combo Shroud", 2),
+    ("Combo Magic", 2),
+]
+
 
 def can_item_be_placed(world: World, item: Item, location: str) -> bool:
     # For any item that's not a monster sanctuary item, it can go here
@@ -72,26 +117,31 @@ def can_item_be_placed(world: World, item: Item, location: str) -> bool:
         return True
 
     data = get_item_by_name(item.name)
+    area_name = location.split(' - ')[0]
 
     # If the item is an egg with an improved movement ability
     # And the settings are to limit placement of those abilities
     # Then we make sure the item can't be placed in the first half of the game
     if is_item_in_group(item.name, "Improved Flying", "Lofty Mount", "Improved Swimming", "Dual Mobility")\
             and world.options.improved_mobility_limit:
-        area = location.name.split(' - ')[0]
-        return area not in ["Menu", "Mountain Path", "Blue Cave", "Keepers Stronghold", "Keepers Tower",
+        return area_name not in ["Menu", "Mountain Path", "Blue Cave", "Keepers Stronghold", "Keepers Tower",
                             "Stronghold Dungeon", "Snowy Peaks", "Sun Palace", "Ancient Woods"]
 
     # If this item is an area key and keys must be local, then we check to see if
     # the item name starts with the area name (ignoring spaces)
     if is_item_in_group(item.name, "Area Key") and world.options.local_area_keys:
-        area = location.name.split(' ')[0]
-        return item.name.startswith(area)
+        return item.name.startswith(area_name)
+
+    if area_name == "Underworld" and world.options.no_progression_in_underworld:
+        return item.classification != ItemClassification.progression
+
+    if area_name == "Forgotten World" and world.options.no_progression_in_forgotten_world:
+        return item.classification != ItemClassification.progression
 
     # Go through every illegal location for this item and if the location name starts
     # with an illegal location, then return false
     for illegal_location in data.illegal_locations:
-        if location.name.startswith(illegal_location):
+        if location.startswith(illegal_location):
             return False
 
     return True
@@ -148,10 +198,6 @@ def get_item_tier(item_name: str) -> Optional[int]:
         return None
 
     return item.tier
-
-
-def is_item_tier(item: str, tier: int) -> bool:
-    return get_item_tier(item) == tier
 
 
 def build_item_probability_table(probabilities: Dict[MonsterSanctuaryItemCategory, int]) -> None:
@@ -268,3 +314,31 @@ def roll_random_item_quantity(world: World, base_item: ItemData) -> str:
             base_item = item_data[new_item_name]
 
     return base_item.name
+
+
+def get_explore_ability_items(explore_ability_option: int) -> List[ItemData]:
+    # For options 1, 2, and 3, we simply return a flat list of items
+    if explore_ability_option in [1, 2, 3]:
+        return [data for name, data in item_data.items()
+                if data.category == MonsterSanctuaryItemCategory.ABILITY and
+                ((explore_ability_option == 1 and name in explore_ability_types) or
+                (explore_ability_option == 2 and "Ability - " in name) or
+                (explore_ability_option == 3 and "Ability - " not in name and name not in explore_ability_types))]
+
+    # Progression type
+    elif explore_ability_option == 4:
+        items = []
+        for item in explore_ability_progression:
+            for i in range(item[1]):
+                items.append(item_data[item[0]])
+        return items
+
+    # Combo type
+    elif explore_ability_option == 5:
+        items = []
+        for item in explore_ability_combo:
+            for i in range(item[1]):
+                items.append(item_data[item[0]])
+        return items
+
+    return []

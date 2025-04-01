@@ -1,6 +1,6 @@
 import json
 import os
-from typing import Optional, Dict
+from typing import Optional, Dict, Tuple, List
 
 from . import data
 from . import regions as REGIONS
@@ -143,6 +143,20 @@ def load_items(item_id: int) -> int:
 
 
 def load_monsters(item_id) -> int:
+    progression_data: Dict[str, Tuple[str, int]] = {}
+    combo_data: Dict[str, List[Tuple[str, int]]] = {}
+
+    with files(data).joinpath("progressive_explore_ability_unlocks.json").open() as file:
+        prog_file = json.load(file)
+
+        for prog_data in prog_file:
+            type_name = prog_data["ability"]
+            progression_data[type_name] = (prog_data["progression"]["name"], prog_data["progression"]["quantity"])
+
+            combo_data[type_name] = []
+            for combo_entry in prog_data["combo"]:
+                combo_data[type_name].append((combo_entry["name"], combo_entry["quantity"]))
+
     with files(data).joinpath("monsters.json").open() as file:
         monster_file = json.load(file)
 
@@ -156,6 +170,14 @@ def load_monsters(item_id) -> int:
                 item_id,
                 name,
                 groups)
+
+            monster.species_explore_item = monster_data.get("AbilityLockItems").get("Species")
+            monster.ability_explore_item = monster_data.get("AbilityLockItems").get("Ability")
+            monster.type_explore_item = monster_data.get("AbilityLockItems").get("Type")
+            monster.progressive_explore_item = (progression_data[monster_data["AbilityLockItems"]["Progressive"]][0],
+                                                progression_data[monster_data["AbilityLockItems"]["Progressive"]][1])
+            monster.combo_explore_item = { combo[0]: combo[1] for combo in
+                                           combo_data[monster_data.get("AbilityLockItems").get("Progressive")] }
 
             for evo_data in monster_data.get("Evolutions") or []:
                 monster.add_evolution(evo_data.get("Monster"), evo_data.get("Catalyst"))
@@ -214,7 +236,7 @@ def parse_item_type(text) -> Optional[MonsterSanctuaryItemCategory]:
         return MonsterSanctuaryItemCategory.EGG
     elif text == "Costume":
         return MonsterSanctuaryItemCategory.COSTUME
-    elif text == "Ability":
+    elif text == "Explore Ability":
         return MonsterSanctuaryItemCategory.ABILITY
 
     return None

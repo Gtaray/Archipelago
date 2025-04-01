@@ -16,11 +16,11 @@ class TestEggsFollowMobilityLimitationRules(MonsterSanctuaryTestBase):
         self.assertFalse(ITEMS.can_item_be_placed(
             self.multiworld.worlds[1],
             self.multiworld.worlds[1].create_item("Krakaturtle Egg"),
-            self.multiworld.get_location("Mountain Path - East Corridor 1", 1)))
+            "Mountain Path - East Corridor 1"))
         self.assertTrue(ITEMS.can_item_be_placed(
             self.multiworld.worlds[1],
             self.multiworld.worlds[1].create_item("Krakaturtle Egg"),
-            self.multiworld.get_location("Blob Burg - King Blob Room", 1)))
+            "Blob Burg - King Blob Room"))
 
     def test_eggs_are_placed_correctly(self):
         illegal_locations = ["Menu", "Mountain Path", "Blue Cave", "Keepers Stronghold", "Keepers Tower",
