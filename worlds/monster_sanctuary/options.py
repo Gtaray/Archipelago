@@ -103,7 +103,7 @@ class ExploreAbilitiesMustBeUnlocked(Choice):
 class CryomancerPlacementRestriction(Choice):
     """Sets what kind of items can be placed at the four checks given by Lady Stasis in the Snowy Peaks.
 
-    Vanilla: The checks are unchnaged from the base game.
+    Vanilla: The checks are unchanged from the base game.
     Randomized: The checks are randomized with the rest of the item pool.
     Filler: The checks are guaranteed to be junk items."""
     display_name = "Lady Stasis' (Dodo Egg) Checks"
@@ -116,7 +116,7 @@ class CryomancerPlacementRestriction(Choice):
 class KoiEggPlacementRestriction(Choice):
     """Sets what kind of items can be placed at the Caretaker's Koi Egg check in Sun Palace
 
-    Vanilla: The check is unchnaged from the base game.
+    Vanilla: The check is unchanged from the base game.
     Randomized: The check is randomized with the rest of the item pool.
     Filler: The check is guaranteed to be a junk item."""
     display_name = "Koi Egg Check"
@@ -129,7 +129,7 @@ class KoiEggPlacementRestriction(Choice):
 class SkorchEggPlacementRestriction(Choice):
     """Sets what kind of items can be placed at Bex's Skorch Egg check in Magma Caverns
 
-    Vanilla: The check is unchnaged from the base game.
+    Vanilla: The check is unchanged from the base game.
     Randomized: The check is randomized with the rest of the item pool.
     Filler: The check is guaranteed to be a junk item."""
     display_name = "Skorch Egg Check"
@@ -142,7 +142,7 @@ class SkorchEggPlacementRestriction(Choice):
 class BardEggPlacementRestriction(Choice):
     """Sets what kind of items can be placed at the 5 Celestial Feathers/Bard Egg check in the Forgotten World
 
-    Vanilla: The check is unchnaged from the base game.
+    Vanilla: The check is unchanged from the base game.
     Randomized: The check is randomized with the rest of the item pool.
     Filler: The check is guaranteed to be a junk item."""
     display_name = "Bard Egg (Celestial Feathers) Check"
@@ -155,7 +155,7 @@ class BardEggPlacementRestriction(Choice):
 class SpectralFamiliarEggPlacementRestriction(Choice):
     """Sets what kind of items can be placed at the four spectral familiar battle checks in Eternity's End.
 
-        Vanilla: The check is unchnaged from the base game (gives Spectral Familiar eggs)
+        Vanilla: The check is unchanged from the base game (gives Spectral Familiar eggs)
         Randomized: The check is randomized with the rest of the item pool.
         Filler: The check is guaranteed to be a junk item."""
     display_name = "Spectral Familiar Egg (Eternity's End) Checks"
@@ -172,7 +172,7 @@ class NoProgressionInUnderworld(Toggle):
 
 
 class NoProgressionInForgottenWorld(Toggle):
-    """If enabled, no progression items will be placed in the Underworld"""
+    """If enabled, no progression items will be placed in the Forgotten World"""
     display_name = "No Progression in the Forgotten World"
     default = False
 

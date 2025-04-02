@@ -16086,7 +16086,8 @@
           "AND",
           [
             "magic_walls",
-            "dual_mobility"
+            "dual_mobility",
+            "double_jump"
           ]
         ]
       }

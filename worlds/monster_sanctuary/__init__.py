@@ -526,7 +526,7 @@ class MonsterSanctuaryWorld(World):
             HINTS.generate_hints(self)
 
         slot_data = {
-            "version": "1.3.0.0",
+            "version": "1.3.1.0",
             "options": {
                 "goal": self.options.goal.value,
 
@@ -559,6 +559,13 @@ class MonsterSanctuaryWorld(World):
                 "open_underworld": self.options.open_underworld.value,
                 "open_mystical_workshop": self.options.open_mystical_workshop.value,
                 "open_abandoned_tower": self.options.open_abandoned_tower.value,
+
+                "no_progression_in_underworld": self.options.no_progression_in_underworld.value,
+                "no_progression_in_forgotten_world": self.options.no_progression_in_forgotten_world.value,
+                "cryomancer_check_restrictions": self.options.cryomancer_check_restrictions.value,
+                "old_man_check_restrictions": self.options.old_man_check_restrictions.value,
+                "fisherman_check_restrictions": self.options.fisherman_check_restrictions.value,
+                "wanderers_gift_check_restrictions": self.options.wanderers_gift_check_restrictions.value,
 
                 "death_link": self.options.death_link.value
             }
