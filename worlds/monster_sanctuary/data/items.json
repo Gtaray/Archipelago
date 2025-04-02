@@ -8259,5 +8259,32 @@
         "count": 2
       }
     ]
+  },
+  {
+    "type": "Trap",
+    "classification": "trap",
+    "items": [
+      {
+        "name": "Shock Trap"
+      },
+      {
+        "name": "Freeze Trap"
+      },
+      {
+        "name": "Burn Trap"
+      },
+      {
+        "name": "Poison Trap"
+      },
+      {
+        "name": "Flash-Bang Trap"
+      },
+      {
+        "name": "Ambush Trap"
+      },
+      {
+        "name": "Death Trap"
+      }
+    ]
   }
 ]

@@ -360,6 +360,7 @@ class MonsterSanctuaryWorld(World):
             MonsterSanctuaryItemCategory.WEAPON: self.options.drop_chance_weapon.value,
             MonsterSanctuaryItemCategory.ACCESSORY: self.options.drop_chance_accessory.value,
             MonsterSanctuaryItemCategory.CURRENCY: self.options.drop_chance_currency.value,
+            MonsterSanctuaryItemCategory.TRAP: self.options.drop_chance_trap.value
         })
         pool: List[MonsterSanctuaryItem] = []
 
@@ -526,7 +527,7 @@ class MonsterSanctuaryWorld(World):
             HINTS.generate_hints(self)
 
         slot_data = {
-            "version": "1.3.0.0",
+            "version": "1.4.0.0",
             "options": {
                 "goal": self.options.goal.value,
 

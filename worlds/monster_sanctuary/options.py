@@ -172,7 +172,7 @@ class NoProgressionInUnderworld(Toggle):
 
 
 class NoProgressionInForgottenWorld(Toggle):
-    """If enabled, no progression items will be placed in the Underworld"""
+    """If enabled, no progression items will be placed in the Forgotten World"""
     display_name = "No Progression in the Forgotten World"
     default = False
 
@@ -294,6 +294,18 @@ class GoldDropChance(Range):
     range_start = 0
     range_end = 100
     default = 50
+
+
+class TrapDropChance(Range):
+    """Frequency that a random non-progression item is a trap
+
+    The higher this value is compared to the other drop chances, the more frequently it will occur.
+    For example, if this value is twice the value of all other drop chances,
+    then this type of item will occur twice as often as the others. If left at 0, this item type will never drop."""
+    display_name = "Trap Drop Chance"
+    range_start = 0
+    range_end = 100
+    default = 5
 # endregion
 
 
@@ -599,6 +611,7 @@ class MonsterSanctuaryOptions(PerGameCommonOptions):
     drop_chance_weapon: WeaponDropChance
     drop_chance_accessory: AccessoryDropChance
     drop_chance_currency: GoldDropChance
+    drop_chance_trap: TrapDropChance
 
     skip_plot: SkipPlot
     skip_keeper_battles: SkipBattles

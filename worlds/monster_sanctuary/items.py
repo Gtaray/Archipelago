@@ -20,6 +20,7 @@ class MonsterSanctuaryItemCategory(IntEnum):
     COSTUME = 9
     RANK = 10,
     ABILITY = 11,
+    TRAP = 12
 
 
 class ItemData:
