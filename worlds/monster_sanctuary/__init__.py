@@ -489,6 +489,21 @@ class MonsterSanctuaryWorld(World):
             if location is not None:
                 location.item_rule = lambda item: item.classification == ItemClassification.filler
 
+        if self.options.koi_egg_placement == "filler":
+            only_allow_filler_at_location("Sun Palace - Caretaker 1")
+
+        if self.options.skorch_egg_placement == "filler":
+            only_allow_filler_at_location("Magma Chamber - Bex")
+
+        if self.options.bard_egg_placement == "filler":
+            only_allow_filler_at_location("Forgotten World - Wanderer Room")
+
+        if self.options.spectral_familiar_egg_placement == "filler":
+            only_allow_filler_at_location("Eternity's End - Spectral Wolf")
+            only_allow_filler_at_location("Eternity's End - Spectral Eagle")
+            only_allow_filler_at_location("Eternity's End - Spectral Toad")
+            only_allow_filler_at_location("Eternity's End - Spectral Lion")
+
         if self.options.cryomancer_check_restrictions == "filler":
             only_allow_filler_at_location("Snowy Peaks - Cryomancer - Egg Reward 1")
             only_allow_filler_at_location("Snowy Peaks - Cryomancer - Egg Reward 2")
