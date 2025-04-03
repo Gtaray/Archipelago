@@ -14,3 +14,16 @@ class TestBardEggLocation_Vanilla(MonsterSanctuaryTestBase):
     def test_items_are_vanilla(self):
         with self.subTest("Wanderer Egg Check is Bard Egg"):
             self.assert_item_is_at_location("Forgotten World - Wanderer Room", "Bard Egg")
+
+
+class TestBardEggLocation_Filler(MonsterSanctuaryTestBase):
+    run_default_tests = False
+    options = {
+        "bard_egg_placement": 2
+    }
+
+    def test_location_can_only_accept_filler(self):
+        loc = self.multiworld.get_location("Forgotten World - Wanderer Room", 1)
+        self.assertIsNotNone(loc)
+        self.assertFalse(loc.item_rule(self.multiworld.worlds[1].create_item("Bard Egg")))
+        self.assertTrue(loc.item_rule(self.multiworld.worlds[1].create_item("Small Potion")))

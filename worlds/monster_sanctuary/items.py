@@ -112,12 +112,21 @@ explore_ability_combo = [
 
 
 def can_item_be_placed(world: World, item: Item, location: str) -> bool:
+    area_name = location.split(' - ')[0]
+
+    if area_name == "Underworld" and world.options.no_progression_in_underworld:
+        if item.classification == ItemClassification.progression:
+            return False
+
+    if area_name == "Forgotten World" and world.options.no_progression_in_forgotten_world:
+        if item.classification == ItemClassification.progression:
+            return False
+
     # For any item that's not a monster sanctuary item, it can go here
     if item.player != world.player:
         return True
 
     data = get_item_by_name(item.name)
-    area_name = location.split(' - ')[0]
 
     # If the item is an egg with an improved movement ability
     # And the settings are to limit placement of those abilities
@@ -131,12 +140,6 @@ def can_item_be_placed(world: World, item: Item, location: str) -> bool:
     # the item name starts with the area name (ignoring spaces)
     if is_item_in_group(item.name, "Area Key") and world.options.local_area_keys:
         return item.name.startswith(area_name)
-
-    if area_name == "Underworld" and world.options.no_progression_in_underworld:
-        return item.classification != ItemClassification.progression
-
-    if area_name == "Forgotten World" and world.options.no_progression_in_forgotten_world:
-        return item.classification != ItemClassification.progression
 
     # Go through every illegal location for this item and if the location name starts
     # with an illegal location, then return false
