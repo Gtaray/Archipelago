@@ -117,7 +117,7 @@ def can_item_be_placed(world: World, item: Item, location: str) -> bool:
     # If this item is an area key and keys must be local, then we check to see if
     # the item name starts with the area name (ignoring spaces)
     # This overrides the 'no progression in X' settings
-    if is_item_in_group(item.name, "Area Key") and world.options.local_area_keys:
+    if item.player == world.player and is_item_in_group(item.name, "Area Key") and world.options.local_area_keys:
         return item.name.startswith(area_name)
 
     if area_name == "Underworld" and world.options.no_progression_in_underworld:
