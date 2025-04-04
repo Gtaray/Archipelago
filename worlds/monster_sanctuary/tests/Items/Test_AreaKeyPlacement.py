@@ -90,3 +90,20 @@ class AreaKeyGlobalPlacementTests(AreaKeyPlacementTest):
         for key in area_keys:
             for location in locations:
                 self.assert_item_can_be_placed(key, location)
+
+
+
+class AreaKeyLocalPlacementTests_WithNoProgressionInUnderworld(AreaKeyPlacementTest):
+    run_default_tests = True
+    options = {
+        "local_area_keys": 1,
+        "no_progression_in_underworld": 1
+    }
+
+
+class AreaKeyLocalPlacementTests_WithNoProgressionInForgottenWorld(AreaKeyPlacementTest):
+    run_default_tests = True
+    options = {
+        "local_area_keys": 1,
+        "no_progression_in_forgotten_world": 1
+    }
