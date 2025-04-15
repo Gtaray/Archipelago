@@ -63,7 +63,7 @@
     "AbilityLockItems": {
       "Species": "Slime Snack",
       "Ability": "Ability - Bubble Burst",
-      "Type": "Slime Snack",
+      "Type": "Slime Treats",
       "Progressive": "Bubble Burst"
     }
   },
@@ -478,7 +478,7 @@
     "AbilityLockItems": {
       "Species": "Insulated Gloves",
       "Ability": "Ability - Freeze",
-      "Type": "Slime Snack",
+      "Type": "Slime Treats",
       "Progressive": "Freeze"
     }
   },
@@ -886,7 +886,7 @@
     "AbilityLockItems": {
       "Species": "Heat-Proof Gloves",
       "Ability": "Ability - Ignite",
-      "Type": "Slime Snack",
+      "Type": "Slime Treats",
       "Progressive": "Ignite"
     }
   },
@@ -1273,7 +1273,7 @@
     "AbilityLockItems": {
       "Species": "Rainbow Slime Snack",
       "Ability": "Ability - Blob Form",
-      "Type": "Slime Snack",
+      "Type": "Slime Treats",
       "Progressive": "Blob Form"
     }
   },
@@ -1305,7 +1305,7 @@
     "AbilityLockItems": {
       "Species": "Blob Crown",
       "Ability": "Ability - Blob Form",
-      "Type": "Slime Snack",
+      "Type": "Slime Treats",
       "Progressive": "Blob Form"
     }
   },
@@ -1486,7 +1486,7 @@
     "AbilityLockItems": {
       "Species": "Tar Blob Saddle",
       "Ability": "Ability - Tar Mount",
-      "Type": "Slime Snack",
+      "Type": "Slime Treats",
       "Progressive": "Tar Mount"
     }
   },

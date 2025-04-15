@@ -541,7 +541,7 @@ class MonsterSanctuaryWorld(World):
             HINTS.generate_hints(self)
 
         slot_data = {
-            "version": "1.3.2.0",
+            "version": "1.3.3.0",
             "options": {
                 "goal": self.options.goal.value,
 
@@ -581,6 +581,10 @@ class MonsterSanctuaryWorld(World):
                 "old_man_check_restrictions": self.options.old_man_check_restrictions.value,
                 "fisherman_check_restrictions": self.options.fisherman_check_restrictions.value,
                 "wanderers_gift_check_restrictions": self.options.wanderers_gift_check_restrictions.value,
+                "koi_egg_placement": self.options.koi_egg_placement.value,
+                "skorch_egg_placement": self.options.skorch_egg_placement.value,
+                "bard_egg_placement": self.options.bard_egg_placement.value,
+                "spectral_familiar_egg_placement": self.options.spectral_familiar_egg_placement.value,
 
                 "death_link": self.options.death_link.value
             }

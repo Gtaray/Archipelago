@@ -2605,15 +2605,7 @@
         "item": "Shift Stone",
         "name": "Blue Cave - Sun Palace Entrance - Ledge Chest",
         "requirements": [
-          "OR",
-          [
-            "swimming",
-            "AND",
-            [
-              "summon_big_rock",
-              "double_jump"
-            ]
-          ]
+          "swimming"
         ]
       }
     ]
