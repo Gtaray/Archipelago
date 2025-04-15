@@ -69,7 +69,7 @@ item_drop_probabilities: List[MonsterSanctuaryItemCategory] = []
 # Explore item lists for easy referencing
 explore_ability_types = [
     "Spectral Flame",
-    "Slime Snack",
+    "Slime Treats",
     "Insect Pheromones",
     "Monster Treat",
     "Repair Kit",
