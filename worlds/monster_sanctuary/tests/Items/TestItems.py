@@ -1,5 +1,6 @@
 from typing import List
 
+from BaseClasses import ItemClassification
 from worlds.AutoWorld import call_all
 from worlds.monster_sanctuary import items, locations, MonsterSanctuaryItem, MonsterSanctuaryItemCategory
 from worlds.monster_sanctuary.tests import MonsterSanctuaryTestBase
@@ -53,6 +54,56 @@ class TestItems(MonsterSanctuaryTestBase):
                                if item.name == key_item.name]
             with self.subTest(f"{key_item.name} appears {exptected_count} time(s)"):
                 self.assertEqual(exptected_count, len(item_pool_items), key_item.name)
+
+
+    def test_items_have_correct_groups(self):
+        def get_category_string(cat: MonsterSanctuaryItemCategory) -> str:
+            if cat == 0:
+                return "Key Item"
+            elif cat == 1:
+                return "Crafting Material"
+            elif cat == 2:
+                return "Consumable"
+            elif cat == 3:
+                return "Food"
+            elif cat == 4:
+                return "Catalyst"
+            elif cat == 5:
+                return "Weapon"
+            elif cat == 6:
+                return "Accessory"
+            elif cat == 7:
+                return "Currency"
+            elif cat == 8:
+                return "Egg"
+            elif cat == 9:
+                return "Costume"
+            elif cat == 10:
+                return "Rank"
+            elif cat == 11:
+                return "Explore Ability"
+            return ""
+
+        def get_classification_string(classification: ItemClassification):
+            if classification == 0b0000:
+                return "Filler"
+            elif classification == 0b0001:
+                return "Progression"
+            elif classification == 0b0010:
+                return "Useful"
+            elif classification == 0b0100:
+                return "Trap"
+            return ""
+
+        for item_name, item in items.item_data.items():
+            category_text = get_category_string(item.category)
+            with self.subTest(f"{item_name} has the group '{category_text}'"):
+                self.assertIn(category_text, item.groups)
+
+            classification_text = get_classification_string(item.classification)
+            with self.subTest(f"{item_name} has the classification '{classification_text}'"):
+                self.assertIn(classification_text, item.groups)
+
 
 
 class TestLockedDoors(MonsterSanctuaryTestBase):

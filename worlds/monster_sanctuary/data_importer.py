@@ -102,14 +102,16 @@ def load_items(item_id: int) -> int:
             if item_category is None:
                 raise KeyError(f"Item Type '{item_category}' does not match any existing item types")
 
-            default_classification = parse_item_classification(item_category_data.get("classification"))
+            default_classification_text = item_category_data.get("classification")
 
             for item_data in item_category_data["items"]:
                 # Prioritize the item's classification, but fall back to the category's
                 # classification. If both are empty, throw an error.
-                item_classification = parse_item_classification(item_data.get("classification"))
-                if item_classification is None:
-                    item_classification = default_classification
+                item_classification_text = item_data.get("classification")
+                if item_classification_text is None:
+                    item_classification_text = default_classification_text
+
+                item_classification: ItemClassification = parse_item_classification(item_classification_text)
                 if item_classification is None:
                     raise KeyError(f"Item Classification for item '{item_data['name']}' is missing")
 
@@ -118,10 +120,13 @@ def load_items(item_id: int) -> int:
                     item_data["name"],
                     item_classification,
                     item_category,
-                    item_data.get("tier"),
                     item_data.get("unique") or False,
                     item_data.get("groups")
                 )
+
+                # Every item has its classification and category added as a group
+                item.groups.append(item_classification_text.capitalize())
+                item.groups.append(item_category_data.get("type"))
 
                 if item_category == MonsterSanctuaryItemCategory.KEYITEM:
                     item.count = item_data.get("count") or 1

@@ -33,12 +33,11 @@ class ItemData:
     count: int = 1  # how many of this item should be added to the game
     illegal_locations: List[str]
 
-    def __init__(self, item_id, name, classification, category, tier=None, unique=False, groups=None):
+    def __init__(self, item_id, name, classification, category, unique=False, groups=None):
         self.id = item_id
         self.name = name
         self.classification = classification
         self.category = category
-        self.tier = tier
         self.unique = unique
         self.illegal_locations = []
 
@@ -194,14 +193,6 @@ def is_item_type(item_name: str, *item_types: MonsterSanctuaryItemCategory) -> b
     if item_data.get(item_name) is None:
         return False
     return get_item_type(item_name) in item_types
-
-
-def get_item_tier(item_name: str) -> Optional[int]:
-    item = item_data.get(item_name)
-    if item is None:
-        return None
-
-    return item.tier
 
 
 def build_item_probability_table(probabilities: Dict[MonsterSanctuaryItemCategory, int]) -> None:
