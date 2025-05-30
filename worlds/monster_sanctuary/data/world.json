@@ -156,7 +156,14 @@
       {
         "region": "MountainPath_NorthHidden",
         "requirements": [
-          "double_jump"
+          "AND", [
+            "double_jump",
+            "OR",
+            [
+              "distant_ledges",
+              "ground_switches"
+            ]
+          ]
         ]
       },
       {

@@ -120,11 +120,11 @@ def can_item_be_placed(world: World, item: Item, location: str) -> bool:
         return item.name.startswith(area_name)
 
     if area_name == "Underworld" and world.options.no_progression_in_underworld:
-        if item.classification == ItemClassification.progression:
+        if item.classification & ItemClassification.progression:
             return False
 
     if area_name == "Forgotten World" and world.options.no_progression_in_forgotten_world:
-        if item.classification == ItemClassification.progression:
+        if item.classification & ItemClassification.progression:
             return False
 
     # For any item that's not a monster sanctuary item, it can go here

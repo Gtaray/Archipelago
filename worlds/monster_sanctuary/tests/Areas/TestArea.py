@@ -14,7 +14,6 @@ class TestArea(unittest.TestCase):
     def world_setup(self):
         self.multiworld = MultiWorld(1)
         self.multiworld.game = {1: "Monster Sanctuary"}
-        self.multiworld.state = CollectionState(self.multiworld)
         self.multiworld.set_seed(None)
 
         args = Namespace()
@@ -38,6 +37,9 @@ class TestArea(unittest.TestCase):
 
         self.multiworld.worlds[1].set_rules()
         self.multiworld.worlds[1].create_items()
+
+        self.multiworld.state = CollectionState(self.multiworld)
+
 
     def set_option(self, option: str, value):
         opt = self.multiworld.worlds[1].options
