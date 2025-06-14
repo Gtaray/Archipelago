@@ -737,7 +737,13 @@
         "item": "Gauntlet+3",
         "name": "Mountain Path - East of Buran - Ledge Chest",
         "requirements": [
-          "double_jump"
+          "AND", [
+            "double_jump",
+            "OR", [
+              "ground_switches",
+              "distant_ledges"
+            ]
+          ]
         ]
       }
     ],
@@ -874,6 +880,7 @@
           "OR",
           [
             "improved_flying",
+            "dual_mobility",
             "AND",
             [
               "double_jump",
@@ -1229,7 +1236,7 @@
         "requirements": [
           "OR",
           [
-            "keeper_rank_2",
+            "blue_caves_story_complete",
             "skip_plot"
           ]
         ]
@@ -4704,12 +4711,19 @@
       },
       {
         "region": "SnowyPeaks_WestMountain1",
+        "comment": "ADVANCED LOGIC for improved flying and dual mobility",
         "requirements": [
-          "double_jump"
+          "OR",
+          [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility"
+          ]
         ]
       },
       {
         "region": "SnowyPeaks_West5",
+        "comment": "ADVANCED LOGIC for improved flying and dual mobility",
         "requirements": [
           "AND",
           [
@@ -4946,7 +4960,12 @@
       {
         "region": "SnowyPeaks_ChampionRoom2",
         "requirements": [
-          "double_jump"
+          "OR",
+          [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility"
+          ]
         ]
       }
     ],
@@ -4961,7 +4980,12 @@
         "item": "Silver",
         "name": "Snowy Peaks - Dracozul Climb - Upper Chest",
         "requirements": [
-          "double_jump"
+          "OR",
+          [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility"
+          ]
         ]
       }
     ],
@@ -4974,7 +4998,12 @@
           "Targoat"
         ],
         "requirements": [
-          "double_jump"
+          "OR",
+          [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility"
+          ]
         ]
       }
     ]
@@ -5124,7 +5153,7 @@
         "item": "2x Mango",
         "name": "Snowy Peaks - West Mountain - Ice Orb Chest",
         "requirements": [
-          "ice_orbs"
+          "distant_ice_orbs"
         ]
       },
       {
@@ -5366,8 +5395,14 @@
         "id": 0,
         "item": "Scroll+3",
         "name": "Snowy Peaks - East Mountain Peak - Peak Chest",
+        "comment": "ADVANCED LOGIC for improved flying and dual mobility",
         "requirements": [
-          "distant_ledges"
+          "OR",
+          [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility"
+          ]
         ]
       }
     ]
@@ -5573,11 +5608,11 @@
       {
         "id": 12,
         "item": "Wizard Hat+3",
-        "name": "Snowy Peaks - East Mountain - Ice Orb Chest",
+        "name": "Snowy Peaks - East Mountain - Water Orb Chest",
         "requirements": [
           "AND",
           [
-            "ice_orbs",
+            "water_orbs",
             "OR",
             [
               "double_jump",
@@ -6286,7 +6321,10 @@
     "flags": [
       {
         "id": "second_bex_encounter",
-        "name": "Bex"
+        "name": "Bex",
+        "requirements": [
+          "first_bex_encounter"
+        ]
       }
     ]
   },
@@ -7353,10 +7391,13 @@
       {
         "region": "AncientWoods_WestHidden",
         "requirements": [
-          "OR",
-          [
-            "double_jump",
-            "distant_ledges"
+          "AND", [
+            "breakable_walls",
+            "OR",
+            [
+              "double_jump",
+              "distant_ledges"
+            ]
           ]
         ]
       }
@@ -8253,12 +8294,20 @@
       {
         "id": 3,
         "item": "Crystal Shard",
-        "name": "Ancient Woods - South Glowfly Room 1"
+        "name": "Ancient Woods - South Glowfly Room 1",
+        "requirements":
+        [
+          "dark_rooms"
+        ]
       },
       {
         "id": 7,
         "item": "Blue Gem",
-        "name": "Ancient Woods - South Glowfly Room 2"
+        "name": "Ancient Woods - South Glowfly Room 2",
+        "requirements":
+        [
+          "dark_rooms"
+        ]
       }
     ],
     "encounters": [
@@ -8268,6 +8317,10 @@
           "Glowfly",
           "Glowfly",
           "Glowfly"
+        ],
+        "requirements":
+        [
+          "dark_rooms"
         ]
       }
     ]
@@ -9054,7 +9107,10 @@
         "item": "Skill Potion",
         "name": "Horizon Beach - Central - Fast Currents Chest 2",
         "requirements": [
-          "improved_swimming"
+          "OR", [
+            "improved_swimming",
+            "dual_mobility"
+          ]
         ]
       },
       {
@@ -9062,7 +9118,10 @@
         "item": "Crimson Gem",
         "name": "Horizon Beach - Central - Fast Currents Chest 3",
         "requirements": [
-          "improved_swimming"
+          "OR", [
+            "improved_swimming",
+            "dual_mobility"
+          ]
         ]
       }
     ],
@@ -9139,7 +9198,10 @@
       {
         "region": "HorizonBeach_East3",
         "requirements": [
-          "improved_swimming"
+          "OR", [
+            "improved_swimming",
+            "dual_mobility"
+          ]
         ]
       }
     ],
@@ -9375,7 +9437,10 @@
       {
         "region": "HorizonBeach_East2",
         "requirements": [
-          "improved_swimming"
+          "OR", [
+            "improved_swimming",
+            "dual_mobility"
+          ]
         ]
       },
       {
@@ -9663,7 +9728,10 @@
         "item": "Rare Seashell",
         "name": "Horizon Beach - Labyrinth - Southeast Chest",
         "requirements": [
-          "improved_swimming"
+          "OR", [
+            "improved_swimming",
+            "dual_mobility"
+          ]
         ]
       }
     ]
@@ -14915,13 +14983,19 @@
       {
         "region": "BlobBurg_Center4",
         "requirements": [
-          "swimming"
+          "OR", [
+            "double_jump",
+            "swimming"
+          ]
         ]
       },
       {
         "region": "BlobBurg_West2",
         "requirements": [
-          "swimming"
+          "OR", [
+            "double_jump",
+            "swimming"
+          ]
         ]
       }
     ],
@@ -14939,7 +15013,10 @@
         "item": "Shift Stone",
         "name": "Blob Burg - West Room - Eastern Chest",
         "requirements": [
-          "improved_swimming"
+          "OR", [
+            "improved_swimming",
+            "dual_mobility"
+          ]
         ]
       },
       {
@@ -14947,7 +15024,10 @@
         "item": "2x Mass Antidote",
         "name": "Blob Burg - West Room - Center Chest 2",
         "requirements": [
-          "improved_swimming"
+          "OR", [
+            "improved_swimming",
+            "dual_mobility"
+          ]
         ]
       }
     ],
@@ -15522,12 +15602,11 @@
         "item": "Shift Stone",
         "name": "Forgotten World - East Jungle - Invisible Platform Chest",
         "requirements": [
-          "OR",
+          "AND",
           [
+            "secret_vision",
             "double_jump",
-            "improved_flying",
-            "dual_mobility",
-            "lofty_mount"
+            "magic_vines"
           ]
         ]
       },
@@ -15536,11 +15615,12 @@
         "item": "Skill Potion",
         "name": "Forgotten World - East Jungle - High Ledge Chest",
         "requirements": [
-          "AND",
+          "OR",
           [
-            "secret_vision",
             "double_jump",
-            "magic_vines"
+            "improved_flying",
+            "dual_mobility",
+            "lofty_mount"
           ]
         ]
       }
@@ -15973,7 +16053,10 @@
         "item": "Orange",
         "name": "Forgotten World - South Waters - Currents Chest",
         "requirements": [
-          "improved_swimming"
+          "OR", [
+            "improved_swimming",
+            "dual_mobility"
+          ]
         ]
       },
       {
@@ -16019,13 +16102,19 @@
       {
         "region": "ForgottenWorld_DracomerLair",
         "requirements": [
-          "improved_swimming"
+          "OR", [
+            "improved_swimming",
+            "dual_mobility"
+          ]
         ]
       },
       {
         "region": "ForgottenWorld_WatersHidden",
         "requirements": [
-          "improved_swimming"
+          "OR", [
+            "improved_swimming",
+            "dual_mobility"
+          ]
         ]
       }
     ]
@@ -18067,7 +18156,10 @@
         "item": "Shift Stone",
         "name": "Abandoned Tower - Center - Underwater Chest",
         "requirements": [
-          "improved_swimming"
+          "OR", [
+            "improved_swimming",
+            "dual_mobility"
+          ]
         ]
       }
     ]
