@@ -504,6 +504,10 @@ def forgotten_world_dracomer_defeated(state: CollectionState, player: int) -> bo
 
 def post_game(state: CollectionState, player: int) -> bool:
     return state.has("Mad Lord Defeated", player)
+
+
+def aazerach_defeated(state: CollectionState, player: int) -> bool:
+    return state.has("Aazerach Defeated", player)
 # endregion
 
 

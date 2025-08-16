@@ -102,7 +102,8 @@
           "OR",
           [
             "double_jump",
-            "distant_ledges"
+            "distant_ledges",
+            "summon_big_rock"
           ]
         ]
       },
@@ -1249,7 +1250,8 @@
             "double_jump",
             "improved_flying",
             "lofty_mount",
-            "dual_mobility"
+            "dual_mobility",
+            "summon_big_rock"
           ]
         ]
       }
@@ -1307,7 +1309,15 @@
         "item": "Spectral Wolf Egg",
         "name": "Eternity's End - Spectral Wolf",
         "requirements": [
-          "keeper_rank_5"
+          "AND", [
+            "keeper_rank_5",
+            "OR",
+            [
+              "double_jump",
+              "distant_ledges",
+              "ground_switches"
+            ]
+          ]
         ]
       },
       {
@@ -1315,7 +1325,15 @@
         "item": "Spectral Eagle Egg",
         "name": "Eternity's End - Spectral Eagle",
         "requirements": [
-          "keeper_rank_5"
+          "AND", [
+            "keeper_rank_5",
+            "OR",
+            [
+              "double_jump",
+              "distant_ledges",
+              "ground_switches"
+            ]
+          ]
         ]
       },
       {
@@ -1444,7 +1462,8 @@
           [
             "blue_cave_switches_access",
             "double_jump",
-            "distant_ledges"
+            "distant_ledges",
+            "summon_big_rock"
           ]
         ]
       },
@@ -1475,7 +1494,8 @@
             "double_jump",
             "improved_flying",
             "dual_mobility",
-            "lofty_mount"
+            "lofty_mount",
+            "summon_big_rock"
           ]
         ]
       }
@@ -2345,7 +2365,7 @@
       {
         "id": 4,
         "item": "Feather+2",
-        "name": "Blue Cave - West Waters - Breakable Walls Chest",
+        "name": "Blue Cave - West Waters - Switch Puzzle Chest",
         "requirements": [
           "OR",
           [
@@ -2362,7 +2382,7 @@
       {
         "id": 5,
         "item": "Fang+1",
-        "name": "Blue Cave - West Waters - Switch Puzzle Chest",
+        "name": "Blue Cave - West Waters - Breakable Walls Chest",
         "requirements": [
           "breakable_walls"
         ]
@@ -3092,7 +3112,8 @@
           "OR",
           [
             "double_jump",
-            "distant_ledges"
+            "improved_flying",
+            "dual_mobility"
           ]
         ]
       },
@@ -3166,7 +3187,10 @@
         "name": "Stronghold Dungeon - Trevisan 2",
         "postgame": true,
         "requirements": [
-          "post_game"
+          "AND", [
+            "post_game",
+            "aazerach_defeated"
+          ]
         ]
       }
     ]
@@ -3381,6 +3405,15 @@
           "Aazerach"
         ],
         "name": "Stronghold Dungeon - Aazeraach",
+        "requirements": [
+          "ahrimaaya"
+        ]
+      }
+    ],
+    "flags": [
+      {
+        "id": "aazerach_defeated",
+        "name": "Aazerach Defeated",
         "requirements": [
           "ahrimaaya"
         ]
@@ -4851,7 +4884,7 @@
             "swimming",
             "AND",
             [
-              "heavy_blocks",
+              "summon_big_rock",
               "double_jump"
             ]
           ]
@@ -5527,7 +5560,10 @@
         "item": "2x Wool",
         "name": "Snowy Peaks - East Mountain - Upper Cave Chest",
         "requirements": [
-          "double_jump"
+          "AND", [
+            "breakable_walls",
+            "double_jump"
+          ]
         ]
       }
     ]
@@ -9539,7 +9575,10 @@
     "flags": [
       {
         "id": "third_beach_bex",
-        "name": "Bex"
+        "name": "Bex",
+        "requirements": [
+          "second_bex_encounter"
+        ]
       }
     ]
   },
@@ -10650,7 +10689,10 @@
         "item": "Silver",
         "name": "Magma Chamber - North - Dark Room",
         "requirements": [
-          "dark_rooms"
+          "AND", [
+            "double_jump",
+            "dark_rooms"
+          ]
         ]
       }
     ]
@@ -10681,7 +10723,10 @@
     "flags": [
       {
         "id": "fourth_bex_encounter",
-        "name": "Bex"
+        "name": "Bex",
+        "requirements": [
+          "third_bex_encounter"
+        ]
       }
     ]
   },
@@ -10757,7 +10802,7 @@
       {
         "id": 3,
         "item": "Gray Pearl",
-        "name": "Magma Chamber - East - Floor Chest",
+        "name": "Magma Chamber - East - Behind Diamond Block",
         "requirements": [
           "diamond_blocks"
         ]
@@ -11750,15 +11795,16 @@
       },
       {
         "region": "ForgottenWorld_MCPath3",
-        "requirements": [
-          "forgotten_world_to_magma_chamber_shortcut"
-        ]
+        "requirements": []
       }
     ],
     "flags": [
       {
         "id": "forgotten_world_to_magma_chamber_shortcut",
-        "name": "Forgotten World to Magma Chamber Shortcut"
+        "name": "Forgotten World to Magma Chamber Shortcut",
+        "requirements": [
+          "summon_big_rock"
+        ]
       }
     ]
   },
@@ -11963,7 +12009,7 @@
       {
         "id": 43900165,
         "item": "Magma Chamber key",
-        "name": "Magma Chamber - Legendary Keeper Room",
+        "name": "Magma Chamber - Legendary Keeper Room - Velvet Melody Statue",
         "requirements": [
           "OR",
           [
@@ -15365,15 +15411,12 @@
         "item": "Hood+5",
         "name": "Forgotten World - West Jungle - Upper Chest",
         "requirements": [
-          "AND",
+          "OR",
           [
             "double_jump",
-            "OR",
-            [
-              "improved_flying",
-              "dual_mobility",
-              "lofty_mount"
-            ]
+            "improved_flying",
+            "dual_mobility",
+            "lofty_mount"
           ]
         ]
       }
@@ -16393,11 +16436,7 @@
         "item": "3x Silk",
         "name": "Forgotten World - Center Caves - Grapple Chest",
         "requirements": [
-          "AND",
-          [
-            "double_jump",
-            "grapple"
-          ]
+          "grapple"
         ]
       }
     ]
