@@ -38,6 +38,7 @@
           [
             "double_jump",
             "improved_flying",
+            "lofty_mount",
             "dual_mobility"
           ]
         ]
@@ -103,7 +104,7 @@
           [
             "double_jump",
             "distant_ledges",
-            "summon_big_rock"
+            "ground_switches"
           ]
         ]
       },
@@ -187,8 +188,7 @@
           [
             "double_jump",
             "improved_flying",
-            "dual_mobility",
-            "lofty_mount"
+            "dual_mobility"
           ]
         ]
       }
@@ -337,7 +337,7 @@
           [
             "double_jump",
             "distant_ledges",
-            "summon_big_rock"
+            "ground_switches"
           ]
         ]
       }
@@ -679,16 +679,6 @@
         "item": "3x Smoke bomb",
         "name": "Mountain Path - West Vertical 2"
       }
-    ],
-    "encounters": [
-      {
-        "id": 1,
-        "monsters": [
-          "Blob",
-          "Catzerker",
-          "Blob"
-        ]
-      }
     ]
   },
   {
@@ -738,11 +728,16 @@
         "item": "Gauntlet+3",
         "name": "Mountain Path - East of Buran - Ledge Chest",
         "requirements": [
-          "AND", [
-            "double_jump",
-            "OR", [
-              "ground_switches",
-              "distant_ledges"
+          "OR", [
+            "improved_flying",
+            "dual_mobility",
+            "AND", [
+              "double_jump",
+              "OR", [
+                "flying",
+                "lofty_mount",
+                "ground_switches"
+              ]
             ]
           ]
         ]
@@ -1248,10 +1243,10 @@
           "OR",
           [
             "double_jump",
+            "summon_big_rock",
             "improved_flying",
             "lofty_mount",
-            "dual_mobility",
-            "summon_big_rock"
+            "dual_mobility"
           ]
         ]
       }
@@ -1433,16 +1428,7 @@
           "OR",
           [
             "blue_cave_switches_access",
-            "AND",
-            [
-              "double_jump",
-              "OR",
-              [
-                "improved_flying",
-                "lofty_mount",
-                "dual_mobility"
-              ]
-            ]
+            "double_jump"
           ]
         ]
       }
@@ -1457,6 +1443,7 @@
         "id": 1,
         "item": "250 G",
         "name": "Blue Cave - Platforms - Ledge Chest",
+        "comment": "ADVANCED LOGIC: Swap Big Rock with ground switches, small rock requires coyote jump",
         "requirements": [
           "OR",
           [
@@ -1492,10 +1479,10 @@
           "OR",
           [
             "double_jump",
+            "summon_big_rock",
             "improved_flying",
             "dual_mobility",
-            "lofty_mount",
-            "summon_big_rock"
+            "lofty_mount"
           ]
         ]
       }
@@ -1956,14 +1943,14 @@
     "connections": [
       {
         "region": "BlueCave_South1_Upper",
+        "comment": "place small rock on the left where the waterfall begins",
         "requirements": [
           "OR",
           [
             "double_jump",
-            "improved_flying",
-            "dual_mobility",
-            "lofty_mount",
-            "summon_big_rock"
+            "distant_ledges",
+            "ground_switches"
+            
           ]
         ]
       },
@@ -1980,6 +1967,7 @@
     "connections": [
       {
         "region": "BlueCave_South1_Middle",
+        "comment": "place small rock on the left where each waterfall begins",
         "requirements": [
           "OR",
           [
@@ -1987,7 +1975,7 @@
             "improved_flying",
             "dual_mobility",
             "lofty_mount",
-            "summon_big_rock"
+            "ground_switches"
           ]
         ]
       },
@@ -2018,6 +2006,7 @@
         "id": 0,
         "item": "Double Jump Boots",
         "name": "Blue Cave - Double Jump Boots Chest",
+        "comment": "ADVANCED LOGIC: no requirements, jump from the left hole around to the upper ledge",
         "requirements": [
           "OR",
           [
@@ -2366,16 +2355,17 @@
         "id": 4,
         "item": "Feather+2",
         "name": "Blue Cave - West Waters - Switch Puzzle Chest",
+        "comment": "extra logic to avoid the need of the warp to home button",
         "requirements": [
           "OR",
           [
+            "double_jump",
+            "swimming",
             "AND",
             [
-              "double_jump",
+              "distant_ledges",
               "ground_switches"
-            ],
-            "distant_ledges",
-            "swimming"
+            ]
           ]
         ]
       },
@@ -2383,8 +2373,18 @@
         "id": 5,
         "item": "Fang+1",
         "name": "Blue Cave - West Waters - Breakable Walls Chest",
+        "comment": "extra logic to avoid the need of the warp to home button",
         "requirements": [
-          "breakable_walls"
+          "AND",
+          [
+            "breakable_walls",
+            "OR",
+            [
+              "double_jump",
+              "ground_switches",
+              "swimming"
+            ]
+          ]
         ]
       }
     ]
@@ -2481,6 +2481,7 @@
             "double_jump",
             "ground_switches",
             "distant_ledges"
+            
           ]
         ]
       },
@@ -2544,7 +2545,9 @@
           [
             "double_jump",
             "improved_flying",
-            "dual_mobility"
+            "dual_mobility",
+            "lofty_mount",
+            "summon_big_rock"
           ]
         ]
       },
@@ -2615,7 +2618,8 @@
           "OR",
           [
             "double_jump",
-            "swimming"
+            "swimming",
+            "summon_big_rock"
           ]
         ]
       }
@@ -2691,10 +2695,12 @@
     "connections": [
       {
         "region": "BlueCave_WestWaters7_East",
+        "comment":"ADVANCED LOGIC: swap big rock for ground switches, rocks can be placed on orbs",
         "requirements": [
           "OR",
           [
             "double_jump",
+            "summon_big_rock",
             "distant_ledges"
           ]
         ]
@@ -2901,7 +2907,8 @@
             [
               "improved_flying",
               "lofty_mount",
-              "dual_mobility"
+              "dual_mobility",
+              "summon_big_rock"
             ]
           ]
         ]
@@ -2920,7 +2927,8 @@
             [
               "improved_flying",
               "lofty_mount",
-              "dual_mobility"
+              "dual_mobility",
+              "summon_big_rock"
             ]
           ]
         ]
@@ -2977,6 +2985,7 @@
       },
       {
         "region": "StrongholdDungeon_NorthHidden",
+        "comment": "ADVANCED LOGIC: remove all requirements",
         "requirements": [
           "OR",
           [
@@ -3047,7 +3056,10 @@
             "AND",
             [
               "double_jump",
-              "distant_ledges"
+              "OR",[
+                "mount",
+                "distant_ledges"
+              ]
             ]
           ]
         ]
@@ -3141,8 +3153,10 @@
           "OR",
           [
             "double_jump",
+            "lofty_mount",
             "improved_flying",
-            "dual_mobility"
+            "dual_mobility",
+            "summon_big_rock"
           ]
         ]
       },
@@ -3165,8 +3179,10 @@
           "OR",
           [
             "double_jump",
+            "lofty_mount",
             "improved_flying",
-            "dual_mobility"
+            "dual_mobility",
+            "summon_big_rock"
           ]
         ]
       }
@@ -3204,7 +3220,8 @@
           "OR",
           [
             "double_jump",
-            "distant_ledges"
+            "distant_ledges",
+            "ground_switches"
           ]
         ]
       },
@@ -3214,7 +3231,8 @@
           "OR",
           [
             "double_jump",
-            "distant_ledges"
+            "distant_ledges",
+            "ground_switches"
           ]
         ]
       }
@@ -3228,7 +3246,8 @@
           "OR",
           [
             "double_jump",
-            "distant_ledges"
+            "distant_ledges",
+            "ground_switches"
           ]
         ]
       }
@@ -3298,8 +3317,7 @@
           [
             "double_jump",
             "improved_flying",
-            "dual_mobility",
-            "lofty_mount"
+            "dual_mobility"
           ]
         ]
       },
@@ -3310,8 +3328,7 @@
           [
             "double_jump",
             "improved_flying",
-            "dual_mobility",
-            "lofty_mount"
+            "dual_mobility"
           ]
         ]
       },
@@ -3426,13 +3443,33 @@
       {
         "region": "StrongholdDungeon_Central6",
         "requirements": [
-          "double_jump"
+          "OR",[
+            "double_jump",
+            "dual_mobility",
+            "AND",[
+              "improved_flying",
+              "OR",[
+                "ground_switches",
+                "swimming"
+              ]
+            ]
+          ]
         ]
       },
       {
         "region": "StrongholdDungeon_South2",
         "requirements": [
-          "double_jump"
+          "OR",[
+            "double_jump",
+            "dual_mobility",
+            "AND",[
+              "improved_flying",
+              "OR",[
+                "ground_switches",
+                "swimming"
+              ]
+            ]
+          ]
         ]
       }
     ],
@@ -3442,7 +3479,17 @@
         "item": "Hazelnut",
         "name": "Stronghold Dungeon - West Sewer",
         "requirements": [
-          "double_jump"
+          "OR",[
+            "double_jump",
+            "dual_mobility",
+            "AND",[
+              "improved_flying",
+              "OR",[
+                "ground_switches",
+                "swimming"
+              ]
+            ]
+          ]
         ]
       }
     ]
@@ -3521,7 +3568,11 @@
                 "minimal_locked_doors"
               ]
             ],
-            "double_jump"
+            "OR",[
+              "double_jump",
+              "improved_flying",
+              "dual_mobility"
+            ]
           ]
         ]
       },
@@ -3563,10 +3614,30 @@
     "region": "StrongholdDungeon_South5",
     "connections": [
       {
-        "region": "StrongholdDungeon_South4"
+        "region": "StrongholdDungeon_South4",
+        "comment": "extra logic to avoid the need of the warp to home button",
+        "requirements": [
+          "OR",
+          [
+            "double_jump",
+            "improved_flying",
+            "summon_big_rock",
+            "swimming"
+          ]
+        ]
       },
       {
-        "region": "StrongholdDungeon_Library"
+        "region": "StrongholdDungeon_Library",
+        "comment": "extra logic to avoid the need of the warp to home button",
+        "requirements": [
+          "OR",
+          [
+            "double_jump",
+            "improved_flying",
+            "summon_big_rock",
+            "swimming"
+          ]
+        ]
       }
     ],
     "encounters": [
@@ -3812,8 +3883,7 @@
           [
             "double_jump",
             "improved_flying",
-            "dual_mobility",
-            "lofty_mount"
+            "dual_mobility"
           ]
         ]
       },
@@ -3843,8 +3913,7 @@
           [
             "double_jump",
             "improved_flying",
-            "dual_mobility",
-            "lofty_mount"
+            "dual_mobility"
           ]
         ]
       },
@@ -3868,13 +3937,13 @@
         "id": 7,
         "item": "Hazelnut",
         "name": "Stronghold Dungeon - East Sewer - Key Door Chest",
+        "comment": "logic checks for ways to access the shortcut in case you fall but the player should have DJ or imporved_flying so it could be left out, minimum requirement would be any extra height + key or dj or improved flying",
         "requirements": [
           "OR",
           [
             "double_jump",
-            "improved_flying",
-            "dual_mobility",
-            "lofty_mount"
+            "distant_ledges",
+            "ground_switches"
           ]
         ]
       }
@@ -3889,9 +3958,9 @@
           "OR",
           [
             "double_jump",
-            "improved_flying",
-            "dual_mobility",
-            "lofty_mount"
+            "distant_ledges",
+            "swimming",
+            "summon_big_rock"
           ]
         ]
       }
@@ -3906,7 +3975,8 @@
           [
             "double_jump",
             "improved_flying",
-            "dual_mobility"
+            "dual_mobility",
+            "summon_big_rock"
           ]
         ]
       }
@@ -3924,9 +3994,9 @@
           "OR",
           [
             "double_jump",
-            "improved_flying",
-            "dual_mobility",
-            "lofty_mount"
+            "distant_ledges",
+            "swimming",
+            "ground_switches"
           ]
         ]
       },
@@ -3936,7 +4006,13 @@
           "AND",
           [
             "double_jump",
-            "lofty_mount"
+            "OR",
+            [
+              "improved_flying",
+              "dual_mobility",
+              "lofty_mount",
+              "summon_big_rock"
+            ]
           ]
         ]
       }
@@ -3954,7 +4030,8 @@
             [
               "improved_flying",
               "dual_mobility",
-              "lofty_mount"
+              "lofty_mount",
+              "summon_big_rock"
             ]
           ]
         ]
@@ -3973,7 +4050,8 @@
           [
             "double_jump",
             "distant_ledges",
-            "summon_big_rock"
+            "summon_big_rock",
+            "swimming"
           ]
         ]
       }
@@ -4069,6 +4147,7 @@
             "double_jump",
             "improved_flying",
             "dual_mobility",
+            "lofty_mount",
             "summon_big_rock"
           ]
         ]
@@ -4081,6 +4160,7 @@
             "double_jump",
             "improved_flying",
             "dual_mobility",
+            "lofty_mount",
             "summon_big_rock"
           ]
         ]
@@ -4097,6 +4177,7 @@
             "double_jump",
             "improved_flying",
             "dual_mobility",
+            "lofty_mount",
             "summon_big_rock"
           ]
         ]
@@ -4119,11 +4200,16 @@
       },
       {
         "region": "StrongholdDungeon_EastHidden",
+        "comment":"ADVANCED LOGIC: remove dark rooms and add distant ledges,extra logic to avoid the need of the warp to home button",
         "requirements": [
           "AND",
           [
-            "double_jump",
-            "dark_rooms"
+            "dark_rooms",
+            "OR",[
+              "double_jump",
+              "improved_flying",
+              "dual_mobility"
+            ]
           ]
         ]
       }
@@ -4132,20 +4218,46 @@
       {
         "id": 0,
         "item": "Stronghold Dungeon key",
-        "name": "Stronghold Dungeon - Slime Statue Room 1"
+        "name": "Stronghold Dungeon - Slime Statue Room 1",
+        "comment":"extra logic to avoid the need of the warp to home button",
+        "requirements": [
+          "OR",
+          [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility"
+          ]
+        ]
       },
       {
         "id": 1,
         "item": "Stronghold Dungeon key",
-        "name": "Stronghold Dungeon - Slime Statue Room 2"
+        "name": "Stronghold Dungeon - Slime Statue Room 2",
+        "comment":"extra logic to avoid the need of the warp to home button",
+        "requirements": [
+          "OR",
+          [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility"
+          ]
+        ]
       }
     ],
     "flags": [
       {
         "id": "stronghold_dungeon_blob_key",
         "name": "Blob Key Used",
+        "comment":"extra logic to avoid the need of the warp to home button",
         "requirements": [
-          "blob_key"
+          "AND",[
+            "blob_key",
+            "OR",[
+              "double_jump",
+              "improved_flying",
+              "dual_mobility"
+            ]
+          ]
         ]
       }
     ]
@@ -4194,7 +4306,12 @@
           "AND",
           [
             "double_jump",
-            "distant_ledges"
+            "OR", 
+            [
+              "imporved_flying",
+              "dual_mobility",
+              "lofty_mount"
+            ]
           ]
         ]
       }
@@ -4257,7 +4374,18 @@
     "region": "SnowyPeaks_East3",
     "connections": [
       {
-        "region": "SnowyPeaks_East2_Lower"
+        "region": "SnowyPeaks_East2_Lower",
+        "comment":"ADVANCED LOGIC: distant ledge, precise jump at slope with basic flying",
+        "requirements":[
+          "OR",
+            [
+              "double_jump",
+              "improved_flying",
+              "dual_mobility",
+              "lofty_mount",
+              "summon_big_rock"
+            ]
+        ]
       },
       {
         "region": "SnowyPeaks_East2_Upper",
@@ -4277,19 +4405,49 @@
         ]
       },
       {
-        "region": "SnowyPeaks_East4_Lower"
+        "region": "SnowyPeaks_East4_Lower",
+        "requirements":[
+          "OR",
+          [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility",
+            "lofty_mount",
+            "summon_big_rock"
+          ]
+        ]
       }
     ],
     "chests": [
       {
         "id": 8,
         "item": "Red Gem",
-        "name": "Snowy Peaks - East Cave - Lower Lever Chest"
+        "name": "Snowy Peaks - East Cave - Lower Lever Chest",
+        "requirements":[
+          "OR",
+          [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility",
+            "lofty_mount",
+            "summon_big_rock"
+          ]
+        ]
       },
       {
         "id": 9,
         "item": "2x Hazelnut",
-        "name": "Snowy Peaks - East Cave - Middle Chest"
+        "name": "Snowy Peaks - East Cave - Middle Chest",
+        "requirements":[
+          "OR",
+          [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility",
+            "lofty_mount",
+            "summon_big_rock"
+          ]
+        ]
       },
       {
         "id": 10,
@@ -4438,15 +4596,7 @@
       {
         "id": 17,
         "item": "Green Gem",
-        "name": "Snowy Peaks - East Spikes",
-        "requirements": [
-          "OR",
-          [
-            "double_jump",
-            "distant_ledges",
-            "ground_switches"
-          ]
-        ]
+        "name": "Snowy Peaks - East Spikes"
       }
     ],
     "encounters": [
@@ -4475,7 +4625,8 @@
           "OR",
           [
             "double_jump",
-            "distant_ledges"
+            "distant_ledges",
+            "ground_switches"
           ]
         ]
       }
@@ -4490,7 +4641,8 @@
           "OR",
           [
             "double_jump",
-            "distant_ledges"
+            "distant_ledges",
+            "summon_big_rock"
           ]
         ]
       },
@@ -4542,13 +4694,18 @@
     "connections": [
       {
         "region": "SnowyPeaks_West1_Lower",
+        "comment":"ADVANCED LOGIC: big rock + mount, precise mounted jump over frozen water then climb up with big rock",
         "requirements": [
           "OR",
           [
             "double_jump",
             "improved_flying",
             "lofty_mount",
-            "dual_mobility"
+            "dual_mobility",
+            "AND",[
+              "flying",
+              "summon_big_rock"
+            ]
           ]
         ]
       },
@@ -4568,6 +4725,7 @@
         "id": 5,
         "item": "Verdant Gem",
         "name": "Snowy Peaks - Sun Palace Entrance",
+        "comment":"ADVANCED LOGIC: big rock + mount, precise mounted jump over frozen water then climb up with big rock",
         "requirements": [
           "AND",
           [
@@ -4577,7 +4735,11 @@
               "double_jump",
               "improved_flying",
               "dual_mobility",
-              "lofty_mount"
+              "lofty_mount",
+              "AND",[
+                "flying",
+                "summon_big_rock"
+              ]
             ]
           ]
         ]
@@ -4675,7 +4837,8 @@
           "OR",
           [
             "double_jump",
-            "distant_ledges"
+            "distant_ledges",
+            "summon_big_rock"
           ]
         ]
       },
@@ -4712,12 +4875,12 @@
         "id": 7,
         "item": "2x Iron",
         "name": "Snowy Peaks - West Cave - Upper Chest",
+        "comment":"flying needs a bit of momentum to jump from the leftmost crumbling platform to the rightmost crumbling platform",
         "requirements": [
           "OR",
           [
             "double_jump",
-            "improved_flying",
-            "dual_mobility"
+            "distant_ledges"
           ]
         ]
       }
@@ -4779,8 +4942,13 @@
         "requirements": [
           "AND",
           [
-            "double_jump",
-            "earth_orbs"
+            "earth_orbs",
+            "OR",
+            [
+              "double_jump",
+              "improved_flying",
+              "dual_mobility"
+            ]
           ]
         ]
       }
@@ -4879,26 +5047,29 @@
       {
         "region": "SnowyPeaks_Lake_West",
         "requirements": [
-          "OR",
+          "AND",
           [
-            "swimming",
-            "AND",
-            [
-              "summon_big_rock",
-              "double_jump"
-            ]
+            "warm_underwear",
+            "swimming"
           ]
         ]
       },
       {
         "region": "SnowyPeaks_Lake_East",
         "requirements": [
-          "OR",
+          "AND",
           [
-            "swimming",
-            "double_jump",
-            "improved_flying",
-            "dual_mobility"
+            "warm_underwear",
+            "OR",
+            [
+              "swimming",
+              "double_jump",
+              "AND",
+              [
+                "ground_switches",
+                "improved_flying"
+              ]
+            ]
           ]
         ]
       },
@@ -4911,23 +5082,24 @@
         "id": 9,
         "item": "Bronze",
         "name": "Snowy Peaks - Lake - Underwater Chest",
+        "comment":"ADVANCED LOGIC: underwear+heavy blocks+big rock, push heavy block near chest then place rock on it to make a stair",
         "requirements": [
-          "OR",
+          "AND",
           [
-            "AND",
+            "warm_underwear",
+            "OR",
             [
               "swimming",
-              "warm_underwear"
-            ],
-            "AND",
-            [
-              "double_jump",
-              "OR",
+              "AND",
               [
-                "mount",
-                "heavy_blocks"
+                "double_jump",
+                "OR",
+                [
+                  "mount",
+                  "heavy_blocks"
+                ]
               ]
-            ]
+           ]
           ]
         ]
       }
@@ -4938,8 +5110,19 @@
     "connections": [
       {
         "region": "SnowyPeaks_Lake_Lower",
+        "comment": "extra logic to avoid the need of the warp to home button",
         "requirements": [
-          "warm_underwear"
+          "AND",
+          [
+            "warm_underwear",
+            "OR",
+            [
+              "double_jump",
+              "ground_switches",
+              "swimming",
+              "imporved_flying"
+            ]
+          ]
         ]
       }
     ],
@@ -4948,11 +5131,23 @@
         "id": 11,
         "item": "Carrot",
         "name": "Snowy Peaks - Akhlut Room Chest",
+        "comment": "extra logic to avoid the need of the warp to home button",
         "requirements": [
-          "OR",
+          "AND",
           [
-            "double_jump",
-            "distant_ledges"
+            "warm_underwear",
+            "OR",
+            [
+              "double_jump",
+              "summon_big_rock",
+              "swimming",
+              "imporved_flying",
+              "AND",
+              [
+                "ground_switches",
+                "distant_ledges"
+              ]
+            ]
           ]
         ]
       }
@@ -4971,11 +5166,23 @@
         "id": 17000045,
         "item": "Sanctuary Token",
         "name": "Snowy Peaks - Oracle",
+        "comment": "extra logic to avoid the need of the warp to home button",
         "requirements": [
-          "OR",
+          "AND",
           [
-            "double_jump",
-            "distant_ledges"
+            "warm_underwear",
+            "OR",
+            [
+              "double_jump",
+              "summon_big_rock",
+              "swimming",
+              "imporved_flying",
+              "AND",
+              [
+                "ground_switches",
+                "distant_ledges"
+              ]
+            ]
           ]
         ]
       }
@@ -5238,7 +5445,8 @@
             "double_jump",
             "improved_flying",
             "dual_mobility",
-            "lofty_mount"
+            "lofty_mount",
+            "summon_big_rock"
           ]
         ]
       }
@@ -5257,7 +5465,8 @@
             "double_jump",
             "improved_flying",
             "dual_mobility",
-            "lofty_mount"
+            "lofty_mount",
+            "summon_big_rock"
           ]
         ]
       }
@@ -5296,7 +5505,20 @@
       {
         "region": "SnowyPeaks_WestMountainSecret",
         "requirements": [
-          "double_jump"
+          "AND",
+          [
+            "double_jump",
+            "OR",
+            [
+              "summon_big_rock",
+              "distant_ledges",
+              "AND",
+              [
+                "ground_switches",
+                "secret_vision"
+              ]
+            ]
+          ]
         ]
       }
     ],
@@ -5309,7 +5531,11 @@
           "AND",
           [
             "double_jump",
-            "distant_ledges"
+            "OR",
+            [
+              "distant_ledges",
+              "ground_switches"
+            ]
           ]
         ]
       },
@@ -5321,8 +5547,12 @@
           "AND",
           [
             "double_jump",
-            "distant_ledges",
-            "breakable_walls"
+            "breakable_walls",
+            "OR",
+            [
+              "distant_ledges",
+              "ground_switches"
+            ]
           ]
         ]
       },
@@ -5334,8 +5564,12 @@
           "AND",
           [
             "double_jump",
-            "distant_ledges",
-            "secret_vision"
+            "secret_vision",
+            "OR",
+            [
+              "distant_ledges",
+              "ground_switches"
+            ]
           ]
         ]
       }
@@ -5376,7 +5610,12 @@
       {
         "region": "SnowyPeaks_EastMountainTop",
         "requirements": [
-          "double_jump"
+          "OR",
+          [
+            "double_jump",
+            "imporved_flying",
+            "dual_mobility"
+          ]
         ]
       },
       {
@@ -5401,7 +5640,12 @@
         "item": "Skill Resetter",
         "name": "Snowy Peaks - East Mountain Peak - Cave Chest",
         "requirements": [
-          "distant_ledges"
+          "OR",
+          [
+            "double_jump",
+            "distant_ledges",
+            "ground_switches"
+          ]
         ]
       }
     ],
@@ -5428,13 +5672,14 @@
         "id": 0,
         "item": "Scroll+3",
         "name": "Snowy Peaks - East Mountain Peak - Peak Chest",
-        "comment": "ADVANCED LOGIC for improved flying and dual mobility",
+        "comment": "fall in pit to respawn at the top",
         "requirements": [
           "OR",
           [
             "double_jump",
             "improved_flying",
-            "dual_mobility"
+            "dual_mobility",
+            "flying"
           ]
         ]
       }
@@ -5468,7 +5713,12 @@
       {
         "region": "SnowyPeaks_ClothesmakerHouse",
         "requirements": [
-          "double_jump"
+          "OR",
+          [
+            "double_jump",
+            "imporved_flying",
+            "dual_mobility"
+          ]
         ]
       },
       {
@@ -5486,8 +5736,13 @@
         "requirements": [
           "AND",
           [
-            "double_jump",
-            "lightning_orbs"
+            "lightning_orbs",
+            "OR",
+            [
+              "double_jump",
+              "imporved_flying",
+              "dual_mobility"
+            ]
           ]
         ]
       }
@@ -5513,18 +5768,23 @@
           [
             "double_jump",
             "improved_flying",
-            "dual_mobility",
-            "lofty_mount"
+            "dual_mobility"
           ]
         ]
       },
       {
         "region": "SnowyPeaks_HighChallenge",
+        "comment": "flying would also get to that region but then you wouldn't be able to go back out of the spike pit",
         "requirements": [
           "AND",
           [
-            "distant_ledges",
-            "breakable_walls"
+            "breakable_walls",
+            "OR",
+            [
+              "double_jump",
+              "imporved_flying",
+              "dual_mobility"
+            ]
           ]
         ]
       },
@@ -5542,8 +5802,7 @@
           [
             "double_jump",
             "improved_flying",
-            "dual_mobility",
-            "lofty_mount"
+            "dual_mobility"
           ]
         ]
       },
@@ -5551,8 +5810,14 @@
         "id": 22,
         "item": "Combo Potion",
         "name": "Snowy Peaks - East Mountain - Spikes Chest",
+        "comment": "flying would also get to that chest but then you wouldn't be able to go back out of the spike pit",
         "requirements": [
-          "double_jump"
+          "OR",
+          [
+            "double_jump",
+            "imporved_flying",
+            "dual_mobility"
+          ]
         ]
       },
       {
@@ -5560,9 +5825,11 @@
         "item": "2x Wool",
         "name": "Snowy Peaks - East Mountain - Upper Cave Chest",
         "requirements": [
-          "AND", [
-            "breakable_walls",
-            "double_jump"
+          "OR",
+          [
+            "double_jump",
+            "imporved_flying",
+            "dual_mobility"
           ]
         ]
       }
@@ -5592,13 +5859,23 @@
         "item": "Helmet+3",
         "name": "Snowy Peaks - East Mountain - East Upper Chest",
         "requirements": [
-          "double_jump"
+          "AND",
+          [
+            "breakable_walls",
+            "double_jump",
+            "OR",
+            [
+              "distant_ledges",
+              "ground_switches"
+            ]
+          ]
         ]
       },
       {
         "id": 10,
         "item": "Level Badge",
         "name": "Snowy Peaks - East Mountain - East Lower Chest",
+        "comment": "ADVANCED LOGIC: same requirements as SnowyPeaks_EastMountain4, jump in pit after collecting check",
         "requirements": [
           "OR",
           [
@@ -5618,8 +5895,13 @@
         "requirements": [
           "AND",
           [
-            "double_jump",
-            "breakable_walls"
+            "breakable_walls",
+            "OR",
+            [
+              "double_jump",
+              "imporved_flying",
+              "dual_mobility"
+            ]
           ]
         ]
       },
@@ -5653,7 +5935,8 @@
             [
               "double_jump",
               "improved_flying",
-              "dual_mobility"
+              "dual_mobility",
+              "lofty_mount"
             ]
           ]
         ]
@@ -5751,7 +6034,8 @@
           [
             "double_jump",
             "improved_flying",
-            "dual_mobility"
+            "dual_mobility",
+            "lofty_mount"
           ]
         ]
       }
@@ -5807,7 +6091,7 @@
           "AND",
           [
             "double_jump",
-            "dark_rooms"
+            "sonar_mount"
           ]
         ]
       },
@@ -5819,7 +6103,7 @@
           "AND",
           [
             "double_jump",
-            "dark_rooms"
+            "sonar_mount"
           ]
         ]
       }
