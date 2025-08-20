@@ -2355,7 +2355,7 @@
         "id": 4,
         "item": "Feather+2",
         "name": "Blue Cave - West Waters - Switch Puzzle Chest",
-        "comment": "extra logic to avoid the need of the warp to home button",
+        "comment": "extra logic to avoid the need of the warp to home button, only distant ledges or double jump is important",
         "requirements": [
           "OR",
           [
@@ -2373,7 +2373,7 @@
         "id": 5,
         "item": "Fang+1",
         "name": "Blue Cave - West Waters - Breakable Walls Chest",
-        "comment": "extra logic to avoid the need of the warp to home button",
+        "comment": "extra logic to avoid the need of the warp to home button, only brakable walls is important",
         "requirements": [
           "AND",
           [
@@ -3462,15 +3462,9 @@
           "OR",[
             "double_jump",
             "dual_mobility",
-            "AND",[
-              "improved_flying",
-              "OR",[
-                "ground_switches",
-                "swimming"
-              ]
+            "improved_flying"
             ]
           ]
-        ]
       }
     ],
     "chests": [
@@ -3615,7 +3609,7 @@
     "connections": [
       {
         "region": "StrongholdDungeon_South4",
-        "comment": "extra logic to avoid the need of the warp to home button",
+        "comment": "extra logic to avoid the need of the warp to home button, can remove all requirements",
         "requirements": [
           "OR",
           [
@@ -3628,7 +3622,7 @@
       },
       {
         "region": "StrongholdDungeon_Library",
-        "comment": "extra logic to avoid the need of the warp to home button",
+        "comment": "extra logic to avoid the need of the warp to home button, can remove all requirements",
         "requirements": [
           "OR",
           [
@@ -4200,7 +4194,7 @@
       },
       {
         "region": "StrongholdDungeon_EastHidden",
-        "comment":"ADVANCED LOGIC: remove dark rooms and add distant ledges,extra logic to avoid the need of the warp to home button",
+        "comment":"ADVANCED LOGIC: remove dark rooms ,extra logic to avoid the need of the warp to home button, swap flying stuff to distant ledges",
         "requirements": [
           "AND",
           [
@@ -4219,7 +4213,7 @@
         "id": 0,
         "item": "Stronghold Dungeon key",
         "name": "Stronghold Dungeon - Slime Statue Room 1",
-        "comment":"extra logic to avoid the need of the warp to home button",
+        "comment":"extra logic to avoid the need of the warp to home button, can remove all requirements",
         "requirements": [
           "OR",
           [
@@ -4233,7 +4227,7 @@
         "id": 1,
         "item": "Stronghold Dungeon key",
         "name": "Stronghold Dungeon - Slime Statue Room 2",
-        "comment":"extra logic to avoid the need of the warp to home button",
+        "comment":"extra logic to avoid the need of the warp to home button, can remove all requirements",
         "requirements": [
           "OR",
           [
@@ -4248,7 +4242,7 @@
       {
         "id": "stronghold_dungeon_blob_key",
         "name": "Blob Key Used",
-        "comment":"extra logic to avoid the need of the warp to home button",
+        "comment":"extra logic to avoid the need of the warp to home button, can remove the OR",
         "requirements": [
           "AND",[
             "blob_key",
@@ -5110,7 +5104,7 @@
     "connections": [
       {
         "region": "SnowyPeaks_Lake_Lower",
-        "comment": "extra logic to avoid the need of the warp to home button",
+        "comment": "extra logic to avoid the need of the warp to home button, can remove the OR",
         "requirements": [
           "AND",
           [
@@ -5131,7 +5125,7 @@
         "id": 11,
         "item": "Carrot",
         "name": "Snowy Peaks - Akhlut Room Chest",
-        "comment": "extra logic to avoid the need of the warp to home button",
+        "comment": "extra logic to avoid the need of the warp to home button, can remove all requirements",
         "requirements": [
           "AND",
           [
@@ -5166,7 +5160,7 @@
         "id": 17000045,
         "item": "Sanctuary Token",
         "name": "Snowy Peaks - Oracle",
-        "comment": "extra logic to avoid the need of the warp to home button",
+        "comment": "extra logic to avoid the need of the warp to home button, can remove all requirements",
         "requirements": [
           "AND",
           [
@@ -6660,7 +6654,7 @@
       },
       {
         "region": "SunPalace_South2",
-        "comment": "extra logic to avoid the need of the warp to home button",
+        "comment": "extra logic to avoid the need of the warp to home button, can remove everything in AND",
         "requirements": [
           "OR",
           [
@@ -6672,7 +6666,6 @@
               [
                 "swimming",
                 "double_jump",
-                "dual_mobility",
                 "summon_big_rock"
               ]
             ]
@@ -7001,15 +6994,35 @@
     "region": "SunPalace_EastSewers2",
     "connections": [
       {
-        "region": "SunPalace_EastSewers1"
+        "region": "SunPalace_EastSewers1",
+        "comment": "extra logic to avoid the need of the warp to home button, can remove all requirements",
+        "requirements": [
+          "OR",
+          [
+            "sun_palace_lower_water_2",
+            "double_jump",
+            "swimming",
+            "summon_big_rock"
+          ]
+        ]
       },
       {
-        "region": "SunPalace_EastSewers3"
+        "region": "SunPalace_EastSewers3",
+        "comment": "extra logic to avoid the need of the warp to home button, can remove all requirements",
+        "requirements": [
+          "OR",
+          [
+            "sun_palace_lower_water_2",
+            "double_jump",
+            "swimming",
+            "summon_big_rock"
+          ]
+        ]
       },
       {
         "region": "SunPalace_EastSewers6",
         "comment":"ADVANCED LOGIC: swimming + NOT sun palace lower water 2, doable if you stop swimming for a sec at the right side vertical (falling is faster that swimming down)",
-        "requirement":[
+        "requirements":[
          "sun_palace_lower_water_2"
         ]
       }
@@ -7038,7 +7051,7 @@
           "Sycophantom",
           "Kame"
         ],
-        "comment": "extra logic to avoid the need of the warp to home button",
+        "comment": "extra logic to avoid the need of the warp to home button, can remove all requirements",
         "requirements": [
           "OR",
           [
@@ -7203,7 +7216,6 @@
         "id": 5,
         "item": "Vital Ring+4",
         "name": "Sun Palace - Slime Statue Room - Center Chest",
-        "comment":"extra logic to avoid the need of the warp to home button",
         "requirements": [
           "AND",
           [
@@ -7221,7 +7233,7 @@
         "id": 7,
         "item": "Crystal Shard",
         "name": "Sun Palace - Slime Statue Room - East Chest",
-        "comment":"extra logic to avoid the need of the warp to home button",
+        "comment":"extra logic to avoid the need of the warp to home button, can remove all requirements",
         "requirements":[
           "OR",
           [
@@ -7236,7 +7248,7 @@
       {
         "id": "sun_palace_blob_key",
         "name": "Blob Key Used",
-        "comment":"extra logic to avoid the need of the warp to home button",
+        "comment":"extra logic to avoid the need of the warp to home button, only key needed",
         "requirements": [
           "AND",
           [
@@ -7782,6 +7794,48 @@
     ]
   },
   {
+    "region": "AncientWoods_Center4",
+    "connections": [
+      {
+        "region": "AncientWoods_West5"
+      },
+      {
+        "region": "AncientWoods_West6"
+      },
+      {
+        "region": "AncientWoods_Center1"
+      },
+      {
+        "region": "AncientWoods_DoorPuzzle"
+      }
+    ]
+  },
+  {
+    "region": "AncientWoods_DoorPuzzle",
+    "connections": [
+      {
+        "region": "AncientWoods_Center4"
+      }
+    ],
+    "chests": [
+      {
+        "id": 13,
+        "item": "2x Wool",
+        "name": "Ancient Woods - Door Puzzle 1"
+      },
+      {
+        "id": 14,
+        "item": "Ancient Woods key",
+        "name": "Ancient Woods - Door Puzzle 2"
+      },
+      {
+        "id": 15,
+        "item": "Tome+2",
+        "name": "Ancient Woods - Door Puzzle 3"
+      }
+    ]
+  },
+  {
     "region": "AncientWoods_West6",
     "connections": [
       {
@@ -7854,6 +7908,28 @@
     ]
   },
   {
+    "region": "AncientWoods_WestHidden2",
+    "connections": [
+      {
+        "region": "AncientWoods_West6"
+      }
+    ],
+    "chests": [
+      {
+        "id": 0,
+        "item": "2x Mass Antidote",
+        "name": "Ancient Woods - West Deep Caves Spike Room",
+        "requirements":[
+          "OR",
+          [
+            "distant_ledges",
+            "double_jump"
+          ]
+        ]
+      }
+    ]
+  },
+  {
     "region": "AncientWoods_West7",
     "connections": [
       {
@@ -7881,29 +7957,6 @@
             "improved_flying",
             "dual_mobility",
             "lofty_mount"
-          ]
-        ]
-      }
-    ]
-  },
-  
-  {
-    "region": "AncientWoods_WestHidden2",
-    "connections": [
-      {
-        "region": "AncientWoods_West6"
-      }
-    ],
-    "chests": [
-      {
-        "id": 0,
-        "item": "2x Mass Antidote",
-        "name": "Ancient Woods - West Deep Caves Spike Room",
-        "requirements":[
-          "OR",
-          [
-            "distant_ledges",
-            "double_jump"
           ]
         ]
       }
@@ -8199,6 +8252,55 @@
     ]
   },
   {
+    "region": "AncientWoods_Center3",
+    "connections": [
+      {
+        "region": "AncientWoods_Center1"
+      },
+      {
+        "region": "AncientWoods_TreeOfEvolution"
+      }
+    ],
+    "encounters": [
+      {
+        "id": 1,
+        "monsters": [
+          "Magmamoth",
+          "Magmapillar",
+          "Magmamoth"
+        ]
+      }
+    ]
+  },
+  {
+    "region": "AncientWoods_TreeOfEvolution",
+    "connections": [
+      {
+        "region": "AncientWoods_Center3"
+      }
+    ],
+    "chests": [
+      {
+        "id": 7,
+        "item": "Ancient Woods key",
+        "name": "Ancient Woods - Tree of Evolution Chest"
+      }
+    ],
+    "gifts": [
+      {
+        "id": 9900049,
+        "item": "Magical Clay",
+        "name": "Ancient Woods - Tree of Evolution Gift"
+      }
+    ],
+    "flags": [
+      {
+        "id": "tree_of_evolution_access",
+        "name": "Tree of Evolution Access"
+      }
+    ]
+  },
+  {
     "region": "AncientWoods_Center2",
     "connections": [
       {
@@ -8223,44 +8325,6 @@
           "Druid Oak",
           "Druid Oak"
         ]
-      }
-    ]
-  },
-  {
-    "region": "AncientWoods_Center3",
-    "connections": [
-      {
-        "region": "AncientWoods_Center1"
-      },
-      {
-        "region": "AncientWoods_TreeOfEvolution"
-      }
-    ],
-    "encounters": [
-      {
-        "id": 1,
-        "monsters": [
-          "Magmamoth",
-          "Magmapillar",
-          "Magmamoth"
-        ]
-      }
-    ]
-  },
-  {
-    "region": "AncientWoods_Center4",
-    "connections": [
-      {
-        "region": "AncientWoods_West5"
-      },
-      {
-        "region": "AncientWoods_West6"
-      },
-      {
-        "region": "AncientWoods_Center1"
-      },
-      {
-        "region": "AncientWoods_DoorPuzzle"
       }
     ]
   },
@@ -8315,7 +8379,7 @@
       },
       {
         "region": "AncientWoods_Center6_Upper",
-        "requirement":[
+        "requirements":[
           "AND",
           [
             "double_jump",
@@ -8460,6 +8524,42 @@
     ]
   },
   {
+    "region": "AncientWoods_North4",
+    "connections": [
+      {
+        "region": "AncientWoods_North1"
+      },
+      {
+        "region": "AncientWoods_North5"
+      }
+    ],
+    "encounters": [
+      {
+        "id": 1,
+        "monsters": [
+          "Goblin Brute",
+          "Goblin Warlock",
+          "Goblin Brute"
+        ]
+      }
+    ]
+  },
+  {
+    "region": "AncientWoods_North5",
+    "connections": [
+      {
+        "region": "AncientWoods_North4"
+      }
+    ],
+    "chests": [
+      {
+        "id": 0,
+        "item": "Ancient Woods key",
+        "name": "Ancient Woods - North - West Key Chest"
+      }
+    ]
+  },
+  {
     "region": "AncientWoods_North3",
     "connections": [
       {
@@ -8500,42 +8600,6 @@
       {
         "id": "goblin_king_defeated",
         "name": "Goblin King Defeated"
-      }
-    ]
-  },
-  {
-    "region": "AncientWoods_North4",
-    "connections": [
-      {
-        "region": "AncientWoods_North1"
-      },
-      {
-        "region": "AncientWoods_North5"
-      }
-    ],
-    "encounters": [
-      {
-        "id": 1,
-        "monsters": [
-          "Goblin Brute",
-          "Goblin Warlock",
-          "Goblin Brute"
-        ]
-      }
-    ]
-  },
-  {
-    "region": "AncientWoods_North5",
-    "connections": [
-      {
-        "region": "AncientWoods_North4"
-      }
-    ],
-    "chests": [
-      {
-        "id": 0,
-        "item": "Ancient Woods key",
-        "name": "Ancient Woods - North - West Key Chest"
       }
     ]
   },
@@ -8765,6 +8829,28 @@
     ]
   },
   {
+    "region": "AncientWoods_DarkRoom",
+    "connections": [
+      {
+        "region": "AncientWoods_South1"
+      }
+    ],
+    "chests": [
+      {
+        "id": 3,
+        "item": "2x Bronze",
+        "name": "Ancient Woods - South Dark Room",
+        "requirements": [
+          "AND",
+          [
+            "dark_rooms",
+            "double_jump"
+          ]
+        ]
+      }
+    ]
+  },
+  {
     "region": "AncientWoods_South2",
     "connections": [
       {
@@ -8854,6 +8940,32 @@
     ]
   },
   {
+    "region": "AncientWoods_TorchesRoom",
+    "connections": [
+      {
+        "region": "AncientWoods_South2"
+      }
+    ],
+    "chests": [
+      {
+        "id": 3,
+        "item": "Skill Potion",
+        "name": "Ancient Woods - Torches Room 1",
+        "requirements": [
+          "torches"
+        ]
+      },
+      {
+        "id": 7,
+        "item": "2x Potion",
+        "name": "Ancient Woods - Torches Room 2",
+        "requirements": [
+          "torches"
+        ]
+      }
+    ]
+  },
+  {
     "region": "AncientWoods_South4",
     "connections": [
       {
@@ -8888,18 +9000,22 @@
       }
     ]
   },
-  {
-    "region": "AncientWoods_DarkRoom",
+    {
+    "region": "AncientWoods_SouthHidden4",
     "connections": [
       {
-        "region": "AncientWoods_South1"
-      }
-    ],
-    "chests": [
+        "region": "AncientWoods_South4",
+        "requirements": [
+          "AND",
+          [
+            "dark_rooms",
+            "double_jump",
+            "ancient_woods_brutus_access"
+          ]
+        ]
+      },
       {
-        "id": 3,
-        "item": "2x Bronze",
-        "name": "Ancient Woods - South Dark Room",
+        "region": "AncientWoods_SouthChampion",
         "requirements": [
           "AND",
           [
@@ -8908,30 +9024,161 @@
           ]
         ]
       }
+    ],
+    "encounters": [
+      {
+        "id": 1,
+        "monsters": [
+          "Troll",
+          "Troll",
+          "Glowfly"
+        ]
+      }
     ]
   },
   {
-    "region": "AncientWoods_TorchesRoom",
+    "region": "AncientWoods_SouthChampion",
     "connections": [
       {
-        "region": "AncientWoods_South2"
+        "region": "AncientWoods_SouthHidden3"
+      },
+      {
+        "region": "AncientWoods_SouthHidden4"
+      }
+    ],
+    "champion": [
+      {
+        "id": 1,
+        "monsters": [
+          "Brutus"
+        ],
+        "name": "Ancient Woods - Brutus"
+      }
+    ]
+  },
+  {
+    "region": "AncientWoods_SouthHidden3",
+    "connections": [
+      {
+        "region": "AncientWoods_SouthHidden2",
+        "requirements": [
+          "AND",
+          [
+            "dark_rooms",
+            "double_jump"
+          ]
+        ]
+      },
+      {
+        "region": "AncientWoods_SouthChampion",
+        "requirements": [
+          "AND",
+          [
+            "dark_rooms",
+            "double_jump"
+          ]
+        ]
       }
     ],
     "chests": [
       {
-        "id": 3,
-        "item": "Skill Potion",
-        "name": "Ancient Woods - Torches Room 1",
+        "id": 2,
+        "item": "Craft Box",
+        "name": "Ancient Woods - Dark Caves - Vertical Shaft",
         "requirements": [
-          "torches"
+          "AND",
+          [
+            "dark_rooms",
+            "double_jump"
+          ]
+        ]
+      }
+    ],
+    "encounters": [
+      {
+        "id": 1,
+        "monsters": [
+          "Argiope",
+          "Troll",
+          "Argiope"
+        ]
+      }
+    ]
+  },
+  {
+    "region": "AncientWoods_SouthHidden2",
+    "connections": [
+      {
+        "region": "AncientWoods_SouthHidden1_East",
+        "requirements": [
+          "AND",
+          [
+            "dark_rooms",
+            "double_jump"
+          ]
         ]
       },
       {
-        "id": 7,
-        "item": "2x Potion",
-        "name": "Ancient Woods - Torches Room 2",
+        "region": "AncientWoods_SouthHidden3",
         "requirements": [
-          "torches"
+          "AND",
+          [
+            "dark_rooms",
+            "double_jump"
+          ]
+        ]
+      }
+    ],
+    "encounters": [
+      {
+        "id": 1,
+        "monsters": [
+          "Troll",
+          "Troll",
+          "Troll"
+        ]
+      }
+    ]
+  },
+  {
+    "region": "AncientWoods_SouthHidden1_East",
+    "connections": [
+      {
+        "region": "AncientWoods_SouthHidden2",
+         "requirements":[
+          "OR",
+          [
+            "torches",
+            "dark_rooms"
+          ]
+        ]
+      },
+      {
+        "region": "AncientWoods_SouthHidden1_West",
+        "requirements":[
+          "OR",
+          [
+            "torches",
+            "dark_rooms"
+          ]
+        ]
+      }
+    ],
+    "chests": [
+      {
+        "id": 8,
+        "item": "2000 G",
+        "name": "Ancient Woods - Dark Caves - Torches Chest 2",
+        "requirements": [
+          "AND",
+          [
+            "breakable_walls",
+            "OR",
+            [
+              "torches",
+              "dark_rooms"
+            ]
+          ]
         ]
       }
     ]
@@ -9005,242 +9252,6 @@
     ]
   },
   {
-    "region": "AncientWoods_SouthHidden1_East",
-    "connections": [
-      {
-        "region": "AncientWoods_SouthHidden2",
-         "requirements":[
-          "OR",
-          [
-            "torches",
-            "dark_rooms"
-          ]
-        ]
-      },
-      {
-        "region": "AncientWoods_SouthHidden1_West",
-        "requirements":[
-          "OR",
-          [
-            "torches",
-            "dark_rooms"
-          ]
-        ]
-      }
-    ],
-    "chests": [
-      {
-        "id": 8,
-        "item": "2000 G",
-        "name": "Ancient Woods - Dark Caves - Torches Chest 2",
-        "requirements": [
-          "AND",
-          [
-            "breakable_walls",
-            "OR",
-            [
-              "torches",
-              "dark_rooms"
-            ]
-          ]
-        ]
-      }
-    ]
-  },
-  {
-    "region": "AncientWoods_SouthHidden2",
-    "connections": [
-      {
-        "region": "AncientWoods_SouthHidden1_East",
-        "requirements": [
-          "AND",
-          [
-            "dark_rooms",
-            "double_jump"
-          ]
-        ]
-      },
-      {
-        "region": "AncientWoods_SouthHidden3",
-        "requirements": [
-          "AND",
-          [
-            "dark_rooms",
-            "double_jump"
-          ]
-        ]
-      }
-    ],
-    "encounters": [
-      {
-        "id": 1,
-        "monsters": [
-          "Troll",
-          "Troll",
-          "Troll"
-        ]
-      }
-    ]
-  },
-  {
-    "region": "AncientWoods_SouthHidden3",
-    "connections": [
-      {
-        "region": "AncientWoods_SouthHidden2",
-        "requirements": [
-          "AND",
-          [
-            "dark_rooms",
-            "double_jump"
-          ]
-        ]
-      },
-      {
-        "region": "AncientWoods_SouthChampion",
-        "requirements": [
-          "AND",
-          [
-            "dark_rooms",
-            "double_jump"
-          ]
-        ]
-      }
-    ],
-    "chests": [
-      {
-        "id": 2,
-        "item": "Craft Box",
-        "name": "Ancient Woods - Dark Caves - Vertical Shaft",
-        "requirements": [
-          "AND",
-          [
-            "dark_rooms",
-            "double_jump"
-          ]
-        ]
-      }
-    ],
-    "encounters": [
-      {
-        "id": 1,
-        "monsters": [
-          "Argiope",
-          "Troll",
-          "Argiope"
-        ]
-      }
-    ]
-  },
-  {
-    "region": "AncientWoods_SouthHidden4",
-    "connections": [
-      {
-        "region": "AncientWoods_South4",
-        "requirements": [
-          "AND",
-          [
-            "dark_rooms",
-            "double_jump",
-            "ancient_woods_brutus_access"
-          ]
-        ]
-      },
-      {
-        "region": "AncientWoods_SouthChampion",
-        "requirements": [
-          "AND",
-          [
-            "dark_rooms",
-            "double_jump"
-          ]
-        ]
-      }
-    ],
-    "encounters": [
-      {
-        "id": 1,
-        "monsters": [
-          "Troll",
-          "Troll",
-          "Glowfly"
-        ]
-      }
-    ]
-  },
-  {
-    "region": "AncientWoods_SouthChampion",
-    "connections": [
-      {
-        "region": "AncientWoods_SouthHidden3"
-      },
-      {
-        "region": "AncientWoods_SouthHidden4"
-      }
-    ],
-    "champion": [
-      {
-        "id": 1,
-        "monsters": [
-          "Brutus"
-        ],
-        "name": "Ancient Woods - Brutus"
-      }
-    ]
-  },
-  {
-    "region": "AncientWoods_TreeOfEvolution",
-    "connections": [
-      {
-        "region": "AncientWoods_Center3"
-      }
-    ],
-    "chests": [
-      {
-        "id": 7,
-        "item": "Ancient Woods key",
-        "name": "Ancient Woods - Tree of Evolution Chest"
-      }
-    ],
-    "gifts": [
-      {
-        "id": 9900049,
-        "item": "Magical Clay",
-        "name": "Ancient Woods - Tree of Evolution Gift"
-      }
-    ],
-    "flags": [
-      {
-        "id": "tree_of_evolution_access",
-        "name": "Tree of Evolution Access"
-      }
-    ]
-  },
-  {
-    "region": "AncientWoods_DoorPuzzle",
-    "connections": [
-      {
-        "region": "AncientWoods_Center4"
-      }
-    ],
-    "chests": [
-      {
-        "id": 13,
-        "item": "2x Wool",
-        "name": "Ancient Woods - Door Puzzle 1"
-      },
-      {
-        "id": 14,
-        "item": "Ancient Woods key",
-        "name": "Ancient Woods - Door Puzzle 2"
-      },
-      {
-        "id": 15,
-        "item": "Tome+2",
-        "name": "Ancient Woods - Door Puzzle 3"
-      }
-    ]
-  },
-  {
     "region": "HorizonBeach_Farm",
     "connections": [
       {
@@ -9273,7 +9284,8 @@
           "OR",
           [
             "double_jump",
-            "swimming"
+            "swimming",
+            "ground_switches"
           ]
         ]
       }
@@ -9393,7 +9405,8 @@
           [
             "double_jump",
             "swimming",
-            "distant_ledges"
+            "distant_ledges",
+            "summon_big_rock"
           ]
         ]
       },
@@ -9732,16 +9745,13 @@
         "id": 6,
         "item": "Azure Gem",
         "name": "Horizon Beach - Central - Ice Orb Chest",
+        "comment":"Removed logic to avoid the use of the return to home button, but doable with either swimming, double_jump or summon rock/mushroom (big rock too big)",
         "requirements": [
           "AND",
           [
             "ice_orbs",
             "heavy_blocks",
-            "OR",
-            [
-              "double_jump",
-              "swimming"
-            ]
+            "swimming"
           ]
         ]
       }
@@ -9756,7 +9766,11 @@
       {
         "region": "HorizonBeach_East1",
         "requirements": [
-          "swimming"
+          "OR",
+          [
+            "swimming",
+            "double_jump"
+          ]
         ]
       },
       {
@@ -9775,7 +9789,19 @@
         "item": "Level Badge",
         "name": "Horizon Beach - Central - Island Chest",
         "requirements": [
-          "swimming"
+          "OR",
+          [
+            "swimming",
+            "AND",
+            [
+              "double_jump",
+              "OR",
+              [
+                "improved_flying",
+                "lofty_mount"
+              ]
+            ]
+          ]
         ]
       }
     ]
@@ -9793,7 +9819,13 @@
           [
             "double_jump",
             "improved_flying",
-            "dual_mobility"
+            "dual_mobility",
+            "lofty_mount",
+            "AND",
+            [
+              "ground_switches",
+              "flying"
+            ]
           ]
         ]
       }
@@ -9803,13 +9835,15 @@
         "id": 0,
         "item": "Verdant Gem",
         "name": "Horizon Beach - Crystal Room",
+        "comment": "Big rock might be too annoying to do due to the big drop",
         "requirements": [
           "OR",
           [
             "double_jump",
             "improved_flying",
             "dual_mobility",
-            "lofty_mount"
+            "lofty_mount",
+            "summon_big_rock"
           ]
         ]
       }
@@ -9826,8 +9860,14 @@
           "OR",
           [
             "double_jump",
+            "improved_flying",
             "dual_mobility",
-            "improved_flying"
+            "lofty_mount",
+            "AND",
+            [
+              "ground_switches",
+              "flying"
+            ]
           ]
         ]
       }
@@ -9846,7 +9886,8 @@
           [
             "double_jump",
             "improved_flying",
-            "dual_mobility"
+            "dual_mobility",
+            "lofty_mount"
           ]
         ]
       },
@@ -9857,7 +9898,8 @@
           [
             "double_jump",
             "improved_flying",
-            "dual_mobility"
+            "dual_mobility",
+            "lofty_mount"
           ]
         ]
       },
@@ -9874,7 +9916,9 @@
           "OR",
           [
             "double_jump",
-            "distant_ledges"
+            "improved_flying",
+            "dual_mobility",
+            "lofty_mount"
           ]
         ]
       }
@@ -9892,7 +9936,8 @@
           [
             "double_jump",
             "improved_flying",
-            "dual_mobility"
+            "dual_mobility",
+            "lofty_mount"
           ]
         ]
       }
@@ -9925,7 +9970,16 @@
         "item": "1000 G",
         "name": "Horizon Beach - East - Middle Ledge Chest 1",
         "requirements": [
-          "breakable_walls"
+          "AND",
+          [
+            "breakable_walls",
+            "OR",
+            [
+              "double_jump",
+              "improved_flying",
+              "dual_mobility"
+            ]
+          ]
         ]
       },
       {
@@ -9933,10 +9987,15 @@
         "item": "Reward Box Lvl 2",
         "name": "Horizon Beach - East - Middle Ledge Chest 2",
         "requirements": [
-          "OR",
+          "AND",
           [
             "double_jump",
-            "distant_ledges"
+            "OR",
+            [
+              "improved_flying",
+              "dual_mobility",
+              "lofty_mount"
+            ]
           ]
         ]
       }
@@ -9946,7 +10005,16 @@
     "region": "HorizonBeach_East2_Lower",
     "connections": [
       {
-        "region": "HorizonBeach_East3"
+        "region": "HorizonBeach_East3",
+        "comment": "extra logic to avoid the need of the warp to home button, can get stuck at easthidden, can remove all requirements",
+        "requirements":[
+          "OR",
+          [
+            "double_jump",
+            "swimming",
+            "ground_switches"
+          ]
+        ]
       },
       {
         "region": "HorizonBeach_EastHidden",
@@ -9957,7 +10025,15 @@
       {
         "region": "HorizonBeach_East2_Middle",
         "requirements": [
-          "swimming"
+          "OR",
+          [
+            "swimming",
+            "AND",
+            [
+              "double_jump",
+              "ground_switches"
+            ]
+          ]
         ]
       }
     ],
@@ -9973,7 +10049,8 @@
             "OR",
             [
               "improved_flying",
-              "dual_mobility"
+              "dual_mobility",
+              "lofty_mount"
             ]
           ]
         ]
@@ -9981,7 +10058,16 @@
       {
         "id": 55,
         "item": "2x Smoke bomb",
-        "name": "Horizon Beach - East - Underwater Chest"
+        "name": "Horizon Beach - East - Underwater Chest",
+        "comment": "extra logic to avoid the need of the warp to home button, can remove all requirements",
+        "requirements":[
+          "OR",
+          [
+            "double_jump",
+            "swimming",
+            "ground_switches"
+          ]
+        ]
       }
     ],
     "encounters": [
@@ -10017,7 +10103,10 @@
         "item": "Rare Seashell",
         "name": "Horizon Beach - East - Fast Currents Tunnel",
         "requirements": [
-          "swimming"
+          "OR", [
+            "improved_swimming",
+            "dual_mobility"
+          ]
         ]
       }
     ]
@@ -10031,8 +10120,7 @@
           "OR",
           [
             "double_jump",
-            "improved_flying",
-            "dual_mobility"
+            "distant_ledges"
           ]
         ]
       },
@@ -10102,7 +10190,7 @@
     ],
     "flags": [
       {
-        "id": "third_beach_bex",
+        "id": "third_bex_encounter",
         "name": "Bex",
         "requirements": [
           "second_bex_encounter"
@@ -10126,8 +10214,8 @@
           "OR",
           [
             "double_jump",
-            "improved_flying",
-            "dual_mobility"
+            "distant_ledges",
+            "summon_big_rock"
           ]
         ]
       },
@@ -10152,7 +10240,16 @@
     "region": "HorizonBeach_Fisher",
     "connections": [
       {
-        "region": "HorizonBeach_East2_Middle"
+        "region": "HorizonBeach_East2_Middle",
+        "requirements": [
+          "OR",
+          [
+            "swimming",
+            "double_jump",
+            "distant_ledges",
+            "ground_switches"
+          ]
+        ]
       }
     ],
     "chests": [
@@ -10265,19 +10362,43 @@
       {
         "region": "HorizonBeach_Center1",
         "requirements": [
-          "swimming"
+          "OR",
+          [
+            "swimming",
+            "AND",
+            [
+              "double_jump",
+              "summon_big_rock"
+            ]
+          ]
         ]
       },
       {
         "region": "HorizonBeach_Center3",
         "requirements": [
-          "swimming"
+          "OR",
+          [
+            "swimming",
+            "AND",
+            [
+              "double_jump",
+              "summon_big_rock"
+            ]
+          ]
         ]
       },
       {
         "region": "HorizonBeach_South1",
         "requirements": [
-          "swimming"
+          "OR",
+          [
+            "swimming",
+            "AND",
+            [
+              "double_jump",
+              "summon_big_rock"
+            ]
+          ]
         ]
       }
     ],
@@ -10287,7 +10408,15 @@
         "item": "Level Badge",
         "name": "Horizon Beach - Labyrinth - Southwest Chest",
         "requirements": [
-          "swimming"
+          "OR",
+          [
+            "swimming",
+            "AND",
+            [
+              "double_jump",
+              "summon_big_rock"
+            ]
+          ]
         ]
       },
       {
@@ -10329,26 +10458,50 @@
     "connections": [
       {
         "region": "HorizonBeach_South1",
+        "comment": "ADVANCED LOGIC: groundswitches, small place where you can place a rock without getting swept away by the current",
         "requirements": [
-          "swimming"
+          "OR",
+          [
+            "double_jump",
+            "summon_big_rock",
+            "swimming"
+          ]
         ]
       },
       {
         "region": "HorizonBeach_South3",
+        "comment":"extra logic to avoid the need of the warp to home button, can get stuck at south6 entrance, otherwise no requirements",
         "requirements": [
-          "swimming"
+          "OR",
+          [
+            "double_jump",
+            "ground_switches",
+            "swimming"
+          ]
         ]
       },
       {
         "region": "HorizonBeach_South6",
+        "comment":"extra logic to avoid the need of the warp to home button, can get stuck at south6 entrance, otherwise no requirements",
         "requirements": [
-          "swimming"
+          "OR",
+          [
+            "double_jump",
+            "ground_switches",
+            "swimming"
+          ]
         ]
       },
       {
         "region": "HorizonBeach_TreasureCaveEntrance",
+        "comment":"extra logic to avoid the need of the warp to home button, can get stuck at south6 entrance, otherwise no requirements",
         "requirements": [
-          "swimming"
+          "OR",
+          [
+            "double_jump",
+            "ground_switches",
+            "swimming"
+          ]
         ]
       }
     ],
@@ -10359,9 +10512,19 @@
           "Nautilid",
           "Toxiquus",
           "Nautilid"
+        ],
+        "comment":"extra logic to avoid the need of the warp to home button, can get stuck at south6 entrance, otherwise no requirements",
+        "requirements": [
+          "OR",
+          [
+            "double_jump",
+            "ground_switches",
+            "swimming"
+          ]
         ]
       }
     ]
+    
   },
   {
     "region": "HorizonBeach_South3",
@@ -10389,7 +10552,15 @@
       {
         "region": "HorizonBeach_South5",
         "requirements": [
-          "swimming"
+          "OR",
+          [
+            "swimming",
+            "AND",
+            [
+              "double_jump",
+              "ground_switches"
+            ]
+          ]
         ]
       }
     ],
@@ -10405,16 +10576,10 @@
     "region": "HorizonBeach_South5",
     "connections": [
       {
-        "region": "HorizonBeach_South4",
-        "requirements": [
-          "swimming"
-        ]
+        "region": "HorizonBeach_South4"
       },
       {
-        "region": "HorizonBeach_Pit",
-        "requirements": [
-          "swimming"
-        ]
+        "region": "HorizonBeach_Pit"
       }
     ],
     "encounters": [
@@ -10461,7 +10626,21 @@
     "region": "HorizonBeach_Pit",
     "connections": [
       {
-        "region": "HorizonBeach_South5"
+        "region": "HorizonBeach_South5",
+        "comment": "extra logic to avoid the need of the warp to home button, can remove all requirements",
+        "requirements": [
+          "AND",
+          [
+            "double_jump",
+            "OR",
+            [
+              "improved_flying",
+              "dual_mobility",
+              "lofty_mount",
+              "summon_big_rock"
+            ]
+          ]
+        ]
       }
     ],
     "flags": [
@@ -10538,23 +10717,25 @@
         ]
       },
       {
-        "region": "HorizonBeach_TreasureCave3"
+        "region": "HorizonBeach_TreasureCave3",
+        "requirements":[
+          "swimming"
+        ]
       },
       {
         "region": "HorizonBeach_TreasureCave4",
         "requirements": [
-          "OR",
-          [
-            "double_jump",
-            "ground_switches",
-            "distant_ledges"
-          ]
+          "swimming"
         ]
       },
       {
         "region": "HorizonBeach_TreasureCave5",
         "requirements": [
-          "swimming"
+          "OR",
+          [
+            "swimming",
+            "double_jump"
+          ]
         ]
       },
       {
@@ -10567,16 +10748,7 @@
         "item": "Rare Seashell",
         "name": "Horizon Beach - Treasure Cave - Vertical Room",
         "requirements": [
-          "AND",
-          [
-            "swimming",
-            "OR",
-            [
-              "double_jump",
-              "ground_switches",
-              "distant_ledges"
-            ]
-          ]
+          "swimming"
         ]
       }
     ]
@@ -10626,7 +10798,8 @@
           "OR",
           [
             "double_jump",
-            "swimming"
+            "swimming",
+            "ground_switches"
           ]
         ]
       }
@@ -10688,7 +10861,18 @@
         "region": "HorizonBeach_TreasureCave2"
       },
       {
-        "region": "HorizonBeach_FWEntrance2"
+        "region": "HorizonBeach_FWEntrance2",
+        "requirements": [
+          "OR",
+          [
+            "swimming",
+            "AND",
+            [
+              "double_jump",
+              "summon_big_rock"
+            ]
+          ]
+        ]
       }
     ],
     "chests": [
@@ -10697,7 +10881,15 @@
         "item": "2000 G",
         "name": "Horizon Beach - Forgotten World Entrance",
         "requirements": [
-          "swimming"
+          "OR",
+          [
+            "swimming",
+            "AND",
+            [
+              "double_jump",
+              "summon_big_rock"
+            ]
+          ]
         ]
       }
     ]
@@ -10850,15 +11042,7 @@
         "region": "MagmaChamber_West2"
       },
       {
-        "region": "MagmaChamber_West4_Lower",
-        "requirements": [
-          "OR",
-          [
-            "double_jump",
-            "distant_ledges",
-            "ground_switches"
-          ]
-        ]
+        "region": "MagmaChamber_West4_Lower"
       },
       {
         "region": "MagmaChamber_Center1"
@@ -10874,11 +11058,14 @@
       {
         "region": "MagmaChamber_West4_Ledge",
         "requirements": [
-          "OR",
+          "AND",
           [
             "double_jump",
-            "improved_flying",
-            "dual_mobility"
+            "OR",[
+              "improved_flying",
+              "dual_mobility",
+              "lofty_mount"
+            ]
           ]
         ]
       },
@@ -10907,14 +11094,7 @@
       {
         "id": 3,
         "item": "2x Mass Potion",
-        "name": "Magma Chamber - West - Ledge Chest",
-        "requirements": [
-          "OR",
-          [
-            "double_jump",
-            "distant_ledges"
-          ]
-        ]
+        "name": "Magma Chamber - West - Ledge Chest"
       }
     ]
   },
@@ -10926,6 +11106,19 @@
       },
       {
         "region": "MagmaChamber_West5"
+      },
+      {
+        "region": "MagmaChamber_West4_Ledge",
+        "comment":"Removed logic to avoid the use of the return to home button, but doable with flying",
+        "requirements":[
+          "OR",
+            [
+              "double_jump",
+              "improved_flying",
+              "dual_mobility"
+            ]
+        ]
+
       }
     ],
     "chests": [
@@ -10933,11 +11126,19 @@
         "id": 0,
         "item": "Skill Potion",
         "name": "Magma Chamber - West - Dark Breakable Wall Chest",
+        "comment":"extra logic to avoid the need of the warp to home button, can remove the OR",
         "requirements": [
           "AND",
           [
             "dark_rooms",
-            "breakable_walls"
+            "breakable_walls",
+            "OR",
+            [
+              "double_jump",
+              "improved_flying",
+              "dual_mobility",
+              "lofty_mount"
+            ]
           ]
         ]
       }
@@ -10968,13 +11169,40 @@
     "region": "MagmaChamber_West6_Upper",
     "connections": [
       {
-        "region": "MagmaChamber_West1_East"
+        "region": "MagmaChamber_West1_East",
+        "comment":"extra logic to avoid the need of the warp to home button, can remove all requirements",
+        "requirements": [
+          "OR",
+          [
+            "double_jump",
+            "distant_ledges",
+            "ground_switches"
+          ]
+        ]
       },
       {
-        "region": "MagmaChamber_West6_Lower"
+        "region": "MagmaChamber_West6_Lower",
+        "comment":"extra logic to avoid the need of the warp to home button, can remove all requirements",
+        "requirements": [
+          "OR",
+          [
+            "double_jump",
+            "distant_ledges",
+            "ground_switches"
+          ]
+        ]
       },
       {
-        "region": "MagmaChamber_West2"
+        "region": "MagmaChamber_West2",
+        "comment":"extra logic to avoid the need of the warp to home button, can remove all requirements",
+        "requirements": [
+          "OR",
+          [
+            "double_jump",
+            "distant_ledges",
+            "ground_switches"
+          ]
+        ]
       }
     ]
   },
@@ -11106,7 +11334,7 @@
         "region": "MagmaChamber_North1"
       },
       {
-        "region": "MagmaChamber_North5"
+        "region": "MagmaChamber_North5_Lower"
       },
       {
         "region": "MagmaChamber_North8_East"
@@ -11217,10 +11445,7 @@
         "item": "Silver",
         "name": "Magma Chamber - North - Dark Room",
         "requirements": [
-          "AND", [
-            "double_jump",
-            "dark_rooms"
-          ]
+          "dark_rooms"
         ]
       }
     ]
@@ -11373,15 +11598,24 @@
     "connections": [
       {
         "region": "MagmaChamber_East2",
+        "comment":"extra logic to avoid the need of the warp to home button, can remove swimming, ADVANCED LOGIC: Double Jump and Big Rock and improved flying",
         "requirements": [
-          "horizon_beach_to_magma_chamber_shortcut"
+          "AND",
+          [
+            "horizon_beach_to_magma_chamber_shortcut",
+            "swimming"
+          ]
         ]
       },
       {
         "region": "MagmaChamber_East3_Lower"
       },
       {
-        "region": "MagmaChamber_GoblinTrader"
+        "region": "MagmaChamber_GoblinTrader",
+        "comment":"extra logic to avoid the need of the warp to home button, can remove swimming",
+        "requirements":[
+          "swimming"
+        ]
       }
     ],
     "flags": [
@@ -11417,7 +11651,9 @@
           "OR",
           [
             "double_jump",
-            "distant_ledges"
+            "flying",
+            "improved_flying",
+            "dual_mobility"
           ]
         ]
       }
@@ -11508,14 +11744,7 @@
     "region": "MagmaChamber_Center2_Lower",
     "connections": [
       {
-        "region": "MagmaChamber_Center5",
-        "requirements": [
-          "OR",
-          [
-            "double_jump",
-            "distant_ledges"
-          ]
-        ]
+        "region": "MagmaChamber_Center5"
       },
       {
         "region": "MagmaChamber_Center2_Middle",
@@ -11622,7 +11851,10 @@
       {
         "id": 0,
         "item": "1000 G",
-        "name": "Magma Chamber - Center - Below Lava Pit"
+        "name": "Magma Chamber - Center - Below Lava Pit",
+        "requirements":[
+          "breakable_walls"
+        ]
       }
     ]
   },
@@ -11640,7 +11872,8 @@
             "double_jump",
             "improved_flying",
             "dual_mobility",
-            "lofty_mount"
+            "summon_big_rock",
+            "mount"
           ]
         ]
       }
@@ -11657,13 +11890,46 @@
     "region": "MagmaChamber_Center6_Upper",
     "connections": [
       {
-        "region": "MagmaChamber_Center7"
+        "region": "MagmaChamber_Center7",
+        "comment":"extra logic to avoid the need of the warp to home button,can remove all requirements",
+        "requirements": [
+          "OR",
+          [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility",
+            "summon_big_rock",
+            "mount"
+          ]
+        ]
       },
       {
-        "region": "MagmaChamber_Center6_Lower"
+        "region": "MagmaChamber_Center6_Lower",
+        "comment":"extra logic to avoid the need of the warp to home button,can remove all requirements",
+        "requirements": [
+          "OR",
+          [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility",
+            "summon_big_rock",
+            "mount"
+          ]
+        ]
       },
       {
-        "region": "MagmaChamber_AlchemistLab_West"
+        "region": "MagmaChamber_AlchemistLab_West",
+        "comment":"extra logic to avoid the need of the warp to home button,can remove all requirements",
+        "requirements": [
+          "OR",
+          [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility",
+            "summon_big_rock",
+            "mount"
+          ]
+        ]
       }
     ],
     "encounters": [
@@ -11673,6 +11939,17 @@
           "Lava Blob",
           "Salahammer",
           "Draconov"
+        ],
+        "comment":"extra logic to avoid the need of the warp to home button,can remove all requirements",
+        "requirements": [
+          "OR",
+          [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility",
+            "summon_big_rock",
+            "mount"
+          ]
         ]
       }
     ]
@@ -11739,7 +12016,8 @@
           "OR",
           [
             "double_jump",
-            "distant_ledges"
+            "distant_ledges",
+            "ground_switches"
           ]
         ]
       },
@@ -11749,7 +12027,8 @@
           "OR",
           [
             "double_jump",
-            "distant_ledges"
+            "distant_ledges",
+            "ground_switches"
           ]
         ]
       },
@@ -11759,7 +12038,8 @@
           "OR",
           [
             "double_jump",
-            "distant_ledges"
+            "improved_flying",
+            "dual_mobility"
           ]
         ]
       }
@@ -11769,7 +12049,16 @@
     "region": "MagmaChamber_Center9_Middle",
     "connections": [
       {
-        "region": "MagmaChamber_Center9_Lower"
+        "region": "MagmaChamber_Center9_Lower",
+        "comment":"extra logic to avoid the need of the warp to home button,can remove requirements",
+        "requirements": [
+          "OR",
+          [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility"
+          ]
+        ]
       },
       {
         "region": "MagmaChamber_Center9_Upper",
@@ -11784,12 +12073,22 @@
       },
       {
         "region": "MagmaChamber_PuppyRoom",
+        "comment":"extra logic to avoid the need of the warp to home button,can remove height abilities",
         "requirements": [
-          "OR",
+          "AND",
           [
-            "two_magma_chamber_keys",
-            "minimal_locked_doors",
-            "no_locked_doors"
+            "OR",
+            [
+              "two_magma_chamber_keys",
+              "minimal_locked_doors",
+              "no_locked_doors"
+            ],
+            "OR",
+            [
+              "double_jump",
+              "improved_flying",
+              "dual_mobility"
+            ] 
           ]
         ]
       }
@@ -11798,7 +12097,15 @@
       {
         "id": 12,
         "item": "Silver",
-        "name": "Magma Chamber - East - Vertical Shaft Chest"
+        "name": "Magma Chamber - East - Vertical Shaft Chest",
+        "requirements": [
+          "OR",
+          [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility"
+          ]
+        ]
       }
     ]
   },
@@ -11807,12 +12114,31 @@
     "connections": [
       {
         "region": "MagmaChamber_East1",
+        "comment":"extra logic to avoid the need of the warp to home button,can remove height requirements",
         "requirements": [
-          "magma_chamber_east_shortcut"
+          "AND",
+          [
+            "magma_chamber_east_shortcut",
+            "OR",
+            [
+              "double_jump",
+              "improved_flying",
+              "dual_mobility"
+            ]
+          ]  
         ]
       },
       {
-        "region": "MagmaChamber_Center9_Middle"
+        "region": "MagmaChamber_Center9_Middle",
+        "comment":"extra logic to avoid the need of the warp to home button,can remove requirements",
+        "requirements": [
+          "OR",
+          [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility"
+          ]
+        ]
       }
     ],
     "flags": [
@@ -11837,7 +12163,8 @@
             "OR",
             [
               "improved_flying",
-              "dual_mobility"
+              "dual_mobility",
+              "lofty_mount"
             ]
           ]
         ]
@@ -11880,10 +12207,24 @@
         "item": "Omni Ring",
         "name": "Magma Chamber - Crumble Bridge Puzzle - Upper Chest",
         "requirements": [
-          "AND",
+          "OR",
           [
-            "ground_switches",
-            "double_jump"
+            "AND",
+            [
+              "ground_switches",
+              "OR",
+              [
+                "double_jump",
+                "lofty_mount",
+                "improved_flying",
+                "dual_mobility"
+              ]
+            ],
+            "AND",
+            [
+              "double_jump",
+              "narrow_corridors"
+            ]
           ]
         ]
       }
@@ -11945,7 +12286,8 @@
             "OR",
             [
               "improved_flying",
-              "dual_mobility"
+              "dual_mobility",
+              "lofty_mount"
             ]
           ]
         ]
@@ -12017,19 +12359,58 @@
     "region": "MagmaChamber_South4_Upper",
     "connections": [
       {
-        "region": "MagmaChamber_South4_Lower"
+        "region": "MagmaChamber_South4_Lower",
+        "comment":"extra logic to avoid the need of the warp to home button,can remove all requirements",
+        "requirements":[
+          "OR",
+          [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility",
+            "summon_big_rock"
+          ]
+        ]
       },
       {
-        "region": "MagmaChamber_Center10"
+        "region": "MagmaChamber_Center10",
+        "comment":"extra logic to avoid the need of the warp to home button,can remove all requirements",
+        "requirements":[
+          "OR",
+          [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility",
+            "summon_big_rock"
+          ]
+        ]
       },
       {
         "region": "MagmaChamber_Champion2",
+        "comment":"removed logic to avoid the need of the warp to home button,can add all extra height options",
+        "requirements":[
+          "OR",
+          [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility",
+            "summon_big_rock"
+          ]
+        ]
+      }
+    ],
+    "chests": [
+      {
+        "id": 7,
+        "item": "Needle+4",
+        "name": "Magma Chamber - Lava Fortress",
+        "comment":"extra logic to avoid the need of the warp to home button,can remove all requirements",
         "requirements": [
           "OR",
           [
             "double_jump",
-            "ground_switches",
-            "distant_ledges"
+            "improved_flying",
+            "dual_mobility",
+            "summon_big_rock"
           ]
         ]
       }
@@ -12057,7 +12438,8 @@
           [
             "double_jump",
             "distant_ledges",
-            "mount"
+            "mount",
+            "summon_big_rock"
           ]
         ]
       },
@@ -12067,23 +12449,9 @@
           "OR",
           [
             "double_jump",
-            "distant_ledges"
-          ]
-        ]
-      }
-    ],
-    "chests": [
-      {
-        "id": 7,
-        "item": "Needle+4",
-        "name": "Magma Chamber - Lava Fortress",
-        "requirements": [
-          "OR",
-          [
-            "double_jump",
-            "improved_flying",
-            "dual_mobility",
-            "lofty_mount"
+            "distant_ledges",
+            "mount",
+            "summon_big_rock"
           ]
         ]
       }
@@ -12278,7 +12646,9 @@
           "OR",
           [
             "double_jump",
-            "distant_ledges"
+            "flying",
+            "improved_flying",
+            "dual_mobility"
           ]
         ]
       }
@@ -12299,7 +12669,9 @@
           "OR",
           [
             "double_jump",
-            "distant_ledges"
+            "flying",
+            "improved_flying",
+            "dual_mobility"
           ]
         ]
       }
@@ -12448,7 +12820,15 @@
         "item": "3x Reward Box X",
         "name": "Magma Chamber - Tar Pit",
         "requirements": [
-          "tar"
+          "OR",
+          [
+            "dual_mobility",
+            "AND",
+            [
+              "tar_mount",
+              "double_jump"
+            ]
+          ]
         ]
       }
     ]
@@ -12715,7 +13095,8 @@
             [
               "improved_flying",
               "dual_mobility",
-              "lofty_mount"
+              "lofty_mount",
+              "summon_big_rock"
             ]
           ]
         ]
@@ -12732,7 +13113,12 @@
             [
               "improved_flying",
               "dual_mobility",
-              "lofty_mount"
+              "lofty_mount",
+              "AND",
+              [
+                "summon_big_rock",
+                "flying"
+              ]
             ]
           ]
         ]
@@ -12765,7 +13151,7 @@
         "item": "Needle+5",
         "name": "Underworld - East - Heavy Block Chest",
         "requirements": [
-          "heavy_blocks"
+          "summon_big_rock"
         ]
       }
     ],
@@ -12802,7 +13188,7 @@
             "improved_flying",
             "dual_mobility",
             "lofty_mount",
-            "summon_big_rock"
+            "ground_switches"
           ]
         ]
       }
@@ -13038,15 +13424,11 @@
       {
         "region": "Underworld_EastCatacomb9",
         "requirements": [
-          "AND",
+          "OR",
           [
-            "heavy_blocks",
-            "OR",
-            [
-              "double_jump",
-              "improved_flying",
-              "dual_mobility"
-            ]
+            "double_jump",
+            "improved_flying",
+            "dual_mobility"
           ]
         ]
       }
@@ -13155,11 +13537,7 @@
         "item": "Crystal Shard",
         "name": "Underworld - East Catacomb - Basement Chest 2",
         "requirements": [
-          "AND",
-          [
-            "double_jump",
-            "grapple"
-          ]
+          "grapple"
         ]
       }
     ]
@@ -13171,7 +13549,7 @@
         "region": "Underworld_Center2"
       },
       {
-        "region": "Underworld_EastCatacomb2"
+        "region": "Underworld_EastCatacomb3"
       }
     ],
     "gifts": [
@@ -13263,6 +13641,7 @@
             "double_jump",
             "improved_flying",
             "dual_mobility",
+            "lofty_mount",
             "summon_big_rock"
           ]
         ]
@@ -13286,8 +13665,20 @@
         "id": 2,
         "item": "Raspberry",
         "name": "Underworld - Center Cave",
+        "comment":"extra logic to avoid the need of the warp to home button, can remove the OR",
         "requirements": [
-          "breakable_walls"
+          "AND",
+          [
+            "breakable_walls",
+            "OR",
+            [
+              "double_jump",
+              "improved_flying",
+              "dual_mobility",
+              "lofty_mount",
+              "summon_big_rock"
+            ]
+          ]
         ]
       }
     ]
@@ -13348,15 +13739,15 @@
     "connections": [
       {
         "region": "Underworld_WestCatacomb2",
+        "comment":"ADVANCED LOGIC: improved flying / dual mobility without double jump, barely able to activate the lever",
         "requirements": [
           "AND",
           [
             "double_jump",
             "OR",
             [
-              "improved_flying",
-              "dual_mobility",
-              "lofty_mount"
+              "distant_ledges",
+              "ground_switches"
             ]
           ]
         ]
@@ -13387,11 +13778,16 @@
       {
         "region": "Underworld_WestCatacomb5_West",
         "requirements": [
-          "OR",
+          "AND",
           [
-            "double_jump",
-            "improved_flying",
-            "dual_mobility"
+            "underworld_west_catacomb_4_access",
+            "OR",
+            [
+              "double_jump",
+              "improved_flying",
+              "dual_mobility",
+              "lofty_mount"
+            ]
           ]
         ]
       },
@@ -13400,12 +13796,24 @@
       },
       {
         "region": "Underworld_WestCatacomb10",
+        "comment": "either you enter from top with grapple and dj or from below after unlocking the shortcut",
         "requirements": [
           "AND",
           [
-            "double_jump",
-            "grapple",
-            "underworld_west_catacomb_roof_access"
+            "breakable_walls",
+            "OR",
+            [
+              "AND",
+              [
+                "double_jump",
+                "grapple"
+              ],
+              "AND",
+              [
+                "underworld_west_catacomb_center_entrance",
+                "underworld_west_catacomb_4_shortcut"
+              ]
+            ]
           ]
         ]
       }
@@ -13436,15 +13844,15 @@
       },
       {
         "region": "Underworld_WestCatacomb1",
+        "comment":"ADVANCED LOGIC: improved flying / dual mobility without double jump, barely able to activate the lever",
         "requirements": [
           "AND",
           [
             "double_jump",
             "OR",
             [
-              "improved_flying",
-              "dual_mobility",
-              "lofty_mount"
+              "distant_ledges",
+              "ground_switches"
             ]
           ]
         ]
@@ -13461,7 +13869,8 @@
           [
             "double_jump",
             "improved_flying",
-            "dual_mobility"
+            "dual_mobility",
+            "lofty_mount"
           ]
         ]
       },
@@ -13471,11 +13880,20 @@
       {
         "region": "Underworld_West1",
         "requirements": [
-          "AND",
+          "OR",
           [
-            "summon_big_rock",
-            "double_jump",
-            "grapple"
+            "AND",
+            [
+              "summon_big_rock",
+              "double_jump",
+              "grapple"
+            ],
+            "AND",
+            [
+              "double_jump",
+              "lofty_mount"
+            ]
+            
           ]
         ]
       }
@@ -13484,7 +13902,17 @@
       {
         "id": 9,
         "item": "Phoenix Serum",
-        "name": "Underworld - West Catacomb - Pit"
+        "name": "Underworld - West Catacomb - Pit",
+        "comment":"extra logic to avoid the need of the warp to home button, can remove all requirements",
+        "requirements": [
+          "OR",
+          [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility",
+            "lofty_mount"
+          ]
+        ]
       }
     ],
     "encounters": [
@@ -13513,8 +13941,8 @@
             "OR",
             [
               "double_jump",
-              "ground_switches",
-              "distant_ledges"
+              "improved_flying",
+              "dual_mobility"
             ]
           ]
         ]
@@ -13549,7 +13977,18 @@
         "item": "Helmet+5",
         "name": "Underworld - West Catacomb - West Basement",
         "requirements": [
-          "underworld_west_catacomb_4_access"
+          "AND",
+          [
+            "underworld_west_catacomb_4_access",
+            "OR",
+            [
+              "double_jump",
+              "improved_flying",
+              "dual_mobility",
+              "lofty_mount",
+              "summon_big_rock"
+            ]
+          ]
         ]
       },
       {
@@ -13661,8 +14100,15 @@
         "requirements": [
           "AND",
           [
-            "double_jump",
-            "grapple"
+            "grapple",
+            "OR",
+            [
+              "double_jump",
+              "improved_flying",
+              "dual_mobility",
+              "lofty_mount",
+              "summon_big_rock"
+            ]
           ]
         ]
       }
@@ -13688,7 +14134,17 @@
         ]
       },
       {
-        "region": "Underworld_WestCatacomb8"
+        "region": "Underworld_WestCatacomb8",
+        "requirements":[
+          "OR",
+          [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility",
+            "lofty_mount",
+            "summon_big_rock"
+          ]
+        ]
       }
     ],
     "flags": [
@@ -13760,7 +14216,11 @@
       {
         "region": "Underworld_WestCatacomb9_Roof",
         "requirements": [
-          "underworld_west_catacomb_roof_access"
+          "AND",
+          [
+            "underworld_west_catacomb_roof_access",
+            "grapple"
+          ]
         ]
       }
     ],
@@ -13859,7 +14319,15 @@
       {
         "region": "SunPalace_EastSewers6",
         "requirements": [
-          "underworld_to_sun_palace_shortcut"
+          "AND",
+          [
+            "underworld_to_sun_palace_shortcut",
+            "OR",
+            [
+              "double_jump",
+              "distant_ledges"
+            ]
+          ]
         ]
       }
     ],
@@ -13891,15 +14359,7 @@
         "region": "Underworld_West1"
       },
       {
-        "region": "Underworld_West3",
-        "requirements": [
-          "OR",
-          [
-            "double_jump",
-            "improved_flying",
-            "dual_mobility"
-          ]
-        ]
+        "region": "Underworld_West3"
       }
     ]
   },
@@ -13933,7 +14393,17 @@
         "monsters": [
           "Spinner"
         ],
-        "name": "Underworld - Spinner"
+        "name": "Underworld - Spinner",
+        "comment":"The game thinks this doesn't require logic since you can walk from west 3 to west 4, but spinner gets trapped only by closing west 3 off, meaning west 6 is the only way and that requires a good bit of height",
+        "requirements":[
+          "OR",
+          [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility",
+            "lofty_mount"
+          ]
+        ]
       }
     ]
   },
@@ -13952,7 +14422,16 @@
     "region": "Underworld_West6",
     "connections": [
       {
-        "region": "Underworld_West4"
+        "region": "Underworld_West4",
+        "requirements":[
+          "OR",
+          [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility",
+            "lofty_mount"
+          ]
+        ]
       },
       {
         "region": "Underworld_West5"
@@ -13963,8 +14442,19 @@
         "id": 1,
         "item": "Phoenix Serum",
         "name": "Underworld - Spinner Cave",
+        "comment":"extra logic to avoid the need of the warp to home button, can remove the OR",
         "requirements": [
-          "breakable_walls"
+          "AND",
+          [
+            "breakable_walls",
+            "OR",
+            [
+              "double_jump",
+              "improved_flying",
+              "dual_mobility",
+              "lofty_mount"
+            ]
+          ]
         ]
       }
     ]
@@ -13978,7 +14468,8 @@
           "OR",
           [
             "double_jump",
-            "distant_ledges"
+            "distant_ledges",
+            "summon_big_rock"
           ]
         ]
       },
@@ -14018,10 +14509,29 @@
     "region": "MysticalWorkshop_South3_Middle",
     "connections": [
       {
-        "region": "MysticalWorkshop_South2"
+        "region": "MysticalWorkshop_South2",
+        "comment":"extra logic to avoid the need of the warp to home button, can remove all requirements",
+        "requirements": [
+          "OR",
+          [
+            "double_jump",
+            "distant_ledges",
+            "ground_switches"
+          ]
+        ]
       },
       {
-        "region": "MysticalWorkshop_South4"
+        "region": "MysticalWorkshop_South4",
+        "comment":"extra logic to avoid the need of the warp to home button, can remove all requirements",
+        "requirements": [
+          "OR",
+          [
+            "double_jump",
+            "distant_ledges",
+            "ground_switches"
+          ]
+        ]
+
       },
       {
         "region": "MysticalWorkshop_South3_Upper",
@@ -14031,6 +14541,7 @@
             "double_jump",
             "improved_flying",
             "dual_mobility",
+            "lofty_mount",
             "summon_big_rock"
           ]
         ]
@@ -14084,7 +14595,16 @@
     "region": "MysticalWorkshop_South4",
     "connections": [
       {
-        "region": "MysticalWorkshop_South3_Lower"
+        "region": "MysticalWorkshop_South3_Lower",
+        "comment":"extra logic to avoid the need of the warp to home button, can remove all requirements",
+        "requirements":[
+          "OR",
+          [
+            "double_jump",
+            "distant_ledges",
+            "ground_switches"
+          ]
+        ]
       }
     ],
     "chests": [
@@ -14165,6 +14685,7 @@
             "double_jump",
             "improved_flying",
             "dual_mobility",
+            "lofty_mount",
             "summon_big_rock"
           ]
         ]
@@ -14184,10 +14705,32 @@
         "region": "MysticalWorkshop_Center1_Lower"
       },
       {
-        "region": "MysticalWorkshop_Center4"
+        "region": "MysticalWorkshop_Center4",
+        "comment":"extra logic to avoid the need of the warp to home button, can remove all requirements",
+        "requirements": [
+          "OR",
+          [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility",
+            "lofty_mount",
+            "summon_big_rock"
+          ]
+        ]
       },
       {
-        "region": "MysticalWorkshop_West3_Access"
+        "region": "MysticalWorkshop_West3_Access",
+        "comment":"extra logic to avoid the need of the warp to home button, can remove all requirements",
+        "requirements": [
+          "OR",
+          [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility",
+            "lofty_mount",
+            "summon_big_rock"
+          ]
+        ]
       }
     ],
     "encounters": [
@@ -14236,7 +14779,7 @@
     "region": "MysticalWorkshop_Center3",
     "connections": [
       {
-        "region": "MysticalWorkshop_Center8"
+        "region": "MysticalWorkshop_Center8_Upper"
       },
       {
         "region": "MysticalWorkshop_East1",
@@ -14244,7 +14787,8 @@
           "OR",
           [
             "double_jump",
-            "distant_ledges"
+            "distant_ledges",
+            "summon_big_rock"
           ]
         ]
       }
@@ -14275,7 +14819,8 @@
           "OR",
           [
             "double_jump",
-            "distant_ledges"
+            "distant_ledges",
+            "summon_big_rock"
           ]
         ]
       }
@@ -14334,10 +14879,11 @@
       {
         "region": "MysticalWorkshop_Center5_Middle",
         "requirements": [
-          "AND",
+          "OR",
           [
             "double_jump",
-            "distant_ledges"
+            "improved_flying",
+            "dual_mobility"
           ]
         ]
       }
@@ -14364,10 +14910,44 @@
     "region": "MysticalWorkshop_Center5_Middle",
     "connections": [
       {
-        "region": "MysticalWorkshop_Center8"
+        "region": "MysticalWorkshop_Center8_Lower",
+        "requirements":[
+          "OR",
+          [
+            "improved_flying",
+            "dual_mobility",
+            "AND",
+            [
+              "double_jump",
+              "OR",
+              [
+                "distant_ledges",
+                "mount",
+                "summon_big_rock"
+              ]
+            ]
+          ]
+        ]
       },
       {
-        "region": "MysticalWorkshop_Center9"
+        "region": "MysticalWorkshop_Center9",
+        "requirements":[
+          "OR",
+          [
+            "improved_flying",
+            "dual_mobility",
+            "AND",
+            [
+              "double_jump",
+              "OR",
+              [
+                "distant_ledges",
+                "mount",
+                "summon_big_rock"
+              ]
+            ]
+          ]
+        ]
       },
       {
         "region": "MysticalWorkshop_Center5_Lower"
@@ -14393,11 +14973,21 @@
         "id": 6,
         "item": "1500 G",
         "name": "Mystical Workshop - South Cog Room - Middle Chest",
-        "requirements": [
-          "AND",
+        "requirements":[
+          "OR",
           [
-            "double_jump",
-            "distant_ledges"
+            "improved_flying",
+            "dual_mobility",
+            "AND",
+            [
+              "double_jump",
+              "OR",
+              [
+                "distant_ledges",
+                "mount",
+                "summon_big_rock"
+              ]
+            ]
           ]
         ]
       }
@@ -14422,7 +15012,9 @@
           "OR",
           [
             "double_jump",
-            "distant_ledges"
+            "flying",
+            "improved_flying",
+            "dual_mobility"
           ]
         ]
       }
@@ -14496,23 +15088,98 @@
     ]
   },
   {
-    "region": "MysticalWorkshop_Center8",
+    "region": "MysticalWorkshop_Center8_Lower",
     "connections": [
       {
-        "region": "MysticalWorkshop_Center5_Middle"
+        "region": "MysticalWorkshop_Center5_Middle",
+        "comment":"extra logic to avoid the need of the warp to home button, can remove all requirements",
+        "requirements":[
+          "OR",
+          [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility",
+            "lofty_mount",
+            "summon_big_rock"
+          ]
+        ]
       },
       {
-        "region": "MysticalWorkshop_West1"
+        "region": "MysticalWorkshop_West1",
+        "comment":"extra logic to avoid the need of the warp to home button, can remove all requirements",
+        "requirements":[
+          "OR",
+          [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility",
+            "lofty_mount",
+            "summon_big_rock"
+          ]
+        ]
       },
       {
-        "region": "MysticalWorkshop_Center3"
+        "region": "MysticalWorkshop_Center8_Upper",
+        "requirements":[
+          "OR",
+          [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility",
+            "lofty_mount",
+            "summon_big_rock"
+          ]
+        ]
       }
     ],
     "chests": [
       {
         "id": 6,
         "item": "2x Silk",
-        "name": "Mystical Workshop - South Pipes Room"
+        "name": "Mystical Workshop - South Pipes Room",
+        "comment":"extra logic to avoid the need of the warp to home button, can remove all requirements",
+        "requirements":[
+          "OR",
+          [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility",
+            "lofty_mount",
+            "summon_big_rock"
+          ]
+        ]
+      }
+    ],
+    "encounters": [
+      {
+        "id": 5,
+        "monsters": [
+          "Mimic",
+          "Mimic",
+          "Mimic"
+        ],
+        "comment":"extra logic to avoid the need of the warp to home button, can remove all requirements",
+        "requirements":[
+          "OR",
+          [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility",
+            "lofty_mount",
+            "summon_big_rock"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "region": "MysticalWorkshop_Center8_Upper",
+    "connections":[
+      {
+        "region": "MysticalWorkshop_Center8_Lower"
+      },
+      {
+        "region": "MysticalWorkshop_Center3"
       }
     ],
     "encounters": [
@@ -14522,14 +15189,6 @@
           "Oculus",
           "Ornithopter",
           "Oculus"
-        ]
-      },
-      {
-        "id": 5,
-        "monsters": [
-          "Mimic",
-          "Mimic",
-          "Mimic"
         ]
       }
     ]
@@ -14571,7 +15230,7 @@
         ]
       },
       {
-        "region": "MysticalWorkshop_Center8",
+        "region": "MysticalWorkshop_Center8_Lower",
         "requirements": [
           "OR",
           [
@@ -14589,6 +15248,14 @@
           "Ornithopter",
           "Ornithopter",
           "Ornithopter"
+        ],
+        "requirements": [
+          "OR",
+          [
+            "double_jump",
+            "ground_switches",
+            "distant_ledges"
+          ]
         ]
       }
     ]
@@ -14604,17 +15271,29 @@
       {
         "id": 8,
         "item": "Mystical Workshop key",
-        "name": "Mystical Workshop - Timed Lever Puzzle 1"
+        "name": "Mystical Workshop - Timed Lever Puzzle 1",
+        "requirements":[
+          "OR",
+          [
+            "double_jump",
+            "distant_ledges",
+            "summon_big_rock"
+          ]
+        ]
       },
       {
         "id": 9,
         "item": "Feather+5",
         "name": "Mystical Workshop - Timed Lever Puzzle 2",
         "requirements": [
-          "AND",
+          "OR",
           [
-            "mount",
-            "double_jump"
+            "lofty_mount",
+            "AND",
+            [
+              "mount",
+              "double_jump"
+            ]
           ]
         ]
       }
@@ -14664,7 +15343,8 @@
           "OR",
           [
             "double_jump",
-            "ground_switches",
+            "summon_rock",
+            "summon_mushroom",
             "distant_ledges"
           ]
         ]
@@ -14675,7 +15355,8 @@
           "OR",
           [
             "double_jump",
-            "ground_switches",
+            "summon_rock",
+            "summon_mushroom",
             "distant_ledges"
           ]
         ]
@@ -14686,7 +15367,8 @@
           "OR",
           [
             "double_jump",
-            "ground_switches",
+            "summon_rock",
+            "summon_mushroom",
             "distant_ledges"
           ]
         ]
@@ -14701,7 +15383,8 @@
           "OR",
           [
             "double_jump",
-            "ground_switches",
+            "summon_rock",
+            "summon_mushroom",
             "distant_ledges"
           ]
         ]
@@ -14712,13 +15395,40 @@
     "region": "MysticalWorkshop_East2",
     "connections": [
       {
-        "region": "MysticalWorkshop_East1"
+        "region": "MysticalWorkshop_East1",
+        "comment":"extra logic to avoid the need of the warp to home button, can remove all requirements",
+        "requirements": [
+          "OR",
+          [
+            "double_jump",
+            "ground_switches",
+            "distant_ledges"
+          ]
+        ]
       },
       {
-        "region": "MysticalWorkshop_East3"
+        "region": "MysticalWorkshop_East3",
+        "comment":"extra logic to avoid the need of the warp to home button, can remove all requirements",
+        "requirements": [
+          "OR",
+          [
+            "double_jump",
+            "ground_switches",
+            "distant_ledges"
+          ]
+        ]
       },
       {
-        "region": "MysticalWorkshop_North2"
+        "region": "MysticalWorkshop_North2",
+        "comment":"extra logic to avoid the need of the warp to home button, can remove all requirements",
+        "requirements": [
+          "OR",
+          [
+            "double_jump",
+            "ground_switches",
+            "distant_ledges"
+          ]
+        ]
       }
     ],
     "chests": [
@@ -14743,6 +15453,15 @@
           "Oculus",
           "Steam Golem",
           "Polterofen"
+        ],
+        "comment":"extra logic to avoid the need of the warp to home button, can remove all requirements",
+        "requirements": [
+          "OR",
+          [
+            "double_jump",
+            "ground_switches",
+            "distant_ledges"
+          ]
         ]
       }
     ]
@@ -14788,6 +15507,7 @@
             "double_jump",
             "improved_flying",
             "dual_mobility",
+            "lofty_mount",
             "summon_big_rock"
           ]
         ]
@@ -14804,6 +15524,7 @@
             "double_jump",
             "improved_flying",
             "dual_mobility",
+            "lofty_mount",
             "summon_big_rock"
           ]
         ]
@@ -14818,6 +15539,7 @@
             "double_jump",
             "improved_flying",
             "dual_mobility",
+            "lofty_mount",
             "summon_big_rock"
           ]
         ]
@@ -14845,6 +15567,7 @@
             "double_jump",
             "improved_flying",
             "dual_mobility",
+            "lofty_mount",
             "summon_big_rock"
           ]
         ]
@@ -14858,7 +15581,15 @@
         "region": "MysticalWorkshop_East2"
       },
       {
-        "region": "MysticalWorkshop_North4_Shortcut"
+        "region": "MysticalWorkshop_North4_Shortcut",
+        "requirements": [
+          "OR",
+          [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility"
+          ]
+        ]
       }
     ],
     "chests": [
@@ -15038,7 +15769,12 @@
         "requirements": [
           "AND",
           [
-            "double_jump",
+            "OR",
+            [
+              "double_jump",
+              "improved_flying",
+              "dual_mobility"
+            ],
             "OR",
             [
               "three_workshop_keys",
@@ -15054,7 +15790,12 @@
         "item": "Emerald",
         "name": "Mystical Workshop - Upper Vat Room",
         "requirements": [
-          "double_jump"
+          "OR",
+          [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility"
+          ]
         ]
       }
     ],
@@ -15083,7 +15824,12 @@
           "Stolby"
         ],
         "requirements": [
-          "double_jump"
+          "OR",
+          [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility"
+          ]
         ]
       }
     ]
