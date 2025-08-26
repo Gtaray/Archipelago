@@ -290,13 +290,21 @@ def call_generate(yaml_path, output_path):
             "skip_output": False,
             "csv_output": False,
             "log_time": False,
+            "spoiler_only": False,
         }
     )
     erargs, seed = GenMain(args)
     ERmain(erargs, seed)
 
 
-def gen_wrapper(yaml_contents, apworld_name, timeout_s, i, dump_option_errors):
+def gen_wrapper(yaml_contents, static_yamls, apworld_name, timeout_s, i, dump_option_errors, classifier_path):
+    global CLASSIFIER
+
+    if classifier_path is not None and CLASSIFIER is None:
+        CLASSIFIER = find_classifier(classifier_path)
+        if hasattr(CLASSIFIER, "setup"):
+            getattr(CLASSIFIER, "setup")()
+
     out_buf = StringIO()
     raised = None
 
@@ -306,6 +314,10 @@ def gen_wrapper(yaml_contents, apworld_name, timeout_s, i, dump_option_errors):
             with tempfile.TemporaryDirectory(prefix="apfuzz") as output_path, tempfile.TemporaryDirectory(prefix="apfuzz") as yaml_path_dir:
                 for nb, yaml_content in enumerate(yaml_contents):
                     yaml_path = os.path.join(yaml_path_dir, f"{i}-{nb}.yaml")
+                    open(yaml_path, "wb").write(yaml_content.encode("utf-8"))
+
+                for nb, yaml_content in enumerate(static_yamls):
+                    yaml_path = os.path.join(yaml_path_dir, f"static-{i}-{nb}.yaml")
                     open(yaml_path, "wb").write(yaml_content.encode("utf-8"))
 
                 run_with_timeout(call_generate, timeout_s, yaml_path_dir, output_path)
@@ -318,18 +330,30 @@ def gen_wrapper(yaml_contents, apworld_name, timeout_s, i, dump_option_errors):
                 root_logger.removeHandler(handler)
                 handler.close()
 
-            if not raised:
-                return GenOutcome.Success
+            outcome = GenOutcome.Success
+            if raised:
+                is_timeout = isinstance(raised, TimeoutError)
+                is_option_error = exception_in_causes(raised, OptionError)
 
-            is_timeout = isinstance(raised, TimeoutError)
-            is_option_error = exception_in_causes(raised, OptionError)
+                if is_timeout:
+                    outcome = GenOutcome.Timeout
+                elif is_option_error:
+                    outcome = GenOutcome.OptionError
+                else:
+                    outcome = GenOutcome.Failure
 
-            if is_option_error and not dump_option_errors:
-                return GenOutcome.OptionError
+            if CLASSIFIER is not None:
+                outcome = CLASSIFIER.classify(outcome, raised)
 
-            if is_option_error:
+            if outcome == GenOutcome.Success:
+                return outcome
+
+            if outcome == GenOutcome.OptionError and not dump_option_errors:
+                return outcome
+
+            if outcome == GenOutcome.OptionError:
                 error_ty = "ignored"
-            elif is_timeout:
+            elif outcome == GenOutcome.Timeout:
                 error_ty = "timeout"
             else:
                 error_ty = "error"
@@ -341,26 +365,31 @@ def gen_wrapper(yaml_contents, apworld_name, timeout_s, i, dump_option_errors):
                 error_yaml_path = os.path.join(error_output_dir, f"{i}-{nb}.yaml")
                 open(error_yaml_path, "wb").write(yaml_content.encode("utf-8"))
 
+            for nb, yaml_content in enumerate(static_yamls):
+                error_yaml_path = os.path.join(error_output_dir, f"static-{i}-{nb}.yaml")
+                open(error_yaml_path, "wb").write(yaml_content.encode("utf-8"))
+
             error_log_path = os.path.join(error_output_dir, f"{i}.log")
             with open(error_log_path, "w") as fd:
                 fd.write(out_buf.getvalue())
 
-                if is_timeout:
+                if outcome == GenOutcome.Timeout:
                     fd.write(f"[...] Generation killed here after {timeout_s}s")
-                    return GenOutcome.Timeout
+                    return outcome
                 else:
                     fd.write("".join(traceback.format_exception(raised)))
 
-            return GenOutcome.OptionError if is_option_error else GenOutcome.Failure
+            return outcome
 
 
-class GenOutcome(Enum):
+class GenOutcome:
     Success = 0
     Failure = 1
     Timeout = 2
     OptionError = 3
 
 
+CLASSIFIER = None
 SUCCESS = 0
 FAILURE = 0
 TIMEOUTS = 0
@@ -368,18 +397,19 @@ OPTION_ERRORS = 0
 SUBMITTED = 0
 
 
-def success(result):
+def success(outcome):
     global SUCCESS, FAILURE, SUBMITTED, OPTION_ERRORS, TIMEOUTS
-    if result == GenOutcome.Success:
+
+    if outcome == GenOutcome.Success:
         SUCCESS += 1
         print(".", end="")
-    elif result == GenOutcome.Failure:
+    elif outcome == GenOutcome.Failure:
         print("F", end="")
         FAILURE += 1
-    elif result == GenOutcome.Timeout:
+    elif outcome == GenOutcome.Timeout:
         print("T", end="")
         TIMEOUTS += 1
-    elif result == GenOutcome.OptionError:
+    elif outcome == GenOutcome.OptionError:
         print("I", end="")
         OPTION_ERRORS += 1
 
@@ -404,8 +434,26 @@ def print_status():
     print("Time taken:{:.2f}s".format(time.time() - START))
 
 
-if __name__ == "__main__":
+def find_classifier(classifier_path):
+    modulepath, objectpath = classifier_path.split(':')
+    obj = __import__(modulepath)
+    for inner in modulepath.split('.')[1:]:
+        obj = getattr(obj, inner)
+    for inner in objectpath.split('.'):
+        obj = getattr(obj, inner)
 
+    if not isinstance(obj, type):
+        raise RuntimeError("the classifier argument should refer to a class in a module")
+
+    classifier = obj()
+
+    if not hasattr(classifier, "classify"):
+        raise RuntimeError("The classifier class must have a classify method")
+
+    return classifier
+
+
+if __name__ == "__main__":
     def main(p, args):
         global SUBMITTED
 
@@ -467,10 +515,19 @@ if __name__ == "__main__":
                 generate_random_yaml(actual_apworld, meta) for _ in range(yamls_this_run)
             ]
 
+            static_yamls = []
+            if args.with_static_worlds:
+                for yaml_file in os.listdir(args.with_static_worlds):
+                    path = os.path.join(args.with_static_worlds, yaml_file)
+                    if not os.path.isfile(path):
+                        continue
+                    with open(path, "r") as fd:
+                        static_yamls.append(fd.read())
+
             SUBMITTED += 1
             last_job = p.apply_async(
                 gen_wrapper,
-                args=(random_yamls, actual_apworld, args.timeout, i, args.dump_ignored),
+                args=(random_yamls, static_yamls, actual_apworld, args.timeout, i, args.dump_ignored, args.classifier),
                 callback=success,
                 error_callback=error,
             )
@@ -494,8 +551,16 @@ if __name__ == "__main__":
     parser.add_argument("-t", "--timeout", default=15, type=int)
     parser.add_argument("-m", "--meta", default=None, type=None)
     parser.add_argument("--dump-ignored", default=False, action="store_true")
+    parser.add_argument("--with-static-worlds", default=None)
+    parser.add_argument("--classifier", default=None)
 
     args = parser.parse_args()
+
+    # Get the classifier early just to check that it exists before forking
+    if args.classifier is not None:
+        CLASSIFIER = find_classifier(args.classifier)
+        if hasattr(CLASSIFIER, "setup"):
+            getattr(CLASSIFIER, "setup")(args)
 
     try:
         can_fork = hasattr(os, "fork")
@@ -508,6 +573,8 @@ if __name__ == "__main__":
             main(p, args)
     except KeyboardInterrupt:
         pass
+    except Exception as e:
+        traceback.print_exc()
     finally:
         print_status()
         sys.exit((FAILURE + TIMEOUTS) != 0)
