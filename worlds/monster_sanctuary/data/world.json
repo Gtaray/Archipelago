@@ -7412,7 +7412,7 @@
         "id": 1,
         "item": "Bronze",
         "name": "Sun Palace - West Sewers West Hidden Area 1",
-        "comment":"ADVANCED LOGIC: Improved Flying/ Dual Mount, precise jump around the corner and a well timed flight",
+        "comment":"ADVANCED LOGIC: Improved Flying/ Dual Mobility, precise jump around the corner and a well timed flight",
         "requirements": [
           "double_jump"
         ]
@@ -7421,7 +7421,7 @@
         "id": 2,
         "item": "2x Mango",
         "name": "Sun Palace - West Sewers West Hidden Area 2",
-        "comment":"ADVANCED LOGIC: Improved Flying/ Dual Mount, precise jump around the corner and a well timed flight",
+        "comment":"ADVANCED LOGIC: Improved Flying/ Dual Mobility, precise jump around the corner and a well timed flight",
         "requirements": [
           "double_jump"
         ]
@@ -12694,8 +12694,7 @@
         ]
       },
       {
-        "region": "ForgottenWorld_MCPath3",
-        "requirements": []
+        "region": "ForgottenWorld_MCPath3"
       }
     ],
     "flags": [
@@ -16101,7 +16100,8 @@
           [
             "double_jump",
             "improved_flying",
-            "dual_mobility"
+            "dual_mobility",
+            "lofty_mount"
           ]
         ]
       },
@@ -16115,7 +16115,8 @@
             [
               "double_jump",
               "improved_flying",
-              "dual_mobility"
+              "dual_mobility",
+              "lofty_mount"
             ]
           ]
         ]
@@ -16140,7 +16141,8 @@
           [
             "double_jump",
             "improved_flying",
-            "dual_mobility"
+            "dual_mobility",
+            "lofty_mount"
           ]
         ]
       }
@@ -16236,7 +16238,8 @@
           "OR",
           [
             "double_jump",
-            "distant_ledges"
+            "distant_ledges",
+            "summon_big_rock"
           ]
         ]
       },
@@ -16259,7 +16262,11 @@
             [
               "double_jump",
               "improved_flying",
-              "dual_mobility"
+              "dual_mobility",
+              "AND",[
+                "lofty_mount",
+                "flying"
+              ]
             ]
           ]
         ]
@@ -16271,7 +16278,12 @@
         "item": "Craft Box",
         "name": "Blob Burg - Crystal Room",
         "requirements": [
-          "distant_ledges"
+          "OR",
+          [
+            "double_jump",
+            "distant_ledges",
+            "summon_big_rock"
+          ]
         ]
       }
     ]
@@ -16305,16 +16317,27 @@
         "requirements": [
           "OR", [
             "double_jump",
-            "swimming"
+            "swimming",
+            "summon_big_rock"
           ]
         ]
       },
       {
         "region": "BlobBurg_West2",
+        "comment":"extra logic to avoid the need of the warp to home button, can remove the big rock",
         "requirements": [
           "OR", [
             "double_jump",
-            "swimming"
+            "swimming",
+            "AND",
+            [
+              "summon_big_rock",
+              "OR",
+              [
+                "flying",
+                "improved_flying"
+              ]
+            ]
           ]
         ]
       }
@@ -16324,8 +16347,18 @@
         "id": 1,
         "item": "2x Linen",
         "name": "Blob Burg - West Room - Morph Ball Chest",
+        "comment":"extra logic to avoid the need of the warp to home button, can remove the OR",
         "requirements": [
-          "narrow_corridors"
+          "AND",
+          [
+            "narrow_corridors",
+            "OR",
+            [
+              "double_jump",
+              "swimming",
+              "summon_big_rock"
+            ]
+          ]
         ]
       },
       {
@@ -16343,10 +16376,12 @@
         "id": 10,
         "item": "2x Mass Antidote",
         "name": "Blob Burg - West Room - Center Chest 2",
+        "comment":"extra logic to avoid the need of the warp to home button, can remove all requirements",
         "requirements": [
           "OR", [
-            "improved_swimming",
-            "dual_mobility"
+            "double_jump",
+            "swimming",
+            "summon_big_rock"
           ]
         ]
       }
@@ -16358,6 +16393,14 @@
           "Changeling",
           "Changeling",
           "Changeling"
+        ],
+        "comment":"extra logic to avoid the need of the warp to home button, can remove all requirements",
+        "requirements": [
+          "OR", [
+            "double_jump",
+            "swimming",
+            "summon_big_rock"
+          ]
         ]
       }
     ]
@@ -16416,7 +16459,9 @@
           "OR",
           [
             "swimming",
-            "double_jump"
+            "double_jump",
+            "summon_mushroom",
+            "summon_rock"
           ]
         ]
       },
@@ -16426,7 +16471,8 @@
           "OR",
           [
             "swimming",
-            "double_jump"
+            "double_jump",
+            "summon_big_rock"
           ]
         ]
       }
@@ -16438,6 +16484,14 @@
           "Changeling",
           "Lava Blob",
           "Changeling"
+        ],
+        "requirements": [
+          "OR",
+          [
+            "swimming",
+            "double_jump",
+            "summon_big_rock"
+          ]
         ]
       }
     ]
@@ -16463,7 +16517,16 @@
         "item": "Switch Stone",
         "name": "Blob Burg - South Room - Underwater Chest",
         "requirements": [
-          "swimming"
+          "AND",
+          [
+            "swimming",
+            "OR",[
+              "double_jump",
+              "improved_flying",
+              "lofty_mount",
+              "ground_switches"
+            ]
+          ]
         ]
       }
     ],
@@ -16472,6 +16535,7 @@
         "id": 42000001,
         "item": "Skill Potion",
         "name": "Blob Burg - South Room - Upper Chest",
+        "comment":"ADVANCED LOGIC: DJ + narrow corridor, theres a gap in the wall :)",
         "requirements": [
           "AND",
           [
@@ -16490,6 +16554,7 @@
       {
         "id": "blob_burg_access_4",
         "name": "Blob Burg Access",
+        "comment":"ADVANCED LOGIC: DJ + narrow corridor, theres a gap in the wall :)",
         "requirements": [
           "AND",
           [
@@ -16539,14 +16604,35 @@
     "region": "BlobBurg_Worms",
     "connections": [
       {
-        "region": "BlobBurg_Center3"
+        "region": "BlobBurg_Center3",
+        "requirements":[
+          "OR",
+          [
+            "double_jump",
+            "distant_ledges",
+            "swimming",
+            "mount",
+            "summon_big_rock"
+          ]
+        ]
       }
     ],
     "chests": [
       {
         "id": 3,
         "item": "Fang+5",
-        "name": "Blob Burg - Worm Room - Lower Chest"
+        "name": "Blob Burg - Worm Room - Lower Chest",
+        "comment":"extra logic to avoid the need of the warp to home button, can remove all requirements",
+        "requirements":[
+          "OR",
+          [
+            "double_jump",
+            "distant_ledges",
+            "swimming",
+            "mount",
+            "summon_big_rock"
+          ]
+        ]
       },
       {
         "id": 4,
@@ -16598,24 +16684,36 @@
     "region": "ForgottenWorld_FallHidden",
     "connections": [
       {
-        "region": "ForgottenWorld_Fall1"
+        "region": "ForgottenWorld_Fall1",
+        "requirements": [
+          "dark_rooms"
+        ]
       }
     ],
     "chests": [
       {
         "id": 0,
         "item": "3x Silver",
-        "name": "Forgotten World - Descent Hidden Room 1"
+        "name": "Forgotten World - Descent Hidden Room 1",
+        "requirements": [
+          "dark_rooms"
+        ]
       },
       {
         "id": 2,
         "item": "2x Gold",
-        "name": "Forgotten World - Descent Hidden Room 2"
+        "name": "Forgotten World - Descent Hidden Room 2",
+        "requirements": [
+          "dark_rooms"
+        ]
       },
       {
         "id": 3,
         "item": "4x Bronze",
-        "name": "Forgotten World - Descent Hidden Room 3"
+        "name": "Forgotten World - Descent Hidden Room 3",
+        "requirements": [
+          "dark_rooms"
+        ]
       }
     ]
   },
@@ -16657,28 +16755,14 @@
         "region": "ForgottenWorld_Caves1"
       },
       {
-        "region": "ForgottenWorld_ForgottenWorldIntro",
-        "requirements": [
-          "OR",
-          [
-            "double_jump",
-            "distant_ledges"
-          ]
-        ]
+        "region": "ForgottenWorld_ForgottenWorldIntro"
       }
     ],
     "chests": [
       {
         "id": 1,
         "item": "Gold",
-        "name": "Forgotten World - West Jungle - Lower Chest",
-        "requirements": [
-          "OR",
-          [
-            "double_jump",
-            "distant_ledges"
-          ]
-        ]
+        "name": "Forgotten World - West Jungle - Lower Chest"
       },
       {
         "id": 3,
@@ -16689,8 +16773,7 @@
           [
             "double_jump",
             "improved_flying",
-            "dual_mobility",
-            "lofty_mount"
+            "dual_mobility"
           ]
         ]
       }
@@ -16742,6 +16825,7 @@
           "AND",
           [
             "double_jump",
+            "breakable_walls",
             "OR",
             [
               "improved_flying",
@@ -16759,13 +16843,16 @@
         "item": "3x Linen",
         "name": "Forgotten World - Center Jungle - Floating Ledges Chest",
         "requirements": [
-          "OR",
+          "AND",
           [
             "double_jump",
-            "improved_flying",
-            "dual_mobility",
-            "lofty_mount",
-            "summon_big_rock"
+            "OR",
+            [
+              "improved_flying",
+              "dual_mobility",
+              "lofty_mount",
+              "summon_big_rock"
+            ]
           ]
         ]
       }
@@ -16829,14 +16916,32 @@
           [
             "double_jump",
             "distant_ledges",
-            "ground_switches"
+            "ground_switches",
+            "AND",
+            [
+              "magic_vines",
+              "magic_walls"
+            ]
           ]
         ]
       },
       {
         "region": "ForgottenWorld_TarPits1",
         "requirements": [
-          "magic_vines"
+          "OR",
+          [
+            "magic_walls",
+            "AND",
+            [
+              "magic_vines",
+              "OR",
+              [
+                "double_jump",
+                "distant_ledges",
+                "ground_switches"
+              ]
+            ]
+          ]
         ]
       }
     ],
@@ -16870,14 +16975,7 @@
       {
         "id": 0,
         "item": "Warhorn",
-        "name": "Forgotten World - East Jungle - Beneath Mushrooms",
-        "requirements": [
-          "OR",
-          [
-            "magic_vines",
-            "magic_walls"
-          ]
-        ]
+        "name": "Forgotten World - East Jungle - Beneath Mushrooms"
       }
     ]
   },
@@ -16895,7 +16993,8 @@
             "double_jump",
             "improved_flying",
             "dual_mobility",
-            "lofty_mount"
+            "lofty_mount",
+            "summon_big_rock"
           ]
         ]
       }
@@ -16905,12 +17004,19 @@
         "id": 0,
         "item": "4000 G",
         "name": "Forgotten World - East Jungle - Magic Vines Chest",
+        "comment":"extra logic to avoid the need of the warp to home button, can remove double jump and the OR",
         "requirements": [
           "AND",
           [
             "magic_vines",
+            "breakable_walls",
             "double_jump",
-            "breakable_walls"
+            "OR",[
+              "improved_flying",
+              "dual_mobility",
+              "lofty_mount",
+              "secret_vision"
+            ]
           ]
         ]
       },
@@ -16935,9 +17041,7 @@
           "OR",
           [
             "double_jump",
-            "improved_flying",
-            "dual_mobility",
-            "lofty_mount"
+            "distant_ledges"
           ]
         ]
       }
@@ -16970,7 +17074,16 @@
       {
         "region": "ForgottenWorld_Jungle4",
         "requirements": [
-          "forgotten_world_jungle_shortcut"
+          "AND",
+          [
+            "forgotten_world_jungle_shortcut",
+            "OR",
+            [
+              "double_jump",
+              "distant_ledges",
+              "ground_switches"
+            ]
+          ]
         ]
       }
     ],
@@ -16988,19 +17101,36 @@
     "region": "ForgottenWorld_TarPits1",
     "connections": [
       {
-        "region": "ForgottenWorld_Jungle5"
+        "region": "ForgottenWorld_Jungle5",
+        "requirements":[
+          "OR",
+          [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility",
+            "lofty_mount"
+          ]
+        ]
       },
       {
         "region": "ForgottenWorld_TarPits2"
       },
       {
         "region": "ForgottenWorld_TarPitsHidden1",
+        "comment":"ADVANCED LOGIC: breakable wall, DJ, lofty mount",
         "requirements": [
           "AND",
           [
-            "tar",
-            "double_jump",
-            "breakable_walls"
+            "breakable_walls",
+            "OR",
+            [
+              "dual_mobility",
+              "AND",
+              [
+                "double_jump",
+                "tar_mount"
+              ]
+            ]
           ]
         ]
       }
@@ -17010,12 +17140,17 @@
         "id": 1,
         "item": "2x Sapphire",
         "name": "Forgotten World - North East Tar Pits",
+        "comment":"ADVANCED LOGIC: DJ, lofty mount",
         "requirements": [
-          "AND",
-          [
-            "double_jump",
-            "tar"
-          ]
+          "OR",
+            [
+              "dual_mobility",
+              "AND",
+              [
+                "double_jump",
+                "tar_mount"
+              ]
+            ]
         ]
       }
     ]
@@ -17047,11 +17182,15 @@
       {
         "region": "ForgottenWorld_TarPits2",
         "requirements": [
-          "AND",
-          [
-            "tar",
-            "double_jump"
-          ]
+          "OR",
+            [
+              "dual_mobility",
+              "AND",
+              [
+                "double_jump",
+                "tar_mount"
+              ]
+            ]
         ]
       },
       {
@@ -17063,25 +17202,23 @@
         "id": 0,
         "item": "2x Reward Box Lvl 3",
         "name": "Forgotten World - East Tar Pits Vertical - Upper Chest",
+        "comment":"if you come from top, its doable without any abilities",
         "requirements": [
           "OR",
           [
-            "tar",
-            "double_jump"
+            "dual_mobility",
+            "AND",
+            [
+              "double_jump",
+              "tar_mount"
+            ]
           ]
         ]
       },
       {
         "id": 1,
         "item": "2x Peanut",
-        "name": "Forgotten World - East Tar Pits Vertical - Lower Chest",
-        "requirements": [
-          "OR",
-          [
-            "tar",
-            "double_jump"
-          ]
-        ]
+        "name": "Forgotten World - East Tar Pits Vertical - Lower Chest"
       }
     ]
   },
@@ -17092,7 +17229,7 @@
         "region": "ForgottenWorld_TarPits3"
       },
       {
-        "region": "ForgottenWorld_TarPits5_Upper"
+        "region": "ForgottenWorld_TarPits5"
       }
     ],
     "chests": [
@@ -17132,35 +17269,16 @@
     ]
   },
   {
-    "region": "ForgottenWorld_TarPits5_Upper",
+    "region": "ForgottenWorld_TarPits5",
     "connections": [
       {
         "region": "ForgottenWorld_TarPits4"
       },
       {
-        "region": "ForgottenWorld_TarPits5_Lower"
-      },
-      {
         "region": "ForgottenWorld_TarPits6"
-      }
-    ]
-  },
-  {
-    "region": "ForgottenWorld_TarPits5_Lower",
-    "connections": [
+      },
       {
         "region": "ForgottenWorld_Waters5"
-      },
-      {
-        "region": "ForgottenWorld_TarPits5_Upper",
-        "requirements": [
-          "OR",
-          [
-            "double_jump",
-            "distant_ledges",
-            "ground_switches"
-          ]
-        ]
       },
       {
         "region": "ForgottenWorld_TarPits9"
@@ -17178,7 +17296,7 @@
     "region": "ForgottenWorld_TarPits6",
     "connections": [
       {
-        "region": "ForgottenWorld_TarPits5_Upper"
+        "region": "ForgottenWorld_TarPits5"
       },
       {
         "region": "ForgottenWorld_TarPits7"
@@ -17203,16 +17321,34 @@
     "region": "ForgottenWorld_TarPits8",
     "connections": [
       {
-        "region": "ForgottenWorld_TarPits7"
-      },
-      {
-        "region": "ForgottenWorld_JungleShortcut",
+        "region": "ForgottenWorld_TarPits7",
+        "comment":"extra logic to avoid the need of the warp to home button, can remove all requirements",
         "requirements": [
           "OR",
           [
             "double_jump",
-            "summon_big_rock",
-            "distant_ledges"
+            "ground_switches",
+            "AND",
+            [
+              "tar",
+              "distant_ledges"
+            ]
+          ]
+        ]
+      },
+      {
+        "region": "ForgottenWorld_JungleShortcut",
+        "comment":"extra logic to avoid the need of the warp to home button, can remove tar",
+        "requirements": [
+          "OR",
+          [
+            "double_jump",
+            "ground_switches",
+            "AND",
+            [
+              "tar",
+              "distant_ledges"
+            ]
           ]
         ]
       }
@@ -17223,10 +17359,14 @@
         "item": "Shift Stone",
         "name": "Forgotten World - North West Tar Pits",
         "requirements": [
-          "AND",
+          "OR",
           [
-            "double_jump",
-            "tar"
+            "dual_mobility",
+            "AND",
+            [
+              "double_jump",
+              "tar_mount"
+            ]
           ]
         ]
       }
@@ -17236,7 +17376,7 @@
     "region": "ForgottenWorld_TarPits9",
     "connections": [
       {
-        "region": "ForgottenWorld_TarPits5_Lower"
+        "region": "ForgottenWorld_TarPits5"
       }
     ],
     "chests": [
@@ -17245,14 +17385,17 @@
         "item": "Warrior Flask",
         "name": "Forgotten World - South West Tar Pits",
         "requirements": [
-          "AND",
+          "OR",
           [
-            "double_jump",
-            "OR",
+            "dual_mobility",
+            "AND",
             [
-              "lofty_mount",
-              "tar_mount",
-              "dual_mobility"
+              "double_jump",
+              "OR",
+              [
+                "lofty_mount",
+                "tar_mount"
+              ]
             ]
           ]
         ]
@@ -17289,7 +17432,17 @@
         "item": "2x Mega Potion",
         "name": "Forgotten World - South Waters Vertical - Upper Chest",
         "requirements": [
-          "charging_mount"
+          "AND",
+          [
+            "charging_mount",
+            "OR",
+            [
+              "double_jump",
+              "flying",
+              "improved_flying",
+              "dual_mobility"
+            ]
+          ]
         ]
       }
     ]
@@ -17316,9 +17469,7 @@
           "OR",
           [
             "double_jump",
-            "improved_flying",
-            "dual_mobility",
-            "lofty_mount"
+            "distant_ledges"
           ]
         ]
       },
@@ -17379,7 +17530,11 @@
       {
         "id": 5,
         "item": "Clear Stone",
-        "name": "Forgotten World - South Waters - Cave Chest"
+        "name": "Forgotten World - South Waters - Cave Chest",
+        "comment":"extra logic to avoid the need of the warp to home button, can remove all requirements",
+        "requirements": [
+          "swimming"
+        ]
       }
     ]
   },
@@ -17419,10 +17574,7 @@
       {
         "region": "ForgottenWorld_DracomerLair",
         "requirements": [
-          "OR", [
-            "improved_swimming",
-            "dual_mobility"
-          ]
+          "swimming"
         ]
       },
       {
@@ -17441,23 +17593,44 @@
     "connections": [
       {
         "region": "ForgottenWorld_Waters1_Middle",
-        "requirements": [
-          "magic_walls"
-        ]
-      },
-      {
-        "region": "ForgottenWorld_TarPits5_Lower",
+        "comment":"extra logic to avoid the need of the warp to home button, can remove the OR",
         "requirements": [
           "AND",
           [
             "magic_walls",
             "OR",
             [
-              "summon_big_rock",
               "double_jump",
               "improved_flying",
               "dual_mobility",
-              "lofty_mount"
+              "lofty_mount",
+              "AND",
+              [
+                "swimming",
+                "summon_big_rock"
+              ]
+            ]
+          ]
+        ]
+      },
+      {
+        "region": "ForgottenWorld_TarPits5",
+        "comment":"extra logic to avoid the need of the warp to home button,can remove swimming",
+        "requirements": [
+          "AND",
+          [
+            "magic_walls",
+            "OR",
+            [
+              "double_jump",
+              "improved_flying",
+              "dual_mobility",
+              "lofty_mount",
+              "AND",
+              [
+                "swimming",
+                "summon_big_rock"
+              ]
             ]
           ]
         ]
@@ -17468,17 +17641,22 @@
         "id": 3,
         "item": "Switch Stone",
         "name": "Forgotten World - South Waters - Magic Walls Chest",
+        "comment":"extra logic to avoid the need of the warp to home button,can remove swimming",
         "requirements": [
           "AND",
           [
             "magic_walls",
             "OR",
             [
-              "summon_big_rock",
               "double_jump",
               "improved_flying",
               "dual_mobility",
-              "lofty_mount"
+              "lofty_mount",
+              "AND",
+              [
+                "swimming",
+                "summon_big_rock"
+              ]
             ]
           ]
         ]
@@ -17517,7 +17695,10 @@
     "region": "ForgottenWorld_DracomerLair",
     "connections": [
       {
-        "region": "ForgottenWorld_Waters4"
+        "region": "ForgottenWorld_Waters4",
+        "requirements":[
+          "swimming"
+        ]
       },
       {
         "region": "ForgottenWorld_Waters1_Middle",
@@ -17586,15 +17767,7 @@
       {
         "id": 1,
         "item": "Emerald",
-        "name": "Forgotten World - North Caves Vertical",
-        "requirements": [
-          "OR",
-          [
-            "double_jump",
-            "distant_ledges",
-            "ground_switches"
-          ]
-        ]
+        "name": "Forgotten World - North Caves Vertical"
       }
     ],
     "encounters": [
@@ -17612,16 +17785,52 @@
     "region": "ForgottenWorld_Caves2_Upper",
     "connections": [
       {
-        "region": "ForgottenWorld_Caves1"
+        "region": "ForgottenWorld_Caves1",
+        "comment":"extra logic to avoid the need of the warp to home button, can remove all requirements",
+        "requirements": [
+          "OR",
+          [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility"
+          ]
+        ]
       },
       {
-        "region": "ForgottenWorld_Caves3"
+        "region": "ForgottenWorld_Caves3",
+        "comment":"extra logic to avoid the need of the warp to home button, can remove all requirements",
+        "requirements": [
+          "OR",
+          [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility"
+          ]
+        ]
       },
       {
-        "region": "ForgottenWorld_MCPath1"
+        "region": "ForgottenWorld_MCPath1",
+        "comment":"extra logic to avoid the need of the warp to home button, can remove all requirements",
+        "requirements": [
+          "OR",
+          [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility"
+          ]
+        ]
       },
       {
-        "region": "ForgottenWorld_Caves2_Lower"
+        "region": "ForgottenWorld_Caves2_Lower",
+        "comment":"extra logic to avoid the need of the warp to home button, can remove all requirements",
+        "requirements": [
+          "OR",
+          [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility"
+          ]
+        ]
       }
     ]
   },
@@ -17661,7 +17870,7 @@
         "region": "ForgottenWorld_Caves2_Upper"
       },
       {
-        "region": "ForgottenWorld_Caves11"
+        "region": "ForgottenWorld_Caves11_Upper"
       }
     ],
     "encounters": [
@@ -17679,10 +17888,10 @@
     "region": "ForgottenWorld_Caves4",
     "connections": [
       {
-        "region": "ForgottenWorld_Caves1"
+        "region": "ForgottenWorld_Caves5_Upper"
       },
       {
-        "region": "ForgottenWorld_Caves5_Upper",
+        "region": "ForgottenWorld_Caves1",
         "requirements": [
           "OR",
           [
@@ -17699,7 +17908,8 @@
           [
             "double_jump",
             "improved_flying",
-            "dual_mobility"
+            "dual_mobility",
+            "lofty_mount"
           ]
         ]
       }
@@ -17710,7 +17920,16 @@
         "item": "3x Silk",
         "name": "Forgotten World - Center Caves - Grapple Chest",
         "requirements": [
-          "grapple"
+          "AND",
+          [
+            "grapple",
+            "OR",
+            [
+              "double_jump",
+              "improved_flying",
+              "dual_mobility"
+            ]
+          ]
         ]
       }
     ]
@@ -17727,10 +17946,15 @@
       {
         "region": "ForgottenWorld_Caves5_Upper",
         "requirements": [
-          "OR",
+          "AND",
           [
-            "double_jump",
-            "magic_vines"
+            "magic_vines",
+            "OR",
+            [
+              "double_jump",
+              "improved_flying",
+              "dual_mobility"
+            ]
           ]
         ]
       }
@@ -17750,7 +17974,8 @@
               "double_jump",
               "improved_flying",
               "dual_mobility",
-              "lofty_mount"
+              "lofty_mount",
+              "summon_big_rock"
             ]
           ]
         ]
@@ -17762,31 +17987,49 @@
     "connections": [
       {
         "region": "ForgottenWorld_Caves2_Lower",
+        "comment":"extra logic to avoid the need of the warp to home button, can remove the or",
         "requirements": [
           "AND",
           [
-            "double_jump",
-            "magic_vines"
+            "magic_vines",
+            "OR",
+            [
+              "double_jump",
+              "improved_flying",
+              "dual_mobility"
+            ]
           ]
         ]
       },
       {
         "region": "ForgottenWorld_Caves4",
+        "comment":"removed logic to avoid the need of the warp to home button, can add lofty mount",
         "requirements": [
           "AND",
           [
-            "double_jump",
-            "magic_vines"
+            "magic_vines",
+            "OR",
+            [
+              "double_jump",
+              "improved_flying",
+              "dual_mobility"
+            ]
           ]
         ]
       },
       {
         "region": "ForgottenWorld_Caves5_Lower",
+        "comment":"extra logic to avoid the need of the warp to home button, can remove the or",
         "requirements": [
           "AND",
           [
-            "double_jump",
-            "magic_vines"
+            "magic_vines",
+            "OR",
+            [
+              "double_jump",
+              "improved_flying",
+              "dual_mobility"
+            ]
           ]
         ]
       }
@@ -17796,16 +18039,36 @@
         "id": 4,
         "item": "2x Banana",
         "name": "Forgotten World - Magic Vine Maze - Upper Chest",
+        "comment":"removed logic to avoid the need of the warp to home button, can add lofty mount",
         "requirements": [
-          "magic_vines"
+          "AND",
+          [
+            "magic_vines",
+            "OR",
+            [
+              "double_jump",
+              "improved_flying",
+              "dual_mobility"
+            ]
+          ]
         ]
       },
       {
         "id": 5,
         "item": "Switch Stone",
         "name": "Forgotten World - Magic Vine Maze - Middle Chest",
+        "comment":"extra logic to avoid the need of the warp to home button, can remove the OR",
         "requirements": [
-          "magic_vines"
+          "AND",
+          [
+            "magic_vines",
+            "OR",
+            [
+              "double_jump",
+              "improved_flying",
+              "dual_mobility"
+            ]
+          ]
         ]
       }
     ]
@@ -17838,7 +18101,9 @@
             "OR",
             [
               "double_jump",
-              "distant_ledges"
+              "distant_ledges",
+              "summon_mushroom",
+              "summon_rock"
             ]
           ]
         ]
@@ -17896,7 +18161,7 @@
     "region": "ForgottenWorld_Caves8",
     "connections": [
       {
-        "region": "ForgottenWorld_Caves5"
+        "region": "ForgottenWorld_Caves5_Lower"
       },
       {
         "region": "ForgottenWorld_Caves6"
@@ -17947,7 +18212,8 @@
           [
             "double_jump",
             "improved_flying",
-            "dual_mobility"
+            "dual_mobility",
+            "lofty_mount"
           ]
         ]
       },
@@ -17957,11 +18223,7 @@
       {
         "region": "ForgottenWorld_TerradrileLair1",
         "requirements": [
-          "AND",
-          [
-            "diamond_blocks",
-            "breakable_walls"
-          ]
+          "diamond_blocks"
         ]
       }
     ],
@@ -17999,16 +18261,7 @@
       {
         "region": "ForgottenWorld_Caves11_Upper",
         "requirements": [
-          "AND",
-          [
-            "forgotten_world_caves_shortcut",
-            "OR",
-            [
-              "double_jump",
-              "improved_flying",
-              "dual_mobility"
-            ]
-          ]
+          "forgotten_world_caves_shortcut"
         ]
       },
       {
@@ -18018,7 +18271,21 @@
     "flags": [
       {
         "id": "forgotten_world_caves_shortcut",
-        "name": "Forgotten World Caves Shortcut"
+        "name": "Forgotten World Caves Shortcut",
+        "requirements":[
+          "AND",
+          [
+            "breakable_walls",
+            "OR",
+            [
+              "double_jump",
+              "improved_flying",
+              "dual_mobility",
+              "lofty_mount",
+              "summon_big_rock"
+            ]
+          ]
+        ]
       }
     ]
   },
@@ -18026,7 +18293,16 @@
     "region": "ForgottenWorld_Caves12",
     "connections": [
       {
-        "region": "ForgottenWorld_DarkRoom"
+        "region": "ForgottenWorld_DarkRoom",
+        "comment":"extra logic to avoid the need of the warp to home button, can remove all requirements",
+        "requirements": [
+          "OR",
+          [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility"
+          ]
+        ]
       },
       {
         "region": "ForgottenWorld_Caves6",
@@ -18120,13 +18396,23 @@
     "connections": [
       {
         "region": "ForgottenWorld_TarPits7",
+        "comment":"ADVANCED LOGIC: just big rock, precise jump",
         "requiremetns": [
           "OR",
           [
             "double_jump",
             "improved_flying",
             "dual_mobility",
-            "lofty_mount"
+            "lofty_mount",
+            "AND",
+            [
+              "summon_big_rock",
+              "OR",
+              [
+                "mount",
+                "flying"
+              ]
+            ]
           ]
         ]
       },
@@ -18168,21 +18454,36 @@
       {
         "region": "ForgottenWorld_Caves10",
         "requirements": [
-          "OR",
-          [
-            "double_jump",
-            "improved_flying",
-            "dual_mobility"
+           "AND",
+           [ 
+            "breakable_walls",
+            "OR",
+            [
+              "double_jump",
+              "improved_flying",
+              "dual_mobility",
+              "lofty_mount",
+              "summon_big_rock"
+            ]
           ]
         ]
       },
       {
         "region": "ForgottenWorld_TerradrileLair2",
+        "comment":"extra logic to avoid the need of the warp to home button, can remove the OR",
         "requirements": [
           "AND",
           [
             "breakable_walls",
-            "narrow_corridors"
+            "narrow_corridors",
+            "OR",
+            [
+              "double_jump",
+              "improved_flying",
+              "dual_mobility",
+              "lofty_mount",
+              "summon_big_rock"
+            ]
           ]
         ]
       }
@@ -18192,8 +18493,20 @@
         "id": 2,
         "item": "2500 G",
         "name": "Forgotten World - Terradrile Lair Vertical",
+        "comment":"extra logic to avoid the need of the warp to home button, can remove the OR",
         "requirements": [
-          "breakable_walls"
+          "AND",
+          [
+            "breakable_walls",
+            "OR",
+            [
+              "double_jump",
+              "improved_flying",
+              "dual_mobility",
+              "lofty_mount",
+              "summon_big_rock"
+            ]
+          ]
         ]
       }
     ],
@@ -18205,8 +18518,20 @@
           "Krakaturtle",
           "Tar Blob"
         ],
+        "comment":"extra logic to avoid the need of the warp to home button, can remove the OR",
         "requirements": [
-          "breakable_walls"
+          "AND",
+          [
+            "breakable_walls",
+            "OR",
+            [
+              "double_jump",
+              "improved_flying",
+              "dual_mobility",
+              "lofty_mount",
+              "summon_big_rock"
+            ]
+          ]
         ]
       }
     ]
@@ -18242,6 +18567,9 @@
         "monsters": [
           "Terradrile"
         ],
+        "requirements": [
+          "breakable_walls"
+        ],
         "name": "Forgotten World - Terradrile"
       }
     ]
@@ -18252,15 +18580,11 @@
       {
         "region": "ForgottenWorld_MCPath2",
         "requirements": [
-          "AND",
+          "OR",
           [
             "double_jump",
-            "OR",
-            [
-              "double_jump",
-              "improved_flying",
-              "dual_mobility"
-            ]
+            "improved_flying",
+            "dual_mobility"
           ]
         ]
       },
@@ -18277,9 +18601,9 @@
           "AND",
           [
             "levitate",
-            "double_jump",
             "OR",
             [
+              "double_jump",
               "improved_flying",
               "dual_mobility",
               "lofty_mount"
@@ -18386,7 +18710,12 @@
           "AND",
           [
             "fiery_shots",
-            "distant_ledges"
+            "OR",
+            [
+              "double_jump",
+              "distant_ledges",
+              "summon_big_rock"
+            ]
           ]
         ]
       },
@@ -18413,9 +18742,7 @@
                 [
                   "summon_big_rock",
                   "secret_vision",
-                  "improved_flying",
-                  "dual_mobility",
-                  "lofty_mount"
+                  "distant_ledges"
                 ]
               ]
             ]
@@ -18428,10 +18755,27 @@
     "region": "ForgottenWorld_Climb2",
     "connections": [
       {
-        "region": "ForgottenWorld_Climb1"
+        "region": "ForgottenWorld_Climb1",
+        "comment":"extra logic to avoid the need of the warp to home button, can remove all requirements",
+        "requirements": [
+          "OR",
+          [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility"
+          ]
+        ]
       },
       {
-        "region": "ForgottenWorld_Climb3"
+        "region": "ForgottenWorld_Climb3",
+        "requirements": [
+          "OR",
+          [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility"
+          ]
+        ]
       }
     ],
     "chests": [
@@ -18444,8 +18788,7 @@
           [
             "double_jump",
             "improved_flying",
-            "dual_mobility",
-            "lofty_mount"
+            "dual_mobility"
           ]
         ]
       },
@@ -18453,14 +18796,13 @@
         "id": 4,
         "item": "2x Steel",
         "name": "Forgotten World - Vertical Climb - Lower Chest",
+        "comment":"extra logic to avoid the need of the warp to home button, can remove all requirements",
         "requirements": [
           "OR",
           [
             "double_jump",
             "improved_flying",
-            "dual_mobility",
-            "lofty_mount",
-            "summon_big_rock"
+            "dual_mobility"
           ]
         ]
       },
@@ -18473,8 +18815,7 @@
           [
             "double_jump",
             "improved_flying",
-            "dual_mobility",
-            "lofty_mount"
+            "dual_mobility"
           ]
         ]
       }
@@ -18550,10 +18891,32 @@
     "region": "ForgottenWorld_Climb4",
     "connections": [
       {
-        "region": "ForgottenWorld_Climb3"
+        "region": "ForgottenWorld_Climb3",
+        "comment":"extra logic to avoid the need of the warp to home button, can remove all requirements",
+        "requirements":[
+          "OR",
+          [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility",
+            "lofty_mount",
+            "ground_switches"
+          ]
+        ]
       },
       {
-        "region": "ForgottenWorld_ClimbSide"
+        "region": "ForgottenWorld_ClimbSide",
+        "comment":"extra logic to avoid the need of the warp to home button, can remove all requirements",
+        "requirements":[
+          "OR",
+          [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility",
+            "lofty_mount",
+            "ground_switches"
+          ]
+        ]
       },
       {
         "region": "ForgottenWorld_Climb5",
@@ -18562,7 +18925,9 @@
           [
             "double_jump",
             "improved_flying",
-            "dual_mobility"
+            "dual_mobility",
+            "lofty_mount",
+            "summon_big_rock"
           ]
         ]
       }
@@ -18607,7 +18972,12 @@
         "item": "Skill Potion",
         "name": "Forgotten World - North Center Climb - SW Chest 1",
         "requirements": [
-          "double_jump"
+          "OR",
+          [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility"
+          ]
         ]
       },
       {
@@ -18619,22 +18989,16 @@
           [
             "double_jump",
             "improved_flying",
-            "dual_mobility"
+            "dual_mobility",
+            "lofty_mount",
+            "summon_big_rock"
           ]
         ]
       },
       {
         "id": 14,
         "item": "Sapphire",
-        "name": "Forgotten World - North Center Climb - SE Chest",
-        "requirements": [
-          "OR",
-          [
-            "double_jump",
-            "distant_ledges",
-            "ground_switches"
-          ]
-        ]
+        "name": "Forgotten World - North Center Climb - SE Chest"
       },
       {
         "id": 23,
@@ -18657,6 +19021,17 @@
           "Amberlgna",
           "Glowdra",
           "Amberlgna"
+        ],
+        "comment":"extra logic to avoid the need of the warp to home button, can remove all requirements",
+        "requirements":[
+          "OR",
+          [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility",
+            "lofty_mount",
+            "ground_switches"
+          ]
         ]
       },
       {
@@ -18671,7 +19046,9 @@
           [
             "double_jump",
             "improved_flying",
-            "dual_mobility"
+            "dual_mobility",
+            "lofty_mount",
+            "summon_big_rock"
           ]
         ]
       }
@@ -18723,6 +19100,7 @@
           "OR",
           [
             "double_jump",
+            "flying",
             "improved_flying",
             "dual_mobility"
           ]
@@ -18925,7 +19303,12 @@
       {
         "region": "AbandonedTower_Center1_Lower",
         "requirements": [
-          "double_jump"
+          "OR",
+          [
+            "double_jump",
+            "improved_flying",
+            "dual_mobility"
+          ]
         ]
       }
     ],
@@ -18937,8 +19320,13 @@
         "requirements": [
           "AND",
           [
-            "double_jump",
-            "ground_switches"
+            "ground_switches",
+            "OR",
+            [
+              "double_jump",
+              "improved_flying",
+              "dual_mobility"
+            ]
           ]
         ]
       }
@@ -19023,7 +19411,8 @@
             "OR",
             [
               "improved_flying",
-              "dual_mobility"
+              "dual_mobility",
+              "lofty_mount"
             ]
           ]
         ]
@@ -19064,7 +19453,8 @@
             "double_jump",
             "improved_flying",
             "dual_mobility",
-            "lofty_mount"
+            "lofty_mount",
+            "summon_big_rock"
           ]
         ]
       },
@@ -19130,7 +19520,9 @@
           [
             "double_jump",
             "improved_flying",
-            "dual_mobility"
+            "dual_mobility",
+            "lofty_mount",
+            "summon_big_rock"
           ]
         ]
       }
@@ -19198,7 +19590,8 @@
           "OR",
           [
             "double_jump",
-            "distant_ledges"
+            "distant_ledges",
+            "ground_switches"
           ]
         ]
       }
@@ -19258,8 +19651,18 @@
         "id": 1,
         "item": "2x Gold",
         "name": "Abandoned Tower - Center Diamond Chest",
+        "comment":"extra logic to avoid the need of the warp to home button, can remove the OR",
         "requirements": [
-          "diamond_blocks"
+          "AND",
+          [
+            "diamond_blocks",
+            "OR",
+            [
+              "double_jump",
+              "distant_ledges",
+              "ground_switches"
+            ]
+          ]
         ]
       }
     ]
@@ -19352,10 +19755,14 @@
         "item": "Skill Potion",
         "name": "Abandoned Tower - Center Timed Chest",
         "requirements": [
-          "AND",
+          "OR",
           [
-            "double_jump",
-            "mount"
+            "lofty_mount",
+            "AND",
+            [
+              "mount",
+              "double_jump"
+            ]
           ]
         ]
       }
@@ -19673,8 +20080,14 @@
         "id": 8,
         "item": "Switch Stone",
         "name": "Abandoned Tower - North East Side",
+        "comment":"extra logic to avoid the need of the warp to home button, can remove all requirements",
         "requirements": [
-          "double_jump"
+          "OR",
+          [
+            "double_jump",
+            "distant_ledges",
+            "ground_switches"
+          ]
         ]
       }
     ]
