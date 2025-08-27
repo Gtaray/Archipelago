@@ -565,6 +565,18 @@ def key_of_power(state: CollectionState, player: int) -> bool:
 
 def all_celestial_feathers(state: CollectionState, player: int) -> bool:
     return state.has("Celestial Feather", player, 3)
+
+
+def dodo_egg(state: CollectionState, player: int) -> bool:
+    return state.has("Dodo Egg", player)
+
+
+def light_shifted_dodo_egg(state: CollectionState, player: int) -> bool:
+    return state.has("Light-Shifted Dodo Egg", player)
+
+
+def dark_shifted_dodo_egg(state: CollectionState, player: int) -> bool:
+    return state.has("Dark-Shifted Dodo Egg", player)
 # endregion
 
 

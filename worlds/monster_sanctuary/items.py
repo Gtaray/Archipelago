@@ -57,8 +57,8 @@ class MonsterSanctuaryItem(Item):
     def __init__(self, player: int, id: int, name: str, classification: ItemClassification):
         super(MonsterSanctuaryItem, self).__init__(name, classification, id, player)
 
-    def __str__(self):
-        return self.name
+    # def __str__(self):
+    #     return self.name
 
 
 # This holds all the item data that is parsed from items.json file

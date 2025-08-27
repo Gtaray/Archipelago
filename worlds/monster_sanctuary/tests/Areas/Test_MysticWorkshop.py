@@ -72,4 +72,8 @@ class MysticWorkshopWithOpenedEntrances(TestArea):
     }
 
     def test_north_shortcut_is_open(self):
-        self.assertAccessible("MysticalWorkshop_North2", "mystical_workshop_north_shortcut", [])
+        self.assertNotAccessible("MysticalWorkshop_North2", "mystical_workshop_north_shortcut", [])
+        self.assertAccessible("MysticalWorkshop_North2", "mystical_workshop_north_shortcut",
+                                 ["Double Jump Boots"])
+        self.assertAccessible("MysticalWorkshop_North2", "mystical_workshop_north_shortcut",
+                                 ["Kongamato"])

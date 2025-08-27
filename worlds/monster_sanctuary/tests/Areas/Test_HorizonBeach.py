@@ -74,7 +74,12 @@ class HorizonBeachWithOpenEntrances(TestArea):
 
     def test_magma_chamber_shortcut_is_open(self):
         self.assertAccessible("MagmaChamber_East2", "horizon_beach_to_magma_chamber_shortcut", [])
-        self.assertAccessible("MagmaChamber_East3_Upper", "MagmaChamber_East2_3", [])
+        self.assertNotAccessible("MagmaChamber_East3_Upper", "MagmaChamber_East2_3", [])
+        self.assertNotAccessible("MagmaChamber_East3_Upper", "MagmaChamber_East2_3",
+                                 ["Horizon Beach To Magma Chamber Shortcut"])
+        self.assertAccessible("MagmaChamber_East3_Upper", "MagmaChamber_East2_3", ["Koi"])
+        self.assertAccessible("MagmaChamber_East3_Upper", "MagmaChamber_East2_3",
+                                 ["Koi", "Horizon Beach To Magma Chamber Shortcut"])
 
 
 class HorizonBeachWithOpenShortcuts(TestArea):

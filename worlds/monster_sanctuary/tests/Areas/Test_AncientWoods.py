@@ -52,7 +52,7 @@ class AncientWoodsTests(TestArea):
                               ["Double Jump Boots", "Nightwing", "Ancient Woods Brutus Access"])
 
         self.assertNotAccessible("AncientWoods_South4", "ancient_woods_brutus_access", [])
-        self.assertAccessible("AncientWoods_South4", "ancient_woods_brutus_access", ["Yowie"])
+        self.assertAccessible("AncientWoods_South4", "ancient_woods_brutus_access", ["Yowie", "Nightwing"])
 
         self.assertNotAccessible("AncientWoods_South4", "AncientWoods_SouthHidden4_1_0", [])
         self.assertAccessible("AncientWoods_South4", "AncientWoods_SouthHidden4_1_0",

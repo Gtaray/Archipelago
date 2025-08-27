@@ -5294,7 +5294,7 @@
         "item": "Shockhopper Egg",
         "name": "Snowy Peaks - Cryomancer - Egg Reward 1",
         "requirements": [
-          "dodo"
+          "dodo_egg"
         ]
       },
       {
@@ -5302,11 +5302,7 @@
         "item": "Shockhopper Egg",
         "name": "Snowy Peaks - Cryomancer - Light Egg Reward",
         "requirements": [
-          "AND",
-          [
-            "dodo",
-            "shifting_avialable"
-          ]
+          "light_shifted_dodo_egg"
         ]
       },
       {
@@ -5314,11 +5310,7 @@
         "item": "Shockhopper Egg",
         "name": "Snowy Peaks - Cryomancer - Dark Egg Reward",
         "requirements": [
-          "AND",
-          [
-            "dodo",
-            "shifting_avialable"
-          ]
+          "dark_shifted_dodo_egg"
         ]
       },
       {
@@ -5326,7 +5318,11 @@
         "item": "Reward Box Lvl 2",
         "name": "Snowy Peaks - Cryomancer - Egg Reward 2",
         "requirements": [
-          "dodo"
+          "AND", [
+            "dodo_egg",
+            "light_shifted_dodo_egg",
+            "dark_shifted_dodo_egg"
+          ]
         ]
       }
     ]
@@ -14065,6 +14061,7 @@
         "region": "Underworld_WestCatacomb1"
       },
       {
+        "comment": "This is a one way connection. WestCatacomb7 doesn't have a connection back to this location",
         "region": "Underworld_WestCatacomb7"
       }
     ],
@@ -14125,6 +14122,7 @@
   },
   {
     "region": "Underworld_WestCatacomb7",
+    "comment": "Should this have a connection to Underworld_WestCatacomb5_West?",
     "connections": [
       {
         "region": "Underworld_WestCatacomb7_Shortcut",
