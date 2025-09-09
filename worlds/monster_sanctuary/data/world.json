@@ -7138,7 +7138,7 @@
           [
             "AND",
             [
-              "advanced",
+              "casual",
               "warm_underwear",
               "OR",
               [
@@ -7738,18 +7738,18 @@
                 "improved_flying",
                 "dual_mobility",
                 "lofty_mount"
-              ],
-              "AND",
+              ]
+            ],
+            "AND",
+            [
+              "NOT casual",
+              "OR",
               [
-                "NOT casual",
-                "OR",
-                [
-                  "double_jump",
-                  "improved_flying",
-                  "dual_mobility",
-                  "lofty_mount",
-                  "summon_big_rock"
-                ]
+                "double_jump",
+                "improved_flying",
+                "dual_mobility",
+                "lofty_mount",
+                "summon_big_rock"
               ]
             ]
           ]
@@ -7776,18 +7776,18 @@
                 "improved_flying",
                 "dual_mobility",
                 "lofty_mount"
-              ],
-              "AND",
+              ]
+            ],
+            "AND",
+            [
+              "NOT casual",
+              "OR",
               [
-                "NOT casual",
-                "OR",
-                [
-                  "double_jump",
-                  "improved_flying",
-                  "dual_mobility",
-                  "lofty_mount",
-                  "summon_big_rock"
-                ]
+                "double_jump",
+                "improved_flying",
+                "dual_mobility",
+                "lofty_mount",
+                "summon_big_rock"
               ]
             ]
           ]
@@ -10931,7 +10931,7 @@
           [
             "AND",
             [
-              "NOT casual",
+              "casual",
               "OR",
               [
                 "swimming",

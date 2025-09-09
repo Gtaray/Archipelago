@@ -50,8 +50,6 @@ class SunPalaceTests(TestArea):
                               ["Sun Palace Raise Center", "Double Jump Boots"])
         self.assertAccessible("SunPalace_Center", "sun_palace_lower_water_1",
                               ["Sun Palace Raise Center", "Kongamato"])
-        self.assertAccessible("SunPalace_Center", "sun_palace_lower_water_1",
-                              ["Sun Palace Raise Center", "Brutus"])
 
     def test_lower_water_2(self):
         self.assertNotAccessible("SunPalace_Center", "sun_palace_lower_water_1", [])
@@ -63,8 +61,6 @@ class SunPalaceTests(TestArea):
                               ["Sun Palace Raise Center", "Sun Palace Raise Center", "Double Jump Boots"])
         self.assertAccessible("SunPalace_Center", "sun_palace_lower_water_1",
                               ["Sun Palace Raise Center", "Sun Palace Raise Center", "Kongamato"])
-        self.assertAccessible("SunPalace_Center", "sun_palace_lower_water_1",
-                              ["Sun Palace Raise Center", "Sun Palace Raise Center", "Brutus"])
 
     # We don't need to test if we can get to the shortcut areas normally
     # because the above tests for the raise_center flags are in the same spots

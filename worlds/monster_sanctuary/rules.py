@@ -144,6 +144,22 @@ def defeated_enough_champions_for_key_of_power(state: CollectionState, player: i
     return state.has("Champion Defeated", player, champions_to_defeat)
 
 
+def casual(state: CollectionState, player: int) -> bool:
+    return get_options(state, player).logic_difficulty.value == 0
+
+
+def advanced(state: CollectionState, player: int) -> bool:
+    return get_options(state, player).logic_difficulty.value == 1
+
+
+def expert(state: CollectionState, player: int) -> bool:
+    return get_options(state, player).logic_difficulty.value == 2
+
+
+def tedious(state: CollectionState, player: int) -> bool:
+    return get_options(state, player).tedious_checks.value
+
+
 def get_options(state: CollectionState, player: int):
     return state.multiworld.worlds[player].options
 # endregion
