@@ -557,7 +557,7 @@ class MonsterSanctuaryWorld(World):
             "options": {
                 "goal": self.options.goal.value,
                 "logic_difficulty": self.options.logic_difficulty.value,
-                "tedious_checks": self.options.tedious_checks,
+                "tedious_checks": self.options.tedious_checks.value,
 
                 "starting_gold": self.options.starting_gold.value,
                 "add_smoke_bombs": self.options.add_smoke_bombs.value,
