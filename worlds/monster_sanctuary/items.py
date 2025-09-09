@@ -46,8 +46,8 @@ class ItemData:
         else:
             self.groups = []
 
-    def __str__(self):
-        return self.name
+    # def __str__(self):
+    #     return self.name
 
 
 class MonsterSanctuaryItem(Item):
