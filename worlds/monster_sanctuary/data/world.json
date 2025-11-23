@@ -560,6 +560,9 @@
           "Catzerker",
           "Catzerker",
           "Catzerker"
+        ],
+        "requirements": [
+          "impassible_vines"
         ]
       }
     ],
